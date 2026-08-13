@@ -2005,14 +2005,14 @@ window.AICCShare = (function () {
             // Datos del Sondeo Maestro
             let masterData = {
                 rueda: [
-                    { name: "Salud y Bienestar", icon: "❤️", score: 6, pain: "", action: "" },
+                    { name: "Salud y Bienestar", icon: "❤️", score: 5, pain: "", action: "" },
                     { name: "Finanzas Personales", icon: "📊", score: 5, pain: "", action: "" },
-                    { name: "Carrera / Negocio", icon: "💼", score: 7, pain: "", action: "" },
-                    { name: "Familia y Relaciones", icon: "🤝", score: 8, pain: "", action: "" },
-                    { name: "Crecimiento Personal", icon: "🧠", score: 6, pain: "", action: "" },
-                    { name: "Ocio y Diversión", icon: "🎨", score: 4, pain: "", action: "" },
+                    { name: "Carrera / Negocio", icon: "💼", score: 5, pain: "", action: "" },
+                    { name: "Familia y Relaciones", icon: "🤝", score: 5, pain: "", action: "" },
+                    { name: "Crecimiento Personal", icon: "🧠", score: 5, pain: "", action: "" },
+                    { name: "Ocio y Diversión", icon: "🎨", score: 5, pain: "", action: "" },
                     { name: "Entorno Físico", icon: "🏡", score: 5, pain: "", action: "" },
-                    { name: "Mental / Espiritual", icon: "🧘", score: 6, pain: "", action: "" }
+                    { name: "Mental / Espiritual", icon: "🧘", score: 5, pain: "", action: "" }
                 ],
                 fugas: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], // 10 respuestas de 1 a 5
                 eisenhower: [
@@ -2361,6 +2361,7 @@ window.AICCShare = (function () {
                             <span class="dimension-title">${item.icon} ${item.name}</span>
                             <span class="score-value" id="score-val-${idx}">${item.score}/10</span>
                         </div>
+                        ${meta.guide ? `<div style="font-size:0.72rem; color:#888888; margin: 3px 0 6px 0; line-height:1.25; font-style:italic;">${meta.guide}</div>` : ''}
                         <input type="range" min="1" max="10" value="${item.score}" oninput="Sonda.updateRuedaScore(${idx}, this.value)" />
                         <div style="margin-top:4px; display:flex; flex-direction:column; gap:4px;">
                             <input type="text" placeholder="${meta.painPlaceholder || '📌 Fuga/Traba principal (opcional)...'}" value="${item.pain || ''}" oninput="Sonda.updateRuedaText(${idx}, 'pain', this.value)" style="background:#141414; border:1px solid #262626; color:#ffffff; font-size:0.72rem; padding:4px 6px; border-radius:4px;" />
