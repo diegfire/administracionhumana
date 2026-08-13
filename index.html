@@ -755,6 +755,116 @@
       color: #ff6666; font-size: 0.85rem; padding: 10px; border-radius: 8px;
       margin-bottom: 16px; display: none; text-align: center;
     }
+
+    /* ── RESPONSIVE MOBILE & TABLET STYLES ── */
+    @media (max-width: 992px) {
+      .steps {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 24px !important;
+      }
+      .steps::before { display: none !important; }
+      .problem-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Navigation */
+      nav .container {
+        flex-direction: column !important;
+        gap: 14px !important;
+        align-items: center !important;
+        padding-top: 14px !important;
+        padding-bottom: 14px !important;
+      }
+      .nav-links {
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        flex-wrap: wrap !important;
+      }
+      .nav-logo {
+        font-size: 1.15rem !important;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 40px 0 50px !important;
+        text-align: center !important;
+      }
+      .hero h1 {
+        font-size: 2.1rem !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.01em !important;
+      }
+      .hero-sub {
+        font-size: 1rem !important;
+        padding: 0 4px !important;
+      }
+      .hero-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 12px !important;
+      }
+      .hero-actions .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 16px 20px !important;
+        font-size: 0.95rem !important;
+      }
+
+      /* Grids & Containers */
+      .container {
+        padding: 0 18px !important;
+      }
+
+      .circle-grid,
+      .caminos-grid,
+      .benefits-grid,
+      .testimonials-grid,
+      .steps {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      .camino-card,
+      .circle-card,
+      .benefit-card,
+      .testimonial-card,
+      .problem-right {
+        padding: 26px 20px !important;
+        border-radius: 16px !important;
+      }
+
+      .section-header h2,
+      .final-cta h2 {
+        font-size: 1.75rem !important;
+      }
+
+      /* Footer */
+      footer .container {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 16px !important;
+      }
+      .footer-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+      }
+
+      /* Auth Modal */
+      .auth-card {
+        padding: 28px 20px !important;
+        margin: 0 16px !important;
+        max-width: calc(100vw - 32px) !important;
+      }
+
+      /* Inputs */
+      input[type="text"], input[type="email"], input[type="password"] {
+        font-size: 16px !important;
+      }
+    }
   </style>
 </head>
 <body>

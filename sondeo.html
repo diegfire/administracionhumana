@@ -1323,8 +1323,8 @@ window.AICCShare = (function () {
             header {
                 flex-direction: column !important;
                 align-items: center !important;
-                gap: 10px !important;
-                padding: 1rem 3% !important;
+                gap: 12px !important;
+                padding: 1rem 4% !important;
                 text-align: center !important;
             }
 
@@ -1339,15 +1339,22 @@ window.AICCShare = (function () {
 
             .steps-nav {
                 overflow-x: auto !important;
-                padding-bottom: 6px !important;
-                gap: 6px !important;
+                padding-bottom: 8px !important;
+                gap: 8px !important;
                 justify-content: start !important;
                 -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+            }
+
+            .steps-nav::-webkit-scrollbar {
+                display: none !important;
             }
 
             .step-pill {
                 flex-shrink: 0 !important;
-                font-size: 0.76rem !important;
+                font-size: 0.8rem !important;
+                padding: 8px 14px !important;
+                white-space: nowrap !important;
             }
 
             .wizard-header h2 {
@@ -1355,15 +1362,33 @@ window.AICCShare = (function () {
             }
 
             .wizard-header p {
-                font-size: 0.84rem !important;
+                font-size: 0.85rem !important;
             }
 
             .glass-panel {
-                padding: 1rem !important;
+                padding: 1.1rem 0.9rem !important;
+                border-radius: 16px !important;
             }
 
             #ruedaInputsList, #quizContainer {
                 grid-template-columns: 1fr !important;
+            }
+
+            /* Previene el zoom automático molesto en iOS Safari al tocar un campo */
+            input[type="text"], input[type="email"], input[type="number"], select, textarea {
+                font-size: 16px !important;
+            }
+
+            /* Ajuste de radar chart en móviles */
+            svg#wheelSvg, svg#summaryWheelSvg {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            /* Botones táctiles cómodos */
+            button, .btn-action, .btn-primary, .btn-secondary {
+                min-height: 46px !important;
+                font-size: 0.92rem !important;
             }
         }
 
