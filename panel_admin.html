@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Administrador Pro | Diego</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg: #000000;
+      --color-surface: #0a0a0a;
+      --color-surface-2: #121212;
+      --color-border: #262626;
+      --color-border-bright: #3a3a3a;
+      --color-text: #ffffff;
+      --color-text-muted: #888888;
+      --color-text-light: #a1a1aa;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --radius-lg: 20px;
+      --max-width: 1240px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-bg); color: var(--color-text);
+      font-family: var(--font-sans); min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; width: 100%; }
+
+    /* NAV */
+    nav {
+      background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border); padding: 14px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-logo {
+      font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem;
+      color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .nav-tag {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 0.7rem; font-family: var(--font-heading); font-weight: 800;
+      padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+    }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .nav-link {
+      color: var(--color-text-muted); font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; padding: 6px 12px; border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .btn-logout {
+      background: transparent; border: 1px solid #ff4444;
+      color: #ff6666; padding: 6px 16px; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-logout:hover { background: rgba(255,68,68,0.1); }
+
+    main { padding: 40px 0; flex-grow: 1; }
+    
+    .admin-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 28px; flex-wrap: wrap; gap: 16px;
+    }
+    .admin-title {
+      font-family: var(--font-heading); font-size: 2rem; font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .admin-sub { color: var(--color-text-light); font-size: 0.95rem; }
+
+    /* FILTERS BAR */
+    .filter-bar {
+      display: flex; gap: 12px; background: var(--color-surface);
+      border: 1px solid var(--color-border); padding: 16px; border-radius: 16px;
+      margin-bottom: 24px; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    }
+    .search-input {
+      background: #161616; border: 1px solid var(--color-border-bright);
+      color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 0.9rem;
+      font-family: var(--font-sans); width: 280px; outline: none;
+    }
+    .search-input:focus { border-color: #ffffff; }
+    .status-select {
+      background: #161616; border: 1px solid var(--color-border-bright);
+      color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 0.88rem;
+      font-family: var(--font-sans); outline: none; cursor: pointer;
+    }
+
+    /* TABLE */
+    .table-container {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); overflow-x: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th {
+      background: var(--color-surface-2); padding: 16px 20px;
+      font-family: var(--font-heading); font-size: 0.75rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border);
+    }
+    td {
+      padding: 18px 20px; border-bottom: 1px solid var(--color-border);
+      font-size: 0.88rem; color: var(--color-text-light); vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .user-info { font-weight: 700; color: #fff; font-size: 0.95rem; }
+    .user-email { font-size: 0.8rem; color: var(--color-text-muted); }
+    
+    .status-badge {
+      display: inline-block; padding: 4px 10px; border-radius: 50px;
+      font-size: 0.75rem; font-family: var(--font-heading); font-weight: 800;
+      text-transform: uppercase; border: 1px solid transparent;
+    }
+    .badge-sondeo { background: rgba(255,193,7,0.1); border-color: #ffc107; color: #ffc107; }
+    .badge-agendada { background: rgba(0,188,212,0.1); border-color: #00bcd4; color: #00bcd4; }
+    .badge-activo { background: rgba(0,255,136,0.1); border-color: #00ff88; color: #00ff88; }
+    .badge-finalizado { background: rgba(255,255,255,0.1); border-color: #888; color: #aaa; }
+
+    .input-drive {
+      background: #141414; border: 1px solid var(--color-border-bright);
+      color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 0.82rem;
+      width: 220px;
+    }
+    .input-notes {
+      background: #141414; border: 1px solid var(--color-border-bright);
+      color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 0.82rem;
+      width: 200px;
+    }
+
+    .btn-action {
+      background: #ffffff; color: #000000; border: none; padding: 6px 14px;
+      border-radius: 50px; font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.78rem; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-action:hover { background: #e5e5e5; }
+    .btn-action-view {
+      background: transparent; color: #ffffff; border: 1px solid var(--color-border-bright);
+      padding: 6px 12px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+      cursor: pointer; margin-left: 6px;
+    }
+    .btn-action-view:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* DIAGNOSTIC MODAL */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(16px); z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    .modal-card {
+      background: #0e0e0e; border: 1px solid #333333; border-radius: 20px;
+      padding: 36px; width: 100%; max-width: 600px; position: relative;
+      max-height: 85vh; overflow-y: auto; color: #fff;
+      box-shadow: 0 0 40px rgba(255,255,255,0.08);
+    }
+    .modal-close {
+      position: absolute; top: 20px; right: 20px; background: transparent; border: none;
+      color: #888; font-size: 1.5rem; cursor: pointer;
+    }
+    .modal-close:hover { color: #fff; }
+    .diag-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid #222; font-size: 0.9rem;
+    }
+    .diag-score-bar {
+      height: 8px; background: #222; border-radius: 4px; width: 120px; overflow: hidden;
+    }
+    .diag-score-fill { height: 100%; background: #ffffff; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <div class="nav-brand">
+        <a href="landing_administracion_humana.html" class="nav-logo">Administración Humana</a>
+        <span class="nav-tag">Control Admin</span>
+      </div>
+      <div class="nav-links">
+        <a href="04_MARKETING_Y_CONTENIDO/01_INSTAGRAM_POSTS/index.html" target="_blank" class="nav-link">📱 Hub Instagram</a>
+        <a href="04_MARKETING_Y_CONTENIDO/Editor_Publicaciones_Administracion_Humana.html" target="_blank" class="nav-link">✍️ Editor Posts</a>
+        <a href="03_PRODUCTOS_Y_APLICACIONES/Suite_Digital_AICC.html" target="_blank" class="nav-link">⚡ Suite Apps</a>
+        <a href="landing_administracion_humana.html" class="nav-link">🌐 Landing</a>
+        <button class="btn-logout" id="btn-logout">Cerrar Sesión</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="admin-header">
+        <div>
+          <h1 class="admin-title">Panel de Control de Clientes</h1>
+          <p class="admin-sub">Gestiona usuarios, audita sus sondeos 360° y asigna sus recursos de acompañamiento.</p>
+        </div>
+      </div>
+
+      <!-- BARRA DE BÚSQUEDA Y FILTROS -->
+      <div class="filter-bar">
+        <input type="text" id="search-input" class="search-input" placeholder="🔍 Buscar por nombre o email..." />
+        <div style="display:flex; gap:10px; align-items:center;">
+          <span style="font-size:0.82rem; color:#888; font-weight:700;">Estado:</span>
+          <select id="status-filter" class="status-select">
+            <option value="ALL">Todos los Estados</option>
+            <option value="Sondeo Recibido">🟡 Sondeo Recibido</option>
+            <option value="Sesión Agendada">🔵 Sesión Agendada</option>
+            <option value="En Acompañamiento">🟢 En Acompañamiento</option>
+            <option value="Finalizado">⚪ Finalizado</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- TABLA DE CLIENTES -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Estado Actual</th>
+              <th>Carpeta Google Drive</th>
+              <th>Notas Privadas</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="clients-tbody">
+            <!-- Filas generadas dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL VISOR DIAGNÓSTICO -->
+  <div class="modal-overlay" id="diag-modal">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close-btn">&times;</button>
+      <h2 style="font-family:var(--font-heading); font-size:1.5rem; margin-bottom:6px;" id="diag-user-title">Diagnóstico 360°</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:24px;" id="diag-user-sub">Resultados por dimensión</p>
+      
+      <div id="diag-scores-list">
+        <!-- Puntajes cargados dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { AHAuth } from './js/auth.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await AHAuth.init();
+
+      let allClients = [];
+
+      AHAuth.onAuthChange(async (user) => {
+        if (!user || user.role !== 'admin') {
+          alert('Acceso restringido únicamente para el Administrador (Diego).');
+          window.location.href = 'landing_administracion_humana.html';
+          return;
+        }
+
+        await loadAndRenderClients();
+      });
+
+      document.getElementById('btn-logout').addEventListener('click', async () => {
+        await AHAuth.logout();
+        window.location.href = 'landing_administracion_humana.html';
+      });
+
+      async function loadAndRenderClients() {
+        const users = await AHAuth.getAllUsers();
+        allClients = users.filter(u => u.role !== 'admin');
+        renderTable();
+      }
+
+      function renderTable() {
+        const tbody = document.getElementById('clients-tbody');
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        const statusFilter = document.getElementById('status-filter').value;
+
+        const filtered = allClients.filter(c => {
+          const matchSearch = (c.fullName || '').toLowerCase().includes(searchTerm) || (c.email || '').toLowerCase().includes(searchTerm);
+          const matchStatus = statusFilter === 'ALL' || c.status === statusFilter;
+          return matchSearch && matchStatus;
+        });
+
+        if (filtered.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:32px; color:#888;">No se encontraron clientes que coincidan con la búsqueda.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = filtered.map(c => `
+          <tr>
+            <td>
+              <div class="user-info">${c.fullName || 'Sin nombre'}</div>
+              <div class="user-email">${c.email}</div>
+            </td>
+            <td>
+              <select class="status-select" style="padding:4px 8px; font-size:0.78rem;" onchange="window.changeStatus('${c.uid}', this.value)">
+                <option value="Sondeo Recibido" ${c.status === 'Sondeo Recibido' ? 'selected' : ''}>🟡 Sondeo Recibido</option>
+                <option value="Sesión Agendada" ${c.status === 'Sesión Agendada' ? 'selected' : ''}>🔵 Sesión Agendada</option>
+                <option value="En Acompañamiento" ${c.status === 'En Acompañamiento' ? 'selected' : ''}>🟢 En Acompañamiento</option>
+                <option value="Finalizado" ${c.status === 'Finalizado' ? 'selected' : ''}>⚪ Finalizado</option>
+              </select>
+            </td>
+            <td>
+              <input type="url" id="drive-${c.uid}" class="input-drive" value="${c.driveUrl || ''}" placeholder="https://drive.google.com/..." />
+            </td>
+            <td>
+              <input type="text" id="notes-${c.uid}" class="input-notes" value="${c.notes || ''}" placeholder="Escribe observaciones..." />
+            </td>
+            <td>
+              <button class="btn-action" onclick="window.saveRow('${c.uid}')">Guardar</button>
+              <button class="btn-action-view" onclick="window.openDiagModal('${c.uid}', '${c.fullName || c.email}')">👁️ Sondeo</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      document.getElementById('search-input').addEventListener('input', renderTable);
+      document.getElementById('status-filter').addEventListener('change', renderTable);
+
+      window.changeStatus = async (uid, newStatus) => {
+        await AHAuth.updateUserField(uid, { status: newStatus });
+      };
+
+      window.saveRow = async (uid) => {
+        const driveUrl = document.getElementById(`drive-${uid}`).value;
+        const notes = document.getElementById(`notes-${uid}`).value;
+        await AHAuth.updateUserField(uid, { driveUrl, notes });
+        alert('Información del cliente actualizada correctamente.');
+        await loadAndRenderClients();
+      };
+
+      // MODAL DIAGNÓSTICO
+      const diagModal = document.getElementById('diag-modal');
+      document.getElementById('modal-close-btn').onclick = () => diagModal.classList.remove('active');
+
+      window.openDiagModal = async (uid, userName) => {
+        document.getElementById('diag-user-title').innerText = `Diagnóstico 360° · ${userName}`;
+        const scoresList = document.getElementById('diag-scores-list');
+        
+        const diag = await AHAuth.getDiagnostic(uid);
+        if (!diag || !diag.scores) {
+          scoresList.innerHTML = `<p style="color:#888; padding:20px 0; text-align:center;">Este cliente aún no ha registrado datos del sondeo 360°.</p>`;
+        } else {
+          const scores = diag.scores;
+          scoresList.innerHTML = Object.keys(scores).map(dim => `
+            <div class="diag-item">
+              <span>${dim}</span>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div class="diag-score-bar">
+                  <div class="diag-score-fill" style="width: ${scores[dim] * 10}%;"></div>
+                </div>
+                <strong style="width:30px; text-align:right;">${scores[dim]}/10</strong>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        diagModal.classList.add('active');
+      };
+    });
+  </script>
+
+</body>
+</html>

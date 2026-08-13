@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal del Cliente | Administración Humana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg: #000000;
+      --color-surface: #0a0a0a;
+      --color-surface-2: #121212;
+      --color-border: #262626;
+      --color-border-bright: #3a3a3a;
+      --color-text: #ffffff;
+      --color-text-muted: #888888;
+      --color-text-light: #a1a1aa;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --radius-lg: 20px;
+      --max-width: 1100px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-bg); color: var(--color-text);
+      font-family: var(--font-sans); min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; width: 100%; }
+
+    /* NAV */
+    nav {
+      background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border); padding: 16px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo {
+      font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem;
+      color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .user-pill {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--color-surface-2); border: 1px solid var(--color-border);
+      padding: 6px 16px; border-radius: 50px;
+    }
+    .user-name { font-size: 0.88rem; font-weight: 700; }
+    .btn-logout {
+      background: transparent; border: none; color: #ff6666;
+      font-size: 0.8rem; font-weight: 700; cursor: pointer; margin-left: 8px;
+    }
+    .btn-logout:hover { text-decoration: underline; }
+
+    main { padding: 40px 0; flex-grow: 1; }
+    
+    .welcome-card {
+      background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%);
+      border: 1px solid var(--color-border-bright); border-radius: var(--radius-lg);
+      padding: 36px; margin-bottom: 32px; position: relative; overflow: hidden;
+    }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 14px; border-radius: 50px;
+      font-size: 0.75rem; font-family: var(--font-heading); font-weight: 800;
+      text-transform: uppercase; margin-bottom: 14px; color: #fff;
+    }
+    .status-badge::before {
+      content: ''; width: 6px; height: 6px; background: #00ff88; border-radius: 50%;
+    }
+    .welcome-title { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; }
+    .welcome-sub { color: var(--color-text-light); font-size: 0.95rem; max-width: 650px; }
+
+    /* DASHBOARD SECTIONS */
+    .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+
+    .portal-card {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); padding: 28px;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .card-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .card-title { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+    .card-desc { font-size: 0.88rem; color: var(--color-text-light); line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+
+    .btn-card-action {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: #ffffff; color: #000000; padding: 12px 24px; border-radius: 50px;
+      font-family: var(--font-heading); font-weight: 800; font-size: 0.85rem;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-card-action:hover { background: #e5e5e5; }
+    .btn-card-action.secondary {
+      background: transparent; color: #fff; border: 1px solid var(--color-border-bright);
+    }
+    .btn-card-action.secondary:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+
+    /* RADAR CONTAINER */
+    .radar-container {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      margin-top: 10px;
+    }
+
+    /* CHECKLIST */
+    .checklist-container { margin-top: 10px; }
+    .task-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; background: var(--color-surface-2);
+      border: 1px solid var(--color-border); border-radius: 10px;
+      margin-bottom: 8px; font-size: 0.88rem;
+    }
+    .task-item.completed span { text-decoration: line-through; color: var(--color-text-muted); }
+    .task-checkbox { width: 18px; height: 18px; cursor: pointer; accent-color: #ffffff; }
+    .btn-add-task {
+      background: #181818; border: 1px dashed var(--color-border-bright); color: #fff;
+      padding: 10px; width: 100%; border-radius: 10px; font-size: 0.85rem;
+      cursor: pointer; text-align: center; margin-top: 10px; font-weight: 600;
+    }
+    .btn-add-task:hover { border-color: #fff; background: #222; }
+
+    footer {
+      border-top: 1px solid var(--color-border); padding: 24px 0;
+      text-align: center; color: var(--color-text-muted); font-size: 0.85rem; background: var(--color-surface);
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .welcome-title { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="landing_administracion_humana.html" class="nav-logo">Administración Humana</a>
+      <div class="user-pill">
+        <span class="user-name" id="user-display-name">Cargando...</span>
+        <button class="btn-logout" id="btn-logout">Cerrar Sesión</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <!-- WELCOME HERO -->
+      <div class="welcome-card">
+        <span class="status-badge" id="user-status-badge">🟢 Acompañamiento Activo</span>
+        <h1 class="welcome-title" id="welcome-header">Bienvenido a tu Espacio</h1>
+        <p class="welcome-sub" id="welcome-sub-text">
+          Aquí tienes centralizada tu información de gestión personal, tus herramientas y tu plan de microacciones.
+        </p>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- RADAR DIAGNÓSTICO -->
+        <div class="portal-card">
+          <div class="card-icon">📊</div>
+          <h2 class="card-title">Mapa Diagnóstico 360°</h2>
+          <p class="card-desc">Tus resultados por dimensión para enfocar la estructura de tus sesiones.</p>
+          
+          <div class="radar-container" id="radar-wrapper">
+            <svg id="radar-svg" width="280" height="240" viewBox="0 0 300 260"></svg>
+          </div>
+          
+          <a href="03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/sondeo_maestro_360.html" class="btn-card-action secondary" style="margin-top:16px;">
+            Actualizar Sondeo 360° →
+          </a>
+        </div>
+
+        <!-- CHECKLIST MICROACCIONES 24H-48H -->
+        <div class="portal-card">
+          <div class="card-icon">🎯</div>
+          <h2 class="card-title">Plan de Microacciones (24h - 48h)</h2>
+          <p class="card-desc">Pasos concretos acordados para romper la inercia sin parálisis.</p>
+          
+          <div class="checklist-container" id="tasks-list">
+            <!-- Tareas dinámicas -->
+          </div>
+
+          <button class="btn-add-task" id="btn-new-task">+ Agregar Microacción</button>
+        </div>
+
+        <!-- GOOGLE DRIVE RECURSOS -->
+        <div class="portal-card">
+          <div class="card-icon">📁</div>
+          <h2 class="card-title">Tu Carpeta Google Drive</h2>
+          <p class="card-desc">Accede a tus plantillas digitalizadas de Excel, tableros Kanban y guías a tu medida.</p>
+          <a href="#" id="drive-link" target="_blank" class="btn-card-action">
+            Abrir Mi Google Drive →
+          </a>
+        </div>
+
+        <!-- SUITE DIGITAL Y HERRAMIENTAS -->
+        <div class="portal-card">
+          <div class="card-icon">⚡</div>
+          <h2 class="card-title">Suite Digital de Herramientas</h2>
+          <p class="card-desc">Tableros interactivos: Rueda de la Vida, Matriz Eisenhower, Time Blocker y GTD.</p>
+          <a href="03_PRODUCTOS_Y_APLICACIONES/Suite_Digital_AICC.html" class="btn-card-action secondary">
+            Abrir Suite Digital →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Administración Humana · Portal del Cliente Privado</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { AHAuth } from './js/auth.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await AHAuth.init();
+
+      let currentUser = null;
+
+      AHAuth.onAuthChange(async (user) => {
+        if (!user) {
+          window.location.href = 'landing_administracion_humana.html';
+          return;
+        }
+
+        currentUser = user;
+        document.getElementById('user-display-name').innerText = user.fullName || user.email;
+        document.getElementById('welcome-header').innerText = `Hola, ${user.fullName || 'Cliente'}`;
+
+        const statusBadge = document.getElementById('user-status-badge');
+        statusBadge.innerText = user.status || '🟢 Acompañamiento Activo';
+
+        const driveLink = document.getElementById('drive-link');
+        if (user.driveUrl) {
+          driveLink.href = user.driveUrl;
+        } else {
+          driveLink.href = 'https://drive.google.com';
+          driveLink.innerText = 'Google Drive (En asignación)';
+        }
+
+        // Cargar Diagnóstico en Mapa Radar SVG
+        const diag = await AHAuth.getDiagnostic(user.uid);
+        const scores = (diag && diag.scores) ? diag.scores : {
+          'Propósito': 7, 'Tiempo': 5, 'Finanzas': 6, 'Bienestar': 7,
+          'Hábitos': 5, 'Relaciones': 8, 'Entorno': 6, 'Desarrollo': 7
+        };
+        renderRadarSVG(scores);
+
+        // Cargar Tareas
+        await loadTasks(user.uid);
+      });
+
+      document.getElementById('btn-logout').addEventListener('click', async () => {
+        await AHAuth.logout();
+        window.location.href = 'landing_administracion_humana.html';
+      });
+
+      // SVG RADAR CHART GENERATOR
+      function renderRadarSVG(scores) {
+        const svg = document.getElementById('radar-svg');
+        const labels = Object.keys(scores);
+        const values = Object.values(scores);
+        const total = labels.length;
+        const centerX = 150, centerY = 130, radius = 90;
+
+        let polygonPoints = [];
+        let gridLines = '';
+        let labelElements = '';
+
+        // Concentric web circles (3 rings)
+        [0.33, 0.66, 1].forEach(r => {
+          let ringPts = [];
+          for (let i = 0; i < total; i++) {
+            const angle = (Math.PI * 2 / total) * i - Math.PI / 2;
+            const x = centerX + Math.cos(angle) * (radius * r);
+            const y = centerY + Math.sin(angle) * (radius * r);
+            ringPts.push(`${x},${y}`);
+          }
+          gridLines += `<polygon points="${ringPts.join(' ')}" fill="none" stroke="#222" stroke-width="1" />`;
+        });
+
+        // Axes and Data points
+        for (let i = 0; i < total; i++) {
+          const angle = (Math.PI * 2 / total) * i - Math.PI / 2;
+          const xVal = centerX + Math.cos(angle) * (radius * (values[i] / 10));
+          const yVal = centerY + Math.sin(angle) * (radius * (values[i] / 10));
+          polygonPoints.push(`${xVal},${yVal}`);
+
+          const xEnd = centerX + Math.cos(angle) * radius;
+          const yEnd = centerY + Math.sin(angle) * radius;
+          gridLines += `<line x1="${centerX}" y1="${centerY}" x2="${xEnd}" y2="${yEnd}" stroke="#222" stroke-width="1" />`;
+
+          // Labels
+          const xLbl = centerX + Math.cos(angle) * (radius + 20);
+          const yLbl = centerY + Math.sin(angle) * (radius + 14);
+          labelElements += `<text x="${xLbl}" y="${yLbl}" fill="#888" font-size="10" text-anchor="middle" font-weight="700">${labels[i].substring(0,8)}</text>`;
+        }
+
+        svg.innerHTML = `
+          ${gridLines}
+          <polygon points="${polygonPoints.join(' ')}" fill="rgba(255,255,255,0.15)" stroke="#ffffff" stroke-width="2" />
+          ${polygonPoints.map(pt => `<circle cx="${pt.split(',')[0]}" cy="${pt.split(',')[1]}" r="3" fill="#ffffff" />`).join('')}
+          ${labelElements}
+        `;
+      }
+
+      // CHECKLIST LOGIC
+      async function loadTasks(uid) {
+        const tasks = await AHAuth.getClientTasks(uid);
+        renderTasks(tasks, uid);
+      }
+
+      function renderTasks(tasks, uid) {
+        const listEl = document.getElementById('tasks-list');
+        if (tasks.length === 0) {
+          listEl.innerHTML = `<p style="color:#888; font-size:0.85rem; text-align:center; padding:10px;">No tienes microacciones registradas aún.</p>`;
+          return;
+        }
+
+        listEl.innerHTML = tasks.map((t, idx) => `
+          <div class="task-item ${t.completed ? 'completed' : ''}">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <input type="checkbox" class="task-checkbox" ${t.completed ? 'checked' : ''} onchange="window.toggleTask(${idx})" />
+              <span>${t.text}</span>
+            </div>
+            <button style="background:none; border:none; color:#666; cursor:pointer; font-size:0.9rem;" onclick="window.deleteTask(${idx})">&times;</button>
+          </div>
+        `).join('');
+
+        window.toggleTask = async (idx) => {
+          tasks[idx].completed = !tasks[idx].completed;
+          await AHAuth.saveClientTasks(uid, tasks);
+          renderTasks(tasks, uid);
+        };
+
+        window.deleteTask = async (idx) => {
+          tasks.splice(idx, 1);
+          await AHAuth.saveClientTasks(uid, tasks);
+          renderTasks(tasks, uid);
+        };
+      }
+
+      document.getElementById('btn-new-task').addEventListener('click', async () => {
+        if (!currentUser) return;
+        const text = prompt('Escribe tu nueva microacción (24-48h):');
+        if (text && text.trim()) {
+          const tasks = await AHAuth.getClientTasks(currentUser.uid);
+          tasks.push({ id: Date.now(), text: text.trim(), completed: false });
+          await AHAuth.saveClientTasks(currentUser.uid, tasks);
+          await loadTasks(currentUser.uid);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
