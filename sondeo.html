@@ -1366,6 +1366,113 @@ window.AICCShare = (function () {
                 grid-template-columns: 1fr !important;
             }
         }
+
+        /* Estilos de Impresión Profesional (PDF) */
+        @media print {
+            body, html {
+                background: #ffffff !important;
+                background-image: none !important;
+                color: #000000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            header, footer, .wizard-controls, .audio-prompt-box, button, .wizard-header, .steps-nav, .progress-bar-container {
+                display: none !important;
+            }
+            .wizard-step-panel {
+                display: none !important;
+            }
+
+            #step-6 {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            #step-6 > div:first-child {
+                display: none !important;
+            }
+
+            #fullSummaryCard {
+                background: #ffffff !important;
+                color: #000000 !important;
+                border: 1px solid #111111 !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 10px !important;
+                box-sizing: border-box !important;
+            }
+
+            #fullSummaryCard h4,
+            #fullSummaryCard h5,
+            #fullSummaryCard div,
+            #fullSummaryCard span,
+            #fullSummaryCard b,
+            #fullSummaryCard p,
+            #fullSummaryCard i {
+                color: #000000 !important;
+                text-shadow: none !important;
+            }
+
+            #fullSummaryCard .grid-two {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 10px !important;
+            }
+            #fullSummaryCard .grid-two > div {
+                background: #ffffff !important;
+                border: 1px solid #bbbbbb !important;
+                padding: 8px !important;
+                border-radius: 6px !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+            }
+
+            #summaryWheelSvg {
+                background: #ffffff !important;
+                border: 1px solid #bbbbbb !important;
+                border-radius: 6px !important;
+            }
+            #summaryWheelSvg circle {
+                stroke: #cccccc !important;
+            }
+            #summaryWheelSvg line {
+                stroke: #aaaaaa !important;
+            }
+            #summaryWheelSvg polygon {
+                fill: rgba(0, 0, 0, 0.05) !important;
+                stroke: #000000 !important;
+                stroke-width: 2 !important;
+            }
+            #summaryWheelSvg text {
+                fill: #000000 !important;
+                font-weight: 800 !important;
+            }
+            #summaryWheelSvg circle[fill="#ef4444"] {
+                fill: #000000 !important;
+            }
+
+            div[style*="border-bottom:1px solid #262626"] {
+                border-bottom: 1px solid #000000 !important;
+            }
+            span[style*="color:#e5e5e5"] {
+                color: #444444 !important;
+            }
+            div[style*="background:#222"] {
+                background: #dddddd !important;
+            }
+            div[style*="background:#71717a"] {
+                background: #000000 !important;
+            }
+            div[style*="background:#ffffff"] {
+                background: #555555 !important;
+            }
+        }
     </style>
 </head>
 <body>
