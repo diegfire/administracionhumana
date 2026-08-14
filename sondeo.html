@@ -1543,7 +1543,7 @@ window.AICCShare = (function () {
             <div class="progress-bar-container">
                 <div class="progress-bar-fill" id="progressBar"></div>
                 <div class="steps-nav">
-                    <span class="step-pill active" id="pill-1" onclick="SondeoWizard.goToStep(1)">1. Rueda</span>
+                    <span class="step-pill active" id="pill-1" onclick="SondeoWizard.goToStep(1)">1. Rueda de la Vida</span>
                     <span class="step-pill" id="pill-2" onclick="SondeoWizard.goToStep(2)">2. Fugas</span>
                     <span class="step-pill" id="pill-3" onclick="SondeoWizard.goToStep(3)">3. Eisenhower</span>
                     <span class="step-pill" id="pill-4" onclick="SondeoWizard.goToStep(4)">4. Tiempo & Dinero</span>
@@ -1558,8 +1558,8 @@ window.AICCShare = (function () {
             <div class="grid-two">
                 <div class="glass-panel">
                     <div class="panel-title">
-                        PASO 1: BALANCE DE VIDA
-                        <span>Rueda de 8 Dimensiones</span>
+                        PASO 1: RUEDA DE LA VIDA
+                        <span>8 Dimensiones Clave</span>
                     </div>
 
                     <div style="background: #0d0d0d; border: 1px solid #262626; border-radius: 10px; padding: 10px 12px; margin-bottom: 1rem;">
@@ -2380,7 +2380,7 @@ window.AICCShare = (function () {
 
                     const xEnd = cx + rMax * Math.cos(angle);
                     const yEnd = cy + rMax * Math.sin(angle);
-                    axisLines += `<line x1="${cx}" y1="${cy}" x2="${xEnd}" y2="${yEnd}" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1" />`;
+                    axisLines += `<line x1="${cx}" y1="${cy}" x2="${xEnd}" y2="${yEnd}" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1" />`;
 
                     const labelR = rMax + 24;
                     const lx = cx + labelR * Math.cos(angle);
@@ -2392,18 +2392,21 @@ window.AICCShare = (function () {
                     }
 
                     const isAlert = item.score <= 5;
-                    const labelColor = isAlert ? "#ff6666" : "#ffffff";
+                    const scoreColor = isAlert ? "#ff4d4f" : "#4ade80";
 
                     labelsHtml += `
                         <g>
-                            <text x="${lx}" y="${ly}" text-anchor="${textAnchor}" fill="${labelColor}" font-size="9" font-weight="${isAlert ? '800' : '600'}" font-family="Plus Jakarta Sans, sans-serif">
-                                ${item.icon} ${item.score}/10 ${isAlert ? '🚨' : ''}
+                            <text x="${lx}" y="${ly - 4}" text-anchor="${textAnchor}" fill="#ffffff" font-size="9.5" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">
+                                ${item.icon} ${item.name}
+                            </text>
+                            <text x="${lx}" y="${ly + 8}" text-anchor="${textAnchor}" fill="${scoreColor}" font-size="9" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">
+                                ${item.score}/10 ${isAlert ? '🚨' : '✅'}
                             </text>
                         </g>
                     `;
 
                     vertexDotsHtml += `
-                        <circle cx="${x}" cy="${y}" r="${isAlert ? '4' : '3'}" fill="${isAlert ? '#ef4444' : '#ffffff'}" stroke="#000000" stroke-width="1" />
+                        <circle cx="${x}" cy="${y}" r="${isAlert ? '4' : '3'}" fill="${isAlert ? '#ff4d4f' : '#ffffff'}" stroke="#000000" stroke-width="1" />
                     `;
                 });
 
@@ -2413,7 +2416,7 @@ window.AICCShare = (function () {
                 svg.innerHTML = `
                     ${circlesHtml}
                     ${axisLines}
-                    <polygon points="${points.join(' ')}" fill="rgba(255, 255, 255, 0.2)" stroke="#ffffff" stroke-width="2.5" />
+                    <polygon points="${points.join(' ')}" fill="rgba(255, 255, 255, 0.28)" stroke="#ffffff" stroke-width="2.5" />
                     ${vertexDotsHtml}
                     ${labelsHtml}
                 `;
@@ -2539,7 +2542,7 @@ window.AICCShare = (function () {
                 let circlesHtml = "";
                 for (let i = 2; i <= 10; i += 2) {
                     const rRing = (i / 10) * rMax;
-                    circlesHtml += `<circle cx="${cx}" cy="${cy}" r="${rRing}" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.2" stroke-dasharray="${i < 10 ? '3 3' : 'none'}" />`;
+                    circlesHtml += `<circle cx="${cx}" cy="${cy}" r="${rRing}" fill="none" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.2" stroke-dasharray="${i < 10 ? '3 3' : 'none'}" />`;
                     circlesHtml += `<text x="${cx + 5}" y="${cy - rRing + 14}" fill="#ffffff" font-size="12.5" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">${i}</text>`;
                 }
 
@@ -2552,7 +2555,7 @@ window.AICCShare = (function () {
 
                     const xEnd = cx + rMax * Math.cos(angle);
                     const yEnd = cy + rMax * Math.sin(angle);
-                    axisLines += `<line x1="${cx}" y1="${cy}" x2="${xEnd}" y2="${yEnd}" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.5" />`;
+                    axisLines += `<line x1="${cx}" y1="${cy}" x2="${xEnd}" y2="${yEnd}" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" />`;
 
                     const labelR = rMax + 38;
                     const lx = cx + labelR * Math.cos(angle);
@@ -2564,21 +2567,21 @@ window.AICCShare = (function () {
                     }
 
                     const isAlert = item.score <= 5;
-                    const labelColor = isAlert ? "#ff5555" : "#ffffff";
+                    const scoreColor = isAlert ? "#ff4d4f" : "#4ade80";
 
                     labelsHtml += `
                         <g>
-                            <text x="${lx}" y="${ly - 6}" text-anchor="${textAnchor}" fill="${labelColor}" font-size="15.5" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">
+                            <text x="${lx}" y="${ly - 7}" text-anchor="${textAnchor}" fill="#ffffff" font-size="16" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">
                                 ${item.icon} ${item.name}
                             </text>
-                            <text x="${lx}" y="${ly + 13}" text-anchor="${textAnchor}" fill="${isAlert ? '#ff8888' : '#cbd5e1'}" font-size="14" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">
-                                ${item.score}/10 ${isAlert ? '🚨' : ''}
+                            <text x="${lx}" y="${ly + 14}" text-anchor="${textAnchor}" fill="${scoreColor}" font-size="15" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">
+                                ${item.score}/10 ${isAlert ? '🚨' : '✅'}
                             </text>
                         </g>
                     `;
 
                     vertexDotsHtml += `
-                        <circle cx="${x}" cy="${y}" r="${isAlert ? '6.5' : '5'}" fill="${isAlert ? '#ef4444' : '#ffffff'}" stroke="#000000" stroke-width="2" />
+                        <circle cx="${x}" cy="${y}" r="${isAlert ? '6.5' : '5'}" fill="${isAlert ? '#ff4d4f' : '#ffffff'}" stroke="#000000" stroke-width="2" />
                     `;
                 });
 
@@ -2588,7 +2591,7 @@ window.AICCShare = (function () {
                 svg.innerHTML = `
                     ${circlesHtml}
                     ${axisLines}
-                    <polygon points="${points.join(' ')}" fill="rgba(255, 255, 255, 0.22)" stroke="#ffffff" stroke-width="3" />
+                    <polygon points="${points.join(' ')}" fill="rgba(255, 255, 255, 0.28)" stroke="#ffffff" stroke-width="3.5" />
                     ${vertexDotsHtml}
                     ${labelsHtml}
                 `;
@@ -3059,25 +3062,135 @@ window.AICCShare = (function () {
             }
 
             /* ================= ENVÍO DE PASOS Y AUDIOS POR WHATSAPP ================= */
+            function openWhatsAppChat(rawText) {
+                // Sanitizar caracteres y variation selectors (como \uFE0F) que generan símbolos corruptos en WhatsApp Web
+                const cleanText = rawText.replace(/[\uFE0E\uFE0F]/g, '');
+                const url = `https://wa.me/56975590132?text=${encodeURIComponent(cleanText)}`;
+                window.open(url, '_blank');
+            }
+
             function sendStepWhatsApp(stepNum) {
                 let text = "";
+                const formatCLP = num => new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(num);
 
                 if (stepNum === 1) {
-                    text = `Hola Diego, te adjunto la imagen de mi *Paso 1: Rueda de la Vida* 📸\n\n🎙️ *A continuación te grabo mi audio #1 (30-60 seg) con el contexto de mis áreas clave.*`;
+                    const scores = masterData.rueda.map(d => d.score);
+                    const avg = (scores.reduce((a, b) => a + b, 0) / 8).toFixed(1);
+                    const alerts = masterData.rueda.filter(d => d.score <= 5);
+                    const bestDim = [...masterData.rueda].sort((a,b) => b.score - a.score)[0];
+
+                    text = `Hola Diego, te comparto mi *Paso 1: Rueda de la Vida (8 Dimensiones)* 📸\n\n`;
+                    text += `📊 *Diagnóstico Radial 8D:*\n`;
+                    text += `• Promedio General: *${avg}/10*\n`;
+                    if (alerts.length > 0) {
+                        text += `• 🚨 *Áreas en Alerta (<=5):*\n`;
+                        alerts.forEach(a => {
+                            text += `  - ${a.icon} ${a.name}: *${a.score}/10*${a.pain ? ` ("${a.pain}")` : ''}\n`;
+                        });
+                    } else {
+                        text += `• ✅ Todas las dimensiones sobre 5/10 (en balance)\n`;
+                    }
+                    text += `• ⭐ Área con mayor puntaje: ${bestDim.name} (${bestDim.score}/10)\n\n`;
+                    text += `🎤 *A continuación te grabo mi audio #1 (30-60 seg) explicándote el contexto de mis dimensiones.*`;
+
                 } else if (stepNum === 2) {
-                    text = `Hola Diego, te adjunto la imagen de mi *Paso 2: Fugas de Energía & Saturómetro* 📸\n\n🎙️ *A continuación te grabo mi audio #2 sobre los síntomas que más fricción me causan.*`;
+                    const sum = masterData.fugas.reduce((a, b) => a + b, 0);
+                    const percent = Math.round(((sum - 10) / 40) * 100);
+                    const satLabel = percent < 35 ? "🟢 Fricción Baja" : percent < 65 ? "🟡 Fricción Moderada" : "🔴 Fricción Crítica";
+                    
+                    const critQuestions = [];
+                    questions.forEach((q, idx) => {
+                        if (masterData.fugas[idx] >= 4) {
+                            critQuestions.push(`  - ${q} (*${masterData.fugas[idx]}/5*)`);
+                        }
+                    });
+
+                    text = `Hola Diego, te comparto mi *Paso 2: Fugas de Energía & Saturómetro* 📸\n\n`;
+                    text += `🚨 *Índice de Saturación Operativa: ${percent}%* (${satLabel})\n\n`;
+                    if (critQuestions.length > 0) {
+                        text += `⚡ *Fugas y Síntomas Más Críticos:*\n`;
+                        text += critQuestions.join('\n') + '\n\n';
+                    }
+                    text += `🎤 *A continuación te grabo mi audio #2 sobre los síntomas que más fricción me causan.*`;
+
                 } else if (stepNum === 3) {
-                    text = `Hola Diego, te adjunto la imagen de mi *Paso 3: Matriz Eisenhower* 📸\n\n🎙️ *A continuación te grabo mi audio #3 con mi incendio o prioridad #1.*`;
+                    const q1 = masterData.eisenhower.filter(t => getTaskQuadrant(t.urgency, t.importance) === 1);
+                    const q2 = masterData.eisenhower.filter(t => getTaskQuadrant(t.urgency, t.importance) === 2);
+                    const q3 = masterData.eisenhower.filter(t => getTaskQuadrant(t.urgency, t.importance) === 3);
+                    const q4 = masterData.eisenhower.filter(t => getTaskQuadrant(t.urgency, t.importance) === 4);
+
+                    text = `Hola Diego, te comparto mi *Paso 3: Matriz Eisenhower (Incendios & Prioridades)* 📸\n\n`;
+                    text += `📌 *Clasificación de Mis Tareas (${masterData.eisenhower.length} en total):*\n`;
+                    if (q1.length > 0) {
+                        text += `• 🔥 *1. Hacer Ya (Incendios U+I):*\n`;
+                        q1.forEach(t => { text += `  - ${t.name}\n`; });
+                    } else {
+                        text += `• 🔥 *1. Hacer Ya:* Sin incendios críticos inmediatos\n`;
+                    }
+                    if (q2.length > 0) {
+                        text += `• 📅 *2. Planificar (Estratégico):* ${q2.map(t => t.name).join(', ')}\n`;
+                    }
+                    text += `• 🤝 *3. Delegar:* ${q3.length} tareas | 🗑️ *4. Eliminar:* ${q4.length} tareas\n\n`;
+                    text += `🎤 *A continuación te grabo mi audio #3 con el contexto de mi incendio #1.*`;
+
                 } else if (stepNum === 4) {
-                    text = `Hola Diego, te adjunto la imagen de mi *Paso 4: Auditoría de Tiempo & Finanzas* 📸\n\n🎙️ *A continuación te grabo mi audio #4 contándote sobre mis horas y presupuesto.*`;
+                    ensureTimeData();
+                    const mode = masterData.tiempo.mode || 'daily';
+                    const scope = masterData.tiempo.scope || 7;
+                    const t = (mode === 'daily' || mode === 'byday') ? masterData.tiempo.daily : masterData.tiempo.weekly;
+                    const f = masterData.finanzas || { nec: 0, des: 0, aho: 0, ingreso: 0 };
+
+                    text = `Hola Diego, te comparto mi *Paso 4: Auditoría de Tiempo & Presupuesto* 📸\n\n`;
+                    text += `⏰ *Auditoría de Horas (${mode === 'daily' ? 'Promedio Diario 24h' : 'Total Semanal 168h'}):*\n`;
+                    text += `• 💼 Trabajo Foco: *${t.foco || 0} ${mode === 'daily' ? 'h/día' : 'h/sem'}*\n`;
+                    text += `• 🔥 Apagafuegos / Incendios: *${t.fuego || 0} ${mode === 'daily' ? 'h/día' : 'h/sem'}*\n`;
+                    text += `• 😴 Sueño & Descanso: *${t.descanso || 0} ${mode === 'daily' ? 'h/día' : 'h/sem'}*\n`;
+                    text += `• 🌀 Dispersión / Fugas: *${t.disperso || 0} ${mode === 'daily' ? 'h/día' : 'h/sem'}*\n`;
+                    text += `• 🏡 Familia & Hogar: *${t.personal || 0} ${mode === 'daily' ? 'h/día' : 'h/sem'}*\n\n`;
+                    text += `💰 *Salud Financiera (50/30/20):*\n`;
+                    if (f.ingreso > 0) {
+                        const necAmt = Math.round(f.ingreso * (f.nec / 100));
+                        const desAmt = Math.round(f.ingreso * (f.des / 100));
+                        const ahoAmt = Math.round(f.ingreso * (f.aho / 100));
+                        text += `• Ingreso Mensual: *${formatCLP(f.ingreso)}*\n`;
+                        text += `• 🏠 Necesidades (${f.nec}%): *${formatCLP(necAmt)}*\n`;
+                        text += `• 🎨 Deseos (${f.des}%): *${formatCLP(desAmt)}* | 🏦 Ahorro (${f.aho}%): *${formatCLP(ahoAmt)}*\n\n`;
+                    } else {
+                        text += `• 🏠 Necesidades: *${f.nec}%* | 🎨 Deseos: *${f.des}%* | 🏦 Ahorro: *${f.aho}%*\n\n`;
+                    }
+                    text += `🎤 *A continuación te grabo mi audio #4 contándote sobre mis horas y presupuesto.*`;
+
                 } else if (stepNum === 5) {
-                    text = `Hola Diego, te adjunto la imagen de mi *Paso 5: Análisis FODA* 📸\n\n🎙️ *A continuación te grabo mi audio #5 con mi Fortaleza principal, Debilidad clave u observaciones del FODA.*`;
+                    const fd = masterData.foda || { fortalezas: "", debilidades: "", oportunidades: "", amenazas: "" };
+                    text = `Hola Diego, te comparto mi *Paso 5: Análisis FODA Diagnóstico* 📸\n\n`;
+                    text += `🧩 *Mi Radiografía FODA:*\n`;
+                    text += `• 💪 *Fortalezas:* ${fd.fortalezas || 'Sin completar'}\n`;
+                    text += `• ⚠️ *Debilidades:* ${fd.debilidades || 'Sin completar'}\n`;
+                    text += `• 🚀 *Oportunidades:* ${fd.oportunidades || 'Sin completar'}\n`;
+                    text += `• 🛡️ *Amenazas:* ${fd.amenazas || 'Sin completar'}\n\n`;
+                    text += `🎤 *A continuación te grabo mi audio #5 con las conclusiones principales de mi FODA.*`;
+
                 } else if (stepNum === 6) {
-                    text = `Hola Diego, ¡completé mi *Expediente Diagnóstico Maestro 360°*! 🏆\n\n📸 Te adjunto la imagen consolidada y mis audios por área para coordinar nuestra *Sesión Diagnóstica 1 a 1*.`;
+                    const sum = masterData.fugas.reduce((a, b) => a + b, 0);
+                    const percent = Math.round(((sum - 10) / 40) * 100);
+                    const alerts = masterData.rueda.filter(d => d.score <= 5);
+                    const q1 = masterData.eisenhower.filter(t => getTaskQuadrant(t.urgency, t.importance) === 1);
+
+                    text = `Hola Diego, ¡completé mi *Expediente Diagnóstico Maestro 360°*! 🏆\n\n`;
+                    text += `🔮 *Resumen Consolidado:*\n`;
+                    text += `• 📊 *1. Rueda 8D:* ${alerts.length} áreas en alerta (<=5)\n`;
+                    text += `• 🚨 *2. Fricción Operativa:* ${percent}% de saturación\n`;
+                    text += `• 📌 *3. Incendios (Hacer Ya):* ${q1.length} tareas urgentes\n`;
+                    text += `• ⏰ *4. Tiempo & Finanzas:* Horas y regla 50/30/20 configuradas\n`;
+                    text += `• 🧩 *5. FODA:* Fortalezas y Bloqueos mapeados\n\n`;
+                    text += `📸 Te adjunto la imagen consolidada y mis audios para coordinar nuestra *Sesión Diagnóstica 1 a 1*.`;
                 }
 
-                const url = `https://wa.me/56975590132?text=${encodeURIComponent(text)}`;
-                window.open(url, '_blank');
+                openWhatsAppChat(text);
+            }
+
+            function sendFullWhatsApp() {
+                sendStepWhatsApp(6);
             }
 
             /* ================= DESCARGA DE IMÁGENES AUTOMÁTICA (PNG B&N NÍTIDA) ================= */
@@ -3100,15 +3213,273 @@ window.AICCShare = (function () {
                         scale: 2,
                         logging: false,
                         useCORS: true,
+                        allowTaint: true,
                         onclone: (clonedDoc) => {
+                            // 1. Eliminar animaciones y transiciones (evita que fadeIn capture el elemento a media opacidad)
+                            const styleReset = clonedDoc.createElement('style');
+                            styleReset.innerHTML = `
+                                *, *::before, *::after {
+                                    animation: none !important;
+                                    -webkit-animation: none !important;
+                                    transition: none !important;
+                                    -webkit-transition: none !important;
+                                    opacity: 1 !important;
+                                    backdrop-filter: none !important;
+                                    -webkit-backdrop-filter: none !important;
+                                }
+                                .wizard-step-panel {
+                                    display: block !important;
+                                    animation: none !important;
+                                    opacity: 1 !important;
+                                    transform: none !important;
+                                }
+                                body, html {
+                                    background: #000000 !important;
+                                    color: #ffffff !important;
+                                }
+                            `;
+                            clonedDoc.head.appendChild(styleReset);
+
                             const clonedElem = clonedDoc.getElementById(panelId);
                             if (clonedElem) {
-                                // Ocultar botones y avisos interactivos de la foto exportada
-                                const hiddenElements = clonedElem.querySelectorAll('.audio-prompt-box, button');
-                                hiddenElements.forEach(b => b.style.display = 'none');
+                                clonedElem.style.animation = 'none';
+                                clonedElem.style.opacity = '1';
+                                clonedElem.style.transform = 'none';
+                                clonedElem.style.backgroundColor = '#000000';
+                                clonedElem.style.color = '#ffffff';
+
+                                // Ocultar prompts interactivos de audio y controles de navegación
+                                const hiddenUi = clonedElem.querySelectorAll('.audio-prompt-box, .wizard-controls, .aicc-share-backdrop');
+                                hiddenUi.forEach(b => b.style.display = 'none');
                                 
+                                // Ocultar deslizadores interactivos en la captura
+                                const rangeInputs = clonedElem.querySelectorAll('input[type="range"]');
+                                rangeInputs.forEach(r => r.style.display = 'none');
+
+                                // ================= FORMATO ESPECÍFICO PASO 1: RUEDA DE LA VIDA =================
+                                if (stepNum === 1) {
+                                    const dimCards = clonedElem.querySelectorAll('.dimension-card');
+                                    dimCards.forEach((card, idx) => {
+                                        const d = masterData.rueda[idx];
+                                        if (!d) return;
+                                        const isAlert = d.score <= 5;
+                                        
+                                        let notesHtml = "";
+                                        if (d.pain && d.pain.trim()) {
+                                            notesHtml += `<div style="font-size:0.75rem; color:#ffffff; background:#181818; border:1px solid #444; border-radius:4px; padding:3px 6px; margin-top:4px;">📌 <b>Fuga:</b> "${d.pain.trim()}"</div>`;
+                                        }
+                                        if (d.action && d.action.trim()) {
+                                            notesHtml += `<div style="font-size:0.75rem; color:#ffffff; background:#181818; border:1px solid #444; border-radius:4px; padding:3px 6px; margin-top:4px;">🎯 <b>24h:</b> "${d.action.trim()}"</div>`;
+                                        }
+
+                                        card.style.backgroundColor = '#0d0d0d';
+                                        card.style.border = `1px solid ${isAlert ? '#555555' : '#262626'}`;
+                                        card.style.borderRadius = '8px';
+                                        card.style.padding = '8px 10px';
+                                        card.style.color = '#ffffff';
+
+                                        card.innerHTML = `
+                                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span style="font-weight:700; font-size:0.82rem; color:${isAlert ? '#ffffff' : '#e5e5e5'};">${d.icon} ${d.name}</span>
+                                                <span style="font-weight:800; font-size:0.85rem; color:${isAlert ? '#ff4d4f' : '#ffffff'};">${d.score}/10 ${isAlert ? '🚨' : '✅'}</span>
+                                            </div>
+                                            <div style="height:4px; background:#222; border-radius:2px; margin:4px 0; overflow:hidden;">
+                                                <div style="height:100%; width:${d.score * 10}%; background:${isAlert ? '#ff4d4f' : '#ffffff'};"></div>
+                                            </div>
+                                            ${notesHtml}
+                                        `;
+                                    });
+
+                                    // Añadir resumen radial 8D bajo el gráfico SVG para equilibrar la columna derecha y eliminar el vacío negro
+                                    const rightCol = clonedElem.querySelector('.svg-box')?.parentElement;
+                                    if (rightCol && masterData && masterData.rueda) {
+                                        const scores = masterData.rueda.map(d => d.score);
+                                        const avg = (scores.reduce((a, b) => a + b, 0) / 8).toFixed(1);
+                                        const alerts = masterData.rueda.filter(d => d.score <= 5);
+                                        const bestDim = [...masterData.rueda].sort((a,b) => b.score - a.score)[0];
+                                        const worstDim = [...masterData.rueda].sort((a,b) => a.score - b.score)[0];
+                                        
+                                        const summaryBox = clonedDoc.createElement('div');
+                                        summaryBox.style.cssText = 'background:#0d0d0d; border:1px solid #333333; border-radius:10px; padding:12px 14px; margin-top:10px; color:#ffffff; font-family:Plus Jakarta Sans, sans-serif;';
+                                        summaryBox.innerHTML = `
+                                            <div style="font-size:0.88rem; font-weight:800; color:#ffffff; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+                                                <span>📊 Diagnóstico Balance 8D</span>
+                                                <span style="font-size:0.8rem; background:#181818; border:1px solid #444; padding:2px 8px; border-radius:12px; color:#ffffff;">Promedio: <b>${avg}/10</b></span>
+                                            </div>
+                                            <div style="font-size:0.78rem; color:#d4d4d8; line-height:1.4; margin-bottom:4px;">
+                                                ${alerts.length > 0 ? `🚨 <b>${alerts.length}</b> de 8 dimensiones en nivel de alerta (puntaje &le; 5)` : '✅ Todas las dimensiones se encuentran en nivel óptimo (&gt; 5)'}.
+                                            </div>
+                                            <div style="font-size:0.74rem; color:#a1a1aa; line-height:1.35;">
+                                                ⭐ Mayor satisfacción: <b style="color:#ffffff;">${bestDim.name} (${bestDim.score}/10)</b><br>
+                                                ⚠️ Mayor fricción: <b style="color:#ffffff;">${worstDim.name} (${worstDim.score}/10)</b>
+                                            </div>
+                                        `;
+                                        rightCol.appendChild(summaryBox);
+                                    }
+                                }
+
+                                // ================= FORMATO ESPECÍFICO PASO 2: FUGAS Y SATURÓMETRO =================
+                                if (stepNum === 2) {
+                                    const scaleLabels = {
+                                        1: "🟢 Nunca (1)",
+                                        2: "🟡 Rara vez (2)",
+                                        3: "🟠 A veces (3)",
+                                        4: "🔴 Frecuente (4)",
+                                        5: "🚨 Diario / Crítico (5)"
+                                    };
+
+                                    const quizContainer = clonedElem.querySelector('#quizContainer');
+                                    if (quizContainer) {
+                                        quizContainer.innerHTML = "";
+                                        quizContainer.style.display = "grid";
+                                        quizContainer.style.gridTemplateColumns = "1fr 1fr";
+                                        quizContainer.style.gap = "6px";
+
+                                        questions.forEach((q, idx) => {
+                                            const val = masterData.fugas[idx] || 3;
+                                            const isCrit = val === 5;
+                                            const isHigh = val === 4;
+                                            const itemDiv = clonedDoc.createElement('div');
+                                            itemDiv.style.cssText = `background:#0d0d0d; border:1px solid ${isCrit ? '#ff4d4f' : isHigh ? '#ef4444' : '#262626'}; border-radius:8px; padding:7px 9px; color:#ffffff; font-family:Plus Jakarta Sans, sans-serif;`;
+                                            itemDiv.innerHTML = `
+                                                <div style="font-size:0.75rem; font-weight:700; color:#ffffff; line-height:1.25; margin-bottom:4px;">
+                                                    ${idx + 1}. ${q}
+                                                </div>
+                                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                                    <span style="font-size:0.7rem; color:#a1a1aa;">Frecuencia:</span>
+                                                    <span style="font-size:0.75rem; font-weight:800; background:#181818; border:1px solid ${isCrit ? '#ff4d4f' : isHigh ? '#ef4444' : '#444'}; color:${isCrit ? '#ff4d4f' : isHigh ? '#fca5a5' : '#ffffff'}; padding:2px 6px; border-radius:4px;">
+                                                        ${scaleLabels[val] || `${val}/5`}
+                                                    </span>
+                                                </div>
+                                            `;
+                                            quizContainer.appendChild(itemDiv);
+                                        });
+                                    }
+
+                                    const rightBox = clonedElem.querySelector('.glass-panel:not(:first-child)') || clonedElem.querySelectorAll('.glass-panel')[1];
+                                    if (rightBox && masterData && masterData.fugas) {
+                                        const c5 = masterData.fugas.filter(v => v === 5).length;
+                                        const c4 = masterData.fugas.filter(v => v === 4).length;
+                                        const c3 = masterData.fugas.filter(v => v === 3).length;
+                                        const c12 = masterData.fugas.filter(v => v <= 2).length;
+
+                                        const breakdownDiv = clonedDoc.createElement('div');
+                                        breakdownDiv.style.cssText = 'background:#0d0d0d; border:1px solid #333333; border-radius:10px; padding:12px 14px; margin-top:12px; text-align:left; color:#ffffff; font-family:Plus Jakarta Sans, sans-serif;';
+                                        breakdownDiv.innerHTML = `
+                                            <div style="font-size:0.85rem; font-weight:800; color:#ffffff; margin-bottom:6px;">📊 Desglose de Fugas (10 Síntomas)</div>
+                                            <div style="font-size:0.76rem; color:#d4d4d8; line-height:1.4;">
+                                                • 🚨 <b>Fugas Críticas (Diario):</b> ${c5} síntomas<br>
+                                                • 🔴 <b>Frecuentes (Casi diario):</b> ${c4} síntomas<br>
+                                                • 🟠 <b>Fricción Moderada (A veces):</b> ${c3} síntomas<br>
+                                                • 🟢 <b>En Control (Rara vez/Nunca):</b> ${c12} síntomas
+                                            </div>
+                                        `;
+                                        rightBox.appendChild(breakdownDiv);
+                                    }
+                                }
+
+                                // ================= FORMATO ESPECÍFICO PASO 3: EISENHOWER =================
+                                if (stepNum === 3) {
+                                    // Ocultar botones de eliminar tareas
+                                    const deleteBtns = clonedElem.querySelectorAll('[onclick*="removeMasterTask"], button');
+                                    deleteBtns.forEach(b => b.style.display = 'none');
+
+                                    // Ocultar fila de agregar si está vacía
+                                    const taskInput = clonedElem.querySelector('#masterTaskInput');
+                                    if (taskInput && taskInput.parentElement) {
+                                        taskInput.parentElement.style.display = 'none';
+                                    }
+                                }
+
+                                // ================= FORMATO ESPECÍFICO PASO 4: TIEMPO Y FINANZAS =================
+                                if (stepNum === 4) {
+                                    // Mode header tag
+                                    const modeBox = clonedElem.querySelector('#btnTimeModeDaily')?.parentElement;
+                                    if (modeBox) {
+                                        const tMode = (masterData.tiempo && masterData.tiempo.mode) || 'daily';
+                                        const modeLabel = tMode === 'daily' ? '☀️ Promedio Diario (24h/día)' : tMode === 'byday' ? `📅 Día por Día (Activo: ${(masterData.tiempo.activeDay||'lun').toUpperCase()})` : '📆 Total Semanal (168h)';
+                                        modeBox.innerHTML = `<div style="text-align:center; font-size:0.82rem; font-weight:800; color:#ffffff; padding:4px 8px; width:100%; background:#181818; border-radius:6px; border:1px solid #333;">Modo Activo: ${modeLabel}</div>`;
+                                    }
+
+                                    const daySel = clonedElem.querySelector('#timeDaySelectorContainer');
+                                    if (daySel) daySel.style.display = 'none';
+                                    const scopeBox = clonedElem.querySelector('#timeScopeContainer');
+                                    if (scopeBox) scopeBox.style.display = 'none';
+
+                                    // Formatear categorías de tiempo
+                                    const timeGroups = clonedElem.querySelectorAll('#timeInputsList .input-group');
+                                    timeGroups.forEach((g, idx) => {
+                                        const cat = timeCategories[idx];
+                                        if (!cat) return;
+                                        const mode = (masterData.tiempo && masterData.tiempo.mode) || 'daily';
+                                        const scope = (masterData.tiempo && masterData.tiempo.scope) || 7;
+                                        const val = mode === 'daily' ? (masterData.tiempo.daily[cat.id]||0) : mode === 'weekly' ? (masterData.tiempo.weekly[cat.id]||0) : ((masterData.tiempo.days && masterData.tiempo.days[masterData.tiempo.activeDay||'lun']) ? masterData.tiempo.days[masterData.tiempo.activeDay||'lun'][cat.id]||0 : 0);
+
+                                        g.style.backgroundColor = '#0d0d0d';
+                                        g.style.border = '1px solid #262626';
+                                        g.style.padding = '8px 10px';
+                                        g.style.borderRadius = '8px';
+                                        g.innerHTML = `
+                                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span style="font-size:0.8rem; font-weight:700; color:#ffffff;">${cat.label}</span>
+                                                <span style="font-size:0.82rem; font-weight:800; background:#181818; border:1px solid #444; color:#ffffff; padding:2px 8px; border-radius:6px;">
+                                                    ${val} ${mode === 'weekly' ? 'h/sem' : 'h/día'} ${mode === 'daily' ? `(${val * scope}h/sem)` : ''}
+                                                </span>
+                                            </div>
+                                            <div style="height:4px; background:#222; border-radius:2px; margin-top:4px; overflow:hidden;">
+                                                <div style="height:100%; width:${Math.min(100, (val / (mode === 'weekly' ? 168 : 24)) * 100)}%; background:#ffffff;"></div>
+                                            </div>
+                                        `;
+                                    });
+
+                                    // Formatear finanzas
+                                    const f = masterData.finanzas || { nec: 0, des: 0, aho: 0, ingreso: 0 };
+                                    const incomeInp = clonedElem.querySelector('#incomeInput');
+                                    if (incomeInp && incomeInp.parentElement) {
+                                        const formatCLP = num => new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(num);
+                                        incomeInp.parentElement.innerHTML = `
+                                            <div style="font-size:0.82rem; font-weight:800; color:#ffffff; margin-bottom:2px;">💰 Ingreso Mensual Registrado:</div>
+                                            <div style="font-size:1rem; font-weight:800; color:#ffffff; background:#181818; border:1px solid #444; padding:4px 10px; border-radius:6px; display:inline-block;">
+                                                ${f.ingreso > 0 ? formatCLP(f.ingreso) : 'Sin monto en $ CLP (Base Porcentual %)'}
+                                            </div>
+                                        `;
+                                    }
+                                }
+
+                                // ================= FORMATO ESPECÍFICO PASO 5: FODA =================
+                                if (stepNum === 5) {
+                                    const fodaTextareas = clonedElem.querySelectorAll('textarea');
+                                    fodaTextareas.forEach(ta => {
+                                        const val = ta.value.trim();
+                                        const div = clonedDoc.createElement('div');
+                                        div.style.cssText = 'background:#141414; border:1px solid #444444; color:#ffffff; padding:10px 12px; border-radius:8px; font-size:0.84rem; font-family:Plus Jakarta Sans, sans-serif; line-height:1.45; min-height:60px; white-space:pre-wrap; word-break:break-word;';
+                                        div.innerText = val || '(Sin observaciones registradas)';
+                                        if (!val) div.style.color = '#a1a1aa';
+                                        ta.parentNode.replaceChild(div, ta);
+                                    });
+                                }
+
+                                // Transformar selects en elegantes badges de texto con alto contraste
+                                const selects = clonedElem.querySelectorAll('select');
+                                selects.forEach(sel => {
+                                    const selectedOption = sel.options[sel.selectedIndex];
+                                    const selText = selectedOption ? selectedOption.text : (sel.value || '');
+                                    const txtDiv = clonedDoc.createElement('div');
+                                    txtDiv.innerText = selText;
+                                    txtDiv.style.backgroundColor = '#181818';
+                                    txtDiv.style.border = '1px solid #444444';
+                                    txtDiv.style.color = '#ffffff';
+                                    txtDiv.style.padding = '4px 8px';
+                                    txtDiv.style.borderRadius = '6px';
+                                    txtDiv.style.fontSize = '0.78rem';
+                                    txtDiv.style.fontWeight = '700';
+                                    txtDiv.style.display = 'inline-block';
+                                    txtDiv.style.fontFamily = 'Plus Jakarta Sans, sans-serif';
+                                    sel.parentNode.replaceChild(txtDiv, sel);
+                                });
+
                                 // Expandir explícitamente listas con scroll para capturar el 100% de la información sin cortes
-                                const scrollables = clonedElem.querySelectorAll('#ruedaInputsList, #masterTaskList, [style*="overflow"]');
+                                const scrollables = clonedElem.querySelectorAll('#ruedaInputsList, #masterTaskList, [style*="overflow"], [style*="max-height"]');
                                 scrollables.forEach(s => {
                                     s.style.maxHeight = 'none';
                                     s.style.height = 'auto';
@@ -3116,42 +3487,24 @@ window.AICCShare = (function () {
                                     s.style.paddingRight = '0';
                                 });
 
-                                // Transformar inputs y textareas en elementos div para máximo contraste y cero opacidad
-                                const formInputs = clonedElem.querySelectorAll('input[type="text"], input[type="number"], textarea');
-                                formInputs.forEach(inp => {
-                                    const valText = inp.value.trim() || inp.placeholder || "";
-                                    const isFilled = inp.value.trim().length > 0;
-                                    const txtDiv = clonedDoc.createElement('div');
-                                    txtDiv.innerText = valText;
-                                    txtDiv.style.backgroundColor = isFilled ? '#141414' : '#0d0d0d';
-                                    txtDiv.style.border = isFilled ? '1px solid #444444' : '1px dashed #333333';
-                                    txtDiv.style.color = isFilled ? '#ffffff' : '#71717a';
-                                    txtDiv.style.padding = '8px 12px';
-                                    txtDiv.style.borderRadius = '8px';
-                                    txtDiv.style.fontSize = '0.88rem';
-                                    txtDiv.style.fontFamily = 'Plus Jakarta Sans, sans-serif';
-                                    txtDiv.style.lineHeight = '1.4';
-                                    txtDiv.style.minHeight = '36px';
-                                    txtDiv.style.marginTop = '4px';
-                                    txtDiv.style.whiteSpace = 'pre-wrap';
-                                    txtDiv.style.wordBreak = 'break-word';
-                                    inp.parentNode.replaceChild(txtDiv, inp);
-                                });
-
-                                // Estilo B&N Editorial nítido para paneles capturados
-                                const panels = clonedElem.querySelectorAll('.glass-panel, .dimension-card');
+                                // Estilo B&N Editorial nítido y luminoso para paneles capturados
+                                const panels = clonedElem.querySelectorAll('.glass-panel');
                                 panels.forEach(p => {
                                     p.style.backgroundColor = '#0a0a0a';
                                     p.style.backdropFilter = 'none';
                                     p.style.border = '1px solid #333333';
                                     p.style.boxShadow = 'none';
                                     p.style.color = '#ffffff';
+                                    p.style.opacity = '1';
                                 });
 
-                                // Asegurar que las etiquetas sean blancas brillantes
-                                const labels = clonedElem.querySelectorAll('label, .guided-label, .dimension-title, span');
-                                labels.forEach(l => {
-                                    l.style.color = '#ffffff';
+                                // Asegurar que las etiquetas y textos secundarios sean nítidos y brillantes
+                                const texts = clonedElem.querySelectorAll('p, span, label, .guided-label, .dimension-title, div, h1, h2, h3, h4, h5, b, i, li');
+                                texts.forEach(t => {
+                                    t.style.opacity = '1';
+                                    if (t.style.color === 'rgb(136, 136, 136)' || t.style.color === '#888888' || t.style.color === 'rgb(161, 161, 170)' || t.style.color === '#a1a1aa') {
+                                        t.style.color = '#d4d4d8';
+                                    }
                                 });
 
                                 // Fondo nítido para SVG gráficos
@@ -3160,16 +3513,23 @@ window.AICCShare = (function () {
                                     s.style.background = '#0d0d0d';
                                     s.style.borderRadius = '12px';
                                     s.style.border = '1px solid #262626';
+                                    s.style.opacity = '1';
                                 });
                             }
                         }
                     }).then(canvas => {
+                        const imgData = canvas.toDataURL("image/png");
                         const link = document.createElement("a");
                         link.download = fileName;
-                        link.href = canvas.toDataURL("image/png");
+                        link.href = imgData;
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(link);
+
+                        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                        if (isMobile) {
+                            showMobileImageModal(imgData);
+                        }
                     }).catch(err => {
                         console.error(err);
                         alert("Por favor toma una captura de pantalla de esta sección.");
@@ -3189,10 +3549,39 @@ window.AICCShare = (function () {
                         scale: 2,
                         logging: false,
                         useCORS: true,
+                        allowTaint: true,
                         windowWidth: 1200,
                         onclone: (clonedDoc) => {
+                            // 1. Eliminar animaciones y transiciones en el consolidado
+                            const styleReset = clonedDoc.createElement('style');
+                            styleReset.innerHTML = `
+                                *, *::before, *::after {
+                                    animation: none !important;
+                                    -webkit-animation: none !important;
+                                    transition: none !important;
+                                    -webkit-transition: none !important;
+                                    opacity: 1 !important;
+                                    backdrop-filter: none !important;
+                                    -webkit-backdrop-filter: none !important;
+                                }
+                                .wizard-step-panel {
+                                    display: block !important;
+                                    animation: none !important;
+                                    opacity: 1 !important;
+                                    transform: none !important;
+                                }
+                                body, html {
+                                    background: #000000 !important;
+                                    color: #ffffff !important;
+                                }
+                            `;
+                            clonedDoc.head.appendChild(styleReset);
+
                             const clonedCard = clonedDoc.getElementById("fullSummaryCard");
                             if (clonedCard) {
+                                clonedCard.style.animation = "none";
+                                clonedCard.style.opacity = "1";
+                                clonedCard.style.transform = "none";
                                 clonedCard.style.width = "900px";
                                 clonedCard.style.maxWidth = "900px";
                                 clonedCard.style.minWidth = "900px";
@@ -3211,12 +3600,13 @@ window.AICCShare = (function () {
                                     g.style.gap = '12px';
                                 });
 
-                                const boxes = clonedCard.querySelectorAll('div, p, span, h4, h5');
+                                const boxes = clonedCard.querySelectorAll('div, p, span, h4, h5, b, i, li');
                                 boxes.forEach(b => {
                                     b.style.maxHeight = 'none';
                                     b.style.height = 'auto';
                                     b.style.overflow = 'visible';
                                     b.style.wordBreak = 'break-word';
+                                    b.style.opacity = '1';
                                     if (b.tagName === 'DIV' || b.tagName === 'P') {
                                         b.style.color = '#ffffff';
                                     }
@@ -3227,6 +3617,7 @@ window.AICCShare = (function () {
                                     s.style.background = '#0d0d0d';
                                     s.style.borderRadius = '8px';
                                     s.style.border = '1px solid #262626';
+                                    s.style.opacity = '1';
                                 });
                             }
                         }
@@ -3292,11 +3683,7 @@ window.AICCShare = (function () {
                 return text;
             }
 
-            function sendFullWhatsApp() {
-                const text = `Hola Diego, ¡completé mi *Expediente Diagnóstico Maestro 360°*! 🏆\n\n📸 Te adjunto la imagen consolidada y mis audios por área para coordinar nuestra *Sesión Diagnóstica 1 a 1*.`;
-                const url = `https://wa.me/56975590132?text=${encodeURIComponent(text)}`;
-                window.open(url, '_blank');
-            }
+            // sendFullWhatsApp está unificado en sendStepWhatsApp(6)
 
             function importMasterData(importedData) {
                 if (importedData.rueda && importedData.fugas) {
