@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portal del Cliente | Administración Humana</title>
+  <link rel="icon" type="image/png" href="logo_oficial.png" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -18,6 +19,7 @@
       --font-heading: 'Space Grotesk', sans-serif;
       --font-sans: 'Plus Jakarta Sans', sans-serif;
       --radius-lg: 20px;
+      --radius-md: 12px;
       --max-width: 1100px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,53 +33,79 @@
     /* NAV */
     nav {
       background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--color-border); padding: 16px 0;
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border); padding: 14px 0;
       position: sticky; top: 0; z-index: 100;
     }
-    nav .container { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo {
-      font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem;
-      color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em;
+    nav .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .nav-logo-img {
+      height: 36px; width: auto; object-fit: contain; border-radius: 6px;
+    }
+    .nav-logo-text {
+      font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem;
+      color: #fff; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .nav-link-btn {
+      color: var(--color-text-light); text-decoration: none; font-size: 0.82rem; font-weight: 600;
+      padding: 6px 12px; border-radius: 50px; border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .nav-link-btn:hover {
+      color: #fff; border-color: var(--color-border-bright); background: rgba(255,255,255,0.05);
     }
     .user-pill {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: 10px;
       background: var(--color-surface-2); border: 1px solid var(--color-border);
-      padding: 6px 16px; border-radius: 50px;
+      padding: 6px 14px; border-radius: 50px;
     }
-    .user-name { font-size: 0.88rem; font-weight: 700; }
+    .user-name { font-size: 0.85rem; font-weight: 700; color: #ffffff; }
     .btn-logout {
-      background: transparent; border: none; color: #ff6666;
-      font-size: 0.8rem; font-weight: 700; cursor: pointer; margin-left: 8px;
+      background: rgba(255, 68, 68, 0.12); border: 1px solid rgba(255, 68, 68, 0.3); color: #ff6666;
+      font-size: 0.76rem; font-weight: 700; cursor: pointer; padding: 4px 10px; border-radius: 50px;
+      transition: all 0.2s ease;
     }
-    .btn-logout:hover { text-decoration: underline; }
+    .btn-logout:hover { background: #ff4444; color: #fff; }
 
-    main { padding: 40px 0; flex-grow: 1; }
+    main { padding: 36px 0 60px; flex-grow: 1; }
     
+    /* WELCOME HERO */
     .welcome-card {
       background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%);
       border: 1px solid var(--color-border-bright); border-radius: var(--radius-lg);
-      padding: 36px; margin-bottom: 32px; position: relative; overflow: hidden;
+      padding: 32px 36px; margin-bottom: 28px; position: relative; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .status-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3);
       padding: 4px 14px; border-radius: 50px;
       font-size: 0.75rem; font-family: var(--font-heading); font-weight: 800;
-      text-transform: uppercase; margin-bottom: 14px; color: #fff;
+      text-transform: uppercase; margin-bottom: 14px; color: #00ff88;
     }
     .status-badge::before {
-      content: ''; width: 6px; height: 6px; background: #00ff88; border-radius: 50%;
+      content: ''; width: 7px; height: 7px; background: #00ff88; border-radius: 50%;
+      box-shadow: 0 0 8px #00ff88;
     }
-    .welcome-title { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; }
-    .welcome-sub { color: var(--color-text-light); font-size: 0.95rem; max-width: 650px; }
+    .welcome-title { font-family: var(--font-heading); font-size: 2.1rem; font-weight: 800; margin-bottom: 8px; }
+    .welcome-sub { color: var(--color-text-light); font-size: 0.95rem; max-width: 700px; line-height: 1.6; }
 
     /* DASHBOARD SECTIONS */
-    .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
     .portal-card {
       background: var(--color-surface); border: 1px solid var(--color-border);
       border-radius: var(--radius-lg); padding: 28px;
       display: flex; flex-direction: column; position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .portal-card:hover {
+      border-color: var(--color-border-bright);
     }
     .card-icon { font-size: 1.8rem; margin-bottom: 14px; }
     .card-title { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
@@ -86,82 +114,126 @@
     .btn-card-action {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       background: #ffffff; color: #000000; padding: 12px 24px; border-radius: 50px;
-      font-family: var(--font-heading); font-weight: 800; font-size: 0.85rem;
-      text-decoration: none; transition: background 0.2s;
+      font-family: var(--font-heading); font-weight: 800; font-size: 0.88rem;
+      text-decoration: none; transition: all 0.2s ease; cursor: pointer;
     }
-    .btn-card-action:hover { background: #e5e5e5; }
+    .btn-card-action:hover { background: #e5e5e5; transform: translateY(-1px); }
     .btn-card-action.secondary {
       background: transparent; color: #fff; border: 1px solid var(--color-border-bright);
     }
-    .btn-card-action.secondary:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+    .btn-card-action.secondary:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+
+    /* FLIGHT PLAN HERO CARD */
+    .flight-hero-card {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #151515 0%, #1e1e1e 100%);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-lg); padding: 30px 34px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+    .flight-hero-card .badge-plan {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; color: #38bdf8;
+      padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 800;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
 
     /* RADAR CONTAINER */
     .radar-container {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      margin-top: 10px;
+      margin: 10px 0; min-height: 240px;
     }
 
     /* CHECKLIST */
-    .checklist-container { margin-top: 10px; }
+    .checklist-container { margin: 10px 0 16px; display: flex; flex-direction: column; gap: 8px; }
     .task-item {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px; background: var(--color-surface-2);
+      padding: 12px 14px; background: var(--color-surface-2);
       border: 1px solid var(--color-border); border-radius: 10px;
-      margin-bottom: 8px; font-size: 0.88rem;
+      font-size: 0.88rem; transition: all 0.2s ease;
+    }
+    .task-item.completed {
+      opacity: 0.6;
+      border-color: rgba(255,255,255,0.05);
     }
     .task-item.completed span { text-decoration: line-through; color: var(--color-text-muted); }
-    .task-checkbox { width: 18px; height: 18px; cursor: pointer; accent-color: #ffffff; }
+    .task-checkbox { width: 18px; height: 18px; cursor: pointer; accent-color: #ffffff; flex-shrink: 0; }
+    .btn-del-task {
+      background: none; border: none; color: #666; cursor: pointer; font-size: 1.2rem;
+      padding: 0 6px; line-height: 1; transition: color 0.2s;
+    }
+    .btn-del-task:hover { color: #ff6666; }
     .btn-add-task {
       background: #181818; border: 1px dashed var(--color-border-bright); color: #fff;
-      padding: 10px; width: 100%; border-radius: 10px; font-size: 0.85rem;
-      cursor: pointer; text-align: center; margin-top: 10px; font-weight: 600;
+      padding: 11px; width: 100%; border-radius: 10px; font-size: 0.85rem;
+      cursor: pointer; text-align: center; font-weight: 700; transition: all 0.2s ease;
     }
     .btn-add-task:hover { border-color: #fff; background: #222; }
+
+    /* AUTH NOT LOGGED IN OVERLAY */
+    .not-logged-card {
+      background: #0d0d0d; border: 1px solid #333; border-radius: 20px;
+      padding: 40px; max-width: 480px; margin: 60px auto; text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
 
     footer {
       border-top: 1px solid var(--color-border); padding: 24px 0;
       text-align: center; color: var(--color-text-muted); font-size: 0.85rem; background: var(--color-surface);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 820px) {
       .dashboard-grid { grid-template-columns: 1fr; }
       .welcome-title { font-size: 1.7rem; }
+      .flight-hero-card { padding: 24px 20px; }
+      .welcome-card { padding: 24px 20px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
     <div class="container">
-      <a href="landing_administracion_humana.html" class="nav-logo">Administración Humana</a>
-      <div class="user-pill">
-        <span class="user-name" id="user-display-name">Cargando...</span>
-        <button class="btn-logout" id="btn-logout">Cerrar Sesión</button>
+      <a href="index.html" class="nav-brand">
+        <img src="logo_oficial.png" alt="Logo" class="nav-logo-img" />
+        <span class="nav-logo-text">Administración Humana</span>
+      </a>
+      <div class="nav-links">
+        <a href="sondeo.html" class="nav-link-btn">🔮 Sondeo 360°</a>
+        <a href="generador-horarios.html" class="nav-link-btn">⏰ Horarios 24H</a>
+        <a href="suite.html" class="nav-link-btn">⚡ Suite Digital</a>
+        <div class="user-pill" id="user-pill-container" style="display:none;">
+          <span class="user-name" id="user-display-name">Cliente</span>
+          <button class="btn-logout" id="btn-logout" type="button" onclick="window.doLogout();">Cerrar Sesión</button>
+        </div>
       </div>
     </div>
   </nav>
 
   <main>
-    <div class="container">
+    <div class="container" id="portal-content" style="display:none;">
       <!-- WELCOME HERO -->
       <div class="welcome-card">
         <span class="status-badge" id="user-status-badge">🟢 Acompañamiento Activo</span>
         <h1 class="welcome-title" id="welcome-header">Bienvenido a tu Espacio</h1>
         <p class="welcome-sub" id="welcome-sub-text">
-          Aquí tienes centralizada tu información de gestión personal, tus herramientas y tu plan de microacciones.
+          Aquí tienes centralizada tu información de gestión personal, tus herramientas, tu plan de vuelo y tus microacciones acordadas.
         </p>
       </div>
 
       <div class="dashboard-grid">
-        <!-- PLAN DE VUELO 2.0 CARD -->
-        <div class="portal-card" id="flight-plan-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, #141414 0%, #1a1a1a 100%); border-color: rgba(255,255,255,0.25); display:none;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-            <div>
-              <div class="status-badge" style="background:rgba(56,189,248,0.15); border-color:#38bdf8; color:#38bdf8;">🚀 Plan de Vuelo 2.0 Activo</div>
-              <h2 class="card-title" style="font-size:1.45rem;" id="flight-plan-title">Tu Tablero de Mapeo & Operaciones</h2>
-              <p class="card-desc" style="margin-bottom:0;" id="flight-plan-desc">Accede a tu Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Caja de Herramientas e Imprimibles.</p>
+        <!-- PLAN DE VUELO 2.0 HERO CARD -->
+        <div class="flight-hero-card" id="flight-plan-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+            <div style="max-width: 680px;">
+              <div class="badge-plan">🚀 Plan de Vuelo 2.0 Activo</div>
+              <h2 class="card-title" style="font-size:1.55rem;" id="flight-plan-title">Plan de Vuelo 2.0</h2>
+              <p class="card-desc" style="margin-bottom:0;" id="flight-plan-desc">
+                Accede a tu Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Metas y Caja de Herramientas.
+              </p>
             </div>
-            <a href="#" id="flight-plan-btn" class="btn-card-action" style="background:#ffffff; color:#000; font-size:0.95rem; padding:12px 24px;">
+            <a href="#" id="flight-plan-btn" class="btn-card-action" style="background:#ffffff; color:#000; font-size:0.95rem; padding:14px 28px; flex-shrink:0;">
               Abrir Mi Plan de Vuelo 🚀
             </a>
           </div>
@@ -171,7 +243,7 @@
         <div class="portal-card">
           <div class="card-icon">📊</div>
           <h2 class="card-title">Mapa Diagnóstico 360°</h2>
-          <p class="card-desc">Tus resultados por dimensión para enfocar la estructura de tus sesiones.</p>
+          <p class="card-desc">Tus resultados ponderados por dimensión para enfocar la estructura de tus sesiones y balance de vida.</p>
           
           <div class="radar-container" id="radar-wrapper">
             <svg id="radar-svg" width="280" height="240" viewBox="0 0 300 260"></svg>
@@ -186,22 +258,22 @@
         <div class="portal-card">
           <div class="card-icon">🎯</div>
           <h2 class="card-title">Plan de Microacciones (24h - 48h)</h2>
-          <p class="card-desc">Pasos concretos acordados para romper la inercia sin parálisis.</p>
+          <p class="card-desc">Pasos concretos acordados para romper la inercia y avanzar con sentido sin parálisis.</p>
           
           <div class="checklist-container" id="tasks-list">
-            <!-- Tareas dinámicas -->
+            <!-- Tareas dinámicas cargadas por JS -->
           </div>
 
-          <button class="btn-add-task" id="btn-new-task">+ Agregar Microacción</button>
+          <button class="btn-add-task" id="btn-new-task" type="button" onclick="window.promptNewTask();">+ Agregar Microacción</button>
         </div>
 
         <!-- GOOGLE DRIVE RECURSOS -->
         <div class="portal-card">
           <div class="card-icon">📁</div>
-          <h2 class="card-title">Tu Carpeta Google Drive</h2>
-          <p class="card-desc">Accede a tus plantillas digitalizadas de Excel, tableros Kanban y guías a tu medida.</p>
-          <a href="#" id="drive-link" target="_blank" class="btn-card-action">
-            Abrir Mi Google Drive →
+          <h2 class="card-title">Tu Carpeta de Recursos & Materiales</h2>
+          <p class="card-desc">Accede a tus plantillas digitalizadas de Excel, tableros Kanban, guías de hábitos y documentos compartidos.</p>
+          <a href="#" id="drive-link" target="_blank" rel="noopener noreferrer" class="btn-card-action">
+            Abrir Mis Documentos & Recursos →
           </a>
         </div>
 
@@ -209,7 +281,7 @@
         <div class="portal-card">
           <div class="card-icon">⚡</div>
           <h2 class="card-title">Suite Digital de Herramientas</h2>
-          <p class="card-desc">Tableros interactivos: Rueda de la Vida, Matriz Eisenhower, Generador Horarios y GTD.</p>
+          <p class="card-desc">Herramientas interactivas: Generador de Horarios 24H, Rueda de la Vida, Matriz Eisenhower y GTD.</p>
           <a href="suite.html" class="btn-card-action secondary">
             Abrir Suite Digital →
           </a>
@@ -217,167 +289,304 @@
       </div>
 
     </div>
+
+    <!-- NOT LOGGED IN STATE -->
+    <div class="container" id="login-prompt" style="display:none;">
+      <div class="not-logged-card">
+        <img src="logo_oficial.png" alt="Logo" style="height:48px; width:auto; border-radius:8px; margin-bottom:16px;" />
+        <h2 style="font-family:var(--font-heading); font-size:1.6rem; font-weight:800; margin-bottom:10px;">Acceso al Portal Privado</h2>
+        <p style="color:var(--color-text-light); font-size:0.9rem; margin-bottom:24px; line-height:1.5;">
+          Debes iniciar sesión con tu usuario y contraseña para acceder a tu información y plan de vuelo.
+        </p>
+        <a href="index.html" class="btn-card-action" style="padding:14px 28px; width:100%;">
+          Ir al Inicio de Sesión →
+        </a>
+      </div>
+    </div>
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2026 Administración Humana · Portal del Cliente Privado</p>
+      <p>© 2026 Administración Humana · Portal del Cliente Privado • Concepción, Chile</p>
     </div>
   </footer>
 
-  <script type="module">
-    import { AHAuth } from './js/auth.js';
+  <script>
+    // GLOBAL CLIENT DATA AND SYNC CONTROLLER
+    const DEFAULT_CLIENT_DATA = {
+      'user_antonia_jofre': {
+        fullName: 'Antonia Jofré',
+        status: '🟢 En Acompañamiento Activo',
+        flightPlanUrl: 'planes-antonia.html',
+        flightPlanDesc: 'Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Metas de Clases de Yoga y Rutinas Somáticas.',
+        storageKey: 'ah_auth_token_antonia',
+        driveUrl: 'planes-antonia.html#recursos',
+        scores: { 'Propósito': 9, 'Bienestar': 8, 'Tiempo': 5, 'Hábitos': 6, 'Finanzas': 7, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8 },
+        defaultTasks: [
+          { id: 1, text: 'Calcular 14 clases de yoga para meta pasajes Santiago ($160.000)', completed: false },
+          { id: 2, text: 'Mapear bloque matutino de movimiento somático en Generador 24H', completed: false },
+          { id: 3, text: 'Configurar tablero Kanban WIP=2 para evitar sobrecarga operativa', completed: false }
+        ]
+      },
+      'user_rocio_ust': {
+        fullName: 'Rocío',
+        status: '🟢 En Acompañamiento Activo',
+        flightPlanUrl: 'planes-rocio.html',
+        flightPlanDesc: 'Psicopedagogía UST (1er año), Puya Masajes (Planes 1 mes), Voz Caleidoscopio y Protocolos TEA.',
+        storageKey: 'ah_auth_token_rocio',
+        driveUrl: 'planes-rocio.html#recursos',
+        scores: { 'Propósito': 8, 'Bienestar': 7, 'Tiempo': 6, 'Hábitos': 7, 'Finanzas': 7, 'Relaciones': 8, 'Entorno': 8, 'Desarrollo': 8 },
+        defaultTasks: [
+          { id: 1, text: 'Delimitar bloques de descanso vs. trabajo en clínica y estudio', completed: false },
+          { id: 2, text: 'Configurar matriz de priorización para delegar tareas operativas', completed: false },
+          { id: 3, text: 'Revisar métricas de balance y finanzas semanales', completed: false }
+        ]
+      },
+      'user_matias_gonzalez': {
+        fullName: 'Matías González',
+        status: '🟢 En Acompañamiento (Fase 1)',
+        flightPlanUrl: 'planes-matias.html',
+        flightPlanDesc: '3º Medio Colegio Concepción, Preparación PAES, Balance Estudio vs. Recreación y Bloques de Enfoque.',
+        storageKey: 'ah_client_auth_matias',
+        driveUrl: 'planes-matias.html#recursos',
+        scores: { 'Propósito': 7, 'Bienestar': 7, 'Tiempo': 5, 'Hábitos': 6, 'Finanzas': 6, 'Relaciones': 7, 'Entorno': 7, 'Desarrollo': 8 },
+        defaultTasks: [
+          { id: 1, text: 'Organizar bloques de estudio PAES vs. recreación y diseño', completed: false },
+          { id: 2, text: 'Aplicar técnica Pomodoro de 25/5 para sesiones de concentración', completed: false },
+          { id: 3, text: 'Revisar metas del Plan de Vuelo 2.0 y avance semanal', completed: false }
+        ]
+      },
+      'user_admin_diego': {
+        fullName: 'Diego (Administrador)',
+        status: '👑 Director / Consultor',
+        flightPlanUrl: 'visualizador.html',
+        flightPlanDesc: 'Panel Maestro de Clientes Activos, Comparador de Planes de Vuelo y Generador de Horarios.',
+        storageKey: 'ah_auth_token_admin',
+        driveUrl: 'visualizador.html',
+        scores: { 'Propósito': 10, 'Bienestar': 9, 'Tiempo': 8, 'Hábitos': 9, 'Finanzas': 9, 'Relaciones': 9, 'Entorno': 9, 'Desarrollo': 10 },
+        defaultTasks: [
+          { id: 1, text: 'Revisar actualizaciones de planes de vuelo de clientes activos', completed: false },
+          { id: 2, text: 'Validar diagnósticos 360° en Sondeo Maestro', completed: false }
+        ]
+      }
+    };
 
-    document.addEventListener('DOMContentLoaded', async () => {
-      await AHAuth.init();
+    let activeUser = null;
+    let userTasks = [];
 
-      let currentUser = null;
+    function initPortal() {
+      // 1. Check current user in localStorage
+      let rawUser = localStorage.getItem('ah_current_user');
+      let user = null;
 
-      AHAuth.onAuthChange(async (user) => {
-        if (!user) {
-          window.location.href = 'index.html';
-          return;
+      if (rawUser) {
+        try {
+          user = JSON.parse(rawUser);
+        } catch(e) {
+          user = null;
         }
+      }
 
-        currentUser = user;
-        document.getElementById('user-display-name').innerText = user.fullName || user.email;
-        document.getElementById('welcome-header').innerText = `Hola, ${user.fullName || 'Cliente'}`;
-
-        const statusBadge = document.getElementById('user-status-badge');
-        statusBadge.innerText = user.status || '🟢 Acompañamiento Activo';
-
-        // Plan de Vuelo 2.0 Card
-        const flightPlanCard = document.getElementById('flight-plan-card');
-        const flightPlanBtn = document.getElementById('flight-plan-btn');
-        if (user.flightPlanUrl) {
-          flightPlanCard.style.display = 'block';
-          flightPlanBtn.href = user.flightPlanUrl;
-        } else {
-          flightPlanCard.style.display = 'none';
+      // Check URL query parameters (e.g. ?client=antojofre) as fallback
+      const urlParams = new URLSearchParams(window.location.search);
+      const clientParam = urlParams.get('client') || urlParams.get('user');
+      if (!user && clientParam) {
+        const norm = clientParam.toLowerCase();
+        if (norm.includes('anto')) user = { uid: 'user_antonia_jofre', fullName: 'Antonia Jofré', role: 'client', flightPlanUrl: 'planes-antonia.html', storageKey: 'ah_auth_token_antonia' };
+        else if (norm.includes('rocio')) user = { uid: 'user_rocio_ust', fullName: 'Rocío', role: 'client', flightPlanUrl: 'planes-rocio.html', storageKey: 'ah_auth_token_rocio' };
+        else if (norm.includes('mati')) user = { uid: 'user_matias_gonzalez', fullName: 'Matías González', role: 'client', flightPlanUrl: 'planes-matias.html', storageKey: 'ah_client_auth_matias' };
+        else if (norm.includes('diego')) user = { uid: 'user_admin_diego', fullName: 'Diego (Administrador)', role: 'admin', flightPlanUrl: 'visualizador.html', storageKey: 'ah_auth_token_admin' };
+        if (user) {
+          localStorage.setItem('ah_current_user', JSON.stringify(user));
         }
+      }
 
-        const driveLink = document.getElementById('drive-link');
-        if (user.driveUrl) {
-          driveLink.href = user.driveUrl;
-        } else {
-          driveLink.href = 'https://drive.google.com';
-          driveLink.innerText = 'Google Drive (En asignación)';
-        }
+      // If still no user, show login prompt
+      if (!user) {
+        document.getElementById('portal-content').style.display = 'none';
+        document.getElementById('login-prompt').style.display = 'block';
+        return;
+      }
 
-        // Cargar Diagnóstico en Mapa Radar SVG
-        const diag = await AHAuth.getDiagnostic(user.uid);
-        const scores = (diag && diag.scores) ? diag.scores : {
-          'Propósito': 7, 'Tiempo': 5, 'Finanzas': 6, 'Bienestar': 7,
-          'Hábitos': 5, 'Relaciones': 8, 'Entorno': 6, 'Desarrollo': 7
-        };
-        renderRadarSVG(scores);
+      activeUser = user;
+      const clientConfig = DEFAULT_CLIENT_DATA[user.uid] || {};
 
-        // Cargar Tareas
-        await loadTasks(user.uid);
-      });
+      // Auto-set authentication token for flight plan seamless access
+      const storageKey = user.storageKey || clientConfig.storageKey;
+      if (storageKey) {
+        localStorage.setItem(storageKey, storageKey);
+      }
 
-      document.getElementById('btn-logout').addEventListener('click', async () => {
-        await AHAuth.logout();
-        window.location.href = 'index.html';
-      });
+      // UI Text Binding
+      document.getElementById('user-pill-container').style.display = 'flex';
+      document.getElementById('user-display-name').innerText = `👤 ${user.fullName || 'Cliente'}`;
+      document.getElementById('welcome-header').innerText = `¡Hola, ${user.fullName || 'Cliente'}!`;
+      document.getElementById('user-status-badge').innerText = user.status || clientConfig.status || '🟢 Acompañamiento Activo';
 
-      // SVG RADAR CHART GENERATOR
-      function renderRadarSVG(scores) {
-        const svg = document.getElementById('radar-svg');
-        const labels = Object.keys(scores);
-        const values = Object.values(scores);
-        const total = labels.length;
-        const centerX = 150, centerY = 130, radius = 90;
+      // Flight Plan Card
+      const flightUrl = user.flightPlanUrl || clientConfig.flightPlanUrl || 'planes-antonia.html';
+      const flightCard = document.getElementById('flight-plan-card');
+      const flightBtn = document.getElementById('flight-plan-btn');
+      const flightTitle = document.getElementById('flight-plan-title');
+      const flightDesc = document.getElementById('flight-plan-desc');
 
-        let polygonPoints = [];
-        let gridLines = '';
-        let labelElements = '';
+      flightCard.style.display = 'block';
+      flightBtn.href = flightUrl;
+      flightTitle.innerText = `Plan de Vuelo 2.0 • ${user.fullName || 'Cliente'}`;
+      flightDesc.innerText = clientConfig.flightPlanDesc || 'Accede a tu Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Metas y Caja de Herramientas.';
 
-        // Concentric web circles (3 rings)
-        [0.33, 0.66, 1].forEach(r => {
-          let ringPts = [];
-          for (let i = 0; i < total; i++) {
-            const angle = (Math.PI * 2 / total) * i - Math.PI / 2;
-            const x = centerX + Math.cos(angle) * (radius * r);
-            const y = centerY + Math.sin(angle) * (radius * r);
-            ringPts.push(`${x},${y}`);
-          }
-          gridLines += `<polygon points="${ringPts.join(' ')}" fill="none" stroke="#222" stroke-width="1" />`;
-        });
+      // Google Drive / Resource Link
+      const driveLink = document.getElementById('drive-link');
+      if (user.driveUrl && user.driveUrl.startsWith('http')) {
+        driveLink.href = user.driveUrl;
+      } else if (clientConfig.driveUrl) {
+        driveLink.href = clientConfig.driveUrl;
+      } else {
+        driveLink.href = flightUrl;
+      }
 
-        // Axes and Data points
+      // Render Radar Chart
+      const scores = clientConfig.scores || {
+        'Propósito': 8, 'Tiempo': 6, 'Finanzas': 7, 'Bienestar': 8,
+        'Hábitos': 6, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8
+      };
+      renderRadarSVG(scores);
+
+      // Load Tasks
+      loadClientTasks(user.uid, clientConfig.defaultTasks || []);
+
+      // Show Portal Container
+      document.getElementById('portal-content').style.display = 'block';
+      document.getElementById('login-prompt').style.display = 'none';
+    }
+
+    // RADAR CHART GENERATOR
+    function renderRadarSVG(scores) {
+      const svg = document.getElementById('radar-svg');
+      if (!svg) return;
+
+      const labels = Object.keys(scores);
+      const values = Object.values(scores);
+      const total = labels.length;
+      const centerX = 150, centerY = 130, radius = 85;
+
+      let polygonPoints = [];
+      let gridLines = '';
+      let labelElements = '';
+
+      // Concentric web circles (3 rings)
+      [0.33, 0.66, 1].forEach(r => {
+        let ringPts = [];
         for (let i = 0; i < total; i++) {
           const angle = (Math.PI * 2 / total) * i - Math.PI / 2;
-          const xVal = centerX + Math.cos(angle) * (radius * (values[i] / 10));
-          const yVal = centerY + Math.sin(angle) * (radius * (values[i] / 10));
-          polygonPoints.push(`${xVal},${yVal}`);
-
-          const xEnd = centerX + Math.cos(angle) * radius;
-          const yEnd = centerY + Math.sin(angle) * radius;
-          gridLines += `<line x1="${centerX}" y1="${centerY}" x2="${xEnd}" y2="${yEnd}" stroke="#222" stroke-width="1" />`;
-
-          // Labels
-          const xLbl = centerX + Math.cos(angle) * (radius + 20);
-          const yLbl = centerY + Math.sin(angle) * (radius + 14);
-          labelElements += `<text x="${xLbl}" y="${yLbl}" fill="#888" font-size="10" text-anchor="middle" font-weight="700">${labels[i].substring(0,8)}</text>`;
+          const x = centerX + Math.cos(angle) * (radius * r);
+          const y = centerY + Math.sin(angle) * (radius * r);
+          ringPts.push(`${x},${y}`);
         }
-
-        svg.innerHTML = `
-          ${gridLines}
-          <polygon points="${polygonPoints.join(' ')}" fill="rgba(255,255,255,0.15)" stroke="#ffffff" stroke-width="2" />
-          ${polygonPoints.map(pt => `<circle cx="${pt.split(',')[0]}" cy="${pt.split(',')[1]}" r="3" fill="#ffffff" />`).join('')}
-          ${labelElements}
-        `;
-      }
-
-      // CHECKLIST LOGIC
-      async function loadTasks(uid) {
-        const tasks = await AHAuth.getClientTasks(uid);
-        renderTasks(tasks, uid);
-      }
-
-      function renderTasks(tasks, uid) {
-        const listEl = document.getElementById('tasks-list');
-        if (tasks.length === 0) {
-          listEl.innerHTML = `<p style="color:#888; font-size:0.85rem; text-align:center; padding:10px;">No tienes microacciones registradas aún.</p>`;
-          return;
-        }
-
-        listEl.innerHTML = tasks.map((t, idx) => `
-          <div class="task-item ${t.completed ? 'completed' : ''}">
-            <div style="display:flex; align-items:center; gap:10px;">
-              <input type="checkbox" class="task-checkbox" ${t.completed ? 'checked' : ''} onchange="window.toggleTask(${idx})" />
-              <span>${t.text}</span>
-            </div>
-            <button style="background:none; border:none; color:#666; cursor:pointer; font-size:0.9rem;" onclick="window.deleteTask(${idx})">&times;</button>
-          </div>
-        `).join('');
-
-        window.toggleTask = async (idx) => {
-          tasks[idx].completed = !tasks[idx].completed;
-          await AHAuth.saveClientTasks(uid, tasks);
-          renderTasks(tasks, uid);
-        };
-
-        window.deleteTask = async (idx) => {
-          tasks.splice(idx, 1);
-          await AHAuth.saveClientTasks(uid, tasks);
-          renderTasks(tasks, uid);
-        };
-      }
-
-      document.getElementById('btn-new-task').addEventListener('click', async () => {
-        if (!currentUser) return;
-        const text = prompt('Escribe tu nueva microacción (24-48h):');
-        if (text && text.trim()) {
-          const tasks = await AHAuth.getClientTasks(currentUser.uid);
-          tasks.push({ id: Date.now(), text: text.trim(), completed: false });
-          await AHAuth.saveClientTasks(currentUser.uid, tasks);
-          await loadTasks(currentUser.uid);
-        }
+        gridLines += `<polygon points="${ringPts.join(' ')}" fill="none" stroke="#2a2a2a" stroke-width="1" />`;
       });
-    });
-  </script>
 
+      // Axes and Data points
+      for (let i = 0; i < total; i++) {
+        const angle = (Math.PI * 2 / total) * i - Math.PI / 2;
+        const xVal = centerX + Math.cos(angle) * (radius * (values[i] / 10));
+        const yVal = centerY + Math.sin(angle) * (radius * (values[i] / 10));
+        polygonPoints.push(`${xVal},${yVal}`);
+
+        const xEnd = centerX + Math.cos(angle) * radius;
+        const yEnd = centerY + Math.sin(angle) * radius;
+        gridLines += `<line x1="${centerX}" y1="${centerY}" x2="${xEnd}" y2="${yEnd}" stroke="#2a2a2a" stroke-width="1" />`;
+
+        // Labels
+        const xLbl = centerX + Math.cos(angle) * (radius + 20);
+        const yLbl = centerY + Math.sin(angle) * (radius + 14);
+        labelElements += `<text x="${xLbl}" y="${yLbl}" fill="#999" font-size="10" font-family="'Space Grotesk', sans-serif" text-anchor="middle" font-weight="700">${labels[i]}</text>`;
+      }
+
+      svg.innerHTML = `
+        ${gridLines}
+        <polygon points="${polygonPoints.join(' ')}" fill="rgba(255,255,255,0.18)" stroke="#ffffff" stroke-width="2" />
+        ${polygonPoints.map(pt => `<circle cx="${pt.split(',')[0]}" cy="${pt.split(',')[1]}" r="3.5" fill="#ffffff" />`).join('')}
+        ${labelElements}
+      `;
+    }
+
+    // CHECKLIST TASK MANAGER
+    function loadClientTasks(uid, defaultTasks) {
+      const storageKey = `ah_portal_tasks_${uid}`;
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        try {
+          userTasks = JSON.parse(saved);
+        } catch(e) {
+          userTasks = defaultTasks;
+        }
+      } else {
+        userTasks = defaultTasks;
+        localStorage.setItem(storageKey, JSON.stringify(userTasks));
+      }
+      renderTasks(uid);
+    }
+
+    function renderTasks(uid) {
+      const listEl = document.getElementById('tasks-list');
+      if (!listEl) return;
+
+      if (userTasks.length === 0) {
+        listEl.innerHTML = `<p style="color:#888; font-size:0.85rem; text-align:center; padding:12px;">No tienes microacciones pendientes. ¡Agrega una nueva abajo!</p>`;
+        return;
+      }
+
+      listEl.innerHTML = userTasks.map((t, idx) => `
+        <div class="task-item ${t.completed ? 'completed' : ''}">
+          <div style="display:flex; align-items:center; gap:12px; flex-grow:1;">
+            <input type="checkbox" class="task-checkbox" ${t.completed ? 'checked' : ''} onchange="window.toggleTaskItem(${idx}, '${uid}')" />
+            <span>${t.text}</span>
+          </div>
+          <button class="btn-del-task" title="Eliminar" onclick="window.deleteTaskItem(${idx}, '${uid}')" type="button">&times;</button>
+        </div>
+      `).join('');
+    }
+
+    window.toggleTaskItem = function(idx, uid) {
+      if (userTasks[idx]) {
+        userTasks[idx].completed = !userTasks[idx].completed;
+        localStorage.setItem(`ah_portal_tasks_${uid}`, JSON.stringify(userTasks));
+        renderTasks(uid);
+      }
+    };
+
+    window.deleteTaskItem = function(idx, uid) {
+      userTasks.splice(idx, 1);
+      localStorage.setItem(`ah_portal_tasks_${uid}`, JSON.stringify(userTasks));
+      renderTasks(uid);
+    };
+
+    window.promptNewTask = function() {
+      if (!activeUser) return;
+      const text = prompt('Escribe tu nueva microacción acordada (24-48h):');
+      if (text && text.trim()) {
+        userTasks.push({ id: Date.now(), text: text.trim(), completed: false });
+        localStorage.setItem(`ah_portal_tasks_${activeUser.uid}`, JSON.stringify(userTasks));
+        renderTasks(activeUser.uid);
+      }
+    };
+
+    window.doLogout = function() {
+      localStorage.removeItem('ah_current_user');
+      localStorage.removeItem('ah_auth_token_admin');
+      localStorage.removeItem('ah_auth_token_antonia');
+      localStorage.removeItem('ah_auth_token_rocio');
+      localStorage.removeItem('ah_client_auth_matias');
+      window.location.href = 'index.html';
+    };
+
+    // Execute immediately on document ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPortal);
+    } else {
+      initPortal();
+    }
+  </script>
 </body>
 </html>
