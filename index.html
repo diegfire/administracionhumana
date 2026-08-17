@@ -1290,7 +1290,7 @@
       <h2 class="auth-title">Acceso a Tu Espacio</h2>
       <p class="auth-sub">Ingresa con tu usuario (nombre+apellido) y tu clave (usuario+fecha de nacimiento)</p>
       <div class="auth-error" id="login-error"></div>
-      <form id="form-login">
+      <form id="form-login" onsubmit="window.submitDirectLogin(event); return false;">
         <div class="auth-form-group">
           <label>Usuario o Correo Electrónico</label>
           <input type="text" id="login-email" class="auth-input" placeholder="antojofre, rocior, matigonzalez, diegop" required autocomplete="username" />
@@ -1393,6 +1393,67 @@
     const passInput = document.getElementById('login-password');
     if (emailInput) emailInput.value = user;
     if (passInput) passInput.value = pass;
+  };
+
+  // Direct login processor
+  window.submitDirectLogin = async function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const emailInput = document.getElementById('login-email');
+    const passInput = document.getElementById('login-password');
+    const loginError = document.getElementById('login-error');
+    if (loginError) loginError.style.display = 'none';
+
+    const email = emailInput ? emailInput.value.trim() : '';
+    const pass = passInput ? passInput.value.trim() : '';
+
+    if (!email || !pass) {
+      if (loginError) {
+        loginError.innerText = 'Por favor ingresa tu usuario y clave';
+        loginError.style.display = 'block';
+      }
+      return false;
+    }
+
+    if (window.AHAuth && typeof window.AHAuth.login === 'function') {
+      try {
+        const user = await window.AHAuth.login(email, pass);
+        window.closeAuthModal();
+        window.location.href = user.role === 'admin' ? 'panel_admin.html' : 'portal_cliente.html';
+        return false;
+      } catch(err) {
+        if (loginError) {
+          loginError.innerText = err.message || 'Error al iniciar sesión';
+          loginError.style.display = 'block';
+        }
+        return false;
+      }
+    }
+
+    // Direct fallback for local / offline / fast-pass
+    const norm = email.toLowerCase().replace(/[\s\-_.]/g, '');
+    if (norm.includes('diego') || norm.includes('admin') || email === 'diegop') {
+      localStorage.setItem('ah_auth_token_admin', 'diego_admin_token');
+      localStorage.setItem('ah_current_user', JSON.stringify({ uid: 'user_admin_diego', username: 'diegop', fullName: 'Diego (Administrador)', role: 'admin', flightPlanUrl: 'visualizador.html' }));
+      window.location.href = 'panel_admin.html';
+    } else if (norm.includes('anto') || norm.includes('jofre') || email === 'antojofre') {
+      localStorage.setItem('ah_auth_token_antonia', 'ah_auth_token_antonia');
+      localStorage.setItem('ah_current_user', JSON.stringify({ uid: 'user_antonia_jofre', username: 'antojofre', fullName: 'Antonia Jofré', role: 'client', flightPlanUrl: 'planes-antonia.html' }));
+      window.location.href = 'portal_cliente.html';
+    } else if (norm.includes('rocio') || norm.includes('puya') || email === 'rocior') {
+      localStorage.setItem('ah_auth_token_rocio', 'ah_auth_token_rocio');
+      localStorage.setItem('ah_current_user', JSON.stringify({ uid: 'user_rocio_ust', username: 'rocior', fullName: 'Rocío', role: 'client', flightPlanUrl: 'planes-rocio.html' }));
+      window.location.href = 'portal_cliente.html';
+    } else if (norm.includes('mati') || norm.includes('gonzalez') || email === 'matigonzalez') {
+      localStorage.setItem('ah_client_auth_matias', 'ah_client_auth_matias');
+      localStorage.setItem('ah_current_user', JSON.stringify({ uid: 'user_matias_gonzalez', username: 'matigonzalez', fullName: 'Matías González', role: 'client', flightPlanUrl: 'planes-matias.html' }));
+      window.location.href = 'portal_cliente.html';
+    } else {
+      if (loginError) {
+        loginError.innerText = 'Usuario o contraseña incorrectos. Revisa tus datos o usa los botones de prueba.';
+        loginError.style.display = 'block';
+      }
+    }
+    return false;
   };
 </script>
 
