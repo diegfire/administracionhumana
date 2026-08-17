@@ -1240,7 +1240,7 @@
     <h2>¿Listo para ordenar lo que <em>realmente importa?</em></h2>
     <p>Realiza tu Sondeo Diagnóstico Gratuito 360° en 2 minutos o habla directamente con Diego para agendar tu sesión.</p>
     <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top: 24px;">
-      <a href="03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/sondeo_maestro_360.html" class="btn-primary">🔮 Iniciar Sondeo Diagnóstico 360° →</a>
+      <a href="sondeo.html" class="btn-primary">🔮 Iniciar Sondeo Diagnóstico 360° →</a>
       <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20agendar%20mi%20sesi%C3%B3n%20diagn%C3%B3stica" class="btn-secondary" style="background:rgba(255,255,255,0.05); color:white;" target="_blank">📲 Escríbeme por WhatsApp →</a>
     </div>
     <p style="margin-top: 20px; font-size: 0.84rem; color: var(--color-text-muted);">Respondo en menos de 24 horas · Online y presencial (Concepción, Chile)</p>
@@ -1267,20 +1267,32 @@
     <!-- VISTA INICIO DE SESIÓN -->
     <div id="auth-view-login">
       <h2 class="auth-title">Acceso a Tu Espacio</h2>
-      <p class="auth-sub">Ingresa a tu portal personalizado de Administración Humana</p>
+      <p class="auth-sub">Ingresa con tu usuario (nombre+apellido) y tu clave (usuario+fecha de nacimiento)</p>
       <div class="auth-error" id="login-error"></div>
       <form id="form-login">
         <div class="auth-form-group">
-          <label>Correo Electrónico</label>
-          <input type="email" id="login-email" class="auth-input" placeholder="tu@correo.com" required />
+          <label>Usuario o Correo Electrónico</label>
+          <input type="text" id="login-email" class="auth-input" placeholder="antojofre, rocior, matigonzalez, diegop" required autocomplete="username" />
         </div>
         <div class="auth-form-group">
-          <label>Contraseña</label>
-          <input type="password" id="login-password" class="auth-input" placeholder="••••••••" required />
+          <label>Contraseña (Usuario + Fecha de Nacimiento)</label>
+          <input type="password" id="login-password" class="auth-input" placeholder="Ej: antojofre23091995, rocior1998" required autocomplete="current-password" />
         </div>
         <button type="submit" class="auth-btn-submit">Ingresar al Portal →</button>
       </form>
-      <div class="auth-switch" style="margin-top: 10px;">
+
+      <!-- Accesos Rápidos de Clientes Activos -->
+      <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #262626; font-size: 0.76rem; color: #888; text-align: center;">
+        <span style="display:block; margin-bottom: 6px; font-weight: 600;">Accesos directos de clientes activos:</span>
+        <div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;">
+          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="document.getElementById('login-email').value='antojofre'; document.getElementById('login-password').value='antojofre23091995';">🧘 antojofre</button>
+          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="document.getElementById('login-email').value='rocior'; document.getElementById('login-password').value='rocior1998';">💆‍♀️ rocior</button>
+          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="document.getElementById('login-email').value='matigonzalez'; document.getElementById('login-password').value='matigonzalez2009';">🎨 matigonzalez</button>
+          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="document.getElementById('login-email').value='diegop'; document.getElementById('login-password').value='diegop1990';">👑 diegop</button>
+        </div>
+      </div>
+
+      <div class="auth-switch" style="margin-top: 12px;">
         <a id="switch-to-reset" style="font-size:0.8rem; color:#888;">¿Olvidaste tu contraseña?</a> | <a id="switch-to-register">Regístrate gratis</a>
       </div>
     </div>

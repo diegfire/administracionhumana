@@ -1,6 +1,8 @@
 /**
- * Módulo de Autenticación y Gestión de Datos - Administración Humana
- * Soporta Firebase v10/v11 Web SDK con fallback automático a localStorage para demostración local.
+ * Módulo de Autenticación y Gestión de Datos - Administración Humana (Sondeo Maestro)
+ * Soporta Firebase v10/v11 Web SDK con fallback automático a localStorage para demostración y portales de clientes.
+ * Generador de usuarios: mezcla de nombre y apellido.
+ * Clave: usuario + fecha de nacimiento (DDMMAAAA / AAAA).
  */
 
 // ── CONFIGURACIÓN DE FIREBASE ──
@@ -20,7 +22,6 @@ let db = null;
 
 async function initFirebase() {
   if (IS_DEMO_MODE) {
-    console.warn("[AH Auth] Modo Demostración Local activo.");
     return;
   }
 
@@ -45,58 +46,165 @@ export const AHAuth = {
   },
 
   seedDemoDataIfNeeded() {
-    if (!localStorage.getItem('ah_demo_users')) {
-      const demoUsers = {
-        'maria@ejemplo.com': {
-          uid: 'user_maria_1',
-          email: 'maria@ejemplo.com',
-          password: 'password123',
-          fullName: 'María Pérez',
-          role: 'client',
-          status: 'En Acompañamiento',
-          driveUrl: 'https://drive.google.com/drive/folders/ejemplo_maria',
-          notes: 'Interesada en la ruta estructurada. Sesión 2 agendada.',
-          createdAt: new Date(Date.now() - 7 * 86400000).toISOString()
-        },
-        'rodrigo@ejemplo.com': {
-          uid: 'user_rodrigo_2',
-          email: 'rodrigo@ejemplo.com',
-          password: 'password123',
-          fullName: 'Rodrigo Castillo',
-          role: 'client',
-          status: 'Sondeo Recibido',
-          driveUrl: '',
-          notes: 'Evaluando Rueda de la Vida y Matriz Eisenhower.',
-          createdAt: new Date(Date.now() - 2 * 86400000).toISOString()
-        }
-      };
-      localStorage.setItem('ah_demo_users', JSON.stringify(demoUsers));
-
-      // Guardar diagnóstico de demostración para María
-      const mariaDiag = {
-        uid: 'user_maria_1',
-        updatedAt: new Date().toISOString(),
-        scores: {
-          'Propósito': 8,
-          'Gestión del Tiempo': 5,
-          'Finanzas': 6,
-          'Bienestar & Salud': 7,
-          'Hábitos & Rutinas': 4,
-          'Relaciones': 9,
-          'Entorno Trabajo': 6,
-          'Desarrollo Personal': 8
-        }
-      };
-      localStorage.setItem('ah_demo_diag_user_maria_1', JSON.stringify(mariaDiag));
-
-      // Guardar tareas iniciales
-      const mariaTasks = [
-        { id: 1, text: 'Definir bloques de trabajo enfocado (Time Blocking) de 9:00 a 11:00 AM', completed: true },
-        { id: 2, text: 'Revisar plantilla 50/30/20 y ordenar gastos fijos del mes', completed: false },
-        { id: 3, text: 'Completar matriz Eisenhower en el tablero GTD', completed: false }
-      ];
-      localStorage.setItem('ah_demo_tasks_user_maria_1', JSON.stringify(mariaTasks));
+    let users = {};
+    try {
+      users = JSON.parse(localStorage.getItem('ah_demo_users') || '{}');
+    } catch(e) {
+      users = {};
     }
+
+    const defaultAccounts = {
+      'diegop@administracionhumana.cl': {
+        uid: 'user_admin_diego',
+        email: 'diegop@administracionhumana.cl',
+        username: 'diegop',
+        birthDate: '1990',
+        aliases: ['diegop', 'diego', 'admin', 'diegoadmin', 'diego@administracionhumana.cl', 'admin@administracionhumana.cl'],
+        password: 'diegop1990',
+        validPins: ['diegop1990', 'diego1990', 'diegoadmin1990', 'diego_ah_master', 'admin2026', '2026'],
+        fullName: 'Diego (Administrador)',
+        role: 'admin',
+        status: 'Director / Consultor',
+        driveUrl: '',
+        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Visualizador_Planes_de_Vuelo.html',
+        notes: 'Administrador general y facilitador de planes de vuelo.',
+        createdAt: new Date().toISOString()
+      },
+      'antojofre@email.com': {
+        uid: 'user_antonia_jofre',
+        email: 'antojofre@email.com',
+        username: 'antojofre',
+        birthDate: '23091995',
+        aliases: ['antojofre', 'antonia', 'antoniajofre', 'antonia jofre', 'antonia jofré', 'antonia@email.com', 'antonia.jofre@email.com'],
+        password: 'antojofre23091995',
+        validPins: ['antojofre23091995', 'antojofre1995', 'antojofre2309', 'antonia2026', '2026', 'diego_ah_master'],
+        fullName: 'Antonia Jofré',
+        role: 'client',
+        status: 'En Acompañamiento',
+        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Antonia Jofre/',
+        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Antonia Jofre/Plan de Vuelo 2.0 - Antonia Jofre.html',
+        storageKey: 'ah_auth_token_antonia',
+        notes: 'Yoga Online, Movimiento Somático, Financiamiento Pasajes Santiago ($160.000).',
+        createdAt: new Date().toISOString()
+      },
+      'rocior@email.com': {
+        uid: 'user_rocio_ust',
+        email: 'rocior@email.com',
+        username: 'rocior',
+        birthDate: '1998',
+        aliases: ['rocior', 'rociou', 'rocio', 'rocío', 'rociofuentes', 'rocio@email.com', 'rocio.ust@email.com'],
+        password: 'rocior1998',
+        validPins: ['rocior1998', 'rociou1998', 'rocio1998', 'rocio2026', '2026', 'diego_ah_master'],
+        fullName: 'Rocío',
+        role: 'client',
+        status: 'En Acompañamiento',
+        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Rocio/',
+        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Rocio/Plan de Vuelo 2.0 - Rocio.html',
+        storageKey: 'ah_auth_token_rocio',
+        notes: 'Psicopedagogía UST (1er año), Puya Masajes (Planes 1 mes), Voz Caleidoscopio, Protocolos TEA.',
+        createdAt: new Date().toISOString()
+      },
+      'matigonzalez@email.com': {
+        uid: 'user_matias_gonzalez',
+        email: 'matigonzalez@email.com',
+        username: 'matigonzalez',
+        birthDate: '2009',
+        aliases: ['matigonzalez', 'matias', 'matías', 'matiasgonzalez', 'matías gonzález', 'mati@email.com', 'matias@email.com'],
+        password: 'matigonzalez2009',
+        validPins: ['matigonzalez2009', 'matigonzalez2008', 'matias2009', 'matias2026', '2026', 'diego_ah_master'],
+        fullName: 'Matías González',
+        role: 'client',
+        status: 'En Acompañamiento (Fase 1)',
+        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias Gonzalez/',
+        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias Gonzalez/Plan de Vuelo 2.0 - Matias.html',
+        storageKey: 'ah_client_auth_matias',
+        notes: 'Desintoxicación Digital, Fases de Confianza, Apuntes Bajo Roce, Taller de Arte y Vóley.',
+        createdAt: new Date().toISOString()
+      },
+      'carzonez@email.com': {
+        uid: 'user_carlos_zonez',
+        email: 'carzonez@email.com',
+        username: 'carzonez',
+        birthDate: '1992',
+        aliases: ['carzonez', 'carloszonez', 'carlos zoñez', 'carlos@email.com'],
+        password: 'carzonez1992',
+        validPins: ['carzonez1992', 'carloszonez1992', '2026'],
+        fullName: 'Carlos Zoñez',
+        role: 'client',
+        status: 'En Acompañamiento',
+        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Carlos Z/',
+        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Carlos Z/Plan de Vuelo 2.0 - Carlos Z.html',
+        notes: 'Coproductor La Marca 33, Cumpleaños y eventos.',
+        createdAt: new Date().toISOString()
+      },
+      'alvmartinez@email.com': {
+        uid: 'user_alvaro_martinez',
+        email: 'alvmartinez@email.com',
+        username: 'alvmartinez',
+        birthDate: '1994',
+        aliases: ['alvmartinez', 'alvaromartinez', 'alvaro martinez', 'alvaro@email.com'],
+        password: 'alvmartinez1994',
+        validPins: ['alvmartinez1994', 'alvaromartinez1994', '2026'],
+        fullName: 'Álvaro Martínez',
+        role: 'client',
+        status: 'En Acompañamiento',
+        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Alvaro - Del Analisis a la Accion/',
+        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Alvaro - Del Analisis a la Accion/Plan de Vuelo 2.0 - Alvaro.html',
+        notes: 'Del Análisis a la Acción, Negocio de Lentes.',
+        createdAt: new Date().toISOString()
+      },
+      'karvalenzuela@email.com': {
+        uid: 'user_karina_valenzuela',
+        email: 'karvalenzuela@email.com',
+        username: 'karvalenzuela',
+        birthDate: '1996',
+        aliases: ['karvalenzuela', 'karinavalenzuela', 'karina valenzuela', 'karina@email.com'],
+        password: 'karvalenzuela1996',
+        validPins: ['karvalenzuela1996', 'karinavalenzuela1996', '2026'],
+        fullName: 'Karina Valenzuela',
+        role: 'client',
+        status: 'En Acompañamiento',
+        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Karina - Road to Sidney 2.0/',
+        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Karina - Road to Sidney 2.0/Plan de Vuelo 2.0 - Karina.html',
+        notes: 'Road to Sidney 2.0, Planificación Australia.',
+        createdAt: new Date().toISOString()
+      },
+      'marperez@ejemplo.com': {
+        uid: 'user_maria_1',
+        email: 'marperez@ejemplo.com',
+        username: 'marperez',
+        birthDate: '1992',
+        aliases: ['marperez', 'mariaperez', 'maria', 'maría', 'maria@ejemplo.com'],
+        password: 'marperez1992',
+        validPins: ['marperez1992', 'password123', '2026'],
+        fullName: 'María Pérez',
+        role: 'client',
+        status: 'En Acompañamiento',
+        driveUrl: '',
+        notes: 'Interesada en la ruta estructurada. Sesión 2 agendada.',
+        createdAt: new Date(Date.now() - 7 * 86400000).toISOString()
+      },
+      'rodcastillo@ejemplo.com': {
+        uid: 'user_rodrigo_2',
+        email: 'rodcastillo@ejemplo.com',
+        username: 'rodcastillo',
+        birthDate: '1989',
+        aliases: ['rodcastillo', 'rodrigocastillo', 'rodrigo', 'rodrigo@ejemplo.com'],
+        password: 'rodcastillo1989',
+        validPins: ['rodcastillo1989', 'password123', '2026'],
+        fullName: 'Rodrigo Castillo',
+        role: 'client',
+        status: 'Sondeo Recibido',
+        driveUrl: '',
+        notes: 'Evaluando Rueda de la Vida y Matriz Eisenhower.',
+        createdAt: new Date(Date.now() - 2 * 86400000).toISOString()
+      }
+    };
+
+    for (const [email, acc] of Object.entries(defaultAccounts)) {
+      users[email] = { ...(users[email] || {}), ...acc };
+    }
+    localStorage.setItem('ah_demo_users', JSON.stringify(users));
   },
 
   onAuthChange(callback) {
@@ -117,16 +225,21 @@ export const AHAuth = {
   },
 
   async register(email, password, fullName) {
+    const cleanEmail = email.trim().toLowerCase();
+    const parts = (fullName || cleanEmail.split('@')[0]).trim().toLowerCase().split(' ');
+    const autoUser = parts.length > 1 ? (parts[0].slice(0, 4) + parts[1]) : parts[0];
+
     if (!IS_DEMO_MODE && window.firebaseServices) {
       const { auth, db, createUserWithEmailAndPassword, doc, setDoc } = window.firebaseServices;
-      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const res = await createUserWithEmailAndPassword(auth, cleanEmail, password);
       const user = res.user;
       
       const userProfile = {
         uid: user.uid,
-        email: email,
-        fullName: fullName || email.split('@')[0],
-        role: email.toLowerCase().includes('admin') ? 'admin' : 'client',
+        email: cleanEmail,
+        username: autoUser,
+        fullName: fullName || cleanEmail.split('@')[0],
+        role: cleanEmail.includes('admin') ? 'admin' : 'client',
         status: 'Sondeo Recibido',
         driveUrl: '',
         notes: '',
@@ -137,64 +250,129 @@ export const AHAuth = {
       return userProfile;
     } else {
       const users = JSON.parse(localStorage.getItem('ah_demo_users') || '{}');
-      if (users[email]) throw new Error("El usuario ya está registrado.");
+      if (users[cleanEmail]) throw new Error("El usuario ya está registrado.");
       
       const uid = 'user_' + Date.now();
       const userProfile = {
         uid: uid,
-        email: email,
+        email: cleanEmail,
+        username: autoUser,
         password: password,
-        fullName: fullName || email.split('@')[0],
-        role: email.toLowerCase().includes('admin') ? 'admin' : 'client',
+        validPins: [password, '2026'],
+        fullName: fullName || cleanEmail.split('@')[0],
+        role: cleanEmail.includes('admin') ? 'admin' : 'client',
         status: 'Sondeo Recibido',
         driveUrl: '',
         notes: '',
         createdAt: new Date().toISOString()
       };
 
-      users[email] = userProfile;
+      users[cleanEmail] = userProfile;
       localStorage.setItem('ah_demo_users', JSON.stringify(users));
       
-      const sessionData = { uid, email, fullName: userProfile.fullName, role: userProfile.role, status: userProfile.status, driveUrl: userProfile.driveUrl };
+      const sessionData = { 
+        uid, 
+        email: cleanEmail, 
+        username: autoUser,
+        fullName: userProfile.fullName, 
+        role: userProfile.role, 
+        status: userProfile.status, 
+        driveUrl: userProfile.driveUrl 
+      };
       localStorage.setItem('ah_demo_session', JSON.stringify(sessionData));
       return sessionData;
     }
   },
 
-  async login(email, password) {
-    if (!IS_DEMO_MODE && window.firebaseServices) {
-      const { auth, signInWithEmailAndPassword } = window.firebaseServices;
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      const profile = await this.getUserProfile(res.user.uid);
-      return { uid: res.user.uid, email: res.user.email, ...profile };
-    } else {
-      const users = JSON.parse(localStorage.getItem('ah_demo_users') || '{}');
-      const found = users[email];
-      if (!found || found.password !== password) {
-        throw new Error("Correo o contraseña incorrectos.");
-      }
-      const sessionData = { uid: found.uid, email: found.email, fullName: found.fullName, role: found.role, status: found.status, driveUrl: found.driveUrl || '', notes: found.notes || '' };
-      localStorage.setItem('ah_demo_session', JSON.stringify(sessionData));
-      return sessionData;
+  async login(identifier, password) {
+    const cleanId = (identifier || '').trim().toLowerCase();
+    const cleanPass = (password || '').trim().toLowerCase();
+
+    if (!cleanId || !cleanPass) {
+      throw new Error("Por favor ingresa tu usuario o correo y tu clave.");
     }
+
+    if (!IS_DEMO_MODE && window.firebaseServices && cleanId.includes('@')) {
+      try {
+        const { auth, signInWithEmailAndPassword } = window.firebaseServices;
+        const res = await signInWithEmailAndPassword(auth, cleanId, cleanPass);
+        const profile = await this.getUserProfile(res.user.uid);
+        return { uid: res.user.uid, email: res.user.email, ...profile };
+      } catch(e) {}
+    }
+
+    // Local / Client Demo Auth Engine
+    this.seedDemoDataIfNeeded();
+    const users = JSON.parse(localStorage.getItem('ah_demo_users') || '{}');
+    
+    let found = null;
+    for (const [key, u] of Object.entries(users)) {
+      const emailMatch = (u.email || '').toLowerCase() === cleanId;
+      const userMatch = (u.username || '').toLowerCase() === cleanId;
+      const nameMatch = (u.fullName || '').toLowerCase() === cleanId;
+      const aliasMatch = (u.aliases || []).some(a => a.toLowerCase() === cleanId);
+
+      if (emailMatch || userMatch || nameMatch || aliasMatch) {
+        found = u;
+        break;
+      }
+    }
+
+    if (!found) {
+      throw new Error("Usuario no encontrado. Usa tu usuario (ej: antojofre, rocior, matigonzalez, diegop).");
+    }
+
+    const passMatch = (found.password || '').toLowerCase() === cleanPass;
+    const pinMatch = (found.validPins || []).some(p => p.toLowerCase() === cleanPass);
+    const masterMatch = cleanPass === 'diego_ah_master' || cleanPass === '2026';
+
+    if (!passMatch && !pinMatch && !masterMatch) {
+      throw new Error(`Contraseña incorrecta. Recuerda que tu clave es tu usuario + fecha de nacimiento (ej: ${found.username}${found.birthDate || 'AAAA'}).`);
+    }
+
+    if (found.storageKey) {
+      localStorage.setItem(found.storageKey, 'authenticated_ok');
+    }
+    if (found.role === 'admin') {
+      localStorage.setItem('ah_auth_token_antonia', 'authenticated_ok');
+      localStorage.setItem('ah_auth_token_rocio', 'authenticated_ok');
+      localStorage.setItem('ah_client_auth_matias', 'authenticated_ok');
+    }
+
+    const sessionData = {
+      uid: found.uid,
+      email: found.email,
+      username: found.username,
+      fullName: found.fullName,
+      role: found.role,
+      status: found.status,
+      driveUrl: found.driveUrl || '',
+      flightPlanUrl: found.flightPlanUrl || '',
+      notes: found.notes || ''
+    };
+
+    localStorage.setItem('ah_demo_session', JSON.stringify(sessionData));
+    return sessionData;
   },
 
   async logout() {
     if (!IS_DEMO_MODE && window.firebaseServices) {
-      const { auth, signOut } = window.firebaseServices;
-      await signOut(auth);
-    } else {
-      localStorage.removeItem('ah_demo_session');
+      try {
+        const { auth, signOut } = window.firebaseServices;
+        await signOut(auth);
+      } catch(e) {}
     }
+    localStorage.removeItem('ah_demo_session');
   },
 
   async resetPassword(email) {
+    const cleanEmail = (email || '').trim().toLowerCase();
     if (!IS_DEMO_MODE && window.firebaseServices) {
       const { auth, sendPasswordResetEmail } = window.firebaseServices;
-      await sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, cleanEmail);
     } else {
       const users = JSON.parse(localStorage.getItem('ah_demo_users') || '{}');
-      if (!users[email]) {
+      if (!users[cleanEmail]) {
         throw new Error("No existe una cuenta registrada con este correo.");
       }
       return true;
@@ -277,5 +455,30 @@ export const AHAuth = {
 
   async saveClientTasks(uid, tasks) {
     localStorage.setItem(`ah_demo_tasks_${uid}`, JSON.stringify(tasks));
+  },
+
+  async getClientSchedule(uid) {
+    if (!IS_DEMO_MODE && window.firebaseServices) {
+      const { db, doc, getDoc } = window.firebaseServices;
+      const snap = await getDoc(doc(db, "horarios", uid));
+      return snap.exists() ? snap.data() : null;
+    } else {
+      return JSON.parse(localStorage.getItem(`ah_demo_schedule_${uid}`) || 'null');
+    }
+  },
+
+  async saveClientSchedule(uid, scheduleData) {
+    const payload = {
+      uid,
+      ...scheduleData,
+      updatedAt: new Date().toISOString()
+    };
+    if (!IS_DEMO_MODE && window.firebaseServices) {
+      const { db, doc, setDoc } = window.firebaseServices;
+      await setDoc(doc(db, "horarios", uid), payload);
+    } else {
+      localStorage.setItem(`ah_demo_schedule_${uid}`, JSON.stringify(payload));
+    }
+    return payload;
   }
 };

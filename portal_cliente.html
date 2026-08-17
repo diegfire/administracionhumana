@@ -153,6 +153,20 @@
       </div>
 
       <div class="dashboard-grid">
+        <!-- PLAN DE VUELO 2.0 CARD -->
+        <div class="portal-card" id="flight-plan-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, #141414 0%, #1a1a1a 100%); border-color: rgba(255,255,255,0.25); display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+            <div>
+              <div class="status-badge" style="background:rgba(56,189,248,0.15); border-color:#38bdf8; color:#38bdf8;">🚀 Plan de Vuelo 2.0 Activo</div>
+              <h2 class="card-title" style="font-size:1.45rem;" id="flight-plan-title">Tu Tablero de Mapeo & Operaciones</h2>
+              <p class="card-desc" style="margin-bottom:0;" id="flight-plan-desc">Accede a tu Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Caja de Herramientas e Imprimibles.</p>
+            </div>
+            <a href="#" id="flight-plan-btn" class="btn-card-action" style="background:#ffffff; color:#000; font-size:0.95rem; padding:12px 24px;">
+              Abrir Mi Plan de Vuelo 🚀
+            </a>
+          </div>
+        </div>
+
         <!-- RADAR DIAGNÓSTICO -->
         <div class="portal-card">
           <div class="card-icon">📊</div>
@@ -163,7 +177,7 @@
             <svg id="radar-svg" width="280" height="240" viewBox="0 0 300 260"></svg>
           </div>
           
-          <a href="03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/sondeo_maestro_360.html" class="btn-card-action secondary" style="margin-top:16px;">
+          <a href="sondeo.html" class="btn-card-action secondary" style="margin-top:16px;">
             Actualizar Sondeo 360° →
           </a>
         </div>
@@ -195,8 +209,8 @@
         <div class="portal-card">
           <div class="card-icon">⚡</div>
           <h2 class="card-title">Suite Digital de Herramientas</h2>
-          <p class="card-desc">Tableros interactivos: Rueda de la Vida, Matriz Eisenhower, Time Blocker y GTD.</p>
-          <a href="03_PRODUCTOS_Y_APLICACIONES/Suite_Digital_AICC.html" class="btn-card-action secondary">
+          <p class="card-desc">Tableros interactivos: Rueda de la Vida, Matriz Eisenhower, Generador Horarios y GTD.</p>
+          <a href="../Suite_Digital_AICC.html" class="btn-card-action secondary">
             Abrir Suite Digital →
           </a>
         </div>
@@ -221,7 +235,7 @@
 
       AHAuth.onAuthChange(async (user) => {
         if (!user) {
-          window.location.href = 'landing_administracion_humana.html';
+          window.location.href = 'index.html';
           return;
         }
 
@@ -231,6 +245,16 @@
 
         const statusBadge = document.getElementById('user-status-badge');
         statusBadge.innerText = user.status || '🟢 Acompañamiento Activo';
+
+        // Plan de Vuelo 2.0 Card
+        const flightPlanCard = document.getElementById('flight-plan-card');
+        const flightPlanBtn = document.getElementById('flight-plan-btn');
+        if (user.flightPlanUrl) {
+          flightPlanCard.style.display = 'block';
+          flightPlanBtn.href = user.flightPlanUrl;
+        } else {
+          flightPlanCard.style.display = 'none';
+        }
 
         const driveLink = document.getElementById('drive-link');
         if (user.driveUrl) {
@@ -254,7 +278,7 @@
 
       document.getElementById('btn-logout').addEventListener('click', async () => {
         await AHAuth.logout();
-        window.location.href = 'landing_administracion_humana.html';
+        window.location.href = 'index.html';
       });
 
       // SVG RADAR CHART GENERATOR
