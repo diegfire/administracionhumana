@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suite Digital AICC - Administración Humana</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="aicc-share.js"></script>
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.15) 0%, rgba(30, 41, 59, 0.6) 100%);
+            border: 1px solid rgba(13, 148, 136, 0.25);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .welcome-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+        }
+
+        .welcome-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            border-radius: var(--border-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--bg-color);
+            box-shadow: 0 8px 30px var(--teal-glow);
+        }
+
+        .welcome-text h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-text p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .stats-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-box {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--border-radius-md);
+            padding: 1.2rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-num {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .stat-num.teal { color: var(--teal-light); }
+        .stat-num.coral { color: var(--coral-light); }
+
+        .stat-lbl {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        .dimension-bar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dimension-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: rgba(15, 23, 42, 0.2);
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            transition: var(--transition-smooth);
+        }
+
+        .dimension-row:hover {
+            background: rgba(15, 23, 42, 0.45);
+        }
+
+        .dimension-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .dimension-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dimension-score {
+            font-weight: 700;
+        }
+
+        .dimension-score.critical { color: var(--coral-light); }
+        .dimension-score.good { color: var(--teal-light); }
+
+        .bar-outer {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .bar-inner {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.8s cubic-bezier(0.1, 0.8, 0.25, 1);
+        }
+
+        .bar-inner.critical {
+            background: linear-gradient(to right, var(--coral-dark), var(--coral-light));
+            box-shadow: 0 0 8px var(--coral-glow);
+        }
+
+        .bar-inner.good {
+            background: linear-gradient(to right, var(--teal-dark), var(--teal-light));
+            box-shadow: 0 0 8px var(--teal-glow);
+        }
+
+        .dimension-pain-text {
+            font-size: 0.76rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 2px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .recommendation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .rec-card {
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--border-radius-md);
+            padding: 1.25rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: var(--transition-smooth);
+        }
+
+        .rec-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(15, 23, 42, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .rec-card.critical {
+            border-left: 4px solid var(--coral);
+            background: linear-gradient(to right, rgba(244, 63, 94, 0.04), rgba(30, 41, 59, 0.3));
+        }
+
+        .rec-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+            padding: 8px;
+            border-radius: var(--border-radius-sm);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .rec-card.critical .rec-icon {
+            background: rgba(244, 63, 94, 0.1);
+            color: var(--coral-light);
+        }
+
+        .rec-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .rec-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        .rec-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .rec-action {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--teal-light);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .rec-action:hover {
+            color: white;
+            text-shadow: 0 0 8px var(--teal-light);
+        }
+
+        /* Grid de Aplicaciones */
+        .apps-title {
+            margin: 3rem 0 1.5rem 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .app-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--border-radius-md);
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: var(--transition-bounce);
+            text-decoration: none;
+            color: var(--text-primary);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--teal-glow), transparent 60%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: 0;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(13, 148, 136, 0.35);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .app-card:hover::before {
+            opacity: 1;
+        }
+
+        .app-card-icon {
+            font-size: 2.2rem;
+            z-index: 1;
+        }
+
+        .app-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            z-index: 1;
+            color: white;
+        }
+
+        .app-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            z-index: 1;
+        }
+
+        .app-card-btn {
+            font-size: 0.85rem;
+            color: var(--teal-light);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: auto;
+            z-index: 1;
+            transition: var(--transition-smooth);
+        }
+
+        .app-card:hover .app-card-btn {
+            color: white;
+            text-shadow: 0 0 5px var(--teal-light);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="Suite_Digital_AICC.html" class="logo-container">
+            <div class="logo-mark">AH</div>
+            <div class="logo-text">
+                <h1>ADMINISTRACIÓN HUMANA</h1>
+                <p>Método de Claridad y Orden</p>
+            </div>
+        </a>
+        <div class="nav-suite">
+            <a href="index.html" class="nav-link active">⚡ Suite Digital</a>
+            <a href="../sondeo.html" class="nav-link" style="color: var(--teal-light); font-weight: 700;">🔮 Sondeo Maestro</a>
+            <a href="../generador-horarios/index.html" class="nav-link">⏰ Generador Horarios 24H</a>
+            <a href="../visualizador/index.html" class="nav-link">🧭 Planes de Vuelo</a>
+            <a href="../portal_cliente.html" class="nav-link" style="border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; padding: 4px 12px; font-weight: 700; color: #fff;">🔑 Portal Cliente</a>
+        </div>
+    </header>
+
+    <main class="app-container animate-fade-in">
+        
+        <!-- Welcome Card -->
+        <div class="welcome-card">
+            <div class="welcome-logo">AH</div>
+            <div class="welcome-text">
+                <h2>¡Hola, Diego!</h2>
+                <p>Bienvenido al Panel de Control de <strong>Administración Humana</strong>. Aquí puedes monitorear tu balance mensual de satisfacción, capturar tus dolores diarios y acceder a cada una de tus herramientas de gestión adaptadas.</p>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            
+            <!-- Left Panel: Diagnóstico -->
+            <div class="glass-panel">
+                <div class="panel-title">
+                    ESTADO VITAL ACTUAL
+                    <span>Rueda de la Vida</span>
+                </div>
+                
+                <div class="stats-summary">
+                    <div class="stat-box">
+                        <div id="avgScore" class="stat-num teal">--</div>
+                        <div class="stat-lbl">Promedio Vital</div>
+                    </div>
+                    <div class="stat-box">
+                        <div id="critAreas" class="stat-num coral">--</div>
+                        <div class="stat-lbl">Áreas Críticas</div>
+                    </div>
+                </div>
+
+                <div class="dimension-bar-container" id="dimensionBars">
+                    <!-- Progress bars loaded from JS -->
+                </div>
+            </div>
+
+            <!-- Right Panel: Prescripciones -->
+            <div class="glass-panel">
+                <div class="panel-title">
+                    PRESCRIPCIÓN DE MICRODOSIS
+                    <span>Recomendación Inteligente</span>
+                </div>
+                
+                <div class="recommendation-list" id="recommendationList">
+                    <!-- Recommendations loaded from JS -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Quick Access to Apps -->
+        <div class="apps-title">
+            HERRAMIENTAS DE AUTOGESTIÓN Y SONDEO
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Selecciona una aplicación</span>
+        </div>
+        
+        <div class="apps-grid">
+
+            <!-- Card Destacada: Sondeo Maestro -->
+            <a href="00_Sondeo_Maestro/sondeo.html" class="app-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, rgba(13, 148, 136, 0.25) 0%, rgba(30, 41, 59, 0.8) 100%); border: 1px solid rgba(45, 212, 191, 0.4);">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div class="app-card-icon" style="font-size: 2.5rem;">🔮</div>
+                    <span style="background: var(--teal); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Portal Principal de Onboarding</span>
+                </div>
+                <h4 class="app-card-title" style="font-size: 1.4rem; color: var(--teal-light);">Sondeo Maestro AICC 360° (Portal Diagnóstico Guiado)</h4>
+                <p class="app-card-desc" style="font-size: 0.95rem; line-height: 1.5;">
+                    El portal de entrada único para nuevos clientes. Combina en 5 pasos interactivos: Rueda de la Vida, Test de Fricción Operativa (10 síntomas), Matriz Eisenhower, Auditoría de Tiempo/Dinero y la Ficha 360° lista para enviar a tu WhatsApp por audios y código JSON.
+                </p>
+                <span class="app-card-btn" style="color: var(--teal-light); font-weight: 700; font-size: 1rem;">Iniciar Portal de Sondeo Guiado &rarr;</span>
+            </a>
+            
+            <a href="01_Rueda_de_la_Vida/index.html" class="app-card">
+                <div class="app-card-icon">🎯</div>
+                <h4 class="app-card-title">Rueda de la Vida</h4>
+                <p class="app-card-desc">Evalúa el equilibrio sistémico en 8 dimensiones clave, registra tus dolores y planifica microacciones de 24 horas.</p>
+                <span class="app-card-btn">Iniciar Diagnóstico &rarr;</span>
+            </a>
+
+            <a href="02_Matriz_Eisenhower/index.html" class="app-card">
+                <div class="app-card-icon">📐</div>
+                <h4 class="app-card-title">Matriz de Eisenhower</h4>
+                <p class="app-card-desc">Clasifica y prioriza tus tareas según su nivel de urgencia e importancia. Delega, planifica o elimina lo innecesario.</p>
+                <span class="app-card-btn">Priorizar Tareas &rarr;</span>
+            </a>
+
+            <a href="10_Generador_Horarios/index.html" class="app-card" style="border-color: rgba(255,255,255,0.25);">
+                <div class="app-card-icon">⏰</div>
+                <h4 class="app-card-title">Generador de Horarios & Sondeo</h4>
+                <p class="app-card-desc">Estructura tu semana en 1 clic con arquetipos inteligentes (Emprendedor, Profesional, TEA/TDAH, Estudiante) y diagnostica tus fugas de tiempo y soberanía temporal.</p>
+                <span class="app-card-btn">Generar Horario &rarr;</span>
+            </a>
+
+            <a href="03_Time_Blocker/index.html" class="app-card">
+                <div class="app-card-icon">⏱️</div>
+                <h4 class="app-card-title">Time Blocker Web</h4>
+                <p class="app-card-desc">Divide tu semana en bloques visuales de Foco, Recuperación y Administración para proteger tu tiempo y energía.</p>
+                <span class="app-card-btn">Bloquear Tiempo &rarr;</span>
+            </a>
+
+            <a href="04_Tablero_GTD/index.html" class="app-card">
+                <div class="app-card-icon">📋</div>
+                <h4 class="app-card-title">Tablero GTD Kanban</h4>
+                <p class="app-card-desc">Libera la RAM mental vaciando pendientes en el Inbox y gestiona el flujo de trabajo controlando el WIP.</p>
+                <span class="app-card-btn">Procesar Tareas &rarr;</span>
+            </a>
+
+            <a href="05_Presupuesto_50_30_20/index.html" class="app-card">
+                <div class="app-card-icon">📊</div>
+                <h4 class="app-card-title">Calculadora 50/30/20</h4>
+                <p class="app-card-desc">Monitorea tus ingresos y egresos según la regla de salud financiera, asegurando tu paz y capacidad de ahorro.</p>
+                <span class="app-card-btn">Ver Presupuesto &rarr;</span>
+            </a>
+
+            <a href="06_Creador_Contenido/index.html" class="app-card">
+                <div class="app-card-icon">✍️</div>
+                <h4 class="app-card-title">Creador de Contenido</h4>
+                <p class="app-card-desc">Genera copys, guiones de reels y carruseles semanales basados en los dolores y herramientas de tu base de datos.</p>
+                <span class="app-card-btn">Crear Contenido &rarr;</span>
+            </a>
+
+            <a href="07_Inventario_Resultados/index.html" class="app-card">
+                <div class="app-card-icon">🏅</div>
+                <h4 class="app-card-title">Auditoría de Resultados</h4>
+                <p class="app-card-desc">Audita si tu tiempo invertido generó impacto o valor real, calculando el Retorno sobre el Esfuerzo (ROE) para salir de la falacia de estar ocupado.</p>
+                <span class="app-card-btn">Auditar Impacto &rarr;</span>
+            </a>
+
+            <a href="08_Circulo_Dorado/index.html" class="app-card">
+                <div class="app-card-icon">🟡</div>
+                <h4 class="app-card-title">Círculo Dorado de Propósito</h4>
+                <p class="app-card-desc">Encuentra tu motor de diferenciación y propósito (el QUÉ, CÓMO y PORQUÉ) para redactar pitches de valor que conecten emocionalmente y no compitan por precio.</p>
+                <span class="app-card-btn">Encontrar Propósito &rarr;</span>
+            </a>
+
+            <a href="09_Kanban_Minimalista/index.html" class="app-card">
+                <div class="app-card-icon">🤖</div>
+                <h4 class="app-card-title">Bandeja de Entrada & Kanban IA</h4>
+                <p class="app-card-desc">Libera la RAM mental capturando pendientes de forma manual o subiendo una captura de pantalla/foto de tu cuaderno para que la IA extraiga e inserte las tareas automáticamente.</p>
+                <span class="app-card-btn">Gestionar Tablero &rarr;</span>
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Administración Humana. Metodología de Diagnóstico por Dolor y Planificación Personal. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Dimensiones del método (Valores por defecto si no hay localStorage)
+        const defaultDimensions = [
+            { name: "Salud y Bienestar", icon: "❤️", score: 6, pain: "Sin registrar", action: "Revisar hábitos de salud" },
+            { name: "Finanzas Personales", icon: "📊", score: 5, pain: "Sin registrar", action: "Registrar gastos mensuales" },
+            { name: "Carrera / Negocio", icon: "💼", score: 7, pain: "Sin registrar", action: "Auditar prioridades de negocio" },
+            { name: "Familia y Relaciones", icon: "🤝", score: 8, pain: "Sin registrar", action: "Programar tiempo en familia" },
+            { name: "Crecimiento Personal", icon: "🧠", score: 6, pain: "Sin registrar", action: "Aplicar un conocimiento hoy" },
+            { name: "Ocio y Diversión", icon: "🎨", score: 4, pain: "Sin registrar", action: "Agendar tiempo de descanso" },
+            { name: "Entorno Físico", icon: "🏡", score: 5, pain: "Sin registrar", action: "Organizar espacio de trabajo" },
+            { name: "Mental / Espiritual", icon: "🧘", score: 6, pain: "Sin registrar", action: "Hacer captura mental GTD" }
+        ];
+
+        // Mapeo de recomendación por dimensión
+        const toolMap = {
+            0: { toolName: "Time Blocker / Rueda", link: "03_Time_Blocker/index.html", text: "Registra bloques de descanso y deporte para recuperar vitalidad." },
+            1: { toolName: "Calculadora 50/30/20", link: "05_Presupuesto_50_30_20/index.html", text: "Abre la calculadora financiera y haz un diagnóstico rápido de tus gastos reales." },
+            2: { toolName: "Auditoría de Resultados", link: "07_Inventario_Resultados/index.html", text: "Audita tus horas de trabajo vs. el impacto financiero real generado (ROE) para identificar fugas." },
+            3: { toolName: "Time Blocker", link: "03_Time_Blocker/index.html", text: "Diseña bloques de tiempo de calidad con tu entorno y apaga el teléfono." },
+            4: { toolName: "Tablero GTD Kanban", link: "04_Tablero_GTD/index.html", text: "Usa el Inbox GTD para organizar las lecturas o proyectos que quieres implementar." },
+            5: { toolName: "Time Blocker", link: "03_Time_Blocker/index.html", text: "Reserva bloques de ocio innegociables en tu semana. Descansar no da culpa, recarga tu energía." },
+            6: { toolName: "Matriz de Eisenhower", link: "02_Matriz_Eisenhower/index.html", text: "Prioriza un ordenamiento de 5S en tu espacio de trabajo para liberar tu enfoque." },
+            7: { toolName: "Tablero GTD Kanban", link: "04_Tablero_GTD/index.html", text: "Vacíe la RAM mental inmediatamente con una sesión de captura GTD antes de dormir." }
+        };
+
+        function loadDashboardData() {
+            let data = localStorage.getItem("aicc_rueda_dimensions");
+            let dimensions = data ? JSON.parse(data) : defaultDimensions;
+
+            // Calcular promedio e identificadores
+            const scores = dimensions.map(d => d.score);
+            const avg = (scores.reduce((a, b) => a + b, 0) / dimensions.length).toFixed(1);
+            const criticals = dimensions.filter(d => d.score <= 5).length;
+
+            document.getElementById("avgScore").innerText = avg;
+            document.getElementById("critAreas").innerText = criticals;
+
+            // Renderizar barras en panel izquierdo
+            const barsContainer = document.getElementById("dimensionBars");
+            barsContainer.innerHTML = "";
+            
+            dimensions.forEach((dim, idx) => {
+                const isCritical = dim.score <= 5;
+                const percent = dim.score * 10;
+                
+                const row = document.createElement("div");
+                row.className = "dimension-row";
+                row.innerHTML = `
+                    <div class="dimension-info-row">
+                        <span class="dimension-name">${dim.icon} ${dim.name}</span>
+                        <span class="dimension-score ${isCritical ? 'critical' : 'good'}">${dim.score}/10</span>
+                    </div>
+                    <div class="bar-outer">
+                        <div class="bar-inner ${isCritical ? 'critical' : 'good'}" style="width: ${percent}%"></div>
+                    </div>
+                    ${dim.pain && dim.pain !== "Sin registrar" ? `
+                        <div class="dimension-pain-text">
+                            <span>⚡ Dolor:</span> "${dim.pain}"
+                        </div>
+                    ` : ''}
+                `;
+                barsContainer.appendChild(row);
+            });
+
+            // Generar recomendaciones dinámicas en panel derecho
+            const recContainer = document.getElementById("recommendationList");
+            recContainer.innerHTML = "";
+
+            // Filtrar áreas críticas
+            const criticalDims = dimensions
+                .map((d, i) => ({ ...d, index: i }))
+                .filter(d => d.score <= 5)
+                .sort((a, b) => a.score - b.score); // Primero las más graves
+
+            if (criticalDims.length > 0) {
+                // Agregar encabezado de alerta
+                const alertBanner = document.createElement("div");
+                alertBanner.className = "badge-alert";
+                alertBanner.innerHTML = `⚠️ Tienes ${criticalDims.length} áreas en nivel crítico (&le; 5). A continuación tu prescripción de microacciones prioritarias:`;
+                recContainer.appendChild(alertBanner);
+
+                criticalDims.forEach(dim => {
+                    const toolInfo = toolMap[dim.index];
+                    const recCard = document.createElement("div");
+                    recCard.className = "rec-card critical";
+                    recCard.innerHTML = `
+                        <div class="rec-icon">${dim.icon}</div>
+                        <div class="rec-content">
+                            <span class="rec-title">${dim.name} (Nivel ${dim.score}/10)</span>
+                            <span class="rec-desc"><strong>Dolor:</strong> "${dim.pain}"</span>
+                            <span class="rec-desc" style="margin-top: 4px; color: var(--text-primary)">
+                                <strong>Prescripción:</strong> ${toolInfo.text}
+                            </span>
+                            <a href="${toolInfo.link}" class="rec-action">
+                                Abrir herramienta: ${toolInfo.toolName} &rarr;
+                            </a>
+                        </div>
+                    `;
+                    recContainer.appendChild(recCard);
+                });
+            } else {
+                // Estado de paz
+                const peaceBanner = document.createElement("div");
+                peaceBanner.className = "badge-info";
+                peaceBanner.innerHTML = `✨ ¡Excelente! No tienes áreas críticas actualmente. Sigue manteniendo tu balance vital.`;
+                recContainer.appendChild(peaceBanner);
+
+                // Agregar recomendación general
+                const recCard = document.createElement("div");
+                recCard.className = "rec-card";
+                recCard.innerHTML = `
+                    <div class="rec-icon">🧘</div>
+                    <div class="rec-content">
+                        <span class="rec-title">Mantenimiento y Auditoría Semanal</span>
+                        <span class="rec-desc">Tu promedio vital es de ${avg}/10. Es un excelente momento para realizar tu planificación de bloques de tiempo y auditar tus tareas.</span>
+                        <a href="03_Time_Blocker/index.html" class="rec-action">
+                            Planificar semana &rarr;
+                        </a>
+                    </div>
+                `;
+                recContainer.appendChild(recCard);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadDashboardData);
+    </script>
+</body>
+</html>

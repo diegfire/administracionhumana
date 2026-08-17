@@ -205,10 +205,10 @@
           <p class="admin-sub">Gestiona usuarios, audita sus sondeos 360°, accede a sus Planes de Vuelo y asigna recursos.</p>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Visualizador_Planes_de_Vuelo.html" target="_blank" class="btn-action-view" style="padding:10px 18px; border-color:#fff; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <a href="visualizador/index.html" target="_blank" class="btn-action-view" style="padding:10px 18px; border-color:#fff; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
             🧭 Visualizador Maestro
           </a>
-          <a href="../10_Generador_Horarios/index.html" target="_blank" class="btn-action-view" style="padding:10px 18px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <a href="generador-horarios/index.html" target="_blank" class="btn-action-view" style="padding:10px 18px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
             ⏰ Generador 24H
           </a>
           <button class="btn-whatsapp-import" onclick="window.openImportModal()">
@@ -368,8 +368,11 @@
               <input type="text" id="notes-${c.uid}" class="input-notes" value="${c.notes || ''}" placeholder="Escribe observaciones..." />
             </td>
             <td>
-              <button class="btn-action" onclick="window.saveRow('${c.uid}')">Guardar</button>
-              <button class="btn-action-view" onclick="window.openDiagModal('${c.uid}', '${c.fullName || c.email}')">👁️ Sondeo</button>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="btn-action" onclick="window.saveRow('${c.uid}')">Guardar</button>
+                <button class="btn-action-view" onclick="window.openDiagModal('${c.uid}', '${c.fullName || c.email}')">👁️ Sondeo</button>
+                ${c.flightPlanUrl ? `<a href="${c.flightPlanUrl}" target="_blank" class="btn-action-view" style="text-decoration:none; background:rgba(56,189,248,0.15); border-color:#38bdf8; color:#38bdf8; padding:6px 10px;">🚀 Plan</a>` : ''}
+              </div>
             </td>
           </tr>
         `).join('');

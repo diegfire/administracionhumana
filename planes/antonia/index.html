@@ -1,0 +1,3375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Vuelo 2.0: De la Sobrecarga a la Soberanía Operativa - Antonia Jofré | Administración Humana</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #121212;
+            --primary: #ffffff; /* Monochromatic Accent (White) */
+            --secondary: #888888; /* Monochromatic Secondary (Gray) */
+            --accent: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --success: #ffffff;
+            --warning: #888888;
+            --danger: #EF4444; /* Keep red for danger / errors */
+            --border: #262626;
+            --border-hover: #333333;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-primary: 0 0 20px rgba(255, 255, 255, 0.1);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: #cccccc;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo {
+            background: #ffffff;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #000000;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .brand-title h1 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .brand-title p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .meta-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #ffffff;
+        }
+
+        .meta-badge .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ffffff;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 0.4rem;
+            border-radius: 50px;
+            margin-bottom: 2.5rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.75rem 1.4rem;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: var(--shadow-primary);
+            font-weight: 800;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards & Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-icon {
+            font-size: 1.4rem;
+        }
+
+        /* FODA Items */
+        .foda-list {
+            list-style: none;
+        }
+
+        .foda-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .foda-item:last-child {
+            border-bottom: none;
+        }
+
+        .foda-bullet {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Progress bars for Arquetipos */
+        .identity-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .identity-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .progress-track {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #ffffff, #888888);
+            transition: width 1s ease;
+        }
+
+        /* TOOLS GALLERY GRID & CARDS WITH IMAGES */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .tool-img-container {
+            width: 100%;
+            height: 180px;
+            background: #000;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tool-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .tool-img-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .tool-zoom-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--border);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #fff;
+            backdrop-filter: blur(4px);
+        }
+
+        .tool-body {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .tool-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tool-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .tool-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .tool-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 0.8rem;
+            margin-top: auto;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #ffffff;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            width: 100%;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        /* Extended Tool Card Elements */
+        .tool-badge-coherence {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.6rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.72rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            width: fit-content;
+        }
+
+        .tool-section-heading {
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            margin-top: 0.75rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .tool-context-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid var(--primary);
+            padding: 0.6rem 0.8rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 0.82rem;
+            color: #d1d5db;
+            margin-bottom: 0.6rem;
+            line-height: 1.45;
+        }
+
+        .tool-steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .tool-steps-list li {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            display: flex;
+            gap: 0.45rem;
+        }
+
+        .tool-steps-list li span.step-num {
+            color: #ffffff;
+            font-weight: 700;
+            min-width: 16px;
+        }
+
+        .tool-checklist-container {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .tool-checklist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tool-checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .tool-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.55rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tool-check-item input[type="checkbox"] {
+            margin-top: 0.15rem;
+            width: 15px;
+            height: 15px;
+            accent-color: #ffffff;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .tool-check-item input[type="checkbox"]:checked + span {
+            color: #ffffff;
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Interactive Forms & Calculators */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #ffffff;
+        }
+
+        .calc-result {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--primary);
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .calc-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0.3rem 0;
+        }
+
+        /* ========================================================= */
+        /* MAPEADOR DE HORARIOS POR CAJITAS 24H - ESTILOS COMPLETOS  */
+        /* ========================================================= */
+        .top-control-card {
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .name-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #141414;
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 50px;
+        }
+
+        .name-input-group label {
+            font-size: 0.76rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .name-input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 700;
+            outline: none;
+            min-width: 180px;
+        }
+
+        .main-actions-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-pill {
+            background: #181818;
+            border: 1px solid var(--border);
+            color: #e4e4e7;
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .btn-pill:hover {
+            background: #262626;
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-pill.primary {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            font-weight: 800;
+        }
+
+        .btn-pill.primary:hover {
+            background: #e5e5e5;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
+        }
+
+        .brush-palette-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-top: 1px solid var(--border);
+            padding-top: 0.75rem;
+        }
+
+        .brush-list {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .brush-chip {
+            background: #141414;
+            border: 1px solid var(--border);
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .brush-chip:hover {
+            border-color: #888888;
+            transform: translateY(-1px);
+        }
+
+        .brush-chip.active {
+            border-color: #ffffff !important;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+            color: #ffffff;
+        }
+
+        .brush-chip .color-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* GRID 24 HORAS X 7 DÍAS */
+        .schedule-board-card {
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .schedule-scroll-area {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .schedule-grid-table {
+            width: 100%;
+            min-width: 900px;
+            border-collapse: collapse;
+            table-layout: fixed;
+            user-select: none;
+        }
+
+        .schedule-grid-table thead th {
+            background: #141414;
+            color: #ffffff;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 10px 6px;
+            text-align: center;
+            border: 1px solid var(--border);
+            letter-spacing: 0.5px;
+        }
+
+        .schedule-grid-table thead th.th-time-col {
+            width: 75px;
+            background: #0a0a0a;
+            color: #888888;
+        }
+
+        .schedule-grid-table tbody td {
+            border: 1px solid var(--border);
+            height: 38px;
+            padding: 2px 4px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 0.72rem;
+            transition: background 0.15s ease;
+        }
+
+        .schedule-grid-table tbody td.time-cell {
+            background: #0a0a0a;
+            color: #888888;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.75rem;
+            border-right: 2px solid var(--border);
+            cursor: default;
+        }
+
+        .schedule-box {
+            height: 100%;
+            width: 100%;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 2px 4px;
+            line-height: 1.15;
+            transition: transform 0.1s, filter 0.15s;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .schedule-box:hover {
+            filter: brightness(1.25);
+            transform: scale(1.02);
+            z-index: 2;
+        }
+
+        .schedule-box .box-tag {
+            font-size: 0.62rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+        }
+
+        .schedule-box .box-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        /* METRICS DISTRIBUTION (168H) */
+        .time-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .metric-card {
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .metric-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .metric-card-val {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .metric-card-sub {
+            font-size: 0.72rem;
+            color: #888888;
+        }
+
+        .weekly-progress-track {
+            height: 12px;
+            background: #1a1a1a;
+            border-radius: 6px;
+            display: flex;
+            overflow: hidden;
+            margin-top: 8px;
+            border: 1px solid #333;
+        }
+
+        .progress-segment {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        /* MODAL DE EDICIÓN DE BLOQUE Y RANGO */
+        .box-modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1200;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .box-modal-overlay.active {
+            display: flex;
+        }
+
+        .box-modal-content {
+            background: #111111;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-title-h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .form-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            background: #181818;
+            border: 1px solid var(--border);
+            padding: 0.65rem 0.9rem;
+            border-radius: var(--radius-sm);
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: #ffffff;
+        }
+
+        .modal-chips-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .quick-tag-chip {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #ccc;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .quick-tag-chip:hover {
+            background: #333;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* GESTOR DE CATEGORÍAS */
+        .category-manager-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 0.5rem 0;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .category-item-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #141414;
+            border: 1px solid #222;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: border-color 0.15s ease;
+        }
+
+        .category-item-row:hover {
+            border-color: #444;
+        }
+
+        .color-picker-wrapper {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .color-picker-input {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+        }
+
+        .category-name-input {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 6px;
+            flex: 1;
+            outline: none;
+        }
+
+        .category-name-input:focus {
+            border-color: #ffffff;
+        }
+
+        .category-tag-input {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 6px 8px;
+            border-radius: 6px;
+            width: 70px;
+            text-align: center;
+            outline: none;
+        }
+
+        .category-tag-input:focus {
+            border-color: #ffffff;
+        }
+
+        .btn-del-cat {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 4px;
+            border-radius: 4px;
+            transition: color 0.1s ease;
+        }
+
+        .btn-del-cat:hover {
+            color: #f87171;
+        }
+
+        /* ========================================================= */
+        /* TABLERO KANBAN INTERACTIVO GTD (CON LÍMITE WIP=2)         */
+        /* ========================================================= */
+        .kanban-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .kanban-col {
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 480px;
+        }
+
+        .kanban-header {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kanban-count-badge {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .kanban-add-form {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .kanban-add-input {
+            flex-grow: 1;
+            background: #141414;
+            border: 1px solid var(--border);
+            padding: 0.55rem 0.8rem;
+            border-radius: var(--radius-sm);
+            color: #ffffff;
+            font-size: 0.82rem;
+            outline: none;
+        }
+
+        .kanban-add-input:focus {
+            border-color: #ffffff;
+        }
+
+        .kanban-add-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 0.55rem 0.9rem;
+            border-radius: var(--radius-sm);
+            font-weight: 800;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .kanban-add-btn:hover {
+            background: #e5e5e5;
+        }
+
+        .kanban-cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            flex-grow: 1;
+        }
+
+        .kanban-card-item {
+            background: #141414;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+
+        .kanban-card-item:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .kanban-card-text {
+            font-size: 0.88rem;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .kanban-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 0.4rem;
+            font-size: 0.72rem;
+        }
+
+        .kanban-card-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-card-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: #ccc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.72rem;
+            transition: all 0.15s;
+        }
+
+        .btn-card-action:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        .wip-limit-pill {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        /* Antipattern cards */
+        .antipattern-card {
+            border-left: 4px solid var(--danger);
+            background: rgba(239, 68, 68, 0.05);
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+        }
+
+        .antipattern-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Print Action Button */
+        .btn-action-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            background: #ffffff;
+            color: #000000;
+            font-family: var(--font-display);
+            font-weight: 800;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+            background: #e5e5e5;
+            color: #000000;
+        }
+
+        .quote-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid #ffffff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 1.5rem 0;
+        /* ========================================================= */
+        /* PORTAL CLIENT SECURITY GATEWAY                            */
+        /* ========================================================= */
+        .client-auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
+        }
+
+        .client-auth-overlay.unlocked {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .client-auth-card {
+            background: #0d0d0d;
+            border: 1px solid #262626;
+            border-radius: 24px;
+            padding: 2.8rem 2.2rem;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.05);
+            animation: gatewayCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        @keyframes gatewayCardIn {
+            from { transform: translateY(25px) scale(0.96); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .gateway-avatar {
+            width: 72px;
+            height: 72px;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .gateway-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #888888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .gateway-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.4rem;
+        }
+
+        .gateway-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            line-height: 1.4;
+        }
+
+        .gateway-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .gateway-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .gateway-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .gateway-input {
+            width: 100%;
+            background: #141414;
+            border: 1px solid #2e2e2e;
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .gateway-input:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+            background: #191919;
+        }
+
+        .gateway-error {
+            color: #ef4444;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+            margin-top: 0.2rem;
+        }
+
+        .btn-gateway-login {
+            width: 100%;
+            padding: 0.95rem;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .btn-gateway-login:hover {
+            background: #e5e5e5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .gateway-footer-hint {
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .btn-portal-lock {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            color: #aaa;
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-portal-lock:hover {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #f87171;
+        }
+
+        @media print {
+            .tabs, .lightbox, .download-btn, .btn-action-primary, .client-auth-overlay, .btn-portal-lock {
+                display: none !important;
+            }
+            .tab-content {
+                display: block !important;
+                margin-bottom: 2rem;
+            }
+            body {
+                background: #fff !important;
+                color: #000 !important;
+            }
+            .card, .kanban-col {
+                border-color: #ccc !important;
+                background: #fff !important;
+                color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CLIENT SECURITY GATEWAY OVERLAY -->
+    <div id="client-auth-overlay" class="client-auth-overlay">
+        <div class="client-auth-card">
+            <div class="gateway-avatar">AJ</div>
+            <div class="gateway-badge">
+                <i class="fa-solid fa-shield-halved"></i> Acceso Privado
+            </div>
+            <h2 class="gateway-title">Portal de Cliente</h2>
+            <p class="gateway-subtitle">Plan de Vuelo 2.0 • Antonia Jofré<br>Administración Humana</p>
+
+            <form class="gateway-form" onsubmit="handleClientAuth(event)">
+                <div class="gateway-input-group">
+                    <label class="gateway-label">Cliente / Correo</label>
+                    <input type="text" id="auth-client-id" class="gateway-input" placeholder="Tu nombre o correo" value="Antonia Jofré" required autocomplete="username">
+                </div>
+                <div class="gateway-input-group">
+                    <label class="gateway-label">Clave de Acceso (PIN)</label>
+                    <input type="password" id="auth-client-pin" class="gateway-input" placeholder="Ingresa tu clave asignada" required autocomplete="current-password" autofocus>
+                </div>
+                <div id="auth-error-msg" class="gateway-error">
+                    ⚠️ Clave incorrecta. Consulta con Diego si necesitas recuperarla.
+                </div>
+                <button type="submit" class="btn-gateway-login">
+                    Ingresar a mi Plan de Vuelo 🚀
+                </button>
+            </form>
+            <div class="gateway-footer-hint">
+                🔒 Tu sesión quedará guardada de forma segura en este dispositivo.
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <div class="brand-logo">AH</div>
+                <div class="brand-title">
+                    <h1>Plan de Vuelo 2.0: Antonia Jofré</h1>
+                    <p>Administración Humana • Soberanía Operativa & Bienestar</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <div class="meta-badge">
+                    <span class="dot"></span>
+                    <span>Fase Activa: Piloto Clases Online & Sostenibilidad de Cuidados</span>
+                </div>
+                <a href="../../portal_cliente.html" style="background: rgba(255, 255, 255, 0.08); border: 1px solid #333; color: #fff; padding: 0.45rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+                    🔑 Portal Cliente
+                </a>
+                <button class="btn-portal-lock" onclick="logoutClientAuth()" title="Bloquear Portal">
+                    <i class="fa-solid fa-lock"></i> Bloquear
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'tab-foda')">🧭 Diagnóstico & FODA</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-identidades')">⚡ 4 Arquetipos de Energía</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-herramientas')">🧰 Kit de Herramientas</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-finanzas')">💰 Simulador Hito Santiago</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-horario')">⏰ Mapeador de Horarios 24H</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-kanban')">📋 Tablero Kanban GTD</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-despegue')">🚀 Plan 24h & Antipatrones</button>
+        </div>
+
+        <!-- TAB 1: FODA -->
+        <div id="tab-foda" class="tab-content active">
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-title">🎯 Racional Estratégico</div>
+                <p style="margin-top: 0.5rem; color: var(--text-muted);">
+                    Antonia, el objetivo de este plan es construir un sistema de trabajo <strong>100% freelance, remoto y de baja fricción</strong> que te permita generar ingresos sostenibles para costear tus pasajes a Santiago ($160.000 CLP/mes) a través de clases online de yoga suave para "cuerpos cansados", sin comprometer tu salud mental ni las demandas prioritarias de cuidado familiar de Mateo y Roma.
+                </p>
+                <div class="quote-box">
+                    "No necesito aumentar mi esfuerzo; necesito que mi esfuerzo tenga dirección."
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="card-icon">🌟</span> Fortalezas (Motores)</div>
+                    </div>
+                    <ul class="foda-list">
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Resolución Práctica y Temple:</strong> Capacidad probada para operar bajo alta presión y encontrar soluciones viables en contextos difíciles.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Pedagogía Somática y Empatía:</strong> Conexión genuina con las necesidades corporales de las personas; capacidad de transmitir calma y descompresión física.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Experiencia Validada:</strong> Experiencia exitosa dictando clases de yoga online en pandemia para grupos de mujeres.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Autonomía y Adaptabilidad:</strong> Capacidad de autogestionarse y operar sin necesidad de infraestructura costosa (solo mat y conexión).</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="card-icon">⚠️</span> Debilidades (Frenos)</div>
+                    </div>
+                    <ul class="foda-list">
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Métrica por lo Incompleto:</strong> Evaluar el propio valor diario por la lista de pendientes en vez de reconocer el esfuerzo sostenido.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Sobrecompromiso por Capacidad:</strong> Patrón de <em>"como puedo hacerlo, tengo que hacerlo"</em> sin calcular el desgaste de energía.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Invisibilización del Cuidado:</strong> No registrar las horas de contención médica y familiar como trabajo real, detonando culpa.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Rumiación Anticipatoria:</strong> Sobrecarga mental pensando en escenarios futuros antes de ejecutar el paso inmediato.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="card-icon">📈</span> Oportunidades (Palancas)</div>
+                    </div>
+                    <ul class="foda-list">
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Piloto Clases Online (Cuerpos Cansados):** Grupo inicial de 8 a 12 personas conocidas con 2 clases semanales de 45 min.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Inventario Diario de Resultados:</strong> Registro nocturno de 3 micro-victorias y reconocimiento explícito de horas de cuidado.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Time Blocking Protector:</strong> Bloquear 45-60 min fijos para impartir clases y blindar pausas de autocuidado.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Agendar el Descanso como Deber:</strong> Tratar la recuperación como una tarea obligatoria para sostener el ritmo.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="card-icon">🚨</span> Amenazas (Riesgos)</div>
+                    </div>
+                    <ul class="foda-list">
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Imprevistos de Salud Familiar:</strong> Días con alta demanda de acompañamiento hospitalario o crisis emocionales.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Estrés Financiero Urgente:</strong> Ansiedad por el costo de pasajes a Santiago si no se proyecta con números claros.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Fricción Externa / Clima:</strong> Desgaste por traslados presenciales innecesarios en días fríos (resuelto con clases 100% remotas).</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: IDENTIDADES -->
+        <div id="tab-identidades" class="tab-content">
+            <div class="card">
+                <div class="card-title" style="margin-bottom: 1.5rem;">⚡ Distribución de Energía por Arquetipos</div>
+                
+                <div class="identity-bar">
+                    <div class="identity-info">
+                        <span><strong>1. Cuidados & Familia (Contención y Acompañamiento Mateo y Roma)</strong></span>
+                        <span style="color: var(--accent);">50% Energía</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 50%; background: var(--accent);"></div>
+                    </div>
+                </div>
+
+                <div class="identity-bar">
+                    <div class="identity-info">
+                        <span><strong>2. Proyecto Profesional (Clases Online Yoga / Movimiento Somático)</strong></span>
+                        <span style="color: var(--primary);">25% Energía</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                </div>
+
+                <div class="identity-bar">
+                    <div class="identity-info">
+                        <span><strong>3. Salud & Batería Personal (Elongación propia, descanso, recarga mental)</strong></span>
+                        <span style="color: var(--success);">15% Energía</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 15%; background: var(--success);"></div>
+                    </div>
+                </div>
+
+                <div class="identity-bar">
+                    <div class="identity-info">
+                        <span><strong>4. Logística & Administración (Gestión médica, coordinación hogar y finanzas)</strong></span>
+                        <span style="color: var(--secondary);">10% Energía</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 10%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: HERRAMIENTAS GALLERY WITH IMAGES AND LIGHTBOX -->
+        <div id="tab-herramientas" class="tab-content">
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-title">🧰 Sistema de Herramientas de Destrabe • Administración Humana</div>
+                <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem;">
+                    Cada herramienta de este panel ha sido seleccionada y adaptada para responder con <strong>100% de coherencia</strong> a tu contexto actual: alta demanda de cuidado familiar (Mateo y Roma), necesidad de un formato 100% freelance sin traslados, meta de pasajes a Santiago ($160.000 CLP) y desactivación del sobrepensamiento y la culpa.
+                </p>
+                <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 0.4rem;">
+                    💡 <em>Haz clic sobre cualquier imagen para ampliarla en pantalla completa. Utiliza los checklists interactivos para verificar tu aplicación diaria y descarga las plantillas oficiales en Excel.</em>
+                </p>
+            </div>
+
+            <div class="tools-grid">
+                <!-- 1. INVENTARIO DE RESULTADOS -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Metodo SMART.jpg', 'Inventario Diario de Resultados (Método SMART / Cero Culpa)')">
+                        <img src="Imagenes Herramientas/Metodo SMART.jpg" alt="Inventario de Resultados">
+                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-badge-coherence">🎯 COHERENCIA: Antídoto a la Culpa</div>
+                        <div class="tool-title">
+                            <span>Inventario de Resultados</span>
+                            <span style="color: var(--accent); font-size: 0.85rem;">SMART / Cero Culpa</span>
+                        </div>
+                        <div class="tool-meta">Psicología Operativa • Reconocimiento Diario</div>
+
+                        <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
+                        <div class="tool-context-box">
+                            Para desactivar la sensación de "no haber hecho nada". Te ayuda a visibilizar y honrar las 8+ horas de cuidado familiar y contención médica como trabajo real, y a cerrar el día celebrando tus micro-avances en lugar de rumiar lo pendiente.
+                        </div>
+
+                        <div class="tool-section-heading">📋 ¿Cómo usarla paso a paso?</div>
+                        <ul class="tool-steps-list">
+                            <li><span class="step-num">1.</span> <span><strong>Momento fijo:</strong> 2 minutos cada noche antes de dormir.</span></li>
+                            <li><span class="step-num">2.</span> <span><strong>Registrar 3 victorias:</strong> Anotar 3 avances reales (por pequeños que sean).</span></li>
+                            <li><span class="step-num">3.</span> <span><strong>Contabilizar cuidados:</strong> Anotar horas dedicadas a Mateo y Roma.</span></li>
+                            <li><span class="step-num">4.</span> <span><strong>1 acto de autocuidado:</strong> Registrar tu descanso o elongación.</span></li>
+                        </ul>
+
+                        <div class="tool-checklist-container">
+                            <div class="tool-checklist-header">
+                                <span>Checklist de Uso Diario</span>
+                                <span style="color: var(--text-muted);">4 puntos</span>
+                            </div>
+                            <div class="tool-checklist-items">
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Anotar 3 micro-victorias del día en libreta o TXT</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Registrar horas de cuidado familiar sin juzgarte</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Validar al menos 1 acción de autocuidado / siesta</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Cerrar la jornada sin repasar listas de pendientes</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="tool-footer">
+                            <a href="Plantillas/05_Inventario_de_Resultados_y_Auditoria.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. TIME BLOCKING -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Time Blocking.png', 'Time Blocking (Bloque de Oro Flexible)')">
+                        <img src="Imagenes Herramientas/Time Blocking.png" alt="Time Blocking">
+                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-badge-coherence">🎯 COHERENCIA: Ventanas de Foco Protegidas</div>
+                        <div class="tool-title">
+                            <span>Bloque de Oro Flexible</span>
+                            <span style="color: var(--primary); font-size: 0.85rem;">Time Blocking</span>
+                        </div>
+                        <div class="tool-meta">Gestión de Energía • Cero Rigidez</div>
+
+                        <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
+                        <div class="tool-context-box">
+                            No necesitas un horario de oficina rígido de 8 horas. Esta herramienta te permite proteger 45-60 min 2 veces por semana para dictar tus clases online sin interferir con tus cuidados ni con imprevistos médicos.
+                        </div>
+
+                        <div class="tool-section-heading">📋 ¿Cómo usarla paso a paso?</div>
+                        <ul class="tool-steps-list">
+                            <li><span class="step-num">1.</span> <span><strong>Fijar 2 días:</strong> Martes y Jueves (ej. 19:00 hrs o 10:00 hrs).</span></li>
+                            <li><span class="step-num">2.</span> <span><strong>Set previo (15 min):</strong> Mat estirado, luz y cámara listos antes de conectar.</span></li>
+                            <li><span class="step-num">3.</span> <span><strong>Dictado (45 min):</strong> Clase fluida y guiada con voz serena.</span></li>
+                            <li><span class="step-num">4.</span> <span><strong>Bloque siesta:</strong> Proteger 20-30 min al mediodía para recargar batería.</span></li>
+                        </ul>
+
+                        <div class="tool-checklist-container">
+                            <div class="tool-checklist-header">
+                                <span>Checklist de Time Blocking</span>
+                                <span style="color: var(--text-muted);">4 puntos</span>
+                            </div>
+                            <div class="tool-checklist-items">
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Bloquear en agenda los 2 días y hora del piloto</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Tener el rincón del mat despejado 15 min antes</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Agendar y respetar 1 bloque diario de siesta/pausa</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Tener 1 clase grabada de respaldo ante emergencias</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="tool-footer">
+                            <a href="Plantillas/01_Planificador_Semanal_y_Bloques_de_Tiempo.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. REGLA 50/30/20 -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/La Regla 50 30 20.png', 'Regla 50/30/20 (GPS Financiero & Hito Santiago)')">
+                        <img src="Imagenes Herramientas/La Regla 50 30 20.png" alt="Regla 50/30/20">
+                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-badge-coherence">🎯 COHERENCIA: Hito Pasajes Santiago ($160k)</div>
+                        <div class="tool-title">
+                            <span>GPS Financiero</span>
+                            <span style="color: var(--secondary); font-size: 0.85rem;">Regla 50/30/20</span>
+                        </div>
+                        <div class="tool-meta">Sostenibilidad • Finanzas Claras</div>
+
+                        <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
+                        <div class="tool-context-box">
+                            Convierte la preocupación por el dinero en una meta matemática simple: 8 alumnas x $20.000 = $160.000 CLP, cubriendo exactamente los 4 viajes en bus a Santiago al mes sin desestabilizar tu economía familiar.
+                        </div>
+
+                        <div class="tool-section-heading">📋 ¿Cómo usarla paso a paso?</div>
+                        <ul class="tool-steps-list">
+                            <li><span class="step-num">1.</span> <span><strong>Cobro unificado:</strong> Recaudar mensualidades del 1 al 5 de cada mes.</span></li>
+                            <li><span class="step-num">2.</span> <span><strong>Fondo Pasajes (50%):</strong> Apartar inmediatamente los $160.000 para viajes.</span></li>
+                            <li><span class="step-num">3.</span> <span><strong>Autocuidado (30%):</strong> Destinar excedentes a alimentación y bienestar.</span></li>
+                            <li><span class="step-num">4.</span> <span><strong>Fondo Reserva (20%):</strong> Guardar un colchón para imprevistos médicos.</span></li>
+                        </ul>
+
+                        <div class="tool-checklist-container">
+                            <div class="tool-checklist-header">
+                                <span>Checklist Financiero</span>
+                                <span style="color: var(--text-muted);">4 puntos</span>
+                            </div>
+                            <div class="tool-checklist-items">
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Fijar tarifa del pase piloto ($20.000 CLP x 8 clases)</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Completar el cupo base de 8 alumnas ($160k meta)</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Apartar el fondo de pasajes al recaudar</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Registrar ingresos y egresos semanalmente</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="tool-footer">
+                            <a href="Plantillas/02_Registro_de_Gastos_y_Presupuesto_50_30_20.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. GTD KANBAN -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Kanban.png', 'Tablero Kanban & Getting Things Done (Vaciado Mental)')">
+                        <img src="Imagenes Herramientas/Kanban.png" alt="Kanban GTD">
+                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-badge-coherence">🎯 COHERENCIA: Límite de Carga (WIP = 2)</div>
+                        <div class="tool-title">
+                            <span>Tablero de Carga Mental</span>
+                            <span style="color: var(--success); font-size: 0.85rem;">GTD + Kanban</span>
+                        </div>
+                        <div class="tool-meta">Procesos • Protección de RAM</div>
+
+                        <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
+                        <div class="tool-context-box">
+                            Evita la fatiga por sobrepensamiento. Te permite vaciar de la cabeza los trámites médicos, compras y tareas del proyecto, asegurando que nunca tengas más de 2 cosas en ejecución simultánea.
+                        </div>
+
+                        <div class="tool-section-heading">📋 ¿Cómo usarla paso a paso?</div>
+                        <ul class="tool-steps-list">
+                            <li><span class="step-num">1.</span> <span><strong>Vaciado:</strong> Escribir todo lo pendiente en la columna "Por Hacer".</span></li>
+                            <li><span class="step-num">2.</span> <span><strong>Límite WIP = 2:</strong> Mover solo 2 tarjetas a "En Ejecución".</span></li>
+                            <li><span class="step-num">3.</span> <span><strong>Completar antes de abrir:</strong> Mover a "Hecho" antes de iniciar otra.</span></li>
+                            <li><span class="step-num">4.</span> <span><strong>Limpieza:</strong> Descartar tarjetas que dejaron de ser prioritarias.</span></li>
+                        </ul>
+
+                        <div class="tool-checklist-container">
+                            <div class="tool-checklist-header">
+                                <span>Checklist Kanban</span>
+                                <span style="color: var(--text-muted);">4 puntos</span>
+                            </div>
+                            <div class="tool-checklist-items">
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Hacer vaciado semanal de notas del teléfono</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Mantener máximo 2 tarjetas activas a la vez</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Celebrar visualmente cada tarea que pasa a "Hecho"</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Revisión de 5 min con Diego para destrabar flujo</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="tool-footer">
+                            <a href="Plantillas/03_Tablero_Kanban_de_Tareas_GTD.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. EISENHOWER -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Matriz de Eisenhower.png', 'Matriz de Eisenhower (Filtro de Descompresión y Límites)')">
+                        <img src="Imagenes Herramientas/Matriz de Eisenhower.png" alt="Matriz de Eisenhower">
+                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-badge-coherence">🎯 COHERENCIA: Aprender a Decir "No"</div>
+                        <div class="tool-title">
+                            <span>Filtro de Descompresión</span>
+                            <span style="color: var(--primary); font-size: 0.85rem;">M. Eisenhower</span>
+                        </div>
+                        <div class="tool-meta">Límites Asertivos • Protección Vital</div>
+
+                        <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
+                        <div class="tool-context-box">
+                            Rompe el patrón de *"como soy capaz de hacerlo, tengo que hacerlo"*. Te ayuda a filtrar exigencias externas que no te corresponden para proteger tu energía disponible para Mateo, Roma y tus clases.
+                        </div>
+
+                        <div class="tool-section-heading">📋 ¿Cómo usarla paso a paso?</div>
+                        <ul class="tool-steps-list">
+                            <li><span class="step-num">1.</span> <span><strong>Hacer ya (Q1):</strong> Crisis y citas médicas familiares ineludibles.</span></li>
+                            <li><span class="step-num">2.</span> <span><strong>Agendar (Q2):</strong> Clases de yoga, descanso y alimentación (Blindar).</span></li>
+                            <li><span class="step-num">3.</span> <span><strong>Delegar/Decir No (Q3):</strong> Favores y demandas de terceros.</span></li>
+                            <li><span class="step-num">4.</span> <span><strong>Eliminar (Q4):</strong> Perfeccionismo y rumiación sobre el futuro.</span></li>
+                        </ul>
+
+                        <div class="tool-checklist-container">
+                            <div class="tool-checklist-header">
+                                <span>Checklist de Priorización</span>
+                                <span style="color: var(--text-muted);">4 puntos</span>
+                            </div>
+                            <div class="tool-checklist-items">
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Evaluar si una demanda externa es una urgencia real</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Colocar las clases de yoga y descanso en Q2 intocable</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Decir asertivamente "no puedo ahora" a 1 favor externo</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Eliminar exigencias domésticas secundarias</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="tool-footer">
+                            <a href="Plantillas/04_Matriz_Eisenhower_Priorizacion.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. PARETO 80/20 -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Principio de Pareto.png', 'Principio de Pareto 80/20 (Foco Somático y Cero Fricción)')">
+                        <img src="Imagenes Herramientas/Principio de Pareto.png" alt="Principio de Pareto">
+                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-badge-coherence">🎯 COHERENCIA: Clases Simples & Efectivas</div>
+                        <div class="tool-title">
+                            <span>Foco Somático 80/20</span>
+                            <span style="color: var(--accent); font-size: 0.85rem;">Pareto 80/20</span>
+                        </div>
+                        <div class="tool-meta">Eficiencia Pedagógica • Cero Desgaste</div>
+
+                        <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
+                        <div class="tool-context-box">
+                            No necesitas diseñar coreografías extenuantes. El 20% de posturas restaurativas de suelo y respiración profunda entrega el 80% del alivio que buscan tus alumnas, protegiendo tu propia energía docente.
+                        </div>
+
+                        <div class="tool-section-heading">📋 ¿Cómo usarla paso a paso?</div>
+                        <ul class="tool-steps-list">
+                            <li><span class="step-num">1.</span> <span><strong>10 min inicio:</strong> Centramiento y respiración diafragmática.</span></li>
+                            <li><span class="step-num">2.</span> <span><strong>25 min centro:</strong> 4-5 posturas clave (gato-vaca, torsión, niño).</span></li>
+                            <li><span class="step-num">3.</span> <span><strong>10 min cierre:</strong> Savasana guiado y relajación de hombros.</span></li>
+                            <li><span class="step-num">4.</span> <span><strong>Reutilizar estructura:</strong> Misma base variando pequeños detalles.</span></li>
+                        </ul>
+
+                        <div class="tool-checklist-container">
+                            <div class="tool-checklist-header">
+                                <span>Checklist Somático 80/20</span>
+                                <span style="color: var(--text-muted);">4 puntos</span>
+                            </div>
+                            <div class="tool-checklist-items">
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Tener lista la secuencia base de 5 posturas suaves</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Eliminar posturas acrobáticas o de alta exigencia física</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Guiar con tono de voz pausado para ahorrar tu energía</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Cerrar la sesión a los 45 minutos exactos</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="tool-footer">
+                            <a href="Plantillas/06_Rueda_de_la_Vida_y_Plan_Accion.xlsx" class="download-btn" download>📥 Descargar Plan de Acción</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. OCEANO AZUL -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Estrategia Oceano Azul.jpg', 'Estrategia Océano Azul (Nicho Cuerpos Cansados)')">
+                        <img src="Imagenes Herramientas/Estrategia Oceano Azul.jpg" alt="Estrategia Océano Azul">
+                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-badge-coherence">🎯 COHERENCIA: Nicho sin Competencia</div>
+                        <div class="tool-title">
+                            <span>Estrategia Océano Azul</span>
+                            <span style="color: var(--primary); font-size: 0.85rem;">Cuerpos Cansados</span>
+                        </div>
+                        <div class="tool-meta">Posicionamiento • Comunidad Cálida</div>
+
+                        <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
+                        <div class="tool-context-box">
+                            No compites con gimnasios ni profesores de yoga fitness. Creas un espacio único para mujeres, madres y trabajadores fatigados que buscan descansar, soltar el estrés y sentirse acogidos sin juicios.
+                        </div>
+
+                        <div class="tool-section-heading">📋 ¿Cómo usarla paso a paso?</div>
+                        <ul class="tool-steps-list">
+                            <li><span class="step-num">1.</span> <span><strong>Mensaje cálido:</strong> "Un espacio para soltar el peso del día".</span></li>
+                            <li><span class="step-num">2.</span> <span><strong>Convocatoria cercana:</strong> Escribir a personas que ya te pidieron clases.</span></li>
+                            <li><span class="step-num">3.</span> <span><strong>Grupo íntimo:</strong> Cupos limitados (8-12 personas) para dar calidez.</span></li>
+                            <li><span class="step-num">4.</span> <span><strong>Cero barreras:</strong> 100% online y sin requisitos de flexibilidad.</span></li>
+                        </ul>
+
+                        <div class="tool-checklist-container">
+                            <div class="tool-checklist-header">
+                                <span>Checklist Océano Azul</span>
+                                <span style="color: var(--text-muted);">4 puntos</span>
+                            </div>
+                            <div class="tool-checklist-items">
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Redactar invitación con foco en descanso y descompresión</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Contactar a las 8-10 personas de tu círculo de interés</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Crear grupo de WhatsApp para avisos de links</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Mantener ambiente libre de exigencias o comparaciones</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="tool-footer">
+                            <a href="Perfil_y_Contexto_Antonia.md" class="download-btn">📄 Ver Dossier Estratégico</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. COMUNIDAD Y CONFIANZA GRUPAL -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Modelo Tuckman.png', 'Modelo Tuckman & Ventana de Johari (Construcción de Confianza y Cohorte)')">
+                        <img src="Imagenes Herramientas/Modelo Tuckman.png" alt="Modelo Tuckman">
+                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-badge-coherence">🎯 COHERENCIA: Fidelización del Grupo</div>
+                        <div class="tool-title">
+                            <span>Comunidad & Confianza</span>
+                            <span style="color: var(--success); font-size: 0.85rem;">Tuckman & Johari</span>
+                        </div>
+                        <div class="tool-meta">Dinámica Grupal • Retención de Alumnas</div>
+
+                        <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
+                        <div class="tool-context-box">
+                            Te ayuda a consolidar a tus alumnas en una comunidad fiel. Al pasar de la fase inicial a una dinámica de confianza mutua, las alumnas renuevan su mensualidad mes a mes, garantizando tus pasajes a largo plazo.
+                        </div>
+
+                        <div class="tool-section-heading">📋 ¿Cómo usarla paso a paso?</div>
+                        <ul class="tool-steps-list">
+                            <li><span class="step-num">1.</span> <span><strong>Fase 1 (Formación):</strong> Bienvenida cálida y explicación del propósito.</span></li>
+                            <li><span class="step-num">2.</span> <span><strong>Fase 2 (Normas claras):</strong> Puntualidad, micrófonos silenciados y respeto.</span></li>
+                            <li><span class="step-num">3.</span> <span><strong>Fase 3 (Rendimiento):</strong> Práctica fluida y sensación de santuario semanal.</span></li>
+                            <li><span class="step-num">4.</span> <span><strong>Retroalimentación:</strong> Preguntar brevemente qué zonas corporales necesitan más alivio.</span></li>
+                        </ul>
+
+                        <div class="tool-checklist-container">
+                            <div class="tool-checklist-header">
+                                <span>Checklist de Comunidad</span>
+                                <span style="color: var(--text-muted);">4 puntos</span>
+                            </div>
+                            <div class="tool-checklist-items">
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Dar bienvenida personalizada a cada alumna al ingresar</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Enviar mensaje semanal de motivación y recordatorio</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Ajustar posturas según dolores reportados por el grupo</span>
+                                </label>
+                                <label class="tool-check-item">
+                                    <input type="checkbox">
+                                    <span>Celebrar el cumplimiento de cada ciclo mensual</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="tool-footer">
+                            <a href="inventario de resultados.txt" class="download-btn">📝 Abrir Inventario TXT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: FINANZAS -->
+        <div id="tab-finanzas" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">🎯 Simulador Piloto Yoga (Hito Santiago)</div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label>Número de Alumnas Inscritas:</label>
+                        <input type="number" id="num-alumnas" class="form-control" value="8" min="1" max="50" oninput="calcularYogaPilot()">
+                    </div>
+                    <div class="form-group">
+                        <label>Valor Mensualidad por Alumna ($ CLP - 8 clases/mes):</label>
+                        <input type="number" id="precio-mensual" class="form-control" value="20000" step="1000" oninput="calcularYogaPilot()">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Mensual Pasajes Santiago ($ CLP):</label>
+                        <input type="number" id="meta-pasajes" class="form-control" value="160000" readonly style="opacity: 0.8;">
+                    </div>
+                    <div class="calc-result">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Total Recaudado Mensual:</p>
+                        <div class="calc-number" id="total-recaudado">$160.000</div>
+                        <p id="cobertura-status" style="font-size: 0.9rem; font-weight: 700; color: #ffffff; margin-top: 0.3rem;">🎯 Meta de Pasajes Santiago 100% Cubierta</p>
+                        <p id="excedente-text" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Excedente disponible: $0 CLP</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">⚖️ Presupuesto Consciente (50 / 30 / 20)</div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Distribución de tus ingresos freelance para asegurar traslados, bienestar personal y un colchón de imprevistos.
+                    </p>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label>Ingreso Total a Distribuir ($ CLP):</label>
+                        <input type="number" id="ingreso-distribuir" class="form-control" value="200000" oninput="calcularPresupuestoAntonia()">
+                    </div>
+                    <div style="font-size: 0.85rem; line-height: 1.8;">
+                        <p>🚌 <strong>Meta Santiago / Traslados (50%):</strong> <span id="p-pasajes" style="color: var(--primary); font-weight: bold;">$100.000</span></p>
+                        <p>🌿 <strong>Autocuidado & Bienestar (30%):</strong> <span id="p-autocuidado" style="color: var(--accent); font-weight: bold;">$60.000</span></p>
+                        <p>🛡️ <strong>Fondo de Imprevistos Médicos (20%):</strong> <span id="p-reserva" style="color: var(--success); font-weight: bold;">$40.000</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: HORARIO 24H INTERACTIVO -->
+        <div id="tab-horario" class="tab-content">
+            <!-- PANEL DE CONTROL HORARIO -->
+            <div class="top-control-card no-print">
+                <div class="title-row">
+                    <div class="name-input-group">
+                        <label>👤 Horario Semanal de:</label>
+                        <input type="text" id="schedule-person-name" class="name-input" value="Antonia Jofré" oninput="saveScheduleData()" />
+                    </div>
+
+                    <div class="main-actions-group">
+                        <button class="btn-pill primary" onclick="generateScheduleImage()">
+                            <span>🖼️</span> Guardar Imagen (PNG)
+                        </button>
+                        <button class="btn-pill" onclick="openRangeFillModal()">
+                            <span>⚡</span> Llenar Rango
+                        </button>
+
+                        <div style="position: relative; display: inline-block;">
+                            <button class="btn-pill" onclick="togglePresetPop()">
+                                <span>📋</span> Plantillas ▾
+                            </button>
+                            <div id="preset-pop" style="display:none; position:absolute; right:0; top:110%; background:#141414; border:1px solid #333; border-radius:8px; padding:6px; min-width:220px; z-index:100; box-shadow:0 10px 30px rgba(0,0,0,0.8);">
+                                <button style="background:none; border:none; color:#fff; padding:8px 12px; width:100%; text-align:left; font-size:0.8rem; cursor:pointer; border-radius:4px;" onclick="loadPresetAntonia('piloto'); togglePresetPop(false);">🧘 Semana Piloto (Yoga + Cuidados)</button>
+                                <button style="background:none; border:none; color:#fff; padding:8px 12px; width:100%; text-align:left; font-size:0.8rem; cursor:pointer; border-radius:4px;" onclick="loadPresetAntonia('viaje'); togglePresetPop(false);">🏥 Semana con Viaje Santiago</button>
+                                <button style="background:none; border:none; color:#ff6666; padding:8px 12px; width:100%; text-align:left; font-size:0.8rem; cursor:pointer; border-radius:4px;" onclick="clearFullSchedule(); togglePresetPop(false);">🧹 Limpiar Todo a Blanco</button>
+                            </div>
+                        </div>
+
+                        <button class="btn-pill" onclick="openCategoriesManagerModal()">
+                            <span>🎨</span> Categorías
+                        </button>
+                        <button class="btn-pill" onclick="window.print()">
+                            <span>🖨️</span> Imprimir
+                        </button>
+                        <button class="btn-pill" style="color: #f87171; border-color: rgba(248, 113, 113, 0.4);" onclick="clearFullSchedule()">
+                            <span>🧹</span> Limpiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Barra de Pinceles / Modos -->
+                <div class="brush-palette-bar">
+                    <div class="brush-list" id="brush-palette-container">
+                        <!-- Generado dinámicamente -->
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">
+                        💡 <em>Selecciona un pincel y haz clic o arrastra sobre las cajitas. Doble clic para personalizar la actividad.</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ÁREA CAPTURABLE PARA GENERAR IMAGEN -->
+            <div id="capture-schedule-area">
+                <div class="schedule-board-card">
+                    <div class="schedule-scroll-area">
+                        <table class="schedule-grid-table">
+                            <thead>
+                                <tr>
+                                    <th class="th-time-col">HORA</th>
+                                    <th>LUNES</th>
+                                    <th>MARTES</th>
+                                    <th>MIÉRCOLES</th>
+                                    <th>JUEVES</th>
+                                    <th>VIERNES</th>
+                                    <th>SÁBADO</th>
+                                    <th>DOMINGO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="schedule-board-tbody">
+                                <!-- Generado dinámicamente con 24 filas (00:00 a 23:00) -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- RESUMEN DE DISTRIBUCIÓN DEL TIEMPO (168 HORAS) -->
+                <div class="time-metrics-grid" id="time-metrics-container">
+                    <!-- Generado dinámicamente -->
+                </div>
+
+                <!-- Barra Horizontal de Balance Semanal -->
+                <div style="background: #0d0d0d; border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; margin-bottom: 1.5rem;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.76rem; font-weight:700; color:#888;">
+                        <span>DISTRIBUCIÓN DEL TIEMPO SEMANAL (168H)</span>
+                        <span id="metric-audit-summary">Calculando balance...</span>
+                    </div>
+                    <div class="weekly-progress-track" id="weekly-progress-track">
+                        <!-- Segmentos dinámicos -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: KANBAN GTD INTERACTIVO -->
+        <div id="tab-kanban" class="tab-content">
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <div class="card-title">📋 Tablero de Control y Carga Mental GTD</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">
+                            Protege tu memoria RAM: descarga todos los pendientes aquí y respeta el <strong>Límite WIP = 2</strong> en la columna de ejecución para no sobrecargarte.
+                        </p>
+                    </div>
+                    <div id="wip-feedback-badge" class="wip-limit-pill">
+                        🛡️ WIP MÁXIMO EN EJECUCIÓN: 2 TAREAS
+                    </div>
+                </div>
+            </div>
+
+            <div class="kanban-grid">
+                <!-- COLUMNA 1: POR HACER -->
+                <div class="kanban-col">
+                    <div class="kanban-header">
+                        <span>📥 Por Hacer / Backlog</span>
+                        <span class="kanban-count-badge" id="count-todo">0</span>
+                    </div>
+                    <div class="kanban-add-form">
+                        <input type="text" id="input-new-todo" class="kanban-add-input" placeholder="Nueva tarea pendiente..." onkeydown="if(event.key==='Enter') addKanbanTask('todo')">
+                        <button class="kanban-add-btn" onclick="addKanbanTask('todo')">➕ Añadir</button>
+                    </div>
+                    <div class="kanban-cards-container" id="kanban-container-todo">
+                        <!-- Renderizado dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- COLUMNA 2: EN EJECUCIÓN (WIP=2) -->
+                <div class="kanban-col" style="border-color: #ffffff;">
+                    <div class="kanban-header">
+                        <span style="color: #ffffff;">⚡ En Ejecución</span>
+                        <span class="kanban-count-badge" id="count-doing" style="border-color: #fff;">0 / 2</span>
+                    </div>
+                    <div class="kanban-add-form">
+                        <input type="text" id="input-new-doing" class="kanban-add-input" placeholder="Tarea en curso (máx 2)..." onkeydown="if(event.key==='Enter') addKanbanTask('doing')">
+                        <button class="kanban-add-btn" onclick="addKanbanTask('doing')">➕ Añadir</button>
+                    </div>
+                    <div class="kanban-cards-container" id="kanban-container-doing">
+                        <!-- Renderizado dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- COLUMNA 3: COMPLETADO -->
+                <div class="kanban-col" style="border-color: #888888;">
+                    <div class="kanban-header">
+                        <span style="color: #ffffff;">✅ Hecho / Celebrado</span>
+                        <span class="kanban-count-badge" id="count-done">0</span>
+                    </div>
+                    <div class="kanban-add-form">
+                        <input type="text" id="input-new-done" class="kanban-add-input" placeholder="Registrar logro cumplido..." onkeydown="if(event.key==='Enter') addKanbanTask('done')">
+                        <button class="kanban-add-btn" onclick="addKanbanTask('done')">➕ Añadir</button>
+                    </div>
+                    <div class="kanban-cards-container" id="kanban-container-done">
+                        <!-- Renderizado dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: PLAN 24H & ANTIPATRONES -->
+        <div id="tab-despegue" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title" style="margin-bottom: 1rem;">🚀 Plan de Acción 24 Horas & 7 Días</div>
+                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>1. Fijar los 2 días y hora del piloto (ej. Mar/Jue 19:00 hrs)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>2. Fijar valor del pase mensual de prueba ($18.000 - $20.000 CLP)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>3. Primer registro nocturno en el Inventario de Resultados (cero culpa)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>4. Enviar mensaje de convocatoria a las primeras 8-10 personas interesadas</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>5. Impartir la Clase 1 de bienvenida y descompresión somática</span>
+                        </label>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn-action-primary" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" style="margin-bottom: 1rem;">🛡️ Alertas de Antipatrones</div>
+                    
+                    <div class="antipattern-card">
+                        <div class="antipattern-title">🚫 Medirte por lo Incompleto</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Terminar el día con culpa por tareas pendientes, invisibilizando 8+ horas de cuidado y contención familiar. El cuidado es trabajo real.</p>
+                    </div>
+
+                    <div class="antipattern-card">
+                        <div class="antipattern-title">🚫 Exigirte Presencialidad o Fricción</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Intentar hacer clases presenciales que consuman tiempo de viaje y energía con el frío. El formato online te protege y te da libertad.</p>
+                    </div>
+
+                    <div class="antipattern-card">
+                        <div class="antipattern-title">🚫 Asumir Compromisos por Inercia</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Aceptar tareas extras solo porque "puedes hacerlas". Filtra siempre si te queda batería disponible para ti y tu familia.</p>
+                    </div>
+
+                    <div class="antipattern-card">
+                        <div class="antipattern-title">🚫 Postergar tu Propio Descanso</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Esperar a que todo esté perfecto para descansar. El descanso es una tarea estratégica obligatoria para sostener el ritmo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Ampliación de herramienta">
+    </div>
+
+    <!-- MODAL EDITAR BLOQUE INDIVIDUAL -->
+    <div class="box-modal-overlay" id="box-edit-modal">
+        <div class="box-modal-content">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3 class="modal-title-h3" id="modal-box-info">Editar Bloque Horario</h3>
+                <button style="background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;" onclick="closeBoxEditModal()">&times;</button>
+            </div>
+
+            <div>
+                <label class="form-label">Nombre de la Actividad:</label>
+                <input type="text" class="form-input" id="modal-activity-name" placeholder="Ej: Clase Yoga Suave, Cuidado Mateo, Siesta..." />
+            </div>
+
+            <div>
+                <span class="form-label">Atajos Rápidos:</span>
+                <div class="modal-chips-row" id="modal-quick-chips-container"></div>
+            </div>
+
+            <div>
+                <label class="form-label">Categoría / Color:</label>
+                <select class="form-select" id="modal-category-select"></select>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+                <button class="btn-pill" onclick="closeBoxEditModal()">Cancelar</button>
+                <button class="btn-pill primary" onclick="saveBoxModal()">Guardar Bloque</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LLENAR RANGO -->
+    <div class="box-modal-overlay" id="range-fill-modal">
+        <div class="box-modal-content">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3 class="modal-title-h3">⚡ Llenar Rango de Horas</h3>
+                <button style="background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;" onclick="closeRangeFillModal()">&times;</button>
+            </div>
+
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button type="button" class="quick-tag-chip" onclick="setRangePreset('sueno')">🌙 Sueño (00:00 - 07:00)</button>
+                <button type="button" class="quick-tag-chip" onclick="setRangePreset('cuidados')">👶 Cuidados (09:00 - 13:00)</button>
+                <button type="button" class="quick-tag-chip" onclick="setRangePreset('siesta')">🌿 Siesta / Almuerzo (13:00 - 15:00)</button>
+                <button type="button" class="quick-tag-chip" onclick="setRangePreset('clases')">🧘 Clases Online (19:00 - 20:00 Mar/Jue)</button>
+            </div>
+
+            <div>
+                <label class="form-label">Días a aplicar:</label>
+                <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:6px;">
+                    <label class="brush-chip active" style="justify-content:center; font-size:0.75rem;"><input type="checkbox" class="day-check-input" value="0" checked style="display:none;" />Lun</label>
+                    <label class="brush-chip active" style="justify-content:center; font-size:0.75rem;"><input type="checkbox" class="day-check-input" value="1" checked style="display:none;" />Mar</label>
+                    <label class="brush-chip active" style="justify-content:center; font-size:0.75rem;"><input type="checkbox" class="day-check-input" value="2" checked style="display:none;" />Mié</label>
+                    <label class="brush-chip active" style="justify-content:center; font-size:0.75rem;"><input type="checkbox" class="day-check-input" value="3" checked style="display:none;" />Jue</label>
+                    <label class="brush-chip active" style="justify-content:center; font-size:0.75rem;"><input type="checkbox" class="day-check-input" value="4" checked style="display:none;" />Vie</label>
+                    <label class="brush-chip" style="justify-content:center; font-size:0.75rem;"><input type="checkbox" class="day-check-input" value="5" style="display:none;" />Sáb</label>
+                    <label class="brush-chip" style="justify-content:center; font-size:0.75rem;"><input type="checkbox" class="day-check-input" value="6" style="display:none;" />Dom</label>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <div>
+                    <label class="form-label">Desde:</label>
+                    <select id="range-start-hour" class="form-select"></select>
+                </div>
+                <div>
+                    <label class="form-label">Hasta:</label>
+                    <select id="range-end-hour" class="form-select"></select>
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">Categoría:</label>
+                <select id="range-category-select" class="form-select"></select>
+            </div>
+
+            <div>
+                <label class="form-label">Nombre de la Actividad:</label>
+                <input type="text" id="range-title-input" class="form-input" placeholder="Ej: Cuidado familiar, Clase online..." />
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+                <button class="btn-pill" onclick="closeRangeFillModal()">Cancelar</button>
+                <button class="btn-pill primary" onclick="applyRangeFill()">Aplicar al Horario</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CATEGORÍAS & COLORES -->
+    <div class="box-modal-overlay" id="categories-manager-modal">
+        <div class="box-modal-content" style="max-width: 540px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3 class="modal-title-h3">🎨 Personalizar & Agregar Categorías</h3>
+                <button style="background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;" onclick="closeCategoriesManagerModal()">&times;</button>
+            </div>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">
+                Edita los nombres, colores y tags de las categorías existentes o añade nuevas actividades personalizadas para tu semana.
+            </p>
+            
+            <!-- Lista de Categorías Existentes -->
+            <div class="category-manager-list" id="category-manager-items-container">
+                <!-- Generado dinámicamente con inputs editables y color pickers -->
+            </div>
+
+            <!-- Formulario para Añadir Nueva Categoría -->
+            <div style="background: #141414; border: 1px dashed #333; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px; margin-top: 6px;">
+                <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #aaa;">➕ Añadir Nueva Categoría</span>
+                <div style="display: grid; grid-template-columns: 36px 1fr 75px; gap: 8px; align-items: center;">
+                    <div class="color-picker-wrapper" title="Elegir Color">
+                        <input type="color" id="new-cat-color" class="color-picker-input" value="#06b6d4" />
+                    </div>
+                    <input type="text" id="new-cat-name" class="form-input" placeholder="Nombre (ej: Estudio, Clientes, Arte...)" style="padding:6px 10px; font-size:0.82rem;" />
+                    <input type="text" id="new-cat-tag" class="form-input" placeholder="TAG" maxlength="8" style="padding:6px 8px; font-size:0.75rem; text-align:center; text-transform:uppercase;" />
+                </div>
+                <div style="display:flex; justify-content:flex-end;">
+                    <button class="btn-pill primary" style="font-size:0.76rem; padding:5px 12px;" onclick="addNewCategoryFromModal()">➕ Agregar Categoría</button>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                <button class="btn-pill" style="color:#888; font-size:0.75rem;" onclick="resetCategoriesToDefault()">🔄 Restablecer Predeterminadas</button>
+                <button class="btn-pill primary" onclick="closeCategoriesManagerModal()">Listo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT PRINCIPAL: PESTAÑAS, CALCULADORAS, HORARIO 24H Y KANBAN -->
+    <script>
+        // ==========================================
+        // 1. GESTIÓN DE TABS & NAVEGACIÓN
+        // ==========================================
+        function openTab(evt, tabName) {
+            const contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+
+            const buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // ==========================================
+        // 2. SIMULADOR Y CALCULADORAS FINANCIERAS
+        // ==========================================
+        function calcularYogaPilot() {
+            const alumnas = parseInt(document.getElementById('num-alumnas').value) || 0;
+            const precio = parseFloat(document.getElementById('precio-mensual').value) || 0;
+            const meta = 160000;
+            const total = alumnas * precio;
+            
+            document.getElementById('total-recaudado').innerText = "$" + total.toLocaleString('es-CL');
+            
+            const statusEl = document.getElementById('cobertura-status');
+            const excedenteEl = document.getElementById('excedente-text');
+            
+            if (total >= meta) {
+                const diff = total - meta;
+                statusEl.innerText = "🎯 Meta de Pasajes Santiago 100% Cubierta (" + Math.round((total/meta)*100) + "%)";
+                statusEl.style.color = "#ffffff";
+                excedenteEl.innerText = "Excedente de ganancia neta: $" + diff.toLocaleString('es-CL') + " CLP";
+            } else {
+                const faltante = meta - total;
+                const porcentaje = Math.round((total/meta)*100);
+                statusEl.innerText = "⏳ Progreso: " + porcentaje + "% de la meta de pasajes";
+                statusEl.style.color = "var(--secondary)";
+                excedenteEl.innerText = "Faltante para cubrir pasajes: $" + faltante.toLocaleString('es-CL') + " CLP";
+            }
+        }
+
+        function calcularPresupuestoAntonia() {
+            const ingreso = parseFloat(document.getElementById('ingreso-distribuir').value) || 0;
+            document.getElementById('p-pasajes').innerText = "$" + (ingreso * 0.5).toLocaleString('es-CL');
+            document.getElementById('p-autocuidado').innerText = "$" + (ingreso * 0.3).toLocaleString('es-CL');
+            document.getElementById('p-reserva').innerText = "$" + (ingreso * 0.2).toLocaleString('es-CL');
+        }
+
+        function openLightbox(src, title) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            img.alt = title;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // ==========================================
+        // 3. MOTOR DEL GENERADOR DE HORARIOS 24H
+        // ==========================================
+        const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+        const HOURS = [
+            "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
+            "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+            "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
+            "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
+        ];
+
+        const DEFAULT_CATEGORIES = {
+            clases: { id: "clases", label: "🧘 Clases Yoga Online", tag: "YOGA", color: "#3b82f6", defaultText: "Clase Yoga Suave Online" },
+            cuidados: { id: "cuidados", label: "👶 Cuidado & Familia (Mateo/Roma)", tag: "CUIDADOS", color: "#ec4899", defaultText: "Cuidado Familiar / Mateo & Roma" },
+            descanso: { id: "descanso", label: "🌿 Autocuidado & Siesta", tag: "DESCANSO", color: "#10b981", defaultText: "Pausa / Siesta / Elongación" },
+            salud: { id: "salud", label: "🏥 Salud & Trámites (Santiago)", tag: "SALUD", color: "#f59e0b", defaultText: "Trámites / Médico / Logística" },
+            sueno: { id: "sueno", label: "🌙 Sueño Nocturno", tag: "SUEÑO", color: "#64748b", defaultText: "Descanso Nocturno" },
+            admin: { id: "admin", label: "📝 Inventario & Cierre", tag: "ADMIN", color: "#8b5cf6", defaultText: "Inventario de Resultados / Cierre" },
+            libre: { id: "libre", label: "⚪ Libre / Disponible", tag: "LIBRE", color: "#222222", defaultText: "Libre" }
+        };
+
+        const scheduleState = {
+            activeBrush: "modal", // 'modal' | categoryId
+            categories: JSON.parse(JSON.stringify(DEFAULT_CATEGORIES)),
+            blocks: {}, // 'dayIdx-hour' -> { title, cat }
+            isMouseDown: false
+        };
+
+        function hexToRgba(hex, alpha = 0.35) {
+            if (!hex || typeof hex !== "string") return `rgba(50, 50, 50, ${alpha})`;
+            let c = hex.replace('#', '');
+            if (c.length === 3) c = c.split('').map(x => x + x).join('');
+            const num = parseInt(c, 16);
+            if (isNaN(num)) return `rgba(50, 50, 50, ${alpha})`;
+            const r = (num >> 16) & 255;
+            const g = (num >> 8) & 255;
+            const b = num & 255;
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        function initSchedule() {
+            loadScheduleData();
+            if (!scheduleState.blocks || Object.keys(scheduleState.blocks).length === 0) {
+                loadPresetAntonia('piloto', false);
+            }
+            renderScheduleUI();
+            initHourSelects();
+        }
+
+        function loadScheduleData() {
+            const saved = localStorage.getItem("ah_antonia_schedule_v2");
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.categories) scheduleState.categories = parsed.categories;
+                    if (parsed.blocks) scheduleState.blocks = parsed.blocks;
+                } catch(e){}
+            }
+        }
+
+        function saveScheduleData() {
+            localStorage.setItem("ah_antonia_schedule_v2", JSON.stringify({
+                categories: scheduleState.categories,
+                blocks: scheduleState.blocks
+            }));
+            updateScheduleMetrics();
+        }
+
+        function renderScheduleUI() {
+            renderBrushPalette();
+            renderTableGrid();
+            updateScheduleMetrics();
+        }
+
+        function renderBrushPalette() {
+            const container = document.getElementById("brush-palette-container");
+            if (!container) return;
+            let html = `
+                <button type="button" class="brush-chip ${scheduleState.activeBrush === 'modal' ? 'active' : ''}" onclick="setActiveBrush('modal')">
+                    <span>✏️</span> Modo Manual / Detalle
+                </button>
+            `;
+            Object.values(scheduleState.categories).forEach(cat => {
+                const isActive = scheduleState.activeBrush === cat.id;
+                html += `
+                    <button type="button" class="brush-chip ${isActive ? 'active' : ''}" onclick="setActiveBrush('${cat.id}')">
+                        <span class="color-dot" style="background: ${cat.color};"></span>
+                        <span>${cat.label}</span>
+                    </button>
+                `;
+            });
+            html += `
+                <button type="button" class="brush-chip" style="background: rgba(255, 255, 255, 0.05); border: 1px dashed #666; color: #fff;" onclick="openCategoriesManagerModal()" title="Editar categorías existentes o crear nuevas">
+                    <span>⚙️</span> + Categoría / Editar
+                </button>
+            `;
+            container.innerHTML = html;
+        }
+
+        function setActiveBrush(brushId) {
+            scheduleState.activeBrush = brushId;
+            renderBrushPalette();
+        }
+
+        function renderTableGrid() {
+            const tbody = document.getElementById("schedule-board-tbody");
+            if (!tbody) return;
+            let html = "";
+            HOURS.forEach(time => {
+                html += `<tr><td class="time-cell">${time}</td>`;
+                for (let d = 0; d < 7; d++) {
+                    const key = `${d}-${time}`;
+                    const block = scheduleState.blocks[key] || { cat: "libre", title: "" };
+                    const catObj = scheduleState.categories[block.cat] || scheduleState.categories.libre;
+                    const bgColor = hexToRgba(catObj.color, block.cat === "libre" ? 0.08 : 0.4);
+                    const borderColor = hexToRgba(catObj.color, block.cat === "libre" ? 0.2 : 0.8);
+                    const textColor = block.cat === "libre" ? "#555555" : "#ffffff";
+                    
+                    html += `
+                        <td onmousedown="onCellMouseDown('${key}', event)" onmouseenter="onCellMouseEnter('${key}')" ondblclick="openBoxEditModal('${key}')">
+                            <div class="schedule-box" style="background: ${bgColor}; border: 1px solid ${borderColor}; color: ${textColor};">
+                                ${block.cat !== 'libre' ? `<span class="box-tag" style="color:${catObj.color}">${catObj.tag}</span>` : ''}
+                                <span class="box-text">${block.title || (block.cat !== 'libre' ? catObj.defaultText : '')}</span>
+                            </div>
+                        </td>
+                    `;
+                }
+                html += `</tr>`;
+            });
+            tbody.innerHTML = html;
+        }
+
+        document.addEventListener("mouseup", () => { scheduleState.isMouseDown = false; });
+
+        function onCellMouseDown(cellKey, evt) {
+            if (evt.button !== 0) return;
+            scheduleState.isMouseDown = true;
+            paintCell(cellKey);
+        }
+
+        function onCellMouseEnter(cellKey) {
+            if (scheduleState.isMouseDown) {
+                paintCell(cellKey);
+            }
+        }
+
+        function paintCell(cellKey) {
+            if (scheduleState.activeBrush === "modal") {
+                openBoxEditModal(cellKey);
+                return;
+            }
+            const cat = scheduleState.categories[scheduleState.activeBrush];
+            if (cat) {
+                scheduleState.blocks[cellKey] = {
+                    cat: cat.id,
+                    title: cat.id === "libre" ? "" : cat.defaultText
+                };
+                saveScheduleData();
+                renderTableGrid();
+            }
+        }
+
+        function updateScheduleMetrics() {
+            const container = document.getElementById("time-metrics-container");
+            const track = document.getElementById("weekly-progress-track");
+            const summary = document.getElementById("metric-audit-summary");
+            if (!container || !track) return;
+
+            const counts = {};
+            Object.keys(scheduleState.categories).forEach(c => counts[c] = 0);
+            
+            for (let d = 0; d < 7; d++) {
+                HOURS.forEach(time => {
+                    const key = `${d}-${time}`;
+                    const block = scheduleState.blocks[key];
+                    const catId = block ? block.cat : "libre";
+                    counts[catId] = (counts[catId] || 0) + 1;
+                });
+            }
+
+            const total = 168;
+            let cardsHtml = "";
+            let trackHtml = "";
+
+            Object.values(scheduleState.categories).forEach(cat => {
+                const h = counts[cat.id] || 0;
+                const pct = Math.round((h / total) * 100);
+                if (cat.id !== "libre") {
+                    cardsHtml += `
+                        <div class="metric-card">
+                            <div class="metric-card-header">
+                                <span>${cat.label}</span>
+                                <span style="color:${cat.color}">${pct}%</span>
+                            </div>
+                            <div class="metric-card-val">${h}h <span style="font-size:0.8rem; font-weight:normal; color:#888;">/sem</span></div>
+                            <div class="metric-card-sub">${(h/7).toFixed(1)} h/día prom.</div>
+                        </div>
+                    `;
+                }
+                if (pct > 0) {
+                    trackHtml += `<div class="progress-segment" style="width:${pct}%; background:${cat.color};" title="${cat.label}: ${h}h (${pct}%)"></div>`;
+                }
+            });
+
+            container.innerHTML = cardsHtml;
+            track.innerHTML = trackHtml;
+            const libres = counts.libre || 0;
+            if (summary) summary.innerText = `${168 - libres}h asignadas · ${libres}h disponibles (${Math.round((libres/168)*100)}% colchón)`;
+        }
+
+        // Modales de Horario
+        let currentEditingCell = null;
+        function openBoxEditModal(cellKey) {
+            currentEditingCell = cellKey;
+            const block = scheduleState.blocks[cellKey] || { cat: "libre", title: "" };
+            const [d, time] = cellKey.split("-");
+            document.getElementById("modal-box-info").innerText = `${DAYS[parseInt(d)]} a las ${time}`;
+            document.getElementById("modal-activity-name").value = block.title || "";
+            
+            const sel = document.getElementById("modal-category-select");
+            sel.innerHTML = "";
+            Object.values(scheduleState.categories).forEach(c => {
+                sel.innerHTML += `<option value="${c.id}" ${c.id === block.cat ? 'selected' : ''}>${c.label}</option>`;
+            });
+
+            const chips = document.getElementById("modal-quick-chips-container");
+            chips.innerHTML = "";
+            Object.values(scheduleState.categories).forEach(c => {
+                if (c.id !== "libre") {
+                    chips.innerHTML += `<button type="button" class="quick-tag-chip" onclick="applyQuickChip('${c.id}', '${c.defaultText}')">${c.label}</button>`;
+                }
+            });
+
+            document.getElementById("box-edit-modal").classList.add("active");
+        }
+
+        function applyQuickChip(catId, text) {
+            document.getElementById("modal-category-select").value = catId;
+            document.getElementById("modal-activity-name").value = text;
+        }
+
+        function closeBoxEditModal() {
+            document.getElementById("box-edit-modal").classList.remove("active");
+            currentEditingCell = null;
+        }
+
+        function saveBoxModal() {
+            if (!currentEditingCell) return;
+            const cat = document.getElementById("modal-category-select").value;
+            const title = document.getElementById("modal-activity-name").value.trim();
+            scheduleState.blocks[currentEditingCell] = { cat, title };
+            saveScheduleData();
+            renderTableGrid();
+            closeBoxEditModal();
+        }
+
+        function openRangeFillModal() {
+            const startSel = document.getElementById("range-start-hour");
+            const endSel = document.getElementById("range-end-hour");
+            const catSel = document.getElementById("range-category-select");
+            
+            startSel.innerHTML = "";
+            endSel.innerHTML = "";
+            HOURS.forEach(h => {
+                startSel.innerHTML += `<option value="${h}" ${h === '09:00' ? 'selected' : ''}>${h}</option>`;
+                endSel.innerHTML += `<option value="${h}" ${h === '13:00' ? 'selected' : ''}>${h}</option>`;
+            });
+
+            catSel.innerHTML = "";
+            Object.values(scheduleState.categories).forEach(c => {
+                catSel.innerHTML += `<option value="${c.id}">${c.label}</option>`;
+            });
+
+            document.getElementById("range-fill-modal").classList.add("active");
+        }
+
+        function closeRangeFillModal() {
+            document.getElementById("range-fill-modal").classList.remove("active");
+        }
+
+        function setRangePreset(preset) {
+            if (preset === 'sueno') {
+                document.getElementById("range-start-hour").value = "00:00";
+                document.getElementById("range-end-hour").value = "07:00";
+                document.getElementById("range-category-select").value = "sueno";
+                document.getElementById("range-title-input").value = "Descanso Nocturno";
+            } else if (preset === 'cuidados') {
+                document.getElementById("range-start-hour").value = "09:00";
+                document.getElementById("range-end-hour").value = "13:00";
+                document.getElementById("range-category-select").value = "cuidados";
+                document.getElementById("range-title-input").value = "Cuidado Familiar / Acompañamiento Mateo";
+            } else if (preset === 'siesta') {
+                document.getElementById("range-start-hour").value = "13:00";
+                document.getElementById("range-end-hour").value = "15:00";
+                document.getElementById("range-category-select").value = "descanso";
+                document.getElementById("range-title-input").value = "Almuerzo & Siesta de Recarga";
+            } else if (preset === 'clases') {
+                document.getElementById("range-start-hour").value = "19:00";
+                document.getElementById("range-end-hour").value = "20:00";
+                document.getElementById("range-category-select").value = "clases";
+                document.getElementById("range-title-input").value = "🧘 CLASE YOGA ONLINE PILOTO";
+            }
+        }
+
+        function applyRangeFill() {
+            const startH = document.getElementById("range-start-hour").value;
+            const endH = document.getElementById("range-end-hour").value;
+            const cat = document.getElementById("range-category-select").value;
+            const title = document.getElementById("range-title-input").value.trim() || scheduleState.categories[cat].defaultText;
+            
+            const startIdx = HOURS.indexOf(startH);
+            const endIdx = HOURS.indexOf(endH);
+            if (startIdx === -1 || endIdx === -1 || startIdx >= endIdx) {
+                alert("La hora de inicio debe ser anterior a la hora de fin.");
+                return;
+            }
+
+            const dayChecks = document.querySelectorAll(".day-check-input");
+            dayChecks.forEach(cb => {
+                if (cb.checked) {
+                    const d = parseInt(cb.value);
+                    for (let i = startIdx; i < endIdx; i++) {
+                        const key = `${d}-${HOURS[i]}`;
+                        scheduleState.blocks[key] = { cat, title };
+                    }
+                }
+            });
+
+            saveScheduleData();
+            renderTableGrid();
+            closeRangeFillModal();
+        }
+
+        function togglePresetPop(forceState) {
+            const p = document.getElementById('preset-pop');
+            if (!p) return;
+            if (typeof forceState === 'boolean') {
+                p.style.display = forceState ? 'block' : 'none';
+            } else {
+                p.style.display = p.style.display === 'block' ? 'none' : 'block';
+            }
+        }
+
+        function loadPresetAntonia(type, save = true) {
+            const b = {};
+            // Sueño todos los días de 00:00 a 07:00
+            for (let d = 0; d < 7; d++) {
+                for (let h = 0; h < 8; h++) {
+                    b[`${d}-${HOURS[h]}`] = { cat: "sueno", title: "Descanso Nocturno" };
+                }
+                b[`${d}-08:00`] = { cat: "cuidados", title: "☕ Despertar, Desayuno & Mateo/Roma" };
+            }
+
+            if (type === 'piloto') {
+                // Lunes a Viernes
+                for (let d = 0; d < 5; d++) {
+                    b[`${d}-09:00`] = { cat: "cuidados", title: "Acompañamiento Mateo / Apoyo" };
+                    b[`${d}-10:00`] = { cat: "cuidados", title: "Acompañamiento Mateo / Contención" };
+                    b[`${d}-11:00`] = { cat: "salud", title: "Trámites / Logística / Médico" };
+                    b[`${d}-12:00`] = { cat: "descanso", title: "🌿 Pausa & Elongación Propia" };
+                    b[`${d}-13:00`] = { cat: "descanso", title: "🍱 Almuerzo Nutritivo" };
+                    b[`${d}-14:00`] = { cat: "descanso", title: "😴 Siesta de Recarga Vital (30 min)" };
+                    b[`${d}-15:00`] = { cat: "cuidados", title: "Crianza Roma & Cuidados Mateo" };
+                    b[`${d}-16:00`] = { cat: "cuidados", title: "Crianza Roma & Cuidados Mateo" };
+                    b[`${d}-17:00`] = { cat: "cuidados", title: "Crianza Roma & Cuidados Mateo" };
+                    b[`${d}-18:00`] = { cat: "descanso", title: "Pausa / Preparación Rincón Mat" };
+                    b[`${d}-21:00`] = { cat: "admin", title: "📝 Inventario de Resultados (Cero Culpa)" };
+                    b[`${d}-22:00`] = { cat: "descanso", title: "Desconexión de Pantallas & Lectura" };
+                    b[`${d}-23:00`] = { cat: "sueno", title: "Acompañar a Mateo & Dormir" };
+                }
+                // Clases Online Martes (1) y Jueves (3)
+                b[`1-19:00`] = { cat: "clases", title: "🧘 CLASE ONLINE 1 (Cuerpos Cansados)" };
+                b[`1-20:00`] = { cat: "clases", title: "Cierre de Clase & Feedback Alumnas" };
+                b[`3-19:00`] = { cat: "clases", title: "🧘 CLASE ONLINE 2 (Cuerpos Cansados)" };
+                b[`3-20:00`] = { cat: "clases", title: "Cierre de Clase & Feedback Alumnas" };
+                // Lun, Mier, Vie 19:00
+                b[`0-19:00`] = { cat: "descanso", title: "Paseo / Desconexión familiar" };
+                b[`2-19:00`] = { cat: "descanso", title: "Paseo / Desconexión familiar" };
+                b[`4-19:00`] = { cat: "descanso", title: "✨ Cierre de Semana en Calma" };
+            } else if (type === 'viaje') {
+                // Simulación con viaje a Santiago Jueves y Viernes
+                for (let d = 0; d < 5; d++) {
+                    b[`${d}-13:00`] = { cat: "descanso", title: "Almuerzo & Pausa" };
+                    b[`${d}-21:00`] = { cat: "admin", title: "📝 Inventario Diario" };
+                }
+                b[`3-08:00`] = { cat: "salud", title: "🚌 Bus a Santiago (Pasajes Cubiertos)" };
+                b[`3-09:00`] = { cat: "salud", title: "🚌 Traslado Santiago" };
+                b[`3-10:00`] = { cat: "salud", title: "🏥 Consulta & Acompañamiento Mateo" };
+                b[`3-11:00`] = { cat: "salud", title: "🏥 Evaluación Médica" };
+                b[`3-19:00`] = { cat: "clases", title: "🧘 Clase Online desde Santiago / Mat" };
+            }
+
+            scheduleState.blocks = b;
+            if (save) saveScheduleData();
+            renderTableGrid();
+        }
+
+        function clearFullSchedule() {
+            if (confirm("¿Estás segura de que deseas limpiar todo el horario semanal a blanco?")) {
+                scheduleState.blocks = {};
+                saveScheduleData();
+                renderTableGrid();
+            }
+        }
+
+        function openCategoriesManagerModal() {
+            renderCategoryManagerItems();
+            document.getElementById("categories-manager-modal").classList.add("active");
+        }
+
+        function renderCategoryManagerItems() {
+            const container = document.getElementById("category-manager-items-container");
+            if (!container) return;
+            let html = "";
+            Object.values(scheduleState.categories).forEach(cat => {
+                const isProtected = cat.id === "libre";
+                html += `
+                    <div class="category-item-row">
+                        <div class="color-picker-wrapper" title="Cambiar color">
+                            <input type="color" class="color-picker-input" value="${cat.color}" onchange="updateCategoryColor('${cat.id}', this.value)" />
+                        </div>
+                        <input type="text" class="category-name-input" value="${cat.label}" onchange="updateCategoryLabel('${cat.id}', this.value)" oninput="updateCategoryLabel('${cat.id}', this.value)" placeholder="Nombre de categoría" />
+                        <input type="text" class="category-tag-input" value="${cat.tag}" maxlength="8" onchange="updateCategoryTag('${cat.id}', this.value)" oninput="updateCategoryTag('${cat.id}', this.value)" placeholder="TAG" />
+                        ${!isProtected ? `<button class="btn-del-cat" title="Eliminar categoría" onclick="deleteCustomCategory('${cat.id}')">🗑️</button>` : `<span style="width:24px;"></span>`}
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function updateCategoryColor(catId, newColor) {
+            if (scheduleState.categories[catId]) {
+                scheduleState.categories[catId].color = newColor;
+                saveScheduleData();
+                renderBrushPalette();
+                renderTableGrid();
+            }
+        }
+
+        function updateCategoryLabel(catId, newLabel) {
+            if (scheduleState.categories[catId] && newLabel.trim()) {
+                scheduleState.categories[catId].label = newLabel.trim();
+                if (!scheduleState.categories[catId].defaultText || scheduleState.categories[catId].defaultText === scheduleState.categories[catId].label) {
+                    scheduleState.categories[catId].defaultText = newLabel.trim();
+                }
+                saveScheduleData();
+                renderBrushPalette();
+                renderTableGrid();
+            }
+        }
+
+        function updateCategoryTag(catId, newTag) {
+            if (scheduleState.categories[catId] && newTag.trim()) {
+                scheduleState.categories[catId].tag = newTag.trim().toUpperCase();
+                saveScheduleData();
+                renderBrushPalette();
+                renderTableGrid();
+            }
+        }
+
+        function addNewCategoryFromModal() {
+            const nameInput = document.getElementById("new-cat-name");
+            const tagInput = document.getElementById("new-cat-tag");
+            const colorInput = document.getElementById("new-cat-color");
+
+            const name = nameInput.value.trim();
+            const tag = tagInput.value.trim().toUpperCase() || name.substring(0, 4).toUpperCase();
+            const color = colorInput.value || "#06b6d4";
+
+            if (!name) {
+                alert("Por favor ingresa un nombre para la categoría.");
+                return;
+            }
+
+            const id = "cat_" + Date.now();
+            scheduleState.categories[id] = {
+                id: id,
+                label: name,
+                tag: tag,
+                color: color,
+                defaultText: name,
+                isSystem: false
+            };
+
+            nameInput.value = "";
+            tagInput.value = "";
+            saveScheduleData();
+            renderCategoryManagerItems();
+            renderBrushPalette();
+            renderTableGrid();
+        }
+
+        function deleteCustomCategory(catId) {
+            if (!scheduleState.categories[catId]) return;
+            if (confirm(`¿Eliminar la categoría "${scheduleState.categories[catId].label}"?`)) {
+                delete scheduleState.categories[catId];
+                // Reasignar bloques de esta categoría a libre
+                Object.keys(scheduleState.blocks).forEach(k => {
+                    if (scheduleState.blocks[k].cat === catId) {
+                        delete scheduleState.blocks[k];
+                    }
+                });
+                if (scheduleState.activeBrush === catId) {
+                    scheduleState.activeBrush = "modal";
+                }
+                saveScheduleData();
+                renderCategoryManagerItems();
+                renderBrushPalette();
+                renderTableGrid();
+            }
+        }
+
+        function resetCategoriesToDefault() {
+            if (confirm("¿Deseas restablecer todas las categorías y colores a sus valores predeterminados?")) {
+                scheduleState.categories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
+                saveScheduleData();
+                renderCategoryManagerItems();
+                renderBrushPalette();
+                renderTableGrid();
+            }
+        }
+
+        function closeCategoriesManagerModal() {
+            document.getElementById("categories-manager-modal").classList.remove("active");
+            renderScheduleUI();
+        }
+
+        function initHourSelects() {
+            // Inicializar checkboxes de días
+            document.querySelectorAll(".day-check-input").forEach(cb => {
+                cb.parentElement.onclick = () => {
+                    cb.checked = !cb.checked;
+                    cb.parentElement.classList.toggle("active", cb.checked);
+                };
+            });
+        }
+
+        function generateScheduleImage() {
+            const area = document.getElementById("capture-schedule-area");
+            if (!area || typeof html2canvas !== "function") {
+                alert("Función de captura no disponible en este navegador. Usa Imprimir.");
+                return;
+            }
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "⏳ Generando PNG...";
+            
+            html2canvas(area, {
+                backgroundColor: "#000000",
+                scale: 2,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement("a");
+                link.download = `Horario_AICC_Antonia_Jofre_${new Date().toISOString().slice(0,10)}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+                btn.innerHTML = originalText;
+            }).catch(err => {
+                console.error(err);
+                btn.innerHTML = originalText;
+                alert("Ocurrió un error al generar la imagen. Prueba usando la opción Imprimir.");
+            });
+        }
+
+        // ==========================================
+        // 4. MOTOR DEL TABLERO KANBAN GTD (INTERACTIVO)
+        // ==========================================
+        const DEFAULT_KANBAN = [
+            { id: "k1", col: "todo", text: "Escribir texto cálido de invitación para WhatsApp (grupo cercano)", tag: "Convocatoria" },
+            { id: "k2", col: "todo", text: "Generar enlace recurrente en Google Meet para las clases", tag: "Logística" },
+            { id: "k3", col: "todo", text: "Revisar iluminación y soporte de cámara para el rincón del mat", tag: "Espacio" },
+            { id: "k4", col: "todo", text: "Definir secuencia base de 45 min (Alivio Cervical y Lumbar)", tag: "Pedagogía" },
+            { id: "k5", col: "doing", text: "Confirmar los 2 días y hora fijos del piloto (ej. Martes/Jueves 19:00)", tag: "Estructura" },
+            { id: "k6", col: "doing", text: "Primer registro nocturno en el Inventario de Resultados (cero culpa)", tag: "Hábito" },
+            { id: "k7", col: "done", text: "Apertura de expediente y levantamiento de FODA/CAME", tag: "Estrategia" },
+            { id: "k8", col: "done", text: "Cálculo de meta financiera de pasajes a Santiago ($160k/mes)", tag: "Finanzas" },
+            { id: "k9", col: "done", text: "Configuración de plantillas y recursos de Administración Humana", tag: "Herramientas" }
+        ];
+
+        let kanbanTasks = [];
+
+        function initKanban() {
+            const saved = localStorage.getItem("ah_antonia_kanban_v2");
+            if (saved) {
+                try {
+                    kanbanTasks = JSON.parse(saved);
+                } catch(e) {
+                    kanbanTasks = JSON.parse(JSON.stringify(DEFAULT_KANBAN));
+                }
+            } else {
+                kanbanTasks = JSON.parse(JSON.stringify(DEFAULT_KANBAN));
+            }
+            renderKanban();
+        }
+
+        function saveKanban() {
+            localStorage.setItem("ah_antonia_kanban_v2", JSON.stringify(kanbanTasks));
+            renderKanban();
+        }
+
+        function renderKanban() {
+            const todoContainer = document.getElementById("kanban-container-todo");
+            const doingContainer = document.getElementById("kanban-container-doing");
+            const doneContainer = document.getElementById("kanban-container-done");
+            if (!todoContainer || !doingContainer || !doneContainer) return;
+
+            const todoTasks = kanbanTasks.filter(t => t.col === "todo");
+            const doingTasks = kanbanTasks.filter(t => t.col === "doing");
+            const doneTasks = kanbanTasks.filter(t => t.col === "done");
+
+            document.getElementById("count-todo").innerText = todoTasks.length;
+            document.getElementById("count-doing").innerText = `${doingTasks.length} / 2`;
+            document.getElementById("count-done").innerText = doneTasks.length;
+
+            todoContainer.innerHTML = todoTasks.map(t => renderKanbanCard(t)).join("");
+            doingContainer.innerHTML = doingTasks.map(t => renderKanbanCard(t)).join("");
+            doneContainer.innerHTML = doneTasks.map(t => renderKanbanCard(t)).join("");
+        }
+
+        function renderKanbanCard(task) {
+            const isTodo = task.col === "todo";
+            const isDoing = task.col === "doing";
+            const isDone = task.col === "done";
+            const borderStyle = isDoing ? 'border-left: 3px solid #ffffff;' : (isDone ? 'border-left: 3px solid #888888;' : '');
+
+            return `
+                <div class="kanban-card-item" style="${borderStyle}">
+                    <div class="kanban-card-text">${task.text}</div>
+                    <div class="kanban-card-footer">
+                        <span class="box-tag" style="background:#222; padding:1px 5px; border-radius:3px; color:#aaa;">${task.tag || 'Tarea'}</span>
+                        <div class="kanban-card-actions">
+                            ${!isTodo ? `<button class="btn-card-action" onclick="moveKanbanTask('${task.id}', '${isDone ? 'doing' : 'todo'}')" title="Mover atrás">⬅️</button>` : ''}
+                            ${!isDone ? `<button class="btn-card-action" onclick="moveKanbanTask('${task.id}', '${isTodo ? 'doing' : 'done'}')" title="Mover adelante">➡️</button>` : ''}
+                            <button class="btn-card-action" onclick="deleteKanbanTask('${task.id}')" title="Eliminar">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function addKanbanTask(column) {
+            const inputId = `input-new-${column}`;
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) return;
+
+            if (column === "doing") {
+                const currentDoing = kanbanTasks.filter(t => t.col === "doing").length;
+                if (currentDoing >= 2) {
+                    alert("⚠️ ¡Límite WIP Alcanzado! Solo puedes tener un máximo de 2 tareas activas en 'En Ejecución' para proteger tu energía mental. Mueve una tarea a 'Hecho' antes de comenzar otra.");
+                    return;
+                }
+            }
+
+            const newTask = {
+                id: "k_" + Date.now(),
+                col: column,
+                text: text,
+                tag: column === "doing" ? "En Foco" : (column === "done" ? "Logro" : "Pendiente")
+            };
+
+            kanbanTasks.push(newTask);
+            input.value = "";
+            saveKanban();
+        }
+
+        function moveKanbanTask(taskId, targetCol) {
+            if (targetCol === "doing") {
+                const currentDoing = kanbanTasks.filter(t => t.col === "doing" && t.id !== taskId).length;
+                if (currentDoing >= 2) {
+                    alert("⚠️ ¡Límite WIP = 2 Alcanzado! Tienes 2 tareas activas en curso. Termina o mueve una antes de traer otra a 'En Ejecución'.");
+                    return;
+                }
+            }
+
+            const task = kanbanTasks.find(t => t.id === taskId);
+            if (task) {
+                task.col = targetCol;
+                saveKanban();
+            }
+        }
+
+        function deleteKanbanTask(taskId) {
+            kanbanTasks = kanbanTasks.filter(t => t.id !== taskId);
+            saveKanban();
+        }
+
+        // ==========================================
+        // 5. CONTROL DE ACCESO / CLIENT SECURITY GATEWAY
+        // ==========================================
+        const CLIENT_CONFIG = {
+            storageKey: "ah_auth_token_antonia",
+            validPins: ["antojofre23091995", "antojofre1995", "antojofre2309", "antonia2026", "2026", "diego_ah_master", "admin2026", "diegop1990"],
+            clientName: "Antonia Jofré"
+        };
+
+        function checkClientAuth() {
+            const token = localStorage.getItem(CLIENT_CONFIG.storageKey);
+            const overlay = document.getElementById("client-auth-overlay");
+            if (!overlay) return;
+            if (token === "authenticated_ok") {
+                overlay.classList.add("unlocked");
+            } else {
+                overlay.classList.remove("unlocked");
+            }
+        }
+
+        function handleClientAuth(e) {
+            e.preventDefault();
+            const pinInput = document.getElementById("auth-client-pin");
+            const errorMsg = document.getElementById("auth-error-msg");
+            if (!pinInput) return;
+            const enteredPin = pinInput.value.trim().toLowerCase();
+
+            if (CLIENT_CONFIG.validPins.includes(enteredPin)) {
+                localStorage.setItem(CLIENT_CONFIG.storageKey, "authenticated_ok");
+                if (errorMsg) errorMsg.style.display = "none";
+                const overlay = document.getElementById("client-auth-overlay");
+                if (overlay) overlay.classList.add("unlocked");
+            } else {
+                if (errorMsg) {
+                    errorMsg.style.display = "block";
+                    errorMsg.innerText = "⚠️ Clave de acceso incorrecta. Consulta con Diego si necesitas recuperarla.";
+                }
+                pinInput.focus();
+                pinInput.select();
+            }
+        }
+
+        function logoutClientAuth() {
+            if (confirm("¿Deseas bloquear el portal y cerrar sesión en este dispositivo?")) {
+                localStorage.removeItem(CLIENT_CONFIG.storageKey);
+                const overlay = document.getElementById("client-auth-overlay");
+                if (overlay) {
+                    overlay.classList.remove("unlocked");
+                    const pinInput = document.getElementById("auth-client-pin");
+                    if (pinInput) {
+                        pinInput.value = "";
+                        pinInput.focus();
+                    }
+                }
+            }
+        }
+
+        // ==========================================
+        // 6. INICIALIZACIÓN GLOBAL AL CARGAR
+        // ==========================================
+        window.addEventListener("DOMContentLoaded", function() {
+            checkClientAuth();
+            calcularYogaPilot();
+            calcularPresupuestoAntonia();
+            initSchedule();
+            initKanban();
+        });
+    </script>
+</body>
+</html>

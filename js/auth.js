@@ -1,5 +1,5 @@
 /**
- * Módulo de Autenticación y Gestión de Datos - Administración Humana (Sondeo Maestro)
+ * Módulo de Autenticación y Gestión de Datos - Administración Humana (Web / GitHub Pages)
  * Soporta Firebase v10/v11 Web SDK con fallback automático a localStorage para demostración y portales de clientes.
  * Generador de usuarios: mezcla de nombre y apellido.
  * Clave: usuario + fecha de nacimiento (DDMMAAAA / AAAA).
@@ -66,7 +66,7 @@ export const AHAuth = {
         role: 'admin',
         status: 'Director / Consultor',
         driveUrl: '',
-        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Visualizador_Planes_de_Vuelo.html',
+        flightPlanUrl: 'visualizador/index.html',
         notes: 'Administrador general y facilitador de planes de vuelo.',
         createdAt: new Date().toISOString()
       },
@@ -81,8 +81,8 @@ export const AHAuth = {
         fullName: 'Antonia Jofré',
         role: 'client',
         status: 'En Acompañamiento',
-        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Antonia Jofre/',
-        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Antonia Jofre/Plan de Vuelo 2.0 - Antonia Jofre.html',
+        driveUrl: '',
+        flightPlanUrl: 'planes/antonia/index.html',
         storageKey: 'ah_auth_token_antonia',
         notes: 'Yoga Online, Movimiento Somático, Financiamiento Pasajes Santiago ($160.000).',
         createdAt: new Date().toISOString()
@@ -98,8 +98,8 @@ export const AHAuth = {
         fullName: 'Rocío',
         role: 'client',
         status: 'En Acompañamiento',
-        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Rocio/',
-        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Rocio/Plan de Vuelo 2.0 - Rocio.html',
+        driveUrl: '',
+        flightPlanUrl: 'planes/rocio/index.html',
         storageKey: 'ah_auth_token_rocio',
         notes: 'Psicopedagogía UST (1er año), Puya Masajes (Planes 1 mes), Voz Caleidoscopio, Protocolos TEA.',
         createdAt: new Date().toISOString()
@@ -115,8 +115,8 @@ export const AHAuth = {
         fullName: 'Matías González',
         role: 'client',
         status: 'En Acompañamiento (Fase 1)',
-        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias Gonzalez/',
-        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias Gonzalez/Plan de Vuelo 2.0 - Matias.html',
+        driveUrl: '',
+        flightPlanUrl: 'planes/matias/index.html',
         storageKey: 'ah_client_auth_matias',
         notes: 'Desintoxicación Digital, Fases de Confianza, Apuntes Bajo Roce, Taller de Arte y Vóley.',
         createdAt: new Date().toISOString()
@@ -132,8 +132,8 @@ export const AHAuth = {
         fullName: 'Carlos Zoñez',
         role: 'client',
         status: 'En Acompañamiento',
-        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Carlos Z/',
-        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Carlos Z/Plan de Vuelo 2.0 - Carlos Z.html',
+        driveUrl: '',
+        flightPlanUrl: 'visualizador/index.html',
         notes: 'Coproductor La Marca 33, Cumpleaños y eventos.',
         createdAt: new Date().toISOString()
       },
@@ -148,8 +148,8 @@ export const AHAuth = {
         fullName: 'Álvaro Martínez',
         role: 'client',
         status: 'En Acompañamiento',
-        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Alvaro - Del Analisis a la Accion/',
-        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Alvaro - Del Analisis a la Accion/Plan de Vuelo 2.0 - Alvaro.html',
+        driveUrl: '',
+        flightPlanUrl: 'visualizador/index.html',
         notes: 'Del Análisis a la Acción, Negocio de Lentes.',
         createdAt: new Date().toISOString()
       },
@@ -164,8 +164,8 @@ export const AHAuth = {
         fullName: 'Karina Valenzuela',
         role: 'client',
         status: 'En Acompañamiento',
-        driveUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Karina - Road to Sidney 2.0/',
-        flightPlanUrl: '../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Karina - Road to Sidney 2.0/Plan de Vuelo 2.0 - Karina.html',
+        driveUrl: '',
+        flightPlanUrl: 'visualizador/index.html',
         notes: 'Road to Sidney 2.0, Planificación Australia.',
         createdAt: new Date().toISOString()
       },
@@ -205,6 +205,46 @@ export const AHAuth = {
       users[email] = { ...(users[email] || {}), ...acc };
     }
     localStorage.setItem('ah_demo_users', JSON.stringify(users));
+
+    // Diagnósticos demo iniciales
+    if (!localStorage.getItem('ah_demo_diag_user_antonia_jofre')) {
+      localStorage.setItem('ah_demo_diag_user_antonia_jofre', JSON.stringify({
+        uid: 'user_antonia_jofre',
+        updatedAt: new Date().toISOString(),
+        scores: { 'Propósito': 9, 'Tiempo': 5, 'Finanzas': 6, 'Bienestar': 8, 'Hábitos': 6, 'Relaciones': 9, 'Entorno': 8, 'Desarrollo': 8 }
+      }));
+      localStorage.setItem('ah_demo_tasks_user_antonia_jofre', JSON.stringify([
+        { id: 1, text: 'Definir 2 bloques de 45 min semanales para crear videos de Yoga Suave', completed: true },
+        { id: 2, text: 'Contactar a 5 alumnas para el grupo de Cuerpos Cansados', completed: false },
+        { id: 3, text: 'Completar el Inventario Diario de Resultados en mi cuaderno', completed: false }
+      ]));
+    }
+
+    if (!localStorage.getItem('ah_demo_diag_user_rocio_ust')) {
+      localStorage.setItem('ah_demo_diag_user_rocio_ust', JSON.stringify({
+        uid: 'user_rocio_ust',
+        updatedAt: new Date().toISOString(),
+        scores: { 'Propósito': 8, 'Tiempo': 6, 'Finanzas': 5, 'Bienestar': 8, 'Hábitos': 7, 'Relaciones': 9, 'Entorno': 7, 'Desarrollo': 9 }
+      }));
+      localStorage.setItem('ah_demo_tasks_user_rocio_ust', JSON.stringify([
+        { id: 1, text: 'Agendar 2 pausas de stimming sensorial diarias innegociables', completed: true },
+        { id: 2, text: 'Delegar el paseo diario de Nieve a mi papá', completed: true },
+        { id: 3, text: 'Estructurar programa de 1 mes para Puya Masajes', completed: false }
+      ]));
+    }
+
+    if (!localStorage.getItem('ah_demo_diag_user_matias_gonzalez')) {
+      localStorage.setItem('ah_demo_diag_user_matias_gonzalez', JSON.stringify({
+        uid: 'user_matias_gonzalez',
+        updatedAt: new Date().toISOString(),
+        scores: { 'Propósito': 7, 'Tiempo': 4, 'Finanzas': 6, 'Bienestar': 7, 'Hábitos': 5, 'Relaciones': 8, 'Entorno': 6, 'Desarrollo': 8 }
+      }));
+      localStorage.setItem('ah_demo_tasks_user_matias_gonzalez', JSON.stringify([
+        { id: 1, text: 'Montar el tablero Kanban de pared con Post-its', completed: true },
+        { id: 2, text: 'Hacer el Paso Cero (5 minutos con temporizador) en Lenguaje', completed: false },
+        { id: 3, text: 'Bloquear 1 hora el fin de semana para mi cita de crecimiento personal', completed: false }
+      ]));
+    }
   },
 
   onAuthChange(callback) {
