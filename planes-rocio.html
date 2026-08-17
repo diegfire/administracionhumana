@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Vuelo 2.0: Rocío • Del Cuello de Botella a la Soberanía | Administración Humana</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #121212;
+            --primary: #ffffff;
+            --secondary: #888888;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #262626;
+            --border-hover: #333333;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-primary: 0 0 20px rgba(255, 255, 255, 0.08);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.03) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: #cccccc;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo {
+            background: #ffffff;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #000000;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .brand-title h1 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .brand-title p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .meta-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #ffffff;
+        }
+
+        .meta-badge .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #38bdf8;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #38bdf8;
+        }
+
+        .btn-portal-lock {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            color: #aaa;
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-portal-lock:hover {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #f87171;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 0.35rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            gap: 0.3rem;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.65rem 1.3rem;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            color: #000000;
+            background: #ffffff;
+            box-shadow: var(--shadow-primary);
+            font-weight: 800;
+        }
+
+        .tab-content {
+            display: none;
+            animation: tabFadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes tabFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card panels */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.3rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Area Cards */
+        .area-card {
+            background: #0f172a66;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.4rem;
+            transition: all 0.3s ease;
+        }
+        .area-card:hover { border-color: #38bdf8; transform: translateY(-3px); }
+        .area-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem; }
+        .area-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+        .btn-link {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+        .btn-link:hover { background: #ffffff; color: #000; }
+
+        /* FODA / CAME */
+        .foda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .foda-box {
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+        }
+        .foda-box h4 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 0.6rem; }
+        .foda-box ul { list-style: none; font-size: 0.85rem; color: var(--text-muted); }
+        .foda-box li { position: relative; padding-left: 1.2rem; margin-bottom: 0.4rem; }
+        .foda-box li::before { content: "•"; position: absolute; left: 0; color: #38bdf8; }
+
+        .came-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .came-box {
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+        }
+        .c-box { border-top: 3px solid #ef4444; }
+        .a-box { border-top: 3px solid #f59e0b; }
+        .m-box { border-top: 3px solid #10b981; }
+        .e-box { border-top: 3px solid #38bdf8; }
+        .came-box h4 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.8rem; }
+        .c-box h4 { color: #f87171; }
+        .a-box h4 { color: #fbbf24; }
+        .m-box h4 { color: #34d399; }
+        .e-box h4 { color: #38bdf8; }
+        .came-box ul { list-style: none; font-size: 0.85rem; color: var(--text-muted); }
+        .came-box li { position: relative; padding-left: 1.2rem; margin-bottom: 0.5rem; }
+        .came-box li::before { content: "▹"; position: absolute; left: 0; color: #38bdf8; font-weight: bold; }
+        .came-box strong { color: #ffffff; }
+
+        /* ========================================================= */
+        /* MAPPER 24 HORAS CON GESTIÓN DE CATEGORÍAS                 */
+        /* ========================================================= */
+        .schedule-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            background: #0d0d0d;
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .brush-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .brush-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid #333;
+            background: #141414;
+            color: #aaa;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .brush-chip:hover {
+            border-color: #666;
+            color: #fff;
+        }
+
+        .brush-chip.active {
+            border-color: #fff;
+            color: #000;
+            background: #fff;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+        }
+
+        .brush-chip .chip-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .btn-schedule-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: #181818;
+            border: 1px solid #333;
+            color: #ffffff;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-schedule-action:hover {
+            background: #252525;
+            border-color: #555;
+        }
+
+        .btn-manage-cat {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+        }
+
+        .btn-manage-cat:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8;
+        }
+
+        .schedule-scroll-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: #080808;
+            max-height: 620px;
+            overflow-y: auto;
+        }
+
+        .schedule-grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.72rem;
+            user-select: none;
+        }
+
+        .schedule-grid-table th {
+            position: sticky;
+            top: 0;
+            background: #111111;
+            padding: 8px 4px;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid #1f1f1f;
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .schedule-grid-table td {
+            border-bottom: 1px solid #161616;
+            border-right: 1px solid #161616;
+            padding: 3px 2px;
+            text-align: center;
+            cursor: pointer;
+            height: 24px;
+            min-width: 95px;
+            transition: opacity 0.1s ease;
+        }
+
+        .schedule-grid-table td:hover {
+            filter: brightness(1.25);
+            outline: 1px solid #ffffff;
+        }
+
+        .schedule-grid-table td.hour-header-col {
+            position: sticky;
+            left: 0;
+            background: #111111;
+            font-weight: 700;
+            color: #888888;
+            min-width: 65px;
+            z-index: 5;
+            cursor: default;
+        }
+
+        .schedule-grid-table td.hour-header-col:hover {
+            outline: none;
+            filter: none;
+        }
+
+        .cell-content-box {
+            border-radius: 4px;
+            padding: 2px 4px;
+            font-weight: 700;
+            font-size: 0.65rem;
+            letter-spacing: 0.3px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #000;
+        }
+
+        .schedule-stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+            background: #0d0d0d;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .stat-cat-card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .stat-cat-card .cat-title {
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .stat-cat-card .cat-hours {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        /* Modal Generales */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 16px;
+            max-width: 520px;
+            width: 100%;
+            padding: 1.8rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .modal-close-btn:hover { color: #fff; }
+
+        .category-item-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #141414;
+            border: 1px solid #222;
+            padding: 6px 10px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .color-picker-wrapper {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .color-picker-input {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+        }
+
+        .category-name-input {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 6px;
+            flex: 1;
+            outline: none;
+        }
+
+        .category-tag-input {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 6px 8px;
+            border-radius: 6px;
+            width: 70px;
+            text-align: center;
+            outline: none;
+        }
+
+        /* ========================================================= */
+        /* TABLERO KANBAN GTD (WIP=2)                                */
+        /* ========================================================= */
+        .kanban-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .kanban-col {
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .kanban-col-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .kanban-col-title {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .kanban-card-item {
+            background: #141414;
+            border: 1px solid #282828;
+            border-radius: 8px;
+            padding: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .kanban-card-item:hover {
+            border-color: #444;
+            transform: translateY(-2px);
+        }
+
+        .kanban-card-text {
+            font-size: 0.84rem;
+            color: #ddd;
+            line-height: 1.35;
+        }
+
+        .kanban-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 0.4rem;
+            font-size: 0.72rem;
+        }
+
+        .kanban-card-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-card-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: #ccc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.72rem;
+            transition: all 0.15s;
+        }
+
+        .btn-card-action:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        .wip-limit-pill {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-weight: 800;
+        }
+
+        /* Checklists */
+        .tool-box {
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.4rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .tool-checklist {
+            list-style: none;
+            margin-top: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .tool-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.55rem;
+            font-size: 0.84rem;
+            color: var(--text-muted);
+        }
+
+        .tool-checklist input[type="checkbox"] {
+            margin-top: 0.2rem;
+            accent-color: #ffffff;
+            cursor: pointer;
+        }
+
+        /* Portal Security Gateway */
+        .client-auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .client-auth-overlay.unlocked {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .client-auth-card {
+            background: #0d0d0d;
+            border: 1px solid #262626;
+            border-radius: 24px;
+            padding: 2.8rem 2.2rem;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.1);
+        }
+
+        .gateway-avatar {
+            width: 72px;
+            height: 72px;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .gateway-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #888888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .gateway-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.4rem;
+        }
+
+        .gateway-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            line-height: 1.4;
+        }
+
+        .gateway-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .gateway-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .gateway-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .gateway-input {
+            width: 100%;
+            background: #141414;
+            border: 1px solid #2e2e2e;
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .gateway-input:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+        }
+
+        .gateway-error {
+            color: #ef4444;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+        }
+
+        .btn-gateway-login {
+            width: 100%;
+            padding: 0.95rem;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .btn-gateway-login:hover {
+            background: #e5e5e5;
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            .tabs, .schedule-controls, .client-auth-overlay, .btn-portal-lock, .btn-schedule-action {
+                display: none !important;
+            }
+            .tab-content { display: block !important; }
+            body { background: #fff !important; color: #000 !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- CLIENT SECURITY GATEWAY OVERLAY -->
+    <div id="client-auth-overlay" class="client-auth-overlay">
+        <div class="client-auth-card">
+            <div class="gateway-avatar">R</div>
+            <div class="gateway-badge">
+                <i class="fa-solid fa-shield-halved"></i> Acceso Privado
+            </div>
+            <h2 class="gateway-title">Portal de Cliente</h2>
+            <p class="gateway-subtitle">Plan de Vuelo 2.0 • Rocío<br>Administración Humana (Adaptación TEA)</p>
+
+            <form class="gateway-form" onsubmit="handleClientAuth(event)">
+                <div class="gateway-input-group">
+                    <label class="gateway-label">Cliente / Correo</label>
+                    <input type="text" id="auth-client-id" class="gateway-input" placeholder="Tu nombre o correo" value="Rocío" required autocomplete="username">
+                </div>
+                <div class="gateway-input-group">
+                    <label class="gateway-label">Clave de Acceso (PIN)</label>
+                    <input type="password" id="auth-client-pin" class="gateway-input" placeholder="Ingresa tu clave asignada" required autocomplete="current-password" autofocus>
+                </div>
+                <div id="auth-error-msg" class="gateway-error">
+                    ⚠️ Clave incorrecta. Consulta con Diego si necesitas recuperarla.
+                </div>
+                <button type="submit" class="btn-gateway-login">
+                    Ingresar a mi Plan de Vuelo 🚀
+                </button>
+            </form>
+            <div style="margin-top: 1.5rem; font-size: 0.75rem; color: #666;">
+                🔒 Tu sesión quedará guardada de forma segura en este dispositivo.
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <div class="brand-logo">AH</div>
+                <div class="brand-title">
+                    <h1>Plan de Vuelo 2.0: Rocío</h1>
+                    <p>Del Cuello de Botella a la Soberanía Operativa • Adaptación TEA</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <div class="meta-badge">
+                    <span class="dot"></span>
+                    <span>Talcahuano • Psicopedagogía UST & Puya Masajes</span>
+                </div>
+                <a href="portal_cliente.html" style="background: rgba(255, 255, 255, 0.08); border: 1px solid #333; color: #fff; padding: 0.45rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+                    🔑 Portal Cliente
+                </a>
+                <button class="btn-portal-lock" onclick="logoutClientAuth()" title="Bloquear Portal">
+                    <i class="fa-solid fa-lock"></i> Bloquear
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'tab-overview')">🧭 Diagnóstico & Estructura</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-foda')">📊 FODA & Matriz CAME</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-horario')">⏰ Mapeador de Horarios 24H</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-kanban')">📋 Tablero Kanban GTD (WIP=2)</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-herramientas')">🧰 Kit de Herramientas</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-imprimibles')">🖨️ Imprimibles Físicos</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-accion')">🚀 Plan 24h & Rutina TEA</button>
+        </div>
+
+        <!-- TAB 1: OVERVIEW & ESTRUCTURA -->
+        <div id="tab-overview" class="tab-content active">
+            <div class="card">
+                <div class="card-title">
+                    <span>🎯</span> Racional Estratégico de Rocío
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                    Rocío, tu perfil destaca por una tremenda inventiva, storytelling y disciplina corporal (8/10). Sin embargo, la acumulación de ruido mental nocturno, la fatiga visual con pantallas y la falta de pausas estructuradas de autorregulación sensorial (stimming) generaban cuellos de botella. Tu plan de vuelo organiza tu triple rol: <strong>Universidad Santo Tomás</strong>, <strong>Puya Masajes</strong> y <strong>Voz Caleidoscopio</strong>, blindando tu energía sin sobrecarga sensorial.
+                </p>
+                <div style="background: rgba(255,255,255,0.02); border-left: 3px solid #38bdf8; padding: 1rem 1.4rem; margin-top: 1.2rem; border-radius: 0 10px 10px 0; font-style: italic; color: #ccc;">
+                    "No se trata de hacer más cosas a la vez; se trata de que cada rol tenga su propio territorio protegido."
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <span>📁</span> Estructura Completa de Áreas Especializadas
+                </div>
+                <div class="grid-3">
+                    <div class="area-card">
+                        <div class="area-title">📝 00. Diagnóstico & Sesiones</div>
+                        <div class="area-desc">Bitácora viva de sesiones, transcripciones y Estudio de Buyer Personas en Gran Concepción.</div>
+                        <a href="00_Diagnostico_y_Sesiones/Bitacora_de_Sesiones.md" class="btn-link">Ver Bitácora</a>
+                        <a href="00_Diagnostico_y_Sesiones/Estudio_Buyer_Personas_Competencia_y_Diferenciacion_Rocio.html" class="btn-link" style="margin-top:0.4rem; background: #7C3AED;">🎯 Buyer Personas</a>
+                    </div>
+                    <div class="area-card">
+                        <div class="area-title">🎓 01. Universidad (Psicopedagogía)</div>
+                        <div class="area-desc">U. Santo Tomás (1er año). Foco en estudio impreso bajo roce y petitorio de movilización.</div>
+                        <a href="01_Universidad_Psicopedagogia/Desarrollo_Area_Universidad.md" class="btn-link">Ver Área UST</a>
+                    </div>
+                    <div class="area-card">
+                        <div class="area-title">💆‍♀️ 02. Puya Masajes</div>
+                        <div class="area-desc">Masoterapia. Paquetización en <em>Planes Terapéuticos de 1 Mes</em>, Ficha de Anamnesis y zonificación.</div>
+                        <a href="02_Puya_Masajes/Desarrollo_Area_Puya_Masajes.md" class="btn-link">Ver Puya Masajes</a>
+                    </div>
+                    <div class="area-card">
+                        <div class="area-title">🎤 03. Voz Caleidoscopio (Canto)</div>
+                        <div class="area-desc">Formación vocal bajo marca propia. Bitácora de alumnos, reuniones y WhatsApp Business.</div>
+                        <a href="03_Clases_de_Canto/Desarrollo_Area_Clases_Canto.md" class="btn-link">Ver Clases Canto</a>
+                    </div>
+                    <div class="area-card">
+                        <div class="area-title">💳 05. Finanzas & Fondo Reserva</div>
+                        <div class="area-desc">Presupuesto 50/30/20 sin arriendo, 10% ahorro automático y fondo de emergencia.</div>
+                        <a href="05_Finanzas_y_Fondo_Emergencia/Estrategia_Presupuesto_50_30_20_y_Fondo_Reserva.md" class="btn-link">Ver Finanzas</a>
+                    </div>
+                    <div class="area-card">
+                        <div class="area-title">🧘 06. Protocolos TEA & Bienestar</div>
+                        <div class="area-desc">2 pausas agendadas de stimming sensorial y rutina nocturna análoga sin teléfono.</div>
+                        <a href="06_Protocolos_TEA_y_Bienestar/Protocolo_Stimming_y_Autorregulacion_Sensorial.md" class="btn-link">Ver Protocolos TEA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: FODA & CAME -->
+        <div id="tab-foda" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span>🧭</span> Diagnóstico Estratégico FODA
+                </div>
+                <div class="foda-grid">
+                    <div class="foda-box">
+                        <h4 style="color: #34D399;">🌟 Fortalezas (Motores)</h4>
+                        <ul>
+                            <li><strong>Inventiva & Storytelling:</strong> Creación de conceptos y narrativa de proyectos.</li>
+                            <li><strong>Disciplina Corporal:</strong> Rutina sólida de ejercicio físico y cuidado somático (8/10).</li>
+                            <li><strong>Límites & Red Familiar:</strong> Entorno protector (9/10) y límites sanos.</li>
+                            <li><strong>Consistencia en Sistemas:</strong> Baja tasa de abandono de herramientas.</li>
+                        </ul>
+                    </div>
+                    <div class="foda-box">
+                        <h4 style="color: #F87171;">⚠️ Debilidades (Frenos)</h4>
+                        <ul>
+                            <li><strong>Pensamientos Intrusivos:</strong> Acumulación de ruido mental nocturno.</li>
+                            <li><strong>Fatiga Visual Digital:</strong> Cansancio al leer extensamente en pantallas.</li>
+                            <li><strong>Falta de Espacio para Stimming:</strong> Sin pausas agendadas de autorregulación.</li>
+                            <li><strong>Ausencia de Fondo de Emergencia:</strong> Vulnerabilidad ante imprevistos.</li>
+                        </ul>
+                    </div>
+                    <div class="foda-box">
+                        <h4 style="color: #38BDF8;">📈 Oportunidades (Palancas)</h4>
+                        <ul>
+                            <li><strong>Triangulación de Roles:</strong> Equilibrio UST, Puya Masajes y Canto.</li>
+                            <li><strong>Paquetización Terapéutica:</strong> Programas de masoterapia de 1 mes.</li>
+                            <li><strong>Cero Costo de Arriendo:</strong> Holgura para acelerar el Fondo de Reserva (30%).</li>
+                        </ul>
+                    </div>
+                    <div class="foda-box">
+                        <h4 style="color: #FBBF24;">🚨 Amenazas (Riesgos)</h4>
+                        <ul>
+                            <li><strong>Fricción Logística en Talcahuano:</strong> Tiempos en traslados para atenciones.</li>
+                            <li><strong>Movilización Estudiantil UST:</strong> Dificultad de traslado colectivo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card-title" style="margin-top: 2rem;">
+                    <span>⚡</span> Matriz CAME: Las 4 Respuestas Tácticas
+                </div>
+                <div class="came-grid">
+                    <div class="came-box c-box">
+                        <h4>🛠️ C - CORREGIR (Debilidades)</h4>
+                        <ul>
+                            <li><strong>Vaciado Mental Nocturno:</strong> Rutina en libreta física sin celular.</li>
+                            <li><strong>Ergonomía de Estudio:</strong> Sustituir celular por lecturas impresas.</li>
+                            <li><strong>Time Blocking TEA:</strong> 2 pausas de 15 min diarias innegociables de stimming.</li>
+                            <li><strong>Ahorro Automático:</strong> Apartar 10% mensual para fondo de emergencia.</li>
+                        </ul>
+                    </div>
+                    <div class="came-box a-box">
+                        <h4>🛡️ A - AFRONTAR (Amenazas)</h4>
+                        <ul>
+                            <li><strong>Zonificación de Masajes:</strong> Agrupar atenciones a domicilio por sectores.</li>
+                            <li><strong>Alianza de Transporte:</strong> Coordinar conductor/socio para traslados lejanos.</li>
+                            <li><strong>Petitorio Universitario UST:</strong> Apoyar iniciativa colectiva de movilización.</li>
+                        </ul>
+                    </div>
+                    <div class="came-box m-box">
+                        <h4>💪 M - MANTENER (Fortalezas)</h4>
+                        <ul>
+                            <li><strong>Storytelling en Marcas:</strong> Desarrollar identidad propia y velas aromáticas.</li>
+                            <li><strong>Blindaje Somático:</strong> Mantener el ejercicio regular como pilar.</li>
+                            <li><strong>Delegación Familiar:</strong> Delegar el paseo de Nieve a su papá sin culpa.</li>
+                            <li><strong>Sistemas Análogos:</strong> Sostener el Tablero Kanban visual en la pared.</li>
+                        </ul>
+                    </div>
+                    <div class="came-box e-box">
+                        <h4>🚀 E - EXPLOTAR (Oportunidades)</h4>
+                        <ul>
+                            <li><strong>Triangulación de Roles:</strong> Bloques definidos para UST, Masajes y Canto.</li>
+                            <li><strong>Planes Terapéuticos de 1 Mes:</strong> Paquetes de 4 semanas para estabilidad.</li>
+                            <li><strong>Apalancamiento de Cero Arriendo:</strong> Inyectar holgura a Ahorro y Ocio.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: MAPEADOR 24H INTERACTIVO -->
+        <div id="tab-horario" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span>⏰</span> Mapeador Semanal 24 Horas (Rocío • Adaptación TEA)
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
+                        <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG()">📸 Exportar Imagen (PNG)</button>
+                        <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
+                    </div>
+                </div>
+
+                <!-- Brush selector bar -->
+                <div class="schedule-controls">
+                    <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
+                    <div class="brush-selector" id="brush-selector-container">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Schedule Table -->
+                <div class="schedule-scroll-wrapper" id="schedule-export-container">
+                    <table class="schedule-grid-table" id="schedule-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Hora</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-body">
+                            <!-- Rendered dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Stats summary -->
+                <div class="schedule-stats-bar" id="schedule-stats-container">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: TABLERO KANBAN GTD -->
+        <div id="tab-kanban" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span>📋</span> Tablero Kanban GTD (Límite de Protección WIP = 2)
+                    <button class="btn-schedule-action" onclick="resetKanbanDefault()" style="color:#aaa;">🔄 Restaurar Tablero</button>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+                    Este tablero evita la parálisis por saturación. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>2 tareas activas</strong> para proteger tu enfoque.
+                </p>
+
+                <div class="kanban-grid">
+                    <!-- Columna 1: Por Hacer -->
+                    <div class="kanban-col">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title">
+                                📥 Por Hacer
+                            </div>
+                            <span id="count-todo" class="wip-limit-pill" style="border-color:#555; color:#aaa;">0</span>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-new-todo" placeholder="+ Nueva tarea pendiente..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.8rem;" onkeypress="if(event.key==='Enter') addKanbanTask('todo')">
+                            <button class="btn-card-action" onclick="addKanbanTask('todo')">➕</button>
+                        </div>
+                        <div id="kanban-container-todo" style="display:flex; flex-direction:column; gap:8px;"></div>
+                    </div>
+
+                    <!-- Columna 2: En Ejecución (WIP=2) -->
+                    <div class="kanban-col" style="border-color: rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.02);">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title" style="color: #38bdf8;">
+                                ⚡ En Ejecución
+                            </div>
+                            <span id="count-doing" class="wip-limit-pill">0 / 2</span>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-new-doing" placeholder="+ Tarea en foco ahora..." style="flex:1; background:#181818; border:1px solid rgba(56,189,248,0.3); color:#fff; padding:6px 10px; border-radius:6px; font-size:0.8rem;" onkeypress="if(event.key==='Enter') addKanbanTask('doing')">
+                            <button class="btn-card-action" onclick="addKanbanTask('doing')" style="background:#38bdf8; color:#000;">➕</button>
+                        </div>
+                        <div id="kanban-container-doing" style="display:flex; flex-direction:column; gap:8px;"></div>
+                    </div>
+
+                    <!-- Columna 3: Completado -->
+                    <div class="kanban-col">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title" style="color: #10b981;">
+                                ✅ Hecho / Victorias
+                            </div>
+                            <span id="count-done" class="wip-limit-pill" style="border-color:#10b981; color:#10b981;">0</span>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-new-done" placeholder="+ Registrar victoria..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.8rem;" onkeypress="if(event.key==='Enter') addKanbanTask('done')">
+                            <button class="btn-card-action" onclick="addKanbanTask('done')">➕</button>
+                        </div>
+                        <div id="kanban-container-done" style="display:flex; flex-direction:column; gap:8px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: HERRAMIENTAS -->
+        <div id="tab-herramientas" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span>🧰</span> Kit Didáctico de Herramientas AICC Adaptadas a Rocío
+                </div>
+
+                <div class="tool-box">
+                    <h3 style="font-size:1.1rem; color:#38bdf8; margin-bottom:0.4rem;">
+                        1. Time Blocking Sensorial & Stimming TEA
+                    </h3>
+                    <p style="font-size:0.85rem; color:#aaa; margin-bottom:0.8rem;">
+                        Agendar bloques de estudio de bajo roce y fijar 2 pausas diarias innegociables de 15 minutos de autorregulación sensorial (stimming) para evitar la sobrecarga del sistema nervioso.
+                    </p>
+                    <ul class="tool-checklist">
+                        <li><input type="checkbox"> Marcar en el horario los 2 bloques de stimming (mañana y tarde).</li>
+                        <li><input type="checkbox"> Disponer de elementos sensoriales cómodos en el espacio de estudio.</li>
+                        <li><input type="checkbox"> Cortar el estudio inmediatamente al sonar la alarma de pausa.</li>
+                    </ul>
+                </div>
+
+                <div class="tool-box">
+                    <h3 style="font-size:1.1rem; color:#10b981; margin-bottom:0.4rem;">
+                        2. Vaciado Mental Nocturno en Papel (GTD Cero Pantallas)
+                    </h3>
+                    <p style="font-size:0.85rem; color:#aaa; margin-bottom:0.8rem;">
+                        Rutina nocturna en libreta física para descargar pensamientos intrusivos y pendientes antes de dormir, eliminando la exposición a pantallas 45 minutos antes de apagar la luz.
+                    </p>
+                    <ul class="tool-checklist">
+                        <li><input type="checkbox"> Dejar la libreta de vaciado y lápiz en la mesa de noche.</li>
+                        <li><input type="checkbox"> Escribir los pendientes del día siguiente sin juzgarlos.</li>
+                        <li><input type="checkbox"> Activar modo no molestar y alejar el celular de la cama.</li>
+                    </ul>
+                </div>
+
+                <div class="tool-box">
+                    <h3 style="font-size:1.1rem; color:#f59e0b; margin-bottom:0.4rem;">
+                        3. Matriz de Priorización de Incendios (Eisenhower)
+                    </h3>
+                    <p style="font-size:0.85rem; color:#aaa; margin-bottom:0.8rem;">
+                        Filtrar las demandas del entorno y delegar el paseo de Nieve a tu papá sin culpa para recuperar 14 horas semanales de energía mental.
+                    </p>
+                    <ul class="tool-checklist">
+                        <li><input type="checkbox"> Identificar tareas que pueden ser delegadas esta semana.</li>
+                        <li><input type="checkbox"> Acordar el horario de paseo de Nieve con mi papá.</li>
+                        <li><input type="checkbox"> Decir "no" con amabilidad a compromisos no prioritarios.</li>
+                    </ul>
+                </div>
+
+                <div class="tool-box">
+                    <h3 style="font-size:1.1rem; color:#ec4899; margin-bottom:0.4rem;">
+                        4. Presupuesto 50/30/20 & Paquetización Puya Masajes
+                    </h3>
+                    <p style="font-size:0.85rem; color:#aaa; margin-bottom:0.8rem;">
+                        Transformar atenciones sueltas en Planes Terapéuticos de 1 Mes y destinar el 10% automático para construir el fondo de emergencia aprovechando el beneficio de no pagar arriendo.
+                    </p>
+                    <ul class="tool-checklist">
+                        <li><input type="checkbox"> Ofrecer paquete de 4 sesiones terapéuticas a clientes actuales.</li>
+                        <li><input type="checkbox"> Apartar el 10% de cada pago directamente a la cuenta de ahorro.</li>
+                        <li><input type="checkbox"> Registrar los ingresos en la planilla mensual de Puya Masajes.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: IMPRIMIBLES -->
+        <div id="tab-imprimibles" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span>🖨️</span> Kit de Imprimibles Físicos para Rocío (Cero Pantallas)
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                    <div class="area-card" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff;">01. Planificador Semanal & Stimming TEA</strong>
+                            <div style="font-size:0.8rem; color:#888;">Organizador físico semanal de bloques de foco y pausas sensoriales.</div>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/01_Planificador_Semanal_y_Stimming_TEA_Rocio.html" target="_blank" class="btn-link">🖨️ Abrir e Imprimir</a>
+                    </div>
+                    <div class="area-card" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff;">02. Matriz de Priorización Eisenhower</strong>
+                            <div style="font-size:0.8rem; color:#888;">Cuadrante para pared con tareas inmediatas y delegación.</div>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/02_Matriz_Priorizacion_Eisenhower_Rocio.html" target="_blank" class="btn-link">🖨️ Abrir e Imprimir</a>
+                    </div>
+                    <div class="area-card" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff;">03. Checklist Rutina Cierre Nocturno & Stimming</strong>
+                            <div style="font-size:0.8rem; color:#888;">Hoja de tildado diario para vaciado mental antes de dormir.</div>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/03_Checklist_Rutina_Vaciado_Nocturno_y_Stimming.html" target="_blank" class="btn-link">🖨️ Abrir e Imprimir</a>
+                    </div>
+                    <div class="area-card" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff;">04. Control Presupuestario 50/30/20 & Fondo Reserva</strong>
+                            <div style="font-size:0.8rem; color:#888;">Ficha mensual para control de gastos fijos y ahorro sin arriendo.</div>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/04_Planilla_Impresa_Control_Presupuesto_50_30_20.html" target="_blank" class="btn-link">🖨️ Abrir e Imprimir</a>
+                    </div>
+                    <div class="area-card" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff;">05. Ficha de Anamnesis y Registro Puya Masajes</strong>
+                            <div style="font-size:0.8rem; color:#888;">Ficha clínica de ingreso para clientes de masoterapia.</div>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/05_Ficha_Anamnesis_y_Registro_Cliente_Puya_Masajes.html" target="_blank" class="btn-link">🖨️ Abrir e Imprimir</a>
+                    </div>
+                    <div class="area-card" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff;">06. Checklists Maestros Operativos & TEA</strong>
+                            <div style="font-size:0.8rem; color:#888;">Compendio de listas de verificación de sesiones y autorregulación.</div>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/06_Checklists_Maestros_Operativos_y_TEA_Rocio.html" target="_blank" class="btn-link">🖨️ Abrir e Imprimir</a>
+                    </div>
+                    <div class="area-card" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff;">07. Guía Visual FODA & Matriz CAME de Acción</strong>
+                            <div style="font-size:0.8rem; color:#888;">Hoja de mapa estratégico diario para tener en el escritorio.</div>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/07_Guia_Visual_FODA_y_Matriz_CAME_Rocio.html" target="_blank" class="btn-link" style="background:#7c3aed;">🖨️ Abrir e Imprimir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: PLAN 24H -->
+        <div id="tab-accion" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">
+                        <span>🚀</span> Tu Plan de Acción: Próximas 24 Horas
+                    </div>
+                    <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem; font-size:0.9rem; color:#ccc;">
+                        <li><strong>1. Montaje del Rincón Análogo:</strong> Coloca tu libreta de vaciado mental y lápiz al lado de tu cama.</li>
+                        <li><strong>2. Delegación del Paseo:</strong> Confirma con tu papá el traspaso del paseo diario de Nieve.</li>
+                        <li><strong>3. Cierre de Pantallas 22:30:</strong> Apaga el celular a las 22:30 y realiza 15 min de vaciado mental antes de dormir.</li>
+                        <li><strong>4. Primer Bloque de Stimming:</strong> Programa tus 2 pausas de 15 minutos en el celular solo con alarma suave.</li>
+                        <li><strong>5. Propuesta Puya Masajes:</strong> Redacta la estructura de 4 semanas para tus Planes Terapéuticos de 1 Mes.</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.02);">
+                    <div class="card-title" style="color: #f87171;">
+                        <span>⚠️</span> Antipatrones a Evitar (Tus Riesgos)
+                    </div>
+                    <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem; font-size:0.88rem; color:#ccc;">
+                        <li><strong style="color:#f87171;">• Sobrecarga de Pantalla Nocturna:</strong> Leer textos académicos densos en el celular en la cama.</li>
+                        <li><strong style="color:#f87171;">• Saltarse el Stimming:</strong> Trabajar continuo sin pausas sensoriales, acumulando fatiga hasta colapsar.</li>
+                        <li><strong style="color:#f87171;">• Culpa por Delegar:</strong> Retomar el paseo de Nieve por pena, perdiendo horas esenciales de estudio.</li>
+                        <li><strong style="color:#f87171;">• Atenciones Dispersas:</strong> Aceptar domicilios en extremos opuestos de la ciudad en un mismo día.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align: center; margin-top: 3rem; padding: 2rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border);">
+            <p><strong>Administración Humana</strong> • Sistemas vivos y adaptados a tu propio ritmo.</p>
+        </footer>
+    </div>
+
+    <!-- MODAL 1: GESTIÓN DE CATEGORÍAS (MANDATORIA) -->
+    <div id="modal-category-manager" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>⚙️ Gestionar Categorías del Horario</span>
+                <button class="modal-close-btn" onclick="closeCategoryManagerModal()">&times;</button>
+            </div>
+            <p style="font-size: 0.8rem; color: #888; margin-bottom: 1rem;">
+                Edita nombres, colores y etiquetas cortas, o agrega nuevas categorías para tu semana.
+            </p>
+
+            <div id="category-list-editor" style="max-height: 280px; overflow-y: auto; margin-bottom: 1rem;">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-bottom: 1.2rem;">
+                <input type="text" id="new-cat-name" placeholder="Nombre nueva categoría..." class="category-name-input">
+                <input type="text" id="new-cat-tag" placeholder="TAG (3-4 letras)" maxlength="6" class="category-tag-input">
+                <input type="color" id="new-cat-color" value="#38bdf8" style="width:36px; height:36px; border-radius:6px; border:1px solid #333; background:none; cursor:pointer;">
+                <button class="btn-schedule-action" onclick="addNewCategoryFromModal()" style="background:#38bdf8; color:#000; font-weight:800;">+ Agregar</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 1rem;">
+                <button class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color: #f87171;">Restablecer Predeterminadas</button>
+                <button class="btn-schedule-action" onclick="saveCategoriesFromModal()" style="background:#ffffff; color:#000; font-weight:800;">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: RELLENAR POR RANGO -->
+    <div id="modal-range-fill" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>⚡ Rellenar Horario por Rango</span>
+                <button class="modal-close-btn" onclick="closeRangeFillModal()">&times;</button>
+            </div>
+            <p style="font-size: 0.8rem; color: #888; margin-bottom: 1.2rem;">
+                Aplica una categoría a múltiples horas y días simultáneamente.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div>
+                    <label style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">Categoría:</label>
+                    <select id="range-fill-category" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:8px; margin-top:4px; font-size:0.85rem;"></select>
+                </div>
+
+                <div>
+                    <label style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">Días a aplicar:</label>
+                    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; margin-top:6px;">
+                        <label style="font-size:0.8rem; color:#ccc; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="range-day" value="0" checked> Lun</label>
+                        <label style="font-size:0.8rem; color:#ccc; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="range-day" value="1" checked> Mar</label>
+                        <label style="font-size:0.8rem; color:#ccc; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="range-day" value="2" checked> Mié</label>
+                        <label style="font-size:0.8rem; color:#ccc; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="range-day" value="3" checked> Jue</label>
+                        <label style="font-size:0.8rem; color:#ccc; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="range-day" value="4" checked> Vie</label>
+                        <label style="font-size:0.8rem; color:#ccc; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="range-day" value="5"> Sáb</label>
+                        <label style="font-size:0.8rem; color:#ccc; display:flex; align-items:center; gap:4px;"><input type="checkbox" name="range-day" value="6"> Dom</label>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem;">
+                    <div style="flex:1;">
+                        <label style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">Hora Inicio:</label>
+                        <select id="range-fill-start" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:8px; margin-top:4px; font-size:0.85rem;"></select>
+                    </div>
+                    <div style="flex:1;">
+                        <label style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">Hora Fin:</label>
+                        <select id="range-fill-end" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:8px; margin-top:4px; font-size:0.85rem;"></select>
+                    </div>
+                </div>
+
+                <button class="btn-gateway-login" onclick="applyRangeFill()" style="margin-top:0.5rem;">
+                    Aplicar Rango al Horario ⚡
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC ENGINE -->
+    <script>
+        // ==========================================
+        // 0. CONTROL DE ACCESO / CLIENT SECURITY GATEWAY
+        // ==========================================
+        const CLIENT_CONFIG = {
+            storageKey: "ah_auth_token_rocio",
+            validPins: ["rocior1998", "rociou1998", "rocio1998", "rocio2026", "2026", "diego_ah_master", "admin2026", "diegop1990"],
+            clientName: "Rocío"
+        };
+
+        function checkClientAuth() {
+            const token = localStorage.getItem(CLIENT_CONFIG.storageKey);
+            const overlay = document.getElementById("client-auth-overlay");
+            if (!overlay) return;
+            if (token === "authenticated_ok") {
+                overlay.classList.add("unlocked");
+            } else {
+                overlay.classList.remove("unlocked");
+            }
+        }
+
+        function handleClientAuth(e) {
+            e.preventDefault();
+            const pinInput = document.getElementById("auth-client-pin");
+            const errorMsg = document.getElementById("auth-error-msg");
+            if (!pinInput) return;
+            const enteredPin = pinInput.value.trim().toLowerCase();
+
+            if (CLIENT_CONFIG.validPins.includes(enteredPin)) {
+                localStorage.setItem(CLIENT_CONFIG.storageKey, "authenticated_ok");
+                if (errorMsg) errorMsg.style.display = "none";
+                const overlay = document.getElementById("client-auth-overlay");
+                if (overlay) overlay.classList.add("unlocked");
+            } else {
+                if (errorMsg) {
+                    errorMsg.style.display = "block";
+                    errorMsg.innerText = "⚠️ Clave de acceso incorrecta. Verifica el PIN asignado o consulta a Diego.";
+                }
+                pinInput.focus();
+                pinInput.select();
+            }
+        }
+
+        function logoutClientAuth() {
+            if (confirm("¿Deseas bloquear el portal y cerrar sesión en este dispositivo?")) {
+                localStorage.removeItem(CLIENT_CONFIG.storageKey);
+                const overlay = document.getElementById("client-auth-overlay");
+                if (overlay) {
+                    overlay.classList.remove("unlocked");
+                    const pinInput = document.getElementById("auth-client-pin");
+                    if (pinInput) {
+                        pinInput.value = "";
+                        pinInput.focus();
+                    }
+                }
+            }
+        }
+
+        // ==========================================
+        // 1. TABS SYSTEM
+        // ==========================================
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
+            document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add("active");
+            if (evt && evt.currentTarget) evt.currentTarget.classList.add("active");
+        }
+
+        // ==========================================
+        // 2. CATEGORÍAS Y MOTOR 24H DE ROCÍO
+        // ==========================================
+        const DEFAULT_CATEGORIES = [
+            { id: "estudio_ust", name: "🎓 Universidad (Psicopedagogía UST)", color: "#38BDF8", tag: "UST" },
+            { id: "puya_masajes", name: "💆‍♀️ Puya Masajes (Planes 1 Mes)", color: "#0D9488", tag: "PUYA" },
+            { id: "canto_voz", name: "🎤 Clases de Canto (Voz Caleidoscopio)", color: "#8B5CF6", tag: "VOZ" },
+            { id: "stimming_tea", name: "🧘 Stimming & Autorregulación TEA", color: "#10B981", tag: "STIM" },
+            { id: "hogar_nieve", name: "🏡 Rutina Hogar & Nieve", color: "#F59E0B", tag: "HOGAR" },
+            { id: "sueno", name: "😴 Sueño & Descanso Real", color: "#6366F1", tag: "SUEÑO" },
+            { id: "libre", name: "🌱 Libre / Colchón Flexible", color: "#334155", tag: "LIBRE" }
+        ];
+
+        let categories = [];
+        let activeBrushId = "estudio_ust";
+        let scheduleData = {}; // key: "day-hour" => categoryId
+        let isMouseDown = false;
+
+        function initSchedule() {
+            // Cargar categorías
+            const savedCats = localStorage.getItem("ah_rocio_categories_v2");
+            if (savedCats) {
+                try { categories = JSON.parse(savedCats); } catch(e) { categories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES)); }
+            } else {
+                categories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
+            }
+
+            // Cargar Horario
+            const savedSched = localStorage.getItem("ah_rocio_schedule_v2");
+            if (savedSched) {
+                try { scheduleData = JSON.parse(savedSched); } catch(e) { scheduleData = generateDefaultScheduleData(); }
+            } else {
+                scheduleData = generateDefaultScheduleData();
+            }
+
+            if (!categories.find(c => c.id === activeBrushId)) {
+                activeBrushId = categories[0]?.id || "libre";
+            }
+
+            renderBrushChips();
+            renderScheduleTable();
+            renderScheduleStats();
+            populateRangeModalSelects();
+        }
+
+        function generateDefaultScheduleData() {
+            const data = {};
+            for (let d = 0; d < 7; d++) {
+                for (let h = 0; h < 24; h++) {
+                    const key = `${d}-${h}`;
+                    if (h >= 0 && h < 8) {
+                        data[key] = "sueno";
+                    } else if (h === 8) {
+                        data[key] = "hogar_nieve";
+                    } else if (h >= 9 && h <= 12) {
+                        data[key] = (d < 5) ? "estudio_ust" : (d === 5 ? "puya_masajes" : "libre");
+                    } else if (h === 13) {
+                        data[key] = "stimming_tea";
+                    } else if (h >= 14 && h <= 17) {
+                        data[key] = (d % 2 === 0 && d < 5) ? "puya_masajes" : ((d === 1 || d === 3) ? "canto_voz" : "libre");
+                    } else if (h === 18) {
+                        data[key] = "stimming_tea";
+                    } else if (h >= 19 && h <= 21) {
+                        data[key] = "hogar_nieve";
+                    } else if (h >= 22) {
+                        data[key] = "sueno";
+                    } else {
+                        data[key] = "libre";
+                    }
+                }
+            }
+            return data;
+        }
+
+        function saveSchedule() {
+            localStorage.setItem("ah_rocio_schedule_v2", JSON.stringify(scheduleData));
+            renderScheduleStats();
+        }
+
+        function saveCategories() {
+            localStorage.setItem("ah_rocio_categories_v2", JSON.stringify(categories));
+            renderBrushChips();
+            renderScheduleTable();
+            renderScheduleStats();
+            populateRangeModalSelects();
+        }
+
+        function renderBrushChips() {
+            const container = document.getElementById("brush-selector-container");
+            if (!container) return;
+            container.innerHTML = categories.map(cat => `
+                <div class="brush-chip ${cat.id === activeBrushId ? 'active' : ''}" onclick="selectBrush('${cat.id}')">
+                    <span class="chip-dot" style="background-color: ${cat.color};"></span>
+                    <span>${cat.name}</span>
+                </div>
+            `).join("");
+        }
+
+        function selectBrush(catId) {
+            activeBrushId = catId;
+            renderBrushChips();
+        }
+
+        function renderScheduleTable() {
+            const tbody = document.getElementById("schedule-body");
+            if (!tbody) return;
+
+            let html = "";
+            for (let h = 0; h < 24; h++) {
+                const hourLabel = `${String(h).padStart(2, '0')}:00`;
+                html += `<tr>`;
+                html += `<td class="hour-header-col">${hourLabel}</td>`;
+
+                for (let d = 0; d < 7; d++) {
+                    const key = `${d}-${h}`;
+                    const catId = scheduleData[key] || "libre";
+                    const cat = categories.find(c => c.id === catId) || { name: "Libre", color: "#334155", tag: "LIBRE" };
+                    html += `
+                        <td id="cell-${key}" 
+                            onmousedown="handleCellMouseDown(${d}, ${h})" 
+                            onmouseenter="handleCellMouseEnter(${d}, ${h})"
+                            style="background-color: ${cat.color}22;">
+                            <div class="cell-content-box" style="background-color: ${cat.color};">
+                                ${cat.tag || cat.name.substring(0, 5)}
+                            </div>
+                        </td>
+                    `;
+                }
+                html += `</tr>`;
+            }
+            tbody.innerHTML = html;
+        }
+
+        function handleCellMouseDown(d, h) {
+            isMouseDown = true;
+            paintCell(d, h);
+        }
+
+        function handleCellMouseEnter(d, h) {
+            if (isMouseDown) {
+                paintCell(d, h);
+            }
+        }
+
+        window.addEventListener("mouseup", () => { isMouseDown = false; });
+
+        function paintCell(d, h) {
+            const key = `${d}-${h}`;
+            scheduleData[key] = activeBrushId;
+            const cell = document.getElementById(`cell-${key}`);
+            const cat = categories.find(c => c.id === activeBrushId) || { name: "Libre", color: "#334155", tag: "LIBRE" };
+            if (cell) {
+                cell.style.backgroundColor = `${cat.color}22`;
+                cell.innerHTML = `<div class="cell-content-box" style="background-color: ${cat.color};">${cat.tag || cat.name.substring(0, 5)}</div>`;
+            }
+            saveSchedule();
+        }
+
+        function renderScheduleStats() {
+            const container = document.getElementById("schedule-stats-container");
+            if (!container) return;
+
+            const counts = {};
+            categories.forEach(c => counts[c.id] = 0);
+
+            for (let d = 0; d < 7; d++) {
+                for (let h = 0; h < 24; h++) {
+                    const key = `${d}-${h}`;
+                    const catId = scheduleData[key] || "libre";
+                    if (counts[catId] !== undefined) {
+                        counts[catId]++;
+                    }
+                }
+            }
+
+            container.innerHTML = categories.map(cat => {
+                const hours = counts[cat.id] || 0;
+                const pct = ((hours / 168) * 100).toFixed(1);
+                return `
+                    <div class="stat-cat-card" style="border-top: 3px solid ${cat.color};">
+                        <div class="cat-title">${cat.name}</div>
+                        <div class="cat-hours">${hours}h <span style="font-size:0.7rem; color:#888; font-weight:normal;">(${pct}%)</span></div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        // ==========================================
+        // 3. GESTIÓN DE CATEGORÍAS (MODAL)
+        // ==========================================
+        function openCategoryManagerModal() {
+            const editor = document.getElementById("category-list-editor");
+            if (!editor) return;
+
+            editor.innerHTML = categories.map((cat, idx) => `
+                <div class="category-item-row" id="cat-row-${idx}">
+                    <div class="color-picker-wrapper" style="background-color: ${cat.color};">
+                        <input type="color" class="color-picker-input" value="${cat.color}" onchange="updateCatRowColor(${idx}, this.value)">
+                    </div>
+                    <input type="text" class="category-name-input" value="${cat.name}" id="cat-name-${idx}">
+                    <input type="text" class="category-tag-input" value="${cat.tag || ''}" id="cat-tag-${idx}" maxlength="6">
+                    ${categories.length > 1 ? `<button class="btn-card-action" onclick="deleteCategoryRow(${idx})" style="color:#f87171;">🗑️</button>` : ''}
+                </div>
+            `).join("");
+
+            document.getElementById("modal-category-manager").classList.add("active");
+        }
+
+        function closeCategoryManagerModal() {
+            document.getElementById("modal-category-manager").classList.remove("active");
+        }
+
+        function updateCatRowColor(idx, color) {
+            const row = document.getElementById(`cat-row-${idx}`);
+            if (row) {
+                const wrapper = row.querySelector(".color-picker-wrapper");
+                if (wrapper) wrapper.style.backgroundColor = color;
+            }
+        }
+
+        function addNewCategoryFromModal() {
+            const nameInput = document.getElementById("new-cat-name");
+            const tagInput = document.getElementById("new-cat-tag");
+            const colorInput = document.getElementById("new-cat-color");
+
+            const name = nameInput.value.trim();
+            const tag = tagInput.value.trim().toUpperCase();
+            const color = colorInput.value;
+
+            if (!name) { alert("Por favor ingresa un nombre para la categoría."); return; }
+
+            const newId = "cat_" + Date.now();
+            categories.push({ id: newId, name, tag: tag || name.substring(0, 4).toUpperCase(), color });
+            nameInput.value = "";
+            tagInput.value = "";
+            openCategoryManagerModal();
+        }
+
+        function deleteCategoryRow(idx) {
+            if (categories.length <= 1) { alert("Debes mantener al menos una categoría."); return; }
+            categories.splice(idx, 1);
+            openCategoryManagerModal();
+        }
+
+        function saveCategoriesFromModal() {
+            categories.forEach((cat, idx) => {
+                const nameEl = document.getElementById(`cat-name-${idx}`);
+                const tagEl = document.getElementById(`cat-tag-${idx}`);
+                if (nameEl) cat.name = nameEl.value.trim();
+                if (tagEl) cat.tag = tagEl.value.trim().toUpperCase();
+                const row = document.getElementById(`cat-row-${idx}`);
+                if (row) {
+                    const colorEl = row.querySelector(".color-picker-input");
+                    if (colorEl) cat.color = colorEl.value;
+                }
+            });
+            saveCategories();
+            closeCategoryManagerModal();
+        }
+
+        function resetCategoriesDefault() {
+            if (confirm("¿Restablecer las categorías originales de Rocío?")) {
+                categories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
+                saveCategories();
+                openCategoryManagerModal();
+            }
+        }
+
+        function resetScheduleToDefault() {
+            if (confirm("¿Deseas restablecer todo el horario semanal a la plantilla sugerida para Rocío?")) {
+                scheduleData = generateDefaultScheduleData();
+                saveSchedule();
+                renderScheduleTable();
+            }
+        }
+
+        // ==========================================
+        // 4. RELLENAR POR RANGO (MODAL)
+        // ==========================================
+        function populateRangeModalSelects() {
+            const catSelect = document.getElementById("range-fill-category");
+            const startSelect = document.getElementById("range-fill-start");
+            const endSelect = document.getElementById("range-fill-end");
+            if (!catSelect || !startSelect || !endSelect) return;
+
+            catSelect.innerHTML = categories.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
+            
+            let hoursOptions = "";
+            for (let h = 0; h < 24; h++) {
+                hoursOptions += `<option value="${h}">${String(h).padStart(2, '0')}:00</option>`;
+            }
+            startSelect.innerHTML = hoursOptions;
+            endSelect.innerHTML = hoursOptions;
+            startSelect.value = "9";
+            endSelect.value = "13";
+        }
+
+        function openRangeFillModal() {
+            populateRangeModalSelects();
+            document.getElementById("modal-range-fill").classList.add("active");
+        }
+
+        function closeRangeFillModal() {
+            document.getElementById("modal-range-fill").classList.remove("active");
+        }
+
+        function applyRangeFill() {
+            const catId = document.getElementById("range-fill-category").value;
+            const startH = parseInt(document.getElementById("range-fill-start").value);
+            const endH = parseInt(document.getElementById("range-fill-end").value);
+
+            const selectedDays = [];
+            document.querySelectorAll("input[name='range-day']:checked").forEach(cb => {
+                selectedDays.push(parseInt(cb.value));
+            });
+
+            if (selectedDays.length === 0) { alert("Selecciona al menos un día."); return; }
+
+            const minH = Math.min(startH, endH);
+            const maxH = Math.max(startH, endH);
+
+            selectedDays.forEach(d => {
+                for (let h = minH; h <= maxH; h++) {
+                    scheduleData[`${d}-${h}`] = catId;
+                }
+            });
+
+            saveSchedule();
+            renderScheduleTable();
+            closeRangeFillModal();
+        }
+
+        function exportSchedulePNG() {
+            const target = document.getElementById("schedule-export-container");
+            if (!target) return;
+            html2canvas(target, { backgroundColor: "#080808", scale: 2 }).then(canvas => {
+                const link = document.createElement("a");
+                link.download = "Horario_24H_Rocio_Administracion_Humana.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        }
+
+        // ==========================================
+        // 5. TABLERO KANBAN GTD (WIP=2)
+        // ==========================================
+        const DEFAULT_ROCIO_KANBAN = [
+            { id: "rk1", col: "todo", text: "Redactar borrador de petitorio de movilización UST", tag: "UST" },
+            { id: "rk2", col: "todo", text: "Zonificar atenciones a domicilio en Talcahuano", tag: "Puya" },
+            { id: "rk3", col: "todo", text: "Investigar insumos para velas/inciensos aromáticos", tag: "Marca" },
+            { id: "rk4", col: "doing", text: "1. Registrar clases de canto en cuaderno semanal", tag: "Voz" },
+            { id: "rk5", col: "doing", text: "2. Definir 4 semanas de Plan Terapéutico Puya Masajes", tag: "Puya" },
+            { id: "rk6", col: "done", text: "Delegar paseo diario de Nieve a mi papá", tag: "Hogar" },
+            { id: "rk7", col: "done", text: "Ajustar regla 50/30/20 con 0 arriendo", tag: "Finanzas" }
+        ];
+
+        let kanbanTasks = [];
+
+        function initKanban() {
+            const saved = localStorage.getItem("ah_rocio_kanban_v2");
+            if (saved) {
+                try { kanbanTasks = JSON.parse(saved); } catch(e) { kanbanTasks = JSON.parse(JSON.stringify(DEFAULT_ROCIO_KANBAN)); }
+            } else {
+                kanbanTasks = JSON.parse(JSON.stringify(DEFAULT_ROCIO_KANBAN));
+            }
+            renderKanban();
+        }
+
+        function saveKanban() {
+            localStorage.setItem("ah_rocio_kanban_v2", JSON.stringify(kanbanTasks));
+            renderKanban();
+        }
+
+        function renderKanban() {
+            const todoContainer = document.getElementById("kanban-container-todo");
+            const doingContainer = document.getElementById("kanban-container-doing");
+            const doneContainer = document.getElementById("kanban-container-done");
+            if (!todoContainer || !doingContainer || !doneContainer) return;
+
+            const todoTasks = kanbanTasks.filter(t => t.col === "todo");
+            const doingTasks = kanbanTasks.filter(t => t.col === "doing");
+            const doneTasks = kanbanTasks.filter(t => t.col === "done");
+
+            document.getElementById("count-todo").innerText = todoTasks.length;
+            document.getElementById("count-doing").innerText = `${doingTasks.length} / 2`;
+            document.getElementById("count-done").innerText = doneTasks.length;
+
+            todoContainer.innerHTML = todoTasks.map(t => renderKanbanCard(t)).join("");
+            doingContainer.innerHTML = doingTasks.map(t => renderKanbanCard(t)).join("");
+            doneContainer.innerHTML = doneTasks.map(t => renderKanbanCard(t)).join("");
+        }
+
+        function renderKanbanCard(task) {
+            const isTodo = task.col === "todo";
+            const isDoing = task.col === "doing";
+            const isDone = task.col === "done";
+            const borderStyle = isDoing ? 'border-left: 3px solid #38bdf8;' : (isDone ? 'border-left: 3px solid #10b981;' : '');
+
+            return `
+                <div class="kanban-card-item" style="${borderStyle}">
+                    <div class="kanban-card-text">${task.text}</div>
+                    <div class="kanban-card-footer">
+                        <span class="wip-limit-pill" style="background:#222; border-color:#333; color:#aaa;">${task.tag || 'Tarea'}</span>
+                        <div class="kanban-card-actions">
+                            ${!isTodo ? `<button class="btn-card-action" onclick="moveKanbanTask('${task.id}', '${isDone ? 'doing' : 'todo'}')" title="Mover atrás">⬅️</button>` : ''}
+                            ${!isDone ? `<button class="btn-card-action" onclick="moveKanbanTask('${task.id}', '${isTodo ? 'doing' : 'done'}')" title="Mover adelante">➡️</button>` : ''}
+                            <button class="btn-card-action" onclick="deleteKanbanTask('${task.id}')" title="Eliminar">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function addKanbanTask(column) {
+            const inputId = `input-new-${column}`;
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) return;
+
+            if (column === "doing") {
+                const currentDoing = kanbanTasks.filter(t => t.col === "doing").length;
+                if (currentDoing >= 2) {
+                    alert("⚠️ ¡Límite WIP Alcanzado! Solo puedes tener un máximo de 2 tareas activas en 'En Ejecución' para proteger tu energía mental y evitar la sobrecarga sensorial. Mueve una tarea a 'Hecho' antes de comenzar otra.");
+                    return;
+                }
+            }
+
+            const newTask = {
+                id: "rk_" + Date.now(),
+                col: column,
+                text: text,
+                tag: column === "doing" ? "En Foco" : (column === "done" ? "Victoria" : "Pendiente")
+            };
+
+            kanbanTasks.push(newTask);
+            input.value = "";
+            saveKanban();
+        }
+
+        function moveKanbanTask(taskId, targetCol) {
+            if (targetCol === "doing") {
+                const currentDoing = kanbanTasks.filter(t => t.col === "doing" && t.id !== taskId).length;
+                if (currentDoing >= 2) {
+                    alert("⚠️ ¡Límite WIP = 2 Alcanzado! Tienes 2 tareas activas en curso. Termina o mueve una antes de traer otra a 'En Ejecución'.");
+                    return;
+                }
+            }
+
+            const task = kanbanTasks.find(t => t.id === taskId);
+            if (task) {
+                task.col = targetCol;
+                saveKanban();
+            }
+        }
+
+        function deleteKanbanTask(taskId) {
+            kanbanTasks = kanbanTasks.filter(t => t.id !== taskId);
+            saveKanban();
+        }
+
+        function resetKanbanDefault() {
+            if (confirm("¿Restablecer el tablero Kanban al estado inicial de Rocío?")) {
+                kanbanTasks = JSON.parse(JSON.stringify(DEFAULT_ROCIO_KANBAN));
+                saveKanban();
+            }
+        }
+
+        // ==========================================
+        // 6. INICIALIZACIÓN GLOBAL
+        // ==========================================
+        window.addEventListener("DOMContentLoaded", function() {
+            checkClientAuth();
+            initSchedule();
+            initKanban();
+        });
+    </script>
+</body>
+</html>

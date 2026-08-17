@@ -66,7 +66,7 @@ export const AHAuth = {
         role: 'admin',
         status: 'Director / Consultor',
         driveUrl: '',
-        flightPlanUrl: 'visualizador/index.html',
+        flightPlanUrl: 'visualizador.html',
         notes: 'Administrador general y facilitador de planes de vuelo.',
         createdAt: new Date().toISOString()
       },
@@ -82,7 +82,7 @@ export const AHAuth = {
         role: 'client',
         status: 'En Acompañamiento',
         driveUrl: '',
-        flightPlanUrl: 'planes/antonia/index.html',
+        flightPlanUrl: 'planes-antonia.html',
         storageKey: 'ah_auth_token_antonia',
         notes: 'Yoga Online, Movimiento Somático, Financiamiento Pasajes Santiago ($160.000).',
         createdAt: new Date().toISOString()
@@ -99,7 +99,7 @@ export const AHAuth = {
         role: 'client',
         status: 'En Acompañamiento',
         driveUrl: '',
-        flightPlanUrl: 'planes/rocio/index.html',
+        flightPlanUrl: 'planes-rocio.html',
         storageKey: 'ah_auth_token_rocio',
         notes: 'Psicopedagogía UST (1er año), Puya Masajes (Planes 1 mes), Voz Caleidoscopio, Protocolos TEA.',
         createdAt: new Date().toISOString()
@@ -116,7 +116,7 @@ export const AHAuth = {
         role: 'client',
         status: 'En Acompañamiento (Fase 1)',
         driveUrl: '',
-        flightPlanUrl: 'planes/matias/index.html',
+        flightPlanUrl: 'planes-matias.html',
         storageKey: 'ah_client_auth_matias',
         notes: 'Desintoxicación Digital, Fases de Confianza, Apuntes Bajo Roce, Taller de Arte y Vóley.',
         createdAt: new Date().toISOString()
@@ -133,7 +133,7 @@ export const AHAuth = {
         role: 'client',
         status: 'En Acompañamiento',
         driveUrl: '',
-        flightPlanUrl: 'visualizador/index.html',
+        flightPlanUrl: 'visualizador.html',
         notes: 'Coproductor La Marca 33, Cumpleaños y eventos.',
         createdAt: new Date().toISOString()
       },
@@ -149,7 +149,7 @@ export const AHAuth = {
         role: 'client',
         status: 'En Acompañamiento',
         driveUrl: '',
-        flightPlanUrl: 'visualizador/index.html',
+        flightPlanUrl: 'visualizador.html',
         notes: 'Del Análisis a la Acción, Negocio de Lentes.',
         createdAt: new Date().toISOString()
       },
@@ -165,7 +165,7 @@ export const AHAuth = {
         role: 'client',
         status: 'En Acompañamiento',
         driveUrl: '',
-        flightPlanUrl: 'visualizador/index.html',
+        flightPlanUrl: 'visualizador.html',
         notes: 'Road to Sidney 2.0, Planificación Australia.',
         createdAt: new Date().toISOString()
       },

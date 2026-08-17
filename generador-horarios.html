@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapeador & Generador de Horarios por Cajitas 24H | Suite AICC</title>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="schedule-styles.css?v=3">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="../aicc-share.js"></script>
+</head>
+<body>
+
+    <!-- Header para Impresión Física -->
+    <div class="print-banner">
+        <h1>ADMINISTRACIÓN HUMANA · MAPA HORARIO SEMANAL 24H</h1>
+        <p>Mapeo Modular por Horas · Protocolo P.A.C. de Soberanía Operativa</p>
+    </div>
+
+    <header class="no-print">
+        <a href="../Suite_Digital_AICC.html" class="logo-container">
+            <div class="logo-mark">AH</div>
+            <div class="logo-text">
+                <h1>ADMINISTRACIÓN HUMANA</h1>
+                <p>Mapeador & Generador de Horarios · Modular por Cajitas</p>
+            </div>
+        </a>
+        <div class="nav-suite">
+            <a href="suite.html" class="nav-link">⚡ Suite AICC</a>
+            <a href="sondeo.html" class="nav-link">🔮 Sondeo 360°</a>
+            <a href="generador-horarios.html" class="nav-link active">⏰ Horario 24H</a>
+            <a href="visualizador.html" class="nav-link">🧭 Planes</a>
+            <a href="portal_cliente.html" class="nav-link" style="border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; padding: 4px 12px; font-weight: 700;">🔑 Portal Cliente</a>
+        </div>
+    </header>
+
+    <main class="schedule-app-wrapper animate-fade-in">
+        
+        <!-- PANEL SUPERIOR DE CONTROL -->
+        <div class="top-control-card no-print">
+            
+            <!-- Fila 1: Nombre de la Persona y Acciones Principales -->
+            <div class="title-row">
+                <div class="name-input-group">
+                    <label>👤 Horario de:</label>
+                    <input type="text" id="schedule-person-name" class="name-input" value="María Pérez" placeholder="Escribe el nombre aquí..." />
+                </div>
+
+                <div class="main-actions-group">
+                    <button class="btn-pill primary" id="btn-download-image" onclick="generateScheduleImage()">
+                        <span>🖼️</span> Descargar Imagen (PNG)
+                    </button>
+                    <button class="btn-pill" onclick="openRangeFillModal()">
+                        <span>⚡</span> Llenar Rango
+                    </button>
+
+                    <div style="position: relative; display: inline-block;">
+                        <button class="btn-pill" onclick="const p = document.getElementById('preset-pop'); p.style.display = p.style.display === 'block' ? 'none' : 'block';">
+                            <span>📋</span> Plantillas ▾
+                        </button>
+                        <div id="preset-pop" style="display:none; position:absolute; right:0; top:110%; background:#141414; border:1px solid #333; border-radius:8px; padding:6px; min-width:190px; z-index:100; box-shadow:0 10px 30px rgba(0,0,0,0.8);">
+                            <button style="background:none; border:none; color:#fff; padding:8px 12px; width:100%; text-align:left; font-size:0.8rem; cursor:pointer; border-radius:4px;" onclick="loadPresetTemplate('oficina'); document.getElementById('preset-pop').style.display='none';">🏢 Jornada Oficina 9-18</button>
+                            <button style="background:none; border:none; color:#fff; padding:8px 12px; width:100%; text-align:left; font-size:0.8rem; cursor:pointer; border-radius:4px;" onclick="loadPresetTemplate('emprendedor'); document.getElementById('preset-pop').style.display='none';">🚀 Emprendedor / Comercial</button>
+                            <button style="background:none; border:none; color:#fff; padding:8px 12px; width:100%; text-align:left; font-size:0.8rem; cursor:pointer; border-radius:4px;" onclick="loadPresetTemplate('estudiante'); document.getElementById('preset-pop').style.display='none';">📚 Estudiante / Pomodoro</button>
+                            <button style="background:none; border:none; color:#ff6666; padding:8px 12px; width:100%; text-align:left; font-size:0.8rem; cursor:pointer; border-radius:4px;" onclick="clearFullSchedule(); document.getElementById('preset-pop').style.display='none';">🧹 Limpiar Todo a Blanco</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-pill" onclick="openCategoriesManagerModal()" title="Personaliza colores, nombres o crea nuevas categorías de tiempo">
+                        <span>🎨</span> Categorías & Colores
+                    </button>
+
+                    <button class="btn-pill" onclick="exportStandaloneHTML()" title="Descarga archivo HTML autocontenido para guardar en la carpeta del cliente">
+                        <span>📥</span> Extraer HTML
+                    </button>
+                    <button class="btn-pill" onclick="window.print()">
+                        <span>🖨️</span> Imprimir
+                    </button>
+                    <button class="btn-pill" style="color: #f87171; border-color: rgba(248, 113, 113, 0.4);" onclick="clearFullSchedule()" title="Borra todo el contenido para empezar desde cero">
+                        <span>🧹</span> Limpiar Todo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fila 2: Pinceles y Etiquetas Dinámicas -->
+            <div class="brush-palette-bar">
+                <div class="brush-list" id="brush-palette-container">
+                    <!-- Generado dinámicamente con las categorías activas -->
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <button class="btn-pill" style="padding: 4px 10px; font-size: 0.75rem;" onclick="openCategoriesManagerModal()">
+                        <span>➕</span> Nueva Categoría
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ÁREA CAPTURABLE PARA GENERAR IMAGEN -->
+        <div id="capture-schedule-area">
+            
+            <!-- TABLA DE CAJITAS (24 HORAS X 7 DÍAS) -->
+            <div class="schedule-board-card">
+                <div class="schedule-scroll-area">
+                    <table class="schedule-grid-table">
+                        <thead>
+                            <tr>
+                                <th class="th-time-col">HORA</th>
+                                <th>LUNES</th>
+                                <th>MARTES</th>
+                                <th>MIÉRCOLES</th>
+                                <th>JUEVES</th>
+                                <th>VIERNES</th>
+                                <th>SÁBADO</th>
+                                <th>DOMINGO</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-board-tbody">
+                            <!-- Generado dinámicamente con 24 filas (00:00 a 23:00) -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RESUMEN Y MAPEO DE DÓNDE ESTÁ EL TIEMPO (168 HORAS) -->
+            <div class="time-metrics-grid" id="time-metrics-container">
+                <!-- Generado dinámicamente con las categorías configuradas -->
+            </div>
+
+            <!-- Barra Horizontal de Balance Semanal -->
+            <div style="background: #0d0d0d; border: 1px solid #222; border-radius: 12px; padding: 14px 18px; margin-bottom: 2rem;">
+                <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700; color:#888;">
+                    <span>DISTRIBUCIÓN DEL TIEMPO SEMANAL (168H)</span>
+                    <span id="metric-audit-summary">Calculando balance...</span>
+                </div>
+                <div class="weekly-progress-track" id="weekly-progress-track">
+                    <!-- Segmentos dinámicos -->
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- MODAL SIMPLE PARA EDITAR CAJITA(S) -->
+    <div class="box-modal-overlay" id="box-edit-modal">
+        <div class="box-modal-content">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3 class="modal-title-h3" id="modal-box-info">Editar Bloque Horario</h3>
+                <button style="background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;" onclick="closeBoxEditModal()">&times;</button>
+            </div>
+
+            <div>
+                <label class="form-label">Nombre de la Actividad:</label>
+                <input type="text" class="form-input" id="modal-activity-name" placeholder="Ej: Deep Work, Gimnasio, Almuerzo, Reunión..." />
+            </div>
+
+            <!-- Chips de Atajo Rápido -->
+            <div>
+                <span class="form-label">Atajos de 1 Clic:</span>
+                <div class="modal-chips-row" id="modal-quick-chips-container">
+                    <!-- Generado dinámicamente -->
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">Categoría / Color:</label>
+                <select class="form-select" id="modal-category-select">
+                    <!-- Opciones dinámicas -->
+                </select>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+                <button class="btn-pill" onclick="closeBoxEditModal()">Cancelar</button>
+                <button class="btn-pill primary" onclick="saveBoxModal()">Guardar Bloque (Enter)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE PERSONALIZACIÓN Y GESTIÓN DE CATEGORÍAS & COLORES -->
+    <div class="box-modal-overlay" id="categories-manager-modal">
+        <div class="box-modal-content" style="max-width: 540px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3 class="modal-title-h3">🎨 Personalizar Categorías & Colores</h3>
+                <button style="background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;" onclick="closeCategoriesManagerModal()">&times;</button>
+            </div>
+
+            <p style="font-size: 0.78rem; color: var(--text-muted);">
+                Edita los nombres, etiquetas y colores de las categorías existentes o añade nuevas actividades a medida.
+            </p>
+
+            <!-- Lista de Categorías Existentes -->
+            <div class="category-manager-list" id="category-manager-items-container">
+                <!-- Filas editables generadas dinámicamente -->
+            </div>
+
+            <!-- Formulario para Añadir Nueva Categoría -->
+            <div style="background: #141414; border: 1px dashed #333; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #aaa;">➕ Añadir Nueva Categoría / Item</span>
+                <div style="display: grid; grid-template-columns: 40px 1fr 80px; gap: 8px; align-items: center;">
+                    <div class="color-picker-wrapper" title="Elegir Color">
+                        <input type="color" id="new-cat-color" class="color-picker-input" value="#06b6d4" />
+                    </div>
+                    <input type="text" id="new-cat-name" class="form-input" placeholder="Nombre (ej: Clientes, Arte...)" />
+                    <input type="text" id="new-cat-tag" class="form-input" placeholder="TAG" maxlength="8" style="text-align:center; text-transform:uppercase;" />
+                </div>
+                <div style="display:flex; justify-content:flex-end;">
+                    <button class="btn-pill primary" style="font-size:0.76rem; padding:5px 12px;" onclick="addNewCategoryFromModal()">➕ Agregar Categoría</button>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+                <button class="btn-pill" style="color:#888; font-size:0.75rem;" onclick="resetCategoriesToDefault()">🔄 Restablecer Predeterminadas</button>
+                <button class="btn-pill primary" onclick="closeCategoriesManagerModal()">Listo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE LLENADO RÁPIDO DE RANGO -->
+    <div class="box-modal-overlay" id="range-fill-modal">
+        <div class="box-modal-content">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3 class="modal-title-h3">⚡ Llenar Rango de Horas</h3>
+                <button style="background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;" onclick="closeRangeFillModal()">&times;</button>
+            </div>
+
+            <!-- Atajos de Llenado Rápido -->
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button type="button" class="quick-tag-chip" onclick="setRangePreset('sueno')">🌙 Sueño (00:00 - 07:00 Todos)</button>
+                <button type="button" class="quick-tag-chip" onclick="setRangePreset('trabajo')">💼 Trabajo (09:00 - 18:00 Lun-Vie)</button>
+                <button type="button" class="quick-tag-chip" onclick="setRangePreset('almuerzo')">🥗 Almuerzo (13:00 - 14:00 Lun-Vie)</button>
+            </div>
+
+            <div>
+                <label class="form-label">Días a aplicar:</label>
+                <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:6px;">
+                    <label class="brush-chip checked" style="justify-content:center;"><input type="checkbox" class="day-check-input" value="0" checked style="display:none;" />Lun</label>
+                    <label class="brush-chip checked" style="justify-content:center;"><input type="checkbox" class="day-check-input" value="1" checked style="display:none;" />Mar</label>
+                    <label class="brush-chip checked" style="justify-content:center;"><input type="checkbox" class="day-check-input" value="2" checked style="display:none;" />Mié</label>
+                    <label class="brush-chip checked" style="justify-content:center;"><input type="checkbox" class="day-check-input" value="3" checked style="display:none;" />Jue</label>
+                    <label class="brush-chip checked" style="justify-content:center;"><input type="checkbox" class="day-check-input" value="4" checked style="display:none;" />Vie</label>
+                    <label class="brush-chip" style="justify-content:center;"><input type="checkbox" class="day-check-input" value="5" style="display:none;" />Sáb</label>
+                    <label class="brush-chip" style="justify-content:center;"><input type="checkbox" class="day-check-input" value="6" style="display:none;" />Dom</label>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <div>
+                    <label class="form-label">Desde:</label>
+                    <select id="range-start-hour" class="form-select">
+                        <option value="00:00">00:00</option>
+                        <option value="01:00">01:00</option>
+                        <option value="02:00">02:00</option>
+                        <option value="03:00">03:00</option>
+                        <option value="04:00">04:00</option>
+                        <option value="05:00">05:00</option>
+                        <option value="06:00">06:00</option>
+                        <option value="07:00">07:00</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00" selected>09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        <option value="23:00">23:00</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Hasta:</label>
+                    <select id="range-end-hour" class="form-select">
+                        <option value="00:00">00:00</option>
+                        <option value="01:00">01:00</option>
+                        <option value="02:00">02:00</option>
+                        <option value="03:00">03:00</option>
+                        <option value="04:00">04:00</option>
+                        <option value="05:00">05:00</option>
+                        <option value="06:00">06:00</option>
+                        <option value="07:00">07:00</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00" selected>18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        <option value="23:00">23:00</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">Categoría:</label>
+                <select id="range-category-select" class="form-select">
+                    <!-- Opciones dinámicas -->
+                </select>
+            </div>
+
+            <div>
+                <label class="form-label">Nombre de la Actividad:</label>
+                <input type="text" id="range-title-input" class="form-input" placeholder="Ej: Jornada de Trabajo, Sueño..." />
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+                <button class="btn-pill" onclick="closeRangeFillModal()">Cancelar</button>
+                <button class="btn-pill primary" onclick="applyRangeFill()">Aplicar a la Tabla</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="no-print" style="text-align:center; padding:2rem 0; color:#555; font-size:0.8rem; border-top:1px solid #222;">
+        <p>&copy; 2026 Administración Humana. Metodología de Diagnóstico por Dolor y Planificación Personal. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="schedule-app.js?v=3"></script>
+    <script>
+        window.addEventListener('click', function(e) {
+            const dd = document.getElementById('preset-pop');
+            if (dd && !e.target.closest('#preset-pop') && !e.target.closest('button[onclick*="preset-pop"]')) {
+                dd.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

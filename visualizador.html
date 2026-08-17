@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Hub: Visualizador de Planes de Vuelo | Administración Humana</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #121212;
+            --primary: #ffffff;
+            --secondary: #888888;
+            --border: #262626;
+            --border-hover: #333333;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+            --shadow-primary: 0 0 20px rgba(255, 255, 255, 0.05);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: var(--font-body);
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Split Layout Container */
+        .container {
+            max-width: 1650px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 1.5rem;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 1150px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+        }
+
+        /* LEFT COLUMN: SIDEBAR */
+        .sidebar {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: fit-content;
+            box-shadow: var(--shadow-primary);
+            position: sticky;
+            top: 1.5rem;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .brand-logo {
+            background: #ffffff;
+            color: #000000;
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .brand-title h1 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-title p {
+            color: var(--secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 0.8rem 1rem;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+            font-size: 0.8rem;
+        }
+
+        .stat-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+        }
+
+        .stat-val {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* Catalog Panel */
+        .catalog-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .catalog-title-main {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            border-left: 3px solid #ffffff;
+            padding-left: 0.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .service-list-item {
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-list-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.2rem;
+            gap: 0.5rem;
+        }
+
+        .service-title {
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .badge-price {
+            background: #ffffff;
+            color: #000000;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .service-desc {
+            font-size: 0.72rem;
+            color: var(--secondary);
+            line-height: 1.3;
+            margin-bottom: 0.2rem;
+        }
+
+        .service-meta {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            color: var(--secondary);
+            background: rgba(255,255,255,0.03);
+            padding: 0.05rem 0.25rem;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        /* RIGHT COLUMN: MAIN CONTENT */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .main-header {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .main-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .main-header p {
+            color: var(--secondary);
+            font-size: 0.85rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-left: 3px solid #ffffff;
+            padding-left: 0.5rem;
+        }
+
+        /* Directory Cards Grid */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1rem;
+        }
+
+        .client-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .client-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .client-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.2rem;
+        }
+
+        .client-name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .client-tagline {
+            font-size: 0.68rem;
+            color: var(--secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.3rem;
+        }
+
+        .client-card p {
+            font-size: 0.76rem;
+            color: var(--secondary);
+            margin-bottom: 0.6rem;
+            line-height: 1.35;
+        }
+
+        .client-details {
+            font-size: 0.72rem;
+            color: var(--secondary);
+            background: rgba(255,255,255,0.01);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.5rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .client-details span strong {
+            color: #ffffff;
+        }
+
+        .btn-open {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            text-align: center;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-open:hover {
+            background: #e5e5e5;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
+        }
+
+        .badge-status {
+            padding: 0.1rem 0.4rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        /* Matrix Table Styling (Compact & Clean) */
+        .matrix-container {
+            width: 100%;
+            overflow-x: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .matrix-table th, .matrix-table td {
+            padding: 0.5rem 0.65rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.75rem;
+            vertical-align: top;
+        }
+
+        .matrix-table th {
+            background: rgba(255, 255, 255, 0.02);
+            font-family: var(--font-display);
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.68rem;
+            letter-spacing: 0.5px;
+        }
+
+        .matrix-table tr:hover td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .client-col {
+            font-weight: 700;
+            color: #ffffff;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            border-right: 1px solid var(--border);
+            width: 95px;
+        }
+
+        .matrix-table td ul {
+            list-style: none;
+        }
+
+        .matrix-table td li {
+            font-size: 0.7rem;
+            color: var(--secondary);
+            margin-bottom: 0.15rem;
+        }
+
+        .badge-module {
+            display: inline-block;
+            padding: 0.05rem 0.25rem;
+            border-radius: 3px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: #ffffff;
+            margin-bottom: 0.15rem;
+        }
+
+        .badge-none {
+            color: #444444;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            color: var(--secondary);
+            font-size: 0.72rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- COLUMN 1: SIDEBAR (Permanent reference) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-logo">AH</div>
+                <div class="brand-title">
+                    <h1>Administración Humana</h1>
+                    <p>Soberanía Operativa</p>
+                </div>
+            </div>
+
+            <!-- Dashboard metrics -->
+            <div class="stats-panel">
+                <div class="stat-row">
+                    <span class="stat-label">Clientes Activos</span>
+                    <span class="stat-val">6</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Portafolio Piloto</span>
+                    <span class="stat-val">$995.000 CLP</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Consultoría Base</span>
+                    <span class="stat-val">$30.000 - 35.000/h</span>
+                </div>
+            </div>
+
+            <!-- Official Services Catalog -->
+            <div class="catalog-container">
+                <div class="catalog-title-main">Servicios & Tarifario</div>
+                
+                <div class="service-list-item">
+                    <div class="service-header">
+                        <div class="service-title">SERV-01: Escucha & Diagnóstico</div>
+                        <span class="badge-price">$35k</span>
+                    </div>
+                    <p class="service-desc">Anamnesis 1:1, Rueda de la vida, mapa de fugas y RAM.</p>
+                    <span class="service-meta">1.5 horas</span>
+                </div>
+
+                <div class="service-list-item">
+                    <div class="service-header">
+                        <div class="service-title">SERV-02: Mercado & Tarifas</div>
+                        <span class="badge-price">$60k</span>
+                    </div>
+                    <p class="service-desc">Estudio de buyer personas y empaquetamiento comercial.</p>
+                    <span class="service-meta">3.0 horas</span>
+                </div>
+
+                <div class="service-list-item">
+                    <div class="service-header">
+                        <div class="service-title">SERV-03: Plan de Vuelo (HTML)</div>
+                        <span class="badge-price">$85k</span>
+                    </div>
+                    <p class="service-desc">Dashboard interactivo con hojas de ruta y simuladores.</p>
+                    <span class="service-meta">5.0 horas</span>
+                </div>
+
+                <div class="service-list-item">
+                    <div class="service-header">
+                        <div class="service-title">SERV-04: Imprimibles Físicos</div>
+                        <span class="badge-price">$35k</span>
+                    </div>
+                    <p class="service-desc">Hojas impresas (TEA, Eisenhower, GTD, TimeBlocker).</p>
+                    <span class="service-meta">2.5 horas</span>
+                </div>
+
+                <div class="service-list-item">
+                    <div class="service-header">
+                        <div class="service-title">SERV-05: Capacitación</div>
+                        <span class="badge-price">$35k</span>
+                    </div>
+                    <p class="service-desc">Entrenamiento presencial en uso de planillas Excel.</p>
+                    <span class="service-meta">1.5 horas</span>
+                </div>
+
+                <div class="service-list-item">
+                    <div class="service-header">
+                        <div class="service-title">SERV-06: Auditoría & Seguimiento</div>
+                        <span class="badge-price">$30k</span>
+                    </div>
+                    <p class="service-desc">Revisión periódica de avances y limpieza cognitiva.</p>
+                    <span class="service-meta">1.0 hora</span>
+                </div>
+
+                <div class="service-list-item">
+                    <div class="service-header">
+                        <div class="service-title">SERV-07: Logística & Adaptación</div>
+                        <span class="badge-price">$50k</span>
+                    </div>
+                    <p class="service-desc">Flujos especiales (co-parentalidad) y entornos TEA.</p>
+                    <span class="service-meta">3.0 horas</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- COLUMN 2: MAIN AREA -->
+        <main class="main-content">
+            
+            <!-- Quick Title & Subtitle Banner -->
+            <div class="main-header">
+                <div>
+                    <h2>Panel Central de Clientes</h2>
+                    <p>Lanzador de tableros de control y seguimiento de operaciones</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                    <a href="generador-horarios.html" target="_blank" style="background:#ffffff; color:#000000; padding:6px 14px; border-radius:50px; font-weight:800; font-size:0.8rem; text-decoration:none;">⏰ Generador Horarios</a>
+                    <a href="portal_cliente.html" style="background:rgba(255,255,255,0.08); border:1px solid #333; color:#ffffff; padding:6px 14px; border-radius:50px; font-weight:700; font-size:0.8rem; text-decoration:none;">🔑 Portal Cliente</a>
+                    <a href="panel_admin.html" style="background:rgba(255,255,255,0.08); border:1px solid #333; color:#ffffff; padding:6px 14px; border-radius:50px; font-weight:700; font-size:0.8rem; text-decoration:none;">👑 Admin</a>
+                </div>
+            </div>
+
+            <!-- Quick Launch Directory Grid -->
+            <div>
+                <h3 class="section-title">🧭 Lanzador de Planes de Vuelo (Acceso Rápido)</h3>
+                <div class="directory-grid">
+                    
+                    <!-- CARLOS Z -->
+                    <div class="client-card">
+                        <div class="card-top">
+                            <div class="client-card-header">
+                                <div class="client-name">Carlos Zoñez</div>
+                                <span class="badge-status">Piloto Activo</span>
+                            </div>
+                            <div class="client-tagline">La Marca 33 • Eventos</div>
+                            <p>Coproductor de eventos electrónicos en Conce. Foco en balancear horario fijo, rutinas con su hija y 1h de coordinación con Diego.</p>
+                            <div class="client-details">
+                                <span>🏠 <strong>Horario</strong>: Fijo 09:30 - 13:30</span>
+                                <span>📋 <strong>Herramienta</strong>: Checklist Rutina Acción Imperfecta</span>
+                                <span>💰 <strong>Simulador</strong>: Fondo Despegue + 50/30/20</span>
+                            </div>
+                        </div>
+                        <a href="./Carlos Z/Plan de Vuelo 2.0 - Carlos Z.html" class="btn-open" target="_blank">Abrir Dashboard</a>
+                    </div>
+
+                    <!-- EMI -->
+                    <div class="client-card">
+                        <div class="card-top">
+                            <div class="client-card-header">
+                                <div class="client-name">Emi</div>
+                                <span class="badge-status">Piloto Activo</span>
+                            </div>
+                            <div class="client-tagline">Sistematización de Hábitos</div>
+                            <p>Enfoque en crear rutinas diarias y semanales con baja fricción para potenciar el arranque creativo y controlar el perfeccionismo.</p>
+                            <div class="client-details">
+                                <span>🏠 <strong>Horario</strong>: Bloques dinámicos</span>
+                                <span>📊 <strong>Planillas Excel</strong>: 01_Planificador a 06_Rueda</span>
+                                <span>💰 <strong>Simulador</strong>: Fondo Despegue + 50/30/20</span>
+                            </div>
+                        </div>
+                        <a href="./Emi/Plan de Vuelo 2.0 - Emi.html" class="btn-open" target="_blank">Abrir Dashboard</a>
+                    </div>
+
+                    <!-- ALVARO -->
+                    <div class="client-card">
+                        <div class="card-top">
+                            <div class="client-card-header">
+                                <div class="client-name">Álvaro</div>
+                                <span class="badge-status">Piloto Activo</span>
+                            </div>
+                            <div class="client-tagline">Del Análisis a la Acción</div>
+                            <p>Emprendimiento de lentes en Concepción. Estrategia enfocada en desbloquear parálisis de sobrepensamiento y forzar el contacto comercial.</p>
+                            <div class="client-details">
+                                <span>🏠 <strong>Negocio</strong>: Lentes y Ventas</span>
+                                <span>🎮 <strong>Simulador</strong>: Punto de Equilibrio (Costos F/V)</span>
+                                <span>💰 <strong>Meta Financiera</strong>: $3.000.000 CLP</span>
+                            </div>
+                        </div>
+                        <a href="./Alvaro - Del Analisis a la Accion/Plan de Vuelo 2.0 - Alvaro.html" class="btn-open" target="_blank">Abrir Dashboard</a>
+                    </div>
+
+                    <!-- KARINA -->
+                    <div class="client-card">
+                        <div class="card-top">
+                            <div class="client-card-header">
+                                <div class="client-name">Karina</div>
+                                <span class="badge-status">Piloto Activo</span>
+                            </div>
+                            <div class="client-tagline">Road to Sidney 2.0</div>
+                            <p>Estructura de planificación y metas de ahorro enfocada en la migración a Australia por estudios/trabajo. Mitiga la dispersión por alto WIP.</p>
+                            <div class="client-details">
+                                <span>🏠 <strong>Foco</strong>: Planificación de Viaje</span>
+                                <span>🎮 <strong>Simulador</strong>: Ahorro Australia (Visado/Pasajes)</span>
+                                <span>🚀 <strong>Hito</strong>: Certificación de Inglés / Visa</span>
+                            </div>
+                        </div>
+                        <a href="./Karina - Road to Sidney 2.0/Plan de Vuelo 2.0 - Karina.html" class="btn-open" target="_blank">Abrir Dashboard</a>
+                    </div>
+
+                    <!-- MATIAS -->
+                    <div class="client-card">
+                        <div class="card-top">
+                            <div class="client-card-header">
+                                <div class="client-name">Matías González</div>
+                                <span class="badge-status">Piloto Activo</span>
+                            </div>
+                            <div class="client-tagline">Resaca Digital y Autonomía (Fase 1)</div>
+                            <p>Combate de fatiga cognitiva y resaca digital. Establecimiento de bloques físicos innegociables para recuperar el control físico y mental.</p>
+                            <div class="client-details">
+                                <span>⏰ <strong>Mapeador 24H</strong>: 7 Categorías & Editor</span>
+                                <span>📋 <strong>Kanban GTD</strong>: Límite estricto WIP = 2</span>
+                                <span>🔒 <strong>Portal Privado</strong>: `matigonzalez` / `matigonzalez2009`</span>
+                            </div>
+                        </div>
+                        <a href="planes-matias.html" class="btn-open" target="_blank">Abrir Dashboard</a>
+                    </div>
+
+                    <!-- ROCIO -->
+                    <div class="client-card">
+                        <div class="card-top">
+                            <div class="client-card-header">
+                                <div class="client-name">Rocío</div>
+                                <span class="badge-status">Piloto Activo</span>
+                            </div>
+                            <div class="client-tagline">Soberanía & Bienestar (TEA)</div>
+                            <p>Psicopedagogía UST (1er año) y Masoterapeuta (Puya Masajes). Panel adaptado visualmente con foco en bienestar y stimming sensorial.</p>
+                            <div class="client-details">
+                                <span>⏰ <strong>Mapeador 24H</strong>: Triangulación Roles + Stimming</span>
+                                <span>📋 <strong>Kanban GTD</strong>: Límite estricto WIP = 2</span>
+                                <span>🔒 <strong>Portal Privado</strong>: `rocior` / `rocior1998`</span>
+                            </div>
+                        </div>
+                        <a href="planes-rocio.html" class="btn-open" target="_blank">Abrir Dashboard</a>
+                    </div>
+
+                    <!-- ANTONIA JOFRE -->
+                    <div class="client-card">
+                        <div class="card-top">
+                            <div class="client-card-header">
+                                <div class="client-name">Antonia Jofré</div>
+                                <span class="badge-status">Piloto Activo</span>
+                            </div>
+                            <div class="client-tagline">Yoga Online & Sostenibilidad de Cuidados</div>
+                            <p>Yoga suave y movimiento somático para cuerpos cansados. Estructura 100% freelance adaptada al cuidado de Mateo y Roma, con foco en financiar pasajes a Santiago.</p>
+                            <div class="client-details">
+                                <span>⏰ <strong>Mapeador 24H</strong>: Editor de Categorías & PNG</span>
+                                <span>📋 <strong>Kanban GTD</strong>: Límite estricto WIP = 2</span>
+                                <span>🔒 <strong>Portal Privado</strong>: `antojofre` / `antojofre23091995`</span>
+                            </div>
+                        </div>
+                        <a href="planes-antonia.html" class="btn-open" target="_blank">Abrir Dashboard</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Comparison Matrix -->
+            <div>
+                <h3 class="section-title">📊 Matriz General de Componentes y Diagnóstico</h3>
+                <div class="matrix-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>FODA / Diagnóstico</th>
+                                <th>Identidades / Energía</th>
+                                <th>Herramientas (AICC)</th>
+                                <th>Simuladores Finanzas</th>
+                                <th>Time Blocking</th>
+                                <th>Kanban GTD</th>
+                                <th>Plan 24h & Hábitos</th>
+                                <th>Imprimibles / Físico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="client-col">Carlos Z</td>
+                                <td>
+                                    <span class="badge-module">MD + HTML</span>
+                                    <ul>
+                                        <li>• Vaciado mental</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">4 Arquetipos</span>
+                                    <ul>
+                                        <li>• Sustento vs Proy.</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Completo</span>
+                                    <ul>
+                                        <li>• Rueda, Pareto</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Fondo + 50/30/20</span>
+                                    <ul>
+                                        <li>• Reparto de Gastos</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Foco + Job</span>
+                                    <ul>
+                                        <li>• Grid interactivo</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Interactivo</span>
+                                    <ul>
+                                        <li>• Límite WIP: 2</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Checklist 2.0</span>
+                                    <ul>
+                                        <li>• Rutina con su Hija</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Físico</span>
+                                    <ul>
+                                        <li>• Checklist B&N</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="client-col">Emi</td>
+                                <td>
+                                    <span class="badge-module">HTML</span>
+                                    <ul>
+                                        <li>• Racional estratégico</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">4 Identidades</span>
+                                    <ul>
+                                        <li>• Crítico: 10%</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Completo</span>
+                                    <ul>
+                                        <li>• Descargas Excel</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Fondo + 50/30/20</span>
+                                    <ul>
+                                        <li>• Simulador HTML</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Foco</span>
+                                    <ul>
+                                        <li>• Semanario interactivo</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Interactivo</span>
+                                    <ul>
+                                        <li>• Tablero de arrastre</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Hábito 24h</span>
+                                    <ul>
+                                        <li>• Cierre semanal</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Imprimibles</span>
+                                    <ul>
+                                        <li>• Guías y Plantillas</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="client-col">Álvaro</td>
+                                <td>
+                                    <span class="badge-module">FODA HTML</span>
+                                    <ul>
+                                        <li>• Foco comercial</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">4 Identidades</span>
+                                    <ul>
+                                        <li>• Estratega vs Ejecutor</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Estrategia</span>
+                                    <ul>
+                                        <li>• Océano Azul</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">P. Equilibrio</span>
+                                    <ul>
+                                        <li>• Costos Fijos/Variables</li>
+                                    </ul>
+                                </td>
+                                <td class="badge-none">No tiene</td>
+                                <td class="badge-none">No tiene</td>
+                                <td>
+                                    <span class="badge-module">Límites</span>
+                                    <ul>
+                                        <li>• Contacto comercial</li>
+                                    </ul>
+                                </td>
+                                <td class="badge-none">No tiene</td>
+                            </tr>
+                            <tr>
+                                <td class="client-col">Karina</td>
+                                <td>
+                                    <span class="badge-module">HTML</span>
+                                    <ul>
+                                        <li>• Proyecto Australia</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">4 Karinas</span>
+                                    <ul>
+                                        <li>• Saboteadora</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Metas</span>
+                                    <ul>
+                                        <li>• SMART, Tuckman</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Ahorro Viaje</span>
+                                    <ul>
+                                        <li>• Proyección de meses</li>
+                                    </ul>
+                                </td>
+                                <td class="badge-none">No tiene</td>
+                                <td class="badge-none">No tiene</td>
+                                <td>
+                                    <span class="badge-module">Australia</span>
+                                    <ul>
+                                        <li>• Fechas límite inglés</li>
+                                    </ul>
+                                </td>
+                                <td class="badge-none">No tiene</td>
+                            </tr>
+                            <tr>
+                                <td class="client-col">Matías G.</td>
+                                <td>
+                                    <span class="badge-module">HTML + FODA</span>
+                                    <ul>
+                                        <li>• Resaca Digital</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">3 Fases</span>
+                                    <ul>
+                                        <li>• Cuenta Confianza</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Kit Completo</span>
+                                    <ul>
+                                        <li>• Paso Cero, Antigravity</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Cuenta Confianza</span>
+                                    <ul>
+                                        <li>• Registro Excel</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Mapeador 24H</span>
+                                    <ul>
+                                        <li>• 7 Categorías + Editor</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Interactivo</span>
+                                    <ul>
+                                        <li>• Límite WIP = 2</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Desconexión</span>
+                                    <ul>
+                                        <li>• Cita Semanal Gestión</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Imprimibles</span>
+                                    <ul>
+                                        <li>• Planificador Hábitos</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="client-col">Rocío</td>
+                                <td>
+                                    <span class="badge-module">FODA + CAME</span>
+                                    <ul>
+                                        <li>• Adaptación TEA</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Triangulación</span>
+                                    <ul>
+                                        <li>• UST / Puya / Voz</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Kit TEA AICC</span>
+                                    <ul>
+                                        <li>• Stimming, Vaciado</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Presupuesto</span>
+                                    <ul>
+                                        <li>• 50/30/20 + Fondo</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Mapeador 24H</span>
+                                    <ul>
+                                        <li>• 7 Categorías + Stimming</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Interactivo</span>
+                                    <ul>
+                                        <li>• Límite WIP = 2</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Bienestar</span>
+                                    <ul>
+                                        <li>• Cierre en Papel</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">7 Imprimibles</span>
+                                    <ul>
+                                        <li>• Cero Pantallas</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="client-col">Antonia J.</td>
+                                <td>
+                                    <span class="badge-module">MD + HTML</span>
+                                    <ul>
+                                        <li>• Cuidado familiar</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">4 Arquetipos</span>
+                                    <ul>
+                                        <li>• Cuidados vs Yoga</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Completo</span>
+                                    <ul>
+                                        <li>• Inventario Resultados</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Hito Santiago</span>
+                                    <ul>
+                                        <li>• Simulador Alumnas ($160k)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Flexible</span>
+                                    <ul>
+                                        <li>• 45 min Mar/Jue</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Interactivo</span>
+                                    <ul>
+                                        <li>• Límite WIP: 2</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Checklist 2.0</span>
+                                    <ul>
+                                        <li>• Cero Culpa & Autocuidado</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge-module">Inventario TXT</span>
+                                    <ul>
+                                        <li>• Registro diario</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <footer>
+                <p><strong>Administración Humana © 2026</strong> • Hub de Control y Operación de Clientes.</p>
+            </footer>
+        </main>
+        
+    </div>
+
+</body>
+</html>
