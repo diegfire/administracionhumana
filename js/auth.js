@@ -527,4 +527,5 @@ if (typeof window !== 'undefined') {
   window.AHAuth = AHAuth;
 }
 
+export { AHAuth };
 export default AHAuth;

@@ -1905,10 +1905,9 @@
 
         function checkClientAuth() {
             const token = localStorage.getItem(CLIENT_CONFIG.storageKey);
-            const currentUser = JSON.parse(localStorage.getItem('ah_current_user') || '{}');
             const overlay = document.getElementById("client-auth-overlay");
             if (!overlay) return;
-            if (token || currentUser.username === 'matigonzalez' || currentUser.role === 'admin') {
+            if (token === "authenticated_ok") {
                 overlay.classList.add("unlocked");
             } else {
                 overlay.classList.remove("unlocked");
