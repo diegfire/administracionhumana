@@ -677,83 +677,93 @@
       .steps { grid-template-columns: 1fr; }
       .hero { padding: 72px 0 56px; }
       section { padding: 60px 0; }
-    /* ── AUTH MODAL ── */
+    }
+
+    /* ── AUTH MODAL (ESTILOS GLOBALES MAESTROS) ── */
     .auth-modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.88);
       backdrop-filter: blur(16px);
-      z-index: 1000;
-      display: flex; align-items: center; justify-content: center;
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 999999;
+      display: none;
+      align-items: center; justify-content: center;
       opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.25s ease;
     }
     .auth-modal-overlay.active {
-      opacity: 1; pointer-events: all;
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
     }
     .auth-card {
       background: #0d0d0d;
       border: 1px solid #333333;
       border-radius: 20px;
-      padding: 40px;
-      width: 100%; max-width: 440px;
+      padding: 36px 32px;
+      width: 100%; max-width: 450px;
       position: relative;
-      box-shadow: 0 0 40px rgba(255,255,255,0.08);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 255, 255, 0.08);
       color: #ffffff;
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .auth-close {
-      position: absolute; top: 20px; right: 20px;
+      position: absolute; top: 18px; right: 18px;
       background: transparent; border: none;
-      color: #888; font-size: 1.5rem; cursor: pointer;
-      line-height: 1;
+      color: #888; font-size: 1.6rem; cursor: pointer;
+      line-height: 1; padding: 4px;
+      transition: color 0.2s ease;
     }
     .auth-close:hover { color: #fff; }
     .auth-title {
       font-family: var(--font-heading);
-      font-size: 1.6rem; font-weight: 800;
-      margin-bottom: 8px; text-align: center;
+      font-size: 1.55rem; font-weight: 800;
+      margin-bottom: 6px; text-align: center; color: #ffffff;
     }
     .auth-sub {
-      font-size: 0.88rem; color: #888888;
-      text-align: center; margin-bottom: 24px;
+      font-size: 0.84rem; color: #888888;
+      text-align: center; margin-bottom: 20px; line-height: 1.4;
     }
     .auth-form-group {
-      margin-bottom: 16px; text-align: left;
+      margin-bottom: 14px; text-align: left;
     }
     .auth-form-group label {
-      display: block; font-size: 0.8rem; font-weight: 700;
+      display: block; font-size: 0.78rem; font-weight: 700;
       color: #aaa; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;
     }
     .auth-input {
-      width: 100%; padding: 12px 16px;
+      width: 100%; padding: 12px 14px;
       background: #161616; border: 1px solid #333333;
       border-radius: 10px; color: #ffffff;
-      font-size: 0.95rem; font-family: var(--font-sans);
-      transition: border-color 0.2s;
+      font-size: 0.92rem; font-family: var(--font-sans);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
     }
     .auth-input:focus {
-      outline: none; border-color: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
     }
     .auth-btn-submit {
-      width: 100%; padding: 14px;
+      width: 100%; padding: 13px;
       background: #ffffff; color: #000000;
       border: none; border-radius: 50px;
       font-family: var(--font-heading); font-weight: 800;
-      font-size: 0.95rem; cursor: pointer;
-      margin-top: 12px; transition: background 0.2s;
+      font-size: 0.92rem; cursor: pointer;
+      margin-top: 8px; transition: background 0.2s, transform 0.15s;
     }
-    .auth-btn-submit:hover { background: #e5e5e5; }
+    .auth-btn-submit:hover { background: #e5e5e5; transform: translateY(-1px); }
     .auth-switch {
-      margin-top: 20px; text-align: center;
-      font-size: 0.85rem; color: #888888;
+      margin-top: 16px; text-align: center;
+      font-size: 0.82rem; color: #888888;
     }
     .auth-switch a {
       color: #ffffff; text-decoration: underline; cursor: pointer; font-weight: 700;
     }
     .auth-error {
-      background: rgba(255, 68, 68, 0.1); border: 1px solid #ff4444;
-      color: #ff6666; font-size: 0.85rem; padding: 10px; border-radius: 8px;
-      margin-bottom: 16px; display: none; text-align: center;
+      background: rgba(255, 68, 68, 0.12); border: 1px solid #ff4444;
+      color: #ff6666; font-size: 0.82rem; padding: 10px; border-radius: 8px;
+      margin-bottom: 14px; display: none; text-align: center;
     }
 
     /* ── RESPONSIVE MOBILE & TABLET STYLES ── */
@@ -881,7 +891,7 @@
         <span>📸</span> @administracionhumana
       </a>
       <a href="sondeo.html" class="nav-cta">🔮 Sondeo Gratuito 360°</a>
-      <button id="btn-nav-auth" class="btn-secondary" style="padding: 10px 20px; font-size: 0.85rem; cursor:pointer;">🔑 Acceso Clientes</button>
+      <button id="btn-nav-auth" onclick="window.openAuthModal()" class="btn-secondary" style="padding: 10px 20px; font-size: 0.85rem; cursor:pointer;">🔑 Acceso Clientes</button>
     </div>
   </div>
 </nav>
@@ -1271,9 +1281,9 @@
 </footer>
 
 <!-- AUTH MODAL -->
-<div class="auth-modal-overlay" id="auth-modal">
+<div class="auth-modal-overlay" id="auth-modal" onclick="if(event.target===this) window.closeAuthModal();">
   <div class="auth-card">
-    <button class="auth-close" id="auth-close-btn">&times;</button>
+    <button class="auth-close" id="auth-close-btn" onclick="window.closeAuthModal();" type="button">&times;</button>
     
     <!-- VISTA INICIO DE SESIÓN -->
     <div id="auth-view-login">
@@ -1296,10 +1306,10 @@
       <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #262626; font-size: 0.76rem; color: #888; text-align: center;">
         <span style="display:block; margin-bottom: 6px; font-weight: 600;">Accesos directos de clientes activos:</span>
         <div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;">
-          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="document.getElementById('login-email').value='antojofre'; document.getElementById('login-password').value='antojofre23091995';">🧘 antojofre</button>
-          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="document.getElementById('login-email').value='rocior'; document.getElementById('login-password').value='rocior1998';">💆‍♀️ rocior</button>
-          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="document.getElementById('login-email').value='matigonzalez'; document.getElementById('login-password').value='matigonzalez2009';">🎨 matigonzalez</button>
-          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="document.getElementById('login-email').value='diegop'; document.getElementById('login-password').value='diegop1990';">👑 diegop</button>
+          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="window.fillLogin('antojofre', 'antojofre23091995');">🧘 antojofre</button>
+          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="window.fillLogin('rocior', 'rocior1998');">💆‍♀️ rocior</button>
+          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="window.fillLogin('matigonzalez', 'matigonzalez2009');">🎨 matigonzalez</button>
+          <button type="button" style="background:#181818; border:1px solid #333; color:#fff; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer;" onclick="window.fillLogin('diegop', 'diegop1990');">👑 diegop</button>
         </div>
       </div>
 
@@ -1356,11 +1366,45 @@
   </div>
 </div>
 
+<script>
+  // Global modal controllers
+  window.openAuthModal = function() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      requestAnimationFrame(() => {
+        modal.classList.add('active');
+      });
+    }
+  };
+  window.closeAuthModal = function() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+      modal.classList.remove('active');
+      setTimeout(() => {
+        if (!modal.classList.contains('active')) {
+          modal.style.display = 'none';
+        }
+      }, 200);
+    }
+  };
+  window.fillLogin = function(user, pass) {
+    const emailInput = document.getElementById('login-email');
+    const passInput = document.getElementById('login-password');
+    if (emailInput) emailInput.value = user;
+    if (passInput) passInput.value = pass;
+  };
+</script>
+
 <script type="module">
   import { AHAuth } from './js/auth.js';
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    await AHAuth.init();
+  async function setupApp() {
+    try {
+      await AHAuth.init();
+    } catch(e) {
+      console.warn("AHAuth init error:", e);
+    }
 
     const modal = document.getElementById('auth-modal');
     const btnNavAuth = document.getElementById('btn-nav-auth');
@@ -1384,97 +1428,135 @@
     const resetError = document.getElementById('reset-error');
     const resetSuccess = document.getElementById('reset-success');
 
-    AHAuth.onAuthChange((user) => {
-      if (user) {
-        btnNavAuth.innerHTML = `👤 ${user.fullName || 'Mi Portal'}`;
-        btnNavAuth.onclick = () => window.location.href = user.role === 'admin' ? 'panel_admin.html' : 'portal_cliente.html';
-      } else {
-        btnNavAuth.innerHTML = '🔑 Acceso Clientes';
-        btnNavAuth.onclick = () => openModal();
-      }
-    });
-
-    function openModal() {
-      modal.classList.add('active');
-    }
-    function closeModal() {
-      modal.classList.remove('active');
+    if (btnNavAuth) {
+      btnNavAuth.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.openAuthModal();
+      });
     }
 
-    btnClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
+    try {
+      AHAuth.onAuthChange((user) => {
+        if (!btnNavAuth) return;
+        if (user) {
+          btnNavAuth.innerHTML = `👤 ${user.fullName || 'Mi Portal'}`;
+          btnNavAuth.onclick = (e) => {
+            e.preventDefault();
+            window.location.href = user.role === 'admin' ? 'panel_admin.html' : 'portal_cliente.html';
+          };
+        } else {
+          btnNavAuth.innerHTML = '🔑 Acceso Clientes';
+          btnNavAuth.onclick = (e) => {
+            e.preventDefault();
+            window.openAuthModal();
+          };
+        }
+      });
+    } catch(e) {}
 
-    switchToRegister.addEventListener('click', () => {
-      viewLogin.style.display = 'none';
-      viewReset.style.display = 'none';
-      viewRegister.style.display = 'block';
-    });
-    switchToLogin.addEventListener('click', () => {
-      viewRegister.style.display = 'none';
-      viewReset.style.display = 'none';
-      viewLogin.style.display = 'block';
-    });
-    switchToReset.addEventListener('click', () => {
-      viewLogin.style.display = 'none';
-      viewRegister.style.display = 'none';
-      viewReset.style.display = 'block';
-    });
-    switchResetToLogin.addEventListener('click', () => {
-      viewReset.style.display = 'none';
-      viewRegister.style.display = 'none';
-      viewLogin.style.display = 'block';
-    });
+    if (btnClose) btnClose.addEventListener('click', window.closeAuthModal);
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) window.closeAuthModal();
+      });
+    }
 
-    formLogin.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      loginError.style.display = 'none';
-      const email = document.getElementById('login-email').value;
-      const pass = document.getElementById('login-password').value;
+    if (switchToRegister) {
+      switchToRegister.addEventListener('click', () => {
+        if (viewLogin) viewLogin.style.display = 'none';
+        if (viewReset) viewReset.style.display = 'none';
+        if (viewRegister) viewRegister.style.display = 'block';
+      });
+    }
+    if (switchToLogin) {
+      switchToLogin.addEventListener('click', () => {
+        if (viewRegister) viewRegister.style.display = 'none';
+        if (viewReset) viewReset.style.display = 'none';
+        if (viewLogin) viewLogin.style.display = 'block';
+      });
+    }
+    if (switchToReset) {
+      switchToReset.addEventListener('click', () => {
+        if (viewLogin) viewLogin.style.display = 'none';
+        if (viewRegister) viewRegister.style.display = 'none';
+        if (viewReset) viewReset.style.display = 'block';
+      });
+    }
+    if (switchResetToLogin) {
+      switchResetToLogin.addEventListener('click', () => {
+        if (viewReset) viewReset.style.display = 'none';
+        if (viewRegister) viewRegister.style.display = 'none';
+        if (viewLogin) viewLogin.style.display = 'block';
+      });
+    }
 
-      try {
-        const user = await AHAuth.login(email, pass);
-        closeModal();
-        window.location.href = user.role === 'admin' ? 'panel_admin.html' : 'portal_cliente.html';
-      } catch (err) {
-        loginError.innerText = err.message || 'Error al iniciar sesión';
-        loginError.style.display = 'block';
-      }
-    });
+    if (formLogin) {
+      formLogin.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (loginError) loginError.style.display = 'none';
+        const email = document.getElementById('login-email').value;
+        const pass = document.getElementById('login-password').value;
 
-    formRegister.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      registerError.style.display = 'none';
-      const name = document.getElementById('register-name').value;
-      const email = document.getElementById('register-email').value;
-      const pass = document.getElementById('register-password').value;
+        try {
+          const user = await AHAuth.login(email, pass);
+          window.closeAuthModal();
+          window.location.href = user.role === 'admin' ? 'panel_admin.html' : 'portal_cliente.html';
+        } catch (err) {
+          if (loginError) {
+            loginError.innerText = err.message || 'Error al iniciar sesión';
+            loginError.style.display = 'block';
+          }
+        }
+      });
+    }
 
-      try {
-        const user = await AHAuth.register(email, pass, name);
-        closeModal();
-        window.location.href = user.role === 'admin' ? 'panel_admin.html' : 'portal_cliente.html';
-      } catch (err) {
-        registerError.innerText = err.message || 'Error al crear cuenta';
-        registerError.style.display = 'block';
-      }
-    });
+    if (formRegister) {
+      formRegister.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (registerError) registerError.style.display = 'none';
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const pass = document.getElementById('register-password').value;
 
-    formReset.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      resetError.style.display = 'none';
-      resetSuccess.style.display = 'none';
-      const email = document.getElementById('reset-email').value;
+        try {
+          const user = await AHAuth.register(email, pass, name);
+          window.closeAuthModal();
+          window.location.href = user.role === 'admin' ? 'panel_admin.html' : 'portal_cliente.html';
+        } catch (err) {
+          if (registerError) {
+            registerError.innerText = err.message || 'Error al crear cuenta';
+            registerError.style.display = 'block';
+          }
+        }
+      });
+    }
 
-      try {
-        await AHAuth.resetPassword(email);
-        resetSuccess.style.display = 'block';
-      } catch (err) {
-        resetError.innerText = err.message || 'Error al solicitar recuperación';
-        resetError.style.display = 'block';
-      }
-    });
-  });
+    if (formReset) {
+      formReset.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (resetError) resetError.style.display = 'none';
+        if (resetSuccess) resetSuccess.style.display = 'none';
+        const email = document.getElementById('reset-email').value;
+
+        try {
+          await AHAuth.resetPassword(email);
+          if (resetSuccess) resetSuccess.style.display = 'block';
+        } catch (err) {
+          if (resetError) {
+            resetError.innerText = err.message || 'Error al solicitar recuperación';
+            resetError.style.display = 'block';
+          }
+        }
+      });
+    }
+  }
+
+  // Run setup
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupApp);
+  } else {
+    setupApp();
+  }
 </script>
 
 </body>
