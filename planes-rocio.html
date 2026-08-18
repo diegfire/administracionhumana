@@ -159,50 +159,53 @@
             color: #f87171;
         }
 
-        /* Navigation Tabs */
+                /* Navigation Tabs Control Deck */
         .tabs {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            padding: 0.35rem;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-            gap: 0.3rem;
-        }
-
-        .tabs::-webkit-scrollbar {
-            display: none;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 2.5rem;
         }
 
         .tab-btn {
-            background: transparent;
-            border: none;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             color: var(--text-muted);
-            padding: 0.65rem 1.3rem;
-            border-radius: 50px;
+            padding: 0.65rem 1.15rem;
+            border-radius: 10px;
             font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.45rem;
+            white-space: nowrap;
+            flex: 0 1 auto;
         }
 
         .tab-btn:hover {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         .tab-btn.active {
-            color: #000000;
             background: #ffffff;
-            box-shadow: var(--shadow-primary);
+            color: #000000;
+            border-color: #ffffff;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
             font-weight: 800;
+            transform: translateY(-1px);
         }
 
         .tab-content {
@@ -429,6 +432,8 @@
             background: #080808;
             max-height: 620px;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
         }
 
         .schedule-grid-table {

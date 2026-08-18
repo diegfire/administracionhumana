@@ -136,49 +136,53 @@
             box-shadow: 0 0 8px #ffffff;
         }
 
-        /* Navigation Tabs */
+                /* Navigation Tabs Control Deck */
         .tabs {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            padding: 0.4rem;
-            border-radius: 50px;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
             margin-bottom: 2.5rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-        }
-
-        .tabs::-webkit-scrollbar {
-            display: none;
         }
 
         .tab-btn {
-            background: transparent;
-            border: none;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             color: var(--text-muted);
-            padding: 0.75rem 1.4rem;
-            border-radius: 50px;
+            padding: 0.65rem 1.15rem;
+            border-radius: 10px;
             font-family: var(--font-display);
+            font-size: 0.85rem;
             font-weight: 700;
-            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.45rem;
+            white-space: nowrap;
+            flex: 0 1 auto;
         }
 
         .tab-btn:hover {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         .tab-btn.active {
             background: #ffffff;
             color: #000000;
-            box-shadow: var(--shadow-primary);
+            border-color: #ffffff;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
             font-weight: 800;
+            transform: translateY(-1px);
         }
 
         .tab-content {
@@ -405,6 +409,8 @@
             background: #ffffff;
             color: #000000;
             border-color: #ffffff;
+        }
+
         /* Visual Tool Badges & Headers */
         .tool-visual-badge {
             background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
@@ -786,7 +792,10 @@
 
         .schedule-scroll-area {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
             width: 100%;
+            position: relative;
         }
 
         .schedule-grid-table {
@@ -813,6 +822,10 @@
             width: 75px;
             background: #0a0a0a;
             color: #888888;
+            position: sticky;
+            left: 0;
+            z-index: 10;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.6);
         }
 
         .schedule-grid-table tbody td {
@@ -833,6 +846,10 @@
             font-size: 0.75rem;
             border-right: 2px solid var(--border);
             cursor: default;
+            position: sticky;
+            left: 0;
+            z-index: 5;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.6);
         }
 
         .schedule-box {
@@ -1312,6 +1329,8 @@
             padding: 1.2rem 1.5rem;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
             margin: 1.5rem 0;
+        }
+
         /* ========================================================= */
         /* PORTAL CLIENT SECURITY GATEWAY                            */
         /* ========================================================= */
@@ -1506,6 +1525,139 @@
             border-color: rgba(239, 68, 68, 0.4);
             color: #f87171;
         }
+        /* MOBILE & TOUCH RESPONSIVE STYLES */
+        .mobile-scroll-hint {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 1.2rem 0.85rem;
+            }
+                        .tabs {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.45rem;
+                padding: 0.45rem;
+                border-radius: 14px;
+                margin-bottom: 1.8rem;
+            }
+            .tab-btn {
+                padding: 0.65rem 0.5rem;
+                font-size: 0.78rem;
+                white-space: normal;
+                text-align: center;
+                border-radius: 8px;
+                width: 100%;
+            }
+            .tabs .tab-btn:last-child:nth-child(odd) {
+                grid-column: span 2;
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            .brand-title h1 {
+                font-size: 1.35rem;
+            }
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .kanban-board {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .top-control-card .title-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+            .top-control-card .main-actions-group {
+                flex-wrap: wrap;
+                width: 100%;
+                gap: 8px;
+            }
+            .btn-pill {
+                flex: 1 1 calc(50% - 6px);
+                justify-content: center;
+                text-align: center;
+            }
+            .brush-palette-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .brush-list {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+                padding-bottom: 6px;
+                scrollbar-width: none;
+                flex-wrap: nowrap;
+            }
+            .brush-list::-webkit-scrollbar {
+                display: none;
+            }
+            .brush-chip {
+                flex-shrink: 0;
+            }
+            .time-metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            }
+            .mobile-scroll-hint {
+                display: flex;
+            }
+            .box-modal-content {
+                max-width: 100%;
+                max-height: 88vh;
+                overflow-y: auto;
+                margin: 0 10px;
+                padding: 1.25rem 1rem;
+            }
+            .client-auth-card {
+                padding: 2rem 1.25rem;
+                max-width: 100%;
+                margin: 0 10px;
+            }
+            .gateway-avatar {
+                width: 58px;
+                height: 58px;
+                font-size: 1.5rem;
+                border-radius: 16px;
+                margin-bottom: 1rem;
+            }
+            .gateway-title {
+                font-size: 1.35rem;
+            }
+            .gateway-input, .form-input, .form-select {
+                font-size: 16px !important; /* Prevents auto-zoom on mobile browsers */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-pill {
+                flex: 1 1 100%;
+            }
+            .tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    
+
 
         @media print {
             .tabs, .lightbox, .download-btn, .btn-action-primary, .client-auth-overlay, .btn-portal-lock {

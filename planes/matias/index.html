@@ -162,50 +162,53 @@
             color: #f87171;
         }
 
-        /* Navigation Tabs */
+                /* Navigation Tabs Control Deck */
         .tabs {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            padding: 0.4rem;
-            border-radius: 50px;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
             margin-bottom: 2.5rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-            gap: 0.25rem;
-        }
-
-        .tabs::-webkit-scrollbar {
-            display: none;
         }
 
         .tab-btn {
-            background: transparent;
-            border: none;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             color: var(--text-muted);
-            padding: 0.75rem 1.4rem;
-            border-radius: 50px;
+            padding: 0.65rem 1.15rem;
+            border-radius: 10px;
             font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.45rem;
+            white-space: nowrap;
+            flex: 0 1 auto;
         }
 
         .tab-btn:hover {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         .tab-btn.active {
-            color: #000000;
             background: #ffffff;
-            box-shadow: var(--shadow-primary);
+            color: #000000;
+            border-color: #ffffff;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
             font-weight: 800;
+            transform: translateY(-1px);
         }
 
         /* Tab Content */
@@ -334,6 +337,8 @@
             background: #080808;
             max-height: 620px;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
         }
 
         .schedule-grid-table {
@@ -1150,6 +1155,13 @@
             width: 16px;
             height: 16px;
             cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .tool-checklist li input[type="checkbox"]:checked + span {
+            color: #777;
+            text-decoration: line-through;
+            opacity: 0.6;
         }
 
         /* Bullet lists */
@@ -1400,9 +1412,14 @@
                 <p>"Tu principal obstáculo hoy no es la falta de capacidad, sino la evasión activa. Confundes 'prepararte' con 'hacer' (ver videos de matemáticas en lugar de ejercitar, o leer sobre hábitos en lugar de practicarlos). Para destrabar tu autonomía, pasamos a la acción directa y al fin del empuje externo."</p>
             </div>
 
-            <div class="image-preview" style="margin-top: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                <img src="Imagenes Herramientas/Modelo Tuckman.png" alt="Modelo de Tuckman">
-                <p>Modelo de Tuckman: Transitando de la Tormenta a la Normalización a través de la Cuenta de Confianza.</p>
+            <div class="card" style="margin-top: 1.5rem; border-color: rgba(99, 102, 241, 0.3); background: rgba(99, 102, 241, 0.03); text-align: center;">
+                <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">📈 ⚡ 🤝 🏆</div>
+                <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem;">
+                    Modelo de Tuckman: De la Tormenta al Rendimiento Autónomo
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); max-width: 650px; margin: 0 auto;">
+                    Transitando de la fase de fricción y control externo hacia la normalización y la confianza personal mediante micro-acciones medibles y honestidad diaria.
+                </p>
             </div>
         </div>
 
@@ -1631,128 +1648,104 @@
             <!-- Tool 1 -->
             <div class="tool-box">
                 <h3>
-                    <i class="fa-solid fa-table-columns text-indigo-400"></i> Tablero Escolar "Paso Cero" (GTD + Kanban)
-                    <a href="file:///c:/Users/diego/Mi%20unidad/LAPEGUITA/Administracion%20Humana/05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias%20Gonzalez/02_Acompanamiento_Escolar_BajoRoce/GTD_Colegio_Maty.xlsx"><i class="fa-solid fa-file-excel"></i> Ver Excel</a>
+                    <i class="fa-solid fa-table-columns text-indigo-400"></i> Tablero Escolar "Paso Cero" (GTD + Kanban WIP = 2)
+                    <a href="02_Acompanamiento_Escolar_BajoRoce/GTD_Colegio_Maty.xlsx"><i class="fa-solid fa-file-excel"></i> Ver Excel</a>
                 </h3>
                 <p class="tool-meta">Metáfora: El GTD es tu "Cubo de basura mental" y el Kanban es el "Escenario de Acción".</p>
                 <p class="tool-desc">
-                    Sirve para que no acumules deberes en tu cabeza y te congeles por abrumo. Escribe la tarea y ponla en la pared. Limita tu columna "Haciendo" a un máximo de 2 tareas simultáneas.
+                    Sirve para que no acumules deberes en tu cabeza y te congeles por abrumo. Escribe la tarea y ponla en la pared. Limita tu columna "En Ejecución" a un máximo de 2 tareas simultáneas.
                 </p>
                 <ul class="tool-checklist">
-                    <li><input type="checkbox"> Hacer el vaciado escolar dos veces por semana con tus padres.</li>
-                    <li><input type="checkbox"> Limitar la columna "Haciendo" en tu pared a un máximo de 2 Post-its.</li>
-                    <li><input type="checkbox"> Completar el "Paso Cero" (5 minutos de acción) antes de rendirte.</li>
+                    <li><input type="checkbox" id="chk_matias_tool1_1"> <span>Hacer el vaciado escolar dos veces por semana con tus padres.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool1_2"> <span>Limitar la columna "En Ejecución" en tu pared a un máximo de 2 Post-its.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool1_3"> <span>Completar el "Paso Cero" (5 minutos de acción) antes de rendirte.</span></li>
                 </ul>
-                <div class="image-preview">
-                    <img src="Imagenes Herramientas/Kanban.png" alt="Estructura Kanban">
-                    <p>Visualización del Tablero Kanban: Pendiente, Haciendo (Límite=2), Terminado</p>
-                </div>
             </div>
 
             <!-- Tool 2 -->
             <div class="tool-box">
                 <h3>
                     <i class="fa-solid fa-heart-circle-check text-rose-500"></i> Cuenta Corriente de Confianza
-                    <a href="file:///c:/Users/diego/Mi%20unidad/LAPEGUITA/Administracion%20Humana/05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias%20Gonzalez/02_Acompanamiento_Escolar_BajoRoce/GTD_Colegio_Maty.xlsx"><i class="fa-solid fa-file-excel"></i> Ver Registro</a>
+                    <a href="02_Acompanamiento_Escolar_BajoRoce/GTD_Colegio_Maty.xlsx"><i class="fa-solid fa-file-excel"></i> Ver Registro</a>
                 </h3>
                 <p class="tool-meta">Metáfora: La confianza es tu activo moral más valioso; se deposita con hechos y se gira con mentiras.</p>
                 <p class="tool-desc">
                     El registro de tus acciones diarias. Las tareas cumplidas y la honestidad son depósitos. Los ocultamientos y las faltas a la verdad son giros. Mantener saldo positivo es tu llave para el teléfono.
                 </p>
                 <ul class="tool-checklist">
-                    <li><input type="checkbox"> Mantener la honestidad absoluta en horarios y actividades.</li>
-                    <li><input type="checkbox"> Registrar movimientos diarios (Diego/Ángela) en el panel de control.</li>
-                    <li><input type="checkbox"> Acumular 2 semanas con balance neto de puntos positivo.</li>
+                    <li><input type="checkbox" id="chk_matias_tool2_1"> <span>Mantener la honestidad absoluta en horarios y actividades.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool2_2"> <span>Registrar movimientos diarios (Diego/Ángela) en el panel de control.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool2_3"> <span>Acumular 2 semanas con balance neto de puntos positivo.</span></li>
                 </ul>
-                <div class="image-preview">
-                    <img src="Imagenes Herramientas/La Regla 50 30 20.png" alt="Regla 50/30/20">
-                    <p>GPS del Saldo de Confianza: Administra tus decisiones de forma equilibrada para cuidar tu activo moral.</p>
-                </div>
             </div>
 
             <!-- Tool 3 -->
             <div class="tool-box">
                 <h3>
-                    <i class="fa-solid fa-book-open text-emerald-400"></i> Apuntes Mínimos Viables (Bajo Roce)
-                    <a href="file:///c:/Users/diego/Mi%20unidad/LAPEGUITA/Administracion%20Humana/05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias%20Gonzalez/00_Fase_Contencion_Crisis/Minuta_Coordinacion_Profesores.docx"><i class="fa-solid fa-file-word"></i> Ver Minuta</a>
+                    <i class="fa-solid fa-book-open text-emerald-400"></i> Apuntes Mínimos Viables (Bajo Roce & Pareto 80/20)
+                    <a href="00_Fase_Contencion_Crisis/Minuta_Coordinacion_Profesores.docx"><i class="fa-solid fa-file-word"></i> Ver Minuta</a>
                 </h3>
                 <p class="tool-meta">Metáfora: Tu "Trámite Cumplible" para evitar la parálisis académica.</p>
                 <p class="tool-desc">
                     Para evitar bloquearte frente a cuadernos perfectos. Escribe resúmenes de solo 5 líneas por tema. Pide a un compañero o profesor capturas de pizarra si es necesario. Lo importante es tener la información de forma simple.
                 </p>
                 <ul class="tool-checklist">
-                    <li><input type="checkbox"> Escribir resúmenes ultra-cortos de 5 líneas en tus materias densas.</li>
-                    <li><input type="checkbox"> Confirmar con el monitor de curso las tareas anotadas al final de la jornada.</li>
-                    <li><input type="checkbox"> Guardar las capturas de pizarras en la plataforma oficial del colegio.</li>
+                    <li><input type="checkbox" id="chk_matias_tool3_1"> <span>Escribir resúmenes ultra-cortos de 5 líneas en tus materias densas.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool3_2"> <span>Confirmar con el monitor de curso las tareas anotadas al final de la jornada.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool3_3"> <span>Guardar las capturas de pizarras en la plataforma oficial del colegio.</span></li>
                 </ul>
-                <div class="image-preview">
-                    <img src="Imagenes Herramientas/Principio de Pareto.png" alt="Principio de Pareto">
-                    <p>Principio de Pareto (80/20): Concentra el 20% del esfuerzo clave para obtener el 80% de tus resultados académicos.</p>
-                </div>
             </div>
 
             <!-- Tool 4 -->
             <div class="tool-box">
                 <h3>
                     <i class="fa-solid fa-calendar-days text-amber-500"></i> Time Blocking de Rutina Análoga
-                    <a href="file:///c:/Users/diego/Mi%20unidad/LAPEGUITA/Administracion%20Humana/05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias%20Gonzalez/02_Acompanamiento_Escolar_BajoRoce/Horario_Escolar_Mati_3B.xlsx"><i class="fa-solid fa-file-excel"></i> Horario Escolar</a>
-                    <a style="margin-left: 10px;" href="file:///c:/Users/diego/Mi%20unidad/LAPEGUITA/Administracion%20Humana/05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias%20Gonzalez/Plantillas/01_Planificador_Semanal_y_Bloques_de_Tiempo.xlsx"><i class="fa-solid fa-file-excel"></i> Planificador Semanal</a>
+                    <a href="02_Acompanamiento_Escolar_BajoRoce/Horario_Escolar_Mati_3B.xlsx"><i class="fa-solid fa-file-excel"></i> Horario Escolar</a>
+                    <a style="margin-left: 10px;" href="Plantillas/01_Planificador_Semanal_y_Bloques_de_Tiempo.xlsx"><i class="fa-solid fa-file-excel"></i> Planificador Semanal</a>
                 </h3>
                 <p class="tool-meta">Metáfora: Reclamar tu territorio frente al aburrimiento.</p>
                 <p class="tool-desc">
                     Rutinas estructuradas en papel y en tu pared. El tiempo que antes se perdía en redes sociales ahora se asigna de manera visual a bloques específicos de deporte, estudio y ocio activo.
                 </p>
                 <ul class="tool-checklist">
-                    <li><input type="checkbox"> Pega tu horario escolar y rutina semanal en un lugar visible de tu cuarto.</li>
-                    <li><input type="checkbox"> Respetar las horas bloqueadas para estudio (bajo roce) y orden del hogar.</li>
+                    <li><input type="checkbox" id="chk_matias_tool4_1"> <span>Pega tu horario escolar y rutina semanal en un lugar visible de tu cuarto.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool4_2"> <span>Respetar las horas bloqueadas para estudio (bajo roce) y orden del hogar.</span></li>
                 </ul>
-                <div class="image-preview">
-                    <img src="Imagenes Herramientas/Time Blocking.png" alt="Concepto Time Blocking">
-                    <p>Bloquear tiempo: Definir espacios inamovibles para tus prioridades análogas.</p>
-                </div>
             </div>
 
             <!-- Tool 5 -->
             <div class="tool-box">
                 <h3>
-                    <i class="fa-solid fa-palette text-cyan-400"></i> Taller de Arte y Vóley (Dopamina Real)
-                    <a href="file:///c:/Users/diego/Mi%20unidad/LAPEGUITA/Administracion%20Humana/05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias%20Gonzalez/03_Portafolio_Paz_90_Dias/Guia_Creativa_Pintura_y_Dibujo.docx"><i class="fa-solid fa-file-word"></i> Guía Pintura y Dibujo</a>
-                    <a style="margin-left: 10px;" href="file:///c:/Users/diego/Mi%20unidad/LAPEGUITA/Administracion%20Humana/05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias%20Gonzalez/03_Portafolio_Paz_90_Dias/Planificacion_Mati.xlsx"><i class="fa-solid fa-file-excel"></i> Planificación</a>
+                    <i class="fa-solid fa-palette text-cyan-400"></i> Taller de Arte y Vóley (Dopamina Real SMART)
+                    <a href="03_Portafolio_Paz_90_Dias/Guia_Creativa_Pintura_y_Dibujo.docx"><i class="fa-solid fa-file-word"></i> Guía Pintura y Dibujo</a>
+                    <a style="margin-left: 10px;" href="03_Portafolio_Paz_90_Dias/Planificacion_Mati.xlsx"><i class="fa-solid fa-file-excel"></i> Planificación</a>
                 </h3>
                 <p class="tool-meta">Metáfora: Tu lienzo de enfoque. El trazo imperfecto se corrige y evoluciona.</p>
                 <p class="tool-desc">
                     El desarrollo de tus proyectos de pintura y dibujo y tus prácticas de vóley. Actividades creativas y físicas estructuradas que regulan el TDAH de forma sana, alejando a tu cerebro del letargo digital.
                 </p>
                 <ul class="tool-checklist">
-                    <li><input type="checkbox"> Dedicar 15 minutos al dibujo o pintura en tu cuarto todos los días.</li>
-                    <li><input type="checkbox"> Completar tus entrenamientos de Vóley semanales.</li>
-                    <li><input type="checkbox"> Registrar tus progresos e hitos en tu ficha "Matias el tipazo".</li>
+                    <li><input type="checkbox" id="chk_matias_tool5_1"> <span>Dedicar 15 minutos al dibujo o pintura en tu cuarto todos los días.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool5_2"> <span>Completar tus entrenamientos de Vóley semanales.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool5_3"> <span>Registrar tus progresos e hitos en tu ficha de seguimiento.</span></li>
                 </ul>
-                <div class="image-preview">
-                    <img src="Imagenes Herramientas/Metodo SMART.jpg" alt="Método SMART">
-                    <p>Metas SMART: Define objetivos de práctica artísticos y deportivos específicos, medibles y realistas.</p>
-                </div>
             </div>
 
             <!-- Tool 6 -->
             <div class="tool-box">
                 <h3>
-                    <i class="fa-solid fa-clock text-indigo-400"></i> La Cita Semanal de Crecimiento Personal (Tu Auditoría de Gestión)
-                    <a href="file:///c:/Users/diego/Mi%20unidad/LAPEGUITA/Administracion%20Humana/01_Gestion_Parental_Co-parentalidad/Minutas_Reunion_Socios_Lunes.docx"><i class="fa-solid fa-file-word"></i> Reunión de Socios</a>
+                    <i class="fa-solid fa-clock text-indigo-400"></i> La Cita Semanal de Crecimiento Personal (Matriz Eisenhower)
+                    <a href="Minutas_Reunion_Socios_Lunes.docx"><i class="fa-solid fa-file-word"></i> Reunión de Socios</a>
                 </h3>
                 <p class="tool-meta">Metáfora: Tu fecha y hora con tu propio crecimiento. Las actitudes importan más que los números.</p>
                 <p class="tool-desc">
                     Un bloque semanal no negociable de mínimo 1 hora donde auditas tus sistemas (Kanban, planificador), reflexionas sobre tus decisiones en el hogar y planteas tus propias mejoras de gestión sin esperar a ser interrogado.
                 </p>
                 <ul class="tool-checklist">
-                    <li><input type="checkbox"> Reservar 1 hora los fines de semana exclusivamente para evaluar tu propio avance.</li>
-                    <li><input type="checkbox"> Identificar un cuello de botella en tu rutina semanal y proponer una solución concreta.</li>
-                    <li><input type="checkbox"> Registrar tus compromisos y firmar los acuerdos en el planificador con tus padres.</li>
+                    <li><input type="checkbox" id="chk_matias_tool6_1"> <span>Reservar 1 hora los fines de semana exclusivamente para evaluar tu propio avance.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool6_2"> <span>Identificar un cuello de botella en tu rutina semanal y proponer una solución concreta.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool6_3"> <span>Registrar tus compromisos y firmar los acuerdos en el planificador con tus padres.</span></li>
                 </ul>
-                <div class="image-preview">
-                    <img src="Imagenes Herramientas/Matriz de Eisenhower.png" alt="Matriz de Eisenhower">
-                    <p>Matriz de Eisenhower: Prioriza lo importante no urgente (planificación y autogestión) antes de que se vuelva pánico.</p>
-                </div>
             </div>
 
             <!-- Tool 7 -->
@@ -1767,9 +1760,9 @@
                     Tu herramienta de Inteligencia Artificial en el computador recién recuperado. Sirve para romper la inercia del "Paso Cero", hacer resúmenes de bajo roce de 5 líneas, simuladores de exámenes interactivas y generar ideas para tus talleres de arte y vóley.
                 </p>
                 <ul class="tool-checklist">
-                    <li><input type="checkbox"> Usar el comando "Paso Cero" cuando sientas abrumo para empezar una tarea.</li>
-                    <li><input type="checkbox"> Crear quizzes de 3 preguntas de práctica antes de tus evaluaciones del colegio.</li>
-                    <li><input type="checkbox"> Respetar las 3 Reglas de Oro: Antigravity es tu entrenador, no tu reemplazo.</li>
+                    <li><input type="checkbox" id="chk_matias_tool7_1"> <span>Usar el comando "Paso Cero" cuando sientas abrumo para empezar una tarea.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool7_2"> <span>Crear quizzes de 3 preguntas de práctica antes de tus evaluaciones del colegio.</span></li>
+                    <li><input type="checkbox" id="chk_matias_tool7_3"> <span>Respetar las 3 Reglas de Oro: Antigravity es tu entrenador, no tu reemplazo.</span></li>
                 </ul>
             </div>
         </div>
@@ -1905,10 +1898,9 @@
 
         function checkClientAuth() {
             const token = localStorage.getItem(CLIENT_CONFIG.storageKey);
-            const currentUser = JSON.parse(localStorage.getItem('ah_current_user') || '{}');
             const overlay = document.getElementById("client-auth-overlay");
             if (!overlay) return;
-            if (token || currentUser.username === 'matigonzalez' || currentUser.role === 'admin') {
+            if (token === "authenticated_ok") {
                 overlay.classList.add("unlocked");
             } else {
                 overlay.classList.remove("unlocked");
@@ -2431,6 +2423,20 @@
             }
         }
 
+        function initChecklistPersistence(prefix) {
+            const checkboxes = document.querySelectorAll('.tool-checklist input[type="checkbox"]');
+            checkboxes.forEach((cb, idx) => {
+                const key = cb.id ? `ah_chk_${cb.id}` : `ah_chk_${prefix}_${idx}`;
+                const saved = localStorage.getItem(key);
+                if (saved === "1") {
+                    cb.checked = true;
+                }
+                cb.addEventListener("change", function() {
+                    localStorage.setItem(key, cb.checked ? "1" : "0");
+                });
+            });
+        }
+
         // ==========================================
         // 6. INICIALIZACIÓN GLOBAL
         // ==========================================
@@ -2438,6 +2444,7 @@
             checkClientAuth();
             initSchedule();
             initKanban();
+            initChecklistPersistence('matias');
         });
     </script>
 <script id="embedded-images-data">

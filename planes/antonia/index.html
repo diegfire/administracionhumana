@@ -136,49 +136,53 @@
             box-shadow: 0 0 8px #ffffff;
         }
 
-        /* Navigation Tabs */
+                /* Navigation Tabs Control Deck */
         .tabs {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            padding: 0.4rem;
-            border-radius: 50px;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
             margin-bottom: 2.5rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-        }
-
-        .tabs::-webkit-scrollbar {
-            display: none;
         }
 
         .tab-btn {
-            background: transparent;
-            border: none;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             color: var(--text-muted);
-            padding: 0.75rem 1.4rem;
-            border-radius: 50px;
+            padding: 0.65rem 1.15rem;
+            border-radius: 10px;
             font-family: var(--font-display);
+            font-size: 0.85rem;
             font-weight: 700;
-            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.45rem;
+            white-space: nowrap;
+            flex: 0 1 auto;
         }
 
         .tab-btn:hover {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         .tab-btn.active {
             background: #ffffff;
             color: #000000;
-            box-shadow: var(--shadow-primary);
+            border-color: #ffffff;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
             font-weight: 800;
+            transform: translateY(-1px);
         }
 
         .tab-content {
@@ -405,6 +409,33 @@
             background: #ffffff;
             color: #000000;
             border-color: #ffffff;
+        }
+
+        /* Visual Tool Badges & Headers */
+        .tool-visual-badge {
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.9rem;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .tool-visual-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            box-shadow: 0 0 15px rgba(255,255,255,0.12);
+            flex-shrink: 0;
         }
 
         /* Extended Tool Card Elements */
@@ -761,7 +792,10 @@
 
         .schedule-scroll-area {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
             width: 100%;
+            position: relative;
         }
 
         .schedule-grid-table {
@@ -788,6 +822,10 @@
             width: 75px;
             background: #0a0a0a;
             color: #888888;
+            position: sticky;
+            left: 0;
+            z-index: 10;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.6);
         }
 
         .schedule-grid-table tbody td {
@@ -808,6 +846,10 @@
             font-size: 0.75rem;
             border-right: 2px solid var(--border);
             cursor: default;
+            position: sticky;
+            left: 0;
+            z-index: 5;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.6);
         }
 
         .schedule-box {
@@ -1287,6 +1329,8 @@
             padding: 1.2rem 1.5rem;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
             margin: 1.5rem 0;
+        }
+
         /* ========================================================= */
         /* PORTAL CLIENT SECURITY GATEWAY                            */
         /* ========================================================= */
@@ -1481,6 +1525,139 @@
             border-color: rgba(239, 68, 68, 0.4);
             color: #f87171;
         }
+        /* MOBILE & TOUCH RESPONSIVE STYLES */
+        .mobile-scroll-hint {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 1.2rem 0.85rem;
+            }
+                        .tabs {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.45rem;
+                padding: 0.45rem;
+                border-radius: 14px;
+                margin-bottom: 1.8rem;
+            }
+            .tab-btn {
+                padding: 0.65rem 0.5rem;
+                font-size: 0.78rem;
+                white-space: normal;
+                text-align: center;
+                border-radius: 8px;
+                width: 100%;
+            }
+            .tabs .tab-btn:last-child:nth-child(odd) {
+                grid-column: span 2;
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            .brand-title h1 {
+                font-size: 1.35rem;
+            }
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .kanban-board {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .top-control-card .title-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+            .top-control-card .main-actions-group {
+                flex-wrap: wrap;
+                width: 100%;
+                gap: 8px;
+            }
+            .btn-pill {
+                flex: 1 1 calc(50% - 6px);
+                justify-content: center;
+                text-align: center;
+            }
+            .brush-palette-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .brush-list {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+                padding-bottom: 6px;
+                scrollbar-width: none;
+                flex-wrap: nowrap;
+            }
+            .brush-list::-webkit-scrollbar {
+                display: none;
+            }
+            .brush-chip {
+                flex-shrink: 0;
+            }
+            .time-metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            }
+            .mobile-scroll-hint {
+                display: flex;
+            }
+            .box-modal-content {
+                max-width: 100%;
+                max-height: 88vh;
+                overflow-y: auto;
+                margin: 0 10px;
+                padding: 1.25rem 1rem;
+            }
+            .client-auth-card {
+                padding: 2rem 1.25rem;
+                max-width: 100%;
+                margin: 0 10px;
+            }
+            .gateway-avatar {
+                width: 58px;
+                height: 58px;
+                font-size: 1.5rem;
+                border-radius: 16px;
+                margin-bottom: 1rem;
+            }
+            .gateway-title {
+                font-size: 1.35rem;
+            }
+            .gateway-input, .form-input, .form-select {
+                font-size: 16px !important; /* Prevents auto-zoom on mobile browsers */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-pill {
+                flex: 1 1 100%;
+            }
+            .tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    
+
 
         @media print {
             .tabs, .lightbox, .download-btn, .btn-action-primary, .client-auth-overlay, .btn-portal-lock {
@@ -1693,17 +1870,21 @@
             <div class="tools-grid">
                 <!-- 1. INVENTARIO DE RESULTADOS -->
                 <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Metodo SMART.jpg', 'Inventario Diario de Resultados (Método SMART / Cero Culpa)')">
-                        <img src="Imagenes Herramientas/Metodo SMART.jpg" alt="Inventario de Resultados">
-                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    <div class="tool-visual-badge">
+                        <div class="tool-visual-icon">🧘‍♀️</div>
+                        <div style="flex:1;">
+                            <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#888;">Psicología Operativa</div>
+                            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Inventario de Resultados</div>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color:#fff; color:#fff;">SMART • Cero Culpa</span>
                     </div>
                     <div class="tool-body">
                         <div class="tool-badge-coherence">🎯 COHERENCIA: Antídoto a la Culpa</div>
                         <div class="tool-title">
                             <span>Inventario de Resultados</span>
-                            <span style="color: var(--accent); font-size: 0.85rem;">SMART / Cero Culpa</span>
+                            <span style="color: var(--accent); font-size: 0.85rem;">Reconocimiento Diario</span>
                         </div>
-                        <div class="tool-meta">Psicología Operativa • Reconocimiento Diario</div>
+                        <div class="tool-meta">Visibilización del Trabajo Invisible & Cuidados</div>
 
                         <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
                         <div class="tool-context-box">
@@ -1725,43 +1906,47 @@
                             </div>
                             <div class="tool-checklist-items">
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool1_1">
                                     <span>Anotar 3 micro-victorias del día en libreta o TXT</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool1_2">
                                     <span>Registrar horas de cuidado familiar sin juzgarte</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool1_3">
                                     <span>Validar al menos 1 acción de autocuidado / siesta</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool1_4">
                                     <span>Cerrar la jornada sin repasar listas de pendientes</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="tool-footer">
-                            <a href="Plantillas/05_Inventario_de_Resultados_y_Auditoria.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                            <a href="03_Plantillas_y_Ejercicios/05_Inventario_de_Resultados_y_Auditoria.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- 2. TIME BLOCKING -->
                 <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Time Blocking.png', 'Time Blocking (Bloque de Oro Flexible)')">
-                        <img src="Imagenes Herramientas/Time Blocking.png" alt="Time Blocking">
-                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    <div class="tool-visual-badge">
+                        <div class="tool-visual-icon">⚡</div>
+                        <div style="flex:1;">
+                            <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#888;">Gestión de Energía</div>
+                            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Bloque de Oro Flexible</div>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color:#fff; color:#fff;">Time Blocking</span>
                     </div>
                     <div class="tool-body">
                         <div class="tool-badge-coherence">🎯 COHERENCIA: Ventanas de Foco Protegidas</div>
                         <div class="tool-title">
                             <span>Bloque de Oro Flexible</span>
-                            <span style="color: var(--primary); font-size: 0.85rem;">Time Blocking</span>
+                            <span style="color: var(--primary); font-size: 0.85rem;">Cero Rigidez</span>
                         </div>
-                        <div class="tool-meta">Gestión de Energía • Cero Rigidez</div>
+                        <div class="tool-meta">Protección de Siestas y Clases de Yoga Online</div>
 
                         <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
                         <div class="tool-context-box">
@@ -1783,35 +1968,39 @@
                             </div>
                             <div class="tool-checklist-items">
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool2_1">
                                     <span>Bloquear en agenda los 2 días y hora del piloto</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool2_2">
                                     <span>Tener el rincón del mat despejado 15 min antes</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool2_3">
                                     <span>Agendar y respetar 1 bloque diario de siesta/pausa</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool2_4">
                                     <span>Tener 1 clase grabada de respaldo ante emergencias</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="tool-footer">
-                            <a href="Plantillas/01_Planificador_Semanal_y_Bloques_de_Tiempo.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                            <a href="03_Plantillas_y_Ejercicios/01_Planificador_Semanal_y_Bloques_de_Tiempo.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- 3. REGLA 50/30/20 -->
                 <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/La Regla 50 30 20.png', 'Regla 50/30/20 (GPS Financiero & Hito Santiago)')">
-                        <img src="Imagenes Herramientas/La Regla 50 30 20.png" alt="Regla 50/30/20">
-                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    <div class="tool-visual-badge">
+                        <div class="tool-visual-icon">🚌</div>
+                        <div style="flex:1;">
+                            <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#888;">Finanzas Sostenibles</div>
+                            <div style="font-size:1.1rem; font-weight:800; color:#fff;">GPS Financiero 50/30/20</div>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color:#fff; color:#fff;">Meta $160.000</span>
                     </div>
                     <div class="tool-body">
                         <div class="tool-badge-coherence">🎯 COHERENCIA: Hito Pasajes Santiago ($160k)</div>
@@ -1819,7 +2008,7 @@
                             <span>GPS Financiero</span>
                             <span style="color: var(--secondary); font-size: 0.85rem;">Regla 50/30/20</span>
                         </div>
-                        <div class="tool-meta">Sostenibilidad • Finanzas Claras</div>
+                        <div class="tool-meta">8 Alumnas x $20.000 = Meta de Viajes Asegurada</div>
 
                         <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
                         <div class="tool-context-box">
@@ -1841,35 +2030,39 @@
                             </div>
                             <div class="tool-checklist-items">
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool3_1">
                                     <span>Fijar tarifa del pase piloto ($20.000 CLP x 8 clases)</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool3_2">
                                     <span>Completar el cupo base de 8 alumnas ($160k meta)</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool3_3">
                                     <span>Apartar el fondo de pasajes al recaudar</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool3_4">
                                     <span>Registrar ingresos y egresos semanalmente</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="tool-footer">
-                            <a href="Plantillas/02_Registro_de_Gastos_y_Presupuesto_50_30_20.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                            <a href="03_Plantillas_y_Ejercicios/02_Registro_de_Gastos_y_Presupuesto_50_30_20.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- 4. GTD KANBAN -->
                 <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Kanban.png', 'Tablero Kanban & Getting Things Done (Vaciado Mental)')">
-                        <img src="Imagenes Herramientas/Kanban.png" alt="Kanban GTD">
-                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    <div class="tool-visual-badge">
+                        <div class="tool-visual-icon">📌</div>
+                        <div style="flex:1;">
+                            <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#888;">Protección de RAM</div>
+                            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Tablero Kanban GTD</div>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color:#fff; color:#fff;">WIP = 2</span>
                     </div>
                     <div class="tool-body">
                         <div class="tool-badge-coherence">🎯 COHERENCIA: Límite de Carga (WIP = 2)</div>
@@ -1877,7 +2070,7 @@
                             <span>Tablero de Carga Mental</span>
                             <span style="color: var(--success); font-size: 0.85rem;">GTD + Kanban</span>
                         </div>
-                        <div class="tool-meta">Procesos • Protección de RAM</div>
+                        <div class="tool-meta">Máximo 2 Tareas Activas para Cero Agobio</div>
 
                         <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
                         <div class="tool-context-box">
@@ -1899,43 +2092,47 @@
                             </div>
                             <div class="tool-checklist-items">
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool4_1">
                                     <span>Hacer vaciado semanal de notas del teléfono</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool4_2">
                                     <span>Mantener máximo 2 tarjetas activas a la vez</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool4_3">
                                     <span>Celebrar visualmente cada tarea que pasa a "Hecho"</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool4_4">
                                     <span>Revisión de 5 min con Diego para destrabar flujo</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="tool-footer">
-                            <a href="Plantillas/03_Tablero_Kanban_de_Tareas_GTD.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                            <a href="03_Plantillas_y_Ejercicios/03_Tablero_Kanban_de_Tareas_GTD.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- 5. EISENHOWER -->
                 <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Matriz de Eisenhower.png', 'Matriz de Eisenhower (Filtro de Descompresión y Límites)')">
-                        <img src="Imagenes Herramientas/Matriz de Eisenhower.png" alt="Matriz de Eisenhower">
-                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    <div class="tool-visual-badge">
+                        <div class="tool-visual-icon">🛡️</div>
+                        <div style="flex:1;">
+                            <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#888;">Límites Asertivos</div>
+                            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Filtro de Descompresión</div>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color:#fff; color:#fff;">M. Eisenhower</span>
                     </div>
                     <div class="tool-body">
                         <div class="tool-badge-coherence">🎯 COHERENCIA: Aprender a Decir "No"</div>
                         <div class="tool-title">
                             <span>Filtro de Descompresión</span>
-                            <span style="color: var(--primary); font-size: 0.85rem;">M. Eisenhower</span>
+                            <span style="color: var(--primary); font-size: 0.85rem;">Matriz de Eisenhower</span>
                         </div>
-                        <div class="tool-meta">Límites Asertivos • Protección Vital</div>
+                        <div class="tool-meta">Proteger tu Energía Familiar y Personal</div>
 
                         <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
                         <div class="tool-context-box">
@@ -1957,35 +2154,39 @@
                             </div>
                             <div class="tool-checklist-items">
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool5_1">
                                     <span>Evaluar si una demanda externa es una urgencia real</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool5_2">
                                     <span>Colocar las clases de yoga y descanso en Q2 intocable</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool5_3">
                                     <span>Decir asertivamente "no puedo ahora" a 1 favor externo</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool5_4">
                                     <span>Eliminar exigencias domésticas secundarias</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="tool-footer">
-                            <a href="Plantillas/04_Matriz_Eisenhower_Priorizacion.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
+                            <a href="03_Plantillas_y_Ejercicios/04_Matriz_Eisenhower_Priorizacion.xlsx" class="download-btn" download>📥 Descargar Excel Oficial</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- 6. PARETO 80/20 -->
                 <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Principio de Pareto.png', 'Principio de Pareto 80/20 (Foco Somático y Cero Fricción)')">
-                        <img src="Imagenes Herramientas/Principio de Pareto.png" alt="Principio de Pareto">
-                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    <div class="tool-visual-badge">
+                        <div class="tool-visual-icon">🌿</div>
+                        <div style="flex:1;">
+                            <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#888;">Eficiencia Somática</div>
+                            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Foco Somático 80/20</div>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color:#fff; color:#fff;">Principio de Pareto</span>
                     </div>
                     <div class="tool-body">
                         <div class="tool-badge-coherence">🎯 COHERENCIA: Clases Simples & Efectivas</div>
@@ -1993,7 +2194,7 @@
                             <span>Foco Somático 80/20</span>
                             <span style="color: var(--accent); font-size: 0.85rem;">Pareto 80/20</span>
                         </div>
-                        <div class="tool-meta">Eficiencia Pedagógica • Cero Desgaste</div>
+                        <div class="tool-meta">20% de Posturas de Suelo = 80% de Alivio</div>
 
                         <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
                         <div class="tool-context-box">
@@ -2015,35 +2216,39 @@
                             </div>
                             <div class="tool-checklist-items">
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool6_1">
                                     <span>Tener lista la secuencia base de 5 posturas suaves</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool6_2">
                                     <span>Eliminar posturas acrobáticas o de alta exigencia física</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool6_3">
                                     <span>Guiar con tono de voz pausado para ahorrar tu energía</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool6_4">
                                     <span>Cerrar la sesión a los 45 minutos exactos</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="tool-footer">
-                            <a href="Plantillas/06_Rueda_de_la_Vida_y_Plan_Accion.xlsx" class="download-btn" download>📥 Descargar Plan de Acción</a>
+                            <a href="03_Plantillas_y_Ejercicios/06_Rueda_de_la_Vida_y_Plan_Accion.xlsx" class="download-btn" download>📥 Descargar Plan de Acción</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- 7. OCEANO AZUL -->
                 <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Estrategia Oceano Azul.jpg', 'Estrategia Océano Azul (Nicho Cuerpos Cansados)')">
-                        <img src="Imagenes Herramientas/Estrategia Oceano Azul.jpg" alt="Estrategia Océano Azul">
-                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    <div class="tool-visual-badge">
+                        <div class="tool-visual-icon">🌊</div>
+                        <div style="flex:1;">
+                            <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#888;">Posicionamiento</div>
+                            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Estrategia Océano Azul</div>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color:#fff; color:#fff;">Cuerpos Cansados</span>
                     </div>
                     <div class="tool-body">
                         <div class="tool-badge-coherence">🎯 COHERENCIA: Nicho sin Competencia</div>
@@ -2051,7 +2256,7 @@
                             <span>Estrategia Océano Azul</span>
                             <span style="color: var(--primary); font-size: 0.85rem;">Cuerpos Cansados</span>
                         </div>
-                        <div class="tool-meta">Posicionamiento • Comunidad Cálida</div>
+                        <div class="tool-meta">Yoga Restaurativo para Madres y Profesionales</div>
 
                         <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
                         <div class="tool-context-box">
@@ -2073,19 +2278,19 @@
                             </div>
                             <div class="tool-checklist-items">
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool7_1">
                                     <span>Redactar invitación con foco en descanso y descompresión</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool7_2">
                                     <span>Contactar a las 8-10 personas de tu círculo de interés</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool7_3">
                                     <span>Crear grupo de WhatsApp para avisos de links</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool7_4">
                                     <span>Mantener ambiente libre de exigencias o comparaciones</span>
                                 </label>
                             </div>
@@ -2099,9 +2304,13 @@
 
                 <!-- 8. COMUNIDAD Y CONFIANZA GRUPAL -->
                 <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Modelo Tuckman.png', 'Modelo Tuckman & Ventana de Johari (Construcción de Confianza y Cohorte)')">
-                        <img src="Imagenes Herramientas/Modelo Tuckman.png" alt="Modelo Tuckman">
-                        <div class="tool-zoom-btn">🔍 Ampliar Diagrama</div>
+                    <div class="tool-visual-badge">
+                        <div class="tool-visual-icon">🤝</div>
+                        <div style="flex:1;">
+                            <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#888;">Retención Cálida</div>
+                            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Comunidad & Confianza</div>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color:#fff; color:#fff;">Tuckman & Johari</span>
                     </div>
                     <div class="tool-body">
                         <div class="tool-badge-coherence">🎯 COHERENCIA: Fidelización del Grupo</div>
@@ -2109,7 +2318,7 @@
                             <span>Comunidad & Confianza</span>
                             <span style="color: var(--success); font-size: 0.85rem;">Tuckman & Johari</span>
                         </div>
-                        <div class="tool-meta">Dinámica Grupal • Retención de Alumnas</div>
+                        <div class="tool-meta">Fidelización Mensual para Asegurar tus Pasajes</div>
 
                         <div class="tool-section-heading">💡 ¿Para qué te sirve a ti, Antonia?</div>
                         <div class="tool-context-box">
@@ -2131,26 +2340,26 @@
                             </div>
                             <div class="tool-checklist-items">
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool8_1">
                                     <span>Dar bienvenida personalizada a cada alumna al ingresar</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool8_2">
                                     <span>Enviar mensaje semanal de motivación y recordatorio</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool8_3">
                                     <span>Ajustar posturas según dolores reportados por el grupo</span>
                                 </label>
                                 <label class="tool-check-item">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="chk_antonia_tool8_4">
                                     <span>Celebrar el cumplimiento de cada ciclo mensual</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="tool-footer">
-                            <a href="inventario de resultados.txt" class="download-btn">📝 Abrir Inventario TXT</a>
+                            <a href="03_Plantillas_y_Ejercicios/Inventario_Diario_de_Resultados_Antonia.txt" class="download-btn">📝 Abrir Inventario TXT</a>
                         </div>
                     </div>
                 </div>
@@ -3360,6 +3569,20 @@
             }
         }
 
+        function initChecklistPersistence(prefix) {
+            const checkboxes = document.querySelectorAll('.tool-check-item input[type="checkbox"], .tool-checklist input[type="checkbox"]');
+            checkboxes.forEach((cb, idx) => {
+                const key = cb.id ? `ah_chk_${cb.id}` : `ah_chk_${prefix}_${idx}`;
+                const saved = localStorage.getItem(key);
+                if (saved === "1") {
+                    cb.checked = true;
+                }
+                cb.addEventListener("change", function() {
+                    localStorage.setItem(key, cb.checked ? "1" : "0");
+                });
+            });
+        }
+
         // ==========================================
         // 6. INICIALIZACIÓN GLOBAL AL CARGAR
         // ==========================================
@@ -3369,6 +3592,7 @@
             calcularPresupuestoAntonia();
             initSchedule();
             initKanban();
+            initChecklistPersistence('antonia');
         });
     </script>
 </body>
