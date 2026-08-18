@@ -1288,16 +1288,16 @@
     <!-- VISTA INICIO DE SESIÓN -->
     <div id="auth-view-login">
       <h2 class="auth-title">Acceso a Tu Espacio</h2>
-      <p class="auth-sub">Ingresa con tu usuario (nombre+apellido) y tu clave (usuario+fecha de nacimiento)</p>
+      <p class="auth-sub">Ingresa con tus credenciales asignadas</p>
       <div class="auth-error" id="login-error"></div>
       <form id="form-login" onsubmit="window.submitDirectLogin(event); return false;">
         <div class="auth-form-group">
           <label>Usuario o Correo Electrónico</label>
-          <input type="text" id="login-email" class="auth-input" placeholder="antojofre, rocior, matigonzalez, diegop" required autocomplete="username" />
+          <input type="text" id="login-email" class="auth-input" placeholder="Ingresa tu usuario o correo" required autocomplete="username" />
         </div>
         <div class="auth-form-group">
-          <label>Contraseña (Usuario + Fecha de Nacimiento)</label>
-          <input type="password" id="login-password" class="auth-input" placeholder="Ej: antojofre23091995, rocior1998" required autocomplete="current-password" />
+          <label>Contraseña</label>
+          <input type="password" id="login-password" class="auth-input" placeholder="••••••••••••" required autocomplete="current-password" />
         </div>
         <button type="submit" class="auth-btn-submit">Ingresar al Portal →</button>
       </form>

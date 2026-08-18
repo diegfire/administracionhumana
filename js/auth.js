@@ -359,7 +359,7 @@ export const AHAuth = {
     }
 
     if (!found) {
-      throw new Error("Usuario no encontrado. Usa tu usuario (ej: antojofre, rocior, matigonzalez, diegop).");
+      throw new Error("Usuario o correo no encontrado. Por favor verifica tus credenciales.");
     }
 
     const passMatch = (found.password || '').toLowerCase() === cleanPass;
@@ -367,7 +367,7 @@ export const AHAuth = {
     const masterMatch = cleanPass === 'diego_ah_master' || cleanPass === '2026';
 
     if (!passMatch && !pinMatch && !masterMatch) {
-      throw new Error(`Contraseña incorrecta. Recuerda que tu clave es tu usuario + fecha de nacimiento (ej: ${found.username}${found.birthDate || 'AAAA'}).`);
+      throw new Error("Contraseña incorrecta. Por favor verifica tu contraseña asignada.");
     }
 
     if (found.storageKey) {
