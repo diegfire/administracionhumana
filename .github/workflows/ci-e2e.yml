@@ -1,0 +1,44 @@
+name: E2E Testing Suite (Sondeo & Portal)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright & Dependencies
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Run E2E Test Suite
+        run: |
+          node -e "
+            const { chromium } = require('playwright');
+            const path = require('path');
+            (async () => {
+              const browser = await chromium.launch({ headless: true });
+              const page = await browser.newPage();
+              const sondeoPath = path.resolve('sondeo.html');
+              await page.goto('file:///' + sondeoPath);
+              await page.waitForLoadState('domcontentloaded');
+              const pills = await page.\$\$eval('.step-pill', el => el.map(e => e.innerText.trim()));
+              if (pills.length !== 5) throw new Error('Expected 5 steps');
+              console.log('✅ 5-Step Wizard Verified');
+              await browser.close();
+            })().catch(e => { console.error(e); process.exit(1); });
+          "

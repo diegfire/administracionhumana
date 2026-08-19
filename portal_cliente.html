@@ -264,7 +264,10 @@
             <!-- Tareas dinámicas cargadas por JS -->
           </div>
 
-          <button class="btn-add-task" id="btn-new-task" type="button" onclick="window.promptNewTask();">+ Agregar Microacción</button>
+          <div style="display: flex; gap: 8px; margin-top: 14px;" id="new-task-form">
+            <input type="text" id="input-new-task" placeholder="Escribe tu nueva microacción (24-48h)..." style="flex:1; padding: 10px 14px; background: #141414; border: 1px solid var(--color-border-bright); border-radius: 8px; color: #fff; font-size: 0.85rem;" onkeydown="if(event.key==='Enter') window.addNewTaskFromInput();" />
+            <button class="btn-add-task" id="btn-new-task" type="button" onclick="window.addNewTaskFromInput();" style="margin-top:0; white-space:nowrap; padding: 10px 16px;">+ Agregar</button>
+          </div>
         </div>
 
         <!-- GOOGLE DRIVE RECURSOS -->
@@ -674,18 +677,38 @@
 
     window.deleteTaskItem = function(idx, uid) {
       userTasks.splice(idx, 1);
-      localStorage.setItem(`ah_portal_tasks_${uid}`, JSON.stringify(userTasks));
+      const str = JSON.stringify(userTasks);
+      if (window.AHAuth && typeof window.AHAuth.safeSetLocalStorage === 'function') {
+        window.AHAuth.safeSetLocalStorage(`ah_portal_tasks_${uid}`, str);
+        window.AHAuth.safeSetLocalStorage(`ah_demo_tasks_${uid}`, str);
+      } else {
+        localStorage.setItem(`ah_portal_tasks_${uid}`, str);
+        localStorage.setItem(`ah_demo_tasks_${uid}`, str);
+      }
       renderTasks(uid);
     };
 
-    window.promptNewTask = function() {
+    window.addNewTaskFromInput = function() {
       if (!activeUser) return;
-      const text = prompt('Escribe tu nueva microacción acordada (24-48h):');
-      if (text && text.trim()) {
-        userTasks.push({ id: Date.now(), text: text.trim(), completed: false });
-        localStorage.setItem(`ah_portal_tasks_${activeUser.uid}`, JSON.stringify(userTasks));
+      const inp = document.getElementById('input-new-task');
+      const text = inp ? inp.value.trim() : '';
+      if (text) {
+        userTasks.push({ id: Date.now(), text: text, completed: false });
+        const str = JSON.stringify(userTasks);
+        if (window.AHAuth && typeof window.AHAuth.safeSetLocalStorage === 'function') {
+          window.AHAuth.safeSetLocalStorage(`ah_portal_tasks_${activeUser.uid}`, str);
+          window.AHAuth.safeSetLocalStorage(`ah_demo_tasks_${activeUser.uid}`, str);
+        } else {
+          localStorage.setItem(`ah_portal_tasks_${activeUser.uid}`, str);
+          localStorage.setItem(`ah_demo_tasks_${activeUser.uid}`, str);
+        }
         renderTasks(activeUser.uid);
+        if (inp) inp.value = '';
       }
+    };
+
+    window.promptNewTask = function() {
+      window.addNewTaskFromInput();
     };
 
     window.doLogout = function() {

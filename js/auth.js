@@ -43,6 +43,10 @@ const AHAuth = {
   async init() {
     await initFirebase();
     this.seedDemoDataIfNeeded();
+    if (typeof window !== 'undefined') {
+      window.addEventListener('online', () => this.processPendingSync());
+      setTimeout(() => this.processPendingSync(), 2000);
+    }
   },
 
   seedDemoDataIfNeeded() {
@@ -495,6 +499,70 @@ const AHAuth = {
     }
   },
 
+  // ── UTILIDADES DE ALMACENAMIENTO SEGURO Y COLA DE SINCRONIZACIÓN ──
+  safeSetLocalStorage(key, value) {
+    try {
+      localStorage.setItem(key, value);
+      return true;
+    } catch (e) {
+      if (e.name === 'QuotaExceededError' || e.code === 22) {
+        console.warn("[AH Storage] Cuota de almacenamiento excedida. Limpiando caché temporal...");
+        this.pruneOldCache();
+        try {
+          localStorage.setItem(key, value);
+          return true;
+        } catch (retryErr) {
+          console.error("[AH Storage] Error crítico de almacenamiento:", retryErr);
+          throw new Error("El almacenamiento de tu navegador está lleno. Libera espacio para continuar.");
+        }
+      } else {
+        console.error("[AH Storage] Error inesperado en localStorage:", e);
+        throw new Error("No se pudo guardar la información localmente. Revisa los permisos de tu navegador.");
+      }
+    }
+  },
+
+  pruneOldCache() {
+    try {
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith('ah_temp_') || k.startsWith('ah_cache_') || k.startsWith('debug_'))) {
+          localStorage.removeItem(k);
+        }
+      }
+    } catch(e) {}
+  },
+
+  enqueuePendingSync(type, data) {
+    try {
+      const queue = JSON.parse(localStorage.getItem('ah_pending_sync') || '[]');
+      queue.push({ id: 'sync_' + Date.now(), type, data, timestamp: new Date().toISOString() });
+      localStorage.setItem('ah_pending_sync', JSON.stringify(queue));
+    } catch(e) {}
+  },
+
+  async processPendingSync() {
+    try {
+      const queue = JSON.parse(localStorage.getItem('ah_pending_sync') || '[]');
+      if (!queue.length) return;
+      const remaining = [];
+      for (const item of queue) {
+        try {
+          if (item.type === 'notification') {
+            await fetch("https://formspree.io/f/mqkrvkzz", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "Accept": "application/json" },
+              body: JSON.stringify(item.data)
+            });
+          }
+        } catch(err) {
+          remaining.push(item);
+        }
+      }
+      localStorage.setItem('ah_pending_sync', JSON.stringify(remaining));
+    } catch(e) {}
+  },
+
   async saveDiagnostic(uid, diagnosticData) {
     const payload = {
       uid,
@@ -503,13 +571,18 @@ const AHAuth = {
     };
 
     if (!IS_DEMO_MODE && window.firebaseServices) {
-      const { db, doc, setDoc } = window.firebaseServices;
-      await setDoc(doc(db, "diagnosticos", uid), payload);
+      try {
+        const { db, doc, setDoc } = window.firebaseServices;
+        await setDoc(doc(db, "diagnosticos", uid), payload);
+      } catch(err) {
+        console.warn("[AH Auth] Fallo guardado en Firebase, usando respaldo local:", err);
+      }
     }
 
-    // Persistencia Local Dual
-    localStorage.setItem(`ah_demo_diag_${uid}`, JSON.stringify(payload));
-    localStorage.setItem(`ah_diag_${uid}`, JSON.stringify(payload));
+    // Persistencia Local Dual Protegida
+    const strPayload = JSON.stringify(payload);
+    this.safeSetLocalStorage(`ah_demo_diag_${uid}`, strPayload);
+    this.safeSetLocalStorage(`ah_diag_${uid}`, strPayload);
 
     // Sincronizar con el panel de administración de Diego (ah_admin_clients)
     try {
