@@ -517,25 +517,38 @@
       document.getElementById('user-status-badge').innerText = user.status || clientConfig.status || '🟢 Acompañamiento Activo';
 
       // Flight Plan Card
-      const flightUrl = user.flightPlanUrl || clientConfig.flightPlanUrl || 'planes-antonia.html';
+      const flightUrl = user.flightPlanUrl || clientConfig.flightPlanUrl;
       const flightCard = document.getElementById('flight-plan-card');
       const flightBtn = document.getElementById('flight-plan-btn');
       const flightTitle = document.getElementById('flight-plan-title');
       const flightDesc = document.getElementById('flight-plan-desc');
+      const planBadge = flightCard.querySelector('.badge-plan');
 
       flightCard.style.display = 'block';
-      flightBtn.href = flightUrl;
-      flightTitle.innerText = `Plan de Vuelo 2.0 • ${user.fullName || 'Cliente'}`;
-      flightDesc.innerText = clientConfig.flightPlanDesc || 'Accede a tu Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Metas y Caja de Herramientas.';
+      if (flightUrl) {
+        flightBtn.href = flightUrl;
+        flightTitle.innerText = `Plan de Vuelo 2.0 • ${user.fullName || 'Cliente'}`;
+        flightDesc.innerText = clientConfig.flightPlanDesc || 'Accede a tu Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Metas y Caja de Herramientas.';
+        flightBtn.innerText = 'Abrir Mi Plan de Vuelo 🚀';
+        if (planBadge) planBadge.innerText = '🚀 Plan de Vuelo 2.0 Activo';
+      } else {
+        // Para nuevos clientes del sondeo: redirigir a sus herramientas / horarios 24H
+        flightBtn.href = 'generador-horarios.html';
+        flightTitle.innerText = `Mapeador de Horarios 24H • ${user.fullName || 'Cliente'}`;
+        flightDesc.innerText = 'Tu diagnóstico fue recibido con éxito. Puedes comenzar mapeando tu rutina y bloques de 24 horas mientras coordinas tu sesión 1a1 con Diego.';
+        flightBtn.innerText = 'Abrir Mapeador de Horarios ⏰';
+        if (planBadge) planBadge.innerText = '✨ Sondeo Recibido • Fase Inicial';
+      }
 
       // Google Drive / Resource Link
       const driveLink = document.getElementById('drive-link');
       if (user.driveUrl && user.driveUrl.startsWith('http')) {
         driveLink.href = user.driveUrl;
-      } else if (clientConfig.driveUrl) {
+      } else if (clientConfig.driveUrl && clientConfig.driveUrl.startsWith('http')) {
         driveLink.href = clientConfig.driveUrl;
       } else {
-        driveLink.href = flightUrl;
+        const cleanName = encodeURIComponent(user.fullName || 'Cliente');
+        driveLink.href = `https://wa.me/56975590132?text=Hola%20Diego,%20soy%20${cleanName}.%20Complet%C3%A9%20mi%20Sondeo%20360%C2%B0%20y%20quisiera%20coordinar%20mi%20sesi%C3%B3n%20y%20carpeta%20de%20recursos.`;
       }
 
       // Render Radar Chart (Dynamic from Sondeo Diagnostic or Client Config)
