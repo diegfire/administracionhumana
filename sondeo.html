@@ -857,14 +857,13 @@
             </div>
 
             <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="progressBar"></div>
+                <div class="progress-bar-fill" id="progressBar" style="width: 20%;"></div>
                 <div class="steps-nav">
-                    <span class="step-pill active" id="pill-1" onclick="SondeoWizard.goToStep(1)">1. Rueda de la Vida</span>
+                    <span class="step-pill active" id="pill-1" onclick="SondeoWizard.goToStep(1)">1. Rueda 8D</span>
                     <span class="step-pill" id="pill-2" onclick="SondeoWizard.goToStep(2)">2. Fugas</span>
-                    <span class="step-pill" id="pill-3" onclick="SondeoWizard.goToStep(3)">3. Eisenhower</span>
+                    <span class="step-pill" id="pill-3" onclick="SondeoWizard.goToStep(3)">3. Prioridades</span>
                     <span class="step-pill" id="pill-4" onclick="SondeoWizard.goToStep(4)">4. Tiempo & Dinero</span>
                     <span class="step-pill" id="pill-5" onclick="SondeoWizard.goToStep(5)">5. Análisis FODA</span>
-                    <span class="step-pill" id="pill-6" onclick="SondeoWizard.goToStep(6)">6. Expediente 360°</span>
                 </div>
             </div>
         </div>
@@ -1300,174 +1299,15 @@
                     </div>
                 </div>
 
-                <!-- Guardar Imagen de Estación FODA B&N -->
-                <div class="audio-prompt-box" style="margin-top: 0.8rem; text-align: center; background: #0d0d0d; border: 1px solid #262626; border-radius: 10px; padding: 0.75rem;">
-                    <div style="font-size: 0.92rem; font-weight: 700; color: white; margin-bottom: 0.3rem;">
-                        🎙️ Audio Diagnóstico #5: Análisis FODA
-                    </div>
-                    <p style="font-size: 0.78rem; color: #a1a1aa; margin-bottom: 0.6rem; line-height: 1.35;">
-                        Envía tu imagen a WhatsApp y graba un audio mencionando tu Fortaleza principal, tu Debilidad clave o cualquier factor de esta lista que te parezca importante resaltar.
+                <!-- FINALIZAR DIAGNÓSTICO 360° -->
+                <div style="margin-top: 1.5rem; background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%); border: 2px solid #ffffff; border-radius: 16px; padding: 1.6rem; text-align: center; box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);">
+                    <div style="font-size: 2rem; margin-bottom: 6px;">🏆</div>
+                    <h3 style="font-size: 1.3rem; color: #ffffff; font-weight: 800; margin-bottom: 6px;">¡Diagnóstico 360° Listo para Finalizar!</h3>
+                    <p style="font-size: 0.86rem; color: #a1a1aa; max-width: 580px; margin: 0 auto 1.2rem auto; line-height: 1.45;">
+                        Al hacer clic a continuación, tu radiografía se guardará automáticamente en tu perfil, se notificará al consultor Diego y se abrirá tu <b>Portal del Cliente con tu Radar 360° y Plan de Vuelo 2.0</b>.
                     </p>
-                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                        <button class="btn btn-primary" onclick="SondeoWizard.downloadStepImage(5)" style="padding: 0.55rem 10px; font-size: 0.78rem; font-weight: 800; background: #141414; color: #ffffff; border: 1px solid #333333; border-radius: 6px; white-space:nowrap;">
-                            📸 Guardar PNG
-                        </button>
-                        <button class="btn btn-primary" id="btnSendWa5" onclick="SondeoWizard.sendStepWhatsApp(5)" style="flex:1; padding: 0.55rem 8px; font-size: 0.78rem; font-weight: 800; background: #ffffff; color: #000000; border: none; border-radius: 6px; white-space:nowrap;">
-                            📱 Enviar Imagen a WhatsApp & Audio #5
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= PASO 6: EXPEDIENTE MAESTRO 360° ================= -->
-        <div class="wizard-step-panel" id="step-6">
-            <div style="text-align: center; margin-bottom: 1.2rem;">
-                <span style="font-size: 2.2rem;">🏆</span>
-                <h3 style="font-size:1.4rem; color:#ffffff; font-weight:800; margin:0.3rem 0 0.4rem 0;">¡Felicitaciones! Has completado tu Diagnóstico 360°</h3>
-                <p style="font-size:0.85rem; color:#a1a1aa; max-width:640px; margin:0 auto; line-height:1.4;">
-                    Revisa a continuación la síntesis de tu radiografía operativa. Guárdala directamente en tu cuenta de cliente para acceder a tu portal privado sin necesidad de enviar archivos manualmente por WhatsApp.
-                </p>
-            </div>
-
-            <!-- TARJETA CONSOLIDADA PARA CAPTURA DE PANTALLA ÚNICA -->
-            <div id="fullSummaryCard" class="glass-panel" style="border: 2px solid #ffffff; padding: 1.2rem; margin-bottom: 1.5rem; background: #0a0a0a; border-radius: 14px;">
-                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #262626; padding-bottom:0.6rem; margin-bottom:0.8rem; flex-wrap:wrap; gap:6px;">
-                    <div>
-                        <h4 style="font-size:1.1rem; color:white; margin:0; letter-spacing:0.02em;">🔮 EXPEDIENTE DIAGNÓSTICO MAESTRO 360°</h4>
-                        <span style="font-size:0.75rem; color:#e5e5e5;">Administración Humana · Método de Claridad y Orden</span>
-                    </div>
-                    <div style="text-align:right; font-size:0.75rem; color:var(--text-secondary);" id="summaryDateLabel"></div>
-                </div>
-
-                <div class="grid-two" style="gap: 0.8rem;">
-                    <!-- 1. Rueda -->
-                    <div style="background:#0d0d0d; padding:0.8rem; border-radius:8px; border:1px solid #262626;">
-                        <h5 style="color:#ffffff; margin-top:0; margin-bottom:0.4rem; font-size:0.88rem; font-weight:700;">1. Rueda de la Vida (8 Dimensiones)</h5>
-                        <div id="summaryRuedaList" style="font-size:0.78rem; color:#e5e5e5; line-height:1.4;"></div>
-                    </div>
-
-                    <!-- 2. Fugas & Saturómetro -->
-                    <div style="background:#0d0d0d; padding:0.8rem; border-radius:8px; border:1px solid #262626;">
-                        <h5 style="color:#ffffff; margin-top:0; margin-bottom:0.4rem; font-size:0.88rem; font-weight:700;">2. Fricción Operativa & Fugas</h5>
-                        <div id="summaryFugasContent" style="font-size:0.78rem; color:#e5e5e5;"></div>
-                    </div>
-
-                    <!-- 3. Eisenhower -->
-                    <div style="background:#0d0d0d; padding:0.8rem; border-radius:8px; border:1px solid #262626;">
-                        <h5 style="color:#ffffff; margin-top:0; margin-bottom:0.4rem; font-size:0.88rem; font-weight:700;">3. Prioridades (Matriz Eisenhower)</h5>
-                        <div id="summaryEisenhowerList" style="font-size:0.78rem; color:#e5e5e5; line-height:1.4;"></div>
-                    </div>
-
-                    <!-- 4. Tiempo & Dinero -->
-                    <div style="background:#0d0d0d; padding:0.8rem; border-radius:8px; border:1px solid #262626;">
-                        <h5 style="color:#ffffff; margin-top:0; margin-bottom:0.4rem; font-size:0.88rem; font-weight:700;">4. Tiempo (168h/sem) & Presupuesto (50/30/20)</h5>
-                        <div id="summaryTimeMoneyContent" style="font-size:0.78rem; color:#e5e5e5; line-height:1.4;"></div>
-                    </div>
-
-                    <!-- 5. FODA Diagnóstico -->
-                    <div style="background:#0d0d0d; padding:0.8rem; border-radius:8px; border:1px solid #262626; grid-column: 1 / -1;">
-                        <h5 style="color:#ffffff; margin-top:0; margin-bottom:0.4rem; font-size:0.88rem; font-weight:700;">5. Análisis FODA Diagnóstico</h5>
-                        <div id="summaryFodaContent" style="font-size:0.8rem; color:#cbd5e1; line-height:1.5;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ================= ESTACIÓN CENTRAL: GUARDAR EN CUENTA DE USUARIO ================= -->
-            <div id="sondeo-account-save-card" style="background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%); border: 2px solid #ffffff; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);">
-                <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.6rem;">
-                    <span style="font-size:1.6rem;">💾</span>
-                    <div>
-                        <h3 style="font-size:1.15rem; color:#ffffff; font-weight:800; margin:0;">Guardar en mi Cuenta de Cliente Privada</h3>
-                        <span style="font-size:0.75rem; color:#00ff88; font-weight:700;">● Sincronización Directa con el Consultor</span>
-                    </div>
-                </div>
-                
-                <p style="font-size:0.84rem; color:#d4d4d8; line-height:1.45; margin-bottom:1rem;">
-                    Al guardar tu diagnóstico en tu usuario, tu expediente quedará disponible de inmediato en el panel de administración de Diego. <b>Ya no necesitas mandar fotos ni textos largos por WhatsApp</b>: todo tu avance se sincroniza con tu Portal de Cliente.
-                </p>
-
-                <!-- Contenedor dinámico según sesión -->
-                <div id="step6-auth-container">
-                    <!-- Si está logueado -->
-                    <div id="step6-user-logged" style="display:none; background:#0d0d0d; border:1px solid #333333; border-radius:12px; padding:14px; text-align:center;">
-                        <p style="font-size:0.88rem; color:#ffffff; margin-bottom:10px;">
-                            Conectado como <b id="step6-user-name" style="color:#00ff88;">Cliente</b> (<span id="step6-user-email">email</span>)
-                        </p>
-                        <button type="button" class="btn btn-primary" onclick="SondeoWizard.saveDiagnosticToUserAccount()" style="padding:10px 24px; font-size:0.9rem; font-weight:800; background:#ffffff; color:#000000; border-radius:50px; cursor:pointer; box-shadow:0 0 20px rgba(255,255,255,0.25);">
-                            💾 Guardar Diagnóstico en mi Perfil Ahora 🚀
-                        </button>
-                    </div>
-
-                    <!-- Si es invitado (Formulario rápido de 10 segundos) -->
-                    <div id="step6-user-guest" style="background:#0d0d0d; border:1px solid #333333; border-radius:12px; padding:16px;">
-                        <h4 style="font-size:0.9rem; color:#ffffff; margin-bottom:8px; font-weight:700;">Crea tu usuario en 10 segundos para guardar:</h4>
-                        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; margin-bottom:12px;" class="guest-form-grid">
-                            <div>
-                                <label style="font-size:0.72rem; color:#a1a1aa; font-weight:700; display:block; margin-bottom:3px;">NOMBRE COMPLETO</label>
-                                <input type="text" id="guest-reg-name" placeholder="Ej: Juan Pérez" style="width:100%; padding:8px 10px; background:#181818; border:1px solid #444; border-radius:8px; color:#fff; font-size:0.82rem;" />
-                            </div>
-                            <div>
-                                <label style="font-size:0.72rem; color:#a1a1aa; font-weight:700; display:block; margin-bottom:3px;">CORREO O USUARIO</label>
-                                <input type="text" id="guest-reg-email" placeholder="Ej: juan@email.com o juanp" style="width:100%; padding:8px 10px; background:#181818; border:1px solid #444; border-radius:8px; color:#fff; font-size:0.82rem;" />
-                            </div>
-                            <div>
-                                <label style="font-size:0.72rem; color:#a1a1aa; font-weight:700; display:block; margin-bottom:3px;">CLAVE / PIN DE ACCESO</label>
-                                <input type="password" id="guest-reg-pass" placeholder="Ej: 1234 o tu clave" style="width:100%; padding:8px 10px; background:#181818; border:1px solid #444; border-radius:8px; color:#fff; font-size:0.82rem;" />
-                            </div>
-                        </div>
-                        <div id="guest-reg-error" style="color:#ef4444; font-size:0.78rem; font-weight:700; margin-bottom:8px; display:none;"></div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                            <button type="button" class="btn btn-primary" onclick="SondeoWizard.registerAndSaveDiagnostic()" style="padding:10px 24px; font-size:0.88rem; font-weight:800; background:#ffffff; color:#000000; border-radius:50px; cursor:pointer;">
-                                🚀 Crear Usuario y Guardar mi Diagnóstico
-                            </button>
-                            <span style="font-size:0.78rem; color:#888888;">
-                                ¿Ya tienes cuenta? <a href="javascript:void(0)" onclick="openSondeoAuthModal()" style="color:#ffffff; text-decoration:underline; font-weight:700;">Inicia sesión aquí</a>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Mensaje de Éxito al Guardar -->
-                    <div id="step6-save-success" style="display:none; background:#062312; border:1px solid #00ff88; border-radius:12px; padding:18px; text-align:center;">
-                        <div style="font-size:1.8rem; margin-bottom:6px;">🎉</div>
-                        <h4 style="color:#00ff88; font-size:1.05rem; font-weight:800; margin-bottom:4px;">¡Diagnóstico 360° Guardado con Éxito!</h4>
-                        <p style="color:#e5e5e5; font-size:0.84rem; line-height:1.4; margin-bottom:14px; max-width:540px; margin-left:auto; margin-right:auto;">
-                            Tu expediente ha quedado vinculado permanentemente a tu perfil y ya está disponible en el panel de administración de Diego. ¡No es necesario enviar capturas por WhatsApp!
-                        </p>
-                        <a href="portal_cliente.html" class="btn btn-primary" style="display:inline-block; padding:10px 26px; font-size:0.9rem; font-weight:800; background:#ffffff; color:#000000; border-radius:50px; text-decoration:none; box-shadow:0 0 20px rgba(0,255,136,0.3);">
-                            🌟 Ir a mi Portal del Cliente Privado →
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- OPCIONES ADICIONALES (APORTE, DESCARGA Y WHATSAPP COMPLEMENTARIO) -->
-            <div style="background: #0d0d0d; border: 1px solid #262626; border-radius: 14px; padding: 1.25rem; margin-bottom: 1.5rem; text-align: center;">
-                <h4 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 0.3rem; font-weight: 700;">
-                    💖 Aporte Voluntario & Sesión Diagnóstica 1 a 1
-                </h4>
-                <p style="color: #a1a1aa; font-size: 0.82rem; max-width: 600px; margin: 0 auto 1rem auto; line-height: 1.4;">
-                    Este sondeo se ofrece bajo modelo de Aporte Voluntario. Si deseas profundizar en tu plan de trabajo con Diego, realiza tu aporte o coordina tu sesión directa:
-                </p>
-
-                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
-                    <a href="https://link.mercadopago.cl/administracionhumana" target="_blank" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.82rem; font-weight: 800; background: #ffffff; color: #000000; border-radius: 50px; text-decoration: none;">
-                        💖 Realizar Aporte Voluntario
-                    </a>
-                    <a href="https://wa.me/56975590132?text=Hola%20Diego,%20acabo%20de%20completar%20mi%20Sondeo%20Maestro%20360%C2%B0%20y%20quiero%20coordinar%20mi%20Sesion%201a1" target="_blank" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.82rem; font-weight: 800; background: #141414; color: #ffffff; border: 1px solid #ffffff; border-radius: 50px; text-decoration: none;">
-                        📅 Coordinar Sesión 1a1 por WhatsApp
-                    </a>
-                </div>
-
-                <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; border-top: 1px solid #222; padding-top: 10px;">
-                    <button class="btn btn-secondary" onclick="SondeoWizard.downloadConsolidatedImage()" style="padding: 0.55rem 1rem; font-size: 0.78rem; font-weight: 700; border-radius: 8px;">
-                        📸 Descargar Imagen PNG
-                    </button>
-                    <button class="btn btn-secondary" onclick="SondeoWizard.sendStepWhatsApp(6)" style="padding: 0.55rem 1rem; font-size: 0.78rem; font-weight: 700; border-radius: 8px; background:#181818; color:#ffffff; border:1px solid #444;">
-                        📱 Enviar Copia por WhatsApp (Opcional)
-                    </button>
-                    <button class="btn btn-secondary" onclick="window.print()" style="padding: 0.55rem 1rem; font-size: 0.78rem; font-weight: 700; border-radius: 8px;">
-                        🖨️ Imprimir PDF
+                    <button type="button" class="btn btn-primary" onclick="SondeoWizard.finishAndOpenPortal()" style="padding: 12px 32px; font-size: 1rem; font-weight: 800; background: #ffffff; color: #000000; border-radius: 50px; cursor: pointer; box-shadow: 0 0 25px rgba(255,255,255,0.3); transition: transform 0.2s ease;">
+                        ✨ Finalizar Diagnóstico y Abrir Mi Portal →
                     </button>
                 </div>
             </div>
@@ -1482,6 +1322,31 @@
             <button class="btn btn-primary" id="btnNextStep" onclick="SondeoWizard.nextStep()">
                 Siguiente Paso &rarr;
             </button>
+        </div>
+
+        <!-- MODAL DE FINALIZACIÓN EXITOSA -->
+        <div id="sondeo-finish-modal" class="sondeo-auth-overlay">
+            <div class="sondeo-auth-card" style="max-width: 500px; text-align: center;">
+                <div style="font-size: 2.6rem; margin-bottom: 6px;">🎉</div>
+                <h3 style="font-size: 1.35rem; color: #00ff88; font-weight: 800; margin-bottom: 6px;">¡Diagnóstico 360° Guardado!</h3>
+                <p id="finish-modal-msg" style="font-size: 0.86rem; color: #e5e5e5; line-height: 1.45; margin-bottom: 18px;">
+                    Diego ya recibió el aviso de tu evaluación. Tu balance y tus tareas personalizadas ya están disponibles en tu portal privado.
+                </p>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+                    <a href="portal_cliente.html" class="btn btn-primary" style="padding: 12px 24px; font-size: 0.95rem; font-weight: 800; background: #ffffff; color: #000000; border-radius: 50px; text-decoration: none; box-shadow: 0 0 20px rgba(0,255,136,0.3);">
+                        🌟 Entrar a Mi Portal del Cliente (Radar 360°) →
+                    </a>
+                    <a id="finish-wa-btn" href="https://wa.me/56975590132" target="_blank" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.84rem; font-weight: 700; background: #141414; color: #ffffff; border: 1px solid #333333; border-radius: 50px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <span>💬</span> Escribir a Diego por WhatsApp
+                    </a>
+                    <a href="https://link.mercadopago.cl/administracionhumana" target="_blank" style="color: #a1a1aa; font-size: 0.78rem; text-decoration: underline; margin-top: 4px;">
+                        💖 Realizar Aporte Voluntario
+                    </a>
+                </div>
+                
+                <span style="font-size: 0.75rem; color: #71717a;">Redirigiendo a tu portal en <b id="redirectCountdown" style="color:#ffffff;">4</b> segundos...</span>
+            </div>
         </div>
 
     
@@ -1633,7 +1498,7 @@
             }
 
             function goToStep(step) {
-                if (step < 1 || step > 6) return;
+                if (step < 1 || step > 5) return;
                 currentStep = step;
 
                 // Actualizar paneles
@@ -1642,8 +1507,8 @@
                 if (targetPanel) targetPanel.classList.add("active");
 
                 // Actualizar barra de progreso
-                const fill = document.getElementById("progressBarFill");
-                if (fill) fill.style.width = `${(step / 6) * 100}%`;
+                const fill = document.getElementById("progressBar") || document.getElementById("progressBarFill");
+                if (fill) fill.style.width = `${(step / 5) * 100}%`;
 
                 // Actualizar pills
                 document.querySelectorAll(".step-pill").forEach((pill, idx) => {
@@ -1663,23 +1528,33 @@
                 const counter = document.getElementById("stepCounterText");
 
                 if (btnPrev) btnPrev.style.visibility = step === 1 ? "hidden" : "visible";
-                if (counter) counter.innerText = `Paso ${step} de 6`;
+                if (counter) counter.innerText = `Paso ${step} de 5`;
 
                 if (btnNext) {
-                    if (step === 6) {
-                        btnNext.style.display = "none";
+                    if (step === 5) {
+                        btnNext.innerText = `✨ Finalizar Diagnóstico y Abrir Portal →`;
+                        btnNext.style.background = "#00ff88";
+                        btnNext.style.color = "#000000";
                     } else {
-                        btnNext.style.display = "inline-block";
                         btnNext.innerText = `Siguiente: Paso ${step + 1} →`;
+                        btnNext.style.background = "#ffffff";
+                        btnNext.style.color = "#000000";
                     }
                 }
 
-                if (step === 6) {
-                    renderStep6Summary();
-                    if (typeof syncStep6AccountUI === 'function') syncStep6AccountUI();
-                }
-
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function prevStep() {
+                if (currentStep > 1) goToStep(currentStep - 1);
+            }
+
+            function nextStep() {
+                if (currentStep < 5) {
+                    goToStep(currentStep + 1);
+                } else {
+                    finishAndOpenPortal();
+                }
             }
 
             function renderStep6Summary() {
@@ -3164,23 +3039,30 @@
             }
 
             
-            /* ================= PERSISTENCIA EN CUENTA DE CLIENTE ================= */
-            async function saveDiagnosticToUserAccount() {
+            /* ================= FINALIZACIÓN, PERSISTENCIA & NOTIFICACIÓN A DIEGO ================= */
+            async function finishAndOpenPortal() {
+                let user = null;
+                if (window.AHAuth && typeof window.AHAuth.getCurrentSession === 'function') {
+                    user = window.AHAuth.getCurrentSession();
+                }
+                if (!user) {
+                    const raw = localStorage.getItem('ah_demo_session') || localStorage.getItem('ah_current_user');
+                    if (raw) {
+                        try { user = JSON.parse(raw); } catch(e) { user = null; }
+                    }
+                }
+
+                if (!user || !user.uid) {
+                    // Si no está autenticado, abrir modal para crear cuenta en 10s
+                    openSondeoAuthModal('register');
+                    return;
+                }
+
+                await saveDiagnosticAndNotify(user);
+            }
+
+            async function saveDiagnosticAndNotify(user) {
                 try {
-                    let user = null;
-                    if (window.AHAuth && typeof window.AHAuth.getCurrentSession === 'function') {
-                        user = window.AHAuth.getCurrentSession();
-                    }
-                    if (!user) {
-                        const raw = localStorage.getItem('ah_demo_session') || localStorage.getItem('ah_current_user');
-                        if (raw) user = JSON.parse(raw);
-                    }
-
-                    if (!user || !user.uid) {
-                        openSondeoAuthModal();
-                        return;
-                    }
-
                     const scoresObj = {};
                     masterData.rueda.forEach(r => { scoresObj[r.name] = r.score; });
 
@@ -3188,6 +3070,7 @@
                         data: masterData,
                         scores: scoresObj,
                         clientName: user.fullName || user.username || 'Cliente',
+                        clientEmail: user.email || '',
                         savedAt: new Date().toISOString()
                     };
 
@@ -3198,75 +3081,84 @@
                         localStorage.setItem(`ah_diag_${user.uid}`, JSON.stringify(payload));
                     }
 
-                    // Mostrar estado de éxito en Paso 6
-                    const loggedBox = document.getElementById('step6-user-logged');
-                    const guestBox = document.getElementById('step6-user-guest');
-                    const successBox = document.getElementById('step6-save-success');
+                    // 🔔 Disparar notificación automática a Diego (Móvil / Email)
+                    sendNotificationToDiego(user, payload);
 
-                    if (loggedBox) loggedBox.style.display = 'none';
-                    if (guestBox) guestBox.style.display = 'none';
-                    if (successBox) {
-                        successBox.style.display = 'block';
-                        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Configurar y mostrar Modal de Finalización
+                    const finishModal = document.getElementById("sondeo-finish-modal");
+                    const finishMsg = document.getElementById("finish-modal-msg");
+                    const waBtn = document.getElementById("finish-wa-btn");
+
+                    if (finishMsg) {
+                        finishMsg.innerHTML = `¡Excelente, <b>${user.fullName || user.username}</b>! Tu radiografía 360° ha quedado guardada en tu cuenta y Diego ya recibió el aviso de tu expediente.`;
                     }
 
-                    showToast("🎉 <b>¡Diagnóstico 360° guardado con éxito!</b><br>Diego ya tiene tu expediente en su panel y puedes verlo en tu Portal.");
+                    if (waBtn) {
+                        const cleanName = user.fullName || user.username || 'Cliente';
+                        const waText = encodeURIComponent(`Hola Diego, acabo de completar mi Sondeo Diagnóstico Maestro 360°. Mi nombre es ${cleanName} (${user.email || ''}). Ya guardé mi diagnóstico para coordinar nuestra sesión.`);
+                        waBtn.href = `https://wa.me/56975590132?text=${waText}`;
+                    }
+
+                    if (finishModal) {
+                        finishModal.classList.add("active");
+                    }
+
+                    showToast("🎉 <b>¡Diagnóstico 360° completado!</b><br>Redirigiendo a tu Portal del Cliente...");
+
+                    // Cuenta regresiva visual y redirección suave a portal_cliente.html
+                    let countdown = 3;
+                    const countEl = document.getElementById("redirectCountdown");
+                    const timer = setInterval(() => {
+                        countdown--;
+                        if (countEl) countEl.innerText = countdown;
+                        if (countdown <= 0) {
+                            clearInterval(timer);
+                            window.location.href = "portal_cliente.html";
+                        }
+                    }, 1000);
+
                 } catch (err) {
                     console.error("Error guardando diagnóstico:", err);
-                    alert("Error al guardar: " + err.message);
+                    alert("Error al guardar diagnóstico: " + err.message);
                 }
             }
 
-            async function registerAndSaveDiagnostic() {
-                const nameInp = document.getElementById('guest-reg-name');
-                const emailInp = document.getElementById('guest-reg-email');
-                const passInp = document.getElementById('guest-reg-pass');
-                const errBox = document.getElementById('guest-reg-error');
+            async function sendNotificationToDiego(user, diagnosticData) {
+                const scores = diagnosticData.scores || {};
+                const alerts = Object.keys(scores).filter(k => scores[k] <= 5).map(k => `${k} (${scores[k]}/10)`).join(', ') || 'Ninguna (Equilibrado)';
+                const avgScore = (Object.values(scores).reduce((a,b)=>a+b, 0) / (Object.values(scores).length || 1)).toFixed(1);
+                const sumFugas = (diagnosticData.data && diagnosticData.data.fugas) ? diagnosticData.data.fugas.reduce((a,b)=>a+b, 0) : 30;
+                const satPct = Math.round(((sumFugas - 10) / 40) * 100);
 
-                const name = (nameInp ? nameInp.value : '').trim();
-                const email = (emailInp ? emailInp.value : '').trim();
-                const pass = (passInp ? passInp.value : '').trim();
+                const notifPayload = {
+                    _subject: `🔔 Nuevo Sondeo 360° Recibido: ${user.fullName || user.username}`,
+                    evento: "NUEVO_SONDEO_360",
+                    cliente: user.fullName || user.username,
+                    email: user.email || 'No especificado',
+                    promedioRueda: `${avgScore}/10`,
+                    areasCriticas: alerts,
+                    saturacionOperativa: `${satPct}%`,
+                    fecha: new Date().toLocaleString('es-CL'),
+                    enlacePanel: "https://diegfire.github.io/administracionhumana/panel_admin.html"
+                };
 
-                if (errBox) { errBox.style.display = 'none'; errBox.innerText = ''; }
+                console.log("[AH Notification] Notificando nuevo sondeo a Diego:", notifPayload);
 
-                if (!name || !email || !pass) {
-                    if (errBox) {
-                        errBox.innerText = 'Por favor completa todos los campos (nombre, correo/usuario y clave).';
-                        errBox.style.display = 'block';
-                    } else {
-                        alert('Por favor completa tu nombre, correo o usuario y clave.');
-                    }
-                    return;
-                }
-
+                // Envío asíncrono a endpoint de notificación (Formspree / Webhook silencioso)
                 try {
-                    let user = null;
-                    if (window.AHAuth && typeof window.AHAuth.register === 'function') {
-                        user = await window.AHAuth.register(email, pass, name);
-                    } else {
-                        const uid = 'user_' + Date.now();
-                        user = { uid, email, username: email.split('@')[0], fullName: name, role: 'client', status: 'Sondeo Recibido' };
-                        localStorage.setItem('ah_demo_session', JSON.stringify(user));
-                        localStorage.setItem('ah_current_user', JSON.stringify(user));
-                    }
-
-                    updateUserHeaderUI();
-                    await saveDiagnosticToUserAccount();
-                } catch(err) {
-                    if (errBox) {
-                        errBox.innerText = err.message || 'Error al registrar usuario.';
-                        errBox.style.display = 'block';
-                    } else {
-                        alert('Error: ' + err.message);
-                    }
-                }
+                    fetch("https://formspree.io/f/mqkrvkzz", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                        body: JSON.stringify(notifPayload)
+                    }).catch(() => {});
+                } catch(e) {}
             }
 
             document.addEventListener("DOMContentLoaded", init);
 
             return {
                 goToStep, nextStep, prevStep, setDeviceView,
-                saveDiagnosticToUserAccount, registerAndSaveDiagnostic,
+                finishAndOpenPortal, saveDiagnosticAndNotify,
                 updateRuedaScore, updateRuedaText,
                 setQuizScore,
                 addMasterTask, removeMasterTask, updateTaskQuadrant,
@@ -3281,9 +3173,12 @@
         window.Sonda = window.SondeoWizard;
     
     // ================= FUNCIONES GLOBALES DE AUTENTICACIÓN Y HEADER =================
-    window.openSondeoAuthModal = function() {
+    window.openSondeoAuthModal = function(mode) {
         const modal = document.getElementById('sondeo-auth-modal');
-        if (modal) modal.classList.add('active');
+        if (modal) {
+            modal.classList.add('active');
+            if (mode) toggleSondeoAuthMode(mode);
+        }
     };
 
     window.closeSondeoAuthModal = function() {
@@ -3301,7 +3196,7 @@
             if (viewLogin) viewLogin.style.display = 'none';
             if (viewReg) viewReg.style.display = 'block';
             if (title) title.innerText = 'Crear Cuenta de Cliente';
-            if (desc) desc.innerText = 'Regístrate para guardar tu diagnóstico y acceder a tu portal.';
+            if (desc) desc.innerText = 'Crea tu usuario en 10 segundos para guardar tu diagnóstico y abrir tu portal.';
         } else {
             if (viewLogin) viewLogin.style.display = 'block';
             if (viewReg) viewReg.style.display = 'none';
@@ -3335,8 +3230,13 @@
 
             closeSondeoAuthModal();
             updateUserHeaderUI();
-            syncStep6AccountUI();
-            alert(`¡Bienvenido de vuelta, ${session.fullName || session.username}! Tu sesión está activa.`);
+            
+            // Si está en el paso 5 (FODA), finalizar y abrir el portal de inmediato
+            if (window.SondeoWizard && typeof window.SondeoWizard.saveDiagnosticAndNotify === 'function') {
+                await window.SondeoWizard.saveDiagnosticAndNotify(session);
+            } else {
+                alert(`¡Bienvenido de vuelta, ${session.fullName || session.username}! Tu sesión está activa.`);
+            }
         } catch(err) {
             if (errBox) { errBox.innerText = err.message; errBox.style.display = 'block'; }
             else alert(err.message);
@@ -3364,11 +3264,21 @@
             let session = null;
             if (window.AHAuth && typeof window.AHAuth.register === 'function') {
                 session = await window.AHAuth.register(email, pass, name);
+            } else {
+                const uid = 'user_' + Date.now();
+                session = { uid, email, username: email.split('@')[0], fullName: name, role: 'client', status: 'Sondeo Recibido' };
+                localStorage.setItem('ah_demo_session', JSON.stringify(session));
+                localStorage.setItem('ah_current_user', JSON.stringify(session));
             }
             closeSondeoAuthModal();
             updateUserHeaderUI();
-            syncStep6AccountUI();
-            alert(`¡Cuenta creada con éxito! Bienvenido, ${name}.`);
+            
+            // Guardar diagnóstico y redirigir al portal automáticamente
+            if (window.SondeoWizard && typeof window.SondeoWizard.saveDiagnosticAndNotify === 'function') {
+                await window.SondeoWizard.saveDiagnosticAndNotify(session);
+            } else {
+                window.location.href = 'portal_cliente.html';
+            }
         } catch(err) {
             if (errBox) { errBox.innerText = err.message; errBox.style.display = 'block'; }
             else alert(err.message);
@@ -3385,55 +3295,30 @@
         }
         if (!user) {
             const raw = localStorage.getItem('ah_demo_session') || localStorage.getItem('ah_current_user');
-            if (raw) user = JSON.parse(raw);
+            if (raw) {
+                try { user = JSON.parse(raw); } catch(e) { user = null; }
+            }
         }
 
         if (user && user.fullName) {
             container.innerHTML = `
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(0, 255, 136, 0.1); border:1px solid rgba(0, 255, 136, 0.3); color:#00ff88; padding:5px 12px; border-radius:20px; font-size:0.8rem; font-weight:700;">
                     <span>👤</span> <b>${user.fullName}</b>
-                    <a href="portal_cliente.html" target="_blank" style="color:#ffffff; margin-left:6px; font-size:0.75rem; text-decoration:underline;">Portal →</a>
+                    <a href="portal_cliente.html" style="color:#ffffff; margin-left:6px; font-size:0.75rem; text-decoration:underline;">Portal →</a>
                 </div>
             `;
         } else {
             container.innerHTML = `
                 <button type="button" onclick="openSondeoAuthModal()" style="display:flex; align-items:center; gap:6px; background:#141414; border:1px solid #444444; color:#ffffff; padding:6px 14px; border-radius:20px; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.2s ease;">
-                    <span>👤</span> Guardar en mi Cuenta / Ingresar
+                    <span>👤</span> Ingresar / Registrarme
                 </button>
             `;
-        }
-    };
-
-    window.syncStep6AccountUI = function() {
-        let user = null;
-        if (window.AHAuth && typeof window.AHAuth.getCurrentSession === 'function') {
-            user = window.AHAuth.getCurrentSession();
-        }
-        if (!user) {
-            const raw = localStorage.getItem('ah_demo_session') || localStorage.getItem('ah_current_user');
-            if (raw) user = JSON.parse(raw);
-        }
-
-        const loggedBox = document.getElementById('step6-user-logged');
-        const guestBox = document.getElementById('step6-user-guest');
-        const userNameSpan = document.getElementById('step6-user-name');
-        const userEmailSpan = document.getElementById('step6-user-email');
-
-        if (user && user.uid) {
-            if (loggedBox) loggedBox.style.display = 'block';
-            if (guestBox) guestBox.style.display = 'none';
-            if (userNameSpan) userNameSpan.innerText = user.fullName || user.username || 'Cliente';
-            if (userEmailSpan) userEmailSpan.innerText = user.email || 'Conectado';
-        } else {
-            if (loggedBox) loggedBox.style.display = 'none';
-            if (guestBox) guestBox.style.display = 'block';
         }
     };
 
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             updateUserHeaderUI();
-            syncStep6AccountUI();
         }, 300);
     });
 
