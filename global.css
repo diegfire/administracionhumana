@@ -458,3 +458,184 @@ footer {
     }
 }
 
+
+/* =========================================================================
+   ✨ ESTILOS PARA SECCIÓN DE HITOS Y RESULTADOS (Glassmorphism/Accordion)
+   ========================================================================= */
+
+/* UTILIDADES DE ESPACIO */
+.mt-20 { margin-top: 80px !important; }
+.mt-30 { margin-top: 120px !important; }
+
+/* Tipografía y Títulos */
+.heading-text {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.sub-heading {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+/* Grid Layout */
+.hitos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding-top: 20px;
+}
+
+/* GLASSMORPHISM CARD STYLES */
+.glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.hito-icon {
+    font-size: 1.8rem;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.card-body {
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.metric {
+    display: block;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.deliverables h4 {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--panel-border);
+    padding-bottom: 5px;
+}
+
+.deliverables ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.deliverables li {
+    margin-bottom: 6px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    position: relative;
+    padding-left: 18px;
+}
+
+.deliverables li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ACCORDION TOGGLE STYLES */
+.accordion-toggle {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    align-self: flex-start;
+    padding: 0;
+    transition: color 0.2s;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.accordion-toggle:hover {
+    color: var(--accent);
+}
+
+/* ACCORDION CONTENT */
+.accordion-content {
+    margin-top: 15px;
+    padding: 15px;
+    border-left: 3px solid var(--color-border-bright);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius-sm);
+}
+.accordion-content p strong {
+    color: var(--accent);
+}
+
+/* ESTADOS (Badges) */
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ESTADO EN PROGRESO */
+.status-badge.progress {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+/* ESTADO IMPLEMENTADO */
+.status-badge.implemented {
+    background: rgba(40, 167, 60, 0.1);
+    color: #28a746;
+    border: 1px solid #28a746;
+}
+
+/* Ajustes para Múltiples Colores de Hitos */
+/* Esta regla asegura que el borde de la tarjeta y el título reflejen el estado en el diseño */
+.hitos-card[data-accordion-id="hitos-1"] { border-color: rgba(255, 193, 7, 0.1); }
+.hitos-card[data-accordion-id="hitos-2"] { border-color: rgba(40, 167, 60, 0.1); }
+.hitos-card[data-accordion-id="hitos-3"] { border-color: rgba(0, 123, 255, 0.1); }
+

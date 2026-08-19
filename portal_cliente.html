@@ -1,3 +1,4 @@
+  <!-- ====================================================== -->\n  <!-- SECCIÓN DE GESTIÓN DE HORARIOS GUARDADOS (NUEVO) -->\n  <!-- ====================================================== -->\n  <section id=\"user-schedules\" class=\"container mt-5 pt-4\">\n    <div class=\"welcome-card\" style=\"margin-bottom: 40px;\">\n      <div class=\"card-header\">\n        <h3 class=\"text-center\">📅 Mis Mapas de Horarios 24H</h3>\n      </div>\n      <div class=\"card-body\">\n        <p style=\"color: var(--text-secondary); margin-bottom: 25px;\">Aquí encontrarás todos los horarios que has generado y guardado. Haz clic en 'Ver/Editar' para continuar trabajando en ellos, o 'Eliminar' si ya no son necesarios.</p>\n        \n        <div id=\"schedules-list\" style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;\">\n          <!-- Aquí se renderizarán las tarjetas de horarios -->\n          <div class=\"text-center py-10\" id=\"loading-schedules\">\n            <p style=\"color: var(--text-secondary)\\">Cargando tus horarios...</p>\n          </div>\n          <p id=\"no-schedules-message\" style=\"display: none; color: var(--text-secondary); grid-column: 1 / -1; text-align: center;\">Aún no has guardado ningún horario. ¡Usa el generador para crear tu primer mapa de 24H!</p>\n        </div>\n        \n        <button id=\"btn-load-schedules\" class=\"btn-pill primary mt-6\" style=\"margin-right: 10px;\" onclick=\"loadAndDisplaySchedules(activeUser ? activeUser.uid : 'guest')\">Cargar/Actualizar Mis Horarios</button>\n      </div>\n    </div>\n  </section>\n<!-- ====================================================== -->\n
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -288,6 +289,95 @@
         </div>
       </div>
 
+      <!-- 🏆 SECCIÓN HITOS Y RESULTADOS DE TRANSFORMACIÓN -->
+      <section id="hitos-resultados" style="margin-top: 36px;">
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px 28px;">
+          <h2 class="heading-text" style="font-size: 1.6rem; margin-bottom: 6px;">🏆 Hitos y Resultados de Transformación</h2>
+          <p class="sub-heading" style="margin-bottom: 24px; color: var(--color-text-light);">Pilares estratégicos implementados en tu día a día para elevar tu foco, orden y soberanía operativa.</p>
+          
+          <div class="hitos-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+
+            <!-- CARD 1: OPTIMIZACIÓN DE RUTINAS -->
+            <div class="hitos-card glass-card" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--color-border-bright); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-header" style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                  <span class="hito-icon" style="font-size: 1.5rem;">⚡</span>
+                  <h3 style="font-size: 1.1rem; font-family: var(--font-heading); font-weight: 700;">Optimización de Rutinas</h3>
+                </div>
+                <div class="card-body">
+                  <p class="metric" style="color: #00ff88; font-weight: 700; font-size: 0.85rem; margin-bottom: 12px;">🚀 Métrica clave: +10 hrs libres/semana recuperadas</p>
+                  <div class="deliverables" style="font-size: 0.85rem; color: var(--color-text-light);">
+                    <ul style="list-style: none; padding: 0;">
+                      <li style="margin-bottom: 6px;">✅ Bloques de tiempo innegociables mapeados.</li>
+                      <li style="margin-bottom: 6px;">✅ Mitigación de 3 ladrones de foco y energía.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer" style="margin-top: 14px;">
+                <span class="status-badge" style="margin-bottom: 10px; font-size: 0.7rem; padding: 3px 10px;">En Progreso</span>
+                <button class="accordion-toggle btn-card-action secondary" data-accordion-id="hitos-1" type="button" style="width: 100%; font-size: 0.8rem; padding: 8px;">Ver Detalles ▾</button>
+                <div class="accordion-content" id="hitos-1" style="display:none; margin-top:10px; font-size:0.8rem; color: var(--color-text-muted); line-height: 1.4;">
+                  <p><strong>Próximos Pasos:</strong> Automatizar la revisión semanal de 15 minutos los domingos para proteger el tiempo ganado.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD 2: BASE DE CONOCIMIENTO -->
+            <div class="hitos-card glass-card" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--color-border-bright); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-header" style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                  <span class="hito-icon" style="font-size: 1.5rem;">🧠</span>
+                  <h3 style="font-size: 1.1rem; font-family: var(--font-heading); font-weight: 700;">Base de Conocimiento</h3>
+                </div>
+                <div class="card-body">
+                  <p class="metric" style="color: #00ff88; font-weight: 700; font-size: 0.85rem; margin-bottom: 12px;">📚 Estructura centralizada en Drive / Notion</p>
+                  <div class="deliverables" style="font-size: 0.85rem; color: var(--color-text-light);">
+                    <ul style="list-style: none; padding: 0;">
+                      <li style="margin-bottom: 6px;">✅ Índice maestro de procesos y protocolos (SOPs).</li>
+                      <li style="margin-bottom: 6px;">✅ Mapeo de flujos de trabajo críticos de negocio.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer" style="margin-top: 14px;">
+                <span class="status-badge" style="margin-bottom: 10px; font-size: 0.7rem; padding: 3px 10px;">✅ Implementado</span>
+                <button class="accordion-toggle btn-card-action secondary" data-accordion-id="hitos-2" type="button" style="width: 100%; font-size: 0.8rem; padding: 8px;">Ver Detalles ▾</button>
+                <div class="accordion-content" id="hitos-2" style="display:none; margin-top:10px; font-size:0.8rem; color: var(--color-text-muted); line-height: 1.4;">
+                  <p><strong>Siguiente Fase:</strong> Conectar plantillas reutilizables para delegación rápida y orden administrativo.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD 3: SALUD Y FINANZAS -->
+            <div class="hitos-card glass-card" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--color-border-bright); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-header" style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                  <span class="hito-icon" style="font-size: 1.5rem;">🛡️</span>
+                  <h3 style="font-size: 1.1rem; font-family: var(--font-heading); font-weight: 700;">Salud y Finanzas</h3>
+                </div>
+                <div class="card-body">
+                  <p class="metric" style="color: #00ff88; font-weight: 700; font-size: 0.85rem; margin-bottom: 12px;">💰 Regla 50/30/20 y límites innegociables</p>
+                  <div class="deliverables" style="font-size: 0.85rem; color: var(--color-text-light);">
+                    <ul style="list-style: none; padding: 0;">
+                      <li style="margin-bottom: 6px;">✅ Presupuesto mensual estructurado y categorizado.</li>
+                      <li style="margin-bottom: 6px;">✅ Agenda de revisiones de bienestar físico y mental.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer" style="margin-top: 14px;">
+                <span class="status-badge" style="margin-bottom: 10px; font-size: 0.7rem; padding: 3px 10px;">En Progreso</span>
+                <button class="accordion-toggle btn-card-action secondary" data-accordion-id="hitos-3" type="button" style="width: 100%; font-size: 0.8rem; padding: 8px;">Ver Detalles ▾</button>
+                <div class="accordion-content" id="hitos-3" style="display:none; margin-top:10px; font-size:0.8rem; color: var(--color-text-muted); line-height: 1.4;">
+                  <p><strong>Objetivo a corto plazo:</strong> Automatizar la separación de fondos y la conciliación mensual.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- NOT LOGGED IN STATE -->
@@ -468,6 +558,19 @@
 
       // Load Tasks
       loadClientTasks(user.uid, clientConfig.defaultTasks || []);
+
+      // Setup Accordion toggles for Hitos section
+      document.querySelectorAll('.accordion-toggle').forEach(toggle => {
+        toggle.onclick = (e) => {
+          const targetId = e.currentTarget.getAttribute('data-accordion-id');
+          const content = document.getElementById(targetId);
+          if (content) {
+            const isHidden = content.style.display === 'none' || content.style.display === '';
+            content.style.display = isHidden ? 'block' : 'none';
+            e.currentTarget.innerText = isHidden ? 'Ocultar Detalles ▴' : 'Ver Detalles ▾';
+          }
+        };
+      });
 
       // Show Portal Container
       document.getElementById('portal-content').style.display = 'block';
