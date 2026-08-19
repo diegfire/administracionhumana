@@ -311,6 +311,7 @@
     </div>
   </footer>
 
+  <script src="js/auth.js"></script>
   <script>
     // GLOBAL CLIENT DATA AND SYNC CONTROLLER
     const DEFAULT_CLIENT_DATA = {
@@ -445,11 +446,24 @@
         driveLink.href = flightUrl;
       }
 
-      // Render Radar Chart
-      const scores = clientConfig.scores || {
-        'Propósito': 8, 'Tiempo': 6, 'Finanzas': 7, 'Bienestar': 8,
-        'Hábitos': 6, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8
-      };
+      // Render Radar Chart (Dynamic from Sondeo Diagnostic or Client Config)
+      let scores = clientConfig.scores;
+      try {
+        const savedDiagRaw = localStorage.getItem(`ah_demo_diag_${user.uid}`) || localStorage.getItem(`ah_diag_${user.uid}`);
+        if (savedDiagRaw) {
+          const parsedDiag = JSON.parse(savedDiagRaw);
+          if (parsedDiag && parsedDiag.scores && Object.keys(parsedDiag.scores).length > 0) {
+            scores = parsedDiag.scores;
+          }
+        }
+      } catch(e) {}
+
+      if (!scores) {
+        scores = {
+          'Propósito': 8, 'Tiempo': 6, 'Finanzas': 7, 'Bienestar': 8,
+          'Hábitos': 6, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8
+        };
+      }
       renderRadarSVG(scores);
 
       // Load Tasks

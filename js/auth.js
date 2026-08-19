@@ -39,7 +39,7 @@ async function initFirebase() {
   }
 }
 
-export const AHAuth = {
+const AHAuth = {
   async init() {
     await initFirebase();
     this.seedDemoDataIfNeeded();
@@ -308,19 +308,44 @@ export const AHAuth = {
       };
 
       users[cleanEmail] = userProfile;
-      localStorage.setItem('ah_demo_users', JSON.stringify(users));
-      
-      const sessionData = { 
+      localStorage      const sessionData = { 
         uid, 
         email: cleanEmail, 
-        username: autoUser,
+        username: autoUser, 
         fullName: userProfile.fullName, 
         role: userProfile.role, 
         status: userProfile.status, 
         driveUrl: userProfile.driveUrl 
       };
       localStorage.setItem('ah_demo_session', JSON.stringify(sessionData));
+      localStorage.setItem('ah_current_user', JSON.stringify(sessionData));
+
+      // Sincronizar automáticamente con la lista de clientes del Panel Administrador de Diego
+      try {
+        let adminClients = JSON.parse(localStorage.getItem('ah_admin_clients') || '[]');
+        if (!adminClients.some(c => c.uid === uid || (c.email && c.email.toLowerCase() === cleanEmail))) {
+          adminClients.unshift({
+            uid: uid,
+            fullName: userProfile.fullName,
+            email: cleanEmail,
+            status: 'Sondeo Recibido',
+            driveUrl: '',
+            notes: `Usuario registrado en la web el ${new Date().toLocaleDateString('es-ES')}`
+          });
+          localStorage.setItem('ah_admin_clients', JSON.stringify(adminClients));
+        }
+      } catch(e) {}
+
       return sessionData;
+    }
+  },
+
+  getCurrentSession() {
+    try {
+      const raw = localStorage.getItem('ah_demo_session') || localStorage.getItem('ah_current_user');
+      return raw ? JSON.parse(raw) : null;
+    } catch(e) {
+      return null;
     }
   },
 
@@ -337,7 +362,10 @@ export const AHAuth = {
         const { auth, signInWithEmailAndPassword } = window.firebaseServices;
         const res = await signInWithEmailAndPassword(auth, cleanId, cleanPass);
         const profile = await this.getUserProfile(res.user.uid);
-        return { uid: res.user.uid, email: res.user.email, ...profile };
+        const sessionData = { uid: res.user.uid, email: res.user.email, ...profile };
+        localStorage.setItem('ah_demo_session', JSON.stringify(sessionData));
+        localStorage.setItem('ah_current_user', JSON.stringify(sessionData));
+        return sessionData;
       } catch(e) {}
     }
 
@@ -392,6 +420,7 @@ export const AHAuth = {
     };
 
     localStorage.setItem('ah_demo_session', JSON.stringify(sessionData));
+    localStorage.setItem('ah_current_user', JSON.stringify(sessionData));
     return sessionData;
   },
 
@@ -403,6 +432,7 @@ export const AHAuth = {
       } catch(e) {}
     }
     localStorage.removeItem('ah_demo_session');
+    localStorage.removeItem('ah_current_user');
   },
 
   async resetPassword(email) {
@@ -457,26 +487,83 @@ export const AHAuth = {
         const session = JSON.parse(localStorage.getItem('ah_demo_session') || 'null');
         if (session && session.uid === uid) {
           localStorage.setItem('ah_demo_session', JSON.stringify({ ...session, ...fields }));
+          localStorage.setItem('ah_current_user', JSON.stringify({ ...session, ...fields }));
         }
       }
     }
   },
 
   async saveDiagnostic(uid, diagnosticData) {
+    const payload = {
+      uid,
+      ...diagnosticData,
+      updatedAt: new Date().toISOString()
+    };
+
     if (!IS_DEMO_MODE && window.firebaseServices) {
       const { db, doc, setDoc } = window.firebaseServices;
-      await setDoc(doc(db, "diagnosticos", uid), {
-        uid,
-        ...diagnosticData,
-        updatedAt: new Date().toISOString()
-      });
-    } else {
-      localStorage.setItem(`ah_demo_diag_${uid}`, JSON.stringify({
-        uid,
-        ...diagnosticData,
-        updatedAt: new Date().toISOString()
-      }));
+      await setDoc(doc(db, "diagnosticos", uid), payload);
     }
+
+    // Persistencia Local Dual
+    localStorage.setItem(`ah_demo_diag_${uid}`, JSON.stringify(payload));
+    localStorage.setItem(`ah_diag_${uid}`, JSON.stringify(payload));
+
+    // Sincronizar con el panel de administración de Diego (ah_admin_clients)
+    try {
+      let adminClients = JSON.parse(localStorage.getItem('ah_admin_clients') || '[]');
+      const userProfile = await this.getUserProfile(uid);
+      const clientName = (userProfile && userProfile.fullName) || (diagnosticData.data && diagnosticData.data.clientName) || 'Cliente Sondeo';
+      const clientEmail = (userProfile && userProfile.email) || `${uid}@cliente.cl`;
+      
+      const existingIdx = adminClients.findIndex(c => c.uid === uid || (c.email && c.email.toLowerCase() === clientEmail.toLowerCase()));
+      if (existingIdx >= 0) {
+        adminClients[existingIdx].status = 'Sondeo Recibido';
+        adminClients[existingIdx].notes = `Sondeo 360° completado el ${new Date().toLocaleDateString('es-ES')}`;
+      } else {
+        adminClients.unshift({
+          uid: uid,
+          fullName: clientName,
+          email: clientEmail,
+          status: 'Sondeo Recibido',
+          driveUrl: '',
+          notes: `Sondeo 360° completado el ${new Date().toLocaleDateString('es-ES')}`
+        });
+      }
+      localStorage.setItem('ah_admin_clients', JSON.stringify(adminClients));
+    } catch(e) {}
+
+    // Generar 3 tareas iniciales automáticas en el portal del cliente si no existen
+    try {
+      const existingTasks = JSON.parse(localStorage.getItem(`ah_demo_tasks_${uid}`) || '[]');
+      if (!existingTasks || existingTasks.length === 0) {
+        const scores = diagnosticData.scores || {};
+        const starterTasks = [];
+        let taskId = 1;
+
+        // Si hay áreas con puntaje <= 5, generar tareas enfocadas
+        const weakAreas = Object.keys(scores).filter(k => scores[k] <= 5);
+        if (weakAreas.includes('Salud y Bienestar') || weakAreas.includes('Bienestar')) {
+          starterTasks.push({ id: taskId++, text: 'Agendar 1 bloque diario de 20 min innegociable para descanso o movimiento corporal', completed: false });
+        }
+        if (weakAreas.includes('Tiempo') || weakAreas.includes('Gestión del Tiempo')) {
+          starterTasks.push({ id: taskId++, text: 'Mapear rutina semanal de 24H y delimitar horas de apagafuegos vs. foco', completed: false });
+        }
+        if (weakAreas.includes('Finanzas') || weakAreas.includes('Finanzas Personales')) {
+          starterTasks.push({ id: taskId++, text: 'Revisar regla 50/30/20 y registrar gastos fijos del mes', completed: false });
+        }
+        if (weakAreas.includes('Carrera / Negocio') || weakAreas.includes('Propósito')) {
+          starterTasks.push({ id: taskId++, text: 'Definir la meta #1 del trimestre y alinearla con el Plan de Vuelo 2.0', completed: false });
+        }
+
+        // Tarea por defecto
+        starterTasks.push({ id: taskId++, text: 'Coordinar Sesión Diagnóstica 1 a 1 con Diego para revisar tu radiografía', completed: false });
+
+        localStorage.setItem(`ah_demo_tasks_${uid}`, JSON.stringify(starterTasks.slice(0, 3)));
+      }
+    } catch(e) {}
+
+    return payload;
   },
 
   async getDiagnostic(uid) {
@@ -485,7 +572,7 @@ export const AHAuth = {
       const snap = await getDoc(doc(db, "diagnosticos", uid));
       return snap.exists() ? snap.data() : null;
     } else {
-      return JSON.parse(localStorage.getItem(`ah_demo_diag_${uid}`) || 'null');
+      return JSON.parse(localStorage.getItem(`ah_demo_diag_${uid}`) || localStorage.getItem(`ah_diag_${uid}`) || 'null');
     }
   },
 
@@ -525,7 +612,15 @@ export const AHAuth = {
 
 if (typeof window !== 'undefined') {
   window.AHAuth = AHAuth;
+  try {
+    AHAuth.seedDemoDataIfNeeded();
+  } catch(e) {}
 }
 
-export { AHAuth };
-export default AHAuth;
+try {
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = AHAuth;
+  }
+} catch(e) {}
+
+

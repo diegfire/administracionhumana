@@ -286,8 +286,9 @@
     </div>
   </div>
 
-  <script type="module">
-    import { AHAuth } from './js/auth.js';
+  <script src="js/auth.js"></script>
+  <script>
+    const AHAuth = window.AHAuth;
 
     document.addEventListener('DOMContentLoaded', async () => {
       await AHAuth.init();
@@ -438,17 +439,59 @@
           `).join('');
         } else {
           const scores = diag.scores || {};
-          scoresList.innerHTML = Object.keys(scores).map(dim => `
+          let html = Object.keys(scores).map(dim => `
             <div class="diag-item">
               <span>${dim}</span>
               <div style="display:flex; align-items:center; gap:12px;">
                 <div class="diag-score-bar">
                   <div class="diag-score-fill" style="width: ${scores[dim] * 10}%;"></div>
                 </div>
-                <strong style="width:30px; text-align:right;">${scores[dim]}/10</strong>
+                <strong style="width:30px; text-align:right; color:${scores[dim] <= 5 ? '#ff4d4f' : '#ffffff'};">${scores[dim]}/10</strong>
               </div>
             </div>
           `).join('');
+
+          // Si hay datos completos del sondeo (FODA, Tareas, etc.)
+          if (diag.data) {
+            const d = diag.data;
+            if (d.fugas && Array.isArray(d.fugas)) {
+              const sum = d.fugas.reduce((a, b) => a + b, 0);
+              const satPct = Math.round(((sum - 10) / 40) * 100);
+              html += `
+                <div style="margin-top:16px; padding:12px; background:#141414; border:1px solid #333; border-radius:8px;">
+                  <div style="font-weight:800; color:#fff; font-size:0.85rem; margin-bottom:4px;">🚨 Fricción & Saturómetro Operativo: <b>${satPct}%</b></div>
+                  <div style="font-size:0.78rem; color:#a1a1aa;">Nivel de saturación estimado según 10 síntomas de fuga.</div>
+                </div>
+              `;
+            }
+
+            if (d.eisenhower && d.eisenhower.length > 0) {
+              html += `
+                <div style="margin-top:12px; padding:12px; background:#141414; border:1px solid #333; border-radius:8px;">
+                  <div style="font-weight:800; color:#fff; font-size:0.85rem; margin-bottom:6px;">📋 Pendientes Priorizados (Eisenhower):</div>
+                  <ul style="margin:0; padding-left:16px; font-size:0.8rem; color:#d4d4d8;">
+                    ${d.eisenhower.map(t => `<li><b>${t.name}</b> (Urg: ${t.urgency}, Imp: ${t.importance})</li>`).join('')}
+                  </ul>
+                </div>
+              `;
+            }
+
+            if (d.foda) {
+              html += `
+                <div style="margin-top:12px; padding:12px; background:#141414; border:1px solid #333; border-radius:8px;">
+                  <div style="font-weight:800; color:#fff; font-size:0.85rem; margin-bottom:6px;">🧩 FODA del Cliente:</div>
+                  <div style="font-size:0.78rem; color:#d4d4d8; line-height:1.4;">
+                    ${d.foda.fortalezas ? `<div><b>💪 Fortalezas:</b> ${d.foda.fortalezas}</div>` : ''}
+                    ${d.foda.debilidades ? `<div><b>⚠️ Debilidades:</b> ${d.foda.debilidades}</div>` : ''}
+                    ${d.foda.oportunidades ? `<div><b>🚀 Oportunidades:</b> ${d.foda.oportunidades}</div>` : ''}
+                    ${d.foda.amenazas ? `<div><b>🛡️ Amenazas:</b> ${d.foda.amenazas}</div>` : ''}
+                  </div>
+                </div>
+              `;
+            }
+          }
+
+          scoresList.innerHTML = html;
         }
 
         diagModal.classList.add('active');
