@@ -785,7 +785,7 @@
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             z-index: 99999;
@@ -796,6 +796,7 @@
         }
 
         .sondeo-auth-overlay.active {
+            display: flex;
             opacity: 1;
             pointer-events: auto;
         }
@@ -3054,7 +3055,12 @@
 
                 if (!user || !user.uid) {
                     // Si no está autenticado, abrir modal para crear cuenta en 10s
-                    openSondeoAuthModal('register');
+                    if (typeof window.openSondeoAuthModal === 'function') {
+                        window.openSondeoAuthModal('register');
+                    } else {
+                        const m = document.getElementById('sondeo-auth-modal');
+                        if (m) m.classList.add('active');
+                    }
                     return;
                 }
 
