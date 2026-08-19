@@ -630,7 +630,7 @@
     // CHECKLIST TASK MANAGER
     function loadClientTasks(uid, defaultTasks) {
       const storageKey = `ah_portal_tasks_${uid}`;
-      const saved = localStorage.getItem(storageKey);
+      const saved = localStorage.getItem(storageKey) || localStorage.getItem(`ah_demo_tasks_${uid}`);
       if (saved) {
         try {
           userTasks = JSON.parse(saved);
@@ -639,8 +639,8 @@
         }
       } else {
         userTasks = defaultTasks;
-        localStorage.setItem(storageKey, JSON.stringify(userTasks));
       }
+      localStorage.setItem(storageKey, JSON.stringify(userTasks));
       renderTasks(uid);
     }
 

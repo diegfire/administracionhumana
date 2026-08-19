@@ -308,7 +308,9 @@ const AHAuth = {
       };
 
       users[cleanEmail] = userProfile;
-      localStorage      const sessionData = { 
+      localStorage.setItem('ah_demo_users', JSON.stringify(users));
+
+      const sessionData = { 
         uid, 
         email: cleanEmail, 
         username: autoUser, 
