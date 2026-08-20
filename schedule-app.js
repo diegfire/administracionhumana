@@ -29,7 +29,8 @@ const state = {
     scheduleBlocks: {}, // Map: "dayIdx-timeStr" -> { title: "...", cat: "..." }
     isSelecting: false,
     selectedCellIds: [],
-    startCell: null
+    startCell: null,
+    hasLoadedSavedData: false
 };
 
 // HELPERS DE COLOR
@@ -57,7 +58,7 @@ function initApp() {
         if (nameInput) nameInput.value = state.personName;
     }
 
-    if (!state.scheduleBlocks || Object.keys(state.scheduleBlocks).length === 0) {
+    if (!state.hasLoadedSavedData && (!state.scheduleBlocks || Object.keys(state.scheduleBlocks).length === 0)) {
         loadDefaultTemplate();
     }
 
@@ -93,8 +94,9 @@ function loadSavedSchedule() {
             if (parsed.categories && Object.keys(parsed.categories).length > 0) {
                 state.categories = parsed.categories;
             }
-            if (parsed.scheduleBlocks && Object.keys(parsed.scheduleBlocks).length > 0) {
+            if (parsed.scheduleBlocks !== undefined && typeof parsed.scheduleBlocks === "object") {
                 state.scheduleBlocks = parsed.scheduleBlocks;
+                state.hasLoadedSavedData = true;
             }
         } catch (e) {
             console.error("Error al cargar horario:", e);
@@ -886,6 +888,7 @@ function loadPresetTemplate(type) {
 function clearFullSchedule() {
     if (confirm("¿Estás seguro de que deseas limpiar todo el horario y dejar todas las 24 horas en blanco?")) {
         state.scheduleBlocks = {};
+        state.hasLoadedSavedData = true;
         renderTableGrid();
         updateLiveMetrics();
         saveSchedule();
