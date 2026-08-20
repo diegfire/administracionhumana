@@ -28,7 +28,7 @@
       --radius-sm: 8px;
       --radius: 14px;
       --radius-lg: 22px;
-      --max-width: 1100px;
+      --max-width: 1120px;
       --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -55,7 +55,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--color-border);
@@ -65,6 +65,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
     }
     .nav-logo {
       font-family: var(--font-heading);
@@ -90,7 +92,8 @@
     .header-btns {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     .btn-outline {
       background: transparent;
@@ -105,11 +108,32 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      text-decoration: none;
       transition: all var(--transition);
     }
     .btn-outline:hover {
       background: rgba(255,255,255,0.08);
       border-color: #fff;
+    }
+    .btn-sondeo-top {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition);
+    }
+    .btn-sondeo-top:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+      transform: translateY(-1px);
     }
     .btn-action-top {
       background: #ffffff;
@@ -122,6 +146,9 @@
       text-decoration: none;
       transition: all var(--transition);
       box-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .btn-action-top:hover {
       background: #e5e5e5;
@@ -131,7 +158,7 @@
 
     /* ── HERO BANNER ── */
     .dossier-hero {
-      padding: 60px 0 40px;
+      padding: 50px 0 32px;
       text-align: center;
       position: relative;
     }
@@ -149,17 +176,17 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #ffffff;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .hero-pill i { color: var(--color-accent-blue); }
     .dossier-hero h1 {
       font-family: var(--font-heading);
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
-      max-width: 860px;
+      max-width: 880px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -169,29 +196,28 @@
       -webkit-text-fill-color: transparent;
     }
     .dossier-hero p {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       color: var(--color-text-muted);
-      max-width: 720px;
-      margin: 0 auto 32px;
+      max-width: 740px;
+      margin: 0 auto 28px;
     }
 
     /* ── ARCHETYPE SELECTOR (TABS) ── */
+    .archetype-tabs-container {
+      margin-bottom: 32px;
+    }
     .archetype-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
     }
     .tab-btn {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       color: var(--color-text-muted);
-      padding: 14px 20px;
+      padding: 14px 16px;
       border-radius: var(--radius);
       font-family: var(--font-heading);
-      font-size: 0.88rem;
-      font-weight: 700;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -199,7 +225,6 @@
       gap: 4px;
       text-align: left;
       transition: all var(--transition);
-      min-width: 260px;
     }
     .tab-btn:hover {
       border-color: var(--color-border-bright);
@@ -216,16 +241,71 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 800;
     }
     .tab-btn-desc {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 500;
       color: #888;
+      line-height: 1.3;
     }
     .tab-btn.active .tab-btn-desc {
       color: #333;
+    }
+
+    /* ── BEFORE VS AFTER SIMULATOR WIDGET ── */
+    .contrast-simulator-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-bright);
+      border-radius: var(--radius-lg);
+      padding: 22px 26px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .sim-toggle-group {
+      display: inline-flex;
+      background: #141414;
+      border: 1px solid #282828;
+      border-radius: 50px;
+      padding: 3px;
+    }
+    .sim-toggle-btn {
+      background: transparent;
+      border: none;
+      color: #888;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      transition: all 0.2s;
+    }
+    .sim-toggle-btn.active {
+      background: #ffffff;
+      color: #000000;
+    }
+    .sim-state-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .sim-metric-box {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      transition: all 0.3s ease;
     }
 
     /* ── VISUAL 2D ROADMAP DIAGRAM (INFOGRAPHIC HEADER) ── */
@@ -233,8 +313,8 @@
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-lg);
-      padding: 24px;
-      margin-bottom: 36px;
+      padding: 20px;
+      margin-bottom: 32px;
       overflow-x: auto;
     }
     .roadmap-grid {
@@ -242,15 +322,13 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 12px;
       min-width: 750px;
-      position: relative;
     }
     .roadmap-node {
       background: var(--color-surface-2);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
-      padding: 14px 12px;
+      padding: 12px 10px;
       text-align: center;
-      position: relative;
       transition: all var(--transition);
     }
     .roadmap-node:hover {
@@ -259,7 +337,7 @@
     }
     .roadmap-node-step {
       font-family: var(--font-heading);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -268,14 +346,14 @@
     }
     .roadmap-node-title {
       font-family: var(--font-heading);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: #ffffff;
       line-height: 1.25;
     }
     .roadmap-node-icon {
-      font-size: 1.3rem;
-      margin-bottom: 6px;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
       display: inline-block;
     }
 
@@ -285,10 +363,10 @@
       border: 1px solid var(--color-border-bright);
       border-radius: var(--radius-lg);
       padding: 24px 28px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 24px;
+      gap: 22px;
       align-items: center;
     }
     @media (max-width: 700px) {
@@ -308,7 +386,7 @@
     }
     .profile-meta-grid {
       display: flex;
-      gap: 16px;
+      gap: 8px;
       flex-wrap: wrap;
       margin-top: 10px;
     }
@@ -317,7 +395,7 @@
       border: 1px solid #282828;
       padding: 4px 10px;
       border-radius: 20px;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: #bbb;
     }
 
@@ -325,8 +403,8 @@
     .journey-timeline {
       display: flex;
       flex-direction: column;
-      gap: 32px;
-      margin-bottom: 60px;
+      gap: 28px;
+      margin-bottom: 50px;
     }
 
     .journey-card {
@@ -342,13 +420,13 @@
     }
 
     .journey-card-header {
-      padding: 20px 26px;
+      padding: 18px 24px;
       background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
       border-bottom: 1px solid var(--color-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
     }
     .step-indicator {
@@ -357,8 +435,8 @@
       gap: 14px;
     }
     .step-number-circle {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       background: #181818;
       border: 1px solid var(--color-border-bright);
@@ -367,25 +445,25 @@
       justify-content: center;
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #ffffff;
       flex-shrink: 0;
     }
     .step-title-group h3 {
       font-family: var(--font-heading);
-      font-size: 1.12rem;
+      font-size: 1.08rem;
       font-weight: 800;
       color: #ffffff;
     }
     .step-title-group span {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--color-text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     .journey-card-body {
-      padding: 26px 28px;
+      padding: 24px 26px;
     }
 
     /* ── QUOTE & INSIGHT BOXES ── */
@@ -395,8 +473,8 @@
       border-left: 4px solid #ef4444;
       padding: 16px 20px;
       border-radius: var(--radius-sm);
-      margin-bottom: 20px;
-      font-size: 0.94rem;
+      margin-bottom: 18px;
+      font-size: 0.92rem;
       color: #fca5a5;
       line-height: 1.6;
       font-style: italic;
@@ -408,8 +486,8 @@
       border-left: 4px solid var(--color-accent-blue);
       padding: 16px 20px;
       border-radius: var(--radius-sm);
-      margin-bottom: 20px;
-      font-size: 0.92rem;
+      margin-bottom: 18px;
+      font-size: 0.91rem;
       color: #bae6fd;
       line-height: 1.6;
     }
@@ -419,15 +497,15 @@
       background: #0d0d0d;
       border: 1px solid #242424;
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 18px;
       margin-top: 18px;
     }
     .calibration-title {
       font-family: var(--font-heading);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -435,11 +513,11 @@
     }
     .calibration-step-row {
       display: grid;
-      grid-template-columns: 100px 1fr 1fr;
+      grid-template-columns: 95px 1fr 1fr;
       gap: 12px;
-      padding: 10px 0;
+      padding: 9px 0;
       border-bottom: 1px solid #1a1a1a;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
     }
     @media (max-width: 680px) {
       .calibration-step-row { grid-template-columns: 1fr; }
@@ -454,10 +532,10 @@
       background: var(--color-surface-2);
       border: 1px solid var(--color-border);
       border-radius: var(--radius);
-      padding: 16px;
+      padding: 15px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       transition: all var(--transition);
     }
     .dossier-tool-badge:hover {
@@ -470,19 +548,19 @@
       justify-content: space-between;
     }
     .tool-icon-circle {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 8px;
       background: #ffffff;
       color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 800;
     }
     .tool-tag {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 800;
       text-transform: uppercase;
       padding: 2px 7px;
@@ -492,12 +570,12 @@
     }
     .tool-name-text {
       font-family: var(--font-heading);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
       color: #ffffff;
     }
     .tool-desc-text {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--color-text-muted);
       line-height: 1.45;
     }
@@ -507,22 +585,22 @@
       background: #000000;
       border: 1px solid var(--color-border);
       border-radius: var(--radius);
-      padding: 20px;
-      margin-top: 16px;
+      padding: 18px;
+      margin-top: 14px;
     }
     .board-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
       border-bottom: 1px solid #1c1c1c;
       flex-wrap: wrap;
       gap: 10px;
     }
     .board-title {
       font-family: var(--font-heading);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 800;
       color: #ffffff;
       display: flex;
@@ -533,7 +611,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--color-accent-green);
       font-weight: 700;
       text-transform: uppercase;
@@ -551,7 +629,7 @@
     .sim-kanban-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
     @media (max-width: 640px) {
       .sim-kanban-grid { grid-template-columns: 1fr; }
@@ -560,13 +638,13 @@
       background: #0d0d0d;
       border: 1px solid #1f1f1f;
       border-radius: var(--radius-sm);
-      padding: 12px;
+      padding: 10px;
     }
     .sim-col-title {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
       color: #aaa;
@@ -575,10 +653,10 @@
       background: #171717;
       border: 1px solid #282828;
       border-radius: 6px;
-      padding: 9px 11px;
-      font-size: 0.8rem;
+      padding: 8px 10px;
+      font-size: 0.78rem;
       color: #ddd;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       line-height: 1.35;
       display: flex;
       justify-content: space-between;
@@ -600,7 +678,7 @@
       background: #0d0d0d;
       border: 1px solid #1a1a1a;
       border-radius: 6px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: #ccc;
       margin-bottom: 6px;
       cursor: pointer;
@@ -619,26 +697,26 @@
     /* ── RESULTS METRICS STRIP ── */
     .metric-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
       margin-top: 14px;
     }
     .metric-card {
       background: #0d0d0d;
       border: 1px solid #222;
       border-radius: var(--radius-sm);
-      padding: 16px;
+      padding: 14px;
       text-align: center;
     }
     .metric-val {
       font-family: var(--font-heading);
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: var(--color-accent-green);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
     .metric-lbl {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       color: var(--color-text-muted);
       line-height: 1.3;
     }
@@ -647,7 +725,7 @@
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 14px;
     }
     @media (max-width: 768px) {
       .grid-2 { grid-template-columns: 1fr; }
@@ -658,9 +736,9 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
       border: 1px solid var(--color-border-bright);
       border-radius: var(--radius-lg);
-      padding: 40px 32px;
+      padding: 36px 28px;
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 50px;
       position: relative;
       overflow: hidden;
     }
@@ -673,26 +751,32 @@
     }
     .anti-diy-banner h3 {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       font-weight: 800;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .anti-diy-banner p {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       color: var(--color-text-muted);
-      max-width: 720px;
-      margin: 0 auto 28px;
+      max-width: 700px;
+      margin: 0 auto 24px;
+    }
+    .cta-button-group {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
     .btn-main-cta {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: #ffffff;
       color: #000000;
-      padding: 14px 32px;
+      padding: 13px 28px;
       border-radius: 50px;
       font-family: var(--font-heading);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       text-decoration: none;
       transition: all var(--transition);
@@ -703,13 +787,68 @@
       transform: translateY(-2px);
       box-shadow: 0 0 35px rgba(255, 255, 255, 0.35);
     }
+    .btn-secondary-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      padding: 13px 26px;
+      border-radius: 50px;
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .btn-secondary-cta:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
 
     footer {
       border-top: 1px solid var(--color-border);
-      padding: 30px 0;
+      padding: 26px 0;
       text-align: center;
       font-size: 0.8rem;
       color: #666;
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      header, .header-btns, .archetype-tabs-container, .contrast-simulator-card, .anti-diy-banner, footer, .btn-outline, .btn-action-top, .btn-sondeo-top {
+        display: none !important;
+      }
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .journey-card, .profile-card, .roadmap-strip, .dossier-tool-badge, .interactive-board-preview, .calibration-log-box {
+        background: #ffffff !important;
+        border: 1px solid #cccccc !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+      }
+      .profile-card h2, .step-title-group h3, .tool-name-text, .metric-val, .roadmap-node-title {
+        color: #000000 !important;
+      }
+      .quote-box {
+        background: #fdf2f2 !important;
+        color: #991b1b !important;
+        border-color: #f87171 !important;
+      }
+      .insight-box {
+        background: #f0f9ff !important;
+        color: #075985 !important;
+        border-color: #38bdf8 !important;
+      }
     }
   </style>
 </head>
@@ -718,15 +857,18 @@
   <!-- HEADER -->
   <header>
     <div class="container header-inner">
-      <a href="landing_administracion_humana.html" class="nav-logo">
+      <a href="index.html" class="nav-logo">
         <span>ADMINISTRACIÓN HUMANA</span>
         <span class="nav-tag">DOSSIER DE CASOS</span>
       </a>
       <div class="header-btns">
+        <a href="sondeo.html" class="btn-sondeo-top">
+          <i class="fa-solid fa-compass"></i> Sondeo Maestro 360°
+        </a>
         <button class="btn-outline" onclick="window.print()">
           <i class="fa-solid fa-file-pdf"></i> Imprimir / PDF
         </button>
-        <a href="https://wa.me/56992644265?text=Hola%20Diego,%20vi%20el%20caso%20demostrativo%20y%20me%20gustar%C3%ADa%20evaluar%20mi%20situaci%C3%B3n" class="btn-action-top" target="_blank">
+        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20el%20Dossier%20de%20Casos%20Reales%20y%20me%20gustar%C3%ADa%20coordinar%20mi%20sesi%C3%B3n%20diagn%C3%B3stica." class="btn-action-top" target="_blank">
           <i class="fa-brands fa-whatsapp"></i> Diagnóstico 1 a 1
         </a>
       </div>
@@ -739,29 +881,59 @@
     <!-- HERO INTRO -->
     <section class="dossier-hero">
       <div class="hero-pill">
-        <i class="fa-solid fa-microscope"></i> Radiografía Clínica-Operativa
+        <i class="fa-solid fa-microscope"></i> Radiografía Clínica-Operativa • Casos Reales
       </div>
       <h1>
         Anatomía de un Proceso: <span>Del Caos Mental al Plan de Vuelo 2.0</span>
       </h1>
       <p>
-        Cómo la escucha activa, el desarme del juicio moral y la ingeniería de hábitos transforman la fatiga en soberanía operativa y resultados medibles.
+        Cómo la escucha empática, la eliminación del juicio moral y la ingeniería de hábitos transforman la fatiga en soberanía operativa, paz mental y resultados financieros medibles.
       </p>
 
-      <!-- ARCHETYPE SELECTOR -->
-      <div class="archetype-tabs">
-        <button class="tab-btn active" onclick="switchArchetype('caso_a', this)">
-          <div class="tab-btn-title"><span>🧘‍♀️ Caso 1: Terapeuta & Creadora</span></div>
-          <div class="tab-btn-desc">Sobrecarga de cuidados, culpa y bloqueo de lanzamiento</div>
-        </button>
-        <button class="tab-btn" onclick="switchArchetype('caso_b', this)">
-          <div class="tab-btn-title"><span>💆‍♀️ Caso 2: Emprendedora Sensorial</span></div>
-          <div class="tab-btn-desc">Dispersión, saturación por estímulos y desorden financiero</div>
-        </button>
-        <button class="tab-btn" onclick="switchArchetype('caso_c', this)">
-          <div class="tab-btn-title"><span>🎒 Caso 3: Estudiante & Regulación TDAH</span></div>
-          <div class="tab-btn-desc">Bajo roce, autonomía y eliminación de la fricción familiar</div>
-        </button>
+      <!-- ARCHETYPE SELECTOR (5 CASOS REALES) -->
+      <div class="archetype-tabs-container">
+        <div class="archetype-tabs">
+          <button class="tab-btn active" onclick="switchArchetype('caso_a', this)">
+            <div class="tab-btn-title"><span>🧘‍♀️ 1. Cuidados & Servicios</span></div>
+            <div class="tab-btn-desc">Carga mental, culpa y meta pasajes ($160k)</div>
+          </button>
+          <button class="tab-btn" onclick="switchArchetype('caso_b', this)">
+            <div class="tab-btn-title"><span>💆‍♀️ 2. Sensorial & Masajes</span></div>
+            <div class="tab-btn-desc">Neurodivergencia, pausas y paquetes 4x</div>
+          </button>
+          <button class="tab-btn" onclick="switchArchetype('caso_c', this)">
+            <div class="tab-btn-title"><span>🎒 3. Estudiante TDAH</span></div>
+            <div class="tab-btn-desc">Paso Cero (5 min), resúmenes visuales y autonomía</div>
+          </button>
+          <button class="tab-btn" onclick="switchArchetype('caso_d', this)">
+            <div class="tab-btn-title"><span>👓 4. Parálisis por Análisis</span></div>
+            <div class="tab-btn-desc">Comercio, overthinking y lanzamiento 7 días</div>
+          </button>
+          <button class="tab-btn" onclick="switchArchetype('caso_e', this)">
+            <div class="tab-btn-title"><span>🌏 5. Transición & Carrera</span></div>
+            <div class="tab-btn-desc">Proyecto internacional (Road to Sidney) e hitos</div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEFORE VS AFTER SIMULATOR -->
+    <section class="contrast-simulator-card">
+      <div class="sim-header">
+        <div>
+          <h3 style="font-family:var(--font-heading); font-size:1rem; font-weight:800; color:#fff;">
+            ⚖️ Transformación Operativa en Tiempo Real
+          </h3>
+          <p style="font-size:0.78rem; color:#888;">Alterna entre el estado de colapso y el estado calibrado con Administración Humana:</p>
+        </div>
+        <div class="sim-toggle-group">
+          <button class="sim-toggle-btn" id="btn-state-before" onclick="setSimState('before')">❌ Antes (Saturación)</button>
+          <button class="sim-toggle-btn active" id="btn-state-after" onclick="setSimState('after')">✅ Con Plan de Vuelo 2.0</button>
+        </div>
+      </div>
+
+      <div class="sim-state-grid" id="sim-state-grid">
+        <!-- Renderizado dinámico según caso activo -->
       </div>
     </section>
 
@@ -808,18 +980,23 @@
       <p>
         El <strong>95% de las personas conocen estas herramientas</strong> (Time Blocking, Kanban, Eisenhower). Sin embargo, el <strong>0% logra sostenerlas</strong> cuando el sistema nervioso entra en sobrecarga o cuando la rutina no fue calibrada a su fricción humana real.
         <br><br>
-        <strong>La herramienta es solo el mapa; nosotros construimos el camino, el andamiaje y el sostén contigo.</strong>
+        <strong>La herramienta es solo el mapa; nosotros construimos el andamiaje, el ritmo y el sostén contigo.</strong>
       </p>
-      <a href="https://wa.me/56992644265?text=Hola%20Diego,%20quiero%20agendar%20mi%20sesi%C3%B3n%20de%20diagn%C3%B3stico%20inicial%20de%20Administraci%C3%B3n%20Humana" class="btn-main-cta" target="_blank">
-        <i class="fa-solid fa-calendar-check"></i> Postular a Diagnóstico Inicial (45 Min)
-      </a>
+      <div class="cta-button-group">
+        <a href="sondeo.html" class="btn-secondary-cta">
+          <i class="fa-solid fa-chart-pie"></i> Realizar Mi Sondeo 360° Gratuito (3 min)
+        </a>
+        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20le%C3%AD%20el%20Dossier%20de%20Casos%20Reales%20y%20quiero%20postular%20a%20mi%20Sesi%C3%B3n%20Diagn%C3%B3stica%201%20a%201." class="btn-main-cta" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> Postular a Diagnóstico 1 a 1
+        </a>
+      </div>
     </section>
 
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2026 Administración Humana • Metodología AICC (Acompañamiento Integral y Creación Colectiva)</p>
+      <p>© 2026 Administración Humana • Metodología AICC (Acompañamiento Integral y Creación Colectiva) • Concepción, Chile</p>
     </div>
   </footer>
 
@@ -828,10 +1005,22 @@
       caso_a: {
         profile: {
           avatar: "🧘‍♀️",
-          name: "Caso 1: Terapeuta & Creadora de Servicios",
-          role: "Instructora de Yoga & Terapeuta Holística",
-          context: "Vive con su familia y asume la responsabilidad principal de cuidados médicos y trámites familiares.",
-          pills: ["28 Años", "Sobrecarga Emocional", "Lanzamiento de Servicios", "Meta Pasajes Mensual"]
+          name: "Caso 1: Antonia • Terapeuta & Creadora de Servicios",
+          role: "Instructora de Yoga & Movimiento Somático",
+          context: "Responsabilidad principal de cuidados médicos y trámites familiares, con deseo de sostener sus clases online sin fallar ante urgencias domésticas.",
+          pills: ["28 Años", "Sobrecarga Emocional", "Lanzamiento de Servicios", "Meta Pasajes ($160.000)"]
+        },
+        simulator: {
+          before: [
+            { label: "Carga Cognitiva", val: "🔥 8h de trabajo invisible no reconocido", sub: "Culpa por no producir en horario tradicional" },
+            { label: "Noches", val: "⚡ Rumiación y listas mentales", sub: "Insomnio por sensación de deuda constante" },
+            { label: "Finanzas", val: "❓ Ansiedad por costo de traslados", sub: "Sin meta matemática de alumnas requeridas" }
+          ],
+          after: [
+            { label: "Soberanía Temporal", val: "🛡️ 2 Bloques de Oro de 45 min", sub: "Clases fluidas + 1 clase grabada de comodín" },
+            { label: "Noches", val: "✨ Inventario Cero Culpa", sub: "Validación de 3 micro-victorias diarias en 2 min" },
+            { label: "Finanzas", val: "💰 Meta Cumplida ($160.000 CLP)", sub: "8 alumnas cubren 100% de pasajes mensuales" }
+          ]
         },
         step1: {
           quote: "«Siento que trabajo todo el día entre trámites familiares y cuidados médicos, pero al acostarme tengo la sensación de no haber hecho nada. Tengo miedo de lanzar mis clases de yoga porque no quiero fallarles a mis alumnas si surge una urgencia médica en mi casa.»",
@@ -888,10 +1077,22 @@
       caso_b: {
         profile: {
           avatar: "💆‍♀️",
-          name: "Caso 2: Emprendedora Sensorial & Masoterapeuta",
-          role: "Terapeuta Corporal & Creadora de Cosmética Natural",
-          context: "Perfil neurodivergente (alta sensibilidad al ruido y sobreestimulación), gestiona hogar y atiende clientes presenciales.",
-          pills: ["26 Años", "Sensibilidad Sensorial", "Servicios Presenciales", "Regulación de Energía"]
+          name: "Caso 2: Rocío • Emprendedora Sensorial & Masoterapeuta",
+          role: "Terapeuta Corporal (Puya Masajes) & Estudiante de Psicopedagogía",
+          context: "Perfil neurodivergente (alta sensibilidad al ruido y sobreestimulación). Maneja clínica de masajes, estudio universitario y cuidado personal.",
+          pills: ["26 Años", "Sensibilidad Sensorial", "Servicios Presenciales", "Regulación TEA"]
+        },
+        simulator: {
+          before: [
+            { label: "Sensorial", val: "💥 Colapso por sobreestimulación", sub: "Bloqueos de días enteros en cama sin energía" },
+            { label: "Operación", val: "🌪️ 10 servicios dispersos sin foco", sub: "Atención a cualquier hora por WhatsApp" },
+            { label: "Finanzas", val: "📉 Incertidumbre por cobro sesión a sesión", sub: "Cancelaciones de último minuto" }
+          ],
+          after: [
+            { label: "Sensorial", val: "🌿 Pausas de stimming y silencio", sub: "Blindaje de 1h de descompresión entre turnos" },
+            { label: "Operación", val: "🛡️ 2 Turnos fijos diarios (11:00 y 16:00)", sub: "Cero cancelaciones y WhatsApp cerrado a las 20:00" },
+            { label: "Finanzas", val: "📈 Paquetes de 4 Sesiones (3x ingresos)", sub: "Cobro mensual anticipado y fidelización" }
+          ]
         },
         step1: {
           quote: "«Tengo 5 proyectos abiertos a la vez, libretas dispersas y me abrumo con el ruido y los mensajes de WhatsApp. Cuando me saturo, me bloqueo por días enteros en la cama y siento que estoy perdiendo plata por no atender masajes.»",
@@ -918,7 +1119,7 @@
             { icon: "🌿", tag: "Regulación", name: "Time Blocking Sensorial", desc: "Mapeo de 24h con pausas obligatorias de silencio, caminatas con su mascota y límites de atención." },
             { icon: "📓", tag: "Descarga", name: "Vaciado Mental Nocturno en Papel", desc: "Protocolo físico en libreta antes de apagar la luz para no llevar la lista de tareas a la cama." },
             { icon: "💆‍♀️", tag: "Negocio", name: "Matriz de Priorización de Incendios", desc: "Filtro rápido para distinguir urgencias reales de demandas externas no prioritarias." },
-            { icon: "💰", tag: "Ahorro", name: "Presupuesto 50/30/20 Adaptado", desc: "Aprovechar vivienda estable para destinar 50% a insumos/ahorro y 30% a bienestar personal sin culpa." }
+            { icon: "💰", tag: "Ahorro", name: "Presupuesto 50/30/20 Adaptado", desc: "Destinar 50% a insumos/ahorro y 30% a bienestar personal sin culpa." }
           ]
         },
         step4: {
@@ -948,10 +1149,22 @@
       caso_c: {
         profile: {
           avatar: "🎒",
-          name: "Caso 3: Estudiante & Regulación TDAH",
+          name: "Caso 3: Matías • Estudiante & Regulación TDAH",
           role: "Estudiante de Secundaria • Creador Visual & Deportista",
-          context: "Diagnóstico TDAH, talentoso para el arte y el deporte, pero con alta resistencia al estudio tradicional denso.",
+          context: "Diagnóstico TDAH, talentoso para el arte y el deporte, pero con alta resistencia al estudio tradicional denso y fricción familiar.",
           pills: ["16 Años", "TDAH", "Bajo Roce Cognitivo", "Autonomía Familiar"]
+        },
+        simulator: {
+          before: [
+            { label: "Estudio", val: "❌ Bloqueo ante cuadernos de 20 páginas", sub: "Evasión en redes sociales y frustración" },
+            { label: "Hogar", val: "⚡ Discusiones familiares diarias", sub: "Dependencia de ultimátums externos" },
+            { label: "Creatividad", val: "📉 Energía dispersa en pantallas", sub: "Falta de espacio para arte y vóley" }
+          ],
+          after: [
+            { label: "Estudio", val: "🚀 Protocolo Paso Cero (5 min con reloj)", sub: "Apuntes Mínimos Viables de 5 líneas con esquemas" },
+            { label: "Hogar", val: "🤝 Cuenta Corriente de Confianza", sub: "Cero discusiones; autonomía y salidas recuperadas" },
+            { label: "Creatividad", val: "🎨 Bloque protegido de arte y vóley", sub: "Canalización de dopamina sana lejos de pantallas" }
+          ]
         },
         step1: {
           quote: "«Me cuesta sentarme a estudiar a menos que mis padres me obliguen o haya una prueba mañana. Miro el cuaderno y me bloqueo porque siento que tengo que copiar 20 páginas perfectas, así que me pongo a ver videos para evitar la frustración.»",
@@ -1003,13 +1216,191 @@
           ],
           summary: "El estudiante pasó de la evasión y el conflicto diario a estudiar con autonomía, sostener buenas notas y cultivar sus pasiones artísticas en un ambiente de calma familiar."
         }
+      },
+
+      caso_d: {
+        profile: {
+          avatar: "👓",
+          name: "Caso 4: Álvaro • Del Análisis a la Acción",
+          role: "Emprendedor Comercial & Creador de Marca de Lentes",
+          context: "Profesional perfeccionista con un producto de excelente calidad, pero atrapado en el 'overthinking', parálisis de lanzamiento y dispersión operativa.",
+          pills: ["30 Años", "Parálisis por Análisis", "E-commerce & Óptica", "Reto 7 Días"]
+        },
+        simulator: {
+          before: [
+            { label: "Ejecución", val: "🌪️ 6 meses planificando sin lanzar", sub: "Búsqueda infinita del logo y empaque perfecto" },
+            { label: "Prioridades", val: "🔥 25 tareas abiertas simultáneas", sub: "Atención a detalles menores sin impacto en ventas" },
+            { label: "Comercial", val: "📉 Cero clientes contactados por temor", sub: "Falta de un guion de conversación validado" }
+          ],
+          after: [
+            { label: "Ejecución", val: "🚀 Lanzamiento Mínimo Viable en 7 Días", sub: "Venta directa por WhatsApp sin esperar web perfecta" },
+            { label: "Prioridades", val: "🎯 Matriz Eisenhower con Límite WIP=2", sub: "Foco exclusivo en las 2 tareas que traen dinero" },
+            { label: "Comercial", val: "💰 Primeras 12 unidades vendidas", sub: "Validación de mercado real y caja positiva" }
+          ]
+        },
+        step1: {
+          quote: "«Llevo meses perfeccionando el catálogo, cambiando los colores del logo y buscando el empaque ideal, pero no he salido a vender ni un solo par de lentes. Me da miedo que la gente piense que es improvisado, así que sigo postergando el lanzamiento.»",
+          symptoms: [
+            "<strong>Perfeccionismo Defensivo:</strong> Usar el diseño y la planificación como escudo para evitar la exposición comercial.",
+            "<strong>Sobrecarga de Opciones:</strong> Analizar 10 proveedores y plataformas a la vez sin tomar ninguna decisión.",
+            "<strong>Fuga de Caja:</strong> Inversión en inventario detenido sin retorno ni flujo de entrada."
+          ]
+        },
+        step2: {
+          insight: "«El análisis excesivo no es inteligencia estratégica; es miedo a la validación real disfrazado de profesionalismo. No necesitas una tienda web de $1.000 USD para empezar; necesitas 3 fotos honestas y un guion humano de WhatsApp.»",
+          diagnosisPoints: [
+            "<strong>Cuello de botella real:</strong> Falta de un 'Umbral de Suficiencia' (saber cuándo algo está 'suficientemente bueno para salir').",
+            "<strong>Palanca de destrabe:</strong> El Reto de Lanzamiento Mínimo de 7 Días: 10 contactos directos con oferta de prueba."
+          ]
+        },
+        calibration: [
+          { ver: "Semana 1", before: "Intentar montar una tienda online completa con pasarela compleja", after: "Bloqueo técnico de 3 semanas y 0 ventas" },
+          { ver: "Semana 2", before: "Ajuste AICC: Catálogo PDF de 2 páginas + Enlace de WhatsApp directo", after: "Primer pedido concretado en menos de 48 horas" },
+          { ver: "Semana 3", before: "Lista de 30 tareas desordenadas", after: "Matriz Eisenhower: 1 tarea comercial obligatoria antes de las 12:00" }
+        ],
+        step3: {
+          tools: [
+            { icon: "🎯", tag: "Priorización", name: "Matriz Eisenhower Inmediata", desc: "Separar lo que da caja (Importante) de las distracciones estéticas menores (No urgente)." },
+            { icon: "⚡", tag: "Tracción", name: "Embudo Mínimo Viable de 7 Días", desc: "Paso a paso de 7 microacciones para pasar de la idea al primer cobro bancario real." },
+            { icon: "⏱️", tag: "Velocidad", name: "Regla de los 2 Minutos", desc: "Si una decisión comercial toma menos de 2 min, se ejecuta de inmediato sin analizarla más." },
+            { icon: "📈", tag: "Control", name: "Inventario Semanal de Flujo de Caja", desc: "Control visual de ingresos vs. costo unitario por producto vendido." }
+          ]
+        },
+        step4: {
+          boardTitle: "Plan de Vuelo 2.0 • Álvaro (Lanzamiento Óptico)",
+          tasks: [
+            { text: "👓 Enviar catálogo de 2 páginas a 5 contactos", col: "doing" },
+            { text: "📦 Despachar primer pedido confirmado", col: "doing" },
+            { text: "📸 Tomar 3 fotos con luz natural a los modelos", col: "done" },
+            { text: "📝 Registrar margen de ganancia en planilla", col: "todo" }
+          ],
+          checklist: [
+            "Ejecutar contacto comercial antes de revisar redes",
+            "No cambiar diseño de catálogo hasta lograr 10 ventas",
+            "Cerrar balance financiero cada viernes a las 18:00"
+          ]
+        },
+        step5: {
+          metrics: [
+            { val: "12", lbl: "Pares de lentes vendidos en los primeros 14 días" },
+            { val: "48h", lbl: "De la parálisis al primer cobro bancario" },
+            { val: "0", lbl: "Gastos innecesarios en software antes de validar" }
+          ],
+          summary: "El emprendedor destrabó su parálisis, validó su propuesta de valor directamente con clientes reales y transformó un inventario estancado en un negocio con ventas recurrentes."
+        }
+      },
+
+      caso_e: {
+        profile: {
+          avatar: "🌏",
+          name: "Caso 5: Karina • Transición de Carrera & Proyecto Internacional",
+          role: "Profesional en Transición • Proyecto Road to Sidney 2.0",
+          context: "Planificando mudanza y estudios en Australia mientras sostiene su trabajo actual, gestión de visas, inglés y ahorro intensivo.",
+          pills: ["29 Años", "Transición Internacional", "Multitarea Crítica", "Gestión de Ahorro"]
+        },
+        simulator: {
+          before: [
+            { label: "Carga Vital", val: "🔥 Trabajo + Trámites + Inglés + Casa", sub: "Sensación de que el día no alcanza y burnout inminente" },
+            { label: "Metas", val: "❓ 50 requisitos mezclados sin cronograma", sub: "Ansiedad por olvidar fechas límite de postulación" },
+            { label: "Finanzas", val: "📉 Ahorro errático sin blindaje", sub: "Gastos hormiga que retrasan la compra de pasajes" }
+          ],
+          after: [
+            { label: "Carga Vital", val: "🛡️ Fases de Vuelo Trimestrales (Road to Sidney)", sub: "Cada mes tiene 1 solo objetivo prioritario protegido" },
+            { label: "Metas", val: "🎯 Tablero de Hitos Migratorios Secuenciales", sub: "Paso a paso sin saltarse etapas ni sobrecargar la mente" },
+            { label: "Finanzas", val: "💰 Fondo Automático de Pasajes y Solvencia", sub: "Separación sistemática 50/30/20 al recibir el sueldo" }
+          ]
+        },
+        step1: {
+          quote: "«Quiero irme a Australia, pero entre mi trabajo actual, preparar los exámenes de inglés, ahorrar para la solvencia y los trámites de la visa, siento que me voy a enfermar antes de subirme al avión. No sé qué hacer primero.»",
+          symptoms: [
+            "<strong>Saturación por Proyectos Gigantes:</strong> Ver la meta como una montaña inalcanzable en lugar de una secuencia de micro-pasos.",
+            "<strong>Fatiga por Doble Jornada:</strong> Trabajar 9 horas y luego intentar estudiar inglés con la mente agotada.",
+            "<strong>Incertidumbre Financiera:</strong> No saber la cifra exacta requerida para la visa y los primeros 3 meses de estadía."
+          ]
+        },
+        step2: {
+          insight: "«Una transición de vida no se gana trabajando 16 horas al día; se conquista dividiendo el proyecto en Fases de Vuelo cerradas. Si este mes toca certificación de inglés, congelamos la investigación de departamentos hasta que el examen esté aprobado.»",
+          diagnosisPoints: [
+            "<strong>Cuello de botella real:</strong> Intentar resolver simultáneamente problemas de fases futuras que aún no corresponden.",
+            "<strong>Palanca de destrabe:</strong> El método de 'Fases Secuenciales': Foco único por trimestre + Ahorro automatizado el día 1 del mes."
+          ]
+        },
+        calibration: [
+          { ver: "Semana 1", before: "Estudiar inglés 2 horas cada noche después del trabajo", after: "Fatiga extrema y retención de vocabulario cercana a cero" },
+          { ver: "Semana 2", before: "Ajuste AICC: Bloque matutino de 35 min antes de salir de casa", after: "Mente fresca, 100% de consistencia y avance medible" },
+          { ver: "Semana 3", before: "Revisar foros de Australia todos los días", after: "Restricción a 1 bloque de 45 min los sábados (Cero ansiedad digital)" }
+        ],
+        step3: {
+          tools: [
+            { icon: "✈️", tag: "Estrategia", name: "Roadmap por Fases de Vuelo (AICC)", desc: "Desglose del proyecto migratorio en 4 trimestres independientes y ordenados." },
+            { icon: "⏰", tag: "Energía", name: "Mapeador de Horarios Matutino", desc: "Proteger los primeros 45 min del día para el futuro propio antes de entregar energía al empleo." },
+            { icon: "🏦", tag: "Finanzas", name: "GPS de Solvencia Internacional", desc: "Planilla de metas de ahorro obligatorias y blindaje de gastos de mudanza." },
+            { icon: "📋", tag: "Control", name: "Checklist de Trámites Despejados", desc: "Seguimiento visual de documentos certificados sin duplicar carpetas." }
+          ]
+        },
+        step4: {
+          boardTitle: "Plan de Vuelo 2.0 • Karina (Road to Sidney)",
+          tasks: [
+            { text: "📖 35 min de práctica de listening matutino", col: "doing" },
+            { text: "🏦 Transferir $150.000 a fondo de solvencia", col: "doing" },
+            { text: "📑 Traducir título profesional al inglés", col: "done" },
+            { text: "🩺 Agendar chequeo médico para visado", col: "todo" }
+          ],
+          checklist: [
+            "Estudiar inglés antes de revisar el celular o correos",
+            "Apartar ahorro el mismo día de pago de sueldo",
+            "Cerrar el día con 20 min de caminata de descompresión"
+          ]
+        },
+        step5: {
+          metrics: [
+            { val: "IELTS 7.5", lbl: "Certificación de inglés aprobada en 3 meses" },
+            { val: "100%", lbl: "De documentos migratorios al día sin estrés" },
+            { val: "$2.4M", lbl: "De ahorro acumulado y blindado para la partida" }
+          ],
+          summary: "La profesional logró transitar su proyecto de vida internacional con orden, salud mental y solvencia económica, sin sacrificar su trabajo actual ni quemar su sistema nervioso."
+        }
       }
     };
 
+    let currentCaseKey = "caso_a";
+    let currentSimState = "after";
+
+    function renderSimulator(caseKey, state) {
+      const data = DOSSIER_DATA[caseKey];
+      const grid = document.getElementById("sim-state-grid");
+      if (!grid || !data || !data.simulator) return;
+
+      const items = data.simulator[state] || [];
+      grid.innerHTML = items.map(it => `
+        <div class="sim-metric-box" style="border-left: 3px solid ${state === 'before' ? '#ef4444' : '#10b981'};">
+          <div style="font-size:0.72rem; font-weight:800; text-transform:uppercase; color:${state === 'before' ? '#f87171' : '#4ade80'}; margin-bottom:4px;">
+            ${it.label}
+          </div>
+          <div style="font-size:0.86rem; font-weight:700; color:#ffffff; line-height:1.35; margin-bottom:4px;">
+            ${it.val}
+          </div>
+          <div style="font-size:0.74rem; color:#888; line-height:1.3;">
+            ${it.sub}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function setSimState(state) {
+      currentSimState = state;
+      document.getElementById("btn-state-before").classList.toggle("active", state === "before");
+      document.getElementById("btn-state-after").classList.toggle("active", state === "after");
+      renderSimulator(currentCaseKey, state);
+    }
+
     function renderArchetype(caseKey) {
+      currentCaseKey = caseKey;
       const data = DOSSIER_DATA[caseKey];
       const container = document.getElementById("archetype-content-area");
       if (!container || !data) return;
+
+      renderSimulator(caseKey, currentSimState);
 
       container.innerHTML = `
         <!-- FICHA DE PERFIL HUMANO -->
@@ -1149,7 +1540,7 @@
           </div>
           <div class="journey-card-body">
             <p style="font-size:0.88rem; color:var(--color-text-muted); margin-bottom:14px;">
-              El cliente recibe su propio portal interactivo (protegido con clave) donde visualiza su semana, mueve sus tareas y tilda sus checklists con auto-guardado en tiempo real:
+              El cliente recibe su propio portal interactivo donde visualiza su semana, mueve sus tareas y tilda sus checklists con auto-guardado en tiempo real:
             </p>
             
             <div class="interactive-board-preview">
