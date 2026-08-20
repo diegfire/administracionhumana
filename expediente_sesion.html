@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copiloto de Sesión & Expediente Clínico-Operativo • Administración Humana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --color-bg: #000000;
+      --color-surface: #0a0a0a;
+      --color-surface-2: #121212;
+      --color-surface-3: #181818;
+      --color-border: #262626;
+      --color-border-bright: #3a3a3a;
+      --color-accent: #ffffff;
+      --color-accent-blue: #38bdf8;
+      --color-accent-green: #10b981;
+      --color-accent-amber: #f59e0b;
+      --color-accent-purple: #c084fc;
+      --color-accent-rose: #fb7185;
+      --color-text: #ffffff;
+      --color-text-muted: #888888;
+      --color-text-light: #a1a1aa;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --radius-sm: 8px;
+      --radius: 14px;
+      --radius-lg: 20px;
+      --max-width: 1200px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    /* ── HEADER & TOOLBAR ── */
+    header {
+      background: rgba(0, 0, 0, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .brand-badge {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .client-selector-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .client-select {
+      background: #141414;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 0.84rem;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+    }
+    .btn-header {
+      background: #1c1c1c;
+      border: 1px solid #333;
+      color: #ddd;
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition);
+    }
+    .btn-header:hover {
+      background: #282828;
+      color: #fff;
+      border-color: #555;
+    }
+    .btn-header-primary {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #ffffff;
+    }
+    .btn-header-primary:hover {
+      background: #e5e5e5;
+    }
+
+    /* ── STAGE NAVIGATION (PHASES) ── */
+    .stages-nav {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 10px 0;
+    }
+    .stages-list {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .stage-tab {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition);
+    }
+    .stage-tab:hover {
+      border-color: var(--color-border-bright);
+      color: #fff;
+    }
+    .stage-tab.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.15);
+    }
+    .stage-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+    .stage-tab.active .stage-num {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    /* ── MAIN CONTENT AREA ── */
+    main {
+      flex: 1;
+      padding: 24px 0 40px;
+    }
+
+    .stage-view {
+      display: none;
+      animation: fadeIn 0.25s ease forwards;
+    }
+    .stage-view.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── CARDS & SECTIONS ── */
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1c1c1c;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ── FORMS & INPUTS ── */
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 768px) {
+      .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .form-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .form-input, .form-textarea, .form-select {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      outline: none;
+      transition: all var(--transition);
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: #666;
+      background: #181818;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* ── CONVERSATION HOOKS / CARDS ── */
+    .hook-box {
+      background: rgba(56, 189, 248, 0.04);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-left: 4px solid var(--color-accent-blue);
+      padding: 16px 18px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      color: #bae6fd;
+      line-height: 1.5;
+    }
+    .hook-box strong { color: #fff; }
+
+    .question-prompt-box {
+      background: #111;
+      border: 1px solid #282828;
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.86rem;
+    }
+    .question-prompt-box i {
+      color: var(--color-accent-green);
+      margin-top: 3px;
+    }
+
+    /* ── CHECKLIST ITEM ── */
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .check-row:hover {
+      border-color: #444;
+      background: #161616;
+    }
+    .check-row input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: #ffffff;
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+    .check-content {
+      flex: 1;
+    }
+    .check-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #eee;
+      margin-bottom: 2px;
+    }
+    .check-desc {
+      font-size: 0.76rem;
+      color: #888;
+    }
+
+    /* ── TACTICAL PILLS & TOOL CATALOG ── */
+    .tool-select-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .tool-card-item {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 14px;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .tool-card-item:hover {
+      border-color: #555;
+      background: #181818;
+    }
+    .tool-card-item.selected {
+      border-color: var(--color-accent-green);
+      background: rgba(16, 185, 129, 0.06);
+    }
+    .tool-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tool-card-title {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .tool-card-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      color: #aaa;
+    }
+    .tool-card-hook {
+      font-size: 0.76rem;
+      color: #999;
+      line-height: 1.35;
+      font-style: italic;
+    }
+
+    /* ── DYNAMIC KEY QUESTIONS ADDER ── */
+    .custom-questions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .custom-q-item {
+      background: #111;
+      border: 1px solid #282828;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .custom-q-text {
+      font-size: 0.84rem;
+      color: #ddd;
+      flex: 1;
+    }
+    .btn-remove-q {
+      background: transparent;
+      border: none;
+      color: #f87171;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 4px;
+    }
+
+    /* ── FOOTER & STATUS BAR ── */
+    footer {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      padding: 14px 0;
+      font-size: 0.78rem;
+      color: #777;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .auto-save-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-accent-green);
+      font-weight: 700;
+    }
+    .auto-save-pill::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent-green);
+      box-shadow: 0 0 6px var(--color-accent-green);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <div class="brand-group">
+        <span class="brand-title">ADMINISTRACIÓN HUMANA</span>
+        <span class="brand-badge">COPILOTO DE SESIÓN & EXPEDIENTE</span>
+      </div>
+
+      <div class="client-selector-group">
+        <select class="client-select" id="clientSelect" onchange="switchClient(this.value)">
+          <option value="nuevo_cliente">➕ Nuevo Cliente / Sesión...</option>
+          <option value="antonia_jofre">🧘‍♀️ Antonia Jofré (Yoga & Cuidados)</option>
+          <option value="rocio_fuentes">💆‍♀️ Rocío Fuentes (Puya Masajes)</option>
+          <option value="matias_gonzalez">🎒 Matías González (Estudio TDAH)</option>
+          <option value="alvaro_pincheira">👓 Álvaro Pincheira (LOOK Óptica)</option>
+          <option value="karina_valenzuela">🌏 Karina (Road to Sidney)</option>
+        </select>
+        <button class="btn-header" onclick="exportToMarkdown()">
+          <i class="fa-solid fa-file-code"></i> Exportar MD
+        </button>
+        <button class="btn-header" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> Imprimir / PDF
+        </button>
+        <button class="btn-header btn-header-primary" onclick="generatePlanVueloSummary()">
+          <i class="fa-solid fa-paper-plane"></i> Generar Plan de Vuelo
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STAGES PROGRESS BAR -->
+  <nav class="stages-nav">
+    <div class="container">
+      <div class="stages-list">
+        <button class="stage-tab active" onclick="showStage('stage1', this)">
+          <span class="stage-num">1</span>
+          <span>Entrada & Desahogo (5-10m)</span>
+        </button>
+        <button class="stage-tab" onclick="showStage('stage2', this)">
+          <span class="stage-num">2</span>
+          <span>Sondeo 360° & Scores</span>
+        </button>
+        <button class="stage-tab" onclick="showStage('stage3', this)">
+          <span class="stage-num">3</span>
+          <span>Radiografía & Biorritmo</span>
+        </button>
+        <button class="stage-tab" onclick="showStage('stage4', this)">
+          <span class="stage-num">4</span>
+          <span>Prescripción de Herramientas</span>
+        </button>
+        <button class="stage-tab" onclick="showStage('stage5', this)">
+          <span class="stage-num">5</span>
+          <span>Expediente Consolidado</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="container">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- FASE 1: ENTRADA & DESAHOGO (5 A 10 MIN)                   -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div id="stage1" class="stage-view active">
+      
+      <!-- Ficha de Identificación Rápida -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><i class="fa-solid fa-id-card"></i> 1. Identificación del Cliente</div>
+            <div class="card-subtitle">Datos base para abrir el expediente de consultoría</div>
+          </div>
+        </div>
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label class="form-label">Nombre Completo</label>
+            <input type="text" id="client_name" class="form-input" placeholder="Ej: Valentina Morales" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Edad / Ocupación</label>
+            <input type="text" id="client_role" class="form-input" placeholder="Ej: 29 años • Kinesióloga & Terapeuta" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp / Contacto</label>
+            <input type="text" id="client_phone" class="form-input" placeholder="Ej: +56 9 1234 5678" oninput="saveCurrentData()" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Guion de Apertura y Desahogo -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><i class="fa-solid fa-ear-listen"></i> 2. Guion de Desahogo & Escucha Activa</div>
+            <div class="card-subtitle">Preguntas de apertura para desarmar la culpa y abrir la conversación</div>
+          </div>
+        </div>
+
+        <div class="hook-box">
+          <strong>💡 Regla de Oro AICC:</strong> No interrumpas para solucionar en los primeros 7 minutos. Permite que la persona vacíe su maleta mental sin juicio moral. Escucha qué palabras usa para culparse (<em>"soy flojo"</em>, <em>"no me alcanza el tiempo"</em>, <em>"le fallo a todos"</em>).
+        </div>
+
+        <div class="question-prompt-box">
+          <i class="fa-solid fa-circle-question"></i>
+          <div>
+            <strong>Pregunta de Apertura:</strong> <em>«Si tuviéramos una varita mágica y este mes saliera perfecto, ¿qué cosa concreta te devolvería la paz mental o aliviaría tu semana?»</em>
+          </div>
+        </div>
+
+        <div class="question-prompt-box">
+          <i class="fa-solid fa-circle-question"></i>
+          <div>
+            <strong>Pregunta de Carga Invisible:</strong> <em>«Cuando sientes que el día no te rindió, ¿qué estuviste haciendo en realidad? (trámites, cuidar a otros, resolver urgencias ajenas)»</em>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:16px;">
+          <label class="form-label">Notas Rápidas de Desahogo (Lo que el cliente expresa textualmente)</label>
+          <textarea id="raw_discharge_notes" class="form-textarea" rows="4" placeholder="Escribe aquí las frases clave que el cliente dice durante su desahogo..." oninput="saveCurrentData()"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">La Frase Raíz del Juicio Moral (La historia de culpa que se cuenta)</label>
+          <input type="text" id="moral_judgment_phrase" class="form-input" placeholder="Ej: 'Siento que si me tomo 1 hora de descanso le estoy fallando a mi familia'" oninput="saveCurrentData()" />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- FASE 2: SONDEO 360° & SCORES                              -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div id="stage2" class="stage-view">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><i class="fa-solid fa-chart-pie"></i> 1. Entrada de Datos del Sondeo Maestro 360°</div>
+            <div class="card-subtitle">Calificación de 1 a 10 en las 8 dimensiones y cálculo de saturación</div>
+          </div>
+          <button class="btn-header" onclick="pasteAiccData()">
+            <i class="fa-solid fa-paste"></i> Pegar Código AICC
+          </button>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Índice de Saturación (%)</label>
+            <input type="number" id="score_saturation" class="form-input" min="0" max="100" placeholder="Ej: 78%" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Área Crítica / Mayor Dolor</label>
+            <select id="critical_area" class="form-select" onchange="saveCurrentData()">
+              <option value="Trabajo & Carrera">💼 Trabajo & Carrera (Sobrecarga / WIP infinito)</option>
+              <option value="Finanzas">💰 Finanzas (Incertidumbre / Desorden 50/30/20)</option>
+              <option value="Salud & Energía">⚡ Salud & Energía (Fatiga / Insomnio / Sensorial)</option>
+              <option value="Tiempo & Rutina">⏰ Tiempo & Rutina (Dispersión / Procrastinación)</option>
+              <option value="Relaciones & Familia">🤝 Relaciones & Familia (Cuidado familiar / Culpa)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="font-weight:700; font-size:0.85rem; margin:16px 0 10px; color:#fff;">
+          Puntajes Rueda de la Vida (1 al 10):
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label class="form-label">Salud & Energía</label>
+            <input type="number" id="wheel_salud" class="form-input" min="1" max="10" placeholder="1-10" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Trabajo & Carrera</label>
+            <input type="number" id="wheel_trabajo" class="form-input" min="1" max="10" placeholder="1-10" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Finanzas</label>
+            <input type="number" id="wheel_finanzas" class="form-input" min="1" max="10" placeholder="1-10" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Relaciones</label>
+            <input type="number" id="wheel_relaciones" class="form-input" min="1" max="10" placeholder="1-10" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Desarrollo Personal</label>
+            <input type="number" id="wheel_desarrollo" class="form-input" min="1" max="10" placeholder="1-10" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Paz Mental / Espíritu</label>
+            <input type="number" id="wheel_paz" class="form-input" min="1" max="10" placeholder="1-10" oninput="saveCurrentData()" />
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:16px;">
+          <label class="form-label">El "Número de la Paz Financiera" ($ CLP / Mes)</label>
+          <input type="text" id="financial_peace_number" class="form-input" placeholder="Ej: $160.000 CLP (Meta de traslados con 8 alumnas)" oninput="saveCurrentData()" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- FASE 3: RADIOGRAFÍA & BIORRITMO                           -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div id="stage3" class="stage-view">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><i class="fa-solid fa-dna"></i> Checklist de Contexto Profundo</div>
+            <div class="card-subtitle">Factores humanos que determinan si una herramienta funcionará o será abandonada</div>
+          </div>
+          <button class="btn-header" onclick="addCustomQuestionPrompt()">
+            <i class="fa-solid fa-plus"></i> + Agregar Pregunta Clave
+          </button>
+        </div>
+
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" id="chk_caregiving" onchange="saveCurrentData()">
+          <div class="check-content">
+            <div class="check-title">🏠 Entorno & Cuidados Familiares Invisibles</div>
+            <div class="check-desc">Vive con familiares o asume labores de cuidados médicos/logísticos que demandan más de 4h diarias.</div>
+          </div>
+        </div>
+
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" id="chk_neurodiversity" onchange="saveCurrentData()">
+          <div class="check-content">
+            <div class="check-title">🧠 Neurodivergencia o Rasgos de TDAH / TEA / PAS</div>
+            <div class="check-desc">Alta reactividad al ruido/estímulos, dificultad de arranque ('Paso Cero') o resistencia a rutinas rígidas.</div>
+          </div>
+        </div>
+
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" id="chk_overthinking" onchange="saveCurrentData()">
+          <div class="check-content">
+            <div class="check-title">👓 Parálisis por Análisis / Perfeccionismo Defensivo</div>
+            <div class="check-desc">Pasa semanas planificando y comprando cursos para evitar el miedo al rechazo o la exposición comercial.</div>
+          </div>
+        </div>
+
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" id="chk_shame_pricing" onchange="saveCurrentData()">
+          <div class="check-content">
+            <div class="check-title">💸 Vergüenza al Cobrar / Dificultad de Negociación</div>
+            <div class="check-desc">Cobra sesión a sesión con incertidumbre o regala trabajo por miedo a perder clientes.</div>
+          </div>
+        </div>
+
+        <!-- Preguntas Personalizadas Dinámicas Agregadas por Diego -->
+        <div id="customQuestionsContainer" class="custom-questions-list"></div>
+
+        <div class="form-grid-2" style="margin-top:20px;">
+          <div class="form-group">
+            <label class="form-label">Hora de Oro Mental (Pico de Lucidez)</label>
+            <input type="text" id="golden_hour" class="form-input" placeholder="Ej: Mañanas 07:30 a 09:00 antes de salir" oninput="saveCurrentData()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Válvula de Descompresión Sensorial</label>
+            <input type="text" id="decompression_valve" class="form-input" placeholder="Ej: Paseo con mascota 30 min en silencio" oninput="saveCurrentData()" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- FASE 4: PRESCRIPCIÓN DE HERRAMIENTAS                      -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div id="stage4" class="stage-view">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><i class="fa-solid fa-kit-medical"></i> Botiquín de Prescripción Quirúrgica</div>
+            <div class="card-subtitle">Haz clic para recetar las 3 a 5 herramientas exactas de <code>HERRAMIENTAS FULL.pdf</code></div>
+          </div>
+        </div>
+
+        <div class="tool-select-grid" id="toolsCatalogGrid">
+          <!-- Herramientas generadas por JS -->
+        </div>
+
+        <div class="form-group" style="margin-top:20px;">
+          <label class="form-label">Dosis y Adaptación Personalizada de las Herramientas</label>
+          <textarea id="prescription_dosage_notes" class="form-textarea" rows="3" placeholder="Ej: Proteger 2 ventanas de 45 min los martes y jueves con 1 clase grabada de comodín..." oninput="saveCurrentData()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- FASE 5: EXPEDIENTE CONSOLIDADO                            -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div id="stage5" class="stage-view">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><i class="fa-solid fa-file-lines"></i> Expediente Clínico-Operativo Generado</div>
+            <div class="card-subtitle">Vista previa lista para exportar a Markdown o entregar al cliente</div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-header btn-header-primary" onclick="copyMarkdownToClipboard()">
+              <i class="fa-solid fa-copy"></i> Copiar Markdown
+            </button>
+            <button class="btn-header" onclick="downloadMarkdownFile()">
+              <i class="fa-solid fa-download"></i> Descargar .md
+            </button>
+          </div>
+        </div>
+
+        <pre id="markdownOutputPre" style="background:#090909; border:1px solid #222; padding:20px; border-radius:var(--radius-sm); font-family:monospace; font-size:0.82rem; color:#86efac; overflow-x:auto; white-space:pre-wrap; max-height:480px;"></pre>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Administración Humana • Metodología AICC • Sistema de Consulta & Expediente</div>
+      <div class="auto-save-pill" id="autoSaveStatus">Autoguardado Activo en Navegador</div>
+    </div>
+  </footer>
+
+  <script>
+    // ── HERRAMIENTAS Y PÍLDORAS DEL CATÁLOGO OFICIAL ──
+    const MASTER_TOOLS_CATALOG = [
+      { id: "time_blocking", name: "Bloque de Oro Flexible", tag: "Tiempo", hook: "Protege 2 ventanas de 45 min innegociables con comodín de respaldo." },
+      { id: "inventario_victorias", name: "Inventario Cero Culpa", tag: "Psicología", hook: "2 min cada noche para registrar 3 micro-victorias y apagar la rumiación." },
+      { id: "paso_cero", name: "Protocolo Paso Cero (5 min)", tag: "Acción", hook: "Temporizador de 5 min para romper la inercia del TDAH sin forzar 2 horas." },
+      { id: "kanban_wip2", name: "Tablero Kanban (WIP = 2)", tag: "Operación", hook: "Límite superior estricto de 2 tareas en ejecución a la vez para no saturar la RAM." },
+      { id: "paquetes_4x", name: "Paquetización de Servicios (4x)", tag: "Finanzas", hook: "Elimina la negociación sesión a sesión y asegura cobro mensual anticipado." },
+      { id: "eisenhower", name: "Matriz Eisenhower Inmediata", tag: "Priorización", hook: "Separa lo que da caja hoy de las distracciones de perfeccionismo estético." },
+      { id: "embudo_7dias", name: "Embudo Mínimo de 7 Días", tag: "Comercial", hook: "Rompe la parálisis por análisis pasando de la idea a la primera venta en 1 semana." },
+      { id: "fases_vuelo", name: "Roadmap por Fases de Vuelo", tag: "Estrategia", hook: "Divide proyectos gigantes en trimestres cerrados sin sobrecargar el presente." },
+      { id: "vaciado_papel", name: "Vaciado Mental en Papel", tag: "Descarga", hook: "Protocolo análogo antes de apagar la luz para apagar el Efecto Zeigarnik." }
+    ];
+
+    let selectedTools = ["time_blocking", "inventario_victorias", "kanban_wip2"];
+    let customQuestions = [];
+
+    // ── STAGE NAVIGATION ──
+    function showStage(stageId, btnEl) {
+      document.querySelectorAll(".stage-view").forEach(v => v.classList.remove("active"));
+      document.querySelectorAll(".stage-tab").forEach(t => t.classList.remove("active"));
+      
+      const target = document.getElementById(stageId);
+      if (target) target.classList.add("active");
+      if (btnEl) btnEl.classList.add("active");
+
+      if (stageId === "stage5") {
+        updateMarkdownPreview();
+      }
+    }
+
+    // ── RENDER TOOLS CATALOG ──
+    function renderToolsCatalog() {
+      const grid = document.getElementById("toolsCatalogGrid");
+      if (!grid) return;
+
+      grid.innerHTML = MASTER_TOOLS_CATALOG.map(t => {
+        const isSelected = selectedTools.includes(t.id);
+        return `
+          <div class="tool-card-item ${isSelected ? 'selected' : ''}" onclick="toggleToolSelection('${t.id}', this)">
+            <div class="tool-card-header">
+              <span class="tool-card-title">${isSelected ? '✅ ' : ''}${t.name}</span>
+              <span class="tool-card-tag">${t.tag}</span>
+            </div>
+            <div class="tool-card-hook">"${t.hook}"</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function toggleToolSelection(toolId, el) {
+      if (selectedTools.includes(toolId)) {
+        selectedTools = selectedTools.filter(id => id !== toolId);
+      } else {
+        selectedTools.push(toolId);
+      }
+      renderToolsCatalog();
+      saveCurrentData();
+    }
+
+    function toggleCheck(rowEl) {
+      const chk = rowEl.querySelector('input[type="checkbox"]');
+      if (chk && event.target !== chk) {
+        chk.checked = !chk.checked;
+        saveCurrentData();
+      }
+    }
+
+    // ── CUSTOM QUESTIONS ADDER ──
+    function addCustomQuestionPrompt() {
+      const q = prompt("Escribe la nueva pregunta clave o aspecto a indagar en la sesión:");
+      if (q && q.trim()) {
+        customQuestions.push(q.trim());
+        renderCustomQuestions();
+        saveCurrentData();
+      }
+    }
+
+    function renderCustomQuestions() {
+      const container = document.getElementById("customQuestionsContainer");
+      if (!container) return;
+      container.innerHTML = customQuestions.map((q, idx) => `
+        <div class="custom-q-item">
+          <div class="custom-q-text"><i class="fa-solid fa-circle-dot" style="color:#38bdf8; margin-right:8px;"></i> ${q}</div>
+          <button class="btn-remove-q" onclick="removeCustomQuestion(${idx})"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `).join("");
+    }
+
+    function removeCustomQuestion(idx) {
+      customQuestions.splice(idx, 1);
+      renderCustomQuestions();
+      saveCurrentData();
+    }
+
+    // ── AUTOSAVE & STATE MANAGEMENT ──
+    function getCurrentClientId() {
+      return document.getElementById("clientSelect").value;
+    }
+
+    function saveCurrentData() {
+      const cid = getCurrentClientId();
+      const data = {
+        name: document.getElementById("client_name")?.value || "",
+        role: document.getElementById("client_role")?.value || "",
+        phone: document.getElementById("client_phone")?.value || "",
+        dischargeNotes: document.getElementById("raw_discharge_notes")?.value || "",
+        moralPhrase: document.getElementById("moral_judgment_phrase")?.value || "",
+        saturation: document.getElementById("score_saturation")?.value || "",
+        criticalArea: document.getElementById("critical_area")?.value || "",
+        wheel: {
+          salud: document.getElementById("wheel_salud")?.value || "",
+          trabajo: document.getElementById("wheel_trabajo")?.value || "",
+          finanzas: document.getElementById("wheel_finanzas")?.value || "",
+          relaciones: document.getElementById("wheel_relaciones")?.value || "",
+          desarrollo: document.getElementById("wheel_desarrollo")?.value || "",
+          paz: document.getElementById("wheel_paz")?.value || ""
+        },
+        financialPeaceNumber: document.getElementById("financial_peace_number")?.value || "",
+        checks: {
+          caregiving: document.getElementById("chk_caregiving")?.checked || false,
+          neurodiversity: document.getElementById("chk_neurodiversity")?.checked || false,
+          overthinking: document.getElementById("chk_overthinking")?.checked || false,
+          shamePricing: document.getElementById("chk_shame_pricing")?.checked || false
+        },
+        goldenHour: document.getElementById("golden_hour")?.value || "",
+        decompressionValve: document.getElementById("decompression_valve")?.value || "",
+        selectedTools: selectedTools,
+        customQuestions: customQuestions,
+        dosageNotes: document.getElementById("prescription_dosage_notes")?.value || ""
+      };
+
+      localStorage.setItem(`ah_session_${cid}`, JSON.stringify(data));
+      flashAutoSave();
+    }
+
+    function loadClientData(cid) {
+      const raw = localStorage.getItem(`ah_session_${cid}`);
+      if (!raw) {
+        // Cargar perfiles predeterminados si existen
+        if (cid === "antonia_jofre") {
+          setFormValues({
+            name: "Antonia Jofré",
+            role: "28 años • Terapeuta Holística & Yoga",
+            phone: "+56 9 7559 0132",
+            dischargeNotes: "Siente fatiga por cuidar a su familia y teme lanzar clases online por no fallar si surge una urgencia médica.",
+            moralPhrase: "Tengo miedo de no ser suficientemente responsable.",
+            saturation: 76,
+            criticalArea: "Trabajo & Carrera",
+            financialPeaceNumber: "$160.000 CLP (8 alumnas x $20k)",
+            goldenHour: "Tardes 18:30 a 20:00",
+            decompressionValve: "Siesta diaria de 20 min y descanso nocturno sin pantallas",
+            selectedTools: ["time_blocking", "inventario_victorias", "kanban_wip2"]
+          });
+          return;
+        }
+        clearForm();
+        return;
+      }
+
+      try {
+        const data = JSON.parse(raw);
+        setFormValues(data);
+      } catch (e) {
+        console.error("Error al cargar cliente:", e);
+      }
+    }
+
+    function setFormValues(data) {
+      if (document.getElementById("client_name")) document.getElementById("client_name").value = data.name || "";
+      if (document.getElementById("client_role")) document.getElementById("client_role").value = data.role || "";
+      if (document.getElementById("client_phone")) document.getElementById("client_phone").value = data.phone || "";
+      if (document.getElementById("raw_discharge_notes")) document.getElementById("raw_discharge_notes").value = data.dischargeNotes || "";
+      if (document.getElementById("moral_judgment_phrase")) document.getElementById("moral_judgment_phrase").value = data.moralPhrase || "";
+      if (document.getElementById("score_saturation")) document.getElementById("score_saturation").value = data.saturation || "";
+      if (document.getElementById("critical_area")) document.getElementById("critical_area").value = data.criticalArea || "Trabajo & Carrera";
+      if (document.getElementById("financial_peace_number")) document.getElementById("financial_peace_number").value = data.financialPeaceNumber || "";
+      if (document.getElementById("golden_hour")) document.getElementById("golden_hour").value = data.goldenHour || "";
+      if (document.getElementById("decompression_valve")) document.getElementById("decompression_valve").value = data.decompressionValve || "";
+      if (document.getElementById("prescription_dosage_notes")) document.getElementById("prescription_dosage_notes").value = data.dosageNotes || "";
+
+      if (data.wheel) {
+        if (document.getElementById("wheel_salud")) document.getElementById("wheel_salud").value = data.wheel.salud || "";
+        if (document.getElementById("wheel_trabajo")) document.getElementById("wheel_trabajo").value = data.wheel.trabajo || "";
+        if (document.getElementById("wheel_finanzas")) document.getElementById("wheel_finanzas").value = data.wheel.finanzas || "";
+        if (document.getElementById("wheel_relaciones")) document.getElementById("wheel_relaciones").value = data.wheel.relaciones || "";
+        if (document.getElementById("wheel_desarrollo")) document.getElementById("wheel_desarrollo").value = data.wheel.desarrollo || "";
+        if (document.getElementById("wheel_paz")) document.getElementById("wheel_paz").value = data.wheel.paz || "";
+      }
+
+      if (data.checks) {
+        if (document.getElementById("chk_caregiving")) document.getElementById("chk_caregiving").checked = !!data.checks.caregiving;
+        if (document.getElementById("chk_neurodiversity")) document.getElementById("chk_neurodiversity").checked = !!data.checks.neurodiversity;
+        if (document.getElementById("chk_overthinking")) document.getElementById("chk_overthinking").checked = !!data.checks.overthinking;
+        if (document.getElementById("chk_shame_pricing")) document.getElementById("chk_shame_pricing").checked = !!data.checks.shamePricing;
+      }
+
+      selectedTools = Array.isArray(data.selectedTools) ? data.selectedTools : ["time_blocking", "inventario_victorias", "kanban_wip2"];
+      customQuestions = Array.isArray(data.customQuestions) ? data.customQuestions : [];
+      renderToolsCatalog();
+      renderCustomQuestions();
+    }
+
+    function clearForm() {
+      document.querySelectorAll(".form-input, .form-textarea").forEach(i => i.value = "");
+      document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+      selectedTools = ["time_blocking", "inventario_victorias", "kanban_wip2"];
+      customQuestions = [];
+      renderToolsCatalog();
+      renderCustomQuestions();
+    }
+
+    function switchClient(cid) {
+      loadClientData(cid);
+    }
+
+    function flashAutoSave() {
+      const el = document.getElementById("autoSaveStatus");
+      if (el) {
+        el.style.opacity = "0.5";
+        setTimeout(() => el.style.opacity = "1", 300);
+      }
+    }
+
+    // ── MARKDOWN EXPORTER ──
+    function generateMarkdownText() {
+      const name = document.getElementById("client_name")?.value || "Cliente Sin Nombre";
+      const role = document.getElementById("client_role")?.value || "Sin especificar";
+      const phone = document.getElementById("client_phone")?.value || "Sin especificar";
+      const notes = document.getElementById("raw_discharge_notes")?.value || "Sin notas";
+      const moral = document.getElementById("moral_judgment_phrase")?.value || "Sin frase identificada";
+      const sat = document.getElementById("score_saturation")?.value || "N/A";
+      const crit = document.getElementById("critical_area")?.value || "General";
+      const finPeace = document.getElementById("financial_peace_number")?.value || "N/A";
+      const gold = document.getElementById("golden_hour")?.value || "N/A";
+      const decomp = document.getElementById("decompression_valve")?.value || "N/A";
+      const dosage = document.getElementById("prescription_dosage_notes")?.value || "Dosis base";
+
+      const prescribedList = selectedTools.map(id => {
+        const t = MASTER_TOOLS_CATALOG.find(x => x.id === id);
+        return t ? `* **${t.name}** (${t.tag}): ${t.hook}` : `* ${id}`;
+      }).join("\n");
+
+      return `# Expediente Clínico-Operativo: ${name} 🎯
+**Administración Humana • Metodología AICC**
+**Consultor:** Diego González Yáñez (WhatsApp: +56975590132)
+
+---
+
+## 1. Identificación & Contexto Vital
+* **Cliente:** ${name}
+* **Rol / Ocupación:** ${role}
+* **Contacto:** ${phone}
+* **Área de Mayor Dolor:** ${crit}
+* **Saturación Operativa:** ${sat}%
+
+---
+
+## 2. Escucha Activa & Juicio Moral
+* **Frase Raíz de Culpa:** «${moral}»
+* **Notas de Desahogo Textual:**
+> ${notes}
+
+---
+
+## 3. Biorritmo & Límites Matemáticos
+* **Hora de Oro Cognitiva:** ${gold}
+* **Válvula de Descompresión:** ${decomp}
+* **Número de la Paz Financiera:** ${finPeace}
+
+---
+
+## 4. Prescripción Quirúrgica de Herramientas
+${prescribedList}
+
+* **Dosis & Adaptación:**
+${dosage}
+
+---
+
+## 5. Próximo Paso: Plan de Vuelo 2.0
+Generar el archivo \`Plan_de_Vuelo_${name.replace(/\s+/g, '_')}.html\` con su Horario Semanal 24H y Tablero Kanban (WIP=2).
+`;
+    }
+
+    function updateMarkdownPreview() {
+      const pre = document.getElementById("markdownOutputPre");
+      if (pre) pre.textContent = generateMarkdownText();
+    }
+
+    function copyMarkdownToClipboard() {
+      const text = generateMarkdownText();
+      navigator.clipboard.writeText(text).then(() => {
+        alert("✅ Expediente copiado al portapapeles en formato Markdown.");
+      });
+    }
+
+    function downloadMarkdownFile() {
+      const name = document.getElementById("client_name")?.value || "Cliente";
+      const text = generateMarkdownText();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `Expediente_${name.replace(/\s+/g, '_')}.md`;
+      a.click();
+    }
+
+    function generatePlanVueloSummary() {
+      showStage("stage5", document.querySelectorAll(".stage-tab")[4]);
+    }
+
+    function pasteAiccData() {
+      const str = prompt("Pega el código AICC-DATA generado por el sondeo:");
+      if (str && str.includes("AICC-DATA:")) {
+        try {
+          const b64 = str.split("AICC-DATA:")[1].trim();
+          const json = JSON.parse(decodeURIComponent(escape(atob(b64))));
+          if (json.scores) {
+            document.getElementById("wheel_salud").value = json.scores.salud || 5;
+            document.getElementById("wheel_trabajo").value = json.scores.trabajo || 5;
+            document.getElementById("wheel_finanzas").value = json.scores.finanzas || 5;
+            document.getElementById("wheel_relaciones").value = json.scores.relaciones || 5;
+            document.getElementById("wheel_desarrollo").value = json.scores.desarrollo || 5;
+            document.getElementById("wheel_paz").value = json.scores.espiritualidad || 5;
+          }
+          if (json.saturation) document.getElementById("score_saturation").value = json.saturation;
+          saveCurrentData();
+          alert("✅ Datos del Sondeo 360° cargados exitosamente.");
+        } catch(e) {
+          alert("❌ Formato de código no válido.");
+        }
+      }
+    }
+
+    // Initialize
+    window.addEventListener("DOMContentLoaded", () => {
+      renderToolsCatalog();
+      loadClientData("antonia_jofre");
+    });
+  </script>
+</body>
+</html>
