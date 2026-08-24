@@ -127,3 +127,35 @@ function resetKanbanDefault() {
         saveKanbanTasks();
     }
 }
+
+// Auto-inicialización inteligente por cliente
+document.addEventListener("DOMContentLoaded", () => {
+    const config = window.CLIENT_CONFIG || {};
+    const clientId = config.clientId || "client";
+
+    let defaultTasks = [
+        { id: "k1", col: "todo", text: "Definir 3 prioridades del día", tag: "Foco" },
+        { id: "k2", col: "doing", text: "1. Ejecutar tarea principal de 25 min", tag: "En Foco" },
+        { id: "k3", col: "done", text: "Vaciado mental matutino", tag: "Victoria" }
+    ];
+
+    if (window.ROCIO_KANBAN_DEFAULT) {
+        defaultTasks = [];
+        if (window.ROCIO_KANBAN_DEFAULT.todo) {
+            window.ROCIO_KANBAN_DEFAULT.todo.forEach(t => defaultTasks.push({ id: t.id, col: "todo", text: t.text, tag: t.tag }));
+        }
+        if (window.ROCIO_KANBAN_DEFAULT.doing) {
+            window.ROCIO_KANBAN_DEFAULT.doing.forEach(t => defaultTasks.push({ id: t.id, col: "doing", text: t.text, tag: t.tag }));
+        }
+        if (window.ROCIO_KANBAN_DEFAULT.done) {
+            window.ROCIO_KANBAN_DEFAULT.done.forEach(t => defaultTasks.push({ id: t.id, col: "done", text: t.text, tag: t.tag }));
+        }
+    } else if (window.CLIENT_KANBAN_DEFAULT) {
+        defaultTasks = window.CLIENT_KANBAN_DEFAULT;
+    }
+
+    initKanbanEngine({
+        storageKey: `${clientId}_kanban`,
+        defaultTasks: defaultTasks
+    });
+});

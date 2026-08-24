@@ -356,9 +356,38 @@ function exportSchedulePNG(clientName) {
     }
     html2canvas(target, { backgroundColor: "#080808", scale: 2 }).then(canvas => {
         const link = document.createElement("a");
-        const nameClean = (clientName || "Cliente").replace(/\s+/g, '_');
+        const nameClean = (clientName || window.CLIENT_CONFIG?.clientName || "Cliente").replace(/\s+/g, '_');
         link.download = `Horario_24H_${nameClean}_Administracion_Humana.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
     });
 }
+
+// Auto-inicialización inteligente por cliente
+document.addEventListener("DOMContentLoaded", () => {
+    const config = window.CLIENT_CONFIG || {};
+    const clientId = config.clientId || "client";
+
+    let defaultCategories = [
+        { id: "trabajo", name: "💼 Trabajo & Proyectos", color: "#38BDF8", tag: "TRAB" },
+        { id: "descanso", name: "🌱 Descanso & Ocio", color: "#10B981", tag: "OCIO" },
+        { id: "sueno", name: "😴 Sueño", color: "#6366F1", tag: "SUEÑO" },
+        { id: "libre", name: "⚪ Tiempo Libre", color: "#334155", tag: "LIBRE" }
+    ];
+
+    if (window.ROCIO_SCHEDULE_CATEGORIES) {
+        defaultCategories = Object.keys(window.ROCIO_SCHEDULE_CATEGORIES).map(k => ({
+            id: k,
+            name: window.ROCIO_SCHEDULE_CATEGORIES[k].label,
+            color: window.ROCIO_SCHEDULE_CATEGORIES[k].color,
+            tag: window.ROCIO_SCHEDULE_CATEGORIES[k].tag
+        }));
+    } else if (window.CLIENT_SCHEDULE_CATEGORIES) {
+        defaultCategories = window.CLIENT_SCHEDULE_CATEGORIES;
+    }
+
+    initScheduleEngine({
+        storageKey: `${clientId}_schedule`,
+        defaultCategories: defaultCategories
+    });
+});
