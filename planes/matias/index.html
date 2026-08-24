@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Vuelo 2.0: Matías González • Administración Humana</title>
+    <title>Plan de Vuelo 2.0 • Matías González • Administración Humana</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,14 +13,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Modular CSS Core & Components (con Cache-Busting para forzar actualización en celulares) -->
-    <link rel="stylesheet" href="css/portal-core.css?v=3.1">
-    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.1">
-    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.1">
+    <!-- Modular CSS Core & Components (Cache-Busting v3.2) -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.2">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.2">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.2">
 
-    <!-- Inmersión Visual, Responsive Inmediato y Reglas de Alta Prioridad -->
+    <!-- Inmersión Visual & Reglas Móviles de Alta Prioridad -->
     <style>
-        /* REJILLA 2X4 OBLIGATORIA EN CELULARES (FORZADA PARA EVITAR CACHÉ) */
         @media (max-width: 768px) {
             .tabs {
                 display: grid !important;
@@ -57,13 +56,10 @@
             }
         }
 
-        /* Lightbox Fullscreen Modal */
         #lightbox-modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             background: rgba(0, 0, 0, 0.92);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -74,136 +70,50 @@
             padding: 2rem;
             cursor: zoom-out;
         }
-        #lightbox-modal.active {
-            display: flex;
-            animation: fadeIn 0.25s ease;
-        }
+        #lightbox-modal.active { display: flex; animation: fadeIn 0.25s ease; }
         #lightbox-img {
-            max-width: 92vw;
-            max-height: 88vh;
+            max-width: 92vw; max-height: 88vh;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.1);
             border: 1px solid #333;
         }
         #lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: #ffffff;
-            font-size: 2.2rem;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            line-height: 1;
-            transition: transform 0.2s ease;
-        }
-        #lightbox-close:hover {
-            transform: scale(1.15);
-            color: #ef4444;
-        }
-        
-        /* Interactive Checkbox Animations */
-        .tool-checklist li {
-            transition: all 0.2s ease;
-            user-select: none;
-        }
-        .tool-checklist li:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 6px;
-            padding-left: 4px;
-        }
-        .tool-checklist li.checked {
-            opacity: 0.55;
-            text-decoration: line-through;
+            position: absolute; top: 20px; right: 25px;
+            color: #ffffff; font-size: 2.2rem;
+            background: transparent; border: none;
+            cursor: pointer; line-height: 1;
         }
 
-        /* Hero Banner Glow */
-        .hero-banner {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(20, 20, 20, 0.95) 100%);
-            border: 1px solid #262626;
-            border-radius: 20px;
-            padding: 2.2rem;
-            margin-bottom: 2.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        .hero-text h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 0.4rem;
-        }
-        .hero-text p {
-            color: #888888;
-            font-size: 0.9rem;
-        }
-        .hero-stats {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .stat-badge {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #262626;
-            border-radius: 12px;
-            padding: 0.75rem 1.2rem;
-            text-align: center;
-        }
-        .stat-badge .value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-        .stat-badge .label {
-            font-size: 0.7rem;
-            color: #888888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
+        .hero-tea-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 4px 12px; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 700;
+            margin-bottom: 0.8rem; letter-spacing: 0.5px;
         }
 
-        /* Scenario Buttons in Voice Widget */
-        .scenario-selector {
+        .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem; margin-bottom: 1.5rem;
         }
-        .scenario-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #262626;
-            color: #aaa;
-            padding: 0.85rem 1rem;
-            border-radius: 10px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem;
         }
-        .scenario-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #444;
-            color: #fff;
-            transform: translateY(-2px);
+        .stat-val { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .stat-lbl { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+        .printable-card {
+            background: #111; border: 1px solid #262626; border-radius: 12px;
+            padding: 1.2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            margin-bottom: 0.8rem; transition: all 0.2s ease;
         }
-        .scenario-btn.active {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-            box-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
-            font-weight: 800;
-            transform: translateY(-2px);
-        }
+        .printable-card:hover { border-color: #444; background: #161616; transform: translateX(4px); }
     </style>
 </head>
 <body>
@@ -248,220 +158,195 @@
                 <div class="brand-logo">🤹</div>
                 <div class="brand-title">
                     <h1>Plan de Vuelo 2.0</h1>
-                    <p>De la Resaca Digital a la Autonomía • Matías</p>
+                    <p>De la Resaca Digital a la Autonomía • Matías González</p>
                 </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                 <div class="meta-badge">
-                    <div class="dot"></div>
-                    <span>Fase 1: Desintoxicación y Contención</span>
+                    <span class="dot"></span>
+                    <span>TDAH • Acompañamiento Escolar • Comunicación & Valentía</span>
                 </div>
-                <button class="btn-portal-lock" onclick="logoutClientAuth()" title="Bloquear Portal">
+                <button class="btn-portal-lock" onclick="lockClientPortal()">
                     <i class="fa-solid fa-lock"></i> Bloquear
                 </button>
             </div>
         </header>
 
-        <!-- Navigation Tabs -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('overview')"><i class="fa-solid fa-compass"></i> Diagnóstico General</button>
-            <button class="tab-btn" onclick="switchTab('foda')"><i class="fa-solid fa-chart-simple"></i> FODA Personal</button>
-            <button class="tab-btn" onclick="switchTab('phases')"><i class="fa-solid fa-gauge-high"></i> Fases de Confianza</button>
-            <button class="tab-btn" onclick="switchTab('schedule')"><i class="fa-solid fa-calendar-week"></i> Mapeador 24H</button>
-            <button class="tab-btn" onclick="switchTab('kanban')"><i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)</button>
-            <button class="tab-btn" onclick="switchTab('tools')"><i class="fa-solid fa-screwdriver-wrench"></i> Caja de Herramientas</button>
-            <button class="tab-btn" onclick="switchTab('voice-tools')"><i class="fa-solid fa-comment-dots"></i> Sacar la Voz & Valentía</button>
-            <button class="tab-btn" onclick="switchTab('action')"><i class="fa-solid fa-bolt"></i> Plan 24 Horas & Límites</button>
-        </div>
+        <!-- NAVIGATION TABS -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-overview')">
+                <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-foda')">
+                <i class="fa-solid fa-chart-pie"></i> FODA & Matriz CAME
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-phases')">
+                <i class="fa-solid fa-trophy"></i> Ruta de Confianza
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-horario')">
+                <i class="fa-regular fa-clock"></i> Mapeador 24H
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-kanban')">
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-voice')">
+                <i class="fa-solid fa-bullhorn"></i> Sacar la Voz & Valentía
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-herramientas')">
+                <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-accion')">
+                <i class="fa-solid fa-bolt"></i> Plan 24h & Límites
+            </button>
+        </nav>
 
-        <!-- TAB CONTENT: OVERVIEW -->
-        <div id="overview" class="tab-content active">
-            <div class="hero-banner">
-                <div class="hero-text">
-                    <h2>Desactivar el Ruido, Recuperar el Enfoque 🚀</h2>
-                    <p>Matías, tienes una inteligencia práctica increíble y destrezas motrices sobresalientes. Este plan de vuelo es tu mapa para superar la <strong>apatía digital, la evasión activa y la planificación de pánico de último minuto</strong>, transitar hacia la autogestión sin depender de alertas constantes de tus padres, y reconectar con hábitos que realmente ejecutes en lugar de solo teorizar.</p>
-                    <div class="hero-stats">
-                        <div class="stat-badge">
-                            <div class="label">Fase del Plan</div>
-                            <div class="value" style="color: var(--danger);">Fase 1: Contención</div>
-                        </div>
-                        <div class="stat-badge">
-                            <div class="label">Requisito Devolución</div>
-                            <div class="value">Notas (+) Sin Rojos</div>
-                        </div>
-                        <div class="stat-badge">
-                            <div class="label">Estudio</div>
-                            <div class="value">Bajo Roce</div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <!-- Mini progress bar -->
-                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 1.5rem; border-radius: var(--radius-md); text-align: center; width: 250px;">
-                        <h4 style="font-family: var(--font-display); font-size: 0.85rem; margin-bottom: 0.6rem; color: var(--text-muted); font-weight: 700;">SALDO DE CONFIANZA</h4>
-                        <div style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: #10B981; margin-bottom: 0.4rem;">En Recuperación</div>
-                        <div style="height: 8px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin-bottom: 0.6rem;">
-                            <div style="width: 60%; height: 100%; background: #10B981; border-radius: 10px;"></div>
-                        </div>
-                        <p style="font-size: 0.7rem; color: var(--text-muted);">Saldo actual: En ascenso (+). Acreditación PIE y actitud responsable.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-title">
-                <span>Ruta de Desarrollo Personal</span>
-            </div>
-
-            <!-- Tuckman Stage Timeline -->
-            <div class="tuckman-timeline">
-                <div class="tuckman-step completed">
-                    <div class="step-dot">1</div>
-                    <div class="step-name">1. Formación</div>
-                    <div class="step-desc">Detección de hábitos y diagnóstico inicial.</div>
-                </div>
-                <div class="tuckman-step completed">
-                    <div class="step-dot">2</div>
-                    <div class="step-name">2. Tormenta (Superada)</div>
-                    <div class="step-desc">Acreditación de informe PIE y superación de la quiebra inicial.</div>
-                </div>
-                <div class="tuckman-step active">
-                    <div class="step-dot">3</div>
-                    <div class="step-name">3. Normalización (En Curso)</div>
-                    <div class="step-desc">Entrenamiento en autorregulación, límites sanos y priorización digital.</div>
-                </div>
-                <div class="tuckman-step">
-                    <div class="step-dot">4</div>
-                    <div class="step-name">4. Desempeño</div>
-                    <div class="step-desc">Smartphone devuelto con control parental estricto.</div>
-                </div>
-                <div class="tuckman-step">
-                    <div class="step-dot">5</div>
-                    <div class="step-name">5. Autonomía</div>
-                    <div class="step-desc">Uso responsable de tecnología y autogestión de deberes.</div>
-                </div>
-            </div>
-
+        <!-- TAB CONTENT: OVERVIEW / DIAGNOSTIC -->
+        <div id="tab-overview" class="tab-content active">
             <div class="diagnostic-box">
-                <h3><i class="fa-solid fa-triangle-exclamation text-rose-500"></i> El Punto de Apalancamiento Clave</h3>
-                <p>"Tu principal obstáculo hoy no es la falta de capacidad, sino la evasión activa. Confundes 'prepararte' con 'hacer' (ver videos de matemáticas en lugar de ejercitar, o leer sobre hábitos en lugar de practicarlos). Para destrabar tu autonomía, pasamos a la acción directa y al fin del empuje externo."</p>
-            </div>
-
-            <div class="card" style="margin-top: 1.5rem; border-color: rgba(99, 102, 241, 0.3); background: rgba(99, 102, 241, 0.03); text-align: center;">
-                <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">📈 ⚡ 🤝 🏆</div>
-                <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem;">
-                    Modelo de Tuckman: De la Tormenta al Rendimiento Autónomo
+                <div class="hero-tea-badge">
+                    <i class="fa-solid fa-dna"></i> Diagnóstico Humano & Estructura Personal
                 </div>
-                <p style="font-size: 0.85rem; color: var(--text-muted); max-width: 650px; margin: 0 auto;">
-                    Transitando de la fase de fricción y control externo hacia la normalización y la confianza personal mediante micro-acciones medibles y honestidad diaria.
+                <h3><span>El Estado Actual: Soberanía Operativa & Foco</span></h3>
+                <p>
+                    Matías presenta una gran creatividad y talento visual/corporal (dibujo, pintura y vóley). Sin embargo, el uso desregulado de pantallas generó resaca digital, evasión de tareas escolares y tendencia a mentir u ocultar problemas por vergüenza. El acompañamiento de Diego (papá) y Ángela (mamá) busca reconstruir la confianza mediante hitos medibles, reglas claras y el aprendizaje de sacar la voz sin miedo.
                 </p>
             </div>
+
+            
+            <div class="stat-grid">
+                
+                <div class="stat-card" style="border-color: #ef444444;">
+                    <span class="stat-val" style="color: #ef4444;">Fase 1</span>
+                    <span class="stat-lbl">Estado de Confianza</span>
+                    <span style="font-size: 0.75rem; color: #888;">Desintoxicación y Contención</span>
+                </div>
+                <div class="stat-card" style="border-color: #60a5fa44;">
+                    <span class="stat-val" style="color: #60a5fa;">5 min</span>
+                    <span class="stat-lbl">Regla Paso Cero</span>
+                    <span style="font-size: 0.75rem; color: #888;">Vencer la parálisis inicial</span>
+                </div>
+                <div class="stat-card" style="border-color: #f59e0b44;">
+                    <span class="stat-val" style="color: #f59e0b;">WIP = 2</span>
+                    <span class="stat-lbl">Límite Kanban</span>
+                    <span style="font-size: 0.75rem; color: #888;">Máximo 2 tareas activas</span>
+                </div>
+                <div class="stat-card" style="border-color: #10b98144;">
+                    <span class="stat-val" style="color: #10b981;">100%</span>
+                    <span class="stat-lbl">Cero Bucles</span>
+                    <span style="font-size: 0.75rem; color: #888;">Cerrar conversaciones</span>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                
+                <div class="card">
+                    <h3 class="section-title"><span>Auditoría del Tiempo Semanal (168 Horas)</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>Sueno:</strong> 56 horas / semana</li><li><strong>Familia Hogar:</strong> 42 horas / semana</li><li><strong>Colegio Estudio:</strong> 35 horas / semana</li><li><strong>Arte Deporte:</strong> 14 horas / semana</li><li><strong>Fuga Pantallas Evasion:</strong> 21 horas / semana</li>
+                        <li><strong>Total Semanal:</strong> 168 horas (Balance 100% Ajustado)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
+                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
+                        <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+
 
         <!-- TAB CONTENT: FODA -->
-        <div id="foda" class="tab-content">
+        <div id="tab-foda" class="tab-content">
             <div class="section-title">
-                <span>Diagnóstico Estratégico: FODA Personalizado</span>
+                <span>Diagnóstico Estratégico FODA & Matriz CAME</span>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2.2rem; font-size: 0.95rem;">
-                Evaluación integral basada en las bitácoras y registros del Proyecto Matías. Nos enfocamos en potenciar sus talentos motores y en cercar los riesgos de procrastinación digital.
-            </p>
-
             <div class="grid-2">
-                <!-- Fortalezas -->
-                <div class="card" style="border-color: rgba(16, 185, 129, 0.25); background: rgba(16, 185, 129, 0.02);">
-                    <h3 style="color: var(--success); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;"><i class="fa-solid fa-circle-check"></i> Fortalezas (Tus Motores)</h3>
+                <div class="card" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.02);">
+                    <h3 style="color: var(--success); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-shield-halved"></i> Fortalezas (Tus Motores)
+                    </h3>
                     <ul class="custom-list">
-                        <li><strong>Destreza motriz sobresaliente:</strong> Excelente coordinación motora fina y paciencia aplicada al dibujo y la pintura.</li>
-                        <li><strong>Perseverancia en lo que le apasiona:</strong> Capacidad de practicar horas seguidas cuando hay un interés genuino.</li>
-                        <li><strong>Resolución práctica:</strong> Inteligencia ágil para problemas dinámicos y espaciales.</li>
-                        <li><strong>Inclinación creativa:</strong> Afición por el arte y la expresión manual libre de tecnología.</li>
+                        <li>Gran sensibilidad artística, talento para el dibujo y la pintura.</li><li>Habilidad atlética y motivación en el entrenamiento de vóley.</li><li>Excelente capacidad de concentración cuando el entorno es de bajo roce.</li><li>Respaldo y amor incondicional de sus padres (Diego y Ángela).</li>
                     </ul>
                 </div>
-
-                <!-- Debilidades -->
-                <div class="card" style="border-color: rgba(239, 68, 68, 0.25); background: rgba(239, 68, 68, 0.02);">
-                    <h3 style="color: var(--danger); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;"><i class="fa-solid fa-triangle-exclamation"></i> Debilidades (Frenos Internos)</h3>
+                <div class="card" style="border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.02);">
+                    <h3 style="color: var(--danger); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Debilidades (Frenos Internos)
+                    </h3>
                     <ul class="custom-list danger-list">
-                        <li><strong>Dependencia del Empuje Externo:</strong> Inactividad escolar a menos que tus padres te indiquen abrir el cuaderno.</li>
-                        <li><strong>Planificación de Pánico:</strong> Postergar entregas y proyectos de 3 semanas hasta el último minuto, contagiando el estrés a la familia.</li>
-                        <li><strong>Rigidez y Obstinación:</strong> Dificultad para escuchar feedback ("todo el mundo está equivocado"), discutiendo en vez de preguntar con humildad.</li>
-                        <li><strong>Pseudo-Estudio (Evasión Activa):</strong> Confundir estudiar con ver pasivamente videos de matemáticas sin practicar en el papel.</li>
-                        <li><strong>Teorización sin Acción:</strong> Leer libros de hábitos (como <i>Hábitos Atómicos</i>) y usarlos para hacer excusas en lugar de aplicar las microacciones.</li>
-                        <li><strong>La Paradoja del Cuidado:</strong> Resentir la supervisión directa pero rechazar la indiferencia (necesitar que el espacio esté limpio y pasar de curso).</li>
+                        <li>Tendencia a evadir conversaciones difíciles y ocultar errores por vergüenza.</li><li>Dependencia del empuje externo para iniciar tareas escolares.</li><li>Planificación de pánico: postergar deberes hasta el último minuto.</li><li>Pseudo-estudio: ver videos pasivamente sin ejercitar en papel.</li>
                     </ul>
                 </div>
             </div>
-
             <div class="grid-2">
-                <!-- Oportunidades -->
-                <div class="card" style="border-color: rgba(20, 184, 166, 0.25); background: rgba(20, 184, 166, 0.02);">
-                    <h3 style="color: var(--secondary); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;"><i class="fa-solid fa-arrow-trend-up"></i> Oportunidades (Tus Palancas)</h3>
+                <div class="card" style="border-color: rgba(96, 165, 250, 0.3); background: rgba(96, 165, 250, 0.02);">
+                    <h3 style="color: #60a5fa; font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-arrow-trend-up"></i> Oportunidades (Palancas)
+                    </h3>
                     <ul class="custom-list">
-                        <li><strong>Soporte parental unificado:</strong> Normas y controles alineados y consistentes en ambos hogares (Diego y Ángela).</li>
-                        <li><strong>Estrategia escolar flexible:</strong> Profesores comprometidos a aceptar apuntes mínimos viables y guías simplificadas.</li>
-                        <li><strong>Taller de Arte y Vóley:</strong> Espacios de desarrollo creativo y deporte que regulan el TDAH físicamente.</li>
+                        <li>Soporte parental unificado y consistente en ambos hogares.</li><li>Estrategia de Apuntes Mínimos Viables (Regla del 70%) con profesores.</li><li>Canalizar dopamina sana mediante el taller de arte y el vóley.</li><li>Uso de Copiloto IA (Antigravity) para aprender programación y autonomía.</li>
                     </ul>
                 </div>
-
-                <!-- Amenazas -->
-                <div class="card" style="border-color: rgba(245, 158, 11, 0.25); background: rgba(245, 158, 11, 0.02);">
-                    <h3 style="color: var(--warning); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;"><i class="fa-solid fa-skull-crossbones"></i> Amenazas (Riesgos a Mitigar)</h3>
+                <div class="card" style="border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.02);">
+                    <h3 style="color: var(--warning); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-skull-crossbones"></i> Amenazas (Riesgos a Mitigar)
+                    </h3>
                     <ul class="custom-list danger-list">
-                        <li><strong>Búsqueda de pantallas alternativas:</strong> Uso de hardware de terceros o accesos ocultos en secreto.</li>
-                        <li><strong>Parálisis escolar por acumulación:</strong> Rendirse ante el avance de materias por sentirse incapaz de ponerse al día.</li>
-                        <li><strong>Aislamiento defensivo:</strong> Adoptar una actitud reactiva o de silencio hacia los padres por las restricciones.</li>
+                        <li>Búsqueda de pantallas alternativas o dispositivos antiguos en secreto.</li><li>Parálisis por acumulación de materias escolares pendientes.</li><li>Aislamiento defensivo o reactividad hacia los padres ante límites.</li>
                     </ul>
                 </div>
             </div>
+            
         </div>
 
+
         <!-- TAB CONTENT: PHASES -->
-        <div id="phases" class="tab-content">
+        <div id="tab-phases" class="tab-content">
             <div class="section-title">
                 <span>Ruta Progresiva de Confianza y Privilegios</span>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2.2rem; font-size: 0.95rem;">
-                El restablecimiento de tu movilidad y privilegios digitales no depende de promesas ni del paso del tiempo, sino de acciones medibles en tu día a día.
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
+                El avance hacia la autonomía total se mide por hitos concretos y consistencia en el tiempo.
             </p>
-
-            <div class="grid-2" style="margin-bottom: 2rem;">
-                <div class="phase-card active">
+            <div class="grid-3">
+                
+                <div class="phase-card active" style="border-color:#ef444455;">
                     <div class="phase-num">F1</div>
-                    <div class="phase-title"><i class="fa-solid fa-lock text-rose-500"></i> Fase 1: Desintoxicación (Actual)</div>
-                    <p class="phase-desc">Requisa de teléfonos móviles personales. Bloqueo total de redes sociales. Enfoque en tolerancia al aburrimiento y rutina análoga.</p>
-                    <div class="phase-req">
-                        <strong>Requisito de Salida:</strong> Primera entrega de notas positiva (aprobado y sin rojos) <strong>Y</strong> demostración diaria de actitud responsable, madura y constructiva en el hogar. Debes dar la confianza absoluta de que el smartphone no arruinará el progreso logrado.
+                    <div class="phase-title" style="color:#ef4444;">
+                        <i class="fa-solid fa-flag-checkered"></i> Desintoxicación y Contención (Actual)
                     </div>
+                    <div class="phase-desc">Cero pantallas no supervisadas, entrega de dispositivos en la noche y reporte diario de 5 min.</div>
                 </div>
-
-                <div class="phase-card next">
+                <div class="phase-card " style="border-color:#f59e0b55;">
                     <div class="phase-num">F2</div>
-                    <div class="phase-title"><i class="fa-solid fa-shield-halved text-amber-500"></i> Fase 2: Control Parental</div>
-                    <p class="phase-desc">Devolución del smartphone con control parental estricto de tiempo de uso y bloqueo de redes sociales (Instagram/TikTok). El teléfono es un privilegio condicionado; tu prioridad absoluta es sostener tu crecimiento personal.</p>
-                    <div class="phase-req">
-                        <strong>Requisito de Salida:</strong> Consistencia escolar y de hábitos estable durante 1 mes en esta fase.
+                    <div class="phase-title" style="color:#f59e0b;">
+                        <i class="fa-solid fa-flag-checkered"></i> Supervisión Guiada
                     </div>
+                    <div class="phase-desc">Cumplimiento del 80% de tareas en Kanban y 2 semanas consecutivas sin mentiras ni evasión.</div>
                 </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="phase-card">
+                <div class="phase-card " style="border-color:#10b98155;">
                     <div class="phase-num">F3</div>
-                    <div class="phase-title"><i class="fa-solid fa-circle-check text-emerald-400"></i> Fase 3: Autonomía Guiada</div>
-                    <p class="phase-desc">Restablecimiento total de privilegios bajo acuerdos de uso semanales, autorregulación y supervisión aleatoria.</p>
-                    <div class="phase-req">
-                        <strong>Meta final:</strong> Autogestión del tiempo y uso consciente y responsable de la tecnología.
+                    <div class="phase-title" style="color:#10b981;">
+                        <i class="fa-solid fa-flag-checkered"></i> Autonomía y Soberanía
                     </div>
+                    <div class="phase-desc">Manejo independiente de horarios, notas escolares sobre el promedio y comunicación proactiva.</div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB CONTENT: SCHEDULE -->
-        <div id="schedule" class="tab-content">
+
+
+        
+        <!-- TAB CONTENT: HORARIO 24H -->
+        <div id="tab-horario" class="tab-content">
             <div class="card">
-                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
                     <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;">
-                        ⏰ Mapeador Semanal 24 Horas (Matías • Autonomía y Dopamina Sana)
+                        ⏰ Mapeador Semanal 24 Horas (Matías González)
                     </span>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
                         <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right: 4px;">
@@ -472,20 +357,20 @@
                         </button>
                         <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
                         <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
-                        <button class="btn-schedule-action" onclick="exportSchedulePNG()">📸 Exportar Imagen (PNG)</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG('Matías González')">📸 Exportar Imagen (PNG)</button>
                         <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
                     </div>
                 </div>
 
-                <!-- Brush selector bar -->
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+                    Pinta tus bloques semanales para proteger tu descanso, tu foco productivo y tus momentos libres de culpa.
+                </p>
+
                 <div class="schedule-controls">
                     <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
-                    <div class="brush-selector" id="brush-selector-container">
-                        <!-- Rendered dynamically -->
-                    </div>
+                    <div class="brush-selector" id="brush-selector-container"></div>
                 </div>
 
-                <!-- Schedule Table -->
                 <div class="schedule-scroll-wrapper" id="schedule-export-container">
                     <table class="schedule-grid-table" id="schedule-table">
                         <thead>
@@ -500,21 +385,17 @@
                                 <th>Domingo</th>
                             </tr>
                         </thead>
-                        <tbody id="schedule-body">
-                            <!-- Rendered dynamically -->
-                        </tbody>
+                        <tbody id="schedule-body"></tbody>
                     </table>
                 </div>
 
-                <!-- Stats summary -->
-                <div class="schedule-stats-bar" id="schedule-stats-container">
-                    <!-- Rendered dynamically -->
-                </div>
+                <div class="schedule-stats-bar" id="schedule-stats-container"></div>
             </div>
         </div>
 
-                <!-- TAB CONTENT: KANBAN -->
-        <div id="kanban" class="tab-content">
+        
+        <!-- TAB CONTENT: KANBAN -->
+        <div id="tab-kanban" class="tab-content">
             <div class="card">
                 <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
                     <span style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:#fff; display: flex; align-items: center; gap: 8px;">
@@ -525,16 +406,13 @@
                     </button>
                 </div>
                 <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">
-                    Mati, este tablero es tu escudo contra el abrumo y la parálisis. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>máximo 2 tareas simultáneas</strong>. No puedes arrancar una tercera tarea sin haber terminado o movido las que tienes en curso.
+                    Matías González, este tablero es tu escudo contra la parálisis. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>máximo 2 tareas en simultáneo</strong>.
                 </p>
 
                 <div class="kanban-grid">
-                    <!-- Columna 1: Por Empezar -->
                     <div class="kanban-col">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title">
-                                <i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> Por Empezar
-                            </div>
+                            <div class="kanban-col-title"><i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> Por Empezar</div>
                             <span id="count-todo" class="wip-limit-pill" style="border-color:#555; color:#aaa;">0</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -544,12 +422,9 @@
                         <div id="kanban-container-todo" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
                     </div>
 
-                    <!-- Columna 2: En Ejecución (WIP=2) -->
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;">
-                                <i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)
-                            </div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -559,12 +434,9 @@
                         <div id="kanban-container-doing" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
                     </div>
 
-                    <!-- Columna 3: Hito Cumplido -->
                     <div class="kanban-col" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #10b981;">
-                                <i class="fa-solid fa-circle-check"></i> Hito Cumplido
-                            </div>
+                            <div class="kanban-col-title" style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> Hito Cumplido</div>
                             <span id="count-done" class="wip-limit-pill" style="border-color:#10b981; color:#10b981; background: rgba(16, 185, 129, 0.1);">0</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -577,583 +449,251 @@
             </div>
         </div>
 
-<!-- TAB CONTENT: TOOLS -->
-        <div id="tools" class="tab-content">
-            <div class="section-title">
-                <span>Tu Kit de Herramientas de Autonomía</span>
-            </div>
-            <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.95rem;">
-                Cada herramienta tiene un objetivo y un soporte físico o digital asociado. Úsalas diariamente para estructurar tu rutina.
-            </p>
 
-            <!-- Tool 1 -->
-            <div class="tool-box">
-                <h3>
-                    <i class="fa-solid fa-table-columns text-indigo-400"></i> Tablero Escolar "Paso Cero" (GTD + Kanban WIP = 2)
-                    <a href="02_Acompanamiento_Escolar_BajoRoce/GTD_Colegio_Maty.xlsx"><i class="fa-solid fa-file-excel"></i> Ver Excel</a>
-                </h3>
-                <p class="tool-meta">Metáfora: El GTD es tu "Cubo de basura mental" y el Kanban es el "Escenario de Acción".</p>
-                <p class="tool-desc">
-                    Sirve para que no acumules deberes en tu cabeza y te congeles por abrumo. Escribe la tarea y ponla en la pared. Limita tu columna "En Ejecución" a un máximo de 2 tareas simultáneas.
-                </p>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox" id="chk_matias_tool1_1"> <span>Hacer el vaciado escolar dos veces por semana con tus padres.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool1_2"> <span>Limitar la columna "En Ejecución" en tu pared a un máximo de 2 Post-its.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool1_3"> <span>Completar el "Paso Cero" (5 minutos de acción) antes de rendirte.</span></li>
-                </ul>
-            </div>
-
-            <!-- Tool 2 -->
-            <div class="tool-box">
-                <h3>
-                    <i class="fa-solid fa-heart-circle-check text-rose-500"></i> Cuenta Corriente de Confianza
-                    <a href="02_Acompanamiento_Escolar_BajoRoce/GTD_Colegio_Maty.xlsx"><i class="fa-solid fa-file-excel"></i> Ver Registro</a>
-                </h3>
-                <p class="tool-meta">Metáfora: La confianza es tu activo moral más valioso; se deposita con hechos y se gira con mentiras.</p>
-                <p class="tool-desc">
-                    El registro de tus acciones diarias. Las tareas cumplidas y la honestidad son depósitos. Los ocultamientos y las faltas a la verdad son giros. Mantener saldo positivo es tu llave para el teléfono.
-                </p>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox" id="chk_matias_tool2_1"> <span>Mantener la honestidad absoluta en horarios y actividades.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool2_2"> <span>Registrar movimientos diarios (Diego/Ángela) en el panel de control.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool2_3"> <span>Acumular 2 semanas con balance neto de puntos positivo.</span></li>
-                </ul>
-            </div>
-
-            <!-- Tool 3 -->
-            <div class="tool-box">
-                <h3>
-                    <i class="fa-solid fa-book-open text-emerald-400"></i> Apuntes Mínimos Viables (Bajo Roce & Pareto 80/20)
-                    <a href="00_Fase_Contencion_Crisis/Minuta_Coordinacion_Profesores.docx"><i class="fa-solid fa-file-word"></i> Ver Minuta</a>
-                </h3>
-                <p class="tool-meta">Metáfora: Tu "Trámite Cumplible" para evitar la parálisis académica.</p>
-                <p class="tool-desc">
-                    Para evitar bloquearte frente a cuadernos perfectos. Escribe resúmenes de solo 5 líneas por tema. Pide a un compañero o profesor capturas de pizarra si es necesario. Lo importante es tener la información de forma simple.
-                </p>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox" id="chk_matias_tool3_1"> <span>Escribir resúmenes ultra-cortos de 5 líneas en tus materias densas.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool3_2"> <span>Confirmar con el monitor de curso las tareas anotadas al final de la jornada.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool3_3"> <span>Guardar las capturas de pizarras en la plataforma oficial del colegio.</span></li>
-                </ul>
-            </div>
-
-            <!-- Tool 4 -->
-            <div class="tool-box">
-                <h3>
-                    <i class="fa-solid fa-calendar-days text-amber-500"></i> Time Blocking de Rutina Análoga
-                    <a href="02_Acompanamiento_Escolar_BajoRoce/Horario_Escolar_Mati_3B.xlsx"><i class="fa-solid fa-file-excel"></i> Horario Escolar</a>
-                    <a style="margin-left: 10px;" href="Plantillas/01_Planificador_Semanal_y_Bloques_de_Tiempo.xlsx"><i class="fa-solid fa-file-excel"></i> Planificador Semanal</a>
-                </h3>
-                <p class="tool-meta">Metáfora: Reclamar tu territorio frente al aburrimiento.</p>
-                <p class="tool-desc">
-                    Rutinas estructuradas en papel y en tu pared. El tiempo que antes se perdía en redes sociales ahora se asigna de manera visual a bloques específicos de deporte, estudio y ocio activo.
-                </p>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox" id="chk_matias_tool4_1"> <span>Pega tu horario escolar y rutina semanal en un lugar visible de tu cuarto.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool4_2"> <span>Respetar las horas bloqueadas para estudio (bajo roce) y orden del hogar.</span></li>
-                </ul>
-            </div>
-
-            <!-- Tool 5 -->
-            <div class="tool-box">
-                <h3>
-                    <i class="fa-solid fa-palette text-cyan-400"></i> Taller de Arte y Vóley (Dopamina Real SMART)
-                    <a href="03_Portafolio_Paz_90_Dias/Guia_Creativa_Pintura_y_Dibujo.docx"><i class="fa-solid fa-file-word"></i> Guía Pintura y Dibujo</a>
-                    <a style="margin-left: 10px;" href="03_Portafolio_Paz_90_Dias/Planificacion_Mati.xlsx"><i class="fa-solid fa-file-excel"></i> Planificación</a>
-                </h3>
-                <p class="tool-meta">Metáfora: Tu lienzo de enfoque. El trazo imperfecto se corrige y evoluciona.</p>
-                <p class="tool-desc">
-                    El desarrollo de tus proyectos de pintura y dibujo y tus prácticas de vóley. Actividades creativas y físicas estructuradas que regulan el TDAH de forma sana, alejando a tu cerebro del letargo digital.
-                </p>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox" id="chk_matias_tool5_1"> <span>Dedicar 15 minutos al dibujo o pintura en tu cuarto todos los días.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool5_2"> <span>Completar tus entrenamientos de Vóley semanales.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool5_3"> <span>Registrar tus progresos e hitos en tu ficha de seguimiento.</span></li>
-                </ul>
-            </div>
-
-            <!-- Tool 6 -->
-            <div class="tool-box">
-                <h3>
-                    <i class="fa-solid fa-clock text-indigo-400"></i> La Cita Semanal de Crecimiento Personal (Matriz Eisenhower)
-                    <a href="Minutas_Reunion_Socios_Lunes.docx"><i class="fa-solid fa-file-word"></i> Reunión de Socios</a>
-                </h3>
-                <p class="tool-meta">Metáfora: Tu fecha y hora con tu propio crecimiento. Las actitudes importan más que los números.</p>
-                <p class="tool-desc">
-                    Un bloque semanal no negociable de mínimo 1 hora donde auditas tus sistemas (Kanban, planificador), reflexionas sobre tus decisiones en el hogar y planteas tus propias mejoras de gestión sin esperar a ser interrogado.
-                </p>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox" id="chk_matias_tool6_1"> <span>Reservar 1 hora los fines de semana exclusivamente para evaluar tu propio avance.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool6_2"> <span>Identificar un cuello de botella en tu rutina semanal y proponer una solución concreta.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool6_3"> <span>Registrar tus compromisos y firmar los acuerdos en el planificador con tus padres.</span></li>
-                </ul>
-            </div>
-
-            <!-- Tool 7 -->
-            <div class="tool-box">
-                <h3>
-                    <i class="fa-solid fa-rocket text-purple-400"></i> Aprendiendo Antigravity (Copiloto IA de Autonomía)
-                    <a href="Aprendiendo_Antigravity/index.html" target="_blank"><i class="fa-solid fa-window-maximize"></i> Abrir Dashboard</a>
-                    <a style="margin-left: 10px;" href="Aprendiendo_Antigravity/Guia_Antigravity_Matias.md" target="_blank"><i class="fa-solid fa-file-lines"></i> Ver Markdown</a>
-                </h3>
-                <p class="tool-meta">Metáfora: Tu copiloto de aceleración. No reemplaza al piloto, pero facilita la navegación.</p>
-                <p class="tool-desc">
-                    Tu herramienta de Inteligencia Artificial en el computador recién recuperado. Sirve para romper la inercia del "Paso Cero", hacer resúmenes de bajo roce de 5 líneas, simuladores de exámenes interactivas y generar ideas para tus talleres de arte y vóley.
-                </p>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox" id="chk_matias_tool7_1"> <span>Usar el comando "Paso Cero" cuando sientas abrumo para empezar una tarea.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool7_2"> <span>Crear quizzes de 3 preguntas de práctica antes de tus evaluaciones del colegio.</span></li>
-                    <li><input type="checkbox" id="chk_matias_tool7_3"> <span>Respetar las 3 Reglas de Oro: Antigravity es tu entrenador, no tu reemplazo.</span></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- TAB CONTENT: VOICE TOOLS -->
-        <div id="voice-tools" class="tab-content">
-            <!-- Hero Banner -->
-            <div class="card" style="background: linear-gradient(135deg, rgba(30, 27, 75, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%); border-color: rgba(139, 92, 246, 0.3); margin-bottom: 2rem; position: relative; overflow: hidden;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
-                    <div>
-                        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); color: #c4b5fd; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem;">
-                            <i class="fa-solid fa-bullhorn"></i> Protocolo de Comunicación y Madurez
-                        </div>
-                        <h2 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 0.5rem;">
-                            🗣️ Sacar la Voz, Enfrentar y Cerrar Bucles
-                        </h2>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 850px; line-height: 1.5;">
-                            Mati, callar, mentir o evadir una conversación difícil no hace que el problema desaparezca; solo crea un <strong>fantasma mental</strong> que te roba la paz y destruye la confianza familiar. Este kit de herramientas de <em>Administración Humana</em> es tu entrenamiento para pararte de frente, decir la verdad en 5 segundos, pedir pausas responsables y aprender a dialogar como el <strong>hombre íntegro y tipazo</strong> que estás construyendo.
-                        </p>
-                    </div>
+        <!-- TAB CONTENT: SACAR LA VOZ -->
+        <div id="tab-voice" class="tab-content">
+            <div class="card" style="background: linear-gradient(135deg, rgba(30, 27, 75, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%); border-color: rgba(139, 92, 246, 0.3); margin-bottom: 2rem;">
+                <div class="hero-tea-badge" style="background:rgba(139, 92, 246, 0.1); border-color:rgba(139, 92, 246, 0.3); color:#c084fc;">
+                    <i class="fa-solid fa-bullhorn"></i> Protocolo de Comunicación Asertiva & Madurez
                 </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
-                    <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid #262626; border-radius: 12px; padding: 1rem; border-left: 3px solid #10b981;">
-                        <div style="font-size: 0.75rem; font-weight: 700; color: #10b981; text-transform: uppercase;">Regla de Oro #1</div>
-                        <div style="font-size: 0.85rem; color: #eee; font-weight: 600; margin-top: 2px;">La verdad en 5 segundos</div>
-                        <div style="font-size: 0.75rem; color: #888; margin-top: 2px;">Te ahorra 2 semanas de culpa, castigos y tensión familiar.</div>
+                <h2 style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; color:#ffffff; margin-bottom:0.8rem;">
+                    🗣️ Sacar la Voz, Enfrentar y Cerrar Bucles
+                </h2>
+                <p style="font-size:0.95rem; color:#cbd5e1; line-height:1.6; margin-bottom:1.5rem;">
+                    Callar, mentir o evadir una conversación difícil crea un fantasma mental que roba tu paz y desgasta la confianza. Este kit te entrena para pararte de frente, decir la verdad en 5 segundos y cerrar bucles abiertos sin miedo.
+                </p>
+                <div class="grid-3" style="margin-bottom:0;">
+                    
+                    <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1rem;">
+                        <span style="font-size: 0.75rem; font-weight: 800; color: #c084fc; text-transform: uppercase;">Regla #1</span>
+                        <h4 style="font-family: var(--font-display); font-size: 1.05rem; color: #fff; margin: 0.3rem 0 0.5rem 0;">La Verdad en 5 Segundos</h4>
+                        <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.4;">Decir la verdad al instante te ahorra 2 semanas de culpa, castigos y tensión familiar.</p>
                     </div>
-                    <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid #262626; border-radius: 12px; padding: 1rem; border-left: 3px solid #8b5cf6;">
-                        <div style="font-size: 0.75rem; font-weight: 700; color: #c4b5fd; text-transform: uppercase;">Regla de Oro #2</div>
-                        <div style="font-size: 0.85rem; color: #eee; font-weight: 600; margin-top: 2px;">Prohibido el "No Sé"</div>
-                        <div style="font-size: 0.75rem; color: #888; margin-top: 2px;">Si te cuesta, di: <em>"Dame 1 minuto para pensar bien y te lo digo"</em>.</div>
+                    <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1rem;">
+                        <span style="font-size: 0.75rem; font-weight: 800; color: #c084fc; text-transform: uppercase;">Regla #2</span>
+                        <h4 style="font-family: var(--font-display); font-size: 1.05rem; color: #fff; margin: 0.3rem 0 0.5rem 0;">Prohibido el 'No Sé'</h4>
+                        <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.4;">Si te cuesta responder, di: 'Dame 1 minuto para pensar bien y te lo digo'.</p>
                     </div>
-                    <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid #262626; border-radius: 12px; padding: 1rem; border-left: 3px solid #f59e0b;">
-                        <div style="font-size: 0.75rem; font-weight: 700; color: #f59e0b; text-transform: uppercase;">Regla de Oro #3</div>
-                        <div style="font-size: 0.85rem; color: #eee; font-weight: 600; margin-top: 2px;">Cero Bucles Abiertos</div>
-                        <div style="font-size: 0.75rem; color: #888; margin-top: 2px;">Si pides una pausa, fija la hora y retoma tú la conversación.</div>
+                    <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1rem;">
+                        <span style="font-size: 0.75rem; font-weight: 800; color: #c084fc; text-transform: uppercase;">Regla #3</span>
+                        <h4 style="font-family: var(--font-display); font-size: 1.05rem; color: #fff; margin: 0.3rem 0 0.5rem 0;">Cero Bucles Abiertos (Efecto Zeigarnik)</h4>
+                        <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.4;">Si pides una pausa en una conversación difícil, fija la hora exacta y retoma tú la conversación.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- INTERACTIVE WIDGET: DESBLOQUEADOR DE VOZ / GENERADOR DE FRASES -->
-            <div class="card" style="border-color: rgba(255, 255, 255, 0.15); background: #0c0c0c; margin-bottom: 2.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 1.2rem;">
-                    <div>
-                        <span style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: #fff;">
-                            ⚡ Desbloqueador de Voz: Generador de Frases Asertivas
-                        </span>
-                        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">
-                            ¿Te cuesta empezar a hablar o sientes que te vas a bloquear? Selecciona la situación y ensaya el guion exacto.
-                        </p>
-                    </div>
-                    <span class="meta-badge" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> Asistente de Diálogo
-                    </span>
-                </div>
-
-                <!-- Scenario Pills -->
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;" id="voice-scenarios-container">
-                    <button class="btn-card-action scenario-btn active" onclick="selectVoiceScenario('error')" style="padding: 8px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 8px;">
-                        🚨 Cometí un error o no cumplí
+            <!-- Desbloqueador de Diálogos -->
+            <div class="card">
+                <h3 class="section-title"><span>Desbloqueador de Diálogos: Elige tu Situación</span></h3>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem;">
+                    
+                    <button class="btn-card-action" onclick="selectClientVoiceScenario('error')" style="padding:8px 14px; font-weight:700; font-size:0.82rem;">
+                        Cometí un error o me equivoqué
                     </button>
-                    <button class="btn-card-action scenario-btn" onclick="selectVoiceScenario('colegio')" style="padding: 8px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 8px;">
-                        📚 Me atrasé con una materia
+                    <button class="btn-card-action" onclick="selectClientVoiceScenario('atraso')" style="padding:8px 14px; font-weight:700; font-size:0.82rem;">
+                        Me atrasé con una tarea escolar
                     </button>
-                    <button class="btn-card-action scenario-btn" onclick="selectVoiceScenario('abrumo')" style="padding: 8px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 8px;">
-                        🤯 Me siento bloqueado / abrumado
+                    <button class="btn-card-action" onclick="selectClientVoiceScenario('abrumado')" style="padding:8px 14px; font-weight:700; font-size:0.82rem;">
+                        Me siento abrumado o bloqueado
                     </button>
-                    <button class="btn-card-action scenario-btn" onclick="selectVoiceScenario('pausa')" style="padding: 8px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 8px;">
-                        ⏳ Pausa responsable (Fijar hora)
+                    <button class="btn-card-action" onclick="selectClientVoiceScenario('pausa')" style="padding:8px 14px; font-weight:700; font-size:0.82rem;">
+                        Pausa responsable (Protocolo Zeigarnik)
                     </button>
-                    <button class="btn-card-action scenario-btn" onclick="selectVoiceScenario('admitir')" style="padding: 8px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 8px;">
-                        🤍 Corregir una mentira previa
+                    <button class="btn-card-action" onclick="selectClientVoiceScenario('mentira')" style="padding:8px 14px; font-weight:700; font-size:0.82rem;">
+                        Rectificar una mentira u omisión
                     </button>
-                    <button class="btn-card-action scenario-btn" onclick="selectVoiceScenario('desacuerdo')" style="padding: 8px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 8px;">
-                        💭 Expresar mi punto de vista
+                    <button class="btn-card-action" onclick="selectClientVoiceScenario('opinion')" style="padding:8px 14px; font-weight:700; font-size:0.82rem;">
+                        Expresar desacuerdo con respeto
                     </button>
                 </div>
-
-                <!-- Scenario Display Box -->
-                <div id="voice-script-box" style="background: #141414; border: 1px solid #282828; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-                    <!-- Rendered by JS -->
-                </div>
-            </div>
-
-            <!-- PROTOCOLO ZEIGARNIK: PAUSA CON RETORNO -->
-            <div class="card" style="border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.02); margin-bottom: 2.5rem;">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
-                    <div style="background: #f59e0b; color: #000; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem;">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                    </div>
-                    <div>
-                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #ffffff;">
-                            Protocolo Anti-Evasión: Cómo Pausar y Retomar una Conversación
-                        </h3>
-                        <p style="font-size: 0.78rem; color: #aaa;">El secreto del Efecto Zeigarnik: Cerrar los bucles antes de dormir.</p>
-                    </div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
-                    <div style="background: #101010; border: 1px solid #222; border-radius: 10px; padding: 1rem;">
-                        <div style="font-size: 0.75rem; font-weight: 800; color: #f59e0b; margin-bottom: 4px;">PASO 1: DETECTAR EL BLOQUEO</div>
-                        <p style="font-size: 0.8rem; color: #ccc;">Sientes ganas de mirar el suelo, quedarte mudo o inventar una excusa. <strong>Frena en seco</strong>. Reconoce: <em>"Me estoy bloqueando"</em>.</p>
-                    </div>
-                    <div style="background: #101010; border: 1px solid #222; border-radius: 10px; padding: 1rem;">
-                        <div style="font-size: 0.75rem; font-weight: 800; color: #f59e0b; margin-bottom: 4px;">PASO 2: PEDIR LA PAUSA FORMAL</div>
-                        <p style="font-size: 0.8rem; color: #ccc;">No te des la vuelta en silencio. Di en voz alta: <em>"Papá, en este momento me cuesta pensar claro. ¿Podemos hablarlo hoy a las [18:00]?"</em>.</p>
-                    </div>
-                    <div style="background: #101010; border: 1px solid #222; border-radius: 10px; padding: 1rem;">
-                        <div style="font-size: 0.75rem; font-weight: 800; color: #f59e0b; margin-bottom: 4px;">PASO 3: ENFRIARSE SIN PANTALLAS</div>
-                        <p style="font-size: 0.8rem; color: #ccc;">Durante la pausa está <strong>prohibido usar pantallas</strong>. Toma agua, camina, o escribe en un papel las 2 cosas que quieres decir.</p>
-                    </div>
-                    <div style="background: #101010; border: 1px solid #222; border-radius: 10px; padding: 1rem; border: 1px solid rgba(16, 185, 129, 0.4);">
-                        <div style="font-size: 0.75rem; font-weight: 800; color: #10b981; margin-bottom: 4px;">PASO 4: RETOMAR TÚ LA CITA (¡PUNTOS!)</div>
-                        <p style="font-size: 0.8rem; color: #ccc;">A la hora fijada, acércate tú a tu papá: <em>"Papá, son las [18:00], hablemos de lo pendiente"</em>. Esto suma <strong>depósito triple</strong> a tu confianza.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION TITLE: HERRAMIENTAS DIDÁCTICAS -->
-            <div class="section-title">
-                <span>Catálogo de 7 Herramientas para Hablar y Enfrentar</span>
-            </div>
-            <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.95rem;">
-                Cada herramienta resuelve una trampa mental específica (la vergüenza, el rodeos, el 'no sé', el silencio o la rigidez defensiva).
-            </p>
-
-            <!-- TOOL 1: VENTANA DE JOHARI -->
-            <div class="tool-box" style="border-left-color: #8b5cf6;">
-                <h3>
-                    <i class="fa-solid fa-window-maximize" style="color: #c4b5fd;"></i> 1. La Ventana de Johari (El Desahogo del Área Oculta)
-                </h3>
-                <p class="tool-meta">Metáfora: Guardar secretos es como inflar un globo dentro de tu pecho; abrirlo con la verdad te devuelve el aire.</p>
-                <p class="tool-desc">
-                    El "Área Oculta" es todo aquello que tú sabes que hiciste o sientes pero que intentas esconder de tus padres por miedo a su reacción o por vergüenza. El cerebro gasta muchísima energía intentando sostener mentiras o silencios. Cuando abres la compuerta y dices la verdad, la culpa desaparece instantáneamente y el vínculo se fortalece.
-                </p>
-                <div style="background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 8px; padding: 0.85rem; margin: 1rem 0;">
-                    <strong style="color: #c4b5fd; font-size: 0.85rem;">🛡️ Aplicación con Papá:</strong>
-                    <p style="font-size: 0.82rem; color: #ccc; margin-top: 4px;">
-                        Cuando sientas el impulso de esconder una mala nota o inventar que hiciste una tarea cuando no es verdad, frena y aplica la <strong>Regla de los 10 Segundos</strong>: suelta la verdad de golpe antes de que tu mente fabrique una excusa.
+                <div id="voice-guion-display-box" style="background:#0d0d0d; border:1px solid #333; border-radius:12px; padding:1.5rem; position:relative;">
+                    <span style="font-size:0.75rem; font-weight:800; color:#888; text-transform:uppercase;">Guion Asertivo Recomendado:</span>
+                    <p id="voice-guion-text" style="font-size:1.1rem; color:#fff; font-weight:500; line-height:1.5; margin:0.8rem 0;">
+                        «Papá / Mamá: me equivoqué en esto y no supe cómo resolverlo a tiempo. Quería decírtelo de frente antes de que sea más grande. ¿Cómo lo solucionamos?»
                     </p>
-                </div>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox"> Identificar cuando estoy ocultando algo por miedo al enojo o la vergüenza.</li>
-                    <li><input type="checkbox"> Aplicar la Regla de los 10 Segundos: decir la verdad antes de tejer una mentira.</li>
-                    <li><input type="checkbox"> Compartir voluntariamente con mis padres algo que me costó en la semana.</li>
-                </ul>
-                <div class="image-preview">
-                    <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" onclick="openLightbox(this.src)" title="Haz clic para ampliar" style="cursor: zoom-in;" alt="La Ventana de Johari">
-                    <p>La Ventana de Johari: Abrir el Área Oculta para liberar la mente y construir confianza sólida.</p>
-                </div>
-            </div>
-
-            <!-- TOOL 2: FEEDBACK SBI -->
-            <div class="tool-box" style="border-left-color: #38bdf8;">
-                <h3>
-                    <i class="fa-solid fa-bullseye" style="color: #38bdf8;"></i> 2. Feedback SBI (El Micrófono Seguro en 3 Pasos)
-                </h3>
-                <p class="tool-meta">Metáfora: El mapa de hechos limpios. Separar lo que pasó de las peleas emocionales.</p>
-                <p class="tool-desc">
-                    Muchas veces te quedas callado o respondes con enojo porque sientes que te atacan o que "todos están equivocados". El método SBI te da una estructura blindada para expresar lo que sientes sin atacar a nadie:
-                    <br>• <strong>S (Situación):</strong> El momento exacto (<em>"Ayer cuando estábamos revisando las tareas..."</em>).
-                    <br>• <strong>B (Comportamiento):</strong> El hecho observable sin juicios (<em>"...me quedé en silencio y no respondí a tu pregunta..."</em>).
-                    <br>• <strong>I (Impacto):</strong> Lo que sentiste por dentro (<em>"...porque me sentí muy abrumado y con miedo a que te decepcionaras de mí"</em>).
-                </p>
-                <div style="background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 0.85rem; margin: 1rem 0;">
-                    <strong style="color: #38bdf8; font-size: 0.85rem;">🛡️ Aplicación con Papá:</strong>
-                    <p style="font-size: 0.82rem; color: #ccc; margin-top: 4px;">
-                        Usa la fórmula SBI cuando sientas que no sabes cómo explicar por qué te bloqueaste o cuando algo en el hogar te moleste, en lugar de cerrarte en el mutismo.
-                    </p>
-                </div>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox"> Usar la fórmula SBI para explicar por qué me bloqueé ante una indicación.</li>
-                    <li><input type="checkbox"> Describir el hecho objetivo en vez de usar palabras absolutas como "siempre" o "nunca".</li>
-                    <li><input type="checkbox"> Verbalizar mi emoción real (abrumo, miedo, cansancio) con tranquilidad.</li>
-                </ul>
-                <div class="image-preview">
-                    <img src="assets/img/herramientas/Feedback SBI.webp" data-fallback="assets/img/herramientas/Feedback SBI.png" onclick="openLightbox(this.src)" title="Haz clic para ampliar" style="cursor: zoom-in;" alt="Feedback SBI">
-                    <p>Feedback SBI: Situación, Comportamiento e Impacto para un diálogo sin defensas ni agresividad.</p>
-                </div>
-            </div>
-
-            <!-- TOOL 3: PIRÁMIDE DE MINTO -->
-            <div class="tool-box" style="border-left-color: #10b981;">
-                <h3>
-                    <i class="fa-solid fa-arrow-down-short-wide" style="color: #10b981;"></i> 3. Pirámide de Minto (Hablar de Frente en 5 Segundos)
-                </h3>
-                <p class="tool-meta">Metáfora: La flecha directa. La conclusión va en el primer tiro; los detalles vienen después.</p>
-                <p class="tool-desc">
-                    El cerebro inseguro suele dar 20 rodeos, armar historias largas o enredarse en justificaciones para suavizar una mala noticia. La Pirámide de Minto enseña que la gente valiente y madura pone <strong>la conclusión en la primera frase</strong>:
-                    <br>• <em>"Papá, tengo una nota roja en Historia y necesito que organicemos el repaso."</em> (Directo, maduro, sin rodeos).
-                    <br>• Después de la primera frase, explicas con calma los detalles.
-                </p>
-                <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 0.85rem; margin: 1rem 0;">
-                    <strong style="color: #10b981; font-size: 0.85rem;">🛡️ Aplicación con Papá:</strong>
-                    <p style="font-size: 0.82rem; color: #ccc; margin-top: 4px;">
-                        Aplica la <strong>Regla de la Primera Línea</strong>: di lo más importante en los primeros 5 segundos de la charla. Tu papá agradecerá la frontalidad y el problema se resolverá en minutos.
-                    </p>
-                </div>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox"> Empezar cualquier conversación difícil con la verdad principal en menos de 10 palabras.</li>
-                    <li><input type="checkbox"> Eliminar las historias inventadas o rodeos para suavizar un error.</li>
-                    <li><input type="checkbox"> Decir directamente qué tipo de ayuda necesito de mi papá o mamá.</li>
-                </ul>
-                <div class="image-preview">
-                    <img src="assets/img/herramientas/Piramide de Minto.webp" data-fallback="assets/img/herramientas/Piramide de Minto.png" onclick="openLightbox(this.src)" title="Haz clic para ampliar" style="cursor: zoom-in;" alt="Pirámide de Minto">
-                    <p>Pirámide de Minto: Conclusión primero, argumentos y detalles estructurados después.</p>
-                </div>
-            </div>
-
-            <!-- TOOL 4: LOS 5 PORQUÉS -->
-            <div class="tool-box" style="border-left-color: #f59e0b;">
-                <h3>
-                    <i class="fa-solid fa-magnifying-glass-chart" style="color: #f59e0b;"></i> 4. Los 5 Porqués (Desarmar el "No Sé")
-                </h3>
-                <p class="tool-meta">Metáfora: Cavar hasta la raíz profunda en lugar de cortar solo las ramas secas.</p>
-                <p class="tool-desc">
-                    Cuando tu papá te pregunta: <em>"¿Por qué no abriste el cuaderno ayer?"</em>, la respuesta automática suele ser <em>"No sé"</em>. Pero el "no sé" es falso; siempre hay un motivo real oculto. Al preguntarte 3 a 5 veces "¿Por qué?", llegas a la causa raíz:
-                    <br>1. ¿Por qué no lo abrí? -> Porque me dio lata.
-                    <br>2. ¿Por qué me dio lata? -> Porque la materia es muy larga.
-                    <br>3. ¿Por qué se siente larga? -> Porque no entiendo la primera página.
-                    <br>4. ¿Por qué no pregunté? -> Porque me dio vergüenza que pensaran que no sé.
-                    <br><strong>Causa Raíz Real:</strong> Miedo al qué dirán. Al admitir la raíz, ¡la solución es pedir ayuda!
-                </p>
-                <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 8px; padding: 0.85rem; margin: 1rem 0;">
-                    <strong style="color: #f59e0b; font-size: 0.85rem;">🛡️ Aplicación con Papá:</strong>
-                    <p style="font-size: 0.82rem; color: #ccc; margin-top: 4px;">
-                        Queda <strong>erradicado el "no sé"</strong> en las conversaciones familiares. Si no sabes la respuesta en el segundo, di: <em>"Papá, déjame pensar 30 segundos en los porqués reales para decírtelo con honestidad"</em>.
-                    </p>
-                </div>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox"> No responder "no sé" ante preguntas sobre mis hábitos o decisiones.</li>
-                    <li><input type="checkbox"> Hacer el ejercicio de 3 a 5 Porqués para descubrir qué emoción me está frenando.</li>
-                    <li><input type="checkbox"> Verbalizar la causa raíz (abrumo, confusión o miedo) para recibir ayuda exacta.</li>
-                </ul>
-                <div class="image-preview">
-                    <img src="assets/img/herramientas/Los 5 Porques.webp" data-fallback="assets/img/herramientas/Los 5 Porques.png" onclick="openLightbox(this.src)" title="Haz clic para ampliar" style="cursor: zoom-in;" alt="Los 5 Porqués">
-                    <p>Los 5 Porqués: Ir al fondo del problema para desarmar la evasión superficial.</p>
-                </div>
-            </div>
-
-            <!-- TOOL 5: EFECTO ZEIGARNIK -->
-            <div class="tool-box" style="border-left-color: #ef4444;">
-                <h3>
-                    <i class="fa-solid fa-circle-notch" style="color: #f87171;"></i> 5. Efecto Zeigarnik (Cerrar los Bucles Abiertos)
-                </h3>
-                <p class="tool-meta">Metáfora: Las aplicaciones abiertas en segundo plano que recalientan y agotan la batería del teléfono.</p>
-                <p class="tool-desc">
-                    La psicología demostró que el cerebro humano odia las historias inconclusas. Cuando evades una conversación difícil y no la retomas, esa charla pendiente se queda dando vueltas en tu mente como un fantasma (te da insomnio, mal genio y miedo a que te pillen). La única forma de apagar la alarma mental no es esconderse, sino <strong>cerrar el bucle hablando</strong>.
-                </p>
-                <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 0.85rem; margin: 1rem 0;">
-                    <strong style="color: #f87171; font-size: 0.85rem;">🛡️ Aplicación con Papá:</strong>
-                    <p style="font-size: 0.82rem; color: #ccc; margin-top: 4px;">
-                        <strong>Pacto de Cierre Diario:</strong> Nunca te vayas a dormir con una conversación pendiente o evadida con tu papá o mamá. Si hubo tensión durante el día, acércate antes de las 21:00 y di: <em>"Papá, cerremos lo que pasó hoy para estar tranquilos"</em>.
-                    </p>
-                </div>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox"> No dejar pasar más de 12 horas sin retomar una conversación que quedó tensa.</li>
-                    <li><input type="checkbox"> Cumplir rigurosamente la hora acordada cuando solicito una pausa para hablar.</li>
-                    <li><input type="checkbox"> Experimentar el alivio mental y físico que se siente al cerrar un bucle pendiente.</li>
-                </ul>
-                <div class="image-preview">
-                    <img src="assets/img/herramientas/02_Efecto_Zeigarnik.webp" data-fallback="assets/img/herramientas/02_Efecto_Zeigarnik.png" onclick="openLightbox(this.src)" title="Haz clic para ampliar" style="cursor: zoom-in;" alt="Efecto Zeigarnik">
-                    <p>Efecto Zeigarnik: Cerrar las tareas y conversaciones inconclusas para liberar la memoria RAM cerebral.</p>
-                </div>
-            </div>
-
-            <!-- TOOL 6: MODELO GROW -->
-            <div class="tool-box" style="border-left-color: #ec4899;">
-                <h3>
-                    <i class="fa-solid fa-compass" style="color: #f472b6;"></i> 6. Modelo GROW de Diálogo (La Brújula del Tipazo)
-                </h3>
-                <p class="tool-meta">Metáfora: Dejar de ser un pasajero que se queja y pasar a ser el copiloto que propone rutas.</p>
-                <p class="tool-desc">
-                    El Modelo GROW te ayuda a estructurar tus reuniones con papá para que no sean un interrogatorio, sino una sesión de trabajo de socios:
-                    <br>• <strong>G (Goal - Meta):</strong> ¿Qué queremos lograr esta semana? (ej. pasar la prueba de Historia sin estrés).
-                    <br>• <strong>R (Reality - Realidad):</strong> ¿Dónde estoy parado hoy? (ej. tengo 2 resúmenes atrasados).
-                    <br>• <strong>O (Options - Opciones):</strong> ¿Qué 2 opciones propongo yo? (ej. Opción A: 15 min hoy y 15 min mañana; Opción B: pedir ayuda con Antigravity en el computador).
-                    <br>• <strong>W (Will - Compromiso):</strong> ¿Qué voy a hacer yo hoy a las 17:00 con temporizador?
-                </p>
-                <div style="background: rgba(236, 72, 153, 0.05); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 8px; padding: 0.85rem; margin: 1rem 0;">
-                    <strong style="color: #f472b6; font-size: 0.85rem;">🛡️ Aplicación con Papá:</strong>
-                    <p style="font-size: 0.82rem; color: #ccc; margin-top: 4px;">
-                        En tu Cita Semanal de Gestión, no esperes a que te hagan preguntas. Abre tu cuaderno y di: <em>"Papá, evalué mi semana con GROW: mi meta es X, mi realidad es Y, y te propongo estas 2 opciones"</em>.
-                    </p>
-                </div>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox"> Llegar a las conversaciones familiares con al menos 1 propuesta propia de solución.</li>
-                    <li><input type="checkbox"> Evaluar con honestidad mi Realidad actual sin adornarla ni dramatizarla.</li>
-                    <li><input type="checkbox"> Comprometer una fecha y hora exacta para ejecutar mi opción elegida.</li>
-                </ul>
-                <div class="image-preview">
-                    <img src="assets/img/herramientas/Modelo GROW.webp" data-fallback="assets/img/herramientas/Modelo GROW.png" onclick="openLightbox(this.src)" title="Haz clic para ampliar" style="cursor: zoom-in;" alt="Modelo GROW">
-                    <p>Modelo GROW: Meta, Realidad, Opciones y Compromiso para resolver problemas con autonomía.</p>
-                </div>
-            </div>
-
-            <!-- TOOL 7: EVALUACIÓN 360 -->
-            <div class="tool-box" style="border-left-color: #6366f1;">
-                <h3>
-                    <i class="fa-solid fa-users-viewfinder" style="color: #818cf8;"></i> 7. Evaluación 360 & Escucha Valiente (El Espejo del Hombre Íntegro)
-                </h3>
-                <p class="tool-meta">Metáfora: El espejo que no te adula pero te muestra dónde acomodar el cuello de la camisa.</p>
-                <p class="tool-desc">
-                    El instinto infantil es defenderse ante cualquier crítica diciendo: <em>"es que tú no entiendes"</em> o <em>"siempre me retan a mí"</em>. La Evaluación 360 enseña que los líderes y deportistas de alto rendimiento <strong>buscan el feedback</strong> porque saben que los ojos de los demás ven puntos ciegos que uno mismo no puede ver.
-                </p>
-                <div style="background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 8px; padding: 0.85rem; margin: 1rem 0;">
-                    <strong style="color: #818cf8; font-size: 0.85rem;">🛡️ Aplicación con Papá:</strong>
-                    <p style="font-size: 0.82rem; color: #ccc; margin-top: 4px;">
-                        <strong>Regla de los 2 Minutos de Escucha:</strong> Cuando tu papá o mamá te estén dando una retroalimentación sobre tu actitud o hábitos, guarda silencio absoluto por 2 minutos. No interrumpas, no pongas cara de molestia. Escucha, procesa y luego responde con Pirámide de Minto o SBI.
-                    </p>
-                </div>
-                <ul class="tool-checklist">
-                    <li><input type="checkbox"> Practicar los 2 minutos de escucha sin interrumpir ni poner excusas defensivas.</li>
-                    <li><input type="checkbox"> Preguntar con valentía: <em>"Papá, ¿qué actitud mía esta semana te generó preocupación?"</em>.</li>
-                    <li><input type="checkbox"> Agradecer el feedback recibido reconociendo que es por mi bien y mi crecimiento.</li>
-                </ul>
-                <div class="image-preview">
-                    <img src="assets/img/herramientas/Evaluacion 360.webp" data-fallback="assets/img/herramientas/Evaluacion 360.png" onclick="openLightbox(this.src)" title="Haz clic para ampliar" style="cursor: zoom-in;" alt="Evaluación 360">
-                    <p>Evaluación 360: El espejo del feedback constructivo para derribar puntos ciegos y madurar.</p>
+                    <button class="btn-gateway-login" onclick="copyVoiceGuion()" style="width:auto; padding:6px 14px; font-size:0.78rem; margin:0;">
+                        <i class="fa-solid fa-copy"></i> Copiar Guion
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- TAB CONTENT: ACTION -->
-        <div id="action" class="tab-content">
+        <!-- TAB CONTENT: HERRAMIENTAS -->
+        <div id="tab-herramientas" class="tab-content">
+            <div class="section-title">
+                <span>Kit de Herramientas Didácticas & Diagramas</span>
+            </div>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
+                Haz clic sobre cualquier diagrama para ampliarlo en pantalla completa con el <strong>Visor Lightbox</strong>.
+            </p>
             <div class="grid-2">
-                <!-- Plan 24 Horas -->
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>1. Time Blocking & Blindaje de Foco</h3>
+                        <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
+                        <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>2. Matriz de Eisenhower (Priorización)</h3>
+                        <p class="tool-meta">Urgente vs Importante</p>
+                        <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
+                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
+                        <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>4. La Ventana de Johari (Alineación)</h3>
+                        <p class="tool-meta">Comunicación & Autopercepción</p>
+                        <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- TAB CONTENT: ACTION & ANTIPATTERNS -->
+        <div id="tab-accion" class="tab-content">
+            <div class="grid-2">
                 <div class="card">
                     <h3 class="section-title"><span>Tu Plan de Acción: Próximas 24 Horas</span></h3>
                     <ul class="custom-list">
-                        <li><strong>1. Vaciado Escolar Inicial:</strong> Siéntate con tus padres, abre el Excel [GTD Colegio Maty] y escribe las tareas o exámenes reales de los próximos 7 días.</li>
-                        <li><strong>2. Montaje del Centro de Operaciones:</strong>
-                            <br>• Dibuja y monta tu tablero Kanban con Post-its en la pared de tu cuarto.
-                            <br>• Imprime tu Planificador de Hábitos y pégalo detrás de tu puerta.
-                        </li>
-                        <li><strong>3. El Paso Cero:</strong> Elige un deber escolar que tengas pendiente y trabaja en él exactamente 5 minutos usando un temporizador. Cumplido el tiempo, decide si sigues o te detienes.</li>
-                        <li><strong>4. Dopamina Sana:</strong> Toma tus lápices o pinceles y dedica 15 minutos continuos en tu cuarto a avanzar en tu proyecto actual de pintura o dibujo.</li>
-                        <li><strong>5. Cita de Crecimiento Personal (Semanal):</strong> Bloquea una hora fija de tu fin de semana para auditar tus sistemas, reflexionar sobre tu gestión y diseñar la planificación de la próxima semana.</li>
+                        <li><strong>1. Vaciado Escolar Inicial: Abrir Excel [GTD Colegio Maty] con papá.</strong></li><li><strong>2. Montaje del Centro de Operaciones en el dormitorio con Post-its.</strong></li><li><strong>3. Paso Cero: Trabajar 5 minutos cronometrados en un deber escolar.</strong></li><li><strong>4. Dopamina Sana: 15 minutos continuos de dibujo/pintura en el cuarto.</strong></li><li><strong>5. Cita de Crecimiento Personal Semanal agendada con papá.</strong></li>
                     </ul>
                 </div>
-
-                <!-- Antipatrones -->
                 <div class="card">
-                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Autonomía)</span></h3>
+                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Foco)</span></h3>
                     <ul class="custom-list danger-list">
-                        <li><strong>🚫 El Teléfono Fantasma:</strong> Buscar e intentar encender dispositivos antiguos o pantallas de terceros. Esto resetea tu saldo de confianza a cero inmediato.</li>
-                        <li><strong>🚫 Pseudo-Estudio:</strong> Pasar el tiempo "estudiando" mediante videos sin tomar apuntes ni hacer ejercicios en papel.</li>
-                        <li><strong>🚫 Planificación de Pánico:</strong> Ignorar un proyecto de 3 semanas y pretender resolverlo 2 días antes de la entrega contagiando estrés a tu familia.</li>
-                        <li><strong>🚫 El Bloqueo del Orgullo:</strong> Discutir en lugar de tener la humildad de preguntar o escuchar el consejo de tus padres.</li>
-                        <li><strong>🚫 Intelectualizar en lugar de Actuar:</strong> Usar lo que sabes sobre hábitos para justificar por qué "no puedes" o por qué "lo harás después".</li>
-                        <li><strong>🚫 Esperar la Interrogación:</strong> Quedarte inactivo esperando que tus padres te digan "estudia" para reaccionar.</li>
-                        <li><strong>🚫 Parálisis de Cuaderno Perfecto:</strong> Bloquearte creyendo que no sabes estructurar. Recuerda la <strong>Regla del 70%</strong>: un resumen tosco de 5 líneas te da puntaje de confianza hoy.</li>
+                        <li>🚫 El Teléfono Fantasma: Intentar encender dispositivos antiguos en secreto.</li><li>🚫 Pseudo-Estudio: Mirar videos pasivos sin rayar el papel.</li><li>🚫 Planificación de Pánico: Ignorar entregas de semanas y estresarse el día previo.</li><li>🚫 El Bloqueo del Orgullo: Discutir en lugar de pedir feedback con humildad.</li><li>🚫 Esperar la Interrogación: Quedarse inactivo esperando que los padres manden estudiar.</li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+
+    </div><!-- /container -->
 
     <!-- MODAL 1: GESTIÓN DE CATEGORÍAS 24H -->
     <div id="modal-category-manager" class="modal-overlay">
         <div class="modal-box">
             <div class="modal-title">
-                <span>⚙️ Gestionar Categorías del Horario</span>
+                <span>⚙️ Gestionar Categorías 24H</span>
                 <button class="modal-close-btn" onclick="closeCategoryManagerModal()">&times;</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;">
-                Personaliza las etiquetas, colores y abreviaturas de tus bloques de 24 horas:
-            </p>
-            <div id="category-list-editor" style="max-height: 260px; overflow-y: auto; margin-bottom: 1.2rem; padding-right: 4px;"></div>
-            
-            <div style="background: #141414; border: 1px dashed #333; padding: 10px; border-radius: 8px; margin-bottom: 1.2rem;">
-                <div style="font-size: 0.75rem; font-weight: 700; color: #fff; margin-bottom: 6px;">+ Agregar Nueva Categoría</div>
-                <div style="display: flex; gap: 6px;">
-                    <input type="color" id="new-cat-color" value="#EC4899" style="width: 32px; height: 32px; border: none; border-radius: 6px; cursor: pointer; background: transparent;">
-                    <input type="text" id="new-cat-name" placeholder="Ej: 🎨 Taller Arte" style="background:#1e1e1e; border:1px solid #333; color:#fff; font-size:0.8rem; padding:4px 8px; border-radius:6px; flex:1;">
-                    <input type="text" id="new-cat-tag" placeholder="ARTE" maxlength="6" style="background:#1e1e1e; border:1px solid #333; color:#fff; font-size:0.75rem; font-weight:800; text-transform:uppercase; padding:4px 8px; border-radius:6px; width:65px; text-align:center;">
-                    <button class="btn-schedule-action" onclick="addNewCategoryFromModal()" style="background:#fff; color:#000; font-weight:800;">+</button>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Edita las categorías de tiempo o agrega nuevas.</p>
+            <div id="category-manager-list" style="display:flex; flex-direction:column; gap:0.6rem; max-height:240px; overflow-y:auto; margin-bottom:1.2rem; padding-right:4px;"></div>
+            <div style="border-top:1px solid #222; padding-top:0.8rem; margin-bottom:1rem;">
+                <span style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">+ Agregar Nueva Categoría:</span>
+                <div style="display:flex; gap:6px; margin-top:0.4rem;">
+                    <input type="text" id="new-cat-label" placeholder="Nombre (ej. Proyecto X)" style="flex:2; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="text" id="new-cat-tag" placeholder="Tag (ej. PROY)" style="flex:1; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="color" id="new-cat-color" value="#10b981" style="width:36px; height:32px; background:transparent; border:none; cursor:pointer;">
+                    <button class="btn-card-action" onclick="addNewCategoryFromModal()" style="background:#fff; color:#000; font-weight:800;">+</button>
                 </div>
             </div>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-                <button class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color: #888;">Restablecer</button>
-                <div style="display: flex; gap: 8px;">
-                    <button class="btn-schedule-action" onclick="closeCategoryManagerModal()">Cancelar</button>
-                    <button class="btn-schedule-action" onclick="saveCategoriesFromModal()" style="background: #ffffff; color: #000000; font-weight: 800;">Guardar Cambios</button>
-                </div>
+            <div style="display:flex; justify-content:space-between; gap:8px;">
+                <button class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color:#f87171; font-size:0.75rem;">Restablecer Predeterminadas</button>
+                <button class="btn-gateway-login" onclick="closeCategoryManagerModal()" style="width:auto; padding:6px 16px; margin:0; font-size:0.8rem;">Cerrar y Aplicar</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 2: RELLENO RÁPIDO POR RANGO HORARIO -->
+    <!-- MODAL 2: RELLENAR POR RANGO -->
     <div id="modal-range-fill" class="modal-overlay">
         <div class="modal-box">
             <div class="modal-title">
-                <span>⚡ Relleno Rápido de Horario</span>
+                <span>⚡ Rellenar Horario por Rango</span>
                 <button class="modal-close-btn" onclick="closeRangeFillModal()">&times;</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;">
-                Aplica una categoría a varios días y horas de una sola vez:
-            </p>
-
-            <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.75rem; font-weight: 700; color: #aaa; text-transform: uppercase;">1. Selecciona la Categoría:</label>
-                <select id="range-fill-category" style="width: 100%; background: #141414; border: 1px solid #333; color: #fff; padding: 8px 10px; border-radius: 8px; font-size: 0.85rem; margin-top: 4px; outline: none;"></select>
-            </div>
-
-            <div style="margin-bottom: 1rem;">
-                <label style="font-size: 0.75rem; font-weight: 700; color: #aaa; text-transform: uppercase;">2. Días de la Semana:</label>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px;">
-                    <label style="font-size: 0.75rem; color: #ccc; display: flex; align-items: center; gap: 4px;"><input type="checkbox" name="range-day" value="0" checked> Lun</label>
-                    <label style="font-size: 0.75rem; color: #ccc; display: flex; align-items: center; gap: 4px;"><input type="checkbox" name="range-day" value="1" checked> Mar</label>
-                    <label style="font-size: 0.75rem; color: #ccc; display: flex; align-items: center; gap: 4px;"><input type="checkbox" name="range-day" value="2" checked> Mié</label>
-                    <label style="font-size: 0.75rem; color: #ccc; display: flex; align-items: center; gap: 4px;"><input type="checkbox" name="range-day" value="3" checked> Jue</label>
-                    <label style="font-size: 0.75rem; color: #ccc; display: flex; align-items: center; gap: 4px;"><input type="checkbox" name="range-day" value="4" checked> Vie</label>
-                    <label style="font-size: 0.75rem; color: #ccc; display: flex; align-items: center; gap: 4px;"><input type="checkbox" name="range-day" value="5"> Sáb</label>
-                    <label style="font-size: 0.75rem; color: #ccc; display: flex; align-items: center; gap: 4px;"><input type="checkbox" name="range-day" value="6"> Dom</label>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Pinta bloques continuos de una sola vez.</p>
+            <div style="display:flex; flex-direction:column; gap:0.8rem; margin-bottom:1.2rem;">
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Categoría:</label>
+                    <select id="range-category-select" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Inicio:</label>
+                        <select id="range-start-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Fin (inclusive):</label>
+                        <select id="range-end-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                    </div>
+                </div>
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700; display:block; margin-bottom:4px;">Días a Aplicar:</label>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-0" checked> Lun</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-1" checked> Mar</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-2" checked> Mié</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-3" checked> Jue</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-4" checked> Vie</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-5"> Sáb</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-6"> Dom</label>
+                    </div>
                 </div>
             </div>
-
-            <div style="display: flex; gap: 10px; margin-bottom: 1.5rem;">
-                <div style="flex: 1;">
-                    <label style="font-size: 0.75rem; font-weight: 700; color: #aaa; text-transform: uppercase;">Hora Inicio:</label>
-                    <select id="range-fill-start" style="width: 100%; background: #141414; border: 1px solid #333; color: #fff; padding: 8px 10px; border-radius: 8px; font-size: 0.85rem; margin-top: 4px; outline: none;"></select>
-                </div>
-                <div style="flex: 1;">
-                    <label style="font-size: 0.75rem; font-weight: 700; color: #aaa; text-transform: uppercase;">Hora Fin:</label>
-                    <select id="range-fill-end" style="width: 100%; background: #141414; border: 1px solid #333; color: #fff; padding: 8px 10px; border-radius: 8px; font-size: 0.85rem; margin-top: 4px; outline: none;"></select>
-                </div>
-            </div>
-
-            <div style="display: flex; justify-content: flex-end; gap: 8px;">
+            <div style="display:flex; justify-content:flex-end; gap:8px;">
                 <button class="btn-schedule-action" onclick="closeRangeFillModal()">Cancelar</button>
-                <button class="btn-schedule-action" onclick="applyRangeFill()" style="background: #ffffff; color: #000000; font-weight: 800;">Aplicar Rango</button>
+                <button class="btn-gateway-login" onclick="applyRangeFill()" style="width:auto; padding:6px 16px; margin:0; font-size:0.85rem;">Aplicar Relleno</button>
             </div>
         </div>
     </div>
 
-    <!-- Html2Canvas for Exporting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-    <!-- Modular JS Engines -->
-    <script src="js/portal-gateway.js"></script>
-    <script src="js/schedule-engine.js"></script>
-    <script src="js/kanban-engine.js"></script>
-    <script src="js/voice-widget.js"></script>
-
-    <!-- Interactive Features & Dynamic Setup -->
+    <!-- CONFIGURACIÓN DEL CLIENTE EN JAVASCRIPT -->
     <script>
-        // Lightbox Functions
+        window.CLIENT_CONFIG = {
+            clientId: "matias",
+            clientName: "Matías González",
+            clientPIN: "matias2026",
+            masterPIN: "diego_ah_master"
+        };
+
+        window.CLIENT_SCHEDULE_CATEGORIES = [{"id": "sueno", "nombre": "\ud83d\ude34 Sue\u00f1o & Recuperaci\u00f3n", "color": "#1e293b", "tag": "SUE\u00d1O"}, {"id": "colegio", "nombre": "\ud83c\udfeb Colegio & Clases", "color": "#2563eb", "tag": "COLEGIO"}, {"id": "estudio", "nombre": "\ud83d\udcda Estudio Aut\u00f3nomo (Paso Cero)", "color": "#0d9488", "tag": "ESTUDIO"}, {"id": "arte", "nombre": "\ud83c\udfa8 Arte, Pintura & Dibujo", "color": "#7c3aed", "tag": "ARTE"}, {"id": "voley", "nombre": "\ud83c\udfd0 V\u00f3ley & Deporte", "color": "#ea580c", "tag": "VOLEY"}, {"id": "familia", "nombre": "\ud83c\udfe1 Familia & Cita Semanal", "color": "#059669", "tag": "FAMILIA"}, {"id": "libre", "nombre": "\ud83c\udf31 Tiempo Libre Regulado", "color": "#db2777", "tag": "LIBRE"}];
+        window.CLIENT_KANBAN_DEFAULT = [{"id": "m1", "text": "Vaciado escolar inicial en Excel con pap\u00e1", "tag": "Colegio"}, {"id": "m2", "text": "Montar r\u00f3tulos Kanban f\u00edsicos en la pared del cuarto", "tag": "Hogar"}, {"id": "m3", "text": "Pegar Planificador de H\u00e1bitos detr\u00e1s de la puerta", "tag": "H\u00e1bitos"}] + [{"id": "m4", "text": "Resumen de 5 l\u00edneas de Historia (Regla del 70%)", "tag": "Colegio"}, {"id": "m5", "text": "15 minutos de avance en proyecto de pintura", "tag": "Arte"}] + [{"id": "m6", "text": "Entrega voluntaria de dispositivos para resguardo nocturno", "tag": "Confianza"}];
+
+        const voiceScenarios = [{"id": "error", "titulo": "Comet\u00ed un error o me equivoqu\u00e9", "guion": "\u00abPap\u00e1 / Mam\u00e1: me equivoqu\u00e9 en esto y no supe c\u00f3mo resolverlo a tiempo. Quer\u00eda dec\u00edrtelo de frente antes de que sea m\u00e1s grande. \u00bfC\u00f3mo lo solucionamos?\u00bb"}, {"id": "atraso", "titulo": "Me atras\u00e9 con una tarea escolar", "guion": "\u00abMe confi\u00e9 con los tiempos y tengo este deber pendiente para ma\u00f1ana. Necesito tu ayuda 10 minutos para ordenar qu\u00e9 hago primero.\u00bb"}, {"id": "abrumado", "titulo": "Me siento abrumado o bloqueado", "guion": "\u00abSiento que tengo demasiadas cosas encima y me estoy bloqueando. Voy a aplicar la regla de los 5 minutos con una sola tarea ahora.\u00bb"}, {"id": "pausa", "titulo": "Pausa responsable (Protocolo Zeigarnik)", "guion": "\u00abEn este momento me siento tenso y no quiero responder mal. Por favor dame 20 minutos para respirar y a las [Hora exacta] retomamos la conversaci\u00f3n.\u00bb"}, {"id": "mentira", "titulo": "Rectificar una mentira u omisi\u00f3n", "guion": "\u00abAntes te dije algo que no era 100% exacto por miedo a tu reacci\u00f3n. La verdad real es esta [...]. Prefiero ser honesto ahora.\u00bb"}, {"id": "opinion", "titulo": "Expresar desacuerdo con respeto", "guion": "\u00abEntiendo tu punto de vista, pero desde mi perspectiva me pasa esto [...]. \u00bfPodemos buscar un punto medio?\u00bb"}];
+        function selectClientVoiceScenario(scId) {
+            const sc = voiceScenarios.find(s => s.id === scId);
+            if (sc) {
+                const p = document.getElementById("voice-guion-text");
+                if (p) p.innerText = sc.guion;
+            }
+        }
+
+        function copyVoiceGuion() {
+            const p = document.getElementById("voice-guion-text");
+            if (p) {
+                navigator.clipboard.writeText(p.innerText).then(() => {
+                    alert("¡Guion copiado al portapapeles!");
+                });
+            }
+        }
+
         function openLightbox(src) {
             const modal = document.getElementById("lightbox-modal");
             const img = document.getElementById("lightbox-img");
@@ -1162,122 +702,28 @@
                 modal.classList.add("active");
             }
         }
-
         function closeLightbox() {
             const modal = document.getElementById("lightbox-modal");
             if (modal) modal.classList.remove("active");
         }
 
-        // Dynamic Subfolder & Fallback Image Resolver
-        (function() {
-            const isSub = window.location.pathname.includes('/planes/') || window.location.pathname.includes('/Matias Gonzalez/');
-            document.querySelectorAll('img').forEach(img => {
-                let src = img.getAttribute('src');
-                if (isSub && src && src.startsWith('assets/')) {
-                    img.src = '../' + src;
-                }
-                // Image Error Fallback Handler
+        document.addEventListener('DOMContentLoaded', () => {
+            const isSub = window.location.pathname.includes('/planes/') || window.location.pathname.includes('/02_CLIENTES_ACTIVOS/');
+            document.querySelectorAll('.image-preview img, .tool-box img, .card img').forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.setAttribute('title', 'Haz clic para ampliar');
+                img.addEventListener('click', function() { openLightbox(this.src); });
                 img.addEventListener('error', function() {
                     const fb = this.getAttribute('data-fallback');
-                    if (fb && this.src !== fb) {
-                        this.src = isSub ? '../' + fb : fb;
-                    }
+                    if (fb && this.src !== fb) { this.src = isSub ? '../' + fb : fb; }
                 });
             });
-        })();
-
-        // Checklist State Persistence in LocalStorage
-        function initChecklists() {
-            const storageKey = 'matias_portal_checklists_v2';
-            let state = {};
-            try { state = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch(e) { state = {}; }
-
-            document.querySelectorAll('.tool-checklist input[type="checkbox"]').forEach((cb, idx) => {
-                const id = 'chk_' + idx;
-                cb.id = id;
-                if (state[id]) {
-                    cb.checked = true;
-                    if (cb.parentElement) cb.parentElement.classList.add('checked');
-                }
-                cb.addEventListener('change', () => {
-                    state[id] = cb.checked;
-                    if (cb.parentElement) {
-                        if (cb.checked) cb.parentElement.classList.add('checked');
-                        else cb.parentElement.classList.remove('checked');
-                    }
-                    localStorage.setItem(storageKey, JSON.stringify(state));
-                });
-            });
-        }
-
-        // Initialize Portal Subsystems
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Auth Gateway
-            initClientAuth({
-                storageKey: "matias_flight_plan_auth",
-                validPins: ["2009", "2026", "matias2009", "matigonzalez2009", "matigonzalez", "diego_ah_master", "diegop1990"],
-                clientName: "Matías González"
-            });
-
-            // 2. Schedule Mapper Engine with Custom Categories for Matías
-            initScheduleEngine({
-                storageKey: "matias_schedule",
-                defaultCategories: [
-                    { id: "colegio", name: "🏫 Colegio (Bajo Roce)", color: "#38BDF8", tag: "COL" },
-                    { id: "estudio", name: "📚 Estudio & Tareas (Paso Cero)", color: "#F59E0B", tag: "EST" },
-                    { id: "voley", name: "🏐 Vóley / Deporte", color: "#10B981", tag: "VOLEY" },
-                    { id: "arte", name: "🎨 Taller Pintura / Dibujo", color: "#EC4899", tag: "ARTE" },
-                    { id: "gestion", name: "🤝 Cita Gestión Parental", color: "#8B5CF6", tag: "CITA" },
-                    { id: "sueno", name: "😴 Sueño & Recuperación", color: "#6366F1", tag: "SUEÑO" },
-                    { id: "libre", name: "⚪ Tiempo Libre sin Pantallas", color: "#334155", tag: "LIBRE" }
-                ],
-                defaultScheduleGenerator: () => {
-                    const data = {};
-                    for (let d = 0; d < 7; d++) {
-                        for (let h = 0; h < 24; h++) {
-                            const key = `${d}-${h}`;
-                            if (h >= 0 && h < 7) {
-                                data[key] = "sueno";
-                            } else if (h >= 8 && h <= 15 && d < 5) {
-                                data[key] = "colegio";
-                            } else if (h === 16 && d < 5) {
-                                data[key] = "estudio";
-                            } else if (h === 17 && (d === 1 || d === 3)) {
-                                data[key] = "voley";
-                            } else if (h === 17 && (d === 0 || d === 2 || d === 4)) {
-                                data[key] = "arte";
-                            } else if (h === 18 && d === 5) {
-                                data[key] = "gestion";
-                            } else if (h >= 23) {
-                                data[key] = "sueno";
-                            } else {
-                                data[key] = "libre";
-                            }
-                        }
-                    }
-                    return data;
-                }
-            });
-
-            // 3. GTD Kanban Engine (WIP=2)
-            initKanbanEngine({
-                storageKey: "matias_kanban_gtd",
-                defaultTasks: [
-                    { id: "t1", col: "todo", text: "Resumen de 5 líneas de Historia (Bajo Roce)", tag: "Historia" },
-                    { id: "t2", col: "todo", text: "Preparar mochila con cuadernos básicos", tag: "Rutina" },
-                    { id: "t3", col: "doing", text: "1. Tarea de Lenguaje (Bloque 25 min)", tag: "En Foco" },
-                    { id: "t4", col: "done", text: "Vaciado escolar en GTD Excel con papá", tag: "Victoria" }
-                ]
-            });
-
-            // 4. Voice Widget default scenario
-            if (typeof selectVoiceScenario === 'function') {
-                selectVoiceScenario('error');
-            }
-
-            // 5. Initialize Checklists
-            initChecklists();
         });
     </script>
+
+    <!-- MOTORES MODULARES -->
+    <script src="js/portal-gateway.js?v=3.2"></script>
+    <script src="js/schedule-engine.js?v=3.2"></script>
+    <script src="js/kanban-engine.js?v=3.2"></script>
 </body>
 </html>

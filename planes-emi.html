@@ -3,639 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Vuelo 2.0: De la Claridad al Flujo - Emi | Administración Humana</title>
+    <title>Plan de Vuelo 2.0 • Emi • Administración Humana</title>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Modular CSS Core & Components (Cache-Busting v3.2) -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.2">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.2">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.2">
+
+    <!-- Inmersión Visual & Reglas Móviles de Alta Prioridad -->
     <style>
-                :root {
-            --bg-dark: #000000;
-            --bg-card: #0a0a0a;
-            --bg-card-hover: #121212;
-            --primary: #ffffff; /* Monochromatic Accent (White) */
-            --secondary: #888888; /* Monochromatic Secondary (Gray) */
-            --accent: #ffffff;
-            --accent-glow: rgba(255, 255, 255, 0.15);
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --success: #ffffff;
-            --warning: #888888;
-            --danger: #EF4444; /* Keep red for danger / errors */
-            --border: #262626;
-            --border-hover: #333333;
-            --radius-lg: 20px;
-            --radius-md: 12px;
-            --radius-sm: 8px;
-            --shadow-primary: 0 0 20px rgba(255, 255, 255, 0.1);
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 45%),
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 45%);
-            background-attachment: fixed;
-            color: var(--text-main);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        a:hover {
-            color: #cccccc;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .brand-logo {
-            background: #ffffff;
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: #000000;
-            box-shadow: var(--shadow-primary);
-        }
-
-        .brand-title h1 {
-            font-family: var(--font-display);
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .brand-title p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .meta-badge {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: #ffffff;
-        }
-
-        .meta-badge .dot {
-            width: 8px;
-            height: 8px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #ffffff;
-        }
-
-        /* Navigation Tabs */
-        .tabs {
-            display: flex;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            padding: 0.4rem;
-            border-radius: 50px;
-            margin-bottom: 2.5rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-        }
-
-        .tabs::-webkit-scrollbar {
-            display: none;
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 0.75rem 1.4rem;
-            border-radius: 50px;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .tab-btn:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .tab-btn.active {
-            background: #ffffff;
-            color: #000000;
-            box-shadow: var(--shadow-primary);
-            font-weight: 800;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Cards & Grids */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 1.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            border-color: var(--border-hover);
-            background: var(--bg-card-hover);
-            transform: translateY(-2px);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.2rem;
-        }
-
-        .card-title {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .card-icon {
-            font-size: 1.4rem;
-        }
-
-        /* FODA Items */
-        .foda-list {
-            list-style: none;
-        }
-
-        .foda-item {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .foda-item:last-child {
-            border-bottom: none;
-        }
-
-        .foda-bullet {
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        /* Progress bars for Identities */
-        .identity-bar {
-            margin-bottom: 1.5rem;
-        }
-
-        .identity-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.4rem;
-            font-size: 0.9rem;
-        }
-
-        .progress-track {
-            height: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 50px;
-            background: linear-gradient(90deg, #ffffff, #888888);
-            transition: width 1s ease;
-        }
-
-        /* TOOLS GALLERY GRID & CARDS WITH IMAGES */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .tool-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-
-        .tool-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .tool-img-container {
-            position: relative;
-            width: 100%;
-            height: 190px;
-            overflow: hidden;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        .tool-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.85;
-            transition: all 0.5s ease;
-        }
-
-        .tool-card:hover .tool-img-container img {
-            transform: scale(1.05);
-            opacity: 1;
-        }
-
-        .tool-zoom-btn {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.85);
-            border: 1px solid var(--border);
-            color: #FFF;
-            padding: 0.4rem 0.8rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.75rem;
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .tool-card:hover .tool-zoom-btn {
-            opacity: 1;
-        }
-
-        .tool-body {
-            padding: 1.4rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .tool-title {
-            font-family: var(--font-display);
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .tool-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .tool-desc {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 1.2rem;
-            flex-grow: 1;
-            line-height: 1.5;
-        }
-
-        .tool-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border);
-            padding-top: 0.9rem;
-            margin-top: auto;
-        }
-
-        .download-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .download-btn:hover {
-            background: #ffffff;
-            color: #000000;
-            box-shadow: var(--shadow-primary);
-        }
-
-        /* Image Lightbox Modal */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 85%;
-            border-radius: var(--radius-lg);
-            border: 2px solid var(--border);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox.active .lightbox-content {
-            transform: scale(1);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            color: #FFF;
-            font-size: 2.5rem;
-            font-weight: 300;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            color: var(--primary);
-            transform: scale(1.1);
-        }
-
-        /* Form Controls for Calculators */
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .calc-result {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed var(--primary);
-            padding: 1rem;
-            border-radius: var(--radius-md);
-            margin-top: 1rem;
-            text-align: center;
-        }
-
-        .calc-number {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        /* Time blocking table */
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        .schedule-table th, .schedule-table td {
-            padding: 0.8rem;
-            border: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
-        .schedule-table th {
-            background: rgba(255, 255, 255, 0.02);
-            font-family: var(--font-display);
-            color: #ffffff;
-            font-weight: 700;
-        }
-
-        .block-focus {
-            background: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            font-weight: 700;
-            border-radius: 4px;
-        }
-
-        .block-rest {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-muted);
-            border-radius: 4px;
-        }
-        
-        .block-job {
-            background: rgba(255, 255, 255, 0.08);
-            color: #ffffff;
-            font-weight: 600;
-            border-radius: 4px;
-        }
-
-        /* Kanban Column */
-        .kanban-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .kanban-col {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 1.2rem;
-        }
-
-        .kanban-header {
-            font-family: var(--font-display);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .kanban-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 0.9rem;
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-        }
-
-        /* Antipattern cards */
-        .antipattern-card {
-            border-left: 4px solid var(--danger);
-            background: rgba(239, 68, 68, 0.05);
-            padding: 1.2rem;
-            border-radius: var(--radius-md);
-            margin-bottom: 1rem;
-        }
-
-        .antipattern-title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            color: var(--danger);
-            margin-bottom: 0.3rem;
-        }
-
-        /* Print Action Button */
-        .btn-action-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.8rem 1.8rem;
-            background: #ffffff;
-            color: #000000;
-            font-family: var(--font-display);
-            font-weight: 800;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-action-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
-            background: #e5e5e5;
-            color: #000000;
-        }
-    </style>
-
-    <!-- Modular CSS Core & Components (Cache-Busting v3.1) -->
-    <link rel="stylesheet" href="css/portal-core.css?v=3.1">
-    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.1">
-    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.1">
-
-    <style>
-        /* REJILLA 2X4 OBLIGATORIA EN CELULARES */
         @media (max-width: 768px) {
             .tabs {
                 display: grid !important;
@@ -672,13 +56,10 @@
             }
         }
 
-        /* Lightbox Fullscreen Modal */
         #lightbox-modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             background: rgba(0, 0, 0, 0.92);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -689,541 +70,367 @@
             padding: 2rem;
             cursor: zoom-out;
         }
-        #lightbox-modal.active {
-            display: flex;
-            animation: fadeIn 0.25s ease;
-        }
+        #lightbox-modal.active { display: flex; animation: fadeIn 0.25s ease; }
         #lightbox-img {
-            max-width: 92vw;
-            max-height: 88vh;
+            max-width: 92vw; max-height: 88vh;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.1);
             border: 1px solid #333;
         }
         #lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: #ffffff;
-            font-size: 2.2rem;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            line-height: 1;
+            position: absolute; top: 20px; right: 25px;
+            color: #ffffff; font-size: 2.2rem;
+            background: transparent; border: none;
+            cursor: pointer; line-height: 1;
         }
-    </style>
 
+        .hero-tea-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 4px 12px; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 700;
+            margin-bottom: 0.8rem; letter-spacing: 0.5px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem; margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem;
+        }
+        .stat-val { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .stat-lbl { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+        .printable-card {
+            background: #111; border: 1px solid #262626; border-radius: 12px;
+            padding: 1.2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            margin-bottom: 0.8rem; transition: all 0.2s ease;
+        }
+        .printable-card:hover { border-color: #444; background: #161616; transform: translateX(4px); }
+    </style>
 </head>
 <body>
-    
+
+    <!-- CLIENT SECURITY GATEWAY OVERLAY -->
+    <div id="client-auth-overlay" class="client-auth-overlay">
+        <div class="client-auth-card">
+            <div class="gateway-avatar">💡</div>
+            <div class="gateway-badge">
+                <i class="fa-solid fa-shield-halved"></i> Acceso Privado & Exclusivo
+            </div>
+            <h2 class="gateway-title">Plan de Vuelo 2.0</h2>
+            <p class="gateway-subtitle">Claridad Creativa y Estructura Financiera • <strong>Emi</strong></p>
+
+            <form class="gateway-form" onsubmit="handleClientAuth(event)">
+                <div class="gateway-input-group">
+                    <label class="gateway-label" for="auth-client-pin">Ingresa tu clave de acceso:</label>
+                    <input type="password" id="auth-client-pin" class="gateway-input" placeholder="••••••••" autocomplete="current-password" autofocus required>
+                </div>
+                <div id="auth-error-msg" class="gateway-error"></div>
+                <button type="submit" class="btn-gateway-login">
+                    <i class="fa-solid fa-lock-open"></i> Ingresar a mi Plan de Vuelo
+                </button>
+            </form>
+            <p style="font-size: 0.72rem; color: #555; margin-top: 1.5rem;">
+                Administración Humana • Sistema de Acompañamiento Integral
+            </p>
+        </div>
+    </div>
+
     <!-- LIGHTBOX MODAL FOR IMAGES -->
     <div id="lightbox-modal" onclick="closeLightbox()">
         <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
         <img id="lightbox-img" src="" alt="Ampliación de Herramienta">
     </div>
 
+    <!-- MAIN CONTAINER -->
     <div class="container">
         <!-- Header -->
         <header>
             <div class="brand">
-                <div class="brand-logo">AH</div>
+                <div class="brand-logo">💡</div>
                 <div class="brand-title">
-                    <h1>Plan de Vuelo 2.0: Emi</h1>
-                    <p>Administración Humana • Dashboard de Soberanía Operativa</p>
+                    <h1>Plan de Vuelo 2.0</h1>
+                    <p>Claridad Creativa y Estructura Financiera • Emi</p>
                 </div>
             </div>
-            <div class="meta-badge">
-                <span class="dot"></span>
-                <span>Fase Activa: De la Claridad al Flujo</span>
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <div class="meta-badge">
+                    <span class="dot"></span>
+                    <span>Creatividad • Arquetipos • Hábitos de Cierre</span>
+                </div>
+                <button class="btn-portal-lock" onclick="lockClientPortal()">
+                    <i class="fa-solid fa-lock"></i> Bloquear
+                </button>
             </div>
         </header>
 
-        <!-- Navigation Tabs -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'tab-foda')">🧭 Diagnóstico & FODA</button>
-            <button class="tab-btn" onclick="openTab(event, 'tab-identidades')">⚡ 4 Identidades</button>
-            <button class="tab-btn" onclick="openTab(event, 'tab-herramientas')">🧰 Kit de Herramientas</button>
-            <button class="tab-btn" onclick="openTab(event, 'tab-finanzas')">💰 Simuladores Financieros</button>
-            <button class="tab-btn" onclick="openTab(event, 'tab-horario')">📅 Time Blocking</button>
-            <button class="tab-btn" onclick="openTab(event, 'tab-kanban')">📋 Kanban GTD</button>
-            <button class="tab-btn" onclick="openTab(event, 'tab-despegue')">🚀 Plan 24h & Antipatrones</button>
-        </div>
+        <!-- NAVIGATION TABS -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-overview')">
+                <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-herramientas')">
+                <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-accion')">
+                <i class="fa-solid fa-bolt"></i> Plan 24h & Límites
+            </button>
+        </nav>
 
-        <!-- TAB 1: FODA -->
-        <div id="tab-foda" class="tab-content active">
-            <div class="card" style="margin-bottom: 1.5rem;">
-                <div class="card-title">🎯 Racional Estratégico</div>
-                <p style="margin-top: 0.5rem; color: var(--text-muted);">
-                    Emi, el objetivo de este Hub es eliminar la brecha entre la planificación y la ejecución diaria. Tu fuerza creativa es enorme; sistematizamos tus hábitos para que avances con la <strong>Regla de la Acción Imperfecta (70%)</strong>.
+        <!-- TAB CONTENT: OVERVIEW / DIAGNOSTIC -->
+        <div id="tab-overview" class="tab-content active">
+            <div class="diagnostic-box">
+                <div class="hero-tea-badge">
+                    <i class="fa-solid fa-dna"></i> Diagnóstico Humano & Estructura Personal
+                </div>
+                <h3><span>El Estado Actual: Soberanía Operativa & Foco</span></h3>
+                <p>
+                    Plan de Vuelo personalizado diseñado para blindar tu tiempo, eliminar la sobrecarga y construir resultados sostenibles.
                 </p>
             </div>
+
+            
+
             <div class="grid-2">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title"><span class="card-icon">🌟</span> Fortalezas (Motores)</div>
-                    </div>
-                    <ul class="foda-list">
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Visión Holística & Creatividad:</strong> Alta capacidad para conectar conceptos diversos e innovar.</span></li>
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Sensibilidad Humana:</strong> Cercanía y empatía natural para conectar con las personas.</span></li>
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Apertura al Aprendizaje:</strong> Voluntad real de integrar herramientas de desarrollo personal.</span></li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title"><span class="card-icon">⚠️</span> Debilidades (Frenos)</div>
-                    </div>
-                    <ul class="foda-list">
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Saturación de RAM:</strong> Acumular pendientes en la mente en lugar de vaciarlos al Kanban.</span></li>
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Perfeccionismo Paralizante:</strong> Demorar entregas buscando el estándar 100% perfecto.</span></li>
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Dispersión por Alto WIP:</strong> Abrir múltiples tareas sin cerrar las anteriores.</span></li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title"><span class="card-icon">📈</span> Oportunidades (Palancas)</div>
-                    </div>
-                    <ul class="foda-list">
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Sistematización AICC:</strong> Digitalizar rutinas con plantillas de GTD y Presupuesto.</span></li>
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Bloques de Sola-Ejecución:</strong> 90 minutos semanales protegidos sin distracciones.</span></li>
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Acción Imperfecta:</strong> Lanzar rápido y ajustar con el feedback real del mercado.</span></li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title"><span class="card-icon">🚨</span> Amenazas (Riesgos)</div>
-                    </div>
-                    <ul class="foda-list">
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Burnout por Carga Cognitiva:</strong> Sobrepensar sin descargar pendientes al plano físico.</span></li>
-                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Costo de Oportunidad:</strong> Perder el foco maestro atendiendo urgencias secundarias.</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: IDENTIDADES -->
-        <div id="tab-identidades" class="tab-content">
-            <div class="card">
-                <div class="card-title" style="margin-bottom: 1.5rem;">⚡ Distribución de Energía por Arquetipos</div>
                 
-                <div class="identity-bar">
-                    <div class="identity-info">
-                        <span><strong>1. Sustento (Identidad Laboral / Flujo Obligatorio)</strong></span>
-                        <span style="color: var(--primary);">40% Energía</span>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 40%;"></div>
-                    </div>
-                </div>
 
-                <div class="identity-bar">
-                    <div class="identity-info">
-                        <span><strong>2. Crecimiento (Identidad Emprendedora & Proyectos)</strong></span>
-                        <span style="color: var(--secondary);">35% Energía</span>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 35%;"></div>
-                    </div>
-                </div>
-
-                <div class="identity-bar">
-                    <div class="identity-info">
-                        <span><strong>3. Acción (Identidad Ejecutora - Baja Fricción)</strong></span>
-                        <span style="color: var(--success);">15% Energía (Meta: Subir a 30%)</span>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 15%; background: var(--success);"></div>
-                    </div>
-                </div>
-
-                <div class="identity-bar">
-                    <div class="identity-info">
-                        <span><strong>4. Rol Crítico (Perfeccionista / Sobreanalista)</strong></span>
-                        <span style="color: var(--danger);">10% Energía (Meta: Reducir a 5%)</span>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 10%; background: var(--danger);"></div>
-                    </div>
+                <div class="card">
+                    <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
+                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
+                        <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 3: HERRAMIENTAS GALLERY WITH IMAGES AND LIGHTBOX -->
+
+
+
+
+
+
+        
+
+        
+
+
+
+        <!-- TAB CONTENT: HERRAMIENTAS -->
         <div id="tab-herramientas" class="tab-content">
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                Haz clic sobre las imágenes explicativas para ampliarlas a pantalla completa. Descarga las plantillas Excel oficial de cada herramienta directamente desde sus tarjetas.
+            <div class="section-title">
+                <span>Kit de Herramientas Didácticas & Diagramas</span>
+            </div>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
+                Haz clic sobre cualquier diagrama para ampliarlo en pantalla completa con el <strong>Visor Lightbox</strong>.
             </p>
-            <div class="tools-grid">
-                <!-- PARETO 80/20 -->
-                <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Principio de Pareto.png', 'Principio de Pareto (Filtro 80/20)')">
-                        <img src="assets/img/herramientas/Principio de Pareto.webp" data-fallback="assets/img/herramientas/Principio de Pareto.png" alt="Principio de Pareto">
-                        <div class="tool-zoom-btn">🔍 Ampliar</div>
-                    </div>
-                    <div class="tool-body">
-                        <div class="tool-title">
-                            <span>Filtro de Foco Único</span>
-                            <span style="color: var(--accent); font-size: 0.85rem;">Pareto 80/20</span>
-                        </div>
-                        <div class="tool-meta">Productividad y Enfoque</div>
-                        <p class="tool-desc">Selecciona tus 2 prioridades maestras de este mes y envía el resto a tu carpeta "Invernadero" para liberar memoria RAM y evitar la dispersión.</p>
-                    </div>
-                </div>
-
-                <!-- EISENHOWER -->
-                <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Matriz de Eisenhower.png', 'Matriz de Eisenhower (Brújula de Prioridades)')">
-                        <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz de Eisenhower">
-                        <div class="tool-zoom-btn">🔍 Ampliar</div>
-                    </div>
-                    <div class="tool-body">
-                        <div class="tool-title">
-                            <span>Brújula de Prioridades</span>
-                            <span style="color: var(--primary); font-size: 0.85rem;">M. Eisenhower</span>
-                        </div>
-                        <div class="tool-meta">Gestión del Tiempo</div>
-                        <p class="tool-desc">Diferencia las urgencias reales de las tareas secundarias de preparación para ejecutar lo verdaderamente importante cada día.</p>
-                        <div class="tool-footer">
-                            <a href="Plantillas/04_Matriz_Eisenhower_Priorizacion.xlsx" class="download-btn" download>📥 Descargar Excel</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- REGLA 50/30/20 -->
-                <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/La Regla 50 30 20.png', 'Regla 50/30/20 (GPS del Dinero)')">
-                        <img src="assets/img/herramientas/La Regla 50 30 20.webp" data-fallback="assets/img/herramientas/La Regla 50 30 20.png" alt="Regla 50/30/20">
-                        <div class="tool-zoom-btn">🔍 Ampliar</div>
-                    </div>
-                    <div class="tool-body">
-                        <div class="tool-title">
-                            <span>GPS del Dinero</span>
-                            <span style="color: var(--secondary); font-size: 0.85rem;">Regla 50/30/20</span>
-                        </div>
-                        <div class="tool-meta">Bienestar y Finanzas</div>
-                        <p class="tool-desc">Asigna 50% a necesidades básicas, 30% a estilo de vida y 20% al Fondo de Despegue y Tranquilidad.</p>
-                        <div class="tool-footer">
-                            <a href="Plantillas/02_Registro_de_Gastos_y_Presupuesto_50_30_20.xlsx" class="download-btn" download>📥 Descargar Excel</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GTD KANBAN -->
-                <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Kanban.png', 'Tablero Kanban (Vaciado Mental)')">
-                        <img src="assets/img/herramientas/Kanban.webp" data-fallback="assets/img/herramientas/Kanban.png" alt="Kanban GTD">
-                        <div class="tool-zoom-btn">🔍 Ampliar</div>
-                    </div>
-                    <div class="tool-body">
-                        <div class="tool-title">
-                            <span>Vaciado Mental</span>
-                            <span style="color: var(--success); font-size: 0.85rem;">GTD + Kanban</span>
-                        </div>
-                        <div class="tool-meta">Procesos y Operaciones</div>
-                        <p class="tool-desc">Externaliza todo pendiente fuera de tu cabeza y limita la columna "En Ejecución" a máximo 2 tareas en simultáneo.</p>
-                        <div class="tool-footer">
-                            <a href="Plantillas/03_Tablero_Kanban_de_Tareas_GTD.xlsx" class="download-btn" download>📥 Descargar Excel</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TIME BLOCKING -->
-                <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Time Blocking.png', 'Time Blocking (Bloques de Foco)')">
-                        <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking">
-                        <div class="tool-zoom-btn">🔍 Ampliar</div>
-                    </div>
-                    <div class="tool-body">
-                        <div class="tool-title">
-                            <span>Horario de Hiperfoco</span>
-                            <span style="color: var(--primary); font-size: 0.85rem;">Time Blocking</span>
-                        </div>
-                        <div class="tool-meta">Gestión del Tiempo</div>
-                        <p class="tool-desc">Agenda bloques de 90 minutos de sola-ejecución sin celular ni distracciones para hacer rendir tu tiempo al máximo.</p>
-                        <div class="tool-footer">
-                            <a href="Plantillas/01_Planificador_Semanal_y_Bloques_de_Tiempo.xlsx" class="download-btn" download>📥 Descargar Excel</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- METODOS SMART & RUEDA DE LA VIDA -->
-                <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Metodo SMART.jpg', 'Método SMART & Rueda de la Vida')">
-                        <img src="assets/img/herramientas/Metodo SMART.webp" data-fallback="assets/img/herramientas/Metodo SMART.jpg" alt="Método SMART">
-                        <div class="tool-zoom-btn">🔍 Ampliar</div>
-                    </div>
-                    <div class="tool-body">
-                        <div class="tool-title">
-                            <span>Auditoría & Metas</span>
-                            <span style="color: var(--accent); font-size: 0.85rem;">SMART & Rueda</span>
-                        </div>
-                        <div class="tool-meta">Estrategia Personal</div>
-                        <p class="tool-desc">Mide el balance de tus pilares de salud y convierte metas en objetivos específicos con fecha y métrica de éxito.</p>
-                        <div class="tool-footer">
-                            <a href="Plantillas/06_Rueda_de_la_Vida_y_Plan_Accion.xlsx" class="download-btn" download>📥 Descargar Excel</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MODELO TUCKMAN -->
-                <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Modelo Tuckman.png', 'Modelo Tuckman (Evolución de Procesos)')">
-                        <img src="assets/img/herramientas/Modelo Tuckman.webp" data-fallback="assets/img/herramientas/Modelo Tuckman.png" alt="Modelo Tuckman">
-                        <div class="tool-zoom-btn">🔍 Ampliar</div>
-                    </div>
-                    <div class="tool-body">
-                        <div class="tool-title">
-                            <span>Evolución de Etapas</span>
-                            <span style="color: var(--secondary); font-size: 0.85rem;">M. Tuckman</span>
-                        </div>
-                        <div class="tool-meta">Liderazgo y Equipos</div>
-                        <p class="tool-desc">Reconoce que la fase de 'Tormenta' es necesaria e inevitable antes de consolidar la 'Normalización' de tus rutinas.</p>
-                    </div>
-                </div>
-
-                <!-- OCEANO AZUL PERSONAL -->
-                <div class="tool-card">
-                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Estrategia Oceano Azul.jpg', 'Océano Azul Personal')">
-                        <img src="assets/img/herramientas/Estrategia Oceano Azul.webp" data-fallback="assets/img/herramientas/Estrategia Oceano Azul.jpg" alt="Océano Azul">
-                        <div class="tool-zoom-btn">🔍 Ampliar</div>
-                    </div>
-                    <div class="tool-body">
-                        <div class="tool-title">
-                            <span>Diferencial Único</span>
-                            <span style="color: var(--primary); font-size: 0.85rem;">Océano Azul</span>
-                        </div>
-                        <div class="tool-meta">Estrategia y Posicionamiento</div>
-                        <p class="tool-desc">Evita comparaciones estériles con terceros y construye un camino propio basado en tus fortalezas y auténtica propuesta humana.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 4: FINANZAS -->
-        <div id="tab-finanzas" class="tab-content">
             <div class="grid-2">
                 <div class="card">
-                    <div class="card-title">🎯 Simulador Fondo de Despegue</div>
-                    <div class="form-group" style="margin-top: 1rem;">
-                        <label>Meta de Fondo Total ($):</label>
-                        <input type="number" id="meta-fondo" class="form-control" value="2500000" oninput="calcularDespegue()">
-                    </div>
-                    <div class="form-group">
-                        <label>Ahorro Mensual Actual ($):</label>
-                        <input type="number" id="ahorro-mensual" class="form-control" value="150000" oninput="calcularDespegue()">
-                    </div>
-                    <div class="calc-result">
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Tiempo estimado para alcanzar la meta:</p>
-                        <div class="calc-number" id="resultado-meses">16.7 Meses</div>
+                    <div class="tool-box">
+                        <h3>1. Time Blocking & Blindaje de Foco</h3>
+                        <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
+                        <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
                     </div>
                 </div>
-
                 <div class="card">
-                    <div class="card-title">⚖️ Presupuesto Consciente (50 / 30 / 20)</div>
-                    <div class="form-group" style="margin-top: 1rem;">
-                        <label>Ingreso Mensual Líquido ($):</label>
-                        <input type="number" id="ingreso-liquido" class="form-control" value="1000000" oninput="calcularPresupuesto()">
+                    <div class="tool-box">
+                        <h3>2. Matriz de Eisenhower (Priorización)</h3>
+                        <p class="tool-meta">Urgente vs Importante</p>
+                        <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
                     </div>
-                    <div style="font-size: 0.85rem; line-height: 1.8;">
-                        <p>🏠 <strong>Necesidades Básicas (50%):</strong> <span id="p-50" style="color: var(--primary); font-weight: bold;">$500.000</span></p>
-                        <p>🎉 <strong>Estilo de Vida & Deseos (30%):</strong> <span id="p-30" style="color: var(--accent); font-weight: bold;">$300.000</span></p>
-                        <p>🚀 <strong>Fondo Ahorro / Inversión (20%):</strong> <span id="p-20" style="color: var(--success); font-weight: bold;">$200.000</span></p>
+                </div>
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
+                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
+                        <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>4. La Ventana de Johari (Alineación)</h3>
+                        <p class="tool-meta">Comunicación & Autopercepción</p>
+                        <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 5: HORARIO -->
-        <div id="tab-horario" class="tab-content">
-            <div class="card">
-                <div class="card-title">📅 Matriz de Bloques de Tiempo (Time Blocking)</div>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
-                    Protege tus bloques de sola-ejecución para evitar distracciones en tus prioridades maestras.
-                </p>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Bloque</th>
-                            <th>Lunes</th>
-                            <th>Martes</th>
-                            <th>Miércoles</th>
-                            <th>Jueves</th>
-                            <th>Viernes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>09:00 - 10:30</strong></td>
-                            <td class="block-focus">🚀 Bloque Foco #1</td>
-                            <td class="block-focus">🚀 Bloque Foco #1</td>
-                            <td class="block-focus">🚀 Bloque Foco #1</td>
-                            <td class="block-focus">🚀 Bloque Foco #1</td>
-                            <td class="block-focus">🚀 Bloque Foco #1</td>
-                        </tr>
-                        <tr>
-                            <td><strong>10:30 - 13:00</strong></td>
-                            <td>Operación / Llamadas</td>
-                            <td>Operación / Llamadas</td>
-                            <td>Operación / Llamadas</td>
-                            <td>Operación / Llamadas</td>
-                            <td>Revisión Semanal</td>
-                        </tr>
-                        <tr>
-                            <td><strong>13:00 - 14:30</strong></td>
-                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
-                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
-                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
-                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
-                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
-                        </tr>
-                        <tr>
-                            <td><strong>14:30 - 17:00</strong></td>
-                            <td>Ejecución Secundaria</td>
-                            <td>Ejecución Secundaria</td>
-                            <td>Ejecución Secundaria</td>
-                            <td>Ejecución Secundaria</td>
-                            <td class="block-rest">🌱 Cierre de Semana</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <!-- TAB 6: KANBAN -->
-        <div id="tab-kanban" class="tab-content">
-            <div class="kanban-grid">
-                <div class="kanban-col">
-                    <div class="kanban-header">
-                        <span>📥 Por Hacer</span>
-                        <span style="color: var(--text-muted);">3</span>
-                    </div>
-                    <div class="kanban-card">Vaciado mental de pendientes semanales</div>
-                    <div class="kanban-card">Revisar presupuesto 50/30/20 en Excel</div>
-                    <div class="kanban-card">Organizar archivos de trabajo en carpetas</div>
-                </div>
 
-                <div class="kanban-col" style="border-color: var(--primary);">
-                    <div class="kanban-header">
-                        <span style="color: var(--primary);">⚡ En Ejecución (Max 2)</span>
-                        <span style="color: var(--primary);">2</span>
-                    </div>
-                    <div class="kanban-card" style="border-left: 3px solid var(--primary);">Imprimir Checklist de Rutina Diaria</div>
-                    <div class="kanban-card" style="border-left: 3px solid var(--primary);">Configurar Hub Digital con Diego</div>
-                </div>
-
-                <div class="kanban-col" style="border-color: var(--success);">
-                    <div class="kanban-header">
-                        <span style="color: var(--success);">✅ Completado</span>
-                        <span style="color: var(--success);">2</span>
-                    </div>
-                    <div class="kanban-card" style="border-left: 3px solid var(--success);">Estructuración metodológica AICC</div>
-                    <div class="kanban-card" style="border-left: 3px solid var(--success);">Creación de carpeta y entregables Emi</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 7: PLAN 24H & ANTIPATRONES -->
-        <div id="tab-despegue" class="tab-content">
+        <!-- TAB CONTENT: ACTION & ANTIPATTERNS -->
+        <div id="tab-accion" class="tab-content">
             <div class="grid-2">
                 <div class="card">
-                    <div class="card-title" style="margin-bottom: 1rem;">🚀 Plan de Acción 24 Horas</div>
-                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
-                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);" checked>
-                            <span>1. Imprimir Checklist física de hábitos</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
-                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
-                            <span>2. Realizar vaciado mental total en el Kanban</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
-                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
-                            <span>3. Seleccionar las 2 tareas maestras de hoy</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
-                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
-                            <span>4. Ejecutar micro-acción de 2 minutos sin sobrepensar</span>
-                        </label>
-                    </div>
-
-                    <div style="margin-top: 2rem;">
-                        <a href="04_Imprimibles_Fisicos/01_Checklist_Rutina_Accion_Imperfecta.html" target="_blank" class="btn-action-primary">
-                            🖨️ Abrir Checklist Imprimible para Pared
-                        </a>
-                    </div>
+                    <h3 class="section-title"><span>Tu Plan de Acción: Próximas 24 Horas</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>1. Ejecutar el Paso Cero de 5 minutos.</strong></li><li><strong>2. Montar tu tablero visual en pared o escritorio.</strong></li><li><strong>3. Bloquear tu Cita Semanal de Gestión.</strong></li>
+                    </ul>
                 </div>
-
                 <div class="card">
-                    <div class="card-title" style="margin-bottom: 1rem;">🛡️ Alertas de Antipatrones</div>
-                    
-                    <div class="antipattern-card">
-                        <div class="antipattern-title">🚫 Aislamiento Productivo</div>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Gastar horas ordenando carpetas o estetizando tareas en lugar de validar con el cliente real.</p>
-                    </div>
-
-                    <div class="antipattern-card">
-                        <div class="antipattern-title">🚫 El Pulido Eterno (Regla del 70%)</div>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Revisar un documento 10 veces por miedo a la imperfección. ¡Lanza al 70% y ajusta!</p>
-                    </div>
-
-                    <div class="antipattern-card">
-                        <div class="antipattern-title">🚫 WIP Descontrolado</div>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Abrir más de 2 tareas en paralelo. Termina una antes de iniciar la siguiente.</p>
-                    </div>
+                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Foco)</span></h3>
+                    <ul class="custom-list danger-list">
+                        <li>🚫 Multitarea tóxica sin límite WIP.</li><li>🚫 Acostarse con pendientes en la cabeza sin vaciado análogo.</li><li>🚫 Postergar conversaciones difíciles por miedo al conflicto.</li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+
+    </div><!-- /container -->
+
+    <!-- MODAL 1: GESTIÓN DE CATEGORÍAS 24H -->
+    <div id="modal-category-manager" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>⚙️ Gestionar Categorías 24H</span>
+                <button class="modal-close-btn" onclick="closeCategoryManagerModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Edita las categorías de tiempo o agrega nuevas.</p>
+            <div id="category-manager-list" style="display:flex; flex-direction:column; gap:0.6rem; max-height:240px; overflow-y:auto; margin-bottom:1.2rem; padding-right:4px;"></div>
+            <div style="border-top:1px solid #222; padding-top:0.8rem; margin-bottom:1rem;">
+                <span style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">+ Agregar Nueva Categoría:</span>
+                <div style="display:flex; gap:6px; margin-top:0.4rem;">
+                    <input type="text" id="new-cat-label" placeholder="Nombre (ej. Proyecto X)" style="flex:2; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="text" id="new-cat-tag" placeholder="Tag (ej. PROY)" style="flex:1; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="color" id="new-cat-color" value="#10b981" style="width:36px; height:32px; background:transparent; border:none; cursor:pointer;">
+                    <button class="btn-card-action" onclick="addNewCategoryFromModal()" style="background:#fff; color:#000; font-weight:800;">+</button>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; gap:8px;">
+                <button class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color:#f87171; font-size:0.75rem;">Restablecer Predeterminadas</button>
+                <button class="btn-gateway-login" onclick="closeCategoryManagerModal()" style="width:auto; padding:6px 16px; margin:0; font-size:0.8rem;">Cerrar y Aplicar</button>
             </div>
         </div>
     </div>
 
-    <!-- LIGHTBOX MODAL -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" class="lightbox-content" src="" alt="Ampliación de herramienta">
+    <!-- MODAL 2: RELLENAR POR RANGO -->
+    <div id="modal-range-fill" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>⚡ Rellenar Horario por Rango</span>
+                <button class="modal-close-btn" onclick="closeRangeFillModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Pinta bloques continuos de una sola vez.</p>
+            <div style="display:flex; flex-direction:column; gap:0.8rem; margin-bottom:1.2rem;">
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Categoría:</label>
+                    <select id="range-category-select" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Inicio:</label>
+                        <select id="range-start-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Fin (inclusive):</label>
+                        <select id="range-end-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                    </div>
+                </div>
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700; display:block; margin-bottom:4px;">Días a Aplicar:</label>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-0" checked> Lun</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-1" checked> Mar</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-2" checked> Mié</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-3" checked> Jue</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-4" checked> Vie</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-5"> Sáb</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-6"> Dom</label>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:8px;">
+                <button class="btn-schedule-action" onclick="closeRangeFillModal()">Cancelar</button>
+                <button class="btn-gateway-login" onclick="applyRangeFill()" style="width:auto; padding:6px 16px; margin:0; font-size:0.85rem;">Aplicar Relleno</button>
+            </div>
+        </div>
     </div>
 
+    <!-- CONFIGURACIÓN DEL CLIENTE EN JAVASCRIPT -->
     <script>
-        function openTab(evt, tabName) {
-            const contents = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < contents.length; i++) {
-                contents[i].classList.remove("active");
+        window.CLIENT_CONFIG = {
+            clientId: "emi",
+            clientName: "Emi",
+            clientPIN: "emi2026",
+            masterPIN: "diego_ah_master"
+        };
+
+        window.CLIENT_SCHEDULE_CATEGORIES = [];
+        window.CLIENT_KANBAN_DEFAULT = [];
+
+        const voiceScenarios = [];
+        function selectClientVoiceScenario(scId) {
+            const sc = voiceScenarios.find(s => s.id === scId);
+            if (sc) {
+                const p = document.getElementById("voice-guion-text");
+                if (p) p.innerText = sc.guion;
             }
+        }
 
-            const buttons = document.getElementsByClassName("tab-btn");
-            for (let i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
+        function copyVoiceGuion() {
+            const p = document.getElementById("voice-guion-text");
+            if (p) {
+                navigator.clipboard.writeText(p.innerText).then(() => {
+                    alert("¡Guion copiado al portapapeles!");
+                });
             }
-
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
         }
 
-        function calcularDespegue() {
-            const meta = parseFloat(document.getElementById('meta-fondo').value) || 0;
-            const ahorro = parseFloat(document.getElementById('ahorro-mensual').value) || 1;
-            const meses = (meta / ahorro).toFixed(1);
-            document.getElementById('resultado-meses').innerText = meses + " Meses";
+        function openLightbox(src) {
+            const modal = document.getElementById("lightbox-modal");
+            const img = document.getElementById("lightbox-img");
+            if (modal && img) {
+                img.src = src;
+                modal.classList.add("active");
+            }
         }
-
-        function calcularPresupuesto() {
-            const ingreso = parseFloat(document.getElementById('ingreso-liquido').value) || 0;
-            document.getElementById('p-50').innerText = "$" + (ingreso * 0.5).toLocaleString('es-CL');
-            document.getElementById('p-30').innerText = "$" + (ingreso * 0.3).toLocaleString('es-CL');
-            document.getElementById('p-20').innerText = "$" + (ingreso * 0.2).toLocaleString('es-CL');
-        }
-
-        function openLightbox(src, title) {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            img.src = src;
-            img.alt = title;
-            lightbox.classList.add('active');
-        }
-
         function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
+            const modal = document.getElementById("lightbox-modal");
+            if (modal) modal.classList.remove("active");
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const isSub = window.location.pathname.includes('/planes/') || window.location.pathname.includes('/02_CLIENTES_ACTIVOS/');
+            document.querySelectorAll('.image-preview img, .tool-box img, .card img').forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.setAttribute('title', 'Haz clic para ampliar');
+                img.addEventListener('click', function() { openLightbox(this.src); });
+                img.addEventListener('error', function() {
+                    const fb = this.getAttribute('data-fallback');
+                    if (fb && this.src !== fb) { this.src = isSub ? '../' + fb : fb; }
+                });
+            });
+        });
     </script>
+
+    <!-- MOTORES MODULARES -->
+    <script src="js/portal-gateway.js?v=3.2"></script>
+    <script src="js/schedule-engine.js?v=3.2"></script>
+    <script src="js/kanban-engine.js?v=3.2"></script>
 </body>
 </html>

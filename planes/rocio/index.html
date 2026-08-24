@@ -13,14 +13,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Modular CSS Core & Components (con Cache-Busting v3.1) -->
-    <link rel="stylesheet" href="css/portal-core.css?v=3.1">
-    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.1">
-    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.1">
+    <!-- Modular CSS Core & Components (Cache-Busting v3.2) -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.2">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.2">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.2">
 
-    <!-- Reglas de Alta Prioridad y Adaptabilidad Móvil Inmediata -->
+    <!-- Inmersión Visual & Reglas Móviles de Alta Prioridad -->
     <style>
-        /* REJILLA 2X4 OBLIGATORIA EN CELULARES */
         @media (max-width: 768px) {
             .tabs {
                 display: grid !important;
@@ -57,13 +56,10 @@
             }
         }
 
-        /* Lightbox Fullscreen Modal */
         #lightbox-modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             background: rgba(0, 0, 0, 0.92);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -74,93 +70,50 @@
             padding: 2rem;
             cursor: zoom-out;
         }
-        #lightbox-modal.active {
-            display: flex;
-            animation: fadeIn 0.25s ease;
-        }
+        #lightbox-modal.active { display: flex; animation: fadeIn 0.25s ease; }
         #lightbox-img {
-            max-width: 92vw;
-            max-height: 88vh;
+            max-width: 92vw; max-height: 88vh;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.1);
             border: 1px solid #333;
         }
         #lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: #ffffff;
-            font-size: 2.2rem;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            line-height: 1;
+            position: absolute; top: 20px; right: 25px;
+            color: #ffffff; font-size: 2.2rem;
+            background: transparent; border: none;
+            cursor: pointer; line-height: 1;
         }
 
-        /* Hero Banner Tea */
         .hero-tea-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            display: inline-flex; align-items: center; gap: 6px;
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid rgba(16, 185, 129, 0.3);
             color: #10b981;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            letter-spacing: 0.5px;
+            padding: 4px 12px; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 700;
+            margin-bottom: 0.8rem; letter-spacing: 0.5px;
         }
 
-        /* Stat cards */
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1rem; margin-bottom: 1.5rem;
         }
         .stat-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
+            padding: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem;
         }
-        .stat-val {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-        }
-        .stat-lbl {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
+        .stat-val { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .stat-lbl { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
 
-        /* Printable list items */
         .printable-card {
-            background: #111;
-            border: 1px solid #262626;
-            border-radius: 12px;
-            padding: 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            transition: all 0.2s ease;
+            background: #111; border: 1px solid #262626; border-radius: 12px;
+            padding: 1.2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            margin-bottom: 0.8rem; transition: all 0.2s ease;
         }
-        .printable-card:hover {
-            border-color: #444;
-            background: #161616;
-            transform: translateX(4px);
-        }
+        .printable-card:hover { border-color: #444; background: #161616; transform: translateX(4px); }
     </style>
 </head>
 <body>
@@ -224,198 +177,157 @@
             <button class="tab-btn active" onclick="switchTab('tab-overview')">
                 <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
             </button>
-            <button class="tab-btn" onclick="switchTab('tab-foda')">
+            <button class="tab-btn " onclick="switchTab('tab-foda')">
                 <i class="fa-solid fa-chart-pie"></i> FODA & Matriz CAME
             </button>
-            <button class="tab-btn" onclick="switchTab('tab-horario')">
+            <button class="tab-btn " onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
-            <button class="tab-btn" onclick="switchTab('tab-kanban')">
+            <button class="tab-btn " onclick="switchTab('tab-kanban')">
                 <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
             </button>
-            <button class="tab-btn" onclick="switchTab('tab-herramientas')">
+            <button class="tab-btn " onclick="switchTab('tab-herramientas')">
                 <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
             </button>
-            <button class="tab-btn" onclick="switchTab('tab-imprimibles')">
+            <button class="tab-btn " onclick="switchTab('tab-imprimibles')">
                 <i class="fa-solid fa-print"></i> Hub de Imprimibles
             </button>
-            <button class="tab-btn" onclick="switchTab('tab-accion')">
-                <i class="fa-solid fa-bolt"></i> Plan 24h & Rutina TEA
+            <button class="tab-btn " onclick="switchTab('tab-accion')">
+                <i class="fa-solid fa-bolt"></i> Plan 24h & Límites
             </button>
         </nav>
 
-        <!-- ========================================================= -->
-        <!-- TAB 1: DIAGNÓSTICO & ESTRUCTURA                           -->
-        <!-- ========================================================= -->
+        <!-- TAB CONTENT: OVERVIEW / DIAGNOSTIC -->
         <div id="tab-overview" class="tab-content active">
-            <!-- Diagnostic Box -->
             <div class="diagnostic-box">
                 <div class="hero-tea-badge">
-                    <i class="fa-solid fa-brain"></i> Perfil Neurodivergente TEA • Fortaleza Estructural 10/10
+                    <i class="fa-solid fa-dna"></i> Diagnóstico Humano & Estructura Personal
                 </div>
-                <h3><span>El Diagnóstico Humano: Soberanía del Tiempo & Regulación Sensorial</span></h3>
+                <h3><span>El Estado Actual: Soberanía Operativa & Foco</span></h3>
                 <p>
-                    Rocío, con <strong>28 años</strong> y viviendo en <strong>Talcahuano</strong>, equilibras con admirable compromiso tus estudios de <strong>Psicopedagogía en la U. Santo Tomás</strong> con tus dos proyectos independientes (<strong>Puya Masajes</strong> y <strong>Voz Caleidoscopio</strong>) y el cuidado de tu hogar y tu perrita <em>Nieve</em>. Tu perfil muestra una disciplina sobresaliente (Entorno 10/10 y 1/5 en abandono de sistemas). La fricción actual no es de desorden, sino de <strong>fuga por interrupciones (5/5)</strong> y falta de espacios protegidos de <strong>autorregulación sensorial (Stimming)</strong>.
+                    Rocío equilibra admirablemente sus estudios universitarios en UST con dos emprendimientos independientes (Puya Masajes y Voz Caleidoscopio) y el cuidado del hogar en Talcahuano con su perrita Nieve. Presenta una disciplina y orden físico excepcionales (10/10 y 1/5 en abandono de sistemas). Su desafío es la fuga por interrupciones constantes (5/5, 21h/sem) y la necesidad innegociable de agendar pausas de autorregulación sensorial (Stimming TEA).
                 </p>
             </div>
 
-            <!-- Stats grid -->
+            
             <div class="stat-grid">
-                <div class="stat-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                
+                <div class="stat-card" style="border-color: #10b98144;">
                     <span class="stat-val" style="color: #10b981;">10 / 10</span>
                     <span class="stat-lbl">Entorno Físico & Orden</span>
                     <span style="font-size: 0.75rem; color: #888;">Cimientos sólidos en Talcahuano</span>
                 </div>
-                <div class="stat-card" style="border-color: rgba(96, 165, 250, 0.3);">
+                <div class="stat-card" style="border-color: #60a5fa44;">
                     <span class="stat-val" style="color: #60a5fa;">1 / 5</span>
-                    <span class="stat-lbl">Tasa de Abandono de Sistemas</span>
-                    <span style="font-size: 0.75rem; color: #888;">Consistencia casi perfecta en hábitos</span>
+                    <span class="stat-lbl">Abandono de Sistemas</span>
+                    <span style="font-size: 0.75rem; color: #888;">Consistencia casi perfecta</span>
                 </div>
-                <div class="stat-card" style="border-color: rgba(239, 68, 68, 0.3);">
-                    <span class="stat-val" style="color: #ef4444;">21 h / sem</span>
+                <div class="stat-card" style="border-color: #ef444444;">
+                    <span class="stat-val" style="color: #ef4444;">21 h/sem</span>
                     <span class="stat-lbl">Fuga por Interrupciones</span>
                     <span style="font-size: 0.75rem; color: #888;">Sobrecarga cognitiva e incendios</span>
                 </div>
-                <div class="stat-card" style="border-color: rgba(245, 158, 11, 0.3);">
-                    <span class="stat-val" style="color: #f59e0b;">0 Arriendo</span>
-                    <span class="stat-lbl">Palanca Financiera Clave</span>
-                    <span style="font-size: 0.75rem; color: #888;">Margen directo a Fondo de Reserva</span>
+                <div class="stat-card" style="border-color: #f59e0b44;">
+                    <span class="stat-val" style="color: #f59e0b;">$0</span>
+                    <span class="stat-lbl">Costo de Arriendo</span>
+                    <span style="font-size: 0.75rem; color: #888;">Palanca financiera para ahorro</span>
                 </div>
             </div>
 
-            <!-- Time & Finance Audit Grid -->
             <div class="grid-2">
-                <!-- Auditoría del Tiempo 168h -->
+                
                 <div class="card">
                     <h3 class="section-title"><span>Auditoría del Tiempo Semanal (168 Horas)</span></h3>
                     <ul class="custom-list">
-                        <li><strong>😴 Sueño & Descanso Real (56h • 8h/día):</strong> Nivel óptimo y saludable. Base biológica protegida.</li>
-                        <li><strong>🏡 Familia, Vida & Rutina Hogar (49h • 7h/día):</strong> Cuidado de mascotas (Nieve) y hogar en Talcahuano (Familia 9/10).</li>
-                        <li><strong>💼 Trabajo Foco & Estudios (28h • 4h/día):</strong> Clases de Canto, Masoterapia & Estudios en UST.</li>
-                        <li><strong>🌀 Dispersión por Interrupciones (21h • 3h/día):</strong> <span style="color:var(--danger); font-weight:700;">Fuga Crítica:</span> Sobrecarga sensorial e interrupciones cruzadas.</li>
-                        <li><strong>🔥 Apagafuegos e Incendios (14h • 2h/día):</strong> Urgencias imprevistas por falta de paquetización.</li>
+                        <li><strong>Sueno:</strong> 56 horas / semana</li><li><strong>Familia Hogar:</strong> 49 horas / semana</li><li><strong>Trabajo Estudio:</strong> 28 horas / semana</li><li><strong>Dispersion Interrupciones:</strong> 21 horas / semana</li><li><strong>Apagafuegos:</strong> 14 horas / semana</li>
+                        <li><strong>Total Semanal:</strong> 168 horas (Balance 100% Ajustado)</li>
                     </ul>
                 </div>
 
-                <!-- Diagnóstico Financiero 50/30/20 -->
                 <div class="card">
-                    <h3 class="section-title"><span>Diagnóstico Financiero: Regla 50/30/20</span></h3>
+                    <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
                     <ul class="custom-list">
-                        <li><strong>🏡 Necesidades Básicas (70% actual vs 50% ideal):</strong> Los costos operativos y del hogar comprimen el presupuesto actual.</li>
-                        <li><strong>🎨 Ocio y Deseos (20% actual vs 30% ideal):</strong> Margen reducido (Ocio en 2/10) que requiere ser recuperado mediante paquetes mensuales.</li>
-                        <li><strong>🏛️ Ahorro & Reserva (10% actual vs 20% ideal):</strong> Ahorro constante protegido. La mayor palanca de Rocío es que <strong>no paga arriendo</strong>.</li>
-                        <li><strong>🎯 Meta Inmediata:</strong> Paquetizar *Puya Masajes* en programas de 1 mes y constituir el Fondo de Emergencia de 3 meses de gastos fijos.</li>
+                        <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
+                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
+                        <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB 2: FODA & MATRIZ CAME                                 -->
-        <!-- ========================================================= -->
+
+        <!-- TAB CONTENT: FODA -->
         <div id="tab-foda" class="tab-content">
             <div class="section-title">
-                <span>Diagnóstico Estratégico FODA (100% Declarado por Rocío)</span>
+                <span>Diagnóstico Estratégico FODA & Matriz CAME</span>
             </div>
-
             <div class="grid-2">
-                <!-- Fortalezas -->
                 <div class="card" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.02);">
                     <h3 style="color: var(--success); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;">
-                        <i class="fa-solid fa-shield-halved"></i> Fortalezas (Tus Motores Internos)
+                        <i class="fa-solid fa-shield-halved"></i> Fortalezas (Tus Motores)
                     </h3>
                     <ul class="custom-list">
-                        <li><strong>💡 Capacidad Inventiva & Storytelling:</strong> Gran talento conceptual desarrollando narrativas para proyectos y souvenirs sensoriales.</li>
-                        <li><strong>🧘 Alta Disciplina Corporal:</strong> Hábitos firmes de ejercicio y cuidado somático (Salud 8/10).</li>
-                        <li><strong>🛡️ Inteligencia Emocional y Límites:</strong> Capacidad de fijar límites sanos acorde a su proceso emocional y red familiar (9/10).</li>
-                        <li><strong>📋 Consistencia en Sistemas:</strong> Tasa casi nula de abandono de sistemas y rutinas (1/5).</li>
+                        <li>Capacidad inventiva conceptual, storytelling y desarrollo de experiencias sensoriales.</li><li>Alta disciplina corporal y cuidado somático constante (Salud 8/10).</li><li>Inteligencia emocional y capacidad de fijar límites sanos con apoyo familiar (9/10).</li><li>Consistencia sobresaliente en sistemas y rutinas análogas (1/5 abandono).</li>
                     </ul>
                 </div>
-
-                <!-- Debilidades -->
                 <div class="card" style="border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.02);">
                     <h3 style="color: var(--danger); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;">
                         <i class="fa-solid fa-triangle-exclamation"></i> Debilidades (Frenos Internos)
                     </h3>
                     <ul class="custom-list danger-list">
-                        <li><strong>🧠 Pensamientos Intrusivos Nocturnos:</strong> Ruido mental acumulado al acostarse sin vaciado análogo (4/5 en S1).</li>
-                        <li><strong>📱 Fatiga de Lectura Digital:</strong> Dificultad y agotamiento al leer textos largos en la pantalla del celular.</li>
-                        <li><strong>🌀 Carencia de Espacio para Stimming (TEA):** Falta de pausas programadas de descarga y regulación sensorial.</li>
-                        <li><strong>🏦 Ausencia de Fondo de Emergencia:** Falta de un colchón financiero de reserva líquida.</li>
+                        <li>Pensamientos intrusivos nocturnos al acostarse sin vaciado en papel.</li><li>Fatiga de lectura y agotamiento en pantallas de celular pequeñas.</li><li>Falta de pausas protegidas para autorregulación sensorial (Stimming TEA).</li><li>Ausencia de un Fondo de Emergencia de 3 meses de gastos fijos.</li>
                     </ul>
                 </div>
             </div>
-
             <div class="grid-2">
-                <!-- Oportunidades -->
                 <div class="card" style="border-color: rgba(96, 165, 250, 0.3); background: rgba(96, 165, 250, 0.02);">
                     <h3 style="color: #60a5fa; font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;">
-                        <i class="fa-solid fa-arrow-trend-up"></i> Oportunidades (Tus Palancas)
+                        <i class="fa-solid fa-arrow-trend-up"></i> Oportunidades (Palancas)
                     </h3>
                     <ul class="custom-list">
-                        <li><strong>🎓 Método Administración Humana:</strong> Integración de herramientas AICC para coordinar la triple rutina sin solapamientos.</li>
-                        <li><strong>💆‍♀️ Paquetización Terapéutica ("Planes 1 Mes"):</strong> Transicionar de sesiones sueltas a paquetes de masoterapia de 4 semanas.</li>
-                        <li><strong>🏠 Cero Costo de Arriendo en Talcahuano:</strong> Oportunidad de oro para acelerar el ahorro y subir el presupuesto de ocio al 30%.</li>
+                        <li>Método AICC de Administración Humana para coordinar la triple rutina.</li><li>Paquetización terapéutica: transicionar de masajes sueltos a Planes de 1 Mes.</li><li>Aprovechar el cero costo de arriendo para acelerar el ahorro y subir el ocio al 30%.</li>
                     </ul>
                 </div>
-
-                <!-- Amenazas -->
                 <div class="card" style="border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.02);">
                     <h3 style="color: var(--warning); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem;">
                         <i class="fa-solid fa-skull-crossbones"></i> Amenazas (Riesgos a Mitigar)
                     </h3>
                     <ul class="custom-list danger-list">
-                        <li><strong>🚗 Fricción Logística en Talcahuano / Concepción:</strong> Desgaste en traslados para atenciones a domicilio de *Puya Masajes*.</li>
-                        <li><strong>🎓 Movilización Universitaria en UST:</strong> Dificultades de transporte para compañeras de carrera (petitorio en curso).</li>
+                        <li>Fricción logística y transporte limitado en Talcahuano/Concepción para atenciones a domicilio.</li><li>Movilización estudiantil en UST y dificultades de transporte para compañeras.</li>
                     </ul>
                 </div>
             </div>
-
-            <!-- Matriz CAME Operativa -->
+            
             <div class="card" style="border-color: rgba(139, 92, 246, 0.4); background: rgba(139, 92, 246, 0.03); margin-top: 1rem;">
                 <h3 class="section-title"><span style="color: #c084fc;">Matriz CAME: Estrategia de Acción Táctica</span></h3>
-                <div class="grid-2" style="margin-bottom: 0;">
+                <div class="grid-2" style="margin-bottom:0;">
                     <div>
-                        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.6rem;">🛠️ CORREGIR (Debilidades)</h4>
-                        <p style="font-size:0.85rem; color:#bbb; margin-bottom:0.8rem;">
-                            • Vaciado mental análogo nocturno en cuaderno físico (GTD Cero Pantallas).<br>
-                            • Agendar 2 pausas diarias de 15 min de Stimming TEA en el horario semanal.<br>
-                            • Apartar automáticamente el 10% mensual a cuenta de reserva.
-                        </p>
-
-                        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.6rem;">🛡️ AFRONTAR (Amenazas)</h4>
-                        <p style="font-size:0.85rem; color:#bbb;">
-                            • Zonificar atenciones a domicilio por cuadrantes y coordinar socio de transporte.<br>
-                            • Apoyar la redacción del petitorio de transporte estudiantil en la UST.
-                        </p>
+                        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.4rem;">🛠️ CORREGIR (Debilidades)</h4>
+                        <p style="font-size:0.85rem; color:#bbb; margin-bottom:0.8rem;">Vaciado nocturno físico en papel antes de dormir; agendar 2 pausas de 15 min de Stimming TEA; apartar 10% a cuenta de reserva.</p>
+                        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.4rem;">🛡️ AFRONTAR (Amenazas)</h4>
+                        <p style="font-size:0.85rem; color:#bbb;">Zonificar atenciones a domicilio por cuadrantes y coordinar socio de transporte; apoyar petitorio estudiantil UST.</p>
                     </div>
                     <div>
-                        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.6rem;">💪 MANTENER (Fortalezas)</h4>
-                        <p style="font-size:0.85rem; color:#bbb; margin-bottom:0.8rem;">
-                            • Proteger la rutina de ejercicio y cuidado somático innegociable.<br>
-                            • Aplicar el storytelling en la experiencia de *Puya Masajes* y velas sensoriales.<br>
-                            • Mantener tableros visuales análogos y delegar paseos de *Nieve* a papá.
-                        </p>
-
-                        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.6rem;">🚀 EXPLOTAR (Oportunidades)</h4>
-                        <p style="font-size:0.85rem; color:#bbb;">
-                            • Implementar la Triangulación de Roles (UST + Puya + Canto).<br>
-                            • Lanzar el Plan Terapéutico de 1 Mes para estabilizar ingresos de masajes.<br>
-                            • Capitalizar el cero costo de arriendo para consolidar el Fondo de Emergencia.
-                        </p>
+                        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.4rem;">💪 MANTENER (Fortalezas)</h4>
+                        <p style="font-size:0.85rem; color:#bbb; margin-bottom:0.8rem;">Proteger la rutina de ejercicio corporal; aplicar storytelling en marcas y souvenirs sensoriales (velas); sostener Kanban análogo.</p>
+                        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.4rem;">🚀 EXPLOTAR (Oportunidades)</h4>
+                        <p style="font-size:0.85rem; color:#bbb;">Implementar Triangulación de Roles; paquetizar Puya Masajes en planes mensuales; capitalizar cero arriendo.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB 3: MAPEADOR DE HORARIOS 24H                           -->
-        <!-- ========================================================= -->
+
+
+
+
+        
+        <!-- TAB CONTENT: HORARIO 24H -->
         <div id="tab-horario" class="tab-content">
             <div class="card">
                 <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
                     <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;">
-                        ⏰ Mapeador Semanal 24 Horas (Rocío • Triangulación de Roles & TEA)
+                        ⏰ Mapeador Semanal 24 Horas (Rocío)
                     </span>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
                         <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right: 4px;">
@@ -426,24 +338,20 @@
                         </button>
                         <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
                         <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
-                        <button class="btn-schedule-action" onclick="exportSchedulePNG()">📸 Exportar Imagen (PNG)</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG('Rocío')">📸 Exportar Imagen (PNG)</button>
                         <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
                     </div>
                 </div>
 
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
-                    Selecciona un pincel y haz clic o arrastra sobre las casillas para pintar tu semana. Tus 2 pausas de <strong>Stimming TEA</strong> y tus bloques de <strong>Puya Masajes / Universidad</strong> quedan blindados.
+                    Pinta tus bloques semanales para proteger tu descanso, tu foco productivo y tus momentos libres de culpa.
                 </p>
 
-                <!-- Brush selector bar -->
                 <div class="schedule-controls">
                     <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
-                    <div class="brush-selector" id="brush-selector-container">
-                        <!-- Rendered dynamically -->
-                    </div>
+                    <div class="brush-selector" id="brush-selector-container"></div>
                 </div>
 
-                <!-- Schedule Table -->
                 <div class="schedule-scroll-wrapper" id="schedule-export-container">
                     <table class="schedule-grid-table" id="schedule-table">
                         <thead>
@@ -458,22 +366,16 @@
                                 <th>Domingo</th>
                             </tr>
                         </thead>
-                        <tbody id="schedule-body">
-                            <!-- Rendered dynamically -->
-                        </tbody>
+                        <tbody id="schedule-body"></tbody>
                     </table>
                 </div>
 
-                <!-- Stats summary -->
-                <div class="schedule-stats-bar" id="schedule-stats-container">
-                    <!-- Rendered dynamically -->
-                </div>
+                <div class="schedule-stats-bar" id="schedule-stats-container"></div>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB 4: KANBAN GTD (WIP = 2)                               -->
-        <!-- ========================================================= -->
+        
+        <!-- TAB CONTENT: KANBAN -->
         <div id="tab-kanban" class="tab-content">
             <div class="card">
                 <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
@@ -485,16 +387,13 @@
                     </button>
                 </div>
                 <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">
-                    Rocío, este tablero protege tu batería sensorial contra el solapamiento de tus 3 roles. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>máximo 2 tareas en simultáneo</strong>.
+                    Rocío, este tablero es tu escudo contra la parálisis. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>máximo 2 tareas en simultáneo</strong>.
                 </p>
 
                 <div class="kanban-grid">
-                    <!-- Columna 1: Por Empezar -->
                     <div class="kanban-col">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title">
-                                <i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> Por Empezar
-                            </div>
+                            <div class="kanban-col-title"><i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> Por Empezar</div>
                             <span id="count-todo" class="wip-limit-pill" style="border-color:#555; color:#aaa;">0</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -504,12 +403,9 @@
                         <div id="kanban-container-todo" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
                     </div>
 
-                    <!-- Columna 2: En Ejecución (WIP=2) -->
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;">
-                                <i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)
-                            </div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -519,12 +415,9 @@
                         <div id="kanban-container-doing" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
                     </div>
 
-                    <!-- Columna 3: Hito Cumplido -->
                     <div class="kanban-col" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #10b981;">
-                                <i class="fa-solid fa-circle-check"></i> Hito Cumplido
-                            </div>
+                            <div class="kanban-col-title" style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> Hito Cumplido</div>
                             <span id="count-done" class="wip-limit-pill" style="border-color:#10b981; color:#10b981; background: rgba(16, 185, 129, 0.1);">0</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -537,198 +430,125 @@
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB 5: KIT DE HERRAMIENTAS                                -->
-        <!-- ========================================================= -->
+
+
+        <!-- TAB CONTENT: HERRAMIENTAS -->
         <div id="tab-herramientas" class="tab-content">
             <div class="section-title">
-                <span>Caja de Herramientas Estratégicas (Adaptadas a Rocío & TEA)</span>
+                <span>Kit de Herramientas Didácticas & Diagramas</span>
             </div>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
                 Haz clic sobre cualquier diagrama para ampliarlo en pantalla completa con el <strong>Visor Lightbox</strong>.
             </p>
-
             <div class="grid-2">
-                <!-- Herramienta 1: Time Blocking TEA -->
                 <div class="card">
                     <div class="tool-box">
-                        <h3>1. Time Blocking TEA (Bloques de Foco + Stimming)</h3>
-                        <p class="tool-meta">Organización Neurodivergente & Blindaje de Foco</p>
-                        <p class="tool-desc">
-                            Delimita cercos invisibles de 90 min para estudios UST y atenciones Puya Masajes, agendando explícitamente 2 pausas diarias de 15 min para autorregulación sensorial.
-                        </p>
+                        <h3>1. Time Blocking & Blindaje de Foco</h3>
+                        <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
+                        <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
                         <div class="image-preview">
-                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking TEA" onclick="openLightbox(this.src)">
+                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
-                        <ul class="tool-checklist" style="margin-top: 1rem;">
-                            <li><input type="checkbox" id="chk_rocio_t1_1"> Fijar bloques de 90 min de estudio UST sin pantallas</li>
-                            <li><input type="checkbox" id="chk_rocio_t1_2"> Proteger 2 franjas de 15 min de Stimming diario</li>
-                        </ul>
                     </div>
                 </div>
-
-                <!-- Herramienta 2: Vaciado Mental Nocturno -->
                 <div class="card">
                     <div class="tool-box">
-                        <h3>2. Vaciado Mental Nocturno (GTD Cero Pantallas)</h3>
-                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
-                        <p class="tool-desc">
-                            Libreta física análoga en mesa de noche para drenar pendientes e ideas giratorias 10 min antes de dormir, evitando la fatiga visual del celular.
-                        </p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD Vaciado" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
-                        </div>
-                        <ul class="tool-checklist" style="margin-top: 1rem;">
-                            <li><input type="checkbox" id="chk_rocio_t2_1"> Libreta física al lado de la cama</li>
-                            <li><input type="checkbox" id="chk_rocio_t2_2"> 5 minutos de vaciado análogo antes de apagar la luz</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Herramienta 3: Matriz Eisenhower -->
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>3. Matriz de Priorización de Incendios (Eisenhower)</h3>
-                        <p class="tool-meta">Filtrado de Urgencias vs Importancia Real</p>
-                        <p class="tool-desc">
-                            Separa lo urgente de lo estratégico para reducir las 14h semanales de apagafuegos: Hacer Ya, Planificar, Delegar (paseo de Nieve) y Eliminar.
-                        </p>
+                        <h3>2. Matriz de Eisenhower (Priorización)</h3>
+                        <p class="tool-meta">Urgente vs Importante</p>
+                        <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
                         <div class="image-preview">
                             <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
-                        <ul class="tool-checklist" style="margin-top: 1rem;">
-                            <li><input type="checkbox" id="chk_rocio_t3_1"> Identificar y eliminar 1 tarea basura semanal</li>
-                            <li><input type="checkbox" id="chk_rocio_t3_2"> Delegar paseos domésticos de Nieve</li>
-                        </ul>
                     </div>
                 </div>
-
-                <!-- Herramienta 4: Presupuesto 50/30/20 & Paquetes -->
                 <div class="card">
                     <div class="tool-box">
-                        <h3>4. Presupuesto 50/30/20 & Paquetización</h3>
-                        <p class="tool-meta">Soberanía Financiera & Planes 1 Mes</p>
-                        <p class="tool-desc">
-                            Transicionar de masajes sueltos a programas mensuales de salud de 4 sesiones, canalizando el ahorro del arriendo al Fondo de Emergencia.
-                        </p>
+                        <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
+                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
+                        <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
                         <div class="image-preview">
-                            <img src="assets/img/herramientas/La Regla 50 30 20.webp" data-fallback="assets/img/herramientas/La Regla 50 30 20.png" alt="Regla 50 30 20" onclick="openLightbox(this.src)">
+                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
-                        <ul class="tool-checklist" style="margin-top: 1rem;">
-                            <li><input type="checkbox" id="chk_rocio_t4_1"> Diseñar paquete mensual Puya Masajes (4 sesiones)</li>
-                            <li><input type="checkbox" id="chk_rocio_t4_2"> Apartar el 10% mensual a cuenta intocable</li>
-                        </ul>
                     </div>
                 </div>
-
-                <!-- Herramienta 5: Ventana de Johari -->
                 <div class="card">
                     <div class="tool-box">
-                        <h3>5. La Ventana de Johari (Alineación & Alianzas)</h3>
-                        <p class="tool-meta">Comunicación con Socios & Red de Apoyo</p>
-                        <p class="tool-desc">
-                            Mapeo de expectativas y acuerdos claros con socios de trabajo (Charli, Paula, Shanti) y familia para proteger la batería social.
-                        </p>
+                        <h3>4. La Ventana de Johari (Alineación)</h3>
+                        <p class="tool-meta">Comunicación & Autopercepción</p>
+                        <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
                         <div class="image-preview">
                             <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
-                        <ul class="tool-checklist" style="margin-top: 1rem;">
-                            <li><input type="checkbox" id="chk_rocio_t5_1"> Definir acuerdos 2x1 y 3x2 con Charli</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Herramienta 6: Modelo de Tuckman -->
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>6. Modelo de Tuckman (Evolución de Alianzas)</h3>
-                        <p class="tool-meta">Formación y Rendimiento en Duetos Terapéuticos</p>
-                        <p class="tool-desc">
-                            Comprensión de las 5 etapas (Forming, Storming, Norming, Performing, Adjourning) en equipos de masoterapia y movilización estudiantil UST.
-                        </p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Modelo Tuckman.webp" data-fallback="assets/img/herramientas/Modelo Tuckman.png" alt="Modelo Tuckman" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
-                        </div>
-                        <ul class="tool-checklist" style="margin-top: 1rem;">
-                            <li><input type="checkbox" id="chk_rocio_t6_1"> Estandarizar normas de atención en duetos</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB 6: HUB DE IMPRIMIBLES FÍSICOS                         -->
-        <!-- ========================================================= -->
+
+        <!-- TAB CONTENT: IMPRIMIBLES -->
         <div id="tab-imprimibles" class="tab-content">
             <div class="section-title">
-                <span>Hub de Imprimibles Físicos & Fichas Clínicas (A4 / Papel)</span>
+                <span>Hub de Imprimibles Físicos & Fichas Listas para Usar</span>
             </div>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
-                Diseñados específicamente para evitar la fatiga digital en celulares. Haz clic en <strong>"Abrir / Imprimir"</strong> para ver la versión análoga lista para tu pared o mesa de noche.
+                Diseñados en formato A4 para imprimir y colocar en tu pared o escritorio, evitando la fatiga visual.
             </p>
-
             <div class="card">
+                
                 <div class="printable-card">
                     <div>
                         <strong style="color:#fff; font-size:1rem; display:flex; align-items:center; gap:8px;">
-                            <i class="fa-solid fa-file-waveform" style="color:#10b981;"></i> 05. Ficha de Anamnesis y Registro Clínico (Puya Masajes)
+                            <i class="fa-solid fa-file-waveform" style="color:#10b981;"></i> Ficha de Anamnesis y Registro Clínico (Puya Masajes)
                         </strong>
-                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Evaluación inicial de masoterapia, tolerancia sensorial, contraindicaciones e historial.</p>
+                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Plantilla de anclaje físico lista para imprimir en papel.</p>
                     </div>
                     <a href="04_Imprimibles_Fisicos/05_Ficha_Anamnesis_y_Registro_Cliente_Puya_Masajes.html" target="_blank" class="btn-card-action" style="padding:6px 14px; font-weight:700;">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir / Imprimir
                     </a>
                 </div>
-
                 <div class="printable-card">
                     <div>
                         <strong style="color:#fff; font-size:1rem; display:flex; align-items:center; gap:8px;">
-                            <i class="fa-solid fa-calendar-check" style="color:#60a5fa;"></i> 01. Planificador Semanal & Stimming TEA
+                            <i class="fa-solid fa-file-waveform" style="color:#10b981;"></i> Planificador Semanal & Stimming TEA
                         </strong>
-                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Malla semanal física para estudio UST, atenciones de masajes y 2 pausas de autorregulación.</p>
+                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Plantilla de anclaje físico lista para imprimir en papel.</p>
                     </div>
                     <a href="04_Imprimibles_Fisicos/01_Planificador_Semanal_y_Stimming_TEA_Rocio.html" target="_blank" class="btn-card-action" style="padding:6px 14px; font-weight:700;">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir / Imprimir
                     </a>
                 </div>
-
                 <div class="printable-card">
                     <div>
                         <strong style="color:#fff; font-size:1rem; display:flex; align-items:center; gap:8px;">
-                            <i class="fa-solid fa-moon" style="color:#c084fc;"></i> 03. Checklist Rutina Vaciado Nocturno & Stimming
+                            <i class="fa-solid fa-file-waveform" style="color:#10b981;"></i> Checklist Rutina Vaciado Nocturno & Stimming
                         </strong>
-                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Plantilla de mesita de noche para frenar pensamientos intrusivos antes de dormir.</p>
+                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Plantilla de anclaje físico lista para imprimir en papel.</p>
                     </div>
                     <a href="04_Imprimibles_Fisicos/03_Checklist_Rutina_Vaciado_Nocturno_y_Stimming.html" target="_blank" class="btn-card-action" style="padding:6px 14px; font-weight:700;">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir / Imprimir
                     </a>
                 </div>
-
                 <div class="printable-card">
                     <div>
                         <strong style="color:#fff; font-size:1rem; display:flex; align-items:center; gap:8px;">
-                            <i class="fa-solid fa-wallet" style="color:#f59e0b;"></i> 04. Planilla Impresa Control Presupuesto 50/30/20
+                            <i class="fa-solid fa-file-waveform" style="color:#10b981;"></i> Planilla Impresa Control Presupuesto 50/30/20
                         </strong>
-                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Registro manual mensual de ingresos, gastos fijos y fondo de reserva de 3 meses.</p>
+                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Plantilla de anclaje físico lista para imprimir en papel.</p>
                     </div>
                     <a href="04_Imprimibles_Fisicos/04_Planilla_Impresa_Control_Presupuesto_50_30_20.html" target="_blank" class="btn-card-action" style="padding:6px 14px; font-weight:700;">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir / Imprimir
                     </a>
                 </div>
-
                 <div class="printable-card">
                     <div>
                         <strong style="color:#fff; font-size:1rem; display:flex; align-items:center; gap:8px;">
-                            <i class="fa-solid fa-list-check" style="color:#ec4899;"></i> 06. Checklists Maestros Operativos & TEA
+                            <i class="fa-solid fa-file-waveform" style="color:#10b981;"></i> Checklists Maestros Operativos & TEA
                         </strong>
-                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Listas de verificación para Puya Masajes, Voz Caleidoscopio, UST y Pausas Sensoriales.</p>
+                        <p style="font-size:0.8rem; color:#888; margin-top:3px;">Plantilla de anclaje físico lista para imprimir en papel.</p>
                     </div>
                     <a href="04_Imprimibles_Fisicos/06_Checklists_Maestros_Operativos_y_TEA_Rocio.html" target="_blank" class="btn-card-action" style="padding:6px 14px; font-weight:700;">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir / Imprimir
@@ -737,32 +557,19 @@
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB 7: PLAN 24H & RUTINA TEA                              -->
-        <!-- ========================================================= -->
+        <!-- TAB CONTENT: ACTION & ANTIPATTERNS -->
         <div id="tab-accion" class="tab-content">
             <div class="grid-2">
-                <!-- Plan 24 Horas -->
                 <div class="card">
                     <h3 class="section-title"><span>Tu Plan de Acción: Próximas 24 Horas</span></h3>
                     <ul class="custom-list">
-                        <li><strong>1. Registro de Canto (Hacer Ya):</strong> Completar en el cuaderno planificador semanal lo trabajado en las clases de técnicas vocales ofrecidas a alumnos.</li>
-                        <li><strong>2. Paquetización Puya Masajes:</strong> Redactar la propuesta del <em>Plan Terapéutico de 1 Mes (4 sesiones)</em> para transicionar de citas sueltas a ingresos predecibles.</li>
-                        <li><strong>3. Vaciado Nocturno Análogo:</strong> Realizar el primer vaciado mental en cuaderno de papel 10 min antes de acostarte sin mirar el celular.</li>
-                        <li><strong>4. Delegación de Tareas Domésticas:</strong> Acordar con tu papá asumir de forma fija el paseo diario de tu perrita <em>Nieve</em>.</li>
-                        <li><strong>5. Mensajes de Coordinación:</strong> Contactar a Vicente para el audio de práctica y fijar reunión con Charli para paquetización de duetos.</li>
+                        <li><strong>1. Registro de Canto: Completar en cuaderno planificador el registro de técnicas vocales.</strong></li><li><strong>2. Paquetización Puya Masajes: Redactar propuesta del Plan Terapéutico de 1 Mes.</strong></li><li><strong>3. Vaciado Nocturno Análogo: Primer vaciado mental en libreta física 10 min antes de dormir.</strong></li><li><strong>4. Delegar: Acordar formalmente con papá el paseo de Nieve.</strong></li><li><strong>5. Coordinación: Enviar mensajes a Vicente (audio) y Charli (reunión duetos).</strong></li>
                     </ul>
                 </div>
-
-                <!-- Antipatrones -->
                 <div class="card">
                     <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Foco)</span></h3>
                     <ul class="custom-list danger-list">
-                        <li><strong>🚫 Desplazamientos Logísticos Caóticos:</strong> Aceptar domicilios distantes en transporte público sin agrupar por cuadrantes geográficos.</li>
-                        <li><strong>🚫 Vender Sesiones Sueltas de Masaje:</strong> Vender tiempo por hora en lugar de programas de salud mensuales cerrados.</li>
-                        <li><strong>🚫 Lectura Prolongada en el Celular:</strong> Forzar la vista y la atención leyendo textos densos en pantallas pequeñas.</li>
-                        <li><strong>🚫 Ignorar la Batería Sensorial:</strong> Negarse momentos de *stimming* o autorregulación en días de alta demanda sensorial.</li>
-                        <li><strong>🚫 Guardar Pendientes en la Cabeza:</strong> Acostarse sin vaciado análogo esperando "recordarlo todo mañana".</li>
+                        <li>🚫 Desplazamientos logísticos caóticos sin zonificar cuadrantes.</li><li>🚫 Vender masajes por hora suelta en lugar de paquetes de 1 mes.</li><li>🚫 Leer textos densos en pantallas pequeñas de celular.</li><li>🚫 Ignorar pausas de stimming en días de alta demanda sensorial.</li><li>🚫 Acostarse sin vaciado mental análogo.</li>
                     </ul>
                 </div>
             </div>
@@ -777,24 +584,17 @@
                 <span>⚙️ Gestionar Categorías 24H</span>
                 <button class="modal-close-btn" onclick="closeCategoryManagerModal()">&times;</button>
             </div>
-            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">
-                Edita tus categorías de tiempo para Rocío (Universidad, Puya Masajes, Stimming TEA, Canto) o agrega nuevas.
-            </p>
-
-            <div id="category-manager-list" style="display:flex; flex-direction:column; gap:0.6rem; max-height:240px; overflow-y:auto; margin-bottom:1.2rem; padding-right:4px;">
-                <!-- Rendered dynamically -->
-            </div>
-
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Edita las categorías de tiempo o agrega nuevas.</p>
+            <div id="category-manager-list" style="display:flex; flex-direction:column; gap:0.6rem; max-height:240px; overflow-y:auto; margin-bottom:1.2rem; padding-right:4px;"></div>
             <div style="border-top:1px solid #222; padding-top:0.8rem; margin-bottom:1rem;">
                 <span style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">+ Agregar Nueva Categoría:</span>
                 <div style="display:flex; gap:6px; margin-top:0.4rem;">
-                    <input type="text" id="new-cat-label" placeholder="Nombre (ej. Terapia Puya)" style="flex:2; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
-                    <input type="text" id="new-cat-tag" placeholder="Tag (ej. Puya)" style="flex:1; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="text" id="new-cat-label" placeholder="Nombre (ej. Proyecto X)" style="flex:2; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="text" id="new-cat-tag" placeholder="Tag (ej. PROY)" style="flex:1; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
                     <input type="color" id="new-cat-color" value="#10b981" style="width:36px; height:32px; background:transparent; border:none; cursor:pointer;">
                     <button class="btn-card-action" onclick="addNewCategoryFromModal()" style="background:#fff; color:#000; font-weight:800;">+</button>
                 </div>
             </div>
-
             <div style="display:flex; justify-content:space-between; gap:8px;">
                 <button class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color:#f87171; font-size:0.75rem;">Restablecer Predeterminadas</button>
                 <button class="btn-gateway-login" onclick="closeCategoryManagerModal()" style="width:auto; padding:6px 16px; margin:0; font-size:0.8rem;">Cerrar y Aplicar</button>
@@ -809,33 +609,22 @@
                 <span>⚡ Rellenar Horario por Rango</span>
                 <button class="modal-close-btn" onclick="closeRangeFillModal()">&times;</button>
             </div>
-            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">
-                Pinta bloques continuos de una sola vez (ej. Estudio UST o Sueño).
-            </p>
-
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Pinta bloques continuos de una sola vez.</p>
             <div style="display:flex; flex-direction:column; gap:0.8rem; margin-bottom:1.2rem;">
                 <div>
                     <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Categoría:</label>
-                    <select id="range-category-select" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;">
-                        <!-- Rendered dynamically -->
-                    </select>
+                    <select id="range-category-select" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
                 </div>
-
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
                     <div>
                         <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Inicio:</label>
-                        <select id="range-start-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;">
-                            <!-- 0 a 23 -->
-                        </select>
+                        <select id="range-start-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
                     </div>
                     <div>
                         <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Fin (inclusive):</label>
-                        <select id="range-end-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;">
-                            <!-- 0 a 23 -->
-                        </select>
+                        <select id="range-end-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
                     </div>
                 </div>
-
                 <div>
                     <label style="font-size:0.75rem; color:#aaa; font-weight:700; display:block; margin-bottom:4px;">Días a Aplicar:</label>
                     <div style="display:flex; gap:6px; flex-wrap:wrap;">
@@ -849,7 +638,6 @@
                     </div>
                 </div>
             </div>
-
             <div style="display:flex; justify-content:flex-end; gap:8px;">
                 <button class="btn-schedule-action" onclick="closeRangeFillModal()">Cancelar</button>
                 <button class="btn-gateway-login" onclick="applyRangeFill()" style="width:auto; padding:6px 16px; margin:0; font-size:0.85rem;">Aplicar Relleno</button>
@@ -857,9 +645,8 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE CONFIGURACIÓN & CARGA DE COMPONENTES MODULARES -->
+    <!-- CONFIGURACIÓN DEL CLIENTE EN JAVASCRIPT -->
     <script>
-        // Configuración de Seguridad de Rocío
         window.CLIENT_CONFIG = {
             clientId: "rocio",
             clientName: "Rocío",
@@ -867,36 +654,27 @@
             masterPIN: "diego_ah_master"
         };
 
-        // Categorías Pre-cargadas específicas de Rocío (TEA + UST + Puya + Canto)
-        window.ROCIO_SCHEDULE_CATEGORIES = {
-            "sueno": { "label": "😴 Sueño & Recuperación", "color": "#1e293b", "tag": "Sueño" },
-            "ust": { "label": "🎓 Universidad UST (Psicopedagogía)", "color": "#2563eb", "tag": "UST" },
-            "puya": { "label": "💆‍♀️ Puya Masajes (Atenciones)", "color": "#0d9488", "tag": "Puya" },
-            "canto": { "label": "🎤 Voz Caleidoscopio (Clases)", "color": "#7c3aed", "tag": "Canto" },
-            "stimming": { "label": "🧘 Stimming & Descarga Sensorial (TEA)", "color": "#d97706", "tag": "Stimming" },
-            "hogar": { "label": "🏡 Hogar & Mascota Nieve", "color": "#059669", "tag": "Hogar" },
-            "libre": { "label": "🌱 Libre / Ocio Regenerativo", "color": "#db2777", "tag": "Libre" }
-        };
+        window.CLIENT_SCHEDULE_CATEGORIES = [{"id": "sueno", "nombre": "\ud83d\ude34 Sue\u00f1o & Recuperaci\u00f3n", "color": "#1e293b", "tag": "SUE\u00d1O"}, {"id": "ust", "nombre": "\ud83c\udf93 Universidad UST (Psicopedagog\u00eda)", "color": "#2563eb", "tag": "UST"}, {"id": "puya", "nombre": "\ud83d\udc86\u200d\u2640\ufe0f Puya Masajes (Atenciones)", "color": "#0d9488", "tag": "PUYA"}, {"id": "canto", "nombre": "\ud83c\udfa4 Voz Caleidoscopio (Clases)", "color": "#7c3aed", "tag": "CANTO"}, {"id": "stimming", "nombre": "\ud83e\uddd8 Stimming & Descarga Sensorial (TEA)", "color": "#d97706", "tag": "STIMM"}, {"id": "hogar", "nombre": "\ud83c\udfe1 Hogar & Mascota Nieve", "color": "#059669", "tag": "HOGAR"}, {"id": "libre", "nombre": "\ud83c\udf31 Libre / Ocio Regenerativo", "color": "#db2777", "tag": "LIBRE"}];
+        window.CLIENT_KANBAN_DEFAULT = [{"id": "r1", "text": "Redactar borrador petitorio transporte estudiantil UST", "tag": "UST"}, {"id": "r2", "text": "Configurar WhatsApp Business para Puya Masajes", "tag": "Puya"}, {"id": "r3", "text": "Contactar a Vicente para audio de pr\u00e1ctica", "tag": "Canto"}, {"id": "r4", "text": "Fijar reuni\u00f3n de coordinaci\u00f3n con Charli (duetos 2x1)", "tag": "Puya"}, {"id": "r5", "text": "Investigar souvenirs sensoriales (velas/inciensos)", "tag": "Puya"}] + [{"id": "r6", "text": "Escribir en cuaderno planificador registro clases de canto", "tag": "Canto"}, {"id": "r7", "text": "Dise\u00f1ar propuesta Plan Terap\u00e9utico 1 Mes (4 sesiones)", "tag": "Puya"}] + [{"id": "r8", "text": "Delegar formalmente paseo diario de Nieve a pap\u00e1", "tag": "Hogar"}];
 
-        // Tareas Pre-cargadas de Kanban para Rocío
-        window.ROCIO_KANBAN_DEFAULT = {
-            todo: [
-                { id: "k1", text: "Redactar borrador petitorio transporte estudiantil UST", tag: "UST" },
-                { id: "k2", text: "Configurar WhatsApp Business para Puya Masajes", tag: "Puya" },
-                { id: "k3", text: "Contactar a Vicente para audio de práctica", tag: "Canto" },
-                { id: "k4", text: "Fijar reunión de coordinación con Charli (duetos 2x1)", tag: "Puya" },
-                { id: "k5", text: "Investigar souvenirs sensoriales (velas/inciensos)", tag: "Puya" }
-            ],
-            doing: [
-                { id: "k6", text: "Escribir en cuaderno planificador registro clases de canto", tag: "Canto" },
-                { id: "k7", text: "Diseñar propuesta Plan Terapéutico 1 Mes (4 sesiones)", tag: "Puya" }
-            ],
-            done: [
-                { id: "k8", text: "Delegar formalmente paseo diario de Nieve a papá", tag: "Hogar" }
-            ]
-        };
+        const voiceScenarios = [];
+        function selectClientVoiceScenario(scId) {
+            const sc = voiceScenarios.find(s => s.id === scId);
+            if (sc) {
+                const p = document.getElementById("voice-guion-text");
+                if (p) p.innerText = sc.guion;
+            }
+        }
 
-        // Lightbox Functions
+        function copyVoiceGuion() {
+            const p = document.getElementById("voice-guion-text");
+            if (p) {
+                navigator.clipboard.writeText(p.innerText).then(() => {
+                    alert("¡Guion copiado al portapapeles!");
+                });
+            }
+        }
+
         function openLightbox(src) {
             const modal = document.getElementById("lightbox-modal");
             const img = document.getElementById("lightbox-img");
@@ -910,39 +688,23 @@
             if (modal) modal.classList.remove("active");
         }
 
-        // Checklists Persistence
         document.addEventListener('DOMContentLoaded', () => {
             const isSub = window.location.pathname.includes('/planes/') || window.location.pathname.includes('/02_CLIENTES_ACTIVOS/');
             document.querySelectorAll('.image-preview img, .tool-box img, .card img').forEach(img => {
                 img.style.cursor = 'zoom-in';
                 img.setAttribute('title', 'Haz clic para ampliar');
-                img.addEventListener('click', function() {
-                    openLightbox(this.src);
-                });
+                img.addEventListener('click', function() { openLightbox(this.src); });
                 img.addEventListener('error', function() {
                     const fb = this.getAttribute('data-fallback');
-                    if (fb && this.src !== fb) {
-                        this.src = isSub ? '../' + fb : fb;
-                    }
-                });
-            });
-
-            // Restore checklists
-            const savedChecklists = JSON.parse(localStorage.getItem('rocio_portal_checklists_v2') || '{}');
-            document.querySelectorAll('.tool-checklist input[type="checkbox"]').forEach(chk => {
-                if (savedChecklists[chk.id]) chk.checked = true;
-                chk.addEventListener('change', () => {
-                    savedChecklists[chk.id] = chk.checked;
-                    localStorage.setItem('rocio_portal_checklists_v2', JSON.stringify(savedChecklists));
+                    if (fb && this.src !== fb) { this.src = isSub ? '../' + fb : fb; }
                 });
             });
         });
     </script>
 
-    <!-- MOTORES JS MODULARES -->
-    <script src="js/portal-gateway.js?v=3.1"></script>
-    <script src="js/schedule-engine.js?v=3.1"></script>
-    <script src="js/kanban-engine.js?v=3.1"></script>
-
+    <!-- MOTORES MODULARES -->
+    <script src="js/portal-gateway.js?v=3.2"></script>
+    <script src="js/schedule-engine.js?v=3.2"></script>
+    <script src="js/kanban-engine.js?v=3.2"></script>
 </body>
 </html>
