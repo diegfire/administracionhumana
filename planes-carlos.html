@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Vuelo 2.0: De la Reactividad a la Escala - Carlos Z | Administración Humana</title>    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+                :root {
+            --bg-dark: #000000;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #121212;
+            --primary: #ffffff; /* Monochromatic Accent (White) */
+            --secondary: #888888; /* Monochromatic Secondary (Gray) */
+            --accent: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --success: #ffffff;
+            --warning: #888888;
+            --danger: #EF4444; /* Keep red for danger / errors */
+            --border: #262626;
+            --border-hover: #333333;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-primary: 0 0 20px rgba(255, 255, 255, 0.1);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: #cccccc;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo {
+            background: #ffffff;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #000000;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .brand-title h1 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .brand-title p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .meta-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #ffffff;
+        }
+
+        .meta-badge .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ffffff;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 0.4rem;
+            border-radius: 50px;
+            margin-bottom: 2.5rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.75rem 1.4rem;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: var(--shadow-primary);
+            font-weight: 800;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards & Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-icon {
+            font-size: 1.4rem;
+        }
+
+        /* FODA Items */
+        .foda-list {
+            list-style: none;
+        }
+
+        .foda-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .foda-item:last-child {
+            border-bottom: none;
+        }
+
+        .foda-bullet {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Progress bars for Arquetipos */
+        .identity-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .identity-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .progress-track {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #ffffff, #888888);
+            transition: width 1s ease;
+        }
+
+        /* TOOLS GALLERY GRID & CARDS WITH IMAGES */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-img-container {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .tool-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: all 0.5s ease;
+        }
+
+        .tool-card:hover .tool-img-container img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .tool-zoom-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid var(--border);
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .tool-card:hover .tool-zoom-btn {
+            opacity: 1;
+        }
+
+        .tool-body {
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .tool-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tool-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .tool-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 0.9rem;
+            margin-top: auto;
+        }
+
+        .download-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .download-btn:hover {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: var(--shadow-primary);
+        }
+
+        /* Image Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #FFF;
+            font-size: 2.5rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Form Controls for Calculators */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .calc-result {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .calc-number {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        /* Time blocking table */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .schedule-table th {
+            background: rgba(255, 255, 255, 0.02);
+            font-family: var(--font-display);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .block-focus {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+
+        .block-rest {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+            border-radius: 4px;
+        }
+        
+        .block-job {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        /* Kanban Column */
+        .kanban-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .kanban-col {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+        }
+
+        .kanban-header {
+            font-family: var(--font-display);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .kanban-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.9rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        /* Antipattern cards */
+        .antipattern-card {
+            border-left: 4px solid var(--danger);
+            background: rgba(239, 68, 68, 0.05);
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+        }
+
+        .antipattern-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Print Action Button */
+        .btn-action-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            background: #ffffff;
+            color: #000000;
+            font-family: var(--font-display);
+            font-weight: 800;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+            background: #e5e5e5;
+            color: #000000;
+        }
+    </style>
+
+    <!-- Modular CSS Core & Components (Cache-Busting v3.1) -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.1">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.1">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.1">
+
+    <style>
+        /* REJILLA 2X4 OBLIGATORIA EN CELULARES */
+        @media (max-width: 768px) {
+            .tabs {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.45rem !important;
+                padding: 0.5rem !important;
+                background: rgba(255, 255, 255, 0.03) !important;
+                border: 1px solid #262626 !important;
+                border-radius: 12px !important;
+                margin-bottom: 1.4rem !important;
+                width: 100% !important;
+                overflow-x: visible !important;
+                flex-wrap: wrap !important;
+            }
+
+            .tab-btn {
+                width: 100% !important;
+                padding: 0.65rem 0.4rem !important;
+                font-size: 0.74rem !important;
+                justify-content: center !important;
+                text-align: center !important;
+                gap: 0.35rem !important;
+                border-radius: 8px !important;
+                white-space: normal !important;
+                line-height: 1.25 !important;
+                flex: none !important;
+            }
+
+            .tab-btn.active {
+                background: #ffffff !important;
+                color: #000000 !important;
+                box-shadow: 0 0 14px rgba(255, 255, 255, 0.3) !important;
+                font-weight: 800 !important;
+            }
+        }
+
+        /* Lightbox Fullscreen Modal */
+        #lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+        #lightbox-modal.active {
+            display: flex;
+            animation: fadeIn 0.25s ease;
+        }
+        #lightbox-img {
+            max-width: 92vw;
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.1);
+            border: 1px solid #333;
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #ffffff;
+            font-size: 2.2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <!-- LIGHTBOX MODAL FOR IMAGES -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="Ampliación de Herramienta">
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <div class="brand-logo">AH</div>
+                <div class="brand-title">
+                    <h1>Plan de Vuelo 2.0: Carlos Z</h1>
+                    <p>Administración Humana • Dashboard de Soberanía Operativa</p>
+                </div>
+            </div>
+            <div class="meta-badge">
+                <span class="dot"></span>
+                <span>Fase Activa: Claridad a la Escala</span>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'tab-foda')">🧭 Diagnóstico & FODA</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-identidades')">⚡ 4 Arquetipos de Energía</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-herramientas')">🧰 Kit de Herramientas</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-finanzas')">💰 Simuladores Financieros</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-horario')">📅 Time Blocking</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-kanban')">📋 Kanban GTD</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-despegue')">🚀 Plan 24h & Antipatrones</button>
+        </div>
+
+        <!-- TAB 1: FODA -->
+        <div id="tab-foda" class="tab-content active">
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-title">🎯 Racional Estratégico</div>
+                <p style="margin-top: 0.5rem; color: var(--text-muted);">
+                    Carlos, el objetivo de este plan es sistematizar tu día a día para balancear de forma óptima la paternidad de tu hija pequeña, tu entrenamiento físico matutino ("el arma del día"), tu trabajo fijo (09:30 a 13:30) y la escala comercial de <a href="https://www.instagram.com/lamarka33/" target="_blank"><strong>La Marca 33</strong></a> (productora de eventos y colectivo de música electrónica de Concepción). Además, buscamos proteger tu RAM mental mediante un <strong>vaciado diario y coordinación fija</strong> de 1 hora con Diego para procesar y priorizar tus pendientes, y potenciar el modelo de <strong>vitrina colaborativa</strong> integrando a otros emprendimientos (como <em>Risalfajores</em>, tatuadores y cremas) en tus eventos.
+                </p>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="card-icon">🌟</span> Fortalezas (Motores)</div>
+                    </div>
+                    <ul class="foda-list">
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Experiencia Validada:</strong> Más de 200 eventos ejecutados exitosamente con <em>La Marca 33</em>.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Activos Propios:</strong> Equipamiento completo de mezcla y amplificación de sonido (cero costo de arriendo).</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Autonomía Inicial:</strong> Vehículo propio para traslado de equipos y logística.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="card-icon">⚠️</span> Debilidades (Frenos)</div>
+                    </div>
+                    <ul class="foda-list">
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Falta de Hábito Matutino:</strong> Dificultad para consolidar el bloque del gimnasio temprano antes de entrar a trabajar.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Eventos a Pérdida:</strong> Incidencia de eventos realizados a pérdida (5-10 ocasiones) principalmente por cumplir.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Riesgo de Desgaste Logístico:</strong> Dependencia del auto actual antes de renovarlo por un furgón.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="card-icon">📈</span> Oportunidades (Palancas)</div>
+                    </div>
+                    <ul class="foda-list">
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>El Arma del Día (Time Blocking):</strong> Bloque fijo matutino de gimnasio 3 veces por semana de 07:30 a 08:45.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Estandarización de Cumpleaños:</strong> Paquetización fija del servicio según cantidad de invitados para asegurar rentabilidad.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Modelo de Vitrina Colaborativa:</strong> Potenciar la integración de otros emprendimientos (tatuadores, cremas, y alianzas con <em>Risalfajores</em>) en los eventos.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Hoja de Ruta de Renovación:</strong> Reparar, vender el auto y adquirir un furgón comercial para traslados.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="card-icon">🚨</span> Amenazas (Riesgos)</div>
+                    </div>
+                    <ul class="foda-list">
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Saturación de RAM:</strong> Pérdida de foco y abrumo entre el trabajo fijo, La Marca 33 y la crianza.</span></li>
+                        <li class="foda-item"><span class="foda-bullet">•</span> <span><strong>Márgenes Estrechos:</strong> Continuar cotizando eventos al ojo, lo que expone a pérdidas de capital.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: IDENTIDADES -->
+        <div id="tab-identidades" class="tab-content">
+            <div class="card">
+                <div class="card-title" style="margin-bottom: 1.5rem;">⚡ Distribución de Energía por Arquetipos</div>
+                
+                <div class="identity-bar">
+                    <div class="identity-info">
+                        <span><strong>1. Familia & Paternidad (Proteger el espacio para tu hija)</strong></span>
+                        <span style="color: var(--accent);">35% Energía</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 35%; background: var(--accent);"></div>
+                    </div>
+                </div>
+
+                <div class="identity-bar">
+                    <div class="identity-info">
+                        <span><strong>2. Sustento (Trabajo Fijo de 09:30 a 13:30)</strong></span>
+                        <span style="color: var(--secondary);">30% Energía</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 30%;"></div>
+                    </div>
+                </div>
+
+                <div class="identity-bar">
+                    <div class="identity-info">
+                        <span><strong>3. Crecimiento (Emprendimiento "La Marca 33" - DJs & Cumpleaños)</strong></span>
+                        <span style="color: var(--primary);">25% Energía</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 25%; background: var(--primary);"></div>
+                    </div>
+                </div>
+
+                <div class="identity-bar">
+                    <div class="identity-info">
+                        <span><strong>4. Salud & Energía (Entrenamiento Gimnasio - "El Arma del Día")</strong></span>
+                        <span style="color: var(--success);">10% Energía (Meta: Subir a 15%)</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 10%; background: var(--success);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: HERRAMIENTAS GALLERY WITH IMAGES AND LIGHTBOX -->
+        <div id="tab-herramientas" class="tab-content">
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                Haz clic sobre las imágenes explicativas para ampliarlas a pantalla completa. Descarga las plantillas Excel oficial de cada herramienta directamente desde sus tarjetas.
+            </p>
+            <div class="tools-grid">
+                <!-- PARETO 80/20 -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Principio de Pareto.png', 'Principio de Pareto (Filtro 80/20)')">
+                        <img src="assets/img/herramientas/Principio de Pareto.webp" data-fallback="assets/img/herramientas/Principio de Pareto.png" alt="Principio de Pareto">
+                        <div class="tool-zoom-btn">🔍 Ampliar</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-title">
+                            <span>Filtro de Foco Único</span>
+                            <span style="color: var(--accent); font-size: 0.85rem;">Pareto 80/20</span>
+                        </div>
+                        <div class="tool-meta">Productividad y Enfoque</div>
+                        <p class="tool-desc">Focalízate en tu producto estrella (cumpleaños estandarizados) para maximizar ingresos con menor fricción operativa y menos horas invertidas.</p>
+                    </div>
+                </div>
+
+                <!-- EISENHOWER -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Matriz de Eisenhower.png', 'Matriz de Eisenhower (Brújula de Prioridades)')">
+                        <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz de Eisenhower">
+                        <div class="tool-zoom-btn">🔍 Ampliar</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-title">
+                            <span>Brújula de Prioridades</span>
+                            <span style="color: var(--primary); font-size: 0.85rem;">M. Eisenhower</span>
+                        </div>
+                        <div class="tool-meta">Gestión del Tiempo</div>
+                        <p class="tool-desc">Diferencia las urgencias operativas del trabajo estratégico (plan de furgón, paquetes de eventos) para delegar o agendar eficazmente.</p>
+                        <div class="tool-footer">
+                            <a href="Plantillas/04_Matriz_Eisenhower_Priorizacion.xlsx" class="download-btn" download>📥 Descargar Excel</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REGLA 50/30/20 -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/La Regla 50 30 20.png', 'Regla 50/30/20 (GPS del Dinero)')">
+                        <img src="assets/img/herramientas/La Regla 50 30 20.webp" data-fallback="assets/img/herramientas/La Regla 50 30 20.png" alt="Regla 50/30/20">
+                        <div class="tool-zoom-btn">🔍 Ampliar</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-title">
+                            <span>GPS del Dinero</span>
+                            <span style="color: var(--secondary); font-size: 0.85rem;">Regla 50/30/20</span>
+                        </div>
+                        <div class="tool-meta">Bienestar y Finanzas</div>
+                        <p class="tool-desc">Divide tus ingresos para cubrir tus necesidades, proteger tus ahorros de renovación y planificar la compra de tu furgón comercial.</p>
+                        <div class="tool-footer">
+                            <a href="Plantillas/02_Registro_de_Gastos_y_Presupuesto_50_30_20.xlsx" class="download-btn" download>📥 Descargar Excel</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GTD KANBAN -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Kanban.png', 'Tablero Kanban (Vaciado Mental)')">
+                        <img src="assets/img/herramientas/Kanban.webp" data-fallback="assets/img/herramientas/Kanban.png" alt="Kanban GTD">
+                        <div class="tool-zoom-btn">🔍 Ampliar</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-title">
+                            <span>Tablero de Control</span>
+                            <span style="color: var(--success); font-size: 0.85rem;">GTD + Kanban</span>
+                        </div>
+                        <div class="tool-meta">Procesos y Operaciones</div>
+                        <p class="tool-desc">Externaliza tareas de La Marca 33 y pendientes personales. Mantén un WIP máximo de 2 tareas en simultáneo.</p>
+                        <div class="tool-footer">
+                            <a href="Plantillas/03_Tablero_Kanban_de_Tareas_GTD.xlsx" class="download-btn" download>📥 Descargar Excel</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TIME BLOCKING -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Time Blocking.png', 'Time Blocking (Bloques de Foco)')">
+                        <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking">
+                        <div class="tool-zoom-btn">🔍 Ampliar</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-title">
+                            <span>El Arma del Día</span>
+                            <span style="color: var(--primary); font-size: 0.85rem;">Time Blocking</span>
+                        </div>
+                        <div class="tool-meta">Gestión del Tiempo</div>
+                        <p class="tool-desc">Bloquea tus mañanas tempranas para el gimnasio y tus tardes para el crecimiento de eventos y la dedicación a tu hija.</p>
+                        <div class="tool-footer">
+                            <a href="Plantillas/01_Planificador_Semanal_y_Bloques_de_Tiempo.xlsx" class="download-btn" download>📥 Descargar Excel</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- METODOS SMART & RUEDA DE LA VIDA -->
+                <div class="tool-card">
+                    <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Metodo SMART.jpg', 'Método SMART & Rueda de la Vida')">
+                        <img src="assets/img/herramientas/Metodo SMART.webp" data-fallback="assets/img/herramientas/Metodo SMART.jpg" alt="Método SMART">
+                        <div class="tool-zoom-btn">🔍 Ampliar</div>
+                    </div>
+                    <div class="tool-body">
+                        <div class="tool-title">
+                            <span>Auditoría de Progreso</span>
+                            <span style="color: var(--accent); font-size: 0.85rem;">SMART & Rueda</span>
+                        </div>
+                        <div class="tool-meta">Estrategia Personal</div>
+                        <p class="tool-desc">Mide periódicamente el balance de tus pilares de salud, paternidad, finanzas y trabajo para recalibrar tus objetivos.</p>
+                        <div class="tool-footer">
+                            <a href="Plantillas/06_Rueda_de_la_Vida_y_Plan_Accion.xlsx" class="download-btn" download>📥 Descargar Excel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: FINANZAS -->
+        <div id="tab-finanzas" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">🎯 Simulador Fondo de Renovación (Furgón)</div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label>Meta de Fondo de Inversión / Furgón ($):</label>
+                        <input type="number" id="meta-fondo" class="form-control" value="3500000" oninput="calcularDespegue()">
+                    </div>
+                    <div class="form-group">
+                        <label>Ahorro Mensual Proyectado ($):</label>
+                        <input type="number" id="ahorro-mensual" class="form-control" value="250000" oninput="calcularDespegue()">
+                    </div>
+                    <div class="calc-result">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Tiempo estimado para alcanzar la meta:</p>
+                        <div class="calc-number" id="resultado-meses">14.0 Meses</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">⚖️ Presupuesto Consciente (50 / 30 / 20)</div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label>Ingreso Mensual Proyectado ($):</label>
+                        <input type="number" id="ingreso-liquido" class="form-control" value="1200000" oninput="calcularPresupuesto()">
+                    </div>
+                    <div style="font-size: 0.85rem; line-height: 1.8;">
+                        <p>🏠 <strong>Necesidades Básicas (50%):</strong> <span id="p-50" style="color: var(--primary); font-weight: bold;">$600.000</span></p>
+                        <p>🎉 <strong>Estilo de Vida & Deseos (30%):</strong> <span id="p-30" style="color: var(--accent); font-weight: bold;">$360.000</span></p>
+                        <p>🚀 <strong>Ahorro / Fondo Furgón (20%):</strong> <span id="p-20" style="color: var(--success); font-weight: bold;">$240.000</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: HORARIO -->
+        <div id="tab-horario" class="tab-content">
+            <div class="card">
+                <div class="card-title">📅 Matriz de Bloques de Tiempo (Time Blocking)</div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+                    Estructura balanceada: Entrenamiento temprano ("el arma del día"), trabajo fijo en la mañana, y tardes dedicadas a tu hija pequeña y a la producción y escala de <em>La Marca 33</em>.
+                </p>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Bloque</th>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>07:30 - 08:45</strong></td>
+                            <td class="block-focus">🏋️ Gimnasio</td>
+                            <td>Dormir / Crianza</td>
+                            <td class="block-focus">🏋️ Gimnasio</td>
+                            <td>Dormir / Crianza</td>
+                            <td class="block-focus">🏋️ Gimnasio</td>
+                        </tr>
+                        <tr>
+                            <td><strong>09:30 - 13:30</strong></td>
+                            <td class="block-job">💼 Trabajo Fijo</td>
+                            <td class="block-job">💼 Trabajo Fijo</td>
+                            <td class="block-job">💼 Trabajo Fijo</td>
+                            <td class="block-job">💼 Trabajo Fijo</td>
+                            <td class="block-job">💼 Trabajo Fijo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>13:30 - 15:00</strong></td>
+                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
+                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
+                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
+                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
+                            <td class="block-rest">🍱 Almuerzo & Recarga</td>
+                        </tr>
+                        <tr>
+                            <td><strong>15:00 - 19:30</strong></td>
+                            <td>👶 Hija / La Marca 33</td>
+                            <td>👶 Hija / La Marca 33</td>
+                            <td>👶 Hija / La Marca 33</td>
+                            <td>👶 Hija / La Marca 33</td>
+                            <td>👶 Hija / Plan Semanal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 6: KANBAN -->
+        <div id="tab-kanban" class="tab-content">
+            <div class="kanban-grid">
+                <div class="kanban-col">
+                    <div class="kanban-header">
+                        <span>📥 Por Hacer</span>
+                        <span style="color: var(--text-muted);">4</span>
+                    </div>
+                    <div class="kanban-card">Responder el Sondeo Maestro de diagnóstico</div>
+                    <div class="kanban-card">Agendar 1 hora diaria de time blocking para vaciado mental y coordinación</div>
+                    <div class="kanban-card">Listar y cotizar reparaciones pendientes del auto</div>
+                    <div class="kanban-card">Estructurar borrador de tramos para paquetes de cumpleaños (La Marca 33)</div>
+                </div>
+
+                <div class="kanban-col" style="border-color: var(--primary);">
+                    <div class="kanban-header">
+                        <span style="color: var(--primary);">⚡ En Ejecución (Max 2)</span>
+                        <span style="color: var(--primary);">2</span>
+                    </div>
+                    <div class="kanban-card" style="border-left: 3px solid var(--primary);">Definir días y horarios fijos de gimnasio matutino</div>
+                    <div class="kanban-card" style="border-left: 3px solid var(--primary);">Configurar carpeta de herramientas del cliente con Diego</div>
+                </div>
+
+                <div class="kanban-col" style="border-color: var(--success);">
+                    <div class="kanban-header">
+                        <span style="color: var(--success);">✅ Completado</span>
+                        <span style="color: var(--success);">2</span>
+                    </div>
+                    <div class="kanban-card" style="border-left: 3px solid var(--success);">Crear expediente del cliente en Clientes Activos</div>
+                    <div class="kanban-card" style="border-left: 3px solid var(--success);">Copiar plantillas y recursos de trabajo AICC</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: PLAN 24H & ANTIPATRONES -->
+        <div id="tab-despegue" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title" style="margin-bottom: 1rem;">🚀 Plan de Acción 24 Horas</div>
+                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>1. Responder el Sondeo Maestro de diagnóstico</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>2. Agendar bloque diario de 1 hora para vaciado mental y coordinación</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>3. Bloquear en agenda los 3 días de gimnasio (07:30 - 08:45)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>4. Anotar desperfectos del auto y cotizar reparación</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;">
+                            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span>5. Trazar borrador de invitados y tarifas para cumpleaños</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" style="margin-bottom: 1rem;">🛡️ Alertas de Antipatrones</div>
+                    
+                    <div class="antipattern-card">
+                        <div class="antipattern-title">🚫 Entrenar "Cuando Quede Tiempo"</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Postergar el gimnasio para la tarde o noche. La fatiga acumulada del día arruinará el hábito. Hazlo temprano antes de entrar a trabajar.</p>
+                    </div>
+
+                    <div class="antipattern-card">
+                        <div class="antipattern-title">🚫 Cotizar Eventos al Ojo</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Dar precios de eventos sin considerar el margen neto mínimo, desgaste de equipos y gasolina, arriesgando ir a pérdida.</p>
+                    </div>
+
+                    <div class="antipattern-card">
+                        <div class="antipattern-title">🚫 Postergar el Arreglo del Auto</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Ignorar desperfectos mecánicos menores hasta que se conviertan en una pana grave que inhabilite el transporte de los eventos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Ampliación de herramienta">
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+
+            const buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function calcularDespegue() {
+            const meta = parseFloat(document.getElementById('meta-fondo').value) || 0;
+            const ahorro = parseFloat(document.getElementById('ahorro-mensual').value) || 1;
+            const meses = (meta / ahorro).toFixed(1);
+            document.getElementById('resultado-meses').innerText = meses + " Meses";
+        }
+
+        function calcularPresupuesto() {
+            const ingreso = parseFloat(document.getElementById('ingreso-liquido').value) || 0;
+            document.getElementById('p-50').innerText = "$" + (ingreso * 0.5).toLocaleString('es-CL');
+            document.getElementById('p-30').innerText = "$" + (ingreso * 0.3).toLocaleString('es-CL');
+            document.getElementById('p-20').innerText = "$" + (ingreso * 0.2).toLocaleString('es-CL');
+        }
+
+        function openLightbox(src, title) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            img.alt = title;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

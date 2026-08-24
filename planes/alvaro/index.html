@@ -1110,8 +1110,100 @@
         .grid-cell.sacred { background: rgba(0, 242, 254, 0.15); color: var(--primary); border: 1px solid rgba(0, 242, 254, 0.3); font-weight: 600; box-shadow: 0 0 10px rgba(0,242,254,0.1); }
         .grid-cell.rest { background: rgba(16, 185, 129, 0.1); color: var(--success); }
     </style>
+
+    <!-- Modular CSS Core & Components (Cache-Busting v3.1) -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.1">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.1">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.1">
+
+    <style>
+        /* REJILLA 2X4 OBLIGATORIA EN CELULARES */
+        @media (max-width: 768px) {
+            .tabs {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.45rem !important;
+                padding: 0.5rem !important;
+                background: rgba(255, 255, 255, 0.03) !important;
+                border: 1px solid #262626 !important;
+                border-radius: 12px !important;
+                margin-bottom: 1.4rem !important;
+                width: 100% !important;
+                overflow-x: visible !important;
+                flex-wrap: wrap !important;
+            }
+
+            .tab-btn {
+                width: 100% !important;
+                padding: 0.65rem 0.4rem !important;
+                font-size: 0.74rem !important;
+                justify-content: center !important;
+                text-align: center !important;
+                gap: 0.35rem !important;
+                border-radius: 8px !important;
+                white-space: normal !important;
+                line-height: 1.25 !important;
+                flex: none !important;
+            }
+
+            .tab-btn.active {
+                background: #ffffff !important;
+                color: #000000 !important;
+                box-shadow: 0 0 14px rgba(255, 255, 255, 0.3) !important;
+                font-weight: 800 !important;
+            }
+        }
+
+        /* Lightbox Fullscreen Modal */
+        #lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+        #lightbox-modal.active {
+            display: flex;
+            animation: fadeIn 0.25s ease;
+        }
+        #lightbox-img {
+            max-width: 92vw;
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.1);
+            border: 1px solid #333;
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #ffffff;
+            font-size: 2.2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+    </style>
+
 </head>
 <body>
+
+    
+    <!-- LIGHTBOX MODAL FOR IMAGES -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="Ampliación de Herramienta">
+    </div>
 
     <div class="container">
         <!-- Header -->
@@ -1389,7 +1481,7 @@
                 <!-- PARETO -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Principio de Pareto.png', 'Principio de Pareto (Filtro 80/20)')">
-                        <img src="Imagenes Herramientas/Principio de Pareto.png" alt="Principio de Pareto">
+                        <img src="assets/img/herramientas/Principio de Pareto.webp" data-fallback="assets/img/herramientas/Principio de Pareto.png" alt="Principio de Pareto">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
@@ -1407,7 +1499,7 @@
                 <!-- EISENHOWER -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Matriz de Eisenhower.png', 'Matriz de Eisenhower (Brújula de Prioridades)')">
-                        <img src="Imagenes Herramientas/Matriz de Eisenhower.png" alt="Matriz de Eisenhower">
+                        <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz de Eisenhower">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
@@ -1428,7 +1520,7 @@
                 <!-- SMART -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Metodo SMART.jpg', 'Método SMART (Metas con Estructura)')">
-                        <img src="Imagenes Herramientas/Metodo SMART.jpg" alt="Método SMART">
+                        <img src="assets/img/herramientas/Metodo SMART.webp" data-fallback="assets/img/herramientas/Metodo SMART.jpg" alt="Método SMART">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
@@ -1449,7 +1541,7 @@
                 <!-- 50/30/20 -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/La Regla 50 30 20.png', 'Regla 50/30/20 (GPS del Dinero)')">
-                        <img src="Imagenes Herramientas/La Regla 50 30 20.png" alt="Regla 50/30/20">
+                        <img src="assets/img/herramientas/La Regla 50 30 20.webp" data-fallback="assets/img/herramientas/La Regla 50 30 20.png" alt="Regla 50/30/20">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
@@ -1470,7 +1562,7 @@
                 <!-- KANBAN + GTD -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Kanban.png', 'Tablero Kanban (Vaciado Mental)')">
-                        <img src="Imagenes Herramientas/Kanban.png" alt="Kanban">
+                        <img src="assets/img/herramientas/Kanban.webp" data-fallback="assets/img/herramientas/Kanban.png" alt="Kanban">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
@@ -1491,7 +1583,7 @@
                 <!-- TIME BLOCKING -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Time Blocking.png', 'Time Blocking (El Reloj de Arena)')">
-                        <img src="Imagenes Herramientas/Time Blocking.png" alt="Time Blocking">
+                        <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
@@ -1512,7 +1604,7 @@
                 <!-- TUCKMAN EXTRA -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Modelo Tuckman.png', 'Modelo de Tuckman (Estados del Equipo)')">
-                        <img src="Imagenes Herramientas/Modelo Tuckman.png" alt="Modelo Tuckman">
+                        <img src="assets/img/herramientas/Modelo Tuckman.webp" data-fallback="assets/img/herramientas/Modelo Tuckman.png" alt="Modelo Tuckman">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
@@ -1530,7 +1622,7 @@
                 <!-- BLUE OCEAN EXTRA -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Estrategia Oceano Azul.jpg', 'Estrategia de Océano Azul (Tu Destino)')">
-                        <img src="Imagenes Herramientas/Estrategia Oceano Azul.jpg" alt="Estrategia Oceano Azul">
+                        <img src="assets/img/herramientas/Estrategia Oceano Azul.webp" data-fallback="assets/img/herramientas/Estrategia Oceano Azul.jpg" alt="Estrategia Oceano Azul">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
@@ -1548,7 +1640,7 @@
                 <!-- VENTANA DE JOHARI -->
                 <div class="tool-card">
                     <div class="tool-img-container" onclick="openLightbox('Imagenes Herramientas/Ventana de Johari.png', 'La Ventana de Johari (Enfrentar la Vergüenza)')">
-                        <img src="Imagenes Herramientas/Ventana de Johari.png" alt="Ventana de Johari" onerror="this.src='https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80'">
+                        <img src="assets/img/herramientas/Ventana de Johari.webp" data-fallback="assets/img/herramientas/Ventana de Johari.png" alt="Ventana de Johari" onerror="this.src='https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80'">
                         <div class="tool-zoom-btn">🔍 Ampliar</div>
                     </div>
                     <div class="tool-body">
