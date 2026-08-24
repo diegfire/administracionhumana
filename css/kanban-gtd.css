@@ -1,12 +1,13 @@
 /* ========================================================= */
-/* TABLERO KANBAN GTD (LÍMITE ESTRICTO WIP = 2)              */
+/* TABLERO KANBAN GTD (LÍMITE ESTRICTO WIP = 2) - RESPONSIVE */
 /* ========================================================= */
 
 .kanban-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
     align-items: start;
+    width: 100%;
 }
 
 .kanban-col {
@@ -17,13 +18,19 @@
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+    min-width: 0; /* Evita que columnas se desborden */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kanban-col:hover {
+    border-color: #383838;
 }
 
 .kanban-col-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 0.6rem;
+    padding-bottom: 0.75rem;
     border-bottom: 1px solid #222;
 }
 
@@ -34,29 +41,35 @@
     color: #ffffff;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .kanban-card-item {
     background: #141414;
-    border: 1px solid #282828;
-    border-radius: 8px;
-    padding: 0.85rem;
+    border: 1px solid #262626;
+    border-radius: 10px;
+    padding: 0.9rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
+    gap: 0.6rem;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .kanban-card-item:hover {
     border-color: #444;
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
 }
 
 .kanban-card-text {
-    font-size: 0.84rem;
-    color: #ddd;
-    line-height: 1.35;
+    font-size: 0.86rem;
+    color: #ececec;
+    line-height: 1.4;
+    word-break: break-word;
 }
 
 .kanban-card-footer {
@@ -64,39 +77,90 @@
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 0.4rem;
+    padding-top: 0.5rem;
     font-size: 0.72rem;
+    gap: 6px;
 }
 
 .kanban-card-actions {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
 }
 
 .btn-card-action {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid #333;
     color: #ccc;
-    padding: 3px 8px;
-    border-radius: 4px;
+    padding: 5px 9px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.72rem;
-    transition: all 0.15s;
+    font-size: 0.75rem;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    min-height: 28px;
 }
 
 .btn-card-action:hover {
     background: #ffffff;
     color: #000000;
     border-color: #ffffff;
+    transform: scale(1.05);
 }
 
 .wip-limit-pill {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid #ffffff;
-    color: #ffffff;
-    padding: 1px 6px;
-    border-radius: 4px;
-    font-size: 0.68rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid #333;
+    color: #aaa;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.72rem;
     font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* ========================================================= */
+/* ADAPTACIÓN MÓVIL Y TABLET INTELIGENTE                     */
+/* ========================================================= */
+
+@media (max-width: 900px) {
+    .kanban-grid {
+        grid-template-columns: repeat(3, minmax(260px, 1fr));
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .kanban-col {
+        scroll-snap-align: start;
+    }
+}
+
+@media (max-width: 640px) {
+    .kanban-grid {
+        display: flex;
+        flex-direction: column;
+        overflow-x: visible;
+        gap: 1.5rem;
+    }
+
+    .kanban-col {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .kanban-card-text {
+        font-size: 0.88rem;
+    }
+
+    .btn-card-action {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        min-width: 34px;
+        min-height: 34px;
+    }
 }
