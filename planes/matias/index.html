@@ -470,34 +470,71 @@
             </div>
         </div>
 
-        <!-- TAB CONTENT: KANBAN -->
+                <!-- TAB CONTENT: KANBAN -->
         <div id="kanban" class="tab-content">
             <div class="card">
-                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;">
-                        📋 Tablero Kanban GTD (Límite Estricto WIP = 2)
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
+                    <span style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:#fff; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-table-columns"></i> Tablero Kanban GTD (Límite Estricto WIP = 2)
                     </span>
-                    <button class="btn-schedule-action" onclick="resetKanbanDefault()" style="color:#aaa;">🔄 Restaurar Tablero</button>
+                    <button class="btn-schedule-action" onclick="resetKanbanDefault()" style="color:#aaa;">
+                        <i class="fa-solid fa-rotate-left"></i> Restaurar Tablero
+                    </button>
                 </div>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
-                    Mati, este tablero es tu escudo contra la parálisis. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>2 tareas simultáneas</strong>. Termina una antes de empezar otra.
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">
+                    Mati, este tablero es tu escudo contra el abrumo y la parálisis. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>máximo 2 tareas simultáneas</strong>. No puedes arrancar una tercera tarea sin haber terminado o movido las que tienes en curso.
                 </p>
 
                 <div class="kanban-grid">
-                    <!-- Columna 1: Por Hacer -->
+                    <!-- Columna 1: Por Empezar -->
                     <div class="kanban-col">
                         <div class="kanban-col-header">
                             <div class="kanban-col-title">
-                                📥 Por Hacer
+                                <i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> Por Empezar
                             </div>
                             <span id="count-todo" class="wip-limit-pill" style="border-color:#555; color:#aaa;">0</span>
                         </div>
-                        <div style="display: flex; gap: 6px;">
-                            <input type="text" id="input-new-todo" placeholder="+ Nueva tarea pendiente..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.8rem;" onkeypress="if(event.key==='Enter') addKanbanTask('todo')">
-                            <button class="btn-card-action" onclick="addKanbanTask('todo')">➕</button>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-todo" placeholder="+ Nueva tarea pendiente..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('todo')">
+                            <button class="btn-card-action" onclick="addKanbanTask('todo')" style="background:#fff; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-todo" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+
+                    <!-- Columna 2: En Ejecución (WIP=2) -->
+                    <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title" style="color: #f59e0b;">
+                                <i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)
+                            </div>
+                            <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-doing" placeholder="+ Tarea en foco ahora..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('doing')">
+                            <button class="btn-card-action" onclick="addKanbanTask('doing')" style="background:#f59e0b; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-doing" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+
+                    <!-- Columna 3: Hito Cumplido -->
+                    <div class="kanban-col" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.02);">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title" style="color: #10b981;">
+                                <i class="fa-solid fa-circle-check"></i> Hito Cumplido
+                            </div>
+                            <span id="count-done" class="wip-limit-pill" style="border-color:#10b981; color:#10b981; background: rgba(16, 185, 129, 0.1);">0</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-done" placeholder="+ Victoria cumplida..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('done')">
+                            <button class="btn-card-action" onclick="addKanbanTask('done')" style="background:#10b981; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-done" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- TAB CONTENT: TOOLS -->
+<!-- TAB CONTENT: TOOLS -->
         <div id="tools" class="tab-content">
             <div class="section-title">
                 <span>Tu Kit de Herramientas de Autonomía</span>
@@ -955,39 +992,31 @@
                 <div class="card">
                     <h3 class="section-title"><span>Tu Plan de Acción: Próximas 24 Horas</span></h3>
                     <ul class="custom-list">
-                        <li><strong>Vaciado Escolar Inicial:</strong> Siéntate con tus padres, abre el Excel [GTD Colegio Maty] y escribe las tareas o exámenes reales de los próximos 7 días.</li>
-                        <li><strong>Montaje del Centro de Operaciones:</strong>
+                        <li><strong>1. Vaciado Escolar Inicial:</strong> Siéntate con tus padres, abre el Excel [GTD Colegio Maty] y escribe las tareas o exámenes reales de los próximos 7 días.</li>
+                        <li><strong>2. Montaje del Centro de Operaciones:</strong>
                             <br>• Dibuja y monta tu tablero Kanban con Post-its en la pared de tu cuarto.
                             <br>• Imprime tu Planificador de Hábitos y pégalo detrás de tu puerta.
                         </li>
-                        <li><strong>El Paso Cero:</strong> Elige un deber escolar que tengas pendiente y trabaja en él exactamente 5 minutos usando un temporizador. Cumplido el tiempo, decide si sigues o te detienes.</li>
-                        <li><strong>Dopamina Sana:</strong> Toma tus lápices o pinceles y dedica 15 minutos continuos en tu cuarto a avanzar en tu proyecto actual de pintura o dibujo.</li>
-                        <li><strong>Cita de Crecimiento Personal (Semanal):</strong> Bloquea una hora fija de tu fin de semana para auditar tus sistemas, reflexionar sobre tu gestión y diseñar la planificación de la próxima semana.</li>
+                        <li><strong>3. El Paso Cero:</strong> Elige un deber escolar que tengas pendiente y trabaja en él exactamente 5 minutos usando un temporizador. Cumplido el tiempo, decide si sigues o te detienes.</li>
+                        <li><strong>4. Dopamina Sana:</strong> Toma tus lápices o pinceles y dedica 15 minutos continuos en tu cuarto a avanzar en tu proyecto actual de pintura o dibujo.</li>
+                        <li><strong>5. Cita de Crecimiento Personal (Semanal):</strong> Bloquea una hora fija de tu fin de semana para auditar tus sistemas, reflexionar sobre tu gestión y diseñar la planificación de la próxima semana.</li>
                     </ul>
                 </div>
 
                 <!-- Antipatrones -->
-                <div class="card" style="border-color: rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.01);">
-                    <h3 class="section-title" style="border-left-color: var(--danger);"><span style="color: var(--danger);">Antipatrones a Evitar (Tus Riesgos)</span></h3>
+                <div class="card">
+                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Autonomía)</span></h3>
                     <ul class="custom-list danger-list">
-                        <li><strong>Planificación de Pánico y Traspaso de Estrés:</strong> Ignorar entregas de 3 semanas y pretender resolverlas 2 días antes de la fecha límite, presionando a tu familia.</li>
-                        <li><strong>Rigidez / Discutir en lugar de Preguntar:</strong> Ponerte defensivo ante el feedback de padres o profesores en vez de consultar dudas con humildad en clase.</li>
-                        <li><strong>Pseudo-Estudio / Pantallas de Evasión:</strong> Estudiar de manera pasiva mediante videos explicativos sin tomar un lápiz ni hacer un solo ejercicio en papel.</li>
-                        <li><strong>Esperar la Indicación o Interrogación:</strong> Mantenerte inactivo esperando a que tu mamá o papá te pregunten qué hacer o te interroguen para planificar tu semana en vez de liderar tu cita semanal de gestión.</li>
-                        <li><strong>Delegar tu Crecimiento:</strong> Tratar el crecimiento personal como una tarea optativa. Si decides no ejecutar tus hábitos, las consecuencias afectarán directamente tu cuenta de confianza y tus libertades.</li>
-                        <li><strong>El Teléfono Fantasma o Evasión de Control:</strong> Intentar usar teléfonos viejos o consolas a escondidas. Esto reseteará tu saldo de confianza a cero inmediato.</li>
+                        <li><strong>🚫 El Teléfono Fantasma:</strong> Buscar e intentar encender dispositivos antiguos o pantallas de terceros. Esto resetea tu saldo de confianza a cero inmediato.</li>
+                        <li><strong>🚫 Pseudo-Estudio:</strong> Pasar el tiempo "estudiando" mediante videos sin tomar apuntes ni hacer ejercicios en papel.</li>
+                        <li><strong>🚫 Planificación de Pánico:</strong> Ignorar un proyecto de 3 semanas y pretender resolverlo 2 días antes de la entrega contagiando estrés a tu familia.</li>
+                        <li><strong>🚫 El Bloqueo del Orgullo:</strong> Discutir en lugar de tener la humildad de preguntar o escuchar el consejo de tus padres.</li>
+                        <li><strong>🚫 Intelectualizar en lugar de Actuar:</strong> Usar lo que sabes sobre hábitos para justificar por qué "no puedes" o por qué "lo harás después".</li>
+                        <li><strong>🚫 Esperar la Interrogación:</strong> Quedarte inactivo esperando que tus padres te digan "estudia" para reaccionar.</li>
+                        <li><strong>🚫 Parálisis de Cuaderno Perfecto:</strong> Bloquearte creyendo que no sabes estructurar. Recuerda la <strong>Regla del 70%</strong>: un resumen tosco de 5 líneas te da puntaje de confianza hoy.</li>
                     </ul>
                 </div>
             </div>
-
-            <div class="card" style="text-align: center; border-color: rgba(99, 102, 241, 0.2); background: rgba(99, 102, 241, 0.01);">
-                <p style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--primary);">
-                    "Mati, el desintoxicarse de la pantalla no es un castigo, es la oportunidad de recuperar el control de tu atención, divertirte con tu pintura y dibujo, y demostrar tu tremendo valor."
-                </p>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; font-weight: 600;">— ADMINISTRACIÓN HUMANA</p>
-            </div>
-        </div>
-    </div>
         </div>
     </div>
 
