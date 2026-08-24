@@ -463,7 +463,13 @@
                     <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;">
                         ⏰ Mapeador Semanal 24 Horas (Matías • Autonomía y Dopamina Sana)
                     </span>
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right: 4px;">
+                            <i class="fa-solid fa-circle" style="font-size:7px;"></i> Auto-guardado en tu equipo
+                        </span>
+                        <button class="btn-schedule-action" id="btn-manual-save-schedule" onclick="manualSaveSchedule()" style="background: #ffffff; color: #000000; font-weight: 800;">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Horario
+                        </button>
                         <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
                         <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
                         <button class="btn-schedule-action" onclick="exportSchedulePNG()">📸 Exportar Imagen (PNG)</button>

@@ -72,6 +72,24 @@ function saveScheduleData() {
     renderScheduleStatistics();
 }
 
+function manualSaveSchedule() {
+    saveScheduleData();
+    const btn = document.getElementById("btn-manual-save-schedule");
+    if (btn) {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Horario Guardado!';
+        btn.style.background = '#10B981';
+        btn.style.color = '#FFFFFF';
+        btn.style.borderColor = '#10B981';
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.background = '';
+            btn.style.color = '';
+            btn.style.borderColor = '';
+        }, 2000);
+    }
+}
+
 function saveScheduleCategories() {
     localStorage.setItem(`${scheduleStoragePrefix}_categories_v2`, JSON.stringify(scheduleCategories));
     renderScheduleBrushChips();
