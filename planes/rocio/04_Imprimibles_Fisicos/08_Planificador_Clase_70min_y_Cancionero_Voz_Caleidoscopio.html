@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador de Clase 70 min & Cancionero — Voz Caleidoscopio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #7C3AED;
+            --ocean: #0284C7;
+            --teal: #0D9488;
+            --amber: #D97706;
+            --border: #CBD5E1;
+            --bg-card: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        @page {
+            size: letter portrait;
+            margin: 0.6cm 0.7cm 0.5cm 0.7cm;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #FFF;
+            padding: 0.8rem;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 8.5pt;
+            line-height: 1.25;
+        }
+
+        header {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-block { display: flex; align-items: center; gap: 0.5rem; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 1.25rem; color: var(--primary); font-weight: 800; }
+        .subtitle { font-size: 0.75rem; color: #64748B; font-weight: 600; }
+
+        .meta-fields {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .meta-line {
+            border-bottom: 1px solid var(--primary);
+            width: 80px;
+            display: inline-block;
+        }
+
+        .grid-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .card-box {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.55rem 0.65rem;
+            background: var(--bg-card);
+            page-break-inside: avoid;
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 0.25rem;
+        }
+
+        .chk-list { list-style: none; }
+
+        .chk-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            padding: 0.22rem 0;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 0.78rem;
+        }
+
+        .chk-item:last-child { border-bottom: none; }
+
+        .chk-box {
+            width: 13px;
+            height: 13px;
+            min-width: 13px;
+            border: 1.5px solid var(--primary);
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 1px;
+            background: #FFF;
+        }
+
+        .timeline-step {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px dashed #E2E8F0;
+        }
+        .step-time {
+            background: var(--accent);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            height: fit-content;
+        }
+
+        .composition-box {
+            grid-column: span 2;
+            background: #FAF5FF;
+            border: 1.5px solid var(--accent);
+            border-radius: 8px;
+            padding: 0.5rem 0.7rem;
+            margin-top: 0.2rem;
+        }
+
+        .table-mini {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+            margin-top: 0.2rem;
+        }
+        .table-mini th {
+            background: #EDE9FE;
+            color: #5B21B6;
+            text-align: left;
+            padding: 3px 6px;
+            font-weight: 700;
+            border: 1px solid var(--border);
+        }
+        .table-mini td {
+            padding: 3px 6px;
+            border: 1px solid var(--border);
+        }
+
+        footer {
+            margin-top: 0.4rem;
+            font-size: 0.7rem;
+            color: #64748B;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding-top: 0.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media print {
+            body { padding: 0; margin: 0; max-width: 100%; font-size: 8pt; background: #FFF; }
+            .no-print { display: none !important; }
+            .card-box { background: #FFF !important; border: 1px solid #475569 !important; }
+            .composition-box { background: #FFF !important; border: 1.5px solid #7C3AED !important; }
+            .chk-box { border-color: #000 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title-block">
+            <h1>Planificador de Clase 70 min & Canto al Aire Libre 🎤🌊</h1>
+            <span class="subtitle">Voz Caleidoscopio • Feldenkrais & Roy Hart</span>
+        </div>
+        <div class="meta-fields">
+            <div>Alumna: <span class="meta-line"></span></div>
+            <div>Fecha: <span class="meta-line"></span></div>
+            <button class="no-print" onclick="window.print()" style="padding: 0.25rem 0.6rem; background: var(--accent); color: white; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">🖨️ Imprimir 1 Hoja Carta</button>
+        </div>
+    </header>
+
+    <div class="grid-main">
+
+        <!-- CARD 1: MOCHILA AL AIRE LIBRE -->
+        <div class="card-box" style="border-left: 4px solid var(--ocean);">
+            <div class="card-title">
+                <span>🎒 Mochila de Canto en Playa / Espacios Abiertos</span>
+                <span style="font-size:0.7rem; color:var(--ocean);">Logística Salida</span>
+            </div>
+            <ul class="chk-list">
+                <li class="chk-item"><span class="chk-box"></span> <div><strong>Micrófono Portátil Inalámbrico:</strong> Con batería al 100%.</div></li>
+                <li class="chk-item"><span class="chk-box"></span> <div><strong>Parlante / Amplificador:</strong> Probado y cargado.</div></li>
+                <li class="chk-item"><span class="chk-box"></span> <div><strong>Mat o Manta de Suelo:</strong> Para ejercicios somáticos en arena/pasto.</div></li>
+                <li class="chk-item"><span class="chk-box"></span> <div><strong>Cancionero en Micas:</strong> Protegido del viento y humedad.</div></li>
+                <li class="chk-item"><span class="chk-box"></span> <div><strong>Botella de Agua & Cortaviento:</strong> Temperatura ambiente.</div></li>
+            </ul>
+        </div>
+
+        <!-- CARD 2: ESTRUCTURA DE CLASE 70 MIN -->
+        <div class="card-box" style="border-left: 4px solid var(--accent);">
+            <div class="card-title">
+                <span>⏱️ Estructura Quirúrgica de Clase (70 Minutos)</span>
+                <span style="font-size:0.7rem; color:var(--accent);">Pedagogía</span>
+            </div>
+            <div class="timeline-step">
+                <span class="step-time">15 min</span>
+                <div><strong>1. Somática Feldenkrais:</strong> Enraizamiento en arena, mandíbula libre, cuello y respiración al ritmo del mar.</div>
+            </div>
+            <div class="timeline-step">
+                <span class="step-time">20 min</span>
+                <div><strong>2. Roy Hart & Micrófono:</strong> Sirenas, resonadores (pecho/cabeza), proyección al horizonte y exploración sin juicio.</div>
+            </div>
+            <div class="timeline-step">
+                <span class="step-time">25 min</span>
+                <div><strong>3. Cancionero & Fraseo:</strong> Trabajo de afinación, dinámica, emoción e interpretación poética en la obra.</div>
+            </div>
+            <div class="timeline-step" style="border-bottom:none; margin-bottom:0;">
+                <span class="step-time">10 min</span>
+                <div><strong>4. Laboratorio de Composición:</strong> Creación melódica, verso propio y registro de tarea en audio.</div>
+            </div>
+        </div>
+
+        <!-- CARD 3: CANCIONERO PEDAGÓGICO DE ORIENTACIÓN -->
+        <div class="card-box" style="grid-column: span 2; border-left: 4px solid var(--teal);">
+            <div class="card-title">
+                <span>🎼 Cancionero Pedagógico de Voz Caleidoscopio (Selección por Foco Somático)</span>
+                <span style="font-size:0.7rem; color:var(--teal);">Repertorio</span>
+            </div>
+            <table class="table-mini">
+                <thead>
+                    <tr>
+                        <th>Canción / Obra</th>
+                        <th>Referente</th>
+                        <th>Género</th>
+                        <th>Nivel</th>
+                        <th>Foco Técnico Somático</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Alfonsina y el Mar</strong></td>
+                        <td>Mercedes Sosa</td>
+                        <td>Zamba / Folclor</td>
+                        <td>Intermedio</td>
+                        <td>Resonancia de pecho, aire dosificado y legato emotivo.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tonada de Luna Llena</strong></td>
+                        <td>Simón Díaz / Lafourcade</td>
+                        <td>Tonada Latam</td>
+                        <td>Inicial-Int.</td>
+                        <td>Apoyo diafragmático, melismas y proyección al horizonte.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Volver a los 17 / Gracias a la Vida</strong></td>
+                        <td>Violeta Parra</td>
+                        <td>Raíz Chilena</td>
+                        <td>Todos</td>
+                        <td>Articulación, expresión Roy Hart y autenticidad visceral.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agua de Beber / Garota de Ipanema</strong></td>
+                        <td>Jobim / Gilberto</td>
+                        <td>Bossa Nova</td>
+                        <td>Intermedio</td>
+                        <td>Máscara facial, sutileza vocal y afinación microtonal.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CARD 4: LABORATORIO DE COMPOSICIÓN & BITÁCORA -->
+        <div class="composition-box">
+            <div class="card-title" style="color:#5B21B6; border-bottom:1px dashed #C4B5FD;">
+                <span>✍️ Laboratorio de Composición de la Alumna: "Tu Propia Voz, Tu Propia Canción"</span>
+                <span style="font-size:0.7rem; color:#7C3AED;">Creación & Cierre</span>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; font-size: 0.78rem; margin-top:0.3rem;">
+                <div>
+                    <strong>1. Emoción / Frase Semilla:</strong>
+                    <div style="border-bottom: 1px dashed #A78BFA; min-height: 1.2rem; margin-top:2px;"></div>
+                    <div style="border-bottom: 1px dashed #A78BFA; min-height: 1.2rem; margin-top:4px;"></div>
+                </div>
+                <div>
+                    <strong>2. Motivo Melódico & Tarea Semanal (Audio):</strong>
+                    <div style="border-bottom: 1px dashed #A78BFA; min-height: 1.2rem; margin-top:2px;"></div>
+                    <div style="border-bottom: 1px dashed #A78BFA; min-height: 1.2rem; margin-top:4px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <span>Voz Caleidoscopio • Rocío • Talcahuano, Chile</span>
+        <span>Administración Humana — Foco, Pedagogía y Bienestar</span>
+    </footer>
+
+</body>
+</html>
