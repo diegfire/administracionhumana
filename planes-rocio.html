@@ -114,6 +114,143 @@
             margin-bottom: 0.8rem; transition: all 0.2s ease;
         }
         .printable-card:hover { border-color: #444; background: #161616; transform: translateX(4px); }
+
+        /* PROMPTS IA & PLAYBOOK STYLES */
+        .prompt-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            transition: all 0.2s ease;
+            margin-bottom: 1.4rem;
+        }
+        .prompt-card:hover {
+            border-color: #444;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+        }
+        .prompt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .prompt-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .prompt-box {
+            background: #090909;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.82rem;
+            color: #d1d5db;
+            line-height: 1.55;
+            white-space: pre-wrap;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        .btn-copy-prompt {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-copy-prompt:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+        .btn-copy-prompt.copied {
+            background: #10b981 !important;
+            color: #ffffff !important;
+        }
+        .toast-notification {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #ffffff;
+            color: #000000;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 999999;
+            animation: fadeIn 0.3s ease;
+        }
+        .ai-step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .ai-step-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .ai-step-num {
+            width: 28px;
+            height: 28px;
+            background: #fff;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.82rem;
+            flex-shrink: 0;
+        }
+        .role-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .role-card:hover {
+            border-color: #444;
+        }
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
@@ -150,6 +287,12 @@
         <img id="lightbox-img" src="" alt="Ampliación de Herramienta">
     </div>
 
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="toast-notification">
+        <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
+        <span id="toast-text">¡Prompt copiado con éxito! Pégalo en ChatGPT.</span>
+    </div>
+
     <!-- MAIN CONTAINER -->
     <div class="container">
         <!-- Header -->
@@ -177,22 +320,34 @@
             <button class="tab-btn active" onclick="switchTab('tab-overview')">
                 <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-foda')">
-                <i class="fa-solid fa-chart-pie"></i> FODA & Matriz CAME
+            <button class="tab-btn" onclick="switchTab('tab-triangulacion')">
+                <i class="fa-solid fa-masks-theater"></i> 4 Frentes & TEA
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-horario')">
+            <button class="tab-btn" onclick="switchTab('tab-ia-chatgpt')" style="border: 1px solid rgba(96, 165, 250, 0.3);">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color: #60a5fa;"></i> Activador IA & Prompts
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-antigravity-tips')" style="border: 1px solid rgba(245,158,11,0.3);">
+                <i class="fa-solid fa-lightbulb" style="color: #f59e0b;"></i> Tips Antigravity
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-foda')">
+                <i class="fa-solid fa-chart-pie"></i> FODA & CAME
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-finanzas')">
+                <i class="fa-solid fa-wallet" style="color: #10b981;"></i> Finanzas 50/30/20
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-kanban')">
+            <button class="tab-btn" onclick="switchTab('tab-kanban')">
                 <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-herramientas')">
-                <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
+            <button class="tab-btn" onclick="switchTab('tab-herramientas')">
+                <i class="fa-solid fa-toolbox"></i> Herramientas
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-imprimibles')">
-                <i class="fa-solid fa-print"></i> Hub de Imprimibles
+            <button class="tab-btn" onclick="switchTab('tab-imprimibles')">
+                <i class="fa-solid fa-print"></i> Imprimibles
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-accion')">
+            <button class="tab-btn" onclick="switchTab('tab-accion')">
                 <i class="fa-solid fa-bolt"></i> Plan 24h & Límites
             </button>
         </nav>
@@ -255,6 +410,406 @@
             </div>
         </div>
 
+        <!-- TAB CONTENT: 4 FRENTES & PROTOCOLOS TEA -->
+        <div id="tab-triangulacion" class="tab-content">
+            <div class="diagnostic-box">
+                <div class="hero-tea-badge">
+                    <i class="fa-solid fa-masks-theater"></i> Triangulación de Roles Operativos & Blindaje TEA
+                </div>
+                <h3><span>Los 4 Frentes de Rocío: Del Desgaste a la Soberanía</span></h3>
+                <p>
+                    Rocío no tiene un solo trabajo, sino una rica multipotencialidad que requiere compartimentación limpia para evitar la sobrecarga sensorial. Al definir límites y acuerdos claros en cada frente, la energía deja de dispersarse en incendios y se enfoca en proyectos de alto valor.
+                </p>
+            </div>
+
+            <!-- GRID DE LOS 4 FRENTES -->
+            <div class="grid-2" style="margin-bottom: 1.5rem;">
+                <!-- Frente 1: Universidad UST -->
+                <div class="role-card" style="border-color: #2563eb44;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="role-badge" style="background: rgba(37,99,235,0.15); color:#60a5fa; border:1px solid #2563eb55;">
+                            🎓 Frente 1 • Academia
+                        </span>
+                        <span style="font-size:0.75rem; color:#888;">Talcahuano / Concepción</span>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size:1.15rem; color:#fff;">Universidad Santo Tomás (Psicopedagogía)</h3>
+                    <p style="font-size:0.82rem; color:#aaa; line-height:1.5;">
+                        Estudios superiores en psicopedagogía. Desafío de transporte para compañeras y movilización estudiantil.
+                    </p>
+                    <ul class="custom-list" style="font-size:0.8rem; margin-top:0.3rem;">
+                        <li><strong>Acción Clave:</strong> Redactar borrador petitorio de transporte estudiantil.</li>
+                        <li><strong>Método de Estudio:</strong> Bloques con técnica "Paso Cero" (5 minutos para arrancar sin parálisis).</li>
+                    </ul>
+                </div>
+
+                <!-- Frente 2: Puya Masajes -->
+                <div class="role-card" style="border-color: #0d948844;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="role-badge" style="background: rgba(13,148,136,0.15); color:#2dd4bf; border:1px solid #0d948855;">
+                            💆‍♀️ Frente 2 • Emprendimiento Somático
+                        </span>
+                        <span style="font-size:0.75rem; color:#888;">Alianza con Charli</span>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size:1.15rem; color:#fff;">Puya Masajes (Masoterapia & Bienestar)</h3>
+                    <p style="font-size:0.82rem; color:#aaa; line-height:1.5;">
+                        Atenciones a domicilio individuales y colectivas. Alianza con Charli para duetos 2x1 y 3x2, compartiendo insumos y reduciendo el desgaste físico.
+                    </p>
+                    <ul class="custom-list" style="font-size:0.8rem; margin-top:0.3rem;">
+                        <li><strong>Paquetización:</strong> Transición de horas sueltas a <em>Planes Terapéuticos de 1 Mes (4 sesiones)</em>.</li>
+                        <li><strong>Logística:</strong> Agrupar domicilios por cuadrantes geográficos con chofer de confianza.</li>
+                    </ul>
+                </div>
+
+                <!-- Frente 3: Voz Caleidoscopio -->
+                <div class="role-card" style="border-color: #7c3aed44;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="role-badge" style="background: rgba(124,58,237,0.15); color:#a78bfa; border:1px solid #7c3aed55;">
+                            🎤 Frente 3 • Pedagogía Vocal
+                        </span>
+                        <span style="font-size:0.75rem; color:#888;">Clases 1h 10min</span>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size:1.15rem; color:#fff;">Voz Caleidoscopio (Clases de Canto)</h3>
+                    <p style="font-size:0.82rem; color:#aaa; line-height:1.5;">
+                        Enseñanza de técnica vocal personalizada. Ciclos formativos de 4 clases ($32.000 CLP por alumno mensual).
+                    </p>
+                    <ul class="custom-list" style="font-size:0.8rem; margin-top:0.3rem;">
+                        <li><strong>Bitácora Análoga:</strong> Registro de avances de cada alumno en cuaderno planificador físico.</li>
+                        <li><strong>Paso Inmediato:</strong> Contactar a Vicente para audio de práctica y coordinación.</li>
+                    </ul>
+                </div>
+
+                <!-- Frente 4: Hogar & Bienestar -->
+                <div class="role-card" style="border-color: #05966944;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="role-badge" style="background: rgba(5,150,105,0.15); color:#34d399; border:1px solid #05966955;">
+                            🏡 Frente 4 • Cimientos & Hogar
+                        </span>
+                        <span style="font-size:0.75rem; color:#888;">Arriendo $0</span>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size:1.15rem; color:#fff;">Hogar en Talcahuano & Nieve</h3>
+                    <p style="font-size:0.82rem; color:#aaa; line-height:1.5;">
+                        Cuidado del hogar y mascota Nieve. Gran disciplina y orden de espacios (10/10 en entorno).
+                    </p>
+                    <ul class="custom-list" style="font-size:0.8rem; margin-top:0.3rem;">
+                        <li><strong>Delegación Exitosa:</strong> Paseo diario de Nieve transferido formalmente a papá.</li>
+                        <li><strong>Palanca Financiera:</strong> Sin arriendo, lo que permite ahorro y reserva de emergencia.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PROTOCOLO TEA & STIMMING -->
+            <div class="card" style="border-color: rgba(217, 119, 6, 0.3); background: rgba(217, 119, 6, 0.02); margin-bottom: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
+                    <span style="font-size: 1.5rem;">🧘‍♀️</span>
+                    <div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #f59e0b; margin: 0;">
+                            Protocolo TEA: Autorregulación Sensorial & Pausas de Stimming
+                        </h3>
+                        <p style="font-size: 0.78rem; color: #888; margin: 0;">Protección de la batería sensorial y prevención de burnout neurodivergente</p>
+                    </div>
+                </div>
+
+                <div class="grid-3" style="gap: 1rem; margin-bottom: 1.2rem;">
+                    <div style="background: #141414; border: 1px solid #282828; border-radius: 10px; padding: 1rem;">
+                        <span style="color: #f59e0b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">🌅 Pausa Mañana (10:15)</span>
+                        <h4 style="font-size: 0.95rem; color: #fff; margin: 0.3rem 0;">15 Min • Descompresión</h4>
+                        <p style="font-size: 0.78rem; color: #aaa;">Movimiento libre corporal, estiramientos suaves o música instrumental en silencio sensorial.</p>
+                    </div>
+                    <div style="background: #141414; border: 1px solid #282828; border-radius: 10px; padding: 1rem;">
+                        <span style="color: #f59e0b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">🌇 Pausa Tarde (16:45)</span>
+                        <h4 style="font-size: 0.95rem; color: #fff; margin: 0.3rem 0;">15 Min • Cero Pantallas</h4>
+                        <p style="font-size: 0.78rem; color: #aaa;">Desconexión total previa a las atenciones de masajes o estudio. Cero lectura en celulares pequeños.</p>
+                    </div>
+                    <div style="background: #141414; border: 1px solid #282828; border-radius: 10px; padding: 1rem;">
+                        <span style="color: #f59e0b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">🌙 Rutina Nocturna (Pre-cama)</span>
+                        <h4 style="font-size: 0.95rem; color: #fff; margin: 0.3rem 0;">10 Min • Vaciado Análogo</h4>
+                        <p style="font-size: 0.78rem; color: #aaa;">Vaciado mental en cuaderno de papel físico para desactivar pensamientos intrusivos antes de dormir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: ACTIVADOR IA & CHATGPT -->
+        <div id="tab-ia-chatgpt" class="tab-content">
+            <div class="diagnostic-box" style="border-color: rgba(96, 165, 250, 0.4); background: rgba(96, 165, 250, 0.03);">
+                <div class="hero-tea-badge" style="background: rgba(96, 165, 250, 0.1); border-color: rgba(96, 165, 250, 0.3); color: #60a5fa;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Activador IA & Playbook de Prompts
+                </div>
+                <h3><span>IA Generativa para Reducir la Fricción Operativa</span></h3>
+                <p>
+                    Usa estos prompts prediseñados para resolver en segundos las tareas que demandan energía mental: redactar propuestas, organizar tus clases de canto, estructurar los duetos con Charli o vaciar tu mente.
+                </p>
+
+                <!-- PASOS DE USO -->
+                <div class="ai-step-grid" style="margin-top: 1.2rem;">
+                    <div class="ai-step-card">
+                        <div class="ai-step-num">1</div>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Copia el Prompt</div>
+                            <div style="font-size: 0.74rem; color: #888;">Haz clic en el botón blanco del prompt que necesites.</div>
+                        </div>
+                    </div>
+                    <div class="ai-step-card">
+                        <div class="ai-step-num">2</div>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Pégalo en ChatGPT</div>
+                            <div style="font-size: 0.74rem; color: #888;">Agrega tus notas o audios para que te entregue el resultado listo.</div>
+                        </div>
+                    </div>
+                    <div class="ai-step-card">
+                        <div class="ai-step-num">3</div>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Aplica sin Fricción</div>
+                            <div style="font-size: 0.74rem; color: #888;">Copia el mensaje a WhatsApp o anótalo en tu cuaderno físico.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMPT 0: MAESTRO UNIVERSAL PARA CHATS EXISTENTES -->
+            <div class="prompt-card" style="border: 1px solid rgba(96, 165, 250, 0.4); background: rgba(96, 165, 250, 0.03);">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(96, 165, 250, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.4);">
+                            <i class="fa-solid fa-brain"></i> Extracción Universal • Para Chats Existentes
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            🌟 Prompt Maestro • Volcar Contexto Completo para Antigravity
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-universal-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt Maestro
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #bbb; margin-bottom: 0.4rem;">
+                    Pega este prompt al final de cualquier conversación con reflexiones o ideas en ChatGPT para extraer un resumen quirúrgico listo para tu Plan de Vuelo.
+                </p>
+                <div class="prompt-box" id="prompt-universal-text">Actúa como un sintetizador de contexto para mi sistema operativo en Administración Humana (Antigravity).
+Por favor, analiza todo lo que hemos conversado en este chat y extrae un resumen estructurado bajo el formato "Ficha de Extracción para Antigravity".
+
+Incluye exclusivamente:
+1. Decisiones ya tomadas (lo que ya está definido y no se discute más).
+2. Restricciones duras (tiempos no negociables, límites de energía sensorial TEA, cuidados médicos).
+3. Datos clave & Números (precios, horas, cantidades de alumnos/clientes).
+4. Ideas & Proyectos pendientes (propuestas para aterrizar en micro-tareas).
+5. Cuellos de botella o preocupaciones actuales (lo que está frenando el avance).
+
+Entrega el resultado en Markdown limpio, con viñetas y tablas si aplica, listo para guardar en mi carpeta de Antigravity.</div>
+            </div>
+
+            <!-- PROMPT 1: PUYA MASAJES -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(13, 148, 136, 0.15); color: #2dd4bf; border: 1px solid rgba(13, 148, 136, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 02_Puya_Masajes
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            💆‍♀️ Módulo 1 • Paquetización Plan 1 Mes & Copys WhatsApp con Charli
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-puya-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Genera la propuesta de valor del <em>Plan Terapéutico 1 Mes (4 sesiones)</em> y el kit de 3 copys de WhatsApp para atenciones en dueto 2x1 y 3x2 con Charli.
+                </p>
+                <div class="prompt-box" id="prompt-puya-text">Actúa como mi consultor de gestión de proyectos y bienestar en Administración Humana.
+Tengo el proyecto de formalizar mi emprendimiento "Puya Masajes" en Talcahuano y Concepción.
+
+Por favor, genera un documento estructurado en formato Markdown listo para guardar en "02_Puya_Masajes/Propuesta_Plan_Terapeutico_1_Mes.md" con:
+
+1. Propuesta de Valor del "Plan Terapéutico 1 Mes":
+   - 4 sesiones de masoterapia personalizada (evaluación inicial con anamnesis + seguimiento evolutivo).
+   - Enfoque de alivio descontracturante y regulación sensorial profunda.
+2. Estructura de Precios y Beneficio:
+   - Comparativa de comprar 4 sesiones sueltas vs. el Plan Mensual con descuento preferencial y reserva garantizada de horario semanal.
+3. Kit de 3 Copys de WhatsApp para Difusión:
+   - Mensaje 1 (Individual): Lanzamiento del Plan Mensual para clientes habituales.
+   - Mensaje 2 (Duetos con Charli 2x1): Invitación a experiencia simultánea para parejas o amigas.
+   - Mensaje 3 (Grupal 3x2): Promoción especial para feriados, docentes o días de autocuidado.
+4. Políticas Claras:
+   - Aviso de reprogramación con 24h de anticipación.
+   - Duración de validez del paquete (4 semanas).</div>
+            </div>
+
+            <!-- PROMPT 2: CLASES DE CANTO -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(124, 58, 237, 0.15); color: #a78bfa; border: 1px solid rgba(124, 58, 237, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 03_Clases_de_Canto
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            🎤 Módulo 2 • Voz Caleidoscopio: Clases & Bitácora Alumnos
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-canto-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Estructura las clases de 1h 10 min, el formato de ciclo de 4 sesiones ($32.000) y la plantilla de bitácora análoga para registro de alumnos.
+                </p>
+                <div class="prompt-box" id="prompt-canto-text">Actúa como mi asesor pedagógico vocal en Administración Humana.
+Necesito estructurar mi servicio de clases de canto "Voz Caleidoscopio".
+
+Por favor genera:
+1. Estructura de la Sesión de 1h 10 minutos (70 min):
+   - 0-10 min: Conexión corporal, alineación postural y respiración diafragmática.
+   - 10-30 min: Vocalización progresiva y colocación resonancial.
+   - 30-60 min: Trabajo de repertorio y aplicación técnica en canciones elegidas por el alumno.
+   - 60-70 min: Vuelta a la calma vocal y fijación de tareas análogas para la semana.
+2. Formato de Ciclos Mensuales:
+   - Ciclo de 4 clases ($32.000 CLP).
+3. Mensajes de WhatsApp:
+   - Mensaje de Bienvenida con instrucciones para la primera clase.
+   - Mensaje de seguimiento posterior a la clase con audio de práctica recomendado.
+4. Plantilla de Bitácora Física:
+   - Campos esenciales para anotar en mi cuaderno planificador (Rango vocal, repertorio, debilidades técnicas, avances).</div>
+            </div>
+
+            <!-- PROMPT 3: UNIVERSIDAD UST & ESTUDIO -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(37, 99, 235, 0.15); color: #60a5fa; border: 1px solid rgba(37, 99, 235, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 01_Universidad_Psicopedagogia
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            🎓 Módulo 3 • Petitorio UST & Estudio sin Parálisis (Paso Cero)
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-ust-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Redacta el borrador formal del petitorio de transporte estudiantil UST y genera una rutina de estudio con la regla de los 5 minutos.
+                </p>
+                <div class="prompt-box" id="prompt-ust-text">Actúa como mi asesor de comunicación y gestión académica en Administración Humana.
+Soy estudiante de Psicopedagogía en Universidad Santo Tomás.
+
+Por favor genera:
+1. Borrador Formal de Petitorio Estudiantil sobre Transporte:
+   - Redacción asertiva, respetuosa y fundamentada dirigida a la Dirección de Carrera / Asuntos Estudiantiles.
+   - Argumentos sobre las dificultades de locomoción nocturna/vespertina en Talcahuano y Concepción que afectan a estudiantes y compañeras.
+   - Propuesta de soluciones viables (ajuste de horarios de salida, coordinación de transporte seguro o flexibilidad académica).
+2. Protocolo de Estudio "Paso Cero" (Anti-abrumamiento):
+   - Cómo arrancar una sesión de estudio en 5 minutos sin caer en procrastinación.
+   - Regla de resúmenes de 5 líneas para evitar fatiga de lectura en pantallas.</div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: TIPS ANTIGRAVITY -->
+        <div id="tab-antigravity-tips" class="tab-content">
+            <div class="diagnostic-box" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.03);">
+                <div class="hero-tea-badge" style="background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); color: #f59e0b;">
+                    <i class="fa-solid fa-lightbulb"></i> Guía & Tips Antigravity
+                </div>
+                <h3><span>Buenas Prácticas para Sacar el Máximo a tu Plan de Vuelo</span></h3>
+                <p>
+                    Tu Plan de Vuelo 2.0 es tu sistema operativo personal. Aquí tienes los 4 hábitos clave para mantenerlo vivo, ligero y sin fricción técnica.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.8rem;">
+                        <span style="font-size:1.4rem;">📱</span>
+                        <h3 style="font-size:1rem; color:#fff; margin:0;">1. Instálalo como App en tu Celular</h3>
+                    </div>
+                    <p style="font-size:0.82rem; color:#aaa; line-height:1.5;">
+                        En <strong>iPhone (Safari)</strong>: Toca el botón <em>Compartir</em> y selecciona <em>"Agregar a pantalla de inicio"</em>.<br>
+                        En <strong>Android (Chrome)</strong>: Toca los 3 puntos y presiona <em>"Instalar aplicación"</em> o <em>"Agregar a pantalla principal"</em>.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.8rem;">
+                        <span style="font-size:1.4rem;">💬</span>
+                        <h3 style="font-size:1rem; color:#fff; margin:0;">2. Botón WhatsApp Directo con Diego</h3>
+                    </div>
+                    <p style="font-size:0.82rem; color:#aaa; line-height:1.5;">
+                        Usa el <strong>botón verde flotante</strong> en la esquina inferior derecha. Al tocarlo, detecta automáticamente en qué módulo estás parada y te abre el chat de WhatsApp con Diego para enviar texto, notas de voz o capturas de pantalla.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.8rem;">
+                        <span style="font-size:1.4rem;">🧘‍♀️</span>
+                        <h3 style="font-size:1rem; color:#fff; margin:0;">3. Regla del 70% & Cero Pantallas</h3>
+                    </div>
+                    <p style="font-size:0.82rem; color:#aaa; line-height:1.5;">
+                        No busques perfección en tus días de alta demanda sensorial. Si completas el 70% de tus bloques protegidos (Stimming + 2 tareas WIP en Kanban), tu jornada fue un éxito rotundo. En tus pausas, prefiere papel o descanso visual.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.8rem;">
+                        <span style="font-size:1.4rem;">🖨️</span>
+                        <h3 style="font-size:1rem; color:#fff; margin:0;">4. Combina lo Digital con lo Análogo</h3>
+                    </div>
+                    <p style="font-size:0.82rem; color:#aaa; line-height:1.5;">
+                        Aprovecha el <strong>Hub de Imprimibles</strong> para tener tus fichas clínicas de masajes y tu planificador semanal pegados en tu espacio de trabajo. El soporte físico reduce drásticamente la fatiga visual.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: FINANZAS 50/30/20 -->
+        <div id="tab-finanzas" class="tab-content">
+            <div class="diagnostic-box" style="border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.03);">
+                <div class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #10b981;">
+                    <i class="fa-solid fa-wallet"></i> Estrategia Financiera: Regla 50/30/20 & Reserva
+                </div>
+                <h3><span>Capitalizando el Costo de Arriendo $0 en Talcahuano</span></h3>
+                <p>
+                    El no pago de arriendo es tu palanca de aceleración financiera más potente. Esta estructura te permite bajar la presión de los gastos fijos del 70% al 50%, aumentar tu presupuesto de ocio y bienestar al 30% y construir tu Fondo de Emergencia de 3 meses.
+                </p>
+            </div>
+
+            <!-- CARDS DE ESTRUCTURA 50/30/20 -->
+            <div class="grid-3" style="gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="stat-card" style="border-color: rgba(59, 130, 246, 0.4);">
+                    <span class="stat-val" style="color: #60a5fa;">50%</span>
+                    <span class="stat-lbl">Necesidades Básicas</span>
+                    <span style="font-size: 0.75rem; color: #888;">Gastos esenciales optimizados gracias a $0 arriendo.</span>
+                </div>
+                <div class="stat-card" style="border-color: rgba(236, 72, 153, 0.4);">
+                    <span class="stat-val" style="color: #f472b6;">30%</span>
+                    <span class="stat-lbl">Ocio & Autocuidado (TEA)</span>
+                    <span style="font-size: 0.75rem; color: #888;">Esparcimiento, descanso y bienestar sin culpa.</span>
+                </div>
+                <div class="stat-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                    <span class="stat-val" style="color: #10b981;">20%</span>
+                    <span class="stat-lbl">Fondo de Emergencia</span>
+                    <span style="font-size: 0.75rem; color: #888;">Meta: 3 meses de colchón de seguridad (~$1.050.000).</span>
+                </div>
+            </div>
+
+            <!-- DETALLE DE INGRESOS Y PROYECCIÓN -->
+            <div class="grid-2">
+                <div class="card">
+                    <h3 class="section-title"><span>Estructura Actual de Ingresos</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>💆‍♀️ Puya Masajes:</strong> 2 a 5 clientes/sem ($14.000 a $21.000 por sesión). Estimado semanal: ~$28.000 a $105.000 CLP.</li>
+                        <li><strong>🎤 Voz Caleidoscopio:</strong> 2 a 5 alumnos/sem ($8.000/clase, ciclos de 4 clases = $32.000/alumno). Estimado semanal: ~$16.000 a $40.000 CLP.</li>
+                        <li><strong>🤝 Economía de Trueque:</strong> Amortigua costos profesionales y personales directos.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 class="section-title"><span>Palanca: Paquetización en Planes Mensuales</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>Escenario A (5 Alumnos Canto + 4 Planes Puya):</strong> Flujo mensual garantizado de ~$400.000 CLP.</li>
+                        <li><strong>Escenario B (5 Alumnos Canto + 8 Planes Puya con Charli):</strong> Flujo mensual de ~$640.000 a $800.000 CLP.</li>
+                        <li><strong>Regla de Oro:</strong> El día 1 de cada mes, transferir automáticamente el 20% a tu subcuenta de reserva intocable.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <!-- TAB CONTENT: FODA -->
         <div id="tab-foda" class="tab-content">
@@ -672,6 +1227,40 @@
                 navigator.clipboard.writeText(p.innerText).then(() => {
                     alert("¡Guion copiado al portapapeles!");
                 });
+            }
+        }
+
+        function copyPromptText(elementId, btn) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const textToCopy = el.innerText || el.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                if (btn) {
+                    btn.classList.add('copied');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado!';
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                        btn.innerHTML = originalText;
+                    }, 2500);
+                }
+                showToast("¡Prompt copiado al portapapeles! Pégalo en ChatGPT.");
+            }).catch(err => {
+                console.error("Error al copiar:", err);
+                prompt("Copia manualmente el texto:", textToCopy);
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById("toast-notification");
+            const txt = document.getElementById("toast-text");
+            if (toast) {
+                if (txt && msg) txt.innerText = msg;
+                toast.style.display = "flex";
+                setTimeout(() => {
+                    toast.style.display = "none";
+                }, 3000);
             }
         }
 
