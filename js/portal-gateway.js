@@ -83,3 +83,26 @@ function switchTab(tabId) {
         if (matchingBtn) matchingBtn.classList.add('active');
     }
 }
+
+// Auto-resolve relative asset/printable/template paths based on URL context
+function resolveAssetLinks() {
+    const isSub = window.location.pathname.includes('/planes/') || window.location.pathname.includes('/02_CLIENTES_ACTIVOS/');
+    const isLocalFile = window.location.protocol.startsWith('file');
+
+    // Si estamos en la raíz web (ej: /planes-rocio.html), prefijar con planes/<clientId>/
+    if (!isSub && !isLocalFile) {
+        const clientId = (window.CLIENT_CONFIG && window.CLIENT_CONFIG.clientId) ? window.CLIENT_CONFIG.clientId : "rocio";
+        document.querySelectorAll('a[href^="04_Imprimibles_Fisicos/"], a[href^="Plantillas/"]').forEach(a => {
+            const href = a.getAttribute('href');
+            if (!href.startsWith('planes/') && !href.startsWith('http')) {
+                a.setAttribute('href', `planes/${clientId}/${href}`);
+            }
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', resolveAssetLinks);
+} else {
+    resolveAssetLinks();
+}

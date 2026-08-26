@@ -1547,6 +1547,18 @@ Por favor genera:
 
         document.addEventListener('DOMContentLoaded', () => {
             const isSub = window.location.pathname.includes('/planes/') || window.location.pathname.includes('/02_CLIENTES_ACTIVOS/');
+            const isLocalFile = window.location.protocol.startsWith('file');
+
+            // Si está en la raíz web (ej: /planes-rocio.html), ajustar hrefs a planes/rocio/
+            if (!isSub && !isLocalFile) {
+                document.querySelectorAll('a[href^="04_Imprimibles_Fisicos/"], a[href^="Plantillas/"]').forEach(a => {
+                    const href = a.getAttribute('href');
+                    if (!href.startsWith('planes/') && !href.startsWith('http')) {
+                        a.setAttribute('href', `planes/rocio/${href}`);
+                    }
+                });
+            }
+
             document.querySelectorAll('.image-preview img, .tool-box img, .card img').forEach(img => {
                 img.style.cursor = 'zoom-in';
                 img.setAttribute('title', 'Haz clic para ampliar');
