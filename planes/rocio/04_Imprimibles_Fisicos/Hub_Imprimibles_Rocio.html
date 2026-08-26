@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Maestro de Imprimibles Físicos — Rocío • Administración Humana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #0284C7;
+            --purple: #7C3AED;
+            --teal: #0D9488;
+            --amber: #D97706;
+            --emerald: #059669;
+            --rose: #E11D48;
+            --border: #CBD5E1;
+            --bg-card: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        @page {
+            size: letter portrait;
+            margin: 0.6cm 0.7cm 0.5cm 0.7cm;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #0B0F17;
+            padding: 0;
+            margin: 0;
+            font-size: 8.5pt;
+            line-height: 1.25;
+        }
+
+        /* ── TOOLBAR DE CONTROL (NO-PRINT) ── */
+        .hub-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #0F172A;
+            border-bottom: 2px solid var(--accent);
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .hub-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #FFF;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .hub-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .select-sheet {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btn-hub {
+            background: var(--accent);
+            color: #FFF;
+            border: none;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-hub:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-hub-secondary { background: #334155; color: #FFF; }
+        .btn-hub-emerald { background: var(--emerald); }
+
+        /* ── CONTENEDOR DE PÁGINAS ── */
+        .hub-container {
+            max-width: 900px;
+            margin: 1.5rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* ── HOJA INDIVIDUAL (1 PÁGINA CARTA) ── */
+        .sheet-page {
+            background: #FFF;
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+            page-break-after: always;
+            break-after: page;
+            min-height: 10.2in;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sheet-page:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        /* ── ELEMENTOS COMUNES DE HOJA ── */
+        header.sheet-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-block { display: flex; align-items: center; gap: 0.5rem; }
+        h1.sheet-h1 { font-family: 'Outfit', sans-serif; font-size: 1.22rem; color: var(--primary); font-weight: 800; }
+        .subtitle { font-size: 0.74rem; color: #64748B; font-weight: 600; }
+
+        .meta-fields {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .meta-line {
+            border-bottom: 1px solid var(--primary);
+            width: 70px;
+            display: inline-block;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .grid-3col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .grid-4col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .card-box {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.55rem 0.65rem;
+            background: var(--bg-card);
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 0.25rem;
+        }
+
+        .chk-list { list-style: none; }
+
+        .chk-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            padding: 0.22rem 0;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 0.78rem;
+        }
+        .chk-item:last-child { border-bottom: none; }
+
+        .chk-box {
+            width: 13px;
+            height: 13px;
+            min-width: 13px;
+            border: 1.5px solid var(--primary);
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 1px;
+            background: #FFF;
+        }
+
+        .table-mini {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        .table-mini th {
+            background: #EDE9FE;
+            color: #5B21B6;
+            text-align: left;
+            padding: 3px 6px;
+            font-weight: 700;
+            border: 1px solid var(--border);
+        }
+        .table-mini td {
+            padding: 3px 6px;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-step {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px dashed #E2E8F0;
+        }
+        .step-time {
+            background: var(--purple);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            height: fit-content;
+        }
+
+        footer.sheet-footer {
+            margin-top: 0.4rem;
+            font-size: 0.7rem;
+            color: #64748B;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding-top: 0.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ── AJUSTES DE IMPRESIÓN ── */
+        @media print {
+            body { background: #FFF !important; padding: 0 !important; margin: 0 !important; }
+            .no-print, .hub-toolbar { display: none !important; }
+            .hub-container { max-width: 100% !important; margin: 0 !important; gap: 0 !important; }
+            .sheet-page {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                min-height: 100vh !important;
+            }
+            .chk-box { border-color: #000 !important; }
+            .card-box { background: #FFF !important; border: 1px solid #475569 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOOLBAR SUPERIOR -->
+    <div class="hub-toolbar no-print">
+        <div class="hub-title">
+            <span>🖨️ Hub Maestro de Imprimibles</span>
+            <span style="font-size:0.75rem; color:#94A3B8; font-weight:600;">• Rocío (Talcahuano)</span>
+        </div>
+        <div class="hub-controls">
+            <select id="sheetSelector" class="select-sheet" onchange="filterSheet(this.value)">
+                <option value="all">📚 Ver Cuadernillo Completo (9 Hojas)</option>
+                <option value="hoja-1">01. Planificador Semanal & Stimming TEA</option>
+                <option value="hoja-2">02. Matriz Priorización Eisenhower</option>
+                <option value="hoja-3">03. Checklist Vaciado Nocturno & Stimming</option>
+                <option value="hoja-4">04. Planilla Presupuesto 50/30/20</option>
+                <option value="hoja-5">05. Ficha Anamnesis Puya Masajes</option>
+                <option value="hoja-6">06. Checklists Maestros Operativos & TEA</option>
+                <option value="hoja-7">07. Guía Visual FODA & Matriz CAME</option>
+                <option value="hoja-8">08. Planificador Clase 70m & Cancionero</option>
+                <option value="hoja-9">09. Ficha Inventario de Resultados & Sesión</option>
+            </select>
+            <button class="btn-hub" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir</button>
+            <button class="btn-hub btn-hub-emerald" onclick="showAllAndPrint()"><i class="fa-solid fa-book"></i> Imprimir Cuadernillo Completo</button>
+            <a href="javascript:history.back()" class="btn-hub btn-hub-secondary"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DE TODAS LAS HOJAS -->
+    <div class="hub-container">
+
+        <!-- ==========================================
+             HOJA 1: PLANIFICADOR SEMANAL & STIMMING TEA
+        =========================================== -->
+        <div id="hoja-1" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--teal);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Planificador Semanal & Pausas de Stimming TEA 🧘‍♀️📅</h1>
+                        <span class="subtitle">Administración Humana • Hoja 01</span>
+                    </div>
+                    <div class="meta-fields">
+                        <div>Semana: <span class="meta-line"></span></div>
+                    </div>
+                </header>
+
+                <div class="grid-2col">
+                    <div class="card-box" style="border-left: 4px solid var(--accent);">
+                        <div class="card-title"><span>🎓 Bloques de Foco UST (Psicopedagogía)</span><span style="font-size:0.7rem; color:var(--accent);">90 min c/u</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div><strong>Bloque 1:</strong> Lecturas impresas sin pantallas de celular.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div><strong>Bloque 2:</strong> Redacción de informes y avances académicos.</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--teal);">
+                        <div class="card-title"><span>💆‍♀️ Puya Masajes & 🎤 Voz Caleidoscopio</span><span style="font-size:0.7rem; color:var(--teal);">Atenciones</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div><strong>Puya Masajes:</strong> Atenciones zonificadas en Talcahuano.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div><strong>Voz Caleidoscopio:</strong> Clases de 70 min con mochila al aire libre.</div></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card-box" style="margin-top:0.6rem; border-left: 4px solid var(--amber);">
+                    <div class="card-title"><span>🧘 Protocolo Innegociable de Stimming (TEA)</span><span style="font-size:0.7rem; color:var(--amber);">Autorregulación</span></div>
+                    <div class="grid-2col">
+                        <div style="background:#FFF; border:1px solid #E2E8F0; padding:0.4rem 0.6rem; border-radius:6px;">
+                            <strong style="color:var(--amber);">🌅 Pausa Mañana (10:15 - 15 min):</strong>
+                            <p style="font-size:0.75rem; color:#475569;">Movimiento libre corporal, estiramiento y silencio sensorial.</p>
+                        </div>
+                        <div style="background:#FFF; border:1px solid #E2E8F0; padding:0.4rem 0.6rem; border-radius:6px;">
+                            <strong style="color:var(--amber);">🌇 Pausa Tarde (16:45 - 15 min):</strong>
+                            <p style="font-size:0.75rem; color:#475569;">Desconexión total y cero pantallas antes de atenciones o estudio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-box" style="margin-top:0.6rem;">
+                    <div class="card-title"><span>🗓️ Registro Diario de Adherencia (Lunes a Domingo)</span></div>
+                    <table class="table-mini">
+                        <thead><tr><th>Día</th><th>UST (90m)</th><th>Puya / Canto</th><th>Stimming 10:15</th><th>Stimming 16:45</th><th>Vaciado Nocturno</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Lunes</strong></td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+                            <tr><td><strong>Martes</strong></td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+                            <tr><td><strong>Miércoles</strong></td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+                            <tr><td><strong>Jueves</strong></td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+                            <tr><td><strong>Viernes</strong></td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+                            <tr><td><strong>Sábado</strong></td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+                            <tr><td><strong>Domingo</strong></td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Rocío • Talcahuano</span><span>Hoja 01 / 09 • Administración Humana</span></footer>
+        </div>
+
+
+        <!-- ==========================================
+             HOJA 2: MATRIZ DE PRIORIZACIÓN EISENHOWER
+        =========================================== -->
+        <div id="hoja-2" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--rose);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Matriz de Priorización de Incendios (Eisenhower) 🔥📋</h1>
+                        <span class="subtitle">Administración Humana • Hoja 02</span>
+                    </div>
+                    <div class="meta-fields"><div>Semana: <span class="meta-line"></span></div></div>
+                </header>
+
+                <div class="grid-2col">
+                    <!-- Q1 -->
+                    <div class="card-box" style="border-left: 4px solid var(--rose); background:#FFF1F2;">
+                        <div class="card-title"><span style="color:var(--rose);">⚡ 1. HACER YA (Urgente + Importante)</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Registro de técnicas vocales de canto en cuaderno.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Atenciones y confirmaciones de masajes del día.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Entrega de informes universitarios con fecha límite.</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="card-box" style="border-left: 4px solid var(--accent); background:#F0F9FF;">
+                        <div class="card-title"><span style="color:var(--accent);">📅 2. PLANIFICAR (No Urgente + Importante)</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Propuesta del <em>Plan Terapéutico 1 Mes</em> (Puya Masajes).</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Coordinación de duetos 2x1 y 3x2 con Charli.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Plan de ahorro para la Certificación Feldenkrais.</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="card-box" style="border-left: 4px solid var(--amber); background:#FEF3C7;">
+                        <div class="card-title"><span style="color:var(--amber);">👥 3. DELEGAR (Urgente + No Importante)</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Paseo diario de la perrita Nieve formalizado a papá.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Compras menores o mandados no pedagógicos.</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="card-box" style="border-left: 4px solid #64748B; background:#F1F5F9;">
+                        <div class="card-title"><span style="color:#475569;">🚫 4. ELIMINAR (No Urgente + No Importante)</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Lecturas densas en pantallas pequeñas de celular.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Acumular papel suelto sin vaciar en libreta.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Vender masajes por hora suelta sin paquetizar.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Rocío • Talcahuano</span><span>Hoja 02 / 09 • Administración Humana</span></footer>
+        </div>
+
+
+        <!-- ==========================================
+             HOJA 3: CHECKLIST VACIADO NOCTURNO & STIMMING
+        =========================================== -->
+        <div id="hoja-3" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--purple);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Checklist Diario: Vaciado Nocturno & Cero Pantallas 🌙✍️</h1>
+                        <span class="subtitle">Administración Humana • Hoja 03</span>
+                    </div>
+                    <div class="meta-fields"><div>Mes: <span class="meta-line"></span></div></div>
+                </header>
+
+                <div class="card-box" style="border-left: 4px solid var(--purple); margin-bottom:0.6rem;">
+                    <div class="card-title"><span>🌙 Protocolo de Cierre en Papel (10 min pre-cama)</span></div>
+                    <p style="font-size:0.78rem; color:#475569;">Sacar los pensamientos giratorios de la mente y dejarlos atrapados en el cuaderno para desactivar pensamientos intrusivos (4/5).</p>
+                    <div class="grid-3col" style="margin-top:0.4rem;">
+                        <div style="background:#FFF; padding:0.4rem; border:1px solid #E2E8F0; border-radius:6px;"><strong>1. Cero Celular:</strong> Apagar pantallas 30 min antes.</div>
+                        <div style="background:#FFF; padding:0.4rem; border:1px solid #E2E8F0; border-radius:6px;"><strong>2. Captura:</strong> Viñetas rápidas de pendientes.</div>
+                        <div style="background:#FFF; padding:0.4rem; border:1px solid #E2E8F0; border-radius:6px;"><strong>3. Descanso:</strong> Cerrar libreta y dormir en paz.</div>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <div class="card-title"><span>📅 Registro de Vaciado Nocturno (30 Días)</span></div>
+                    <div class="grid-3col" style="gap:0.4rem; font-size:0.75rem;">
+                        <div>
+                            <div>[ ] Día 01: _____________</div><div>[ ] Día 02: _____________</div><div>[ ] Día 03: _____________</div><div>[ ] Día 04: _____________</div><div>[ ] Día 05: _____________</div><div>[ ] Día 06: _____________</div><div>[ ] Día 07: _____________</div><div>[ ] Día 08: _____________</div><div>[ ] Día 09: _____________</div><div>[ ] Día 10: _____________</div>
+                        </div>
+                        <div>
+                            <div>[ ] Día 11: _____________</div><div>[ ] Día 12: _____________</div><div>[ ] Día 13: _____________</div><div>[ ] Día 14: _____________</div><div>[ ] Día 15: _____________</div><div>[ ] Día 16: _____________</div><div>[ ] Día 17: _____________</div><div>[ ] Día 18: _____________</div><div>[ ] Día 19: _____________</div><div>[ ] Día 20: _____________</div>
+                        </div>
+                        <div>
+                            <div>[ ] Día 21: _____________</div><div>[ ] Día 22: _____________</div><div>[ ] Día 23: _____________</div><div>[ ] Día 24: _____________</div><div>[ ] Día 25: _____________</div><div>[ ] Día 26: _____________</div><div>[ ] Día 27: _____________</div><div>[ ] Día 28: _____________</div><div>[ ] Día 29: _____________</div><div>[ ] Día 30: _____________</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Rocío • Talcahuano</span><span>Hoja 03 / 09 • Administración Humana</span></footer>
+        </div>
+
+
+        <!-- ==========================================
+             HOJA 4: PRESUPUESTO 50/30/20 & FONDO RESERVA
+        =========================================== -->
+        <div id="hoja-4" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--emerald);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Planilla de Presupuesto 50/30/20 & Fondo Reserva 💰🛡️</h1>
+                        <span class="subtitle">Administración Humana • Hoja 04</span>
+                    </div>
+                    <div class="meta-fields"><div>Mes: <span class="meta-line"></span></div></div>
+                </header>
+
+                <div class="grid-3col" style="margin-bottom:0.6rem;">
+                    <div class="card-box" style="border-left: 4px solid var(--accent);">
+                        <div class="card-title"><span>50% Necesidades</span></div>
+                        <p style="font-size:0.75rem; color:#475569;">Alimentación, insumos y gastos fijos (sin arriendo).</p>
+                    </div>
+                    <div class="card-box" style="border-left: 4px solid var(--rose);">
+                        <div class="card-title"><span>30% Ocio & TEA</span></div>
+                        <p style="font-size:0.75rem; color:#475569;">Autocuidado, descanso y esparcimiento sin culpa.</p>
+                    </div>
+                    <div class="card-box" style="border-left: 4px solid var(--emerald);">
+                        <div class="card-title"><span>20% Fondo Reserva</span></div>
+                        <p style="font-size:0.75rem; color:#475569;">Meta 3 meses (~$1.050.000) o Certificación.</p>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <div class="card-title"><span>💵 Registro Mensual de Entradas y Aportes</span></div>
+                    <table class="table-mini">
+                        <thead><tr><th>Fecha</th><th>Concepto / Cliente</th><th>Monto Total</th><th>50% Necesidades</th><th>30% Ocio</th><th>20% Reserva</th></tr></thead>
+                        <tbody>
+                            <tr><td>___/___</td><td>Puya Masajes: __________________</td><td>$__________</td><td>$__________</td><td>$__________</td><td>$__________</td></tr>
+                            <tr><td>___/___</td><td>Voz Caleidoscopio: ______________</td><td>$__________</td><td>$__________</td><td>$__________</td><td>$__________</td></tr>
+                            <tr><td>___/___</td><td>Puya Masajes: __________________</td><td>$__________</td><td>$__________</td><td>$__________</td><td>$__________</td></tr>
+                            <tr><td>___/___</td><td>Voz Caleidoscopio: ______________</td><td>$__________</td><td>$__________</td><td>$__________</td><td>$__________</td></tr>
+                            <tr><td>___/___</td><td>Otro ingreso / Trueque: _________</td><td>$__________</td><td>$__________</td><td>$__________</td><td>$__________</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Rocío • Talcahuano</span><span>Hoja 04 / 09 • Administración Humana</span></footer>
+        </div>
+
+
+        <!-- ==========================================
+             HOJA 5: FICHA ANAMNESIS PUYA MASAJES
+        =========================================== -->
+        <div id="hoja-5" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--teal);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Ficha de Anamnesis & Registro Clínico (Puya Masajes) 💆‍♀️🌿</h1>
+                        <span class="subtitle">Administración Humana • Hoja 05</span>
+                    </div>
+                    <div class="meta-fields"><div>Fecha: <span class="meta-line"></span></div></div>
+                </header>
+
+                <div class="card-box" style="margin-bottom:0.6rem;">
+                    <div class="card-title"><span>👤 Datos del Paciente</span></div>
+                    <div class="grid-2col" style="font-size:0.78rem;">
+                        <div>Nombre: _____________________________________</div>
+                        <div>Teléfono: ___________________________________</div>
+                        <div>Ocupación: __________________________________</div>
+                        <div>Motivo de Consulta: ___________________________</div>
+                    </div>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="card-box" style="border-left: 4px solid var(--teal);">
+                        <div class="card-title"><span>🩺 Evaluación y Foco Somático</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Descontracturante Cervical / Hombros</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Lumbar / Espalda Completa</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Relajación Sensorial Profunda</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Tolerancia a presión: [ ] Suave [ ] Media [ ] Fuerte</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--rose);">
+                        <div class="card-title"><span>⚠️ Contraindicaciones & Alergias</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Lesiones o cirugías recientes</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Alergia a aceites o esencias</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Hipertensión / Embarazo</div></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card-box" style="margin-top:0.6rem;">
+                    <div class="card-title"><span>📝 Plan Sugerido</span></div>
+                    <p style="font-size:0.75rem;">[ ] Sesión Individual &nbsp;&nbsp;&nbsp;&nbsp; [ ] Plan Terapéutico 1 Mes (4 sesiones) &nbsp;&nbsp;&nbsp;&nbsp; [ ] Dueto con Charli</p>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Puya Masajes • Rocío</span><span>Hoja 05 / 09 • Administración Humana</span></footer>
+        </div>
+
+
+        <!-- ==========================================
+             HOJA 6: CHECKLISTS MAESTROS OPERATIVOS & TEA
+        =========================================== -->
+        <div id="hoja-6" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--primary);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Checklists Maestros Operativos & TEA 📋🛡️</h1>
+                        <span class="subtitle">Administración Humana • Hoja 06</span>
+                    </div>
+                    <div class="meta-fields"><div>Semana: <span class="meta-line"></span></div></div>
+                </header>
+
+                <div class="grid-2col">
+                    <div class="card-box" style="border-left: 4px solid var(--accent);">
+                        <div class="card-title"><span>💆‍♀️ 1. Puya Masajes (Logística)</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Camilla, toallas limpias y aceites.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Ficha de anamnesis lista.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Coordinación con Charli (duetos).</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--purple);">
+                        <div class="card-title"><span>🎤 2. Voz Caleidoscopio (Canto)</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Bitácora de alumno abierta en mesa.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Micrófono portátil inalámbrico cargado.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Seguimiento de audios semanales.</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--amber);">
+                        <div class="card-title"><span>🎓 3. Universidad UST</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Lecturas en formato impreso (cero celular).</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Bloque 90 min de sola-ejecución.</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--emerald);">
+                        <div class="card-title"><span>🧘 4. Blindaje Sensorial TEA</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Pausa Stimming 10:15 (15 min).</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Pausa Stimming 16:45 (15 min).</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Vaciado nocturno análogo en papel.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Rocío • Talcahuano</span><span>Hoja 06 / 09 • Administración Humana</span></footer>
+        </div>
+
+
+        <!-- ==========================================
+             HOJA 7: GUÍA VISUAL FODA & MATRIZ CAME
+        =========================================== -->
+        <div id="hoja-7" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--teal);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Guía Visual FODA & Matriz CAME 🧭🛡️</h1>
+                        <span class="subtitle">Administración Humana • Hoja 07</span>
+                    </div>
+                    <div class="meta-fields"><div>Estrategia: <strong>2026</strong></div></div>
+                </header>
+
+                <div class="grid-2col">
+                    <div class="card-box" style="border-left: 4px solid var(--emerald);">
+                        <div class="card-title"><span style="color:var(--emerald);">🛡️ Fortalezas (Tus Motores)</span></div>
+                        <p style="font-size:0.75rem;">Capacidad inventiva conceptual, storytelling, disciplina somática y orden físico 10/10.</p>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--rose);">
+                        <div class="card-title"><span style="color:var(--rose);">⚠️ Debilidades (Frenos Internos)</span></div>
+                        <p style="font-size:0.75rem;">Pensamientos intrusivos nocturnos, fatiga visual en celulares y sobrecarga sin pausas.</p>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--accent);">
+                        <div class="card-title"><span style="color:var(--accent);">🚀 Oportunidades</span></div>
+                        <p style="font-size:0.75rem;">Costo $0 arriendo, Canto en la playa, Certificación Feldenkrais y paquetización mensual.</p>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--amber);">
+                        <div class="card-title"><span style="color:var(--amber);">⚡ Respuestas Tácticas CAME</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><div><strong>Corregir:</strong> Vaciado nocturno en papel.</div></li>
+                            <li class="chk-item"><div><strong>Afrontar:</strong> Zonificar traslados de masajes.</div></li>
+                            <li class="chk-item"><div><strong>Mantener:</strong> Kanban físico en pared (WIP=2).</div></li>
+                            <li class="chk-item"><div><strong>Explotar:</strong> Paquetizar planes de 1 mes.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Rocío • Talcahuano</span><span>Hoja 07 / 09 • Administración Humana</span></footer>
+        </div>
+
+
+        <!-- ==========================================
+             HOJA 8: PLANIFICADOR CLASE 70 MIN & CANCIONERO
+        =========================================== -->
+        <div id="hoja-8" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--purple);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Planificador de Clase 70 min & Canto en la Playa 🎤🌊</h1>
+                        <span class="subtitle">Voz Caleidoscopio • Hoja 08</span>
+                    </div>
+                    <div class="meta-fields"><div>Alumna: <span class="meta-line"></span></div><div>Fecha: <span class="meta-line"></span></div></div>
+                </header>
+
+                <div class="grid-2col">
+                    <div class="card-box" style="border-left: 4px solid var(--accent);">
+                        <div class="card-title"><span>🎒 Mochila al Aire Libre</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Micrófono inalámbrico al 100%.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Parlante portátil cargado.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Mat / manta para arena o pasto.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Cancionero en micas protectoras.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Agua a temperatura ambiente.</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--purple);">
+                        <div class="card-title"><span>⏱️ Estructura 70 min (5 Fases + Pausas)</span></div>
+                        <div class="timeline-step"><span class="step-time">20m</span> <div>Vocalizar sin notas (dinámicas) <span style="font-size:0.68rem; color:#64748B;">(☕2m)</span></div></div>
+                        <div class="timeline-step"><span class="step-time">10m</span> <div>Apertura corporal Feldenkrais <span style="font-size:0.68rem; color:#64748B;">(☕2m)</span></div></div>
+                        <div class="timeline-step"><span class="step-time">15m</span> <div>Lectura de 8 compases <span style="font-size:0.68rem; color:#64748B;">(☕2m)</span></div></div>
+                        <div class="timeline-step"><span class="step-time">5m</span> <div>Escucha de repertorio & análisis <span style="font-size:0.68rem; color:#64748B;">(☕2m)</span></div></div>
+                        <div class="timeline-step" style="border:none;"><span class="step-time">10m</span> <div>Integración somática & composición</div></div>
+                    </div>
+                </div>
+
+                <div class="card-box" style="margin-top:0.6rem;">
+                    <div class="card-title"><span>🎼 Cancionero & Laboratorio de Composición</span></div>
+                    <div class="grid-2col" style="font-size:0.75rem;">
+                        <div>
+                            <strong>Repertorio Orientador:</strong> Alfonsina y el Mar, Tonada de Luna Llena, Volver a los 17, Agua de Beber, Gracias a la Vida.
+                        </div>
+                        <div>
+                            <strong>Frase Semilla / Tarea Alumna:</strong> ____________________________________________________
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Voz Caleidoscopio • Rocío</span><span>Hoja 08 / 09 • Administración Humana</span></footer>
+        </div>
+
+
+        <!-- ==========================================
+             HOJA 9: FICHA INVENTARIO DE RESULTADOS & SESIÓN
+        =========================================== -->
+        <div id="hoja-9" class="sheet-page">
+            <div>
+                <header class="sheet-header" style="border-color: var(--primary);">
+                    <div class="title-block">
+                        <h1 class="sheet-h1">Inventario de Resultados & Sesión 🚀📈</h1>
+                        <span class="subtitle">Administración Humana • Hoja 09</span>
+                    </div>
+                    <div class="meta-fields"><div>Cliente: <strong>Rocío</strong></div><div>Sesión N°: <span class="meta-line"></span></div><div>Fecha: <span class="meta-line"></span></div></div>
+                </header>
+
+                <div class="grid-2col">
+                    <div class="card-box" style="border-left: 4px solid var(--accent);">
+                        <div class="card-title"><span>🎯 1. Foco Estratégico & Desafío</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><div>Metodología Canto Somático (Feldenkrais & Roy Hart).</div></li>
+                            <li class="chk-item"><div>Sello al aire libre en la playa y mochila estandarizada.</div></li>
+                            <li class="chk-item"><div>Estructura 70 min con micro-pausas y composición.</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--purple);">
+                        <div class="card-title"><span>💡 2. Aportes & Desbloqueos de Diego</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><div>ROI Certificación ($400k) amortizado en &lt;3 meses.</div></li>
+                            <li class="chk-item"><div>Sello de marca Canto en la Playa en Biobío.</div></li>
+                            <li class="chk-item"><div>Mochila con micrófono cargado al 100%.</div></li>
+                            <li class="chk-item"><div>Estructura de 5 bloques y 4 micro-pausas de 2m.</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--teal);">
+                        <div class="card-title"><span>⚡ 3. Compromisos de Acción</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Mochila con micrófono lista para clases.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Planificador 08 impreso en pared.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Invitar a primera alumna a componer.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Proteger pausas de stimming (10:15 y 16:45).</div></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-box" style="border-left: 4px solid var(--emerald);">
+                        <div class="card-title"><span>📊 4. Impacto Tangible</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><div>Tarifa Canto: +300% a +650% valorización.</div></li>
+                            <li class="chk-item"><div>Logística Playa: Cero estrés con checklist.</div></li>
+                            <li class="chk-item"><div>Batería TEA: Pausas protegidas y vaciado nocturno.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <footer class="sheet-footer"><span>Rocío • Talcahuano</span><span>Hoja 09 / 09 • Administración Humana</span></footer>
+        </div>
+
+    </div><!-- /hub-container -->
+
+    <script>
+        // Filtrar hoja individual o cuadernillo completo
+        function filterSheet(sheetId) {
+            const pages = document.querySelectorAll('.sheet-page');
+            if (sheetId === 'all') {
+                pages.forEach(p => p.style.display = 'flex');
+            } else {
+                pages.forEach(p => {
+                    if (p.id === sheetId) {
+                        p.style.display = 'flex';
+                    } else {
+                        p.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function showAllAndPrint() {
+            filterSheet('all');
+            document.getElementById('sheetSelector').value = 'all';
+            setTimeout(() => { window.print(); }, 150);
+        }
+
+        // Detectar hash en la URL (ej: Hub_Imprimibles_Rocio.html#hoja-8)
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash ? window.location.hash.substring(1) : '';
+            if (hash && document.getElementById(hash)) {
+                filterSheet(hash);
+                const selector = document.getElementById('sheetSelector');
+                if (selector) selector.value = hash;
+            }
+        });
+    </script>
+</body>
+</html>
