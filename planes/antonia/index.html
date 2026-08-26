@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/portal-core.css?v=3.3">
     <link rel="stylesheet" href="css/schedule-mapper.css?v=3.3">
     <link rel="stylesheet" href="css/kanban-gtd.css?v=3.3">
+    <link rel="stylesheet" href="css/zumba-library.css?v=3.3">
 
     <!-- Inmersión Visual & Reglas Móviles de Alta Prioridad -->
     <style>
@@ -297,7 +298,7 @@
             <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                 <div class="meta-badge">
                     <span class="dot"></span>
-                    <span>Cuidados Familiares • Clases de Yoga • Hito Santiago</span>
+                    <span>Cuidados Familiares • Clases de Yoga & Zumba • Hito Santiago</span>
                 </div>
                 <button class="btn-portal-lock" onclick="lockClientPortal()">
                     <i class="fa-solid fa-lock"></i> Bloquear
@@ -318,6 +319,9 @@
             </button>
             <button class="tab-btn" onclick="switchTab('tab-antigravity-tips')" style="border: 1px solid rgba(245,158,11,0.25);">
                 <i class="fa-solid fa-lightbulb" style="color: #f59e0b;"></i> Tips Antigravity
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-zumba-coreo')" style="border: 1px solid rgba(236,72,153,0.35); background: rgba(236,72,153,0.06);">
+                <i class="fa-solid fa-music" style="color: #ec4899;"></i> 🎶 Biblioteca Zumba & Coreos
             </button>
             <button class="tab-btn" onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
@@ -665,6 +669,43 @@ Debe contener:
 4. 🛑 Cierre Mental: "Lo que quedó pendiente hoy no define mi valor; descansa para recomenzar mañana".</div>
             </div>
 
+            <!-- PROMPT 6: ZUMBA & PLAYLISTS INTENSIDAD -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(236, 72, 153, 0.15); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 04_Servicios_y_Proyectos_Profesionales / 02_Zumba_y_Biblioteca_Musical
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            🎶 Módulo 6 • Estructuración de Playlists & Coreografías para Clases de Zumba
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-zumba-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Estructura una playlist y curva de intensidad en ola somática de 50 a 55 minutos para tus clases de Zumba combinando ritmos y pasos clave.
+                </p>
+                <div class="prompt-box" id="prompt-zumba-text">Actúa como mi asesor pedagógico y coreográfico en Administración Humana.
+Necesito estructurar una playlist y secuencia completa para mi próxima clase de Zumba / Baile Fitness de 50 a 55 minutos.
+
+Tengo este catálogo de canciones disponibles en mi biblioteca:
+[LISTAR O PEGAR CANCIONES DEL INVENTARIO O RITMOS DESEADOS]
+
+Por favor genera:
+1. Curva de Intensidad & Secuencia de 10 a 12 temas:
+   - Bloque 1: Calentamiento / Warm-up (2 tracks • BPM 115-125 • activación articular).
+   - Bloque 2: Cardio Progresivo / Ritmos Latinos (6-7 tracks alternando Merengue, Salsa, Cumbia y Bachata).
+   - Bloque 3: Peak Cardio / Clímax (2 tracks alta potencia • Reggaetón / Urbano / Dembow).
+   - Bloque 4: Descompresión & Vuelta a la Calma (1-2 tracks • estiramientos somáticos y respiración).
+2. Indicadores por Canción: Ritmo, BPM aproximado, Duración estimada y 2 o 3 pasos coreográficos clave para señalizar con las manos a las alumnas.
+3. Lista de Pistas Requeridas en Audio Original HQ: Identificar cuáles conviene comprar/descargar sin ruidos de público.
+4. Resumen compacto para enviar a mi celular o llevar en una ficha física.
+
+Formatea para guardar en "04_Servicios_y_Proyectos_Profesionales/02_Zumba_y_Biblioteca_Musical/Plan_Clase_Zumba.md".</div>
+            </div>
+
             <!-- GUÍA DE CARPETAS EN DRIVE -->
             <div class="card" style="margin-top: 1rem; border-color: rgba(255, 255, 255, 0.1);">
                 <h3 class="section-title"><span>📂 Mapa de Carpetas en tu Google Drive Sincronizado</span></h3>
@@ -824,6 +865,164 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- TAB CONTENT: BIBLIOTECA MUSICAL & COREOGRÁFICA DE ZUMBA -->
+        <div id="tab-zumba-coreo" class="tab-content">
+            <!-- HERO BOX -->
+            <div class="zumba-header-box">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                        <div class="hero-tea-badge" style="background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.35); color: #ec4899;">
+                            <i class="fa-solid fa-music"></i> Módulo 25 LEGO • Biblioteca Musical & Repertorio Coreográfico
+                        </div>
+                        <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
+                            🎶 Biblioteca Musical & Inventario Coreográfico de Zumba
+                        </h2>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 880px; line-height: 1.5;">
+                            Antonia, centraliza aquí todas las canciones que te sabes con sus ritmos, pasos clave y pistas de audio original HQ (sin ruidos de público). Usa el <strong>Armador de Clases</strong> para planificar tu sesión de 50 a 55 minutos y llevarla en tu celular o imprimirla en 1 clic.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button class="btn-schedule-action" onclick="openAddSongModal()" style="background: #ec4899; color: #fff; border-color: #ec4899; font-weight: 800;">
+                            <i class="fa-solid fa-plus"></i> + Agregar Canción
+                        </button>
+                        <button class="btn-schedule-action" onclick="resetZumbaDefaultSongs()" style="color: #aaa;">
+                            <i class="fa-solid fa-rotate-left"></i> Restablecer Biblioteca
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STATS ROW -->
+                <div class="zumba-stats-grid">
+                    <div class="zumba-stat-card" style="border-color: rgba(236, 72, 153, 0.3);">
+                        <span class="zumba-stat-val" id="zumba-stat-total" style="color: #ec4899;">10 Temas</span>
+                        <span class="zumba-stat-lbl">Canciones en Repertorio</span>
+                    </div>
+                    <div class="zumba-stat-card" style="border-color: rgba(245, 158, 11, 0.3);">
+                        <span class="zumba-stat-val" id="zumba-stat-hq" style="color: #f59e0b;">6 Pistas</span>
+                        <span class="zumba-stat-lbl">Pistas Originales HQ (PayPal)</span>
+                    </div>
+                    <div class="zumba-stat-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <span class="zumba-stat-val" id="zumba-stat-mastered" style="color: #10b981;">9 Dominadas</span>
+                        <span class="zumba-stat-lbl">100% Listas para Clase</span>
+                    </div>
+                    <div class="zumba-stat-card" style="border-color: rgba(96, 165, 250, 0.3);">
+                        <span class="zumba-stat-val" id="zumba-stat-minutes" style="color: #60a5fa;">~38 Minutos</span>
+                        <span class="zumba-stat-lbl">Música Catalogada</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLASS BUILDER CARD (CLASS FLOW & PLAYLIST SEQUENCER) -->
+            <div class="class-builder-card">
+                <div class="class-builder-header">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="color: #f59e0b; font-size: 1.2rem;"><i class="fa-solid fa-bolt"></i></span>
+                            <h3 style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0;">
+                                ⚡ Armador Visual de Clase de Zumba (Class Flow)
+                            </h3>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #aaa; margin-top: 2px;">
+                            Secuencia en ola somática: Calentamiento ➔ Ritmos Progresivos ➔ Pico Cardio ➔ Vuelta a la Calma.
+                        </p>
+                    </div>
+
+                    <div class="class-builder-meta">
+                        <div class="class-meta-pill" style="border-color: rgba(236, 72, 153, 0.4); color: #f472b6;">
+                            <i class="fa-solid fa-list-ol"></i> <span id="class-flow-count">10 canciones</span>
+                        </div>
+                        <div class="class-meta-pill" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+                            <i class="fa-regular fa-clock"></i> <span id="class-flow-duration">52:30 min</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            <button class="btn-schedule-action" onclick="copyClassSetlistWhatsApp(this)" style="background: #ffffff; color: #000000; font-weight: 800;">
+                                <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Copiar para WhatsApp / Móvil
+                            </button>
+                            <button class="btn-schedule-action" onclick="printZumbaClassSheet()">
+                                <i class="fa-solid fa-print"></i> Imprimir Ficha
+                            </button>
+                            <button class="btn-schedule-action" onclick="loadSuggestedClassFlow()" title="Cargar secuencia balanceada">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Sugerida
+                            </button>
+                            <button class="btn-schedule-action" onclick="clearClassFlow()" style="color: #f87171;" title="Vaciar lista">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTENSITY CURVE BAR -->
+                <div style="margin-bottom: 0.9rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #888; text-transform: uppercase; font-weight: 700; margin-bottom: 3px;">
+                        <span>❄️ Calentamiento</span>
+                        <span>📈 Ritmos Latinos Progresivos</span>
+                        <span>🔥 Clímax Cardio</span>
+                        <span>🧘‍♀️ Enfriamiento</span>
+                    </div>
+                    <div class="intensity-curve-bar" id="class-flow-curve-bar"></div>
+                </div>
+
+                <!-- CLASS FLOW LIST CONTAINER -->
+                <div class="class-flow-list" id="zumba-class-flow-list"></div>
+            </div>
+
+            <!-- INVENTORY SECTION -->
+            <div class="section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 1rem;">
+                <span>📚 Inventario & Catálogo de Repertorio Coreográfico</span>
+                <span id="zumba-inventory-count" style="font-size: 0.8rem; color: #888; font-weight: 500;"></span>
+            </div>
+
+            <!-- FILTER BAR -->
+            <div class="zumba-filter-bar">
+                <div class="zumba-filter-row">
+                    <input type="text" id="zumba-search-input" class="zumba-search-input" placeholder="🔍 Buscar por canción, artista, ritmo o paso clave..." oninput="renderZumbaInventory()">
+                    
+                    <select id="zumba-filter-rhythm" class="zumba-filter-select" onchange="renderZumbaInventory()">
+                        <option value="all">🎶 Todos los Ritmos</option>
+                        <option value="warmup">❄️ Calentamiento (Warm-Up)</option>
+                        <option value="merengue">🔥 Merengue / Mambo</option>
+                        <option value="salsa">💃 Salsa</option>
+                        <option value="reggaeton">⚡ Reggaetón</option>
+                        <option value="cumbia">🌴 Cumbia</option>
+                        <option value="bachata">🌸 Bachata / Pop</option>
+                        <option value="urbano">✨ Urbano / Funk</option>
+                        <option value="peak">🚀 Peak Cardio</option>
+                        <option value="cooldown">🧘‍♀️ Vuelta a la Calma</option>
+                    </select>
+
+                    <select id="zumba-filter-audio" class="zumba-filter-select" onchange="renderZumbaInventory()">
+                        <option value="all">🎧 Todas las Fuentes de Audio</option>
+                        <option value="hq_paypal">⭐ Pista Original HQ (PayPal/Comprada)</option>
+                        <option value="spotify">🟢 Spotify Master</option>
+                        <option value="youtube">🟠 YouTube / Referencia</option>
+                    </select>
+
+                    <select id="zumba-filter-intensity" class="zumba-filter-select" onchange="renderZumbaInventory()">
+                        <option value="all">🔥 Toda Intensidad</option>
+                        <option value="1">Nivel 1 (Suave / Elongación)</option>
+                        <option value="2">Nivel 2 (Baja / Activación)</option>
+                        <option value="3">Nivel 3 (Media / Cardio Moderado)</option>
+                        <option value="4">Nivel 4 (Alta / Cardio Intenso)</option>
+                        <option value="5">Nivel 5 (Explosiva / Peak)</option>
+                    </select>
+
+                    <select id="zumba-filter-status" class="zumba-filter-select" onchange="renderZumbaInventory()">
+                        <option value="all">✅ Todo Estado de Coreo</option>
+                        <option value="mastered">✅ 100% Dominada</option>
+                        <option value="practice">🔄 En Práctica</option>
+                        <option value="learning">💡 Por Aprender</option>
+                    </select>
+
+                    <button class="btn-schedule-action" onclick="resetZumbaFilters()" style="padding: 7px 12px; font-size: 0.78rem;">
+                        <i class="fa-solid fa-filter-circle-xmark"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+
+            <!-- SONGS GRID -->
+            <div class="zumba-songs-grid" id="zumba-songs-grid"></div>
         </div>
 
         <!-- TAB CONTENT: HORARIO 24H -->
@@ -1074,9 +1273,100 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
                     </div>
                 </div>
             </div>
+    <!-- MODAL 3: AGREGAR / EDITAR CANCIÓN DE ZUMBA -->
+    <div id="modal-zumba-song-editor" class="modal-overlay">
+        <div class="modal-box" style="max-width: 540px;">
+            <div class="modal-title">
+                <span id="zumba-modal-title">➕ Agregar Canción al Inventario</span>
+                <button class="modal-close-btn" onclick="closeZumbaSongModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Registra la canción con sus notas coreográficas y fuente de audio HQ.</p>
+            <input type="hidden" id="song-edit-id">
+            
+            <div style="display:flex; flex-direction:column; gap:0.75rem; max-height: 440px; overflow-y: auto; padding-right: 4px; margin-bottom:1.2rem;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Título de la Canción *</label>
+                        <input type="text" id="song-edit-title" placeholder="ej. Limbo" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Artista / Intérprete *</label>
+                        <input type="text" id="song-edit-artist" placeholder="ej. Daddy Yankee" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Ritmo / Género</label>
+                        <select id="song-edit-rhythm" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 6px; border-radius:6px; font-size:0.8rem; margin-top:3px;">
+                            <option value="warmup">Calentamiento</option>
+                            <option value="merengue">Merengue</option>
+                            <option value="salsa">Salsa</option>
+                            <option value="reggaeton">Reggaetón</option>
+                            <option value="cumbia">Cumbia</option>
+                            <option value="bachata">Bachata</option>
+                            <option value="urbano">Urbano / Pop</option>
+                            <option value="peak">Peak Cardio</option>
+                            <option value="cooldown">Vuelta a la Calma</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Duración (mm:ss)</label>
+                        <input type="text" id="song-edit-duration" placeholder="3:30" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 8px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">BPM (aprox)</label>
+                        <input type="number" id="song-edit-bpm" placeholder="128" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 8px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Intensidad Somática</label>
+                        <select id="song-edit-intensity" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px; border-radius:6px; font-size:0.8rem; margin-top:3px;">
+                            <option value="1">1 🔥 (Suave / Elongación)</option>
+                            <option value="2">2 🔥🔥 (Baja / Activación)</option>
+                            <option value="3" selected>3 🔥🔥🔥 (Media / Cardio Moderado)</option>
+                            <option value="4">4 🔥🔥🔥🔥 (Alta / Cardio Intenso)</option>
+                            <option value="5">5 🔥🔥🔥🔥🔥 (Explosiva / Peak)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Estado de Coreografía</label>
+                        <select id="song-edit-status" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px; border-radius:6px; font-size:0.8rem; margin-top:3px;">
+                            <option value="mastered" selected>✅ 100% Dominada</option>
+                            <option value="practice">🔄 En Práctica</option>
+                            <option value="learning">💡 Por Aprender</option>
+                            <option value="archived">📁 Archivada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Fuente / Calidad de Audio</label>
+                        <select id="song-edit-audio-source" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px; border-radius:6px; font-size:0.8rem; margin-top:3px;">
+                            <option value="hq_paypal" selected>⭐ Pista Original HQ (PayPal / Master)</option>
+                            <option value="spotify">🟢 Spotify Master</option>
+                            <option value="youtube">🟠 YouTube / Referencia</option>
+                            <option value="other">🎵 Audio Propio / Archivo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Enlace de Audio / Video (Opcional)</label>
+                        <input type="text" id="song-edit-url" placeholder="https://..." style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 8px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Pasos Clave & Notas Coreográficas</label>
+                    <textarea id="song-edit-notes" rows="3" placeholder="Paso básico en estrofas; 4 saltos con brazos arriba en el drop; disociación de cadera..." style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px; resize:vertical;"></textarea>
+                </div>
+            </div>
+
             <div style="display:flex; justify-content:flex-end; gap:8px;">
-                <button class="btn-schedule-action" onclick="closeRangeFillModal()">Cancelar</button>
-                <button class="btn-gateway-login" onclick="applyRangeFill()" style="width:auto; padding:6px 16px; margin:0; font-size:0.85rem;">Aplicar Relleno</button>
+                <button class="btn-schedule-action" onclick="closeZumbaSongModal()">Cancelar</button>
+                <button class="btn-gateway-login" onclick="saveZumbaSongFromModal()" style="width:auto; padding:6px 18px; margin:0; font-size:0.85rem; background:#ec4899; color:#fff;">Guardar Canción</button>
             </div>
         </div>
     </div>
@@ -1164,6 +1454,7 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
     <script src="js/portal-gateway.js?v=3.3"></script>
     <script src="js/schedule-engine.js?v=3.3"></script>
     <script src="js/kanban-engine.js?v=3.3"></script>
+    <script src="js/zumba-library-engine.js?v=3.3"></script>
     <script src="js/whatsapp-widget.js?v=3.3"></script>
 </body>
 </html>

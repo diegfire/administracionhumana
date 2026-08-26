@@ -1,0 +1,463 @@
+/* Zumba Library & Choreographic Inventory CSS v3.3 - Administración Humana */
+
+.zumba-header-box {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(139, 92, 246, 0.05), rgba(0, 0, 0, 0.6));
+    border: 1px solid rgba(236, 72, 153, 0.3);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.zumba-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.9rem;
+    margin-top: 1.2rem;
+}
+
+.zumba-stat-card {
+    background: rgba(20, 20, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.zumba-stat-card:hover {
+    border-color: rgba(236, 72, 153, 0.4);
+    transform: translateY(-2px);
+}
+
+.zumba-stat-val {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.zumba-stat-lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+/* CLASS BUILDER / SEQUENCER CONTAINER */
+.class-builder-card {
+    background: linear-gradient(145deg, rgba(24, 24, 30, 0.9), rgba(15, 15, 20, 0.95));
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: var(--radius-md);
+    padding: 1.4rem;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.class-builder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.class-builder-meta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: #ccc;
+}
+
+.class-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+/* CLASS FLOW TIMELINE / TRACKS */
+.class-flow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 80px;
+    margin-bottom: 1.2rem;
+}
+
+.class-flow-empty {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #777;
+    font-size: 0.88rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+}
+
+.class-flow-item {
+    display: grid;
+    grid-template-columns: 36px 1fr auto auto;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.class-flow-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.class-item-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #000000;
+    font-weight: 800;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.class-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.class-item-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.class-item-sub {
+    font-size: 0.74rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.class-item-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.btn-flow-action {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bbb;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.72rem;
+    transition: all 0.15s ease;
+}
+
+.btn-flow-action:hover {
+    background: #fff;
+    color: #000;
+}
+
+.btn-flow-delete:hover {
+    background: #ef4444;
+    color: #fff;
+    border-color: #ef4444;
+}
+
+/* CURVA DE INTENSIDAD VISUAL */
+.intensity-curve-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #111;
+    margin-top: 0.5rem;
+    gap: 2px;
+}
+
+.intensity-curve-segment {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+/* INVENTORY FILTERS BAR */
+.zumba-filter-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background: rgba(20, 20, 25, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.4rem;
+}
+
+.zumba-filter-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.zumba-search-input {
+    flex: 1;
+    min-width: 220px;
+    background: #111114;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.zumba-search-input:focus {
+    border-color: #ec4899;
+}
+
+.zumba-filter-select {
+    background: #111114;
+    border: 1px solid #333;
+    color: #eee;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.zumba-filter-select:focus {
+    border-color: #ec4899;
+}
+
+/* RHYTHM BADGES & TAGS */
+.rhythm-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.rhythm-warmup { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); }
+.rhythm-merengue { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.35); }
+.rhythm-salsa { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.35); }
+.rhythm-reggaeton { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35); }
+.rhythm-cumbia { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); }
+.rhythm-bachata { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.35); }
+.rhythm-urbano { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.35); }
+.rhythm-peak { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.35); }
+.rhythm-cooldown { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.35); }
+
+/* AUDIO SOURCE BADGES */
+.audio-source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+
+.audio-source-hq {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.audio-source-spotify {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.audio-source-youtube {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.audio-source-other {
+    background: rgba(255, 255, 255, 0.08);
+    color: #bbb;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* SONG CARDS GRID */
+.zumba-songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.zumba-song-card {
+    background: rgba(20, 20, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.9rem;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.zumba-song-card:hover {
+    border-color: rgba(236, 72, 153, 0.35);
+    background: rgba(26, 26, 34, 0.85);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.song-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.song-card-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.25;
+}
+
+.song-card-artist {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-top: 2px;
+}
+
+.song-card-meta-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.song-energy-bar {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.72rem;
+    color: #f59e0b;
+}
+
+.song-coreo-box {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.78rem;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+.song-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-add-to-class {
+    background: #ffffff;
+    color: #000000;
+    font-weight: 800;
+    font-size: 0.76rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.15s ease;
+}
+
+.btn-add-to-class:hover {
+    background: #ec4899;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+}
+
+.btn-icon-action {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #888;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.15s ease;
+}
+
+.btn-icon-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* PRINT MODAL & SHEET FOR ZUMBA CLASS */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #print-class-container, #print-class-container * {
+        visibility: visible;
+    }
+    #print-class-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        color: #000 !important;
+        background: #fff !important;
+        padding: 20px;
+    }
+}

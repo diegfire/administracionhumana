@@ -17,7 +17,11 @@ function initScheduleEngine(config) {
         { id: "descanso", name: "🌱 Descanso & Ocio", color: "#10B981", tag: "OCIO" },
         { id: "sueno", name: "😴 Sueño", color: "#6366F1", tag: "SUEÑO" },
         { id: "libre", name: "⚪ Tiempo Libre", color: "#334155", tag: "LIBRE" }
-    ]));
+    ])).map(cat => ({
+        ...cat,
+        name: cat.name || cat.label || "Categoría",
+        label: cat.label || cat.name || "Categoría"
+    }));
 
     const savedCats = localStorage.getItem(`${scheduleStoragePrefix}_categories_v2`);
     if (savedCats) {
@@ -25,6 +29,11 @@ function initScheduleEngine(config) {
     } else {
         scheduleCategories = JSON.parse(JSON.stringify(defaultScheduleCategories));
     }
+    scheduleCategories = scheduleCategories.map(cat => ({
+        ...cat,
+        name: cat.name || cat.label || "Categoría",
+        label: cat.label || cat.name || "Categoría"
+    }));
 
     const savedSched = localStorage.getItem(`${scheduleStoragePrefix}_data_v2`);
     if (savedSched) {
