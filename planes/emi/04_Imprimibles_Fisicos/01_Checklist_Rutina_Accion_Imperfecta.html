@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist de Acción Imperfecta & Rutina Diaria - Emi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --secondary: #0284C7;
+            --bg-light: #F8FAFC;
+            --border: #0F172A;
+            --text-dark: #0F172A;
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-body); background-color: var(--bg-light); color: var(--text-dark); padding: 20px; font-size: 11px; line-height: 1.3; }
+
+        .no-print-bar {
+            max-width: 850px;
+            margin: 0 auto 15px auto;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
+            font-family: var(--font-display);
+        }
+
+        .btn-print {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            font-weight: 600;
+            font-size: 11px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            border: 2px solid var(--border);
+            padding: 22px;
+            background-color: #fff;
+            border-radius: 6px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .header-main h1 { font-family: var(--font-display); font-size: 18px; font-weight: 800; }
+        .header-main p { font-size: 10px; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+
+        .section-box { border: 1.5px solid var(--border); padding: 12px; border-radius: 4px; }
+        .section-title { font-family: var(--font-display); font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+
+        .checklist { list-style: none; }
+        .checklist li { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 10.5px; }
+        .checkbox-square { width: 12px; height: 12px; border: 1.5px solid var(--border); border-radius: 2px; }
+
+        .table-days { width: 100%; border-collapse: collapse; margin-top: 5px; }
+        .table-days th, .table-days td { border: 1px solid var(--border); padding: 5px; text-align: center; font-size: 10px; }
+        .table-days th { background-color: #F1F5F9; font-family: var(--font-display); }
+
+        @media print {
+            .no-print-bar { display: none !important; }
+            body { padding: 0; background: #fff; }
+            .container { border: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="no-print-bar">
+        <div><strong>Administración Humana</strong> | Soporte Físico de Rutina</div>
+        <button class="btn-print" onclick="window.print()">🖨️ Imprimir Checklist (A4/Carta)</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="header-main">
+                <h1>Checklist de Acción Imperfecta & Rutina Diaria</h1>
+                <p>Cliente: <strong>Emi</strong> • Administración Humana (AICC)</p>
+            </div>
+            <div style="text-align: right; font-size: 9px; font-family: var(--font-display);">
+                <div><strong>Regla de Oro:</strong> Regla del 70%</div>
+                <div>Límite WIP: Max 2 tareas</div>
+            </div>
+        </header>
+
+        <div class="grid-2">
+            <div class="section-box">
+                <div class="section-title">🌅 Rutina de Mañana (Despegue)</div>
+                <ul class="checklist">
+                    <li><div class="checkbox-square"></div> <span>Hidratación y 5 minutos de estiramiento / respiración</span></li>
+                    <li><div class="checkbox-square"></div> <span>Revisar Kanban GTD y seleccionar las 2 tareas maestras de hoy</span></li>
+                    <li><div class="checkbox-square"></div> <span>Bloque Foco #1 (90 min de sola-ejecución sin celular)</span></li>
+                    <li><div class="checkbox-square"></div> <span>Ejecutar la micro-acción de 2 minutos de menor fricción</span></li>
+                </ul>
+            </div>
+
+            <div class="section-box">
+                <div class="section-title">🌇 Rutina de Tarde (Cierre)</div>
+                <ul class="checklist">
+                    <li><div class="checkbox-square"></div> <span>Revisión de pendientes y actualización de estado en Kanban</span></li>
+                    <li><div class="checkbox-square"></div> <span>Vaciado mental en papel de cualquier ruido o idea suelta</span></li>
+                    <li><div class="checkbox-square"></div> <span>Dejar la mesa de trabajo despejada para el día siguiente</span></li>
+                    <li><div class="checkbox-square"></div> <span>Desconexión digital y tiempo de descanso consciente</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-box" style="margin-bottom: 15px;">
+            <div class="section-title">📅 Registro Semanal de Hitos (Dopamina Analógica)</div>
+            <table class="table-days">
+                <thead>
+                    <tr>
+                        <th>Hito / Hábito Clave</th>
+                        <th>Lun</th>
+                        <th>Mar</th>
+                        <th>Mié</th>
+                        <th>Jue</th>
+                        <th>Vie</th>
+                        <th>Sáb</th>
+                        <th>Dom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: left;"><strong>Bloque Foco 90 min completado</strong></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Límite de WIP respetado (Max 2)</strong></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Micro-acción enviada (Regla 70%)</strong></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Vaciado mental en Kanban</strong></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">🛡️ Recordatorio de Antipatrones</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 9.5px;">
+                <div>🚫 <strong>No Aislamiento Productivo:</strong> Menos organizar carpetas, más accionar.</div>
+                <div>🚫 <strong>No Pulido Eterno:</strong> Si está al 70%, entrégalo y valida.</div>
+                <div>🚫 <strong>No Multitarea:</strong> Una sola cosa a la vez.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

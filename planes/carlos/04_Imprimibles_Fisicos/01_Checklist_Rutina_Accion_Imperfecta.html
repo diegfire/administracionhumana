@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist de Acción Imperfecta & Rutina Diaria - Carlos Z</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #333333;
+            --bg-light: #ffffff;
+            --border: #000000;
+            --text-dark: #000000;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-body); background-color: var(--bg-light); color: var(--text-dark); padding: 20px; font-size: 11px; line-height: 1.35; }
+
+        .no-print-bar {
+            max-width: 850px;
+            margin: 0 auto 15px auto;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
+            font-family: var(--font-display);
+        }
+
+        .btn-print {
+            background: white;
+            color: black;
+            border: 1px solid white;
+            padding: 6px 16px;
+            font-weight: 700;
+            font-size: 11px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-print:hover {
+            background: #e5e5e5;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            border: 2px solid var(--border);
+            padding: 22px;
+            background-color: #fff;
+            border-radius: 6px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .header-main h1 { font-family: var(--font-display); font-size: 18px; font-weight: 800; text-transform: uppercase; }
+        .header-main p { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+
+        .section-box { border: 1.5px solid var(--border); padding: 12px; border-radius: 4px; }
+        .section-title { font-family: var(--font-display); font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+
+        .checklist { list-style: none; }
+        .checklist li { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 10.5px; }
+        .checkbox-square { width: 12px; height: 12px; border: 1.5px solid var(--border); border-radius: 2px; }
+
+        .table-days { width: 100%; border-collapse: collapse; margin-top: 5px; }
+        .table-days th, .table-days td { border: 1px solid var(--border); padding: 5px; text-align: center; font-size: 10px; }
+        .table-days th { background-color: #f5f5f5; font-family: var(--font-display); }
+
+        @media print {
+            .no-print-bar { display: none !important; }
+            body { padding: 0; background: #fff; }
+            .container { border: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="no-print-bar">
+        <div><strong>Administración Humana</strong> | Soporte Físico de Rutina</div>
+        <button class="btn-print" onclick="window.print()">🖨️ Imprimir Checklist (A4/Carta)</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="header-main">
+                <h1>Checklist de Acción Imperfecta & Rutina Diaria</h1>
+                <p>Cliente: <strong>Carlos Z</strong> • Administración Humana (AICC)</p>
+            </div>
+            <div style="text-align: right; font-size: 9px; font-family: var(--font-display); font-weight: 700;">
+                <div><strong>Regla de Oro:</strong> Gimnasio en la mañana</div>
+                <div>Límite WIP: Max 2 tareas</div>
+            </div>
+        </header>
+
+        <div class="grid-2">
+            <div class="section-box">
+                <div class="section-title">🌅 Rutina de Mañana (El Arma del Día)</div>
+                <ul class="checklist">
+                    <li><div class="checkbox-square"></div> <span>Dejar mochila de gimnasio lista la noche anterior (cero fricción)</span></li>
+                    <li><div class="checkbox-square"></div> <span>Entrenamiento físico en Gimnasio (07:30 - 08:45) (3 veces/semana)</span></li>
+                    <li><div class="checkbox-square"></div> <span>Ingreso al Trabajo Fijo a las 09:30 con foco y alta energía</span></li>
+                    <li><div class="checkbox-square"></div> <span>Revisar Kanban GTD y definir las 2 prioridades del día</span></li>
+                </ul>
+            </div>
+
+            <div class="section-box">
+                <div class="section-title">🌇 Rutina de Tarde (Cierre & Escala)</div>
+                <ul class="checklist">
+                    <li><div class="checkbox-square"></div> <span>Salida de Trabajo Fijo a las 13:30 / Almuerzo de recarga</span></li>
+                    <li><div class="checkbox-square"></div> <span>Bloque de 1 Hora de Vaciado Mental & Coordinación con Diego</span></li>
+                    <li><div class="checkbox-square"></div> <span>Crianza y tiempo dedicado a tu hija pequeña</span></li>
+                    <li><div class="checkbox-square"></div> <span>Operación de La Marca 33 (Cotizaciones estandarizadas)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-box" style="margin-bottom: 15px;">
+            <div class="section-title">📅 Registro Semanal de Hitos (Dopamina Analógica)</div>
+            <table class="table-days">
+                <thead>
+                    <tr>
+                        <th>Hito / Hábito Clave</th>
+                        <th>Lun</th>
+                        <th>Mar</th>
+                        <th>Mié</th>
+                        <th>Jue</th>
+                        <th>Vie</th>
+                        <th>Sáb</th>
+                        <th>Dom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: left;"><strong>Gimnasio matutino completado (3x por semana)</strong></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Bloque de 1h de Vaciado & Coordinación</strong></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Cotización de eventos con margen neto calculado</strong></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Tiempo de calidad con tu hija pequeña</strong></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">🛡️ Recordatorio de Antipatrones</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 9.5px;">
+                <div>🚫 <strong>Entrenar Tarde:</strong> El cansancio arruinará el hábito. ¡Entrena de mañana!</div>
+                <div>🚫 <strong>Cotizar al Ojo:</strong> Margen neto y costos calculados en cada evento.</div>
+                <div>🚫 <strong>Postergar el Auto:</strong> Las fallas de logística se arreglan a tiempo.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

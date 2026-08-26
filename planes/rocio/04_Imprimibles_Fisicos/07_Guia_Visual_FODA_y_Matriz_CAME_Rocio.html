@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Visual FODA & Matriz CAME - Rocío | Administración Humana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #7C3AED;
+            --corregir: #DC2626;
+            --afrontar: #D97706;
+            --mantener: #059669;
+            --explotar: #0284C7;
+            --border: #CBD5E1;
+            --bg-light: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #FFF;
+            padding: 1.5rem;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; color: var(--primary); font-weight: 800; }
+        .subtitle { font-size: 0.9rem; color: #64748B; font-weight: 600; }
+
+        .info-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-light);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-size: 0.82rem;
+        }
+
+        .section-tag {
+            background: var(--primary);
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .foda-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .foda-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            background: #FFF;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .foda-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .f-fortalezas h3 { color: var(--mantener); border-color: var(--mantener); }
+        .f-debilidades h3 { color: var(--corregir); border-color: var(--corregir); }
+        .f-oportunidades h3 { color: var(--explotar); border-color: var(--explotar); }
+        .f-amenazas h3 { color: var(--afrontar); border-color: var(--afrontar); }
+
+        .foda-card ul { list-style: none; font-size: 0.82rem; line-height: 1.45; }
+        .foda-card li { margin-bottom: 0.4rem; position: relative; padding-left: 1.1rem; }
+        .foda-card li::before { content: "•"; position: absolute; left: 0; font-weight: bold; }
+        .f-fortalezas li::before { color: var(--mantener); }
+        .f-debilidades li::before { color: var(--corregir); }
+        .f-oportunidades li::before { color: var(--explotar); }
+        .f-amenazas li::before { color: var(--afrontar); }
+
+        .came-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .came-card {
+            border-radius: 8px;
+            padding: 1rem;
+            background: #FFF;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .c-card { border-top: 4px solid var(--corregir); }
+        .a-card { border-top: 4px solid var(--afrontar); }
+        .m-card { border-top: 4px solid var(--mantener); }
+        .e-card { border-top: 4px solid var(--explotar); }
+
+        .came-card h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+        }
+
+        .c-card h3 { color: var(--corregir); }
+        .a-card h3 { color: var(--afrontar); }
+        .m-card h3 { color: var(--mantener); }
+        .e-card h3 { color: var(--explotar); }
+
+        .came-item {
+            font-size: 0.82rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .came-item strong { display: block; color: var(--primary); }
+        .came-item p { color: #475569; margin-top: 0.1rem; }
+
+        .golden-rule {
+            background: #F1F5F9;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .golden-rule strong { color: var(--accent); }
+
+        @media print {
+            body { padding: 0; max-width: 100%; }
+            .no-print { display: none; }
+            .foda-grid, .came-grid, .strategy-grid { gap: 0.6rem; }
+            .foda-card, .came-card, .strategy-card { padding: 0.8rem; page-break-inside: avoid; }
+        }
+
+        /* PARTE 3 STYLES */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .strategy-card {
+            border-radius: 8px;
+            padding: 1.1rem;
+            background: #FFF;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .st-ofensiva { border-top: 4px solid var(--explotar); background: linear-gradient(180deg, #F0F9FF 0%, #FFFFFF 100%); }
+        .st-defensiva { border-top: 4px solid var(--afrontar); background: linear-gradient(180deg, #FFFBEB 0%, #FFFFFF 100%); }
+        .st-adaptativa { border-top: 4px solid var(--corregir); background: linear-gradient(180deg, #FEF2F2 0%, #FFFFFF 100%); }
+        .st-supervivencia { border-top: 4px solid var(--accent); background: linear-gradient(180deg, #F3E8FF 0%, #FFFFFF 100%); }
+
+        .strategy-card .st-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+        }
+
+        .strategy-card h3 {
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .st-ofensiva h3 { color: var(--explotar); }
+        .st-defensiva h3 { color: var(--afrontar); }
+        .st-adaptativa h3 { color: var(--corregir); }
+        .st-supervivencia h3 { color: var(--accent); }
+
+        .formula-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            color: #FFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bg-fo { background: var(--explotar); }
+        .bg-fa { background: var(--afrontar); }
+        .bg-do { background: var(--corregir); }
+        .bg-da { background: var(--accent); }
+
+        .st-def {
+            font-size: 0.8rem;
+            color: #475569;
+            background: rgba(255,255,255,0.7);
+            padding: 0.5rem 0.7rem;
+            border-radius: 6px;
+            border-left: 3px solid #CBD5E1;
+            margin-bottom: 0.8rem;
+            line-height: 1.35;
+        }
+
+        .st-examples-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .st-example-item {
+            font-size: 0.81rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .st-example-item strong {
+            color: var(--primary);
+        }
+
+        .st-example-item span.pillar {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            margin-right: 0.3rem;
+            background: #E2E8F0;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>MAPA ESTRATÉGICO: FODA & MATRIZ CAME</h1>
+            <div class="subtitle">Administración Humana • Herramienta de Orientación Táctica para Rocío</div>
+        </div>
+        <button class="no-print" onclick="window.print()" style="padding: 0.5rem 1rem; background: var(--accent); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer;">🖨️ Imprimir / Guardar PDF</button>
+    </header>
+
+    <div class="info-bar">
+        <div><strong>Cliente:</strong> Rocío (28 años)</div>
+        <div><strong>Ciudad:</strong> Talcahuano</div>
+        <div><strong>Perfil:</strong> UST / Puya Masajes / Voz Caleidoscopio</div>
+        <div><strong>Condición:</strong> TEA (Stimming Agendado)</div>
+    </div>
+
+    <!-- PARTE 1: FODA -->
+    <div class="section-tag">
+        <span>📍 PARTE 1: EL DIAGNÓSTICO FODA DECLARADO POR ROCÍO</span>
+        <span style="font-weight: normal; font-size: 0.78rem;">Dónde estamos hoy</span>
+    </div>
+
+    <div class="foda-grid">
+        <div class="foda-card f-fortalezas">
+            <h3>🌟 FORTALEZAS (Motores Internos)</h3>
+            <ul>
+                <li><strong>Capacidad Inventiva & Storytelling:</strong> Talentosa desarrollando conceptos creativos y narrativas de marca.</li>
+                <li><strong>Alta Disciplina Corporal:</strong> Hábitos firmes de ejercicio y cuidado somático (Salud 8/10).</li>
+                <li><strong>Inteligencia Emocional & Límites:</strong> Capacidad de fijar límites sanos e integración con red familiar (9/10).</li>
+                <li><strong>Consistencia en Sistemas:</strong> Casi nula tasa de abandono de herramientas de organización (1/5).</li>
+            </ul>
+        </div>
+        <div class="foda-card f-debilidades">
+            <h3>⚠️ DEBILIDADES (Frenos Internos)</h3>
+            <ul>
+                <li><strong>Pensamientos Intrusivos Nocturnos:</strong> Ruido mental al acostarse (S1: 4/5, Mental 3/10).</li>
+                <li><strong>Fatiga de Lectura Digital:</strong> Cansancio visual al leer textos largos en pantalla de celular.</li>
+                <li><strong>Falta de Espacio para Stimming:</strong> Carencia de franjas agendadas de autorregulación sensorial (TEA).</li>
+                <li><strong>Ausencia de Fondo de Emergencia:</strong> Inexistencia de reserva financiera de resguardo.</li>
+            </ul>
+        </div>
+        <div class="foda-card f-oportunidades">
+            <h3>📈 OPORTUNIDADES (Palancas Externas)</h3>
+            <ul>
+                <li><strong>Método Administración Humana (AICC):</strong> Triangulación de su triple rol (UST, Masajes, Canto).</li>
+                <li><strong>Paquetización Terapéutica:</strong> Programas de masoterapia de 1 mes en <em>Puya Masajes</em>.</li>
+                <li><strong>Cero Costo de Arriendo:</strong> Oportunidad de canalizar ingresos hacia Fondo de Reserva y Ocio (30%).</li>
+            </ul>
+        </div>
+        <div class="foda-card f-amenazas">
+            <h3>🚨 AMENAZAS (Riesgos Externos)</h3>
+            <ul>
+                <li><strong>Fricción Logística en Talcahuano:</strong> Tiempos y desgaste en transporte público para domicilios.</li>
+                <li><strong>Movilización Estudiantil UST:</strong> Barrera de transporte para compañeras de carrera de Psicopedagogía.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PARTE 2: CAME -->
+    <div class="section-tag" style="background: var(--accent);">
+        <span>⚡ PARTE 2: LA MATRIZ CAME DE ACCIÓN REAL</span>
+        <span style="font-weight: normal; font-size: 0.78rem;">Las 4 respuestas tácticas</span>
+    </div>
+
+    <div class="came-grid">
+        <div class="came-card c-card">
+            <h3>🛠️ C - CORREGIR (Debilidades)</h3>
+            <div class="came-item">
+                <strong>• Desarmar pensamientos intrusivos nocturnos:</strong>
+                <p>Realizar vaciado mental GTD en libreta física 10 min antes de acostarse (cero pantallas en cama).</p>
+            </div>
+            <div class="came-item">
+                <strong>• Evitar la fatiga digital:</strong>
+                <p>Estudiar e imprimir informes universitarios en papel físico o notas por voz.</p>
+            </div>
+            <div class="came-item">
+                <strong>• Proteger la regulación sensorial (TEA):</strong>
+                <p>Agendar 2 bloques de 15 min de pausas de <em>stimming</em> innegociables al día.</p>
+            </div>
+            <div class="came-item">
+                <strong>• Construir seguridad financiera:</strong>
+                <p>Automatizar el ahorro inicial del 10% hacia una cuenta de reserva intocable.</p>
+            </div>
+        </div>
+
+        <div class="came-card a-card">
+            <h3>🛡️ A - AFRONTAR (Amenazas)</h3>
+            <div class="came-item">
+                <strong>• Neutralizar la fricción logística:</strong>
+                <p>Agrupar masajes a domicilio por zonas en Talcahuano y concretar alianza de conductor.</p>
+            </div>
+            <div class="came-item">
+                <strong>• Apoyar la movilidad académica:</strong>
+                <p>Redactar y respaldar el petitorio de transporte estudiantil en la UST junto a sus compañeras.</p>
+            </div>
+        </div>
+
+        <div class="came-card m-card">
+            <h3>💪 M - MANTENER (Fortalezas)</h3>
+            <div class="came-item">
+                <strong>• Potenciar el storytelling de proyectos:</strong>
+                <p>Diseñar experiencias completas para <em>Puya Masajes</em> y <em>Voz Caleidoscopio</em> (ej. velas e inciensos).</p>
+            </div>
+            <div class="came-item">
+                <strong>• Proteger la disciplina corporal:</strong>
+                <p>Sostener la rutina de ejercicio físico como pilar somático innegociable (Salud 8/10).</p>
+            </div>
+            <div class="came-item">
+                <strong>• Mantener límites y delegar:</strong>
+                <p>Delegar fijamente el paseo de <em>Nieve</em> a su papá aprovechando el resguardo familiar (9/10).</p>
+            </div>
+            <div class="came-item">
+                <strong>• Mantener consistencia en sistemas:</strong>
+                <p>Usar el Tablero Kanban visual de 3 vías en la pared con límite de 2 tareas en proceso.</p>
+            </div>
+        </div>
+
+        <div class="came-card e-card">
+            <h3>🚀 E - EXPLOTAR (Oportunidades)</h3>
+            <div class="came-item">
+                <strong>• Triangulación de Roles AICC:</strong>
+                <p>Delimitar bloques semanales sin solapamiento entre universidad, masajes y canto.</p>
+            </div>
+            <div class="came-item">
+                <strong>• Paquetización "Planes de 1 Mes":</strong>
+                <p>Sustituir masajes por hora suelta por programas terapéuticos mensuales de 4 sesiones.</p>
+            </div>
+            <div class="came-item">
+                <strong>• Apalancar cero costo de arriendo:</strong>
+                <p>Canalizar el margen libre de no pagar arriendo a acelerar el Fondo de Emergencia y subir Ocio al 30%.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PARTE 3: EXPLICACIÓN Y TIPOS DE ESTRATEGIAS CAME -->
+    <div class="section-tag" style="background: linear-gradient(135deg, #0F172A 0%, #7C3AED 100%); margin-top: 2rem;">
+        <span>🎯 PARTE 3: GUÍA PRÁCTICA DE LOS 4 TIPOS DE ESTRATEGIAS CAME</span>
+        <span style="font-weight: normal; font-size: 0.78rem;">Marco teórico y aplicaciones tácticas para Rocío</span>
+    </div>
+
+    <div class="strategy-grid">
+        <!-- 1. OFENSIVAS -->
+        <div class="strategy-card st-ofensiva">
+            <div class="st-header">
+                <h3>🚀 ESTRATEGIAS OFENSIVAS</h3>
+                <span class="formula-badge bg-fo">FO (Fortalezas + Oportunidades)</span>
+            </div>
+            <div class="st-def">
+                <strong>¿Qué son?</strong> Estrategias para <strong>Explotar</strong> al máximo las oportunidades del entorno apoyándote directamente en tus mayores fortalezas internas. Zona de máximo crecimiento.
+            </div>
+            <div class="st-examples-title">💡 Ejemplos Prácticos de Rocío:</div>
+            <div class="st-example-item">
+                <span class="pillar">Puya Masajes</span><strong>Paquetes de Autor:</strong> Usar tu <em>Capacidad Inventiva & Storytelling</em> (Fortaleza) para empaquetar sesiones de masoterapia mensual con experiencias de relajación sensorial (Oportunidad).
+            </div>
+            <div class="st-example-item">
+                <span class="pillar">Clases Canto</span><strong>Expresión Vocal & Somática:</strong> Combinar tu <em>Disciplina Corporal</em> (Fortaleza) con la pedagogía técnica (AICC) para potenciar tu marca y talleres de canto.
+            </div>
+            <div class="st-example-item">
+                <span class="pillar">Universidad UST</span><strong>Sistemas de Estudio AICC:</strong> Apalancar tu <em>Consistencia en Sistemas de Organización</em> (Fortaleza) para estructurar tus entregables académicos con holgura.
+            </div>
+        </div>
+
+        <!-- 2. DEFENSIVAS -->
+        <div class="strategy-card st-defensiva">
+            <div class="st-header">
+                <h3>🛡️ ESTRATEGIAS DEFENSIVAS</h3>
+                <span class="formula-badge bg-fa">FA (Fortalezas + Amenazas)</span>
+            </div>
+            <div class="st-def">
+                <strong>¿Qué son?</strong> Estrategias para <strong>Afrontar</strong> y neutralizar las amenazas externas haciendo uso de tus fortalezas consolidadas antes de que afecten tu bienestar.
+            </div>
+            <div class="st-examples-title">💡 Ejemplos Prácticos de Rocío:</div>
+            <div class="st-example-item">
+                <span class="pillar">Puya Masajes</span><strong>Logística Inteligente:</strong> Usar tu <em>Inteligencia Emocional y Fijación de Límites</em> (Fortaleza) para agrupar clientes por sectores y coordinar traslados eficientes en Talcahuano (Amenaza).
+            </div>
+            <div class="st-example-item">
+                <span class="pillar">Universidad UST</span><strong>Red Estudiantil:</strong> Apoyarte en tu <em>Liderazgo y Habilidad Narrativa</em> (Fortaleza) para organizarte con compañeras ante contingencias de transporte universitario.
+            </div>
+            <div class="st-example-item">
+                <span class="pillar">Bienestar Somático</span><strong>Protección de Hábitos:</strong> Mantener firme tu <em>Rutina de Cuidado Físico (8/10)</em> como escudo somático frente a momentos de estrés externo.
+            </div>
+        </div>
+
+        <!-- 3. ADAPTATIVAS -->
+        <div class="strategy-card st-adaptativa">
+            <div class="st-header">
+                <h3>🔄 ESTRATEGIAS ADAPTATIVAS</h3>
+                <span class="formula-badge bg-do">DO (Debilidades + Oportunidades)</span>
+            </div>
+            <div class="st-def">
+                <strong>¿Qué son?</strong> Estrategias para <strong>Corregir</strong> y superar debilidades internas aprovechando las palancas y oportunidades que ofrece el afuera.
+            </div>
+            <div class="st-examples-title">💡 Ejemplos Prácticos de Rocío:</div>
+            <div class="st-example-item">
+                <span class="pillar">Universidad UST</span><strong>Estudio Analógico:</strong> Aprovechar el <em>Acompañamiento AICC / Impresión Física</em> (Oportunidad) para vencer la <em>Fatiga de Lectura Digital</em> mediante cuadernillos en papel.
+            </div>
+            <div class="st-example-item">
+                <span class="pillar">Finanzas</span><strong>Reserva Automática:</strong> Aprovechar el <em>Cero Costo de Arriendo</em> (Oportunidad) para erradicar la <em>Ausencia de Fondo de Emergencia</em>, automatizando el 10% de tus ingresos a ahorro.
+            </div>
+            <div class="st-example-item">
+                <span class="pillar">Salud & Descanso</span><strong>Vaciado Mental GTD:</strong> Usar la <em>Metodología de Administración Humana</em> para desactivar los <em>Pensamientos Intrusivos Nocturnos</em> con registros analógicos antes de dormir.
+            </div>
+        </div>
+
+        <!-- 4. SUPERVIVENCIA -->
+        <div class="strategy-card st-supervivencia">
+            <div class="st-header">
+                <h3>⚠️ ESTRATEGIAS DE SUPERVIVENCIA</h3>
+                <span class="formula-badge bg-da">DA (Debilidades + Amenazas)</span>
+            </div>
+            <div class="st-def">
+                <strong>¿Qué son?</strong> Estrategias para <strong>Minimizar</strong> debilidades y eludir amenazas. Es la contención de riesgos de máxima prioridad para evitar sobrecarga o agotamiento.
+            </div>
+            <div class="st-examples-title">💡 Ejemplos Prácticos de Rocío:</div>
+            <div class="st-example-item">
+                <span class="pillar">Bienestar & TEA</span><strong>Blindaje Sensorial:</strong> Evitar la suma de <em>Falta de Espacio para Stimming</em> (Debilidad) con <em>Desgaste en Transporte Público</em> (Amenaza), reservando 2 pausas diarias innegociables de 15 min.
+            </div>
+            <div class="st-example-item">
+                <span class="pillar">Universidad UST</span><strong>Carga Mental Nocturna:</strong> Cortar el estudio en pantalla y redes durante noches con tensión académica o paros, preservando el descanso sensorial y del sistema nervioso.
+            </div>
+            <div class="st-example-item">
+                <span class="pillar">Puya Masajes</span><strong>Filtro de Desplazamientos:</strong> No aceptar servicios a domicilio distantes o con logística compleja sin un plan de transporte cerrado que cuide tu batería energética.
+            </div>
+        </div>
+    </div>
+
+    <div class="golden-rule">
+        <strong>📍 REGLA DE ORO DE ROCÍO:</strong> "El FODA diagnostica el estado de tus motores y frenos; la Matriz CAME es tu hoja de vuelo para ejecutar acciones sin quemar tu batería sensorial."
+    </div>
+</body>
+</html>

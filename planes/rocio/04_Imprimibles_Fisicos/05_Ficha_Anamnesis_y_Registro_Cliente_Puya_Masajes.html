@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Anamnesis & Registro de Cliente - Puya Masajes | Rocío</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #0284C7;
+            --secondary: #0D9488;
+            --border: #CBD5E1;
+            --bg-light: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #FFF;
+            padding: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h1 { font-size: 1.4rem; color: var(--primary); font-weight: 800; }
+        .subtitle { font-size: 0.8rem; color: #64748B; font-weight: 600; }
+
+        .tag-badge {
+            background: #E0F2FE;
+            color: #0369A1;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .section-box {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
+            background: #FFF;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 0.4rem;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+
+        .field-group { margin-bottom: 0.6rem; font-size: 0.82rem; }
+        .field-label { font-weight: 700; color: #475569; margin-bottom: 0.2rem; }
+        .field-line {
+            border-bottom: 1px solid var(--border);
+            min-height: 1.4rem;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            font-size: 0.8rem;
+            margin-top: 0.4rem;
+        }
+
+        .cb-item { display: flex; align-items: center; gap: 0.3rem; }
+        .box {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #64748B;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 0.4rem;
+        }
+
+        th {
+            background: var(--bg-light);
+            color: var(--primary);
+            font-weight: 700;
+            text-align: left;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        td {
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            height: 2.2rem;
+        }
+
+        .footer-note {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: #64748B;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding-top: 0.6rem;
+        }
+
+        @media print {
+            body { padding: 0; max-width: 100%; }
+            .section-box { page-break-inside: avoid; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-title">
+            <span>💆‍♀️</span>
+            <div>
+                <h1>Puya Masajes — Ficha de Anamnesis & Cliente</h1>
+                <p class="subtitle">Evaluación de Masoterapia, Preferencias & Seguimiento Terapéutico</p>
+            </div>
+        </div>
+        <span class="tag-badge">Ficha Física / Digital</span>
+    </header>
+
+    <!-- 1. DATOS DEL CLIENTE -->
+    <div class="section-box">
+        <div class="section-title">👤 1. Datos del Paciente / Cliente</div>
+        <div class="grid-2">
+            <div class="field-group">
+                <div class="field-label">Nombre Completo:</div>
+                <div class="field-line"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Teléfono / WhatsApp:</div>
+                <div class="field-line"></div>
+            </div>
+        </div>
+        <div class="grid-3">
+            <div class="field-group">
+                <div class="field-label">Edad / Fecha Nac.:</div>
+                <div class="field-line"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Ocupación / Actividad:</div>
+                <div class="field-line"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Sector / Domicilio:</div>
+                <div class="field-line"></div>
+            </div>
+        </div>
+        <div class="field-group" style="margin-top: 0.3rem;">
+            <div class="field-label">Modalidad de Atención:</div>
+            <div class="checkbox-group">
+                <div class="cb-item"><span class="box"></span> Individual</div>
+                <div class="cb-item"><span class="box"></span> Dueto (2x1 con Charli)</div>
+                <div class="cb-item"><span class="box"></span> Grupal (3x2)</div>
+                <div class="cb-item"><span class="box"></span> Plan 1 Mes (4 Sesiones)</div>
+                <div class="cb-item"><span class="box"></span> Trueque / Intercambio</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. ANAMNESIS Y EVALUACIÓN -->
+    <div class="section-box">
+        <div class="section-title">🩺 2. Anamnesis & Diagnóstico de Masoterapia</div>
+        <div class="grid-2">
+            <div>
+                <div class="field-label">Foco del Masaje Solicitado:</div>
+                <div class="checkbox-group" style="flex-direction: column; gap: 0.4rem;">
+                    <div class="cb-item"><span class="box"></span> <strong>Descontracturante:</strong> Nudos y sobrecarga</div>
+                    <div class="cb-item"><span class="box"></span> <strong>Cervical & Hombros:</strong> Tensión por postura</div>
+                    <div class="cb-item"><span class="box"></span> <strong>Relajante (30-60 min):</strong> Descanso & baja de estímulos</div>
+                </div>
+            </div>
+            <div>
+                <div class="field-label">Tolerancia & Preferencias Sensoriales:</div>
+                <div class="checkbox-group" style="flex-direction: column; gap: 0.4rem;">
+                    <div class="cb-item">Presión: <span class="box"></span> Suave <span class="box"></span> Media <span class="box"></span> Fuerte</div>
+                    <div class="cb-item">Aroma: <span class="box"></span> Neutro <span class="box"></span> Esencias relajantes</div>
+                    <div class="cb-item">Música: <span class="box"></span> Silencio <span class="box"></span> Sonidos suaves</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 0.8rem;">
+            <div class="field-label">Antecedentes Médicos & Contraindicaciones (Cirugías, Alergias, Lesiones, Embarazo):</div>
+            <div class="field-line"></div>
+            <div class="field-line" style="margin-top: 0.4rem;"></div>
+        </div>
+    </div>
+
+    <!-- 3. HISTORIAL DE SESIONES -->
+    <div class="section-box">
+        <div class="section-title">📋 3. Historial de Sesiones & Evolución</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 8%;">N°</th>
+                    <th style="width: 15%;">Fecha</th>
+                    <th style="width: 25%;">Servicio / Zona Trabajada</th>
+                    <th style="width: 37%;">Observaciones / Reacción</th>
+                    <th style="width: 15%;">Próx. Cita</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center; font-weight: 700;">1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: 700;">2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: 700;">3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: 700;">4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 4. ACUERDOS Y RECOMENDACIONES -->
+    <div class="section-box">
+        <div class="section-title">💡 4. Indicaciones Post-Sesión & Acuerdos Comercial/Trueque</div>
+        <div class="field-line"></div>
+        <div class="field-line" style="margin-top: 0.4rem;"></div>
+    </div>
+
+    <div class="footer-note">
+        Puya Masajes • Administración Humana — Herramienta de Gestión de Clientes & Anamnesis Terapéutica
+    </div>
+
+</body>
+</html>
