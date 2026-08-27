@@ -875,6 +875,295 @@
         font-size: 16px !important;
       }
     }
+
+    /* ── COMPARISON SECTION ── */
+    .compare-section {
+      background: #060606;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .compare-card {
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      position: relative;
+    }
+    .compare-card.bad {
+      background: rgba(239, 68, 68, 0.03);
+      border: 1px solid rgba(239, 68, 68, 0.22);
+    }
+    .compare-card.good {
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.06), rgba(59, 130, 246, 0.06));
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.08);
+    }
+    .compare-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 18px;
+    }
+    .compare-badge.bad {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .compare-badge.good {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .compare-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .compare-card.bad .compare-list li { color: #d1d5db; }
+    .compare-card.good .compare-list li { color: #f3f4f6; }
+    .compare-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── MODULES CATALOG ── */
+    .modules-catalog {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .modules-filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .module-filter-btn {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-light);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .module-filter-btn:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.3);
+    }
+    .module-filter-btn.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+      box-shadow: 0 0 14px rgba(255,255,255,0.25);
+    }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .module-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .module-card:hover {
+      border-color: rgba(255,255,255,0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .module-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .module-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--color-border-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+    .module-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+    }
+    .module-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .module-desc {
+      font-size: 0.86rem;
+      color: var(--color-text-light);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .module-footer {
+      font-size: 0.78rem;
+      color: #38bdf8;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── CONSULTANT SECTION ── */
+    .consultant-section {
+      background: linear-gradient(180deg, #0a0a0a, #000000);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .consultant-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .consultant-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border-bright);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .consultant-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #10b981);
+      padding: 3px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .consultant-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+    }
+    .consultant-name {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .consultant-role {
+      font-size: 0.82rem;
+      color: #38bdf8;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    .consultant-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .c-badge {
+      font-size: 0.72rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 3px 10px;
+      border-radius: 50px;
+      color: var(--color-text-light);
+    }
+    .consultant-content h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+    .consultant-content p {
+      font-size: 0.98rem;
+      color: var(--color-text-light);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .consultant-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .c-highlight-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .c-highlight-item strong {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .c-highlight-item span {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+    }
+
+    @media (max-width: 860px) {
+      .compare-grid,
+      .consultant-grid,
+      .consultant-highlights {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -959,6 +1248,71 @@
   </div>
 </section>
 
+<!-- COMPARISON SECTION -->
+<section class="compare-section" id="comparativa">
+  <div class="container">
+    <span class="section-tag">Cambio de Paradigma</span>
+    <h2 class="section-title">¿Por qué fallan los métodos tradicionales?</h2>
+    <p class="section-sub">
+      La mayoría de las herramientas están diseñadas para robots corporativos de oficina, no para personas reales con frentes múltiples, cuidados familiares o neurodivergencia.
+    </p>
+    
+    <div class="compare-grid">
+      <!-- CARD BAD -->
+      <div class="compare-card bad">
+        <span class="compare-badge bad">❌ Productividad Rígida & Tóxica</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 8px;">El Enfoque Convencional</h3>
+        <p style="font-size: 0.86rem; color: #9ca3af;">Herramientas genéricas que aumentan la culpa y la sensación de deuda constante.</p>
+        
+        <ul class="compare-list">
+          <li>
+            <span class="compare-icon" style="color: #ef4444;">✕</span>
+            <span><strong>Horarios rígidos de 8 horas:</strong> Ignora urgencias domésticas, picos de fatiga y cuidados familiares.</span>
+          </li>
+          <li>
+            <span class="compare-icon" style="color: #ef4444;">✕</span>
+            <span><strong>Listas infinitas de 30 pendientes:</strong> Genera parálisis por análisis, multitarea dispersa y burnout.</span>
+          </li>
+          <li>
+            <span class="compare-icon" style="color: #ef4444;">✕</span>
+            <span><strong>Saturación de 5 apps complejas:</strong> Notion, Trello, Asana... que terminas abandonando al tercer día.</span>
+          </li>
+          <li>
+            <span class="compare-icon" style="color: #ef4444;">✕</span>
+            <span><strong>Juicio moral destructivo:</strong> Si no cumples, el sistema asume que *"te falta fuerza de voluntad"*.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- CARD GOOD -->
+      <div class="compare-card good">
+        <span class="compare-badge good">✨ Administración Humana (AICC)</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 8px;">El Enfoque a Escala Humana</h3>
+        <p style="font-size: 0.86rem; color: #9ca3af;">Ingeniería de hábitos y software adaptado a tu biología y contexto real.</p>
+        
+        <ul class="compare-list">
+          <li>
+            <span class="compare-icon" style="color: #10b981;">✓</span>
+            <span><strong>Bloques de Oro & Horario 24H:</strong> Micro-ventanas protegidas que respetan tus tiempos de descanso y vida familiar.</span>
+          </li>
+          <li>
+            <span class="compare-icon" style="color: #10b981;">✓</span>
+            <span><strong>Límite estricto WIP = 2:</strong> Solo 2 tareas en ejecución simultánea para blindar tu sistema nervioso.</span>
+          </li>
+          <li>
+            <span class="compare-icon" style="color: #10b981;">✓</span>
+            <span><strong>Dossier & Plan de Vuelo unificado:</strong> Todo tu centro de mando en 1 pantalla interactiva + Hub físico de 1 hoja.</span>
+          </li>
+          <li>
+            <span class="compare-icon" style="color: #10b981;">✓</span>
+            <span><strong>Cero juicio moral:</strong> Si algo no funciona, calibramos la herramienta, nunca tu valor como persona.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PHILOSOPHY (GOLDEN CIRCLE) -->
 <section class="philosophy" id="filosofia">
   <div class="container">
@@ -991,6 +1345,154 @@
           Diseñamos sistemas y flujos de trabajo a medida (matrices de prioridad, tableros Kanban, time blocking) para que recuperes el control de tu tiempo y automatices tu día a día sin perder tu autenticidad.
         </p>
         <cite>Herramientas ordenadas sin perder tu esencia.</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES CATALOG -->
+<section class="modules-catalog" id="modulos">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom: 36px;">
+      <div>
+        <span class="section-tag">Arquitectura Modular</span>
+        <h2 class="section-title">27 Módulos del Sistema para Cada Desafío</h2>
+        <p class="section-sub" style="margin-bottom:0;">
+          No recibes un paquete cerrado. Activamos quirúrgicamente solo los módulos que resuelven tus fricciones operativas actuales.
+        </p>
+      </div>
+      <a href="planes-demo.html" target="_blank" class="btn-primary" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); border:none; box-shadow:0 0 16px rgba(59,130,246,0.4); font-size:0.86rem; padding: 12px 24px;">
+        ✨ Probar Módulos en Muestra en Vivo ↗
+      </a>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="modules-filter-bar" id="modules-filter-bar">
+      <button class="module-filter-btn active" onclick="filterModules('all', this)">Todos los Bloques (27)</button>
+      <button class="module-filter-btn" onclick="filterModules('productividad', this)">🕒 Productividad & Tiempo</button>
+      <button class="module-filter-btn" onclick="filterModules('bienestar', this)">🧠 Neurodivergencia & TEA</button>
+      <button class="module-filter-btn" onclick="filterModules('finanzas', this)">💰 Finanzas & Negocio</button>
+      <button class="module-filter-btn" onclick="filterModules('pedagogia', this)">🎨 Creación & Movimiento</button>
+      <button class="module-filter-btn" onclick="filterModules('ia', this)">🤖 Inteligencia Artificial</button>
+    </div>
+
+    <!-- MODULES GRID -->
+    <div class="modules-grid" id="modules-grid-container">
+      <!-- 1. Mapeador 24h -->
+      <div class="module-card" data-cat="productividad">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">🕒</div>
+            <span class="module-tag">Módulo 06</span>
+          </div>
+          <h3 class="module-title">Mapeador Horario 24H por Cajitas</h3>
+          <p class="module-desc">Generador visual de horarios en canvas interactivo con editor de categorías en vivo, pinceles y exportación a PNG/PDF.</p>
+        </div>
+        <div class="module-footer"><span>✦ Soberanía del Tiempo</span></div>
+      </div>
+
+      <!-- 2. Kanban GTD WIP=2 -->
+      <div class="module-card" data-cat="productividad">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">📋</div>
+            <span class="module-tag">Módulo 07</span>
+          </div>
+          <h3 class="module-title">Tablero Kanban Minimalista (WIP = 2)</h3>
+          <p class="module-desc">Límite estricto de 2 tareas simultáneas en ejecución para erradicar la parálisis por análisis y la dispersión mental.</p>
+        </div>
+        <div class="module-footer"><span>✦ Foco Quirúrgico</span></div>
+      </div>
+
+      <!-- 3. Protocolo Paso Cero -->
+      <div class="module-card" data-cat="productividad">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">⏱️</div>
+            <span class="module-tag">Módulo 09</span>
+          </div>
+          <h3 class="module-title">Protocolo Paso Cero (5 Minutos)</h3>
+          <p class="module-desc">Micro-compromisos de 5 minutos con reloj para romper la inercia sin sobrecargar la dopamina. Cumplir el 70% es 100% de éxito.</p>
+        </div>
+        <div class="module-footer"><span>✦ Cero Resistencia</span></div>
+      </div>
+
+      <!-- 4. Blindaje Sensorial TEA -->
+      <div class="module-card" data-cat="bienestar">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">🧠</div>
+            <span class="module-tag">Módulo 18</span>
+          </div>
+          <h3 class="module-title">Blindaje Sensorial & Regulación TEA</h3>
+          <p class="module-desc">Protección estricta de la batería sensorial y prevención del burnout neurodivergente con pausas de stimming agendadas.</p>
+        </div>
+        <div class="module-footer"><span>✦ Regulación Nerviosa</span></div>
+      </div>
+
+      <!-- 5. Inventario Cero Culpa -->
+      <div class="module-card" data-cat="bienestar">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">🌙</div>
+            <span class="module-tag">Módulo 19</span>
+          </div>
+          <h3 class="module-title">Inventario Nocturno Cero Culpa</h3>
+          <p class="module-desc">Registro diario de 2 minutos para anotar 3 micro-victorias y validar el cuidado y trabajo invisible antes de dormir.</p>
+        </div>
+        <div class="module-footer"><span>✦ Paz Mental Nocturna</span></div>
+      </div>
+
+      <!-- 6. GPS 50/30/20 -->
+      <div class="module-card" data-cat="finanzas">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">💵</div>
+            <span class="module-tag">Módulo 14</span>
+          </div>
+          <h3 class="module-title">GPS Financiero 50/30/20</h3>
+          <p class="module-desc">Distribución porcentual de ingresos (50% Necesidades, 30% Ocio regenerativo, 20% Ahorro/Deuda) adaptada a ingresos variables.</p>
+        </div>
+        <div class="module-footer"><span>✦ Claridad Económica</span></div>
+      </div>
+
+      <!-- 7. Paquetizacion de Servicios -->
+      <div class="module-card" data-cat="finanzas">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">📦</div>
+            <span class="module-tag">Módulo 17</span>
+          </div>
+          <h3 class="module-title">Paquetización de Servicios Mensuales</h3>
+          <p class="module-desc">Transformación de la venta precaria por hora suelta en planes cerrados de 1 mes (4 sesiones) para triplicar ingresos y fidelizar.</p>
+        </div>
+        <div class="module-footer"><span>✦ 3x Flujo de Caja</span></div>
+      </div>
+
+      <!-- 8. Biblioteca Musical & Secuenciador -->
+      <div class="module-card" data-cat="pedagogia">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">🎶</div>
+            <span class="module-tag">Módulo 22</span>
+          </div>
+          <h3 class="module-title">Secuenciador de Clases & Pistas HQ</h3>
+          <p class="module-desc">Gestión de repertorio original PayPal, armado de playlists en 1 clic y curva somática de intensidad de 50 a 55 minutos.</p>
+        </div>
+        <div class="module-footer"><span>✦ Cero Dispersión Creativa</span></div>
+      </div>
+
+      <!-- 9. Prompts IA ChatGPT -->
+      <div class="module-card" data-cat="ia">
+        <div>
+          <div class="module-header">
+            <div class="module-icon-wrap">🪄</div>
+            <span class="module-tag">Módulo 27</span>
+          </div>
+          <h3 class="module-title">Playbook IA ChatGPT + Antigravity</h3>
+          <p class="module-desc">Prompts de 1 clic para redactar propuestas, vaciar ideas y sincronizar notas de voz directamente con tu expediente digital.</p>
+        </div>
+        <div class="module-footer"><span>✦ Automatización Ágil</span></div>
       </div>
     </div>
   </div>
@@ -1123,46 +1625,60 @@
       No te entregamos teoría genérica ni informes en PDF sin uso. Construimos para ti un ecosistema digital práctico, personalizado a tu contexto y listo para operar desde el primer día.
     </p>
 
-    <div class="circle-grid">
+    <div class="circle-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
       <!-- 1. CARPETA DIGITAL GOOGLE DRIVE -->
       <div class="circle-card" style="border-top: 2px solid #ffffff;">
         <span class="circle-label" style="color: #ffffff; font-weight: 800;">📁 Entregable #1</span>
-        <h3>Carpeta Digitalizada en Google Drive</h3>
+        <h3>Carpeta en Google Drive</h3>
         <p>
-          Tu centro de mando digital. Creamos y estructuramos una carpeta compartida en Google Drive organizada por áreas (Finanzas, Tiempo, Proyectos y Rutina) accesible desde tu celular y computador.
+          Tu centro de mando digital ordenado por áreas (Finanzas, Tiempo, Proyectos y Hábitos) accesible 24/7 desde tu celular y computador.
         </p>
         <div style="margin-top: 16px; font-size: 0.82rem; color: var(--color-text-light); line-height: 1.5; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--color-border);">
-          ✦ Estructura limpia de carpetas por área<br>
-          ✦ Plantillas editables y vinculadas<br>
-          ✦ Acceso seguro permanente 24/7
+          ✦ Estructura limpia de carpetas<br>
+          ✦ Plantillas vinculadas en la nube<br>
+          ✦ Cero desorden de archivos
         </div>
       </div>
 
-      <!-- 2. PLAN DE VUELO ESTRATÉGICO -->
-      <div class="circle-card" style="border-top: 2px solid #ffffff;">
-        <span class="circle-label" style="color: #ffffff; font-weight: 800;">🛫 Entregable #2</span>
-        <h3>Plan de Vuelo (Hoja de Ruta 360°)</h3>
+      <!-- 2. PLAN DE VUELO INTERACTIVO 2.0 -->
+      <div class="circle-card" style="border-top: 2px solid #3b82f6;">
+        <span class="circle-label" style="color: #60a5fa; font-weight: 800;">🛫 Entregable #2</span>
+        <h3>Plan de Vuelo 2.0 en Vivo</h3>
         <p>
-          Tu dossier estratégico resumido. Un mapa visual de 1 página con tus metas prioritarias, escudo contra incendios, prioridades Eisenhower y la hoja de ruta de tus próximos 30–90 días.
+          Tu propio software personalizado con Mapeador 24H, Kanban con límite WIP=2, calculadora de finanzas y secuenciadores de trabajo.
         </p>
         <div style="margin-top: 16px; font-size: 0.82rem; color: var(--color-text-light); line-height: 1.5; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--color-border);">
-          ✦ Matriz de prioridades claras<br>
-          ✦ Plan de acción 24h anti-incendios<br>
-          ✦ Hitos clave de progreso medible
+          ✦ Mapeador 24H con editor de categorías<br>
+          ✦ Kanban GTD con WIP=2 estricto<br>
+          ✦ Acceso seguro con PIN personal
         </div>
       </div>
 
       <!-- 3. KIT DE HERRAMIENTAS ADAPTADAS -->
-      <div class="circle-card" style="border-top: 2px solid #ffffff;">
-        <span class="circle-label" style="color: #ffffff; font-weight: 800;">🛠️ Entregable #3</span>
-        <h3>Kit de Herramientas a tu Medida</h3>
+      <div class="circle-card" style="border-top: 2px solid #10b981;">
+        <span class="circle-label" style="color: #34d399; font-weight: 800;">🛠️ Entregable #3</span>
+        <h3>Kit de Módulos a Medida</h3>
         <p>
-          Seleccionamos y configuramos las herramientas idóneas para tu perfil (presupuesto 50/30/20, capturador GTD, tableros Kanban o agendas de bloques de foco) listas con tus propios datos.
+          Activamos únicamente los módulos que destraban tu dolor (presupuesto 50/30/20, inventario cero culpa, pausas TEA o prompts IA).
         </p>
         <div style="margin-top: 16px; font-size: 0.82rem; color: var(--color-text-light); line-height: 1.5; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--color-border);">
-          ✦ Selección entre 39+ herramientas de gestión<br>
-          ✦ Ajustadas a tu ritmo<br>
-          ✦ Checklist de hábitos y seguimiento
+          ✦ Selección entre 27+ módulos oficiales<br>
+          ✦ Calibrados a tu sistema nervioso<br>
+          ✦ Checklist de microacciones de 24h
+        </div>
+      </div>
+
+      <!-- 4. HUB MAESTRO DE IMPRIMIBLES FÍSICOS -->
+      <div class="circle-card" style="border-top: 2px solid #f59e0b;">
+        <span class="circle-label" style="color: #fbbf24; font-weight: 800;">🖨️ Entregable #4</span>
+        <h3>Hub de Imprimibles Físicos</h3>
+        <p>
+          Un único archivo maestro con todas tus fichas, matrices y planificadores adaptados para imprimir exactamente 1 hoja sin gastar tinta.
+        </p>
+        <div style="margin-top: 16px; font-size: 0.82rem; color: var(--color-text-light); line-height: 1.5; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--color-border);">
+          ✦ Formato exacto 1 página Carta/A4<br>
+          ✦ Impresión aislada o cuadernillo 1 clic<br>
+          ✦ Cero fatiga visual de pantallas
         </div>
       </div>
     </div>
@@ -1186,6 +1702,53 @@
         <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20el%20Dossier%20y%20Plan%20de%20Vuelo%20de%20muestra%20y%20quiero%20coordinar%20mi%20sesi%C3%B3n." target="_blank" class="btn-secondary" style="border-color: rgba(16,185,129,0.4); color:#10b981;">
           💬 Hablar con Diego por WhatsApp
         </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTANT SECTION -->
+<section class="consultant-section" id="sobre-diego">
+  <div class="container">
+    <div class="consultant-grid">
+      <!-- PROFILE CARD -->
+      <div class="consultant-card">
+        <div class="consultant-avatar">
+          <div class="consultant-avatar-inner">🧭</div>
+        </div>
+        <h3 class="consultant-name">Diego González Yáñez</h3>
+        <div class="consultant-role">Consultor & Diseñador de Sistemas AICC</div>
+        <div class="consultant-badges">
+          <span class="c-badge">📍 Concepción, Chile</span>
+          <span class="c-badge">🌐 Atención Online</span>
+          <span class="c-badge">💬 +56975590132</span>
+        </div>
+        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20situaci%C3%B3n." target="_blank" class="btn-primary" style="width: 100%; display: inline-flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.85rem; padding: 12px; background: #10b981; color: #000; border: none; font-weight: 800; border-radius: 50px;">
+          <span>💬</span> Hablar con Diego
+        </a>
+      </div>
+
+      <!-- BIO & PHILOSOPHY -->
+      <div class="consultant-content">
+        <span class="section-tag">Detrás de la Metodología</span>
+        <h3>«La estructura debe darte libertad, no quitarte autenticidad.»</h3>
+        <p>
+          Fundé <strong>Administración Humana</strong> para resolver una paradoja que viví en carne propia y vi repetirse en decenas de personas talentosas: la sensación de correr todo el día, apagando incendios y cargando una mochila invisible de culpa por no encajar en los moldes rígidos de la productividad tradicional.
+        </p>
+        <p>
+          Mi rol no es darte charlas motivacionales vacías ni imponerte plantillas complejas de 100 pestañas. <strong>Mi labor es hacer de puente clínico-operativo</strong>: escucharte sin juicio moral, diagnosticar con exactitud tus cuellos de botella y construir contigo un sistema vivo, simple y hermoso que sostenga tus metas mientras cuidas tu salud mental.
+        </p>
+
+        <div class="consultant-highlights">
+          <div class="c-highlight-item">
+            <strong>🎯 Cero Juicio Moral</strong>
+            <span>Si algo no funciona en tu rutina, el problema nunca eres tú: es el diseño de la herramienta.</span>
+          </div>
+          <div class="c-highlight-item">
+            <strong>🛠️ Ingeniería a Medida</strong>
+            <span>Cada cliente recibe su propio software interactivo, hojas de cálculo en Drive y fichas imprimibles.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1287,11 +1850,14 @@
       <img src="logo_oficial.png" alt="Logo Administración Humana" style="height:28px; width:auto; border-radius:4px;" />
       <span class="footer-logo" style="margin-bottom:0;">Administración Humana</span>
     </div>
-    <p>© 2026 · Concepción, Chile</p>
-    <div class="footer-links" style="margin-top:12px;">
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#contacto">Contacto</a>
-      <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:700;">📸 Instagram @administracionhumana</a>
+    <div class="footer-links" style="margin-top:12px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="#modulos">Módulos del Sistema</a>
+      <a href="#comparativa">Metodología AICC</a>
+      <a href="#entregables">Entregables</a>
+      <a href="#sobre-diego">Sobre Diego</a>
+      <a href="dossier.html">Dossier & Casos</a>
+      <a href="sondeo.html">Sondeo 360°</a>
+      <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:700;">📸 @administracionhumana</a>
     </div>
   </div>
 </footer>
@@ -1616,6 +2182,21 @@
       });
     }
   }
+
+  // Filter modules catalog
+  window.filterModules = function(category, btn) {
+    document.querySelectorAll('.module-filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.module-card');
+    cards.forEach(card => {
+      if (category === 'all' || card.getAttribute('data-cat') === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  };
 
   // Run setup
   if (document.readyState === 'loading') {
