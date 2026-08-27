@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Vuelo 2.0 • Antonia Jofré • Administración Humana</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Modular CSS Core & Components (Cache-Busting v3.3) -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.3">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.3">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.3">
+    <link rel="stylesheet" href="css/zumba-library.css?v=3.3">
+
+    <!-- Inmersión Visual & Reglas Móviles de Alta Prioridad -->
+    <style>
+        @media (max-width: 768px) {
+            .tabs {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.45rem !important;
+                padding: 0.5rem !important;
+                background: rgba(255, 255, 255, 0.03) !important;
+                border: 1px solid #262626 !important;
+                border-radius: 12px !important;
+                margin-bottom: 1.4rem !important;
+                width: 100% !important;
+                overflow-x: visible !important;
+                flex-wrap: wrap !important;
+            }
+
+            .tab-btn {
+                width: 100% !important;
+                padding: 0.65rem 0.4rem !important;
+                font-size: 0.74rem !important;
+                justify-content: center !important;
+                text-align: center !important;
+                gap: 0.35rem !important;
+                border-radius: 8px !important;
+                white-space: normal !important;
+                line-height: 1.25 !important;
+                flex: none !important;
+            }
+
+            .tab-btn.active {
+                background: #ffffff !important;
+                color: #000000 !important;
+                box-shadow: 0 0 14px rgba(255, 255, 255, 0.3) !important;
+                font-weight: 800 !important;
+            }
+        }
+
+        #lightbox-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+        #lightbox-modal.active { display: flex; animation: fadeIn 0.25s ease; }
+        #lightbox-img {
+            max-width: 92vw; max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.1);
+            border: 1px solid #333;
+        }
+        #lightbox-close {
+            position: absolute; top: 20px; right: 25px;
+            color: #ffffff; font-size: 2.2rem;
+            background: transparent; border: none;
+            cursor: pointer; line-height: 1;
+        }
+
+        .hero-tea-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 4px 12px; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 700;
+            margin-bottom: 0.8rem; letter-spacing: 0.5px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem; margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem;
+        }
+        .stat-val { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .stat-lbl { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+        .printable-card {
+            background: #111; border: 1px solid #262626; border-radius: 12px;
+            padding: 1.2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            margin-bottom: 0.8rem; transition: all 0.2s ease;
+        }
+        .printable-card:hover { border-color: #444; background: #161616; transform: translateX(4px); }
+
+        /* ESTILOS DEL ACTIVADOR IA & CHATGPT */
+        .ai-hub-header {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .ai-step-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+        .ai-step-card {
+            background: #111111;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        .ai-step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ffffff;
+            color: #000000;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .prompt-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            transition: all 0.2s ease;
+            margin-bottom: 1.4rem;
+        }
+        .prompt-card:hover {
+            border-color: #444;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+        }
+        .prompt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .prompt-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .prompt-box {
+            background: #090909;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.82rem;
+            color: #d1d5db;
+            line-height: 1.55;
+            white-space: pre-wrap;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        .btn-copy-prompt {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-copy-prompt:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+        .btn-copy-prompt.copied {
+            background: #10b981 !important;
+            color: #ffffff !important;
+        }
+        .toast-notification {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #ffffff;
+            color: #000000;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 999999;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DEMO SHOWCASE TOP BAR -->
+    <div style="background: linear-gradient(90deg, #1e1b4b, #0f172a, #064e3b); border-bottom: 1px solid rgba(255,255,255,0.18); padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.84rem; position: sticky; top: 0; z-index: 999999; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; padding: 3px 10px; border-radius: 50px; font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px;">✨ Modo Demostración</span>
+            <span style="color: #f1f5f9; font-weight: 600;">Este es un <strong>Plan de Vuelo 2.0 de ejemplo</strong> con todos los módulos LEGO operativos e interactivos.</span>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <a href="sondeo.html" style="color: #93c5fd; text-decoration: none; font-weight: 700; font-size: 0.82rem; padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(147,197,253,0.3); background: rgba(147,197,253,0.08);">🔮 Sondeo 360° Gratuito →</a>
+            <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estuve%20revisando%20el%20Plan%20de%20Vuelo%20de%20muestra%20y%20quiero%20crear%20el%20m%C3%ADo." target="_blank" style="background: #10b981; color: #000000; padding: 5px 14px; border-radius: 50px; font-weight: 800; text-decoration: none; font-size: 0.82rem; box-shadow: 0 0 10px rgba(16,185,129,0.4);">💬 Hablar con Diego</a>
+        </div>
+    </div>
+
+    <!-- CLIENT SECURITY GATEWAY OVERLAY (HIDDEN IN DEMO MODE) -->
+    <div id="client-auth-overlay" class="client-auth-overlay unlocked" style="display:none;"></div>
+
+    <!-- LIGHTBOX MODAL FOR IMAGES -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="Ampliación de Herramienta">
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="toast-notification">
+        <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
+        <span id="toast-text">¡Prompt copiado! Pégalo directamente en ChatGPT.</span>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <div class="brand-logo">🧘‍♀️</div>
+                <div class="brand-title">
+                    <h1>Plan de Vuelo 2.0</h1>
+                    <p>De la Carga Mental a la Independencia Operativa • <strong>Caso Demo: Sofía Valenzuela</strong></p>
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <div class="meta-badge">
+                    <span class="dot"></span>
+                    <span>Cuidados Familiares • Clases de Yoga & Zumba • Hito Independencia</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-overview')">
+                <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-identidades')">
+                <i class="fa-solid fa-masks-theater"></i> 4 Arquetipos Energía
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-ia-chatgpt')" style="border: 1px solid rgba(255,255,255,0.25);">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color: #60a5fa;"></i> Activador IA & ChatGPT
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-antigravity-tips')" style="border: 1px solid rgba(245,158,11,0.25);">
+                <i class="fa-solid fa-lightbulb" style="color: #f59e0b;"></i> Tips Antigravity
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-zumba-coreo')" style="border: 1px solid rgba(236,72,153,0.35); background: rgba(236,72,153,0.06);">
+                <i class="fa-solid fa-music" style="color: #ec4899;"></i> 🎶 Biblioteca Zumba & Coreos
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-horario')">
+                <i class="fa-regular fa-clock"></i> Mapeador 24H
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-kanban')">
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-herramientas')">
+                <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-accion')">
+                <i class="fa-solid fa-bolt"></i> Plan 24h & Límites
+            </button>
+        </nav>
+
+        <!-- TAB CONTENT: OVERVIEW / DIAGNOSTIC -->
+        <div id="tab-overview" class="tab-content active">
+            <div class="diagnostic-box">
+                <div class="hero-tea-badge">
+                    <i class="fa-solid fa-dna"></i> Diagnóstico Humano & Estructura Personal
+                </div>
+                <h3><span>El Estado Actual: Soberanía Operativa & Foco</span></h3>
+                <p>
+                    Sofía sostiene una alta carga de cuidados médicos y trámites familiares, lo que le generaba culpa por 'no producir en horario de oficina tradicional'. Su gran meta es consolidar sus clases de yoga y zumba con un colchón de $160.000 mensuales para traslados y un fondo de independencia operativa.
+                </p>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card" style="border-color: #10b98144;">
+                    <span class="stat-val" style="color: #10b981;">2 Bloques</span>
+                    <span class="stat-lbl">Bloques de Oro Semanales</span>
+                    <span style="font-size: 0.75rem; color: #888;">45 min protegidos para clases</span>
+                </div>
+                <div class="stat-card" style="border-color: #60a5fa44;">
+                    <span class="stat-val" style="color: #60a5fa;">8 Alumnas</span>
+                    <span class="stat-lbl">Meta Pasajes ($160k)</span>
+                    <span style="font-size: 0.75rem; color: #888;">Cubre 100% de traslados</span>
+                </div>
+                <div class="stat-card" style="border-color: #f59e0b44;">
+                    <span class="stat-val" style="color: #f59e0b;">3 min</span>
+                    <span class="stat-lbl">Inventario Cero Culpa</span>
+                    <span style="font-size: 0.75rem; color: #888;">Cierre nocturno positivo</span>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
+                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
+                        <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="section-title"><span>Ecosistema de Gestión Digital Sincronizada</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>📂 Carpeta Compartida:</strong> Google Drive con sincronización directa a tu computador.</li>
+                        <li><strong>🤖 ChatGPT + Antigravity:</strong> Pega tus prompts en ChatGPT y activa tus módulos en tiempo real.</li>
+                        <li><strong>📱 Acceso Modo App:</strong> Agrega esta página a tu pantalla de inicio en tu celular.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: IDENTIDADES -->
+        <div id="tab-identidades" class="tab-content">
+            <div class="section-title">
+                <span>Matriz de los 4 Arquetipos de Energía Personal</span>
+            </div>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
+                Comprender qué identidad está activa en cada momento te permite neutralizar el auto-sabotaje y activar tu foco operativo.
+            </p>
+            <div class="grid-2">
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> La Estratega
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;"><strong>Rol / Función:</strong> Diseña programas y calcula metas financieras</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Alta / Foco</span>
+                </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> La Ejecutora
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;"><strong>Rol / Función:</strong> Dicta clases de yoga y atiende alumnas</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Presente / Somática</span>
+                </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> La Nutricia
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;"><strong>Rol / Función:</strong> Acompaña a su familia y realiza trámites</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Empática / Emocional</span>
+                </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> La Saboteadora
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;"><strong>Rol / Función:</strong> Genera culpa nocturna por trabajo invisible</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Rumiación / Freno</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: ACTIVADOR IA & CHATGPT (NUEVA PESTAÑA ESPECIAL) -->
+        <div id="tab-ia-chatgpt" class="tab-content">
+            <div class="ai-hub-header">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <div class="hero-tea-badge" style="background: rgba(96, 165, 250, 0.15); border-color: rgba(96, 165, 250, 0.35); color: #60a5fa;">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Activador IA & Puente ChatGPT + Antigravity
+                        </div>
+                        <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
+                            Centro de Contexto & Activación de Módulos
+                        </h2>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 850px; line-height: 1.5;">
+                            Antonia, aprovecha que tienes Google Drive sincronizado y que usas ChatGPT habitualmente. Copia estos prompts, pégalos en ChatGPT para estructurar tus ideas y guarda el resultado en tu carpeta compartida. ¡Antigravity activará automáticamente todos tus módulos!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ai-step-flow">
+                    <div class="ai-step-card">
+                        <div class="ai-step-num">1</div>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Copia el Prompt</div>
+                            <div style="font-size: 0.74rem; color: #888;">Elige el módulo que deseas activar abajo y haz clic en "Copiar".</div>
+                        </div>
+                    </div>
+                    <div class="ai-step-card">
+                        <div class="ai-step-num">2</div>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Pégalo en ChatGPT</div>
+                            <div style="font-size: 0.74rem; color: #888;">Agrega tus notas, audios o detalles personales para que te devuelva el archivo listo.</div>
+                        </div>
+                    </div>
+                    <div class="ai-step-card">
+                        <div class="ai-step-num">3</div>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Sincronización en Drive</div>
+                            <div style="font-size: 0.74rem; color: #888;">Guarda el archivo Markdown en la carpeta indicada para que Diego y tú lo tengan activo.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMPT 0: MAESTRO UNIVERSAL PARA CHATS EXISTENTES -->
+            <div class="prompt-card" style="border: 1px solid rgba(96, 165, 250, 0.4); background: rgba(96, 165, 250, 0.03);">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(96, 165, 250, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.4);">
+                            <i class="fa-solid fa-brain"></i> Extracción Universal • Para Chats Existentes en ChatGPT
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            🌟 Prompt Maestro • Volcar Contexto Completo de un Chat para Antigravity
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-universal-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt Maestro
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #bbb; margin-bottom: 0.4rem;">
+                    Pega este prompt al final de cualquier conversación que ya tengas abierta en ChatGPT con reflexiones o ideas. Te extraerá un resumen quirúrgico listo para que Antigravity lo aterrice.
+                </p>
+                <div class="prompt-box" id="prompt-universal-text">Actúa como un sintetizador de contexto para mi sistema operativo en Antigravity.
+Por favor, analiza todo lo que hemos conversado en este chat y extrae un resumen estructurado bajo el formato "Ficha de Extracción para Antigravity".
+
+Incluye exclusivamente:
+1. Decisiones ya tomadas (lo que ya está definido y no se discute más).
+2. Restricciones duras (tiempos no negociables, límites de energía, cuidados médicos).
+3. Datos clave & Números (precios, metas financieras, fechas, cantidades de personas).
+4. Ideas & Proyectos pendientes (propuestas para aterrizar en micro-tareas).
+5. Cuellos de botella o preocupaciones actuales (lo que está frenando el avance).
+
+Entrega el resultado en Markdown limpio, con viñetas y tablas si aplica, listo para guardar en mi carpeta de Antigravity.</div>
+            </div>
+
+            <!-- PROMPT 1: YOGA & SERVICIOS -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 04_Servicios_y_Proyectos_Profesionales / 01_Yoga_y_Servicios
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            🧘‍♀️ Módulo 1 • Extracción de Oferta & Ficha Técnica de Yoga Somático
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-yoga-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Genera la propuesta de valor de <em>"Yoga para Cuerpos Cansados"</em>, estructura pedagógica de 45 minutos y el kit de 3 copys de WhatsApp para invitar a tus primeras 8 a 10 alumnas.
+                </p>
+                <div class="prompt-box" id="prompt-yoga-text">Actúa como mi consultor de gestión de proyectos y bienestar en Administración Humana.
+Tengo el proyecto de relanzar mis clases online de "Yoga Somático para Cuerpos Cansados" (enfocado en personas con estrés acumulado, mamás y personas con cansancio físico/mental).
+
+Por favor, genera un documento estructurado en formato Markdown listo para guardar en mi carpeta "04_Servicios_y_Proyectos_Profesionales/01_Yoga_y_Servicios/Programa_Piloto_Yoga.md" con:
+
+1. Propuesta de Valor & Manifiesto: Qué hace único a este espacio (sin posturas acrobáticas ni exigencia, 100% restauración y descompresión).
+2. Estructura de la Clase de 45 Minutos:
+   - 0-5 min: Aterrizaje y respiración somática.
+   - 5-30 min: Movilidad suave y elongación de espalda/cuello/caderas.
+   - 30-40 min: Relajación profunda / descarga del sistema nervioso.
+   - 40-45 min: Cierre e integración.
+3. Formato & Políticas Amigables:
+   - Frecuencia: 2 sesiones semanales por Zoom/Meet.
+   - Plan de Respaldo: Grabación comodín mensual para quienes falten por emergencias.
+4. Kit de Textos de WhatsApp (Copywriting empático):
+   - Mensaje 1: Invitación cálida a círculo cercano de interesadas.
+   - Mensaje 2: Bienvenida con datos de transferencia y link de Zoom.
+   - Mensaje 3: Recordatorio suave 30 minutos antes de la clase.</div>
+            </div>
+
+            <!-- PROMPT 2: FINANZAS & HITO SANTIAGO -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 03_Finanzas_y_Presupuesto / 02_Finanzas_y_Metas_Santiago
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            💰 Módulo 2 • Finanzas, Presupuesto & Hito Santiago ($160k)
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-finanzas-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Calcula el punto de equilibrio para cubrir el 100% de los pasajes a Santiago ($160.000) con 8 alumnas y adapta el presupuesto 50/30/20 a tu realidad.
+                </p>
+                <div class="prompt-box" id="prompt-finanzas-text">Actúa como mi asesor financiero personal en Administración Humana. Ayúdame a calcular y estructurar mi archivo financiero para guardarlo en "03_Finanzas_y_Presupuesto/02_Finanzas_y_Metas_Santiago/Presupuesto_y_Metas.md".
+
+Contexto:
+- Mi meta inmediata es el "Hito Santiago": Financiar de forma 100% autónoma mis pasajes de bus ($20.000 cada pasaje, 2 por semana = $40.000/semana = $160.000/mes).
+- Voy a impartir clases de Yoga Online de 2 sesiones semanales.
+
+Genera:
+1. Tabla de Sensibilidad de Precios:
+   - Escenario A: $15.000/mes por alumna (cuántas alumnas necesito para $160.000 y para $300.000).
+   - Escenario B: $20.000/mes por alumna.
+   - Escenario C: $25.000/mes por alumna.
+2. Estructura de Presupuesto 50/30/20 Adaptada:
+   - 50% Necesidades operativas y cuidado familiar.
+   - 30% Fondo de traslado y salud (Hito Santiago).
+   - 20% Fondo de independencia y tranquilidad personal.
+3. Regla de Oro Financiera: Criterio para saber cuándo reinvertir y cuándo asegurar el colchón de seguridad.</div>
+            </div>
+
+            <!-- PROMPT 3: HORARIOS 24H -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 02_Gestion_Operativa_y_Metas
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            ⏰ Módulo 3 • Horarios 24H & Soberanía de Energía
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-horarios-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Mapea tu semana tipo de 24 horas protegiendo tus 2 Bloques de Oro para dictar clases y define tu protocolo de contingencia médica sin culpa.
+                </p>
+                <div class="prompt-box" id="prompt-horarios-text">Actúa como mi especialista en ergonomía de tiempo y soberanía personal en Administración Humana.
+Necesito mapear mi semana tipo de 24 horas (Lunes a Domingo) para equilibrar mis horas de cuidado intensivo familiar (Mateo y Roma), tareas del hogar, sueño y mis 2 Bloques de Oro para dictar clases de yoga online.
+
+Por favor genera:
+1. Una tabla con el desglose sugerido por bloques de 1 a 2 horas para los 7 días de la semana, clasificando cada bloque en una de estas categorías:
+   - 🧘‍♀️ Yoga & Clases Online (Bloque de Oro)
+   - 👶 Crianza & Cuidados Familiares
+   - 🏡 Hogar & Alimentación
+   - 😴 Sueño & Descanso Nocturno
+   - 🌱 Tiempo Libre / Autocuidado
+   - ⚡ Cita Semanal de Gestión
+2. Protocolo de Contingencia Médica: Qué hacer en el horario cuando surja una urgencia o visita médica sin sentir culpa ni desarmar la semana completa.
+Formatea para guardar en: "02_Gestion_Operativa_y_Metas/Mapeo_Horario_Semanal.md".</div>
+            </div>
+
+            <!-- PROMPT 4: KANBAN GTD -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(236, 72, 153, 0.15); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 02_Gestion_Operativa_y_Metas
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            📋 Módulo 4 • Tablero Kanban GTD (Vaciado Mental WIP=2)
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-kanban-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Haz un volcado de todos tus pendientes y organízalos en To-Do, Doing (máximo 2 tareas activas) y Done con etiquetas temáticas.
+                </p>
+                <div class="prompt-box" id="prompt-kanban-text">Actúa como mi asesor de productividad sin estrés en Administración Humana.
+Tengo muchas cosas pendientes en la cabeza entre trámites familiares, salud, las clases de yoga y el hogar, y siento sobrecarga mental.
+
+Te voy a listar todo lo que tengo pendiente:
+[INSERTAR AQUÍ TUS PENDIENTES / AUDIOS / PENSAMIENTOS]
+
+Por favor:
+1. Filtra y organiza esta lista bajo la metodología GTD (Getting Things Done) con regla estricta WIP=2 (máximo 2 cosas en "En Ejecución").
+2. Clasifícalo en 3 columnas:
+   - 📋 Por Empezar (To-Do): Ordenadas de menor a mayor fricción.
+   - ⚡ En Ejecución (Doing - Máximo 2): Las 2 únicas micro-acciones prioritarias para hoy.
+   - ✅ Hito Cumplido (Done): Lo que ya avancé para reconocer mi progreso.
+3. Asigna a cada tarea su etiqueta: #Yoga, #Finanzas, #Familia, #Hogar o #Personal.
+Formatea para guardar en: "02_Gestion_Operativa_y_Metas/Inventario_Tareas_GTD.md".</div>
+            </div>
+
+            <!-- PROMPT 5: INVENTARIO NOCTURNO CERO CULPA -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 05_Herramientas_y_Evaluacion / 03_Plantillas_y_Ejercicios
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            🌙 Módulo 5 • Inventario Diario de Resultados (Cero Culpa)
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-inventario-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Crea tu ritual de cierre nocturno de 3 minutos para registrar tus 3 micro-victorias y visibilizar las horas de cuidado familiar invertidas.
+                </p>
+                <div class="prompt-box" id="prompt-inventario-text">Actúa como mi mentor en salud emocional y hábitos en Administración Humana. 
+Diseña una plantilla diaria de 3 minutos para el "Inventario de Resultados Nocturno - Cero Culpa" en formato Markdown para guardar en "05_Herramientas_y_Evaluacion/03_Plantillas_y_Ejercicios/Inventario_Diario_Resultados.md".
+
+Debe contener:
+1. 🌟 3 Micro-Victorias del Día (lo que sí se hizo, por pequeño que parezca).
+2. 🤲 Reconocimiento del Cuidado: Horas y energía dedicadas a la contención de Mateo y crianza de Roma (visibilizar el trabajo invisible).
+3. 🧘‍♀️ Estado Somático: ¿Cómo se siente mi cuerpo hoy del 1 al 10?
+4. 🛑 Cierre Mental: "Lo que quedó pendiente hoy no define mi valor; descansa para recomenzar mañana".</div>
+            </div>
+
+            <!-- PROMPT 6: ZUMBA & PLAYLISTS INTENSIDAD -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(236, 72, 153, 0.15); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3);">
+                            <i class="fa-solid fa-folder"></i> 04_Servicios_y_Proyectos_Profesionales / 02_Zumba_y_Biblioteca_Musical
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            🎶 Módulo 6 • Estructuración de Playlists & Coreografías para Clases de Zumba
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-zumba-text', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt para ChatGPT
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem;">
+                    Estructura una playlist y curva de intensidad en ola somática de 50 a 55 minutos para tus clases de Zumba combinando ritmos y pasos clave.
+                </p>
+                <div class="prompt-box" id="prompt-zumba-text">Actúa como mi asesor pedagógico y coreográfico en Administración Humana.
+Necesito estructurar una playlist y secuencia completa para mi próxima clase de Zumba / Baile Fitness de 50 a 55 minutos.
+
+Tengo este catálogo de canciones disponibles en mi biblioteca:
+[LISTAR O PEGAR CANCIONES DEL INVENTARIO O RITMOS DESEADOS]
+
+Por favor genera:
+1. Curva de Intensidad & Secuencia de 10 a 12 temas:
+   - Bloque 1: Calentamiento / Warm-up (2 tracks • BPM 115-125 • activación articular).
+   - Bloque 2: Cardio Progresivo / Ritmos Latinos (6-7 tracks alternando Merengue, Salsa, Cumbia y Bachata).
+   - Bloque 3: Peak Cardio / Clímax (2 tracks alta potencia • Reggaetón / Urbano / Dembow).
+   - Bloque 4: Descompresión & Vuelta a la Calma (1-2 tracks • estiramientos somáticos y respiración).
+2. Indicadores por Canción: Ritmo, BPM aproximado, Duración estimada y 2 o 3 pasos coreográficos clave para señalizar con las manos a las alumnas.
+3. Lista de Pistas Requeridas en Audio Original HQ: Identificar cuáles conviene comprar/descargar sin ruidos de público.
+4. Resumen compacto para enviar a mi celular o llevar en una ficha física.
+
+Formatea para guardar en "04_Servicios_y_Proyectos_Profesionales/02_Zumba_y_Biblioteca_Musical/Plan_Clase_Zumba.md".</div>
+            </div>
+
+            <!-- GUÍA DE CARPETAS EN DRIVE -->
+            <div class="card" style="margin-top: 1rem; border-color: rgba(255, 255, 255, 0.1);">
+                <h3 class="section-title"><span>📂 Mapa de Carpetas en tu Google Drive Sincronizado</span></h3>
+                <div class="grid-2">
+                    <div style="font-size: 0.85rem; color: #ccc; line-height: 1.7;">
+                        <div>📁 <code>01_Perfil_y_Antecedentes/</code> → Diagnóstico y audios de sesión.</div>
+                        <div>📁 <code>02_Gestion_Operativa_y_Metas/</code> → Horarios 24h y tareas GTD.</div>
+                        <div>📁 <code>03_Finanzas_y_Presupuesto/</code> → Metas y cálculo de pasajes Santiago.</div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #ccc; line-height: 1.7;">
+                        <div>📁 <code>04_Servicios_y_Proyectos_Profesionales/</code> → Clases y copys de Yoga.</div>
+                        <div>📁 <code>05_Herramientas_y_Evaluacion/</code> → Inventario nocturno y plantillas.</div>
+                        <div>📁 <code>06_Bitacora_y_Multimedia/</code> → Registro de avances y notas de voz.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: TIPS & SUPERPODERES ANTIGRAVITY -->
+        <div id="tab-antigravity-tips" class="tab-content">
+            <div class="ai-hub-header" style="border-color: rgba(245, 158, 11, 0.3); background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(0, 0, 0, 0.4));">
+                <div class="hero-tea-badge" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.35); color: #f59e0b;">
+                    <i class="fa-solid fa-lightbulb"></i> Manual del Copiloto Antigravity
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
+                    ⚡ Superpoderes & Tips Clave para usar Antigravity
+                </h2>
+                <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 850px; line-height: 1.5;">
+                    Antonia, tienes Antigravity instalado y conectado a tu misma carpeta de Google Drive que Diego. 
+                    Mientras que ChatGPT es para <em>charlar y estructurar ideas</em>, <strong>Antigravity es tu ejecutor en tu computador</strong>: puede leer tus archivos, actualizar tu Plan de Vuelo, recalcular tus finanzas y mover tus tareas de Kanban al instante.
+                </p>
+            </div>
+
+            <!-- COMPARATIVA CHATGPT VS ANTIGRAVITY -->
+            <div class="grid-2" style="margin-bottom: 1.5rem;">
+                <div class="card" style="border-color: rgba(96, 165, 250, 0.25);">
+                    <h3 style="color: #60a5fa; font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-comments"></i> 1. ChatGPT = El Pensador
+                    </h3>
+                    <ul class="custom-list" style="font-size: 0.85rem; color: #ccc;">
+                        <li>💬 Tu espacio de desahogo, conversación y brainstorming.</li>
+                        <li>✍️ Redacta borradores, pule copys y crea secuencias de yoga.</li>
+                        <li>🧠 Te entrega la <em>Ficha de Contexto</em> lista para Antigravity.</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <h3 style="color: #10b981; font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-bolt"></i> 2. Antigravity = El Ejecutor
+                    </h3>
+                    <ul class="custom-list" style="font-size: 0.85rem; color: #ccc;">
+                        <li>⚡ Modifica este portal y actualiza tus widgets en tiempo real.</li>
+                        <li>🗂️ Lee tus carpetas de Google Drive y organiza tus archivos.</li>
+                        <li>🔄 Sincroniza al 100% tu espacio de trabajo con el de Diego.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- COMANDOS MAESTROS PARA PEDIRLE A ANTIGRAVITY -->
+            <div class="section-title" style="margin-top: 1rem;">
+                <span>🎯 Los 5 Prompts Mágicos para pedirle cosas a Antigravity</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+                Copia cualquiera de estos mensajes y pégalo directamente en la consola de Antigravity en tu computador:
+            </p>
+
+            <!-- TIP 1 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-arrows-rotate"></i> Actualización de Portal
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            1. Aterrizar un archivo nuevo de ChatGPT a tu Plan de Vuelo
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('tip-prompt-1', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt Antigravity
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa;">Usa esto cuando guardes un nuevo archivo de texto en Drive y quieras que se active en tu portal web.</p>
+                <div class="prompt-box" id="tip-prompt-1">Antigravity, acabo de guardar una ficha de contexto en mi carpeta de Drive. 
+Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi portal Plan de Vuelo para que los datos queden visibles e interactivos.</div>
+            </div>
+
+            <!-- TIP 2 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">
+                            <i class="fa-solid fa-table-columns"></i> Gestión de Tareas
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            2. Actualizar tu Tablero Kanban GTD sin tocar código
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('tip-prompt-2', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt Antigravity
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa;">Pídele a Antigravity que gestione tus tareas respetando tu límite WIP=2.</p>
+                <div class="prompt-box" id="tip-prompt-2">Antigravity, logré completar la tarea de [INSERTAR TAREA CUMPLIDA].
+Muévela a 'Hito Cumplido' en mi tablero Kanban, y coloca en 'En Ejecución' la siguiente micro-acción: [INSERTAR NUEVA TAREA]. Respeta siempre mi límite de máximo 2 tareas activas.</div>
+            </div>
+
+            <!-- TIP 3 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <i class="fa-solid fa-calculator"></i> Finanzas & Simulaciones
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            3. Simular escenarios de precios y metas de alumnas
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('tip-prompt-3', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt Antigravity
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa;">Recalcula matemáticamente tus números y pasajes a Santiago en segundos.</p>
+                <div class="prompt-box" id="tip-prompt-3">Antigravity, quiero simular qué pasa si cobro $25.000 CLP mensual por alumna en lugar de $20.000. 
+Recalcula cuántas alumnas necesito para cubrir los $160.000 de pasajes a Santiago y actualiza la tarjeta de estadísticas de mi Plan de Vuelo.</div>
+            </div>
+
+            <!-- TIP 4 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div>
+                        <span class="prompt-badge" style="background: rgba(236, 72, 153, 0.15); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3);">
+                            <i class="fa-solid fa-clock"></i> Ergonomía del Tiempo
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
+                            4. Adaptar tu Mapeador 24H ante imprevistos médicos
+                        </h3>
+                    </div>
+                    <button class="btn-copy-prompt" onclick="copyPromptText('tip-prompt-4', this)">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt Antigravity
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa;">Si cambia tu semana por citas médicas de Mateo o trámites, dile a Antigravity que reorganice tus bloques de yoga.</p>
+                <div class="prompt-box" id="tip-prompt-4">Antigravity, esta semana tengo visitas médicas y trámites familiares el [DÍA]. 
+Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros días y asegurar que no sacrifique mis horas de sueño reparador.</div>
+            </div>
+
+            <!-- REGLAS DE ORO ANTIGRAVITY -->
+            <div class="card" style="margin-top: 1rem; border-color: rgba(255, 255, 255, 0.1);">
+                <h3 class="section-title"><span>🛡️ Reglas de Oro para Comunicarte con Antigravity</span></h3>
+                <div class="grid-2" style="font-size: 0.85rem; color: #ccc; line-height: 1.7;">
+                    <div>
+                        <div>🎯 <strong>1. Háblale en lenguaje natural:</strong> No necesitas saber programación; pídele lo que necesitas como a un asistente de confianza.</div>
+                        <div>📂 <strong>2. Indica la carpeta o archivo:</strong> Si guardaste una nota o audio, dile el nombre o carpeta (ej: <code>04_Servicios</code>).</div>
+                    </div>
+                    <div>
+                        <div>🛡️ <strong>3. Límite de Foco Protegido:</strong> Antigravity siempre cuidará tu salud mental respetando el límite WIP=2.</div>
+                        <div>☁️ <strong>4. Sincronización Automática:</strong> Cualquier cambio que hagas en tu computador se sincroniza de inmediato con el Drive de Diego.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: BIBLIOTECA MUSICAL & COREOGRÁFICA DE ZUMBA -->
+        <div id="tab-zumba-coreo" class="tab-content">
+            <!-- HERO BOX -->
+            <div class="zumba-header-box">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                        <div class="hero-tea-badge" style="background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.35); color: #ec4899;">
+                            <i class="fa-solid fa-music"></i> Módulo 25 LEGO • Biblioteca Musical & Repertorio Coreográfico
+                        </div>
+                        <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
+                            🎶 Biblioteca Musical & Inventario Coreográfico de Zumba
+                        </h2>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 880px; line-height: 1.5;">
+                            Antonia, centraliza aquí todas las canciones que te sabes con sus ritmos, pasos clave y pistas de audio original HQ (sin ruidos de público). Usa el <strong>Armador de Clases</strong> para planificar tu sesión de 50 a 55 minutos y llevarla en tu celular o imprimirla en 1 clic.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button class="btn-schedule-action" onclick="openAddSongModal()" style="background: #ec4899; color: #fff; border-color: #ec4899; font-weight: 800;">
+                            <i class="fa-solid fa-plus"></i> + Agregar Canción
+                        </button>
+                        <button class="btn-schedule-action" onclick="resetZumbaDefaultSongs()" style="color: #aaa;">
+                            <i class="fa-solid fa-rotate-left"></i> Restablecer Biblioteca
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STATS ROW -->
+                <div class="zumba-stats-grid">
+                    <div class="zumba-stat-card" style="border-color: rgba(236, 72, 153, 0.3);">
+                        <span class="zumba-stat-val" id="zumba-stat-total" style="color: #ec4899;">10 Temas</span>
+                        <span class="zumba-stat-lbl">Canciones en Repertorio</span>
+                    </div>
+                    <div class="zumba-stat-card" style="border-color: rgba(245, 158, 11, 0.3);">
+                        <span class="zumba-stat-val" id="zumba-stat-hq" style="color: #f59e0b;">6 Pistas</span>
+                        <span class="zumba-stat-lbl">Pistas Originales HQ (PayPal)</span>
+                    </div>
+                    <div class="zumba-stat-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <span class="zumba-stat-val" id="zumba-stat-mastered" style="color: #10b981;">9 Dominadas</span>
+                        <span class="zumba-stat-lbl">100% Listas para Clase</span>
+                    </div>
+                    <div class="zumba-stat-card" style="border-color: rgba(96, 165, 250, 0.3);">
+                        <span class="zumba-stat-val" id="zumba-stat-minutes" style="color: #60a5fa;">~38 Minutos</span>
+                        <span class="zumba-stat-lbl">Música Catalogada</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLASS BUILDER CARD (CLASS FLOW & PLAYLIST SEQUENCER) -->
+            <div class="class-builder-card">
+                <div class="class-builder-header">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="color: #f59e0b; font-size: 1.2rem;"><i class="fa-solid fa-bolt"></i></span>
+                            <h3 style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0;">
+                                ⚡ Armador Visual de Clase de Zumba (Class Flow)
+                            </h3>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #aaa; margin-top: 2px;">
+                            Secuencia en ola somática: Calentamiento ➔ Ritmos Progresivos ➔ Pico Cardio ➔ Vuelta a la Calma.
+                        </p>
+                    </div>
+
+                    <div class="class-builder-meta">
+                        <div class="class-meta-pill" style="border-color: rgba(236, 72, 153, 0.4); color: #f472b6;">
+                            <i class="fa-solid fa-list-ol"></i> <span id="class-flow-count">10 canciones</span>
+                        </div>
+                        <div class="class-meta-pill" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+                            <i class="fa-regular fa-clock"></i> <span id="class-flow-duration">52:30 min</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            <button class="btn-schedule-action" onclick="copyClassSetlistWhatsApp(this)" style="background: #ffffff; color: #000000; font-weight: 800;">
+                                <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Copiar para WhatsApp / Móvil
+                            </button>
+                            <button class="btn-schedule-action" onclick="printZumbaClassSheet()">
+                                <i class="fa-solid fa-print"></i> Imprimir Ficha
+                            </button>
+                            <button class="btn-schedule-action" onclick="loadSuggestedClassFlow()" title="Cargar secuencia balanceada">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Sugerida
+                            </button>
+                            <button class="btn-schedule-action" onclick="clearClassFlow()" style="color: #f87171;" title="Vaciar lista">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTENSITY CURVE BAR -->
+                <div style="margin-bottom: 0.9rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #888; text-transform: uppercase; font-weight: 700; margin-bottom: 3px;">
+                        <span>❄️ Calentamiento</span>
+                        <span>📈 Ritmos Latinos Progresivos</span>
+                        <span>🔥 Clímax Cardio</span>
+                        <span>🧘‍♀️ Enfriamiento</span>
+                    </div>
+                    <div class="intensity-curve-bar" id="class-flow-curve-bar"></div>
+                </div>
+
+                <!-- CLASS FLOW LIST CONTAINER -->
+                <div class="class-flow-list" id="zumba-class-flow-list"></div>
+            </div>
+
+            <!-- INVENTORY SECTION -->
+            <div class="section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 1rem;">
+                <span>📚 Inventario & Catálogo de Repertorio Coreográfico</span>
+                <span id="zumba-inventory-count" style="font-size: 0.8rem; color: #888; font-weight: 500;"></span>
+            </div>
+
+            <!-- FILTER BAR -->
+            <div class="zumba-filter-bar">
+                <div class="zumba-filter-row">
+                    <input type="text" id="zumba-search-input" class="zumba-search-input" placeholder="🔍 Buscar por canción, artista, ritmo o paso clave..." oninput="renderZumbaInventory()">
+                    
+                    <select id="zumba-filter-rhythm" class="zumba-filter-select" onchange="renderZumbaInventory()">
+                        <option value="all">🎶 Todos los Ritmos</option>
+                        <option value="warmup">❄️ Calentamiento (Warm-Up)</option>
+                        <option value="merengue">🔥 Merengue / Mambo</option>
+                        <option value="salsa">💃 Salsa</option>
+                        <option value="reggaeton">⚡ Reggaetón</option>
+                        <option value="cumbia">🌴 Cumbia</option>
+                        <option value="bachata">🌸 Bachata / Pop</option>
+                        <option value="urbano">✨ Urbano / Funk</option>
+                        <option value="peak">🚀 Peak Cardio</option>
+                        <option value="cooldown">🧘‍♀️ Vuelta a la Calma</option>
+                    </select>
+
+                    <select id="zumba-filter-audio" class="zumba-filter-select" onchange="renderZumbaInventory()">
+                        <option value="all">🎧 Todas las Fuentes de Audio</option>
+                        <option value="hq_paypal">⭐ Pista Original HQ (PayPal/Comprada)</option>
+                        <option value="spotify">🟢 Spotify Master</option>
+                        <option value="youtube">🟠 YouTube / Referencia</option>
+                    </select>
+
+                    <select id="zumba-filter-intensity" class="zumba-filter-select" onchange="renderZumbaInventory()">
+                        <option value="all">🔥 Toda Intensidad</option>
+                        <option value="1">Nivel 1 (Suave / Elongación)</option>
+                        <option value="2">Nivel 2 (Baja / Activación)</option>
+                        <option value="3">Nivel 3 (Media / Cardio Moderado)</option>
+                        <option value="4">Nivel 4 (Alta / Cardio Intenso)</option>
+                        <option value="5">Nivel 5 (Explosiva / Peak)</option>
+                    </select>
+
+                    <select id="zumba-filter-status" class="zumba-filter-select" onchange="renderZumbaInventory()">
+                        <option value="all">✅ Todo Estado de Coreo</option>
+                        <option value="mastered">✅ 100% Dominada</option>
+                        <option value="practice">🔄 En Práctica</option>
+                        <option value="learning">💡 Por Aprender</option>
+                    </select>
+
+                    <button class="btn-schedule-action" onclick="resetZumbaFilters()" style="padding: 7px 12px; font-size: 0.78rem;">
+                        <i class="fa-solid fa-filter-circle-xmark"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+
+            <!-- SONGS GRID -->
+            <div class="zumba-songs-grid" id="zumba-songs-grid"></div>
+        </div>
+
+        <!-- TAB CONTENT: HORARIO 24H -->
+        <div id="tab-horario" class="tab-content">
+            <div class="card">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
+                    <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;">
+                        ⏰ Mapeador Semanal 24 Horas (Antonia Jofré)
+                    </span>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right: 4px;">
+                            <i class="fa-solid fa-circle" style="font-size:7px;"></i> Auto-guardado en tu equipo
+                        </span>
+                        <button class="btn-schedule-action" id="btn-manual-save-schedule" onclick="manualSaveSchedule()" style="background: #ffffff; color: #000000; font-weight: 800;">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Horario
+                        </button>
+                        <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
+                        <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG('Antonia Jofré')">📸 Exportar Imagen (PNG)</button>
+                        <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+                    Pinta tus bloques semanales para proteger tus <strong>2 Bloques de Oro para Yoga</strong>, tus horas de cuidado familiar y tus momentos de descanso reparador.
+                </p>
+
+                <div class="schedule-controls">
+                    <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
+                    <div class="brush-selector" id="brush-selector-container"></div>
+                </div>
+
+                <div class="schedule-scroll-wrapper" id="schedule-export-container">
+                    <table class="schedule-grid-table" id="schedule-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Hora</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-stats-bar" id="schedule-stats-container"></div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: KANBAN -->
+        <div id="tab-kanban" class="tab-content">
+            <div class="card">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
+                    <span style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:#fff; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-table-columns"></i> Tablero Kanban GTD (Límite Estricto WIP = 2)
+                    </span>
+                    <button class="btn-schedule-action" onclick="resetKanbanDefault()" style="color:#aaa;">
+                        <i class="fa-solid fa-rotate-left"></i> Restaurar Tablero
+                    </button>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">
+                    Antonia Jofré, este tablero es tu escudo contra la parálisis. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>máximo 2 tareas en simultáneo</strong>.
+                </p>
+
+                <div class="kanban-grid">
+                    <div class="kanban-col">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title"><i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> Por Empezar</div>
+                            <span id="count-todo" class="wip-limit-pill" style="border-color:#555; color:#aaa;">0</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-todo" placeholder="+ Nueva tarea pendiente..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('todo')">
+                            <button class="btn-card-action" onclick="addKanbanTask('todo')" style="background:#fff; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-todo" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+
+                    <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
+                            <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-doing" placeholder="+ Tarea en foco ahora..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('doing')">
+                            <button class="btn-card-action" onclick="addKanbanTask('doing')" style="background:#f59e0b; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-doing" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+
+                    <div class="kanban-col" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.02);">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title" style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> Hito Cumplido</div>
+                            <span id="count-done" class="wip-limit-pill" style="border-color:#10b981; color:#10b981; background: rgba(16, 185, 129, 0.1);">0</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-done" placeholder="+ Victoria cumplida..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('done')">
+                            <button class="btn-card-action" onclick="addKanbanTask('done')" style="background:#10b981; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-done" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: HERRAMIENTAS -->
+        <div id="tab-herramientas" class="tab-content">
+            <div class="section-title">
+                <span>Kit de Herramientas Didácticas & Diagramas</span>
+            </div>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
+                Haz clic sobre cualquier diagrama para ampliarlo en pantalla completa con el <strong>Visor Lightbox</strong>.
+            </p>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>1. Time Blocking & Blindaje de Foco</h3>
+                        <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
+                        <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>2. Matriz de Eisenhower (Priorización)</h3>
+                        <p class="tool-meta">Urgente vs Importante</p>
+                        <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
+                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
+                        <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>4. La Ventana de Johari (Alineación)</h3>
+                        <p class="tool-meta">Comunicación & Autopercepción</p>
+                        <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: ACTION & ANTIPATTERNS -->
+        <div id="tab-accion" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <h3 class="section-title"><span>Tu Plan de Acción: Próximas 24 Horas</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>1. Ejecutar el Paso Cero de 5 minutos.</strong></li>
+                        <li><strong>2. Copiar el Prompt de Yoga en ChatGPT para definir el mensaje de WhatsApp.</strong></li>
+                        <li><strong>3. Bloquear tus 2 Bloques de Oro en el Mapeador 24H.</strong></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Foco)</span></h3>
+                    <ul class="custom-list danger-list">
+                        <li>🚫 Multitarea tóxica sin límite WIP.</li>
+                        <li>🚫 Acostarse con pendientes en la cabeza sin vaciado análogo.</li>
+                        <li>🚫 Postergar conversaciones difíciles o sentir culpa por cuidar a tu familia.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /container -->
+
+    <!-- MODAL 1: GESTIÓN DE CATEGORÍAS 24H -->
+    <div id="modal-category-manager" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>⚙️ Gestionar Categorías 24H</span>
+                <button class="modal-close-btn" onclick="closeCategoryManagerModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Edita las categorías de tiempo o agrega nuevas.</p>
+            <div id="category-manager-list" style="display:flex; flex-direction:column; gap:0.6rem; max-height:240px; overflow-y:auto; margin-bottom:1.2rem; padding-right:4px;"></div>
+            <div style="border-top:1px solid #222; padding-top:0.8rem; margin-bottom:1rem;">
+                <span style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">+ Agregar Nueva Categoría:</span>
+                <div style="display:flex; gap:6px; margin-top:0.4rem;">
+                    <input type="text" id="new-cat-label" placeholder="Nombre (ej. Proyecto X)" style="flex:2; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="text" id="new-cat-tag" placeholder="Tag (ej. PROY)" style="flex:1; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="color" id="new-cat-color" value="#10b981" style="width:36px; height:32px; background:transparent; border:none; cursor:pointer;">
+                    <button class="btn-card-action" onclick="addNewCategoryFromModal()" style="background:#fff; color:#000; font-weight:800;">+</button>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; gap:8px;">
+                <button class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color:#f87171; font-size:0.75rem;">Restablecer Predeterminadas</button>
+                <button class="btn-gateway-login" onclick="closeCategoryManagerModal()" style="width:auto; padding:6px 16px; margin:0; font-size:0.8rem;">Cerrar y Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: RELLENAR POR RANGO -->
+    <div id="modal-range-fill" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>⚡ Rellenar Horario por Rango</span>
+                <button class="modal-close-btn" onclick="closeRangeFillModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Pinta bloques continuos de una sola vez.</p>
+            <div style="display:flex; flex-direction:column; gap:0.8rem; margin-bottom:1.2rem;">
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Categoría:</label>
+                    <select id="range-category-select" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Inicio:</label>
+                        <select id="range-start-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Fin (inclusive):</label>
+                        <select id="range-end-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                    </div>
+                </div>
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700; display:block; margin-bottom:4px;">Días a Aplicar:</label>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-0" checked> Lun</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-1" checked> Mar</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-2" checked> Mié</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-3" checked> Jue</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-4" checked> Vie</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-5"> Sáb</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-6"> Dom</label>
+                    </div>
+                </div>
+            </div>
+    <!-- MODAL 3: AGREGAR / EDITAR CANCIÓN DE ZUMBA -->
+    <div id="modal-zumba-song-editor" class="modal-overlay">
+        <div class="modal-box" style="max-width: 540px;">
+            <div class="modal-title">
+                <span id="zumba-modal-title">➕ Agregar Canción al Inventario</span>
+                <button class="modal-close-btn" onclick="closeZumbaSongModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Registra la canción con sus notas coreográficas y fuente de audio HQ.</p>
+            <input type="hidden" id="song-edit-id">
+            
+            <div style="display:flex; flex-direction:column; gap:0.75rem; max-height: 440px; overflow-y: auto; padding-right: 4px; margin-bottom:1.2rem;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Título de la Canción *</label>
+                        <input type="text" id="song-edit-title" placeholder="ej. Limbo" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Artista / Intérprete *</label>
+                        <input type="text" id="song-edit-artist" placeholder="ej. Daddy Yankee" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Ritmo / Género</label>
+                        <select id="song-edit-rhythm" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 6px; border-radius:6px; font-size:0.8rem; margin-top:3px;">
+                            <option value="warmup">Calentamiento</option>
+                            <option value="merengue">Merengue</option>
+                            <option value="salsa">Salsa</option>
+                            <option value="reggaeton">Reggaetón</option>
+                            <option value="cumbia">Cumbia</option>
+                            <option value="bachata">Bachata</option>
+                            <option value="urbano">Urbano / Pop</option>
+                            <option value="peak">Peak Cardio</option>
+                            <option value="cooldown">Vuelta a la Calma</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Duración (mm:ss)</label>
+                        <input type="text" id="song-edit-duration" placeholder="3:30" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 8px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">BPM (aprox)</label>
+                        <input type="number" id="song-edit-bpm" placeholder="128" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 8px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Intensidad Somática</label>
+                        <select id="song-edit-intensity" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px; border-radius:6px; font-size:0.8rem; margin-top:3px;">
+                            <option value="1">1 🔥 (Suave / Elongación)</option>
+                            <option value="2">2 🔥🔥 (Baja / Activación)</option>
+                            <option value="3" selected>3 🔥🔥🔥 (Media / Cardio Moderado)</option>
+                            <option value="4">4 🔥🔥🔥🔥 (Alta / Cardio Intenso)</option>
+                            <option value="5">5 🔥🔥🔥🔥🔥 (Explosiva / Peak)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Estado de Coreografía</label>
+                        <select id="song-edit-status" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px; border-radius:6px; font-size:0.8rem; margin-top:3px;">
+                            <option value="mastered" selected>✅ 100% Dominada</option>
+                            <option value="practice">🔄 En Práctica</option>
+                            <option value="learning">💡 Por Aprender</option>
+                            <option value="archived">📁 Archivada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Fuente / Calidad de Audio</label>
+                        <select id="song-edit-audio-source" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px; border-radius:6px; font-size:0.8rem; margin-top:3px;">
+                            <option value="hq_paypal" selected>⭐ Pista Original HQ (PayPal / Master)</option>
+                            <option value="spotify">🟢 Spotify Master</option>
+                            <option value="youtube">🟠 YouTube / Referencia</option>
+                            <option value="other">🎵 Audio Propio / Archivo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Enlace de Audio / Video (Opcional)</label>
+                        <input type="text" id="song-edit-url" placeholder="https://..." style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 8px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="font-size:0.72rem; color:#aaa; font-weight:700;">Pasos Clave & Notas Coreográficas</label>
+                    <textarea id="song-edit-notes" rows="3" placeholder="Paso básico en estrofas; 4 saltos con brazos arriba en el drop; disociación de cadera..." style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px; resize:vertical;"></textarea>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:8px;">
+                <button class="btn-schedule-action" onclick="closeZumbaSongModal()">Cancelar</button>
+                <button class="btn-gateway-login" onclick="saveZumbaSongFromModal()" style="width:auto; padding:6px 18px; margin:0; font-size:0.85rem; background:#ec4899; color:#fff;">Guardar Canción</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIGURACIÓN DEL CLIENTE EN JAVASCRIPT -->
+    <script>
+        window.CLIENT_CONFIG = {
+            clientId: "demo_sofia",
+            clientName: "Sofía Valenzuela",
+            clientPIN: "demo2026",
+            masterPIN: "diego_ah_master"
+        };
+
+        // Auto-desbloqueo inmediato para que el visitante interactúe sin barreras
+        localStorage.setItem("ah_auth_demo_sofia", "authenticated_ok");
+        localStorage.setItem("ah_client_auth_session", "authenticated_ok");
+
+        window.CLIENT_SCHEDULE_CATEGORIES = [
+            { id: "cat-yoga", label: "🧘‍♀️ Yoga Suave & Somático", color: "#10b981", tag: "YOGA" },
+            { id: "cat-zumba", label: "🎶 Clases de Zumba / Baile", color: "#ec4899", tag: "ZUMBA" },
+            { id: "cat-cuidado", label: "👶 Cuidado Familiar & Hogar", color: "#f59e0b", tag: "CUIDADO" },
+            { id: "cat-sueno", label: "😴 Sueño & Descanso", color: "#6366f1", tag: "SUENO" },
+            { id: "cat-libre", label: "🌱 Tiempo Libre / Autocuidado", color: "#14b8a6", tag: "LIBRE" },
+            { id: "cat-gestion", label: "⚡ Cita Semanal de Gestión", color: "#3b82f6", tag: "GEST" }
+        ];
+
+        window.CLIENT_KANBAN_DEFAULT = [
+            { id: "d1", text: "🧘‍♀️ Dictar clase piloto online de yoga somático", tag: "Yoga", col: "doing" },
+            { id: "d2", text: "🎶 Secuenciar playlist de 52 min con pistas HQ", tag: "Zumba", col: "doing" },
+            { id: "d3", text: "💰 Apartar fondo de pasajes al cobrar mensualidades", tag: "Finanzas", col: "done" },
+            { id: "d4", text: "📝 Registrar 3 micro-victorias en inventario nocturno", tag: "Rutina", col: "todo" }
+        ];
+
+        // Función para copiar prompts al portapapeles con feedback visual
+        function copyPromptText(promptId, btnElement) {
+            const promptElem = document.getElementById(promptId);
+            if (!promptElem) return;
+            const textToCopy = promptElem.innerText || promptElem.textContent;
+            
+            navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+                const toast = document.getElementById('toast-notification');
+                if (toast) {
+                    toast.style.display = 'flex';
+                    setTimeout(() => { toast.style.display = 'none'; }, 3500);
+                }
+                
+                if (btnElement) {
+                    const originalHTML = btnElement.innerHTML;
+                    btnElement.classList.add('copied');
+                    btnElement.innerHTML = '<i class="fa-solid fa-check"></i> ¡Prompt Copiado!';
+                    setTimeout(() => {
+                        btnElement.classList.remove('copied');
+                        btnElement.innerHTML = originalHTML;
+                    }, 2500);
+                }
+            }).catch(err => {
+                alert("Error al copiar. Por favor selecciona el texto del prompt manualmente.");
+            });
+        }
+
+        function openLightbox(src) {
+            const modal = document.getElementById("lightbox-modal");
+            const img = document.getElementById("lightbox-img");
+            if (modal && img) {
+                img.src = src;
+                modal.classList.add("active");
+            }
+        }
+        function closeLightbox() {
+            const modal = document.getElementById("lightbox-modal");
+            if (modal) modal.classList.remove("active");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const isSub = window.location.pathname.includes('/planes/') || window.location.pathname.includes('/02_CLIENTES_ACTIVOS/');
+            document.querySelectorAll('.image-preview img, .tool-box img, .card img').forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.setAttribute('title', 'Haz clic para ampliar');
+                img.addEventListener('click', function() { openLightbox(this.src); });
+                img.addEventListener('error', function() {
+                    const fb = this.getAttribute('data-fallback');
+                    if (fb && this.src !== fb) { this.src = isSub ? '../' + fb : fb; }
+                });
+            });
+        });
+    </script>
+
+    <!-- MOTORES MODULARES -->
+    <script src="js/portal-gateway.js?v=3.3"></script>
+    <script src="js/schedule-engine.js?v=3.3"></script>
+    <script src="js/kanban-engine.js?v=3.3"></script>
+    <script src="js/zumba-library-engine.js?v=3.3"></script>
+    <script src="js/whatsapp-widget.js?v=3.3"></script>
+</body>
+</html>
