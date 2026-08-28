@@ -1035,43 +1035,135 @@ Por favor genera:
                 </p>
             </div>
 
-            <!-- CARDS DE ESTRUCTURA 50/30/20 -->
+            <!-- CARDS DE ESTRUCTURA 50/30/20 ACTUALIZADAS DINÁMICAMENTE -->
             <div class="grid-3" style="gap: 1rem; margin-bottom: 1.5rem;">
                 <div class="stat-card" style="border-color: rgba(59, 130, 246, 0.4);">
-                    <span class="stat-val" style="color: #60a5fa;">50%</span>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="stat-val" style="color: #60a5fa;" id="dyn-kpi-50">50%</span>
+                        <span style="font-size:0.78rem; color:#60a5fa; font-weight:800;" id="dyn-monto-50">$0 CLP</span>
+                    </div>
                     <span class="stat-lbl">Necesidades Básicas</span>
                     <span style="font-size: 0.75rem; color: #888;">Gastos esenciales optimizados gracias a $0 arriendo.</span>
                 </div>
                 <div class="stat-card" style="border-color: rgba(236, 72, 153, 0.4);">
-                    <span class="stat-val" style="color: #f472b6;">30%</span>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="stat-val" style="color: #f472b6;" id="dyn-kpi-30">30%</span>
+                        <span style="font-size:0.78rem; color:#f472b6; font-weight:800;" id="dyn-monto-30">$0 CLP</span>
+                    </div>
                     <span class="stat-lbl">Ocio & Autocuidado (TEA)</span>
                     <span style="font-size: 0.75rem; color: #888;">Esparcimiento, descanso y bienestar sin culpa.</span>
                 </div>
                 <div class="stat-card" style="border-color: rgba(16, 185, 129, 0.4);">
-                    <span class="stat-val" style="color: #10b981;">20%</span>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="stat-val" style="color: #10b981;" id="dyn-kpi-20">20%</span>
+                        <span style="font-size:0.78rem; color:#10b981; font-weight:800;" id="dyn-monto-20">$0 CLP</span>
+                    </div>
                     <span class="stat-lbl">Fondo de Emergencia</span>
                     <span style="font-size: 0.75rem; color: #888;">Meta: 3 meses de colchón de seguridad (~$1.050.000).</span>
                 </div>
             </div>
 
-            <!-- DETALLE DE INGRESOS Y PROYECCIÓN -->
-            <div class="grid-2">
+            <!-- DETALLE DE INGRESOS ACTUALIZADOS Y PROPUESTA DE VALOR -->
+            <div class="grid-2" style="margin-bottom: 1.5rem;">
                 <div class="card">
-                    <h3 class="section-title"><span>Estructura Actual de Ingresos</span></h3>
+                    <h3 class="section-title"><span>Estructura Tarifaria & Propuesta de Valor</span></h3>
                     <ul class="custom-list">
-                        <li><strong>💆‍♀️ Puya Masajes:</strong> 2 a 5 clientes/sem ($14.000 a $21.000 por sesión). Estimado semanal: ~$28.000 a $105.000 CLP.</li>
-                        <li><strong>🎤 Voz Caleidoscopio:</strong> 2 a 5 alumnos/sem ($8.000/clase, ciclos de 4 clases = $32.000/alumno). Estimado semanal: ~$16.000 a $40.000 CLP.</li>
-                        <li><strong>🤝 Economía de Trueque:</strong> Amortigua costos profesionales y personales directos.</li>
+                        <li><strong>💆‍♀️ Puya Masajes (Sesión Individual):</strong> <strong>$20.000 a $42.000 CLP</strong> por sesión (según técnica: descontracturante profundo, cervical/hombros, aromaterapia prémium y tiempo de estudio/recursos invertidos).</li>
+                        <li><strong>💆‍♀️ Puya Masajes (Plan Mensual 4 Sesiones):</strong> <strong>$150.000 CLP</strong> (Programa cerrado de salud y bienestar con seguimiento continuo de anamnesis).</li>
+                        <li><strong>🎤 Voz Caleidoscopio:</strong> <strong>$8.000 a $12.000 CLP</strong> por clase de 70 min (Ciclo mensual de 4 clases: <strong>$32.000 a $48.000 CLP</strong>).</li>
+                        <li><strong>🤝 Economía de Trueque:</strong> Intercambios justos valorizados en especie para reducir costos directos sin descapitalizarse.</li>
                     </ul>
                 </div>
 
                 <div class="card">
                     <h3 class="section-title"><span>Palanca: Paquetización en Planes Mensuales</span></h3>
                     <ul class="custom-list">
-                        <li><strong>Escenario A (5 Alumnos Canto + 4 Planes Puya):</strong> Flujo mensual garantizado de ~$400.000 CLP.</li>
-                        <li><strong>Escenario B (5 Alumnos Canto + 8 Planes Puya con Charli):</strong> Flujo mensual de ~$640.000 a $800.000 CLP.</li>
+                        <li><strong>Escenario A (4 Alumnos Canto + 2 Planes Puya $150k):</strong> Flujo mensual de <strong>~$428.000 a $492.000 CLP</strong>.</li>
+                        <li><strong>Escenario B (4 Alumnos Canto + 4 Planes Puya $150k):</strong> Flujo mensual garantizado de <strong>~$728.000 CLP</strong>.</li>
                         <li><strong>Regla de Oro:</strong> El día 1 de cada mes, transferir automáticamente el 20% a tu subcuenta de reserva intocable.</li>
                     </ul>
+                </div>
+            </div>
+
+            <!-- NUEVO MÓDULO INTERACTIVO: GESTOR DINÁMICO DE CLIENTES Y TARIFAS -->
+            <div class="card" style="border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.02);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1rem; border-bottom:1px solid #282828; padding-bottom:0.8rem;">
+                    <div>
+                        <span class="role-badge" style="background:rgba(16,185,129,0.15); color:#10b981; border:1px solid #10b98155;">
+                            ⚡ Calculadora en Vivo • Tarifas Personalizadas
+                        </span>
+                        <h3 style="font-family:var(--font-display); font-size:1.3rem; color:#fff; margin-top:0.3rem;">
+                            Gestor Dinámico de Clientes, Alumnos & Ingresos 50/30/20
+                        </h3>
+                    </div>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button class="btn-card-action" onclick="openAddClientModal()" style="background:#10b981; color:#000; font-weight:800; padding:6px 14px; cursor:pointer;">
+                            <i class="fa-solid fa-user-plus"></i> + Agregar Cliente / Alumno
+                        </button>
+                        <button class="btn-schedule-action" onclick="resetRocioClientsToDefault()" style="color:#aaa; font-size:0.75rem;">
+                            <i class="fa-solid fa-rotate-left"></i> Restaurar Ejemplos
+                        </button>
+                    </div>
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.2rem; line-height:1.5;">
+                    Rocío, ingresa y ajusta aquí cada uno de tus clientes y alumnas con su tarifa real. El sistema suma tu proyección mensual en vivo, calcula tu fondo de reserva (20%) y distribuye tus necesidades y ocio sin que tengas que hacer cálculos manuales.
+                </p>
+
+                <!-- RESUMEN EN VIVO DE KPIS -->
+                <div class="stat-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:0.8rem; margin-bottom:1.4rem;">
+                    <div style="background:#121212; border:1px solid #282828; border-radius:8px; padding:0.9rem;">
+                        <span style="font-size:0.72rem; color:#888; text-transform:uppercase; font-weight:700; display:block;">Ingreso Mensual Total</span>
+                        <span style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; color:#10b981;" id="summary-total-month">$0</span>
+                    </div>
+                    <div style="background:#121212; border:1px solid #282828; border-radius:8px; padding:0.9rem;">
+                        <span style="font-size:0.72rem; color:#888; text-transform:uppercase; font-weight:700; display:block;">Promedio Semanal</span>
+                        <span style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; color:#60a5fa;" id="summary-total-week">$0</span>
+                    </div>
+                    <div style="background:#121212; border:1px solid #282828; border-radius:8px; padding:0.9rem;">
+                        <span style="font-size:0.72rem; color:#888; text-transform:uppercase; font-weight:700; display:block;">Clientes Activos</span>
+                        <span style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; color:#fff;" id="summary-client-count">0</span>
+                    </div>
+                    <div style="background:#121212; border:1px solid #282828; border-radius:8px; padding:0.9rem;">
+                        <span style="font-size:0.72rem; color:#888; text-transform:uppercase; font-weight:700; display:block;">Aporte Reserva Mes (20%)</span>
+                        <span style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; color:#f59e0b;" id="summary-reserve-month">$0</span>
+                    </div>
+                </div>
+
+                <!-- PREAJUSTES RÁPIDOS DE 1-CLIC -->
+                <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:1.2rem; padding:0.7rem 1rem; background:rgba(255,255,255,0.02); border:1px dashed #333; border-radius:8px;">
+                    <span style="font-size:0.75rem; color:#aaa; font-weight:700; text-transform:uppercase;">+ Añadir Rápido:</span>
+                    <button type="button" class="btn-schedule-action" onclick="quickAddPreset('puya_sesion')" style="font-size:0.73rem; padding:4px 10px;">
+                        💆‍♀️ Masaje Indiv. ($35.000)
+                    </button>
+                    <button type="button" class="btn-schedule-action" onclick="quickAddPreset('puya_plan')" style="font-size:0.73rem; padding:4px 10px; border-color:#10b98144; color:#10b981;">
+                        💆‍♀️ Plan Puya Mes ($150.000)
+                    </button>
+                    <button type="button" class="btn-schedule-action" onclick="quickAddPreset('canto_pack')" style="font-size:0.73rem; padding:4px 10px; border-color:#7c3aed44; color:#c084fc;">
+                        🎤 Alumno Canto Mes ($32.000)
+                    </button>
+                    <button type="button" class="btn-schedule-action" onclick="quickAddPreset('trueque')" style="font-size:0.73rem; padding:4px 10px; color:#fbbf24;">
+                        🤝 Trueque ($0 efec.)
+                    </button>
+                </div>
+
+                <!-- CONTENEDOR DINÁMICO DE CLIENTES (TARJETAS / TABLA) -->
+                <div id="rocio-clients-container" style="display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1rem;"></div>
+
+                <!-- BARRA DE PROGRESO DE META FONDO DE RESERVA -->
+                <div style="margin-top:1.5rem; background:#101010; border:1px solid #222; border-radius:8px; padding:1rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                        <span style="font-size:0.8rem; font-weight:700; color:#fff;">
+                            🏛️ Cobertura del Fondo de Emergencia (Meta 3 Meses = $1.050.000 CLP)
+                        </span>
+                        <span style="font-size:0.8rem; font-weight:800; color:#10b981;" id="reserve-goal-pct">0%</span>
+                    </div>
+                    <div style="width:100%; height:10px; background:#222; border-radius:50px; overflow:hidden;">
+                        <div id="reserve-goal-bar" style="height:100%; width:0%; background:linear-gradient(90deg, #10b981, #34d399); transition:width 0.4s ease;"></div>
+                    </div>
+                    <p style="font-size:0.75rem; color:#888; margin-top:0.5rem; margin-bottom:0;" id="reserve-goal-msg">
+                        Aportando el 20% mensual, construirás tu colchón de seguridad completo de 3 meses.
+                    </p>
                 </div>
             </div>
         </div>
@@ -1786,6 +1878,90 @@ Por favor genera:
         </div>
     </div>
 
+    <!-- MODAL 3: AGREGAR / EDITAR CLIENTE DINÁMICO (FINANZAS ROCÍO) -->
+    <div id="modal-client-editor" class="modal-overlay">
+        <div class="modal-box" style="max-width: 520px;">
+            <div class="modal-title">
+                <span id="client-modal-title">👤 Agregar Cliente o Alumna</span>
+                <button class="modal-close-btn" onclick="closeClientModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Registra el servicio, tarifa acordada y frecuencia mensual.</p>
+            
+            <form id="form-client-editor" onsubmit="handleSaveClientForm(event)" style="display:flex; flex-direction:column; gap:0.9rem;">
+                <input type="hidden" id="edit-client-id" value="">
+                
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Nombre del Cliente / Alumno / Referencia:</label>
+                    <input type="text" id="client-form-name" placeholder="Ej. Vicente, Mariana, Paciente Domicilio Talcahuano..." style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-top:4px;" required>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Servicio / Tipo:</label>
+                        <select id="client-form-service" onchange="handleServiceSelectChange(this.value)" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.82rem; margin-top:4px;">
+                            <option value="puya_sesion">💆‍♀️ Puya Masaje (Sesión Individual)</option>
+                            <option value="puya_plan">💆‍♀️ Puya Plan Mensual (4 Sesiones)</option>
+                            <option value="canto_clase">🎤 Canto (Clase Individual 70m)</option>
+                            <option value="canto_pack">🎤 Canto (Pack 4 Clases Mes)</option>
+                            <option value="trueque">🤝 Trueque / En Especie</option>
+                            <option value="otro">✨ Otro Servicio Personalizado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Modalidad de Cobro:</label>
+                        <select id="client-form-freq-type" onchange="recalculateModalTotalPreview()" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.82rem; margin-top:4px;">
+                            <option value="sesiones_mes">Por Sesión Individual (Tarifa × Sesiones)</option>
+                            <option value="pack_mes">Pack / Tarifa Fija Mensual</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Tarifa Acordada ($ CLP):</label>
+                        <input type="number" id="client-form-rate" placeholder="35000" min="0" step="1000" oninput="recalculateModalTotalPreview()" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-top:4px;" required>
+                    </div>
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;" id="client-form-freq-label">Frecuencia (Sesiones al Mes):</label>
+                        <input type="number" id="client-form-frequency" value="1" min="1" max="30" oninput="recalculateModalTotalPreview()" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-top:4px;" required>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Ubicación / Cuadrante:</label>
+                        <input type="text" id="client-form-location" placeholder="Ej. Talcahuano Centro, Playa, UST..." style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.82rem; margin-top:4px;">
+                    </div>
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Estado:</label>
+                        <select id="client-form-status" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.82rem; margin-top:4px;">
+                            <option value="true">🟢 Activo (Suma a proyección)</option>
+                            <option value="false">⏸️ En Pausa / Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Notas / Observaciones Clínicas / Metodológicas:</label>
+                    <input type="text" id="client-form-notes" placeholder="Ej. Audio de práctica enviado, masaje con aceites de lavanda..." style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.82rem; margin-top:4px;">
+                </div>
+
+                <!-- PREVIEW DEL TOTAL MENSUAL -->
+                <div style="background:#090909; border:1px solid #222; border-radius:6px; padding:0.7rem 1rem; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.75rem; color:#aaa; text-transform:uppercase; font-weight:700;">Total Proyectado Cliente:</span>
+                    <span style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; color:#10b981;" id="client-modal-total-preview">$0 CLP</span>
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:0.4rem;">
+                    <button type="button" class="btn-schedule-action" onclick="closeClientModal()">Cancelar</button>
+                    <button type="submit" class="btn-gateway-login" style="width:auto; padding:6px 20px; margin:0; font-size:0.85rem; font-weight:800; cursor:pointer;">
+                        Guardar Cliente
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- CONFIGURACIÓN DEL CLIENTE EN JAVASCRIPT -->
     <script>
         window.CLIENT_CONFIG = {
@@ -1796,7 +1972,475 @@ Por favor genera:
         };
 
         window.CLIENT_SCHEDULE_CATEGORIES = [{"id": "sueno", "nombre": "\ud83d\ude34 Sue\u00f1o & Recuperaci\u00f3n", "color": "#1e293b", "tag": "SUE\u00d1O"}, {"id": "ust", "nombre": "\ud83c\udf93 Universidad UST (Psicopedagog\u00eda)", "color": "#2563eb", "tag": "UST"}, {"id": "puya", "nombre": "\ud83d\udc86\u200d\u2640\ufe0f Puya Masajes (Atenciones)", "color": "#0d9488", "tag": "PUYA"}, {"id": "canto", "nombre": "\ud83c\udfa4 Voz Caleidoscopio (Clases)", "color": "#7c3aed", "tag": "CANTO"}, {"id": "stimming", "nombre": "\ud83e\uddd8 Stimming & Descarga Sensorial (TEA)", "color": "#d97706", "tag": "STIMM"}, {"id": "hogar", "nombre": "\ud83c\udfe1 Hogar & Mascota Nieve", "color": "#059669", "tag": "HOGAR"}, {"id": "libre", "nombre": "\ud83c\udf31 Libre / Ocio Regenerativo", "color": "#db2777", "tag": "LIBRE"}];
-        window.CLIENT_KANBAN_DEFAULT = [{"id": "r1", "text": "Redactar borrador petitorio transporte estudiantil UST", "tag": "UST"}, {"id": "r2", "text": "Configurar WhatsApp Business para Puya Masajes", "tag": "Puya"}, {"id": "r3", "text": "Contactar a Vicente para audio de pr\u00e1ctica", "tag": "Canto"}, {"id": "r4", "text": "Fijar reuni\u00f3n de coordinaci\u00f3n con Charli (duetos 2x1)", "tag": "Puya"}, {"id": "r5", "text": "Investigar souvenirs sensoriales (velas/inciensos)", "tag": "Puya"}] + [{"id": "r6", "text": "Escribir en cuaderno planificador registro clases de canto", "tag": "Canto"}, {"id": "r7", "text": "Dise\u00f1ar propuesta Plan Terap\u00e9utico 1 Mes (4 sesiones)", "tag": "Puya"}] + [{"id": "r8", "text": "Delegar formalmente paseo diario de Nieve a pap\u00e1", "tag": "Hogar"}];
+        window.CLIENT_KANBAN_DEFAULT = [
+            {"id": "r1", "text": "Redactar borrador petitorio transporte estudiantil UST", "tag": "UST"},
+            {"id": "r2", "text": "Configurar WhatsApp Business para Puya Masajes", "tag": "Puya"},
+            {"id": "r3", "text": "Contactar a Vicente para audio de práctica", "tag": "Canto"},
+            {"id": "r4", "text": "Fijar reunión de coordinación con Charli (duetos 2x1)", "tag": "Puya"},
+            {"id": "r5", "text": "Investigar souvenirs sensoriales (velas/inciensos)", "tag": "Puya"},
+            {"id": "r6", "text": "Escribir en cuaderno planificador registro clases de canto", "tag": "Canto"},
+            {"id": "r7", "text": "Diseñar propuesta Plan Terapéutico 1 Mes (4 sesiones)", "tag": "Puya"},
+            {"id": "r8", "text": "Delegar formalmente paseo diario de Nieve a papá", "tag": "Hogar"}
+        ];
+
+        // =========================================================
+        // GESTOR DINÁMICO DE CLIENTES & CALCULADORA 50/30/20 (ROCÍO)
+        // =========================================================
+        const STORAGE_KEY_ROCIO_CLIENTS = "ah_rocio_client_roster_v2";
+
+        const DEFAULT_ROCIO_CLIENTS = [
+            {
+                id: "c_vicente",
+                name: "Vicente",
+                service: "canto_pack",
+                serviceLabel: "🎤 Voz Caleidoscopio • Pack Mensual 4 Clases",
+                rate: 32000,
+                frequency: 1,
+                frequencyType: "pack_mes",
+                location: "Playa / Espacio Abierto",
+                active: true,
+                notes: "Práctica de técnica vocal y laboratorio melódico"
+            },
+            {
+                id: "c_alumna_canto",
+                name: "Alumna Canto Composición",
+                service: "canto_clase",
+                serviceLabel: "🎤 Voz Caleidoscopio • Clase 70 min",
+                rate: 10000,
+                frequency: 4,
+                frequencyType: "sesiones_mes",
+                location: "Domicilio Talcahuano",
+                active: true,
+                notes: "Laboratorio creativo y exploración vocal"
+            },
+            {
+                id: "c_puya_plan1",
+                name: "Paciente Plan Terapéutico #1",
+                service: "puya_plan",
+                serviceLabel: "💆‍♀️ Puya Masajes • Plan Mensual (4 Sesiones)",
+                rate: 150000,
+                frequency: 1,
+                frequencyType: "pack_mes",
+                location: "Talcahuano Centro",
+                active: true,
+                notes: "Tratamiento descontracturante cervical y seguimiento clínico"
+            },
+            {
+                id: "c_puya_sesion1",
+                name: "Paciente Descontracturante Profundo",
+                service: "puya_sesion",
+                serviceLabel: "💆‍♀️ Puya Masajes • Sesión Individual",
+                rate: 35000,
+                frequency: 2,
+                frequencyType: "sesiones_mes",
+                location: "Domicilio Talcahuano",
+                active: true,
+                notes: "Masaje de 60 min con aceites esenciales y reducción sensorial"
+            },
+            {
+                id: "c_trueque1",
+                name: "Alianza Trueque / Intercambio",
+                service: "trueque",
+                serviceLabel: "🤝 Trueque / En Especie",
+                rate: 0,
+                frequency: 2,
+                frequencyType: "sesiones_mes",
+                location: "Talcahuano",
+                active: true,
+                notes: "Intercambio en especie por insumos o servicios profesionales"
+            }
+        ];
+
+        let rocioClients = [];
+
+        function formatCLP(val) {
+            return "$" + Number(val || 0).toLocaleString("es-CL") + " CLP";
+        }
+
+        function initRocioClientRoster() {
+            const saved = localStorage.getItem(STORAGE_KEY_ROCIO_CLIENTS);
+            if (saved) {
+                try {
+                    rocioClients = JSON.parse(saved);
+                } catch(e) {
+                    rocioClients = JSON.parse(JSON.stringify(DEFAULT_ROCIO_CLIENTS));
+                }
+            } else {
+                rocioClients = JSON.parse(JSON.stringify(DEFAULT_ROCIO_CLIENTS));
+            }
+            renderRocioClients();
+            recalculateFinancials();
+        }
+
+        function saveRocioClients() {
+            localStorage.setItem(STORAGE_KEY_ROCIO_CLIENTS, JSON.stringify(rocioClients));
+            renderRocioClients();
+            recalculateFinancials();
+        }
+
+        function recalculateFinancials() {
+            let totalMonthly = 0;
+            let activeCount = 0;
+
+            rocioClients.forEach(c => {
+                const total = getClientMonthlyTotal(c);
+                if (c.active) {
+                    totalMonthly += total;
+                    activeCount++;
+                }
+            });
+
+            const weeklyAvg = Math.round(totalMonthly / 4);
+            const nec50 = Math.round(totalMonthly * 0.50);
+            const ocio30 = Math.round(totalMonthly * 0.30);
+            const res20 = Math.round(totalMonthly * 0.20);
+
+            // Actualizar tarjetas dinámicas superiores
+            const kpi50 = document.getElementById("dyn-kpi-50");
+            const mto50 = document.getElementById("dyn-monto-50");
+            const kpi30 = document.getElementById("dyn-kpi-30");
+            const mto30 = document.getElementById("dyn-monto-30");
+            const kpi20 = document.getElementById("dyn-kpi-20");
+            const mto20 = document.getElementById("dyn-monto-20");
+
+            if (kpi50) kpi50.innerText = "50%";
+            if (mto50) mto50.innerText = formatCLP(nec50);
+            if (kpi30) kpi30.innerText = "30%";
+            if (mto30) mto30.innerText = formatCLP(ocio30);
+            if (kpi20) kpi20.innerText = "20%";
+            if (mto20) mto20.innerText = formatCLP(res20);
+
+            // Actualizar KPIs de resumen
+            const sumMonth = document.getElementById("summary-total-month");
+            const sumWeek = document.getElementById("summary-total-week");
+            const sumCount = document.getElementById("summary-client-count");
+            const sumReserve = document.getElementById("summary-reserve-month");
+
+            if (sumMonth) sumMonth.innerText = formatCLP(totalMonthly);
+            if (sumWeek) sumWeek.innerText = formatCLP(weeklyAvg);
+            if (sumCount) sumCount.innerHTML = `${activeCount} <span style="font-size:0.75rem; color:#888; font-weight:normal;">/ ${rocioClients.length} total</span>`;
+            if (sumReserve) sumReserve.innerText = formatCLP(res20);
+
+            // Barra de progreso del fondo de reserva
+            const goalTarget = 1050000; // 3 meses estimado
+            const progressPct = Math.min(100, Math.round((res20 / 350000) * 100));
+            const goalPctEl = document.getElementById("reserve-goal-pct");
+            const goalBarEl = document.getElementById("reserve-goal-bar");
+            const goalMsgEl = document.getElementById("reserve-goal-msg");
+
+            if (goalPctEl) goalPctEl.innerText = `${progressPct}% de ritmo óptimo`;
+            if (goalBarEl) goalBarEl.style.width = `${progressPct}%`;
+            if (goalMsgEl) {
+                if (res20 > 0) {
+                    const monthsToTarget = Math.ceil(goalTarget / res20);
+                    goalMsgEl.innerText = `Aportando ${formatCLP(res20)} cada mes (20%), alcanzarás tu colchón de 3 meses ($1.050.000) en ~${monthsToTarget} meses.`;
+                } else {
+                    goalMsgEl.innerText = "Activa clientes para proyectar el avance de tu Fondo de Reserva.";
+                }
+            }
+        }
+
+        function getClientMonthlyTotal(client) {
+            const rate = Number(client.rate) || 0;
+            const freq = Number(client.frequency) || 1;
+            if (client.frequencyType === "pack_mes") {
+                return rate;
+            }
+            return rate * freq;
+        }
+
+        function renderRocioClients() {
+            const container = document.getElementById("rocio-clients-container");
+            if (!container) return;
+
+            if (rocioClients.length === 0) {
+                container.innerHTML = `
+                    <div style="background:#111; border:1px dashed #333; border-radius:8px; padding:2rem; text-align:center; color:#888;">
+                        <p style="margin-bottom:0.8rem;">Aún no tienes clientes registrados.</p>
+                        <button class="btn-card-action" onclick="openAddClientModal()" style="background:#10b981; color:#000; font-weight:800;">
+                            + Agregar Mi Primer Cliente
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = rocioClients.map((client, idx) => {
+                const total = getClientMonthlyTotal(client);
+                const isPack = client.frequencyType === "pack_mes";
+                const isPuya = client.service.startsWith("puya");
+                const isCanto = client.service.startsWith("canto");
+                const isTrueque = client.service === "trueque";
+
+                const badgeBg = isPuya ? "rgba(13,148,136,0.15)" : isCanto ? "rgba(124,58,237,0.15)" : isTrueque ? "rgba(245,158,11,0.15)" : "rgba(255,255,255,0.05)";
+                const badgeColor = isPuya ? "#2dd4bf" : isCanto ? "#c084fc" : isTrueque ? "#fbbf24" : "#ccc";
+                const badgeBorder = isPuya ? "#0d948844" : isCanto ? "#7c3aed44" : isTrueque ? "#f59e0b44" : "#333";
+
+                return `
+                    <div class="printable-card" style="margin-bottom:0; background:${client.active ? '#101010' : '#0a0a0a'}; opacity:${client.active ? '1' : '0.6'}; border-color:${client.active ? '#262626' : '#1a1a1a'};">
+                        <div style="display:flex; flex-direction:column; gap:0.35rem; flex:2;">
+                            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                                <strong style="font-size:0.95rem; color:#fff;">${client.name}</strong>
+                                <span class="role-badge" style="background:${badgeBg}; color:${badgeColor}; border:1px solid ${badgeBorder}; font-size:0.68rem; padding:2px 8px;">
+                                    ${client.serviceLabel || client.service}
+                                </span>
+                                ${client.location ? `<span style="font-size:0.72rem; color:#888;"><i class="fa-solid fa-location-dot" style="font-size:0.65rem;"></i> ${client.location}</span>` : ''}
+                            </div>
+                            <div style="font-size:0.78rem; color:#aaa; display:flex; gap:12px; flex-wrap:wrap;">
+                                <span><strong>Tarifa:</strong> ${formatCLP(client.rate)} ${isPack ? '(Plan cerrado)' : 'x sesión'}</span>
+                                <span><strong>Frecuencia:</strong> ${isPack ? '1 mensual' : client.frequency + ' sesiones/mes'}</span>
+                                ${client.notes ? `<span style="color:#777; font-style:italic;">"${client.notes}"</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap; justify-content:flex-end;">
+                            <div style="text-align:right;">
+                                <div style="font-size:0.68rem; color:#888; text-transform:uppercase; font-weight:700;">Total Mes</div>
+                                <div style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; color:${client.active ? '#10b981' : '#666'};">
+                                    ${formatCLP(total)}
+                                </div>
+                            </div>
+                            
+                            <div style="display:flex; gap:6px; align-items:center;">
+                                <button type="button" class="btn-card-action" onclick="toggleRocioClientStatus('${client.id}')" style="padding:4px 8px; font-size:0.75rem; background:${client.active ? '#10b98122' : '#333'}; color:${client.active ? '#10b981' : '#aaa'}; border:1px solid ${client.active ? '#10b98144' : '#444'}; cursor:pointer;" title="${client.active ? 'Pausar' : 'Activar'}">
+                                    ${client.active ? '🟢 Activo' : '⏸️ Pausa'}
+                                </button>
+                                <button type="button" class="btn-card-action" onclick="openEditClientModal('${client.id}')" style="padding:4px 8px; font-size:0.75rem; color:#fff; cursor:pointer;" title="Editar">
+                                    ✏️
+                                </button>
+                                <button type="button" class="btn-card-action" onclick="deleteRocioClient('${client.id}')" style="padding:4px 8px; font-size:0.75rem; color:#f87171; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); cursor:pointer;" title="Eliminar">
+                                    🗑️
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function openAddClientModal() {
+            document.getElementById("client-modal-title").innerText = "👤 Agregar Cliente o Alumna";
+            document.getElementById("edit-client-id").value = "";
+            document.getElementById("client-form-name").value = "";
+            document.getElementById("client-form-service").value = "puya_sesion";
+            document.getElementById("client-form-freq-type").value = "sesiones_mes";
+            document.getElementById("client-form-rate").value = "35000";
+            document.getElementById("client-form-frequency").value = "2";
+            document.getElementById("client-form-location").value = "Talcahuano";
+            document.getElementById("client-form-status").value = "true";
+            document.getElementById("client-form-notes").value = "";
+
+            recalculateModalTotalPreview();
+            const modal = document.getElementById("modal-client-editor");
+            if (modal) modal.classList.add("active");
+        }
+
+        function openEditClientModal(id) {
+            const client = rocioClients.find(c => c.id === id);
+            if (!client) return;
+
+            document.getElementById("client-modal-title").innerText = "✏️ Editar Cliente / Tarifa";
+            document.getElementById("edit-client-id").value = client.id;
+            document.getElementById("client-form-name").value = client.name;
+            document.getElementById("client-form-service").value = client.service;
+            document.getElementById("client-form-freq-type").value = client.frequencyType || "sesiones_mes";
+            document.getElementById("client-form-rate").value = client.rate;
+            document.getElementById("client-form-frequency").value = client.frequency;
+            document.getElementById("client-form-location").value = client.location || "";
+            document.getElementById("client-form-status").value = client.active ? "true" : "false";
+            document.getElementById("client-form-notes").value = client.notes || "";
+
+            recalculateModalTotalPreview();
+            const modal = document.getElementById("modal-client-editor");
+            if (modal) modal.classList.add("active");
+        }
+
+        function closeClientModal() {
+            const modal = document.getElementById("modal-client-editor");
+            if (modal) modal.classList.remove("active");
+        }
+
+        function handleServiceSelectChange(val) {
+            const rateInput = document.getElementById("client-form-rate");
+            const freqType = document.getElementById("client-form-freq-type");
+            const freqInput = document.getElementById("client-form-frequency");
+
+            if (val === "puya_plan") {
+                rateInput.value = "150000";
+                freqType.value = "pack_mes";
+                freqInput.value = "1";
+            } else if (val === "puya_sesion") {
+                rateInput.value = "35000";
+                freqType.value = "sesiones_mes";
+                freqInput.value = "2";
+            } else if (val === "canto_pack") {
+                rateInput.value = "32000";
+                freqType.value = "pack_mes";
+                freqInput.value = "1";
+            } else if (val === "canto_clase") {
+                rateInput.value = "10000";
+                freqType.value = "sesiones_mes";
+                freqInput.value = "4";
+            } else if (val === "trueque") {
+                rateInput.value = "0";
+                freqType.value = "sesiones_mes";
+                freqInput.value = "2";
+            }
+            recalculateModalTotalPreview();
+        }
+
+        function recalculateModalTotalPreview() {
+            const rate = Number(document.getElementById("client-form-rate").value) || 0;
+            const freq = Number(document.getElementById("client-form-frequency").value) || 1;
+            const freqType = document.getElementById("client-form-freq-type").value;
+            const freqLabel = document.getElementById("client-form-freq-label");
+
+            if (freqType === "pack_mes") {
+                if (freqLabel) freqLabel.innerText = "Frecuencia (Packs al Mes):";
+                document.getElementById("client-modal-total-preview").innerText = formatCLP(rate * freq);
+            } else {
+                if (freqLabel) freqLabel.innerText = "Frecuencia (Sesiones al Mes):";
+                document.getElementById("client-modal-total-preview").innerText = formatCLP(rate * freq);
+            }
+        }
+
+        function handleSaveClientForm(e) {
+            e.preventDefault();
+            const editId = document.getElementById("edit-client-id").value;
+            const name = document.getElementById("client-form-name").value.trim();
+            const service = document.getElementById("client-form-service").value;
+            const freqType = document.getElementById("client-form-freq-type").value;
+            const rate = Number(document.getElementById("client-form-rate").value) || 0;
+            const freq = Number(document.getElementById("client-form-frequency").value) || 1;
+            const location = document.getElementById("client-form-location").value.trim();
+            const active = document.getElementById("client-form-status").value === "true";
+            const notes = document.getElementById("client-form-notes").value.trim();
+
+            const serviceLabels = {
+                puya_sesion: "💆‍♀️ Puya Masajes • Sesión Individual",
+                puya_plan: "💆‍♀️ Puya Masajes • Plan Mensual (4 Sesiones)",
+                canto_clase: "🎤 Voz Caleidoscopio • Clase 70 min",
+                canto_pack: "🎤 Voz Caleidoscopio • Pack Mensual 4 Clases",
+                trueque: "🤝 Trueque / En Especie",
+                otro: "✨ Servicio Personalizado"
+            };
+
+            if (editId) {
+                const c = rocioClients.find(item => item.id === editId);
+                if (c) {
+                    c.name = name;
+                    c.service = service;
+                    c.serviceLabel = serviceLabels[service] || service;
+                    c.frequencyType = freqType;
+                    c.rate = rate;
+                    c.frequency = freq;
+                    c.location = location;
+                    c.active = active;
+                    c.notes = notes;
+                }
+            } else {
+                rocioClients.push({
+                    id: "client_" + Date.now(),
+                    name,
+                    service,
+                    serviceLabel: serviceLabels[service] || service,
+                    frequencyType: freqType,
+                    rate,
+                    frequency: freq,
+                    location,
+                    active,
+                    notes
+                });
+            }
+
+            saveRocioClients();
+            closeClientModal();
+            showToast("¡Cliente guardado y proyección actualizada!");
+        }
+
+        function quickAddPreset(type) {
+            if (type === 'puya_sesion') {
+                rocioClients.push({
+                    id: "client_" + Date.now(),
+                    name: "Nuevo Paciente Masaje",
+                    service: "puya_sesion",
+                    serviceLabel: "💆‍♀️ Puya Masajes • Sesión Individual",
+                    rate: 35000,
+                    frequency: 2,
+                    frequencyType: "sesiones_mes",
+                    location: "Talcahuano",
+                    active: true,
+                    notes: "Descontracturante / Cervical"
+                });
+            } else if (type === 'puya_plan') {
+                rocioClients.push({
+                    id: "client_" + Date.now(),
+                    name: "Nuevo Paciente Plan Mensual",
+                    service: "puya_plan",
+                    serviceLabel: "💆‍♀️ Puya Masajes • Plan Mensual (4 Sesiones)",
+                    rate: 150000,
+                    frequency: 1,
+                    frequencyType: "pack_mes",
+                    location: "Talcahuano",
+                    active: true,
+                    notes: "Programa terapéutico integral"
+                });
+            } else if (type === 'canto_pack') {
+                rocioClients.push({
+                    id: "client_" + Date.now(),
+                    name: "Nueva Alumna Canto",
+                    service: "canto_pack",
+                    serviceLabel: "🎤 Voz Caleidoscopio • Pack Mensual 4 Clases",
+                    rate: 32000,
+                    frequency: 1,
+                    frequencyType: "pack_mes",
+                    location: "Talcahuano",
+                    active: true,
+                    notes: "Técnica vocal y cancionero"
+                });
+            } else if (type === 'trueque') {
+                rocioClients.push({
+                    id: "client_" + Date.now(),
+                    name: "Nuevo Convenio Trueque",
+                    service: "trueque",
+                    serviceLabel: "🤝 Trueque / En Especie",
+                    rate: 0,
+                    frequency: 2,
+                    frequencyType: "sesiones_mes",
+                    location: "Talcahuano",
+                    active: true,
+                    notes: "Intercambio de bienes/servicios"
+                });
+            }
+            saveRocioClients();
+            showToast("¡Cliente preestablecido añadido!");
+        }
+
+        function toggleRocioClientStatus(id) {
+            const c = rocioClients.find(item => item.id === id);
+            if (c) {
+                c.active = !c.active;
+                saveRocioClients();
+            }
+        }
+
+        function deleteRocioClient(id) {
+            const c = rocioClients.find(item => item.id === id);
+            if (!c) return;
+            if (confirm(`¿Eliminar al cliente/alumna "${c.name}"?`)) {
+                rocioClients = rocioClients.filter(item => item.id !== id);
+                saveRocioClients();
+                showToast("Cliente eliminado del registro.");
+            }
+        }
+
+        function resetRocioClientsToDefault() {
+            if (confirm("¿Restablecer la lista de clientes a los ejemplos iniciales sugeridos?")) {
+                rocioClients = JSON.parse(JSON.stringify(DEFAULT_ROCIO_CLIENTS));
+                saveRocioClients();
+                showToast("Lista restablecida con éxito.");
+            }
+        }
 
         const voiceScenarios = [];
         function selectClientVoiceScenario(scId) {
@@ -1886,6 +2530,9 @@ Por favor genera:
                     if (fb && this.src !== fb) { this.src = isSub ? '../' + fb : fb; }
                 });
             });
+
+            // Inicializar Gestor de Clientes de Rocío
+            initRocioClientRoster();
         });
     </script>
 

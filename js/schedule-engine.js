@@ -110,12 +110,19 @@ function saveScheduleCategories() {
 function renderScheduleBrushChips() {
     const container = document.getElementById("brush-selector-container");
     if (!container) return;
-    container.innerHTML = scheduleCategories.map(cat => `
+    let chipsHtml = scheduleCategories.map(cat => `
         <div class="brush-chip ${cat.id === activeScheduleBrushId ? 'active' : ''}" onclick="selectScheduleBrush('${cat.id}')">
             <span class="chip-dot" style="background-color: ${cat.color};"></span>
             <span>${cat.name}</span>
         </div>
     `).join("");
+
+    chipsHtml += `
+        <button type="button" class="brush-chip" onclick="openCategoryManagerModal()" style="border-style:dashed; border-color:rgba(255,255,255,0.3); background:rgba(255,255,255,0.06); color:#fff; font-weight:700;">
+            <i class="fa-solid fa-plus" style="font-size:0.7rem;"></i> Categoría
+        </button>
+    `;
+    container.innerHTML = chipsHtml;
 }
 
 function selectScheduleBrush(catId) {
@@ -207,27 +214,37 @@ function renderScheduleStatistics() {
 
 // Category Manager Modal
 function openCategoryManagerModal() {
-    const editor = document.getElementById("category-list-editor");
-    if (!editor) return;
-
-    editor.innerHTML = scheduleCategories.map((cat, idx) => `
-        <div class="category-item-row" id="cat-row-${idx}">
-            <div class="color-picker-wrapper" style="background-color: ${cat.color};">
-                <input type="color" class="color-picker-input" value="${cat.color}" onchange="updateCatColorValue(${idx}, this.value)">
+    const editor = document.getElementById("category-list-editor") || document.getElementById("category-manager-list");
+    if (editor) {
+        editor.innerHTML = scheduleCategories.map((cat, idx) => `
+            <div class="category-item-row" id="cat-row-${idx}">
+                <div class="color-picker-wrapper" style="background-color: ${cat.color};">
+                    <input type="color" class="color-picker-input" value="${cat.color}" onchange="updateCatColorValue(${idx}, this.value)">
+                </div>
+                <input type="text" class="category-name-input" value="${cat.name}" id="cat-name-${idx}" oninput="saveSingleCategoryEdit(${idx})">
+                <input type="text" class="category-tag-input" value="${cat.tag || ''}" id="cat-tag-${idx}" maxlength="8" oninput="saveSingleCategoryEdit(${idx})">
+                ${scheduleCategories.length > 1 ? `<button type="button" class="btn-card-action" onclick="deleteCategoryItem(${idx})" style="color:#f87171; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:4px 8px; cursor:pointer;" title="Eliminar categoría">🗑️</button>` : ''}
             </div>
-            <input type="text" class="category-name-input" value="${cat.name}" id="cat-name-${idx}">
-            <input type="text" class="category-tag-input" value="${cat.tag || ''}" id="cat-tag-${idx}" maxlength="6">
-            ${scheduleCategories.length > 1 ? `<button class="btn-card-action" onclick="deleteCategoryItem(${idx})" style="color:#f87171;">🗑️</button>` : ''}
-        </div>
-    `).join("");
+        `).join("");
+    }
 
-    const modal = document.getElementById("modal-category-manager");
+    const modal = document.getElementById("modal-category-manager") || document.getElementById("categories-manager-modal");
     if (modal) modal.classList.add("active");
 }
 
 function closeCategoryManagerModal() {
-    const modal = document.getElementById("modal-category-manager");
+    saveCategoriesFromModal();
+    const modal = document.getElementById("modal-category-manager") || document.getElementById("categories-manager-modal");
     if (modal) modal.classList.remove("active");
+}
+
+function saveSingleCategoryEdit(idx) {
+    if (idx < 0 || idx >= scheduleCategories.length) return;
+    const nameEl = document.getElementById(`cat-name-${idx}`);
+    const tagEl = document.getElementById(`cat-tag-${idx}`);
+    if (nameEl && nameEl.value.trim()) scheduleCategories[idx].name = nameEl.value.trim();
+    if (tagEl && tagEl.value.trim()) scheduleCategories[idx].tag = tagEl.value.trim().toUpperCase();
+    saveScheduleCategories();
 }
 
 function updateCatColorValue(idx, color) {
@@ -236,39 +253,51 @@ function updateCatColorValue(idx, color) {
         const wrapper = row.querySelector(".color-picker-wrapper");
         if (wrapper) wrapper.style.backgroundColor = color;
     }
+    if (idx >= 0 && idx < scheduleCategories.length) {
+        scheduleCategories[idx].color = color;
+        saveScheduleCategories();
+    }
 }
 
 function addNewCategoryFromModal() {
-    const nameInput = document.getElementById("new-cat-name");
+    const nameInput = document.getElementById("new-cat-name") || document.getElementById("new-cat-label");
     const tagInput = document.getElementById("new-cat-tag");
     const colorInput = document.getElementById("new-cat-color");
     if (!nameInput || !colorInput) return;
 
     const name = nameInput.value.trim();
     const tag = tagInput ? tagInput.value.trim().toUpperCase() : "";
-    const color = colorInput.value;
+    const color = colorInput.value || "#10b981";
 
     if (!name) { alert("Por favor ingresa un nombre para la categoría."); return; }
 
     const newId = "cat_" + Date.now();
-    scheduleCategories.push({ id: newId, name, tag: tag || name.substring(0, 4).toUpperCase(), color });
+    scheduleCategories.push({ id: newId, name, tag: tag || name.substring(0, 5).toUpperCase(), color });
     nameInput.value = "";
     if (tagInput) tagInput.value = "";
+    saveScheduleCategories();
     openCategoryManagerModal();
 }
 
 function deleteCategoryItem(idx) {
     if (scheduleCategories.length <= 1) { alert("Debes mantener al menos una categoría."); return; }
-    scheduleCategories.splice(idx, 1);
-    openCategoryManagerModal();
+    const catToDelete = scheduleCategories[idx];
+    if (confirm(`¿Eliminar la categoría "${catToDelete.name}"?`)) {
+        scheduleCategories.splice(idx, 1);
+        if (activeScheduleBrushId === catToDelete.id) {
+            activeScheduleBrushId = scheduleCategories[0].id;
+        }
+        saveScheduleCategories();
+        openCategoryManagerModal();
+    }
 }
 
 function saveCategoriesFromModal() {
     scheduleCategories.forEach((cat, idx) => {
         const nameEl = document.getElementById(`cat-name-${idx}`);
         const tagEl = document.getElementById(`cat-tag-${idx}`);
-        if (nameEl) cat.name = nameEl.value.trim();
-        if (tagEl) cat.tag = tagEl.value.trim().toUpperCase();
+        if (nameEl && nameEl.value.trim()) cat.name = nameEl.value.trim();
+        if (tagEl && tagEl.value.trim()) cat.tag = tagEl.value.trim().toUpperCase();
         const row = document.getElementById(`cat-row-${idx}`);
         if (row) {
             const colorEl = row.querySelector(".color-picker-input");
@@ -276,7 +305,6 @@ function saveCategoriesFromModal() {
         }
     });
     saveScheduleCategories();
-    closeCategoryManagerModal();
 }
 
 function resetCategoriesDefault() {
@@ -297,9 +325,9 @@ function resetScheduleToDefault() {
 
 // Range Fill Modal
 function populateScheduleRangeModal() {
-    const catSelect = document.getElementById("range-fill-category");
-    const startSelect = document.getElementById("range-fill-start");
-    const endSelect = document.getElementById("range-fill-end");
+    const catSelect = document.getElementById("range-fill-category") || document.getElementById("range-category-select");
+    const startSelect = document.getElementById("range-fill-start") || document.getElementById("range-start-hour");
+    const endSelect = document.getElementById("range-fill-end") || document.getElementById("range-end-hour");
     if (!catSelect || !startSelect || !endSelect) return;
 
     catSelect.innerHTML = scheduleCategories.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
@@ -316,19 +344,19 @@ function populateScheduleRangeModal() {
 
 function openRangeFillModal() {
     populateScheduleRangeModal();
-    const modal = document.getElementById("modal-range-fill");
+    const modal = document.getElementById("modal-range-fill") || document.getElementById("range-fill-modal");
     if (modal) modal.classList.add("active");
 }
 
 function closeRangeFillModal() {
-    const modal = document.getElementById("modal-range-fill");
+    const modal = document.getElementById("modal-range-fill") || document.getElementById("range-fill-modal");
     if (modal) modal.classList.remove("active");
 }
 
 function applyRangeFill() {
-    const catSelect = document.getElementById("range-fill-category");
-    const startSelect = document.getElementById("range-fill-start");
-    const endSelect = document.getElementById("range-fill-end");
+    const catSelect = document.getElementById("range-fill-category") || document.getElementById("range-category-select");
+    const startSelect = document.getElementById("range-fill-start") || document.getElementById("range-start-hour");
+    const endSelect = document.getElementById("range-fill-end") || document.getElementById("range-end-hour");
     if (!catSelect || !startSelect || !endSelect) return;
 
     const catId = catSelect.value;
@@ -336,8 +364,14 @@ function applyRangeFill() {
     const endH = parseInt(endSelect.value);
 
     const selectedDays = [];
-    document.querySelectorAll("input[name='range-day']:checked").forEach(cb => {
-        selectedDays.push(parseInt(cb.value));
+    document.querySelectorAll("input[name='range-day']:checked, input[id^='range-day-']:checked").forEach(cb => {
+        let val = parseInt(cb.value);
+        if (isNaN(val) && cb.id && cb.id.startsWith("range-day-")) {
+            val = parseInt(cb.id.replace("range-day-", ""));
+        }
+        if (!isNaN(val) && !selectedDays.includes(val)) {
+            selectedDays.push(val);
+        }
     });
 
     if (selectedDays.length === 0) { alert("Selecciona al menos un día."); return; }
