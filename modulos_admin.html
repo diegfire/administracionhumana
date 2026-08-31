@@ -428,7 +428,13 @@
         return;
       }
 
-      grid.innerHTML = filtered.map((m, idx) => `
+      grid.innerHTML = filtered.map((m, idx) => {
+        const redFlag = (m.red_flags && m.red_flags.length > 0) ? m.red_flags[0] : (m.problema || 'Fricción operativa sin contención clara.');
+        const solucion = m.solucion || m.protocolo_paso_cero || m.nombre_humano || 'Intervención de bajo roce adaptada al contexto del cliente.';
+        const impacto = (m.metrica_impacto && m.metrica_impacto.kpi_nombre) ? m.metrica_impacto.kpi_nombre : (m.impacto || 'Soberanía del tiempo y reducción de sobrecarga mental.');
+        const pasoCero = m.protocolo_paso_cero || 'Definir en sesión 1 a 1.';
+
+        return `
         <div class="mod-card">
           <div>
             <div class="mod-header">
@@ -438,12 +444,24 @@
             <h3 class="mod-title">${m.nombre_oficial}</h3>
             <div class="mod-humano">✨ "${m.nombre_humano || m.nombre_oficial}"</div>
             
-            ${(m.red_flags && m.red_flags.length > 0) ? `
-              <div class="mod-flag">🚨 ${m.red_flags[0]}</div>
-            ` : ''}
+            <!-- PROBLEMA -->
+            <div style="background:rgba(239,68,68,0.06); border-left:2px solid #ef4444; padding:8px 10px; border-radius:4px; font-size:0.78rem; color:#fca5a5; margin-bottom:8px; line-height:1.4;">
+              <strong style="color:#ef4444;">🚨 Problema / Quiebre:</strong> ${redFlag}
+            </div>
 
+            <!-- SOLUCIÓN -->
+            <div style="background:#141414; border:1px solid #262626; padding:8px 10px; border-radius:6px; font-size:0.78rem; color:#d4d4d8; margin-bottom:8px; line-height:1.4;">
+              <strong style="color:#38bdf8;">🛠️ Solución AH:</strong> ${solucion}
+            </div>
+
+            <!-- IMPACTO -->
+            <div style="font-size:0.78rem; color:#10b981; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:4px;">
+              <span>✦ Impacto:</span> ${impacto}
+            </div>
+
+            <!-- PASO CERO -->
             <div class="mod-paso-cero">
-              <strong style="color:#fff;">⏱️ Paso Cero (5m):</strong> ${m.protocolo_paso_cero || 'Definir en sesión'}
+              <strong style="color:#fff;">⏱️ Paso Cero (5m):</strong> ${pasoCero}
             </div>
           </div>
 
@@ -452,7 +470,8 @@
             <button class="btn-action-primary" onclick="window.openEditModuleModal('${m.id}')">🔍 Inspeccionar & Editar</button>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     }
 
     // EVENT LISTENERS
