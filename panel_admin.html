@@ -421,6 +421,11 @@
       document.getElementById('modal-close-btn').onclick = () => diagModal.classList.remove('active');
 
       window.openDiagModal = async (uid, userName) => {
+        currentModalClientUid = uid;
+        currentModalClientName = userName;
+        populateQuickPrescribeSelect();
+        const quickRes = document.getElementById('quick-prescribe-result');
+        if (quickRes) quickRes.style.display = 'none';
         document.getElementById('diag-user-title').innerText = `Expediente & Diagnóstico 360° · ${userName}`;
         const scoresList = document.getElementById('diag-scores-list');
         
