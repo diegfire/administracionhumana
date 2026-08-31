@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller Maestro de Módulos | Administración Humana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface-2: #121212;
+      --surface-3: #181818;
+      --border: #262626;
+      --border-bright: #333333;
+      --accent-blue: #38bdf8;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+      --radius-lg: 18px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+    .container { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+    
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 14px 0;
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-logo { font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; color: #fff; text-decoration: none; text-transform: uppercase; }
+    .nav-badge { background: rgba(56,189,248,0.15); border: 1px solid var(--accent-blue); color: var(--accent-blue); font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .btn-nav { background: rgba(255,255,255,0.06); border: 1px solid var(--border-bright); color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.2s; }
+    .btn-nav:hover { border-color: #fff; background: rgba(255,255,255,0.12); }
+    .btn-nav-primary { background: #ffffff; color: #000000; border: none; font-weight: 800; }
+    .btn-nav-primary:hover { background: #e5e5e5; }
+
+    /* HEADER */
+    .header-section { padding: 32px 0 20px; }
+    .header-title { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .header-sub { color: #888; font-size: 0.88rem; max-width: 820px; }
+
+    /* STATS BAR */
+    .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+    .stat-val { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--accent-blue); }
+    .stat-lbl { font-size: 0.72rem; color: #888; text-transform: uppercase; font-weight: 700; }
+
+    /* TOOLBAR */
+    .toolbar {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 20px; margin-bottom: 24px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 14px;
+    }
+    .search-box { flex-grow: 1; max-width: 440px; position: relative; }
+    .search-input {
+      width: 100%; background: #141414; border: 1px solid var(--border-bright);
+      color: #fff; padding: 10px 14px 10px 38px; border-radius: 8px; font-size: 0.88rem; outline: none;
+    }
+    .search-input:focus { border-color: var(--accent-blue); }
+    .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #888; font-size: 0.9rem; }
+    .filter-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .filter-select {
+      background: #141414; border: 1px solid var(--border-bright); color: #fff;
+      padding: 9px 14px; border-radius: 8px; font-size: 0.82rem; outline: none; cursor: pointer;
+    }
+
+    /* MODULES GRID */
+    .modules-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 18px;
+    }
+    .mod-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.2s; position: relative;
+    }
+    .mod-card:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
+    .mod-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .mod-id-badge { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 800; background: rgba(56,189,248,0.12); color: var(--accent-blue); border: 1px solid rgba(56,189,248,0.3); padding: 3px 8px; border-radius: 6px; }
+    .mod-pilar-badge { font-size: 0.68rem; color: #888; text-transform: uppercase; font-weight: 700; }
+    .mod-title { font-family: var(--font-heading); font-size: 1.08rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .mod-humano { font-size: 0.8rem; color: var(--accent-amber); font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 4px; }
+    .mod-flag { background: rgba(239,68,68,0.06); border-left: 2px solid var(--accent-red); padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #fca5a5; margin-bottom: 12px; }
+    .mod-paso-cero { background: #141414; border: 1px solid var(--border); padding: 8px 10px; border-radius: 6px; font-size: 0.78rem; color: #d4d4d8; margin-bottom: 14px; }
+    .mod-actions { display: flex; gap: 8px; justify-content: flex-end; border-top: 1px solid #1a1a1a; padding-top: 12px; }
+    .btn-edit { background: #ffffff; color: #000; font-weight: 800; font-size: 0.75rem; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+    .btn-edit:hover { background: #e5e5e5; }
+    .btn-preview { background: transparent; border: 1px solid var(--border-bright); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 6px 12px; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    .btn-preview:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+      z-index: 1000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
+    }
+    .modal-overlay.active { display: flex; opacity: 1; }
+    .modal-box {
+      background: var(--surface-2); border: 1px solid var(--border-bright); border-radius: var(--radius-lg);
+      width: 90%; max-width: 760px; max-height: 90vh; overflow-y: auto; padding: 28px; position: relative;
+    }
+    .modal-close { position: absolute; top: 18px; right: 18px; background: transparent; border: none; color: #888; font-size: 1.4rem; cursor: pointer; }
+    .modal-close:hover { color: #fff; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #aaa; margin-bottom: 6px; letter-spacing: 0.04em; }
+    .form-input, .form-textarea, .form-select {
+      width: 100%; background: #141414; border: 1px solid var(--border-bright); color: #fff;
+      padding: 10px 12px; border-radius: 8px; font-size: 0.85rem; font-family: var(--font-sans); outline: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent-blue); }
+    .form-textarea { resize: vertical; min-height: 70px; }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-save-modal {
+      background: var(--accent-blue); color: #000; border: none; font-weight: 800;
+      padding: 12px 24px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; transition: transform 0.2s;
+    }
+    .btn-save-modal:hover { transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <nav>
+    <div class="container">
+      <div class="nav-brand">
+        <a href="panel_admin.html" class="nav-logo">Administración Humana</a>
+        <span class="nav-badge">Taller de Módulos AH</span>
+      </div>
+      <div class="nav-links">
+        <button class="btn-nav btn-nav-primary" onclick="window.openNewModuleModal()">+ Crear Nuevo Módulo</button>
+        <button class="btn-nav" onclick="window.exportDatabaseJson()">💾 Descargar modulos-data.js</button>
+        <a href="panel_admin.html" class="btn-nav">← Volver al Panel Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- HEADER -->
+    <div class="header-section">
+      <h1 class="header-title">Catálogo & Gestor de Módulos LEGO (AH v2.0)</h1>
+      <p class="header-sub">
+        Visualiza, edita y añade módulos a la base de datos de prescripción. Cada módulo representa una intervención quirúrgica con su síntoma de quiebre, micro-compromiso de Paso Cero y entregables.
+      </p>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-bar" id="stats-bar">
+      <!-- Calculado dinámicamente -->
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Buscar por código, nombre, síntoma o red flag..." />
+      </div>
+      <div class="filter-group">
+        <select id="filter-pilar" class="filter-select">
+          <option value="ALL">Todos los Pilares</option>
+          <option value="Pilar 1">Pilar 1: Cimientos & Propósito</option>
+          <option value="Pilar 2">Pilar 2: Tiempo & Horarios</option>
+          <option value="Pilar 3">Pilar 3: Finanzas & Negocio</option>
+          <option value="Pilar 4">Pilar 4: Salud & Ritmos</option>
+          <option value="Pilar 5">Pilar 5: Hábitos & Foco</option>
+          <option value="Pilar 6">Pilar 6: Relaciones</option>
+          <option value="Pilar 7">Pilar 7: Entorno</option>
+          <option value="Pilar 8">Pilar 8: Desarrollo Personal</option>
+        </select>
+        <select id="filter-fase" class="filter-select">
+          <option value="ALL">Todas las Fases</option>
+          <option value="Fase 1">Fase 1: Rescate & Oxígeno</option>
+          <option value="Fase 2">Fase 2: Estructura & Rutina</option>
+          <option value="Fase 3">Fase 3: Expansión & Maestría</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="modules-grid" id="modules-grid">
+      <!-- Renderizado por JS -->
+    </div>
+  </main>
+
+  <!-- MODAL EDITOR / CREADOR -->
+  <div class="modal-overlay" id="module-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="window.closeModuleModal()">&times;</button>
+      <h2 id="modal-title" style="font-family:var(--font-heading); font-size:1.4rem; font-weight:800; margin-bottom:16px;">
+        Editar Módulo
+      </h2>
+      <form id="module-form" onsubmit="window.saveModuleForm(event)">
+        <input type="hidden" id="mod-edit-id" />
+        
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>ID del Módulo (Único / Código)</label>
+            <input type="text" id="form-id" class="form-input" placeholder="ej: mod_mi_nuevo_sistema" required />
+          </div>
+          <div class="form-group">
+            <label>Pilar Principal</label>
+            <select id="form-pilar" class="form-select" required>
+              <option value="Pilar 1: Cimientos & Propósito">Pilar 1: Cimientos & Propósito</option>
+              <option value="Pilar 2: Tiempo & Horarios">Pilar 2: Tiempo & Horarios</option>
+              <option value="Pilar 3: Finanzas & Negocio">Pilar 3: Finanzas & Negocio</option>
+              <option value="Pilar 4: Salud & Ritmos">Pilar 4: Salud & Ritmos</option>
+              <option value="Pilar 5: Hábitos & Foco">Pilar 5: Hábitos & Foco</option>
+              <option value="Pilar 6: Relaciones">Pilar 6: Relaciones</option>
+              <option value="Pilar 7: Entorno de Trabajo">Pilar 7: Entorno de Trabajo</option>
+              <option value="Pilar 8: Desarrollo Personal">Pilar 8: Desarrollo Personal</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Nombre Oficial (Técnico)</label>
+            <input type="text" id="form-nombre-oficial" class="form-input" placeholder="ej: Protocolo de Pausas Regenerativas" required />
+          </div>
+          <div class="form-group">
+            <label>Nombre Humano (Conexión / Beneficio)</label>
+            <input type="text" id="form-nombre-humano" class="form-input" placeholder="ej: Recuperar el Oxígeno al Final del Día" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Fase de Madurez</label>
+          <select id="form-fase" class="form-select">
+            <option value="Fase 1: Rescate & Oxígeno">Fase 1: Rescate & Oxígeno</option>
+            <option value="Fase 2: Estructura & Rutina">Fase 2: Estructura & Rutina</option>
+            <option value="Fase 3: Expansión & Maestría">Fase 3: Expansión & Maestría</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Red Flags / Síntomas de Quiebre (Uno por línea)</label>
+          <textarea id="form-red-flags" class="form-textarea" placeholder="ej: Siento fatiga extrema antes de las 4 PM"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Pregunta Diagnóstica Clave</label>
+          <input type="text" id="form-pregunta" class="form-input" placeholder="ej: ¿Qué es lo primero que te drena la energía al despertar?" />
+        </div>
+
+        <div class="form-group">
+          <label>Protocolo Paso Cero (Micro-compromiso 5 Minutos)</label>
+          <input type="text" id="form-paso-cero" class="form-input" placeholder="ej: Apagar pantallas 5 minutos y tomar un vaso de agua." required />
+        </div>
+
+        <div class="form-group">
+          <label>Microdosis 24H (Acción del Día Siguiente)</label>
+          <input type="text" id="form-microdosis" class="form-input" placeholder="ej: Agendar en el Mapeador 24H 1 bloque protegido de 15 minutos." />
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn-nav" onclick="window.closeModuleModal()">Cancelar</button>
+          <button type="submit" class="btn-save-modal">💾 Guardar Módulo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPT DE DATOS Y MOTOR -->
+  <script src="js/modulos-data.js"></script>
+  <script>
+    let modulesList = [];
+
+    function initModulesDB() {
+      const customDb = localStorage.getItem('ah_modulos_custom_db');
+      if (customDb) {
+        try {
+          modulesList = JSON.parse(customDb);
+        } catch(e) {
+          modulesList = window.AICC_MODULOS_DB || [];
+        }
+      } else {
+        modulesList = window.AICC_MODULOS_DB || [];
+      }
+      renderStats();
+      renderGrid();
+    }
+
+    function renderStats() {
+      const statsEl = document.getElementById('stats-bar');
+      const total = modulesList.length;
+      const f1 = modulesList.filter(m => (m.fase_madurez || '').includes('Fase 1')).length;
+      const f2 = modulesList.filter(m => (m.fase_madurez || '').includes('Fase 2')).length;
+      const f3 = modulesList.filter(m => (m.fase_madurez || '').includes('Fase 3')).length;
+
+      statsEl.innerHTML = `
+        <div class="stat-card">
+          <div class="stat-val">${total}</div>
+          <div class="stat-lbl">Módulos Totales</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" style="color:#ef4444;">${f1}</div>
+          <div class="stat-lbl">Fase 1: Rescate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" style="color:#38bdf8;">${f2}</div>
+          <div class="stat-lbl">Fase 2: Estructura</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" style="color:#10b981;">${f3}</div>
+          <div class="stat-lbl">Fase 3: Expansión</div>
+        </div>
+      `;
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('modules-grid');
+      const search = (document.getElementById('search-input').value || '').toLowerCase().trim();
+      const pilarFilter = document.getElementById('filter-pilar').value;
+      const faseFilter = document.getElementById('filter-fase').value;
+
+      const filtered = modulesList.filter(m => {
+        const matchSearch = !search || 
+          (m.id || '').toLowerCase().includes(search) ||
+          (m.nombre_oficial || '').toLowerCase().includes(search) ||
+          (m.nombre_humano || '').toLowerCase().includes(search) ||
+          (m.red_flags || []).some(rf => rf.toLowerCase().includes(search)) ||
+          (m.protocolo_paso_cero || '').toLowerCase().includes(search);
+
+        const matchPilar = pilarFilter === 'ALL' || (m.pilar || '').includes(pilarFilter);
+        const matchFase = faseFilter === 'ALL' || (m.fase_madurez || '').includes(faseFilter);
+
+        return matchSearch && matchPilar && matchFase;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:48px; color:#888;">No se encontraron módulos con los filtros aplicados.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((m, idx) => `
+        <div class="mod-card">
+          <div>
+            <div class="mod-header">
+              <span class="mod-id-badge">#${m.id}</span>
+              <span class="mod-pilar-badge">${m.pilar ? m.pilar.split(':')[0] : 'AH'}</span>
+            </div>
+            <h3 class="mod-title">${m.nombre_oficial}</h3>
+            <div class="mod-humano">✨ "${m.nombre_humano || m.nombre_oficial}"</div>
+            
+            ${(m.red_flags && m.red_flags.length > 0) ? `
+              <div class="mod-flag">🚨 ${m.red_flags[0]}</div>
+            ` : ''}
+
+            <div class="mod-paso-cero">
+              <strong style="color:#fff;">⏱️ Paso Cero:</strong> ${m.protocolo_paso_cero || 'Definir en sesión'}
+            </div>
+          </div>
+
+          <div class="mod-actions">
+            <button class="btn-preview" onclick="window.copyModulePrompt('${m.id}')">📋 Copiar Ficha</button>
+            <button class="btn-edit" onclick="window.openEditModuleModal('${m.id}')">✏️ Editar</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // EVENT LISTENERS
+    document.getElementById('search-input').addEventListener('input', renderGrid);
+    document.getElementById('filter-pilar').addEventListener('change', renderGrid);
+    document.getElementById('filter-fase').addEventListener('change', renderGrid);
+
+    // MODAL HANDLERS
+    window.openEditModuleModal = function(id) {
+      const mod = modulesList.find(m => m.id === id);
+      if (!mod) return;
+      document.getElementById('modal-title').innerText = `✏️ Editar Módulo: ${mod.id}`;
+      document.getElementById('mod-edit-id').value = mod.id;
+      document.getElementById('form-id').value = mod.id;
+      document.getElementById('form-id').disabled = true;
+      document.getElementById('form-pilar').value = mod.pilar || 'Pilar 1: Cimientos & Propósito';
+      document.getElementById('form-nombre-oficial').value = mod.nombre_oficial || '';
+      document.getElementById('form-nombre-humano').value = mod.nombre_humano || '';
+      document.getElementById('form-fase').value = mod.fase_madurez || 'Fase 1: Rescate & Oxígeno';
+      document.getElementById('form-red-flags').value = (mod.red_flags || []).join('\n');
+      document.getElementById('form-pregunta').value = mod.pregunta_diagnostica || '';
+      document.getElementById('form-paso-cero').value = mod.protocolo_paso_cero || '';
+      document.getElementById('form-microdosis').value = mod.microdosis_24h || '';
+
+      const modal = document.getElementById('module-modal');
+      modal.classList.add('active');
+    };
+
+    window.openNewModuleModal = function() {
+      document.getElementById('modal-title').innerText = `+ Crear Nuevo Módulo LEGO`;
+      document.getElementById('mod-edit-id').value = '';
+      document.getElementById('form-id').value = `mod_${Date.now().toString().slice(-4)}`;
+      document.getElementById('form-id').disabled = false;
+      document.getElementById('form-nombre-oficial').value = '';
+      document.getElementById('form-nombre-humano').value = '';
+      document.getElementById('form-red-flags').value = '';
+      document.getElementById('form-pregunta').value = '';
+      document.getElementById('form-paso-cero').value = '';
+      document.getElementById('form-microdosis').value = '';
+
+      const modal = document.getElementById('module-modal');
+      modal.classList.add('active');
+    };
+
+    window.closeModuleModal = function() {
+      document.getElementById('module-modal').classList.remove('active');
+    };
+
+    window.saveModuleForm = function(e) {
+      e.preventDefault();
+      const editId = document.getElementById('mod-edit-id').value;
+      const targetId = document.getElementById('form-id').value.trim();
+
+      const modData = {
+        id: targetId,
+        nombre_oficial: document.getElementById('form-nombre-oficial').value.trim(),
+        nombre_humano: document.getElementById('form-nombre-humano').value.trim(),
+        pilar: document.getElementById('form-pilar').value,
+        fase_madurez: document.getElementById('form-fase').value,
+        red_flags: document.getElementById('form-red-flags').value.split('\n').map(s => s.trim()).filter(Boolean),
+        pregunta_diagnostica: document.getElementById('form-pregunta').value.trim(),
+        protocolo_paso_cero: document.getElementById('form-paso-cero').value.trim(),
+        microdosis_24h: document.getElementById('form-microdosis').value.trim()
+      };
+
+      if (editId) {
+        const idx = modulesList.findIndex(m => m.id === editId);
+        if (idx !== -1) modulesList[idx] = { ...modulesList[idx], ...modData };
+      } else {
+        modulesList.unshift(modData);
+      }
+
+      localStorage.setItem('ah_modulos_custom_db', JSON.stringify(modulesList));
+      window.AICC_MODULOS_DB = modulesList;
+      closeModuleModal();
+      renderStats();
+      renderGrid();
+      alert('¡Módulo guardado exitosamente en tu base de datos local!');
+    };
+
+    window.copyModulePrompt = function(id) {
+      const mod = modulesList.find(m => m.id === id);
+      if (!mod) return;
+      const promptText = `FICHA DE MÓDULO AH: #${mod.id}\n• Nombre: ${mod.nombre_oficial} ("${mod.nombre_humano}")\n• Pilar: ${mod.pilar}\n• Fase: ${mod.fase_madurez}\n• Síntoma: ${(mod.red_flags || [])[0] || 'N/A'}\n• Paso Cero: ${mod.protocolo_paso_cero}\n• Microdosis 24h: ${mod.microdosis_24h}`;
+      navigator.clipboard.writeText(promptText).then(() => {
+        alert(`✅ Ficha del módulo #${mod.id} copiada al portapapeles.`);
+      });
+    };
+
+    window.exportDatabaseJson = function() {
+      const dataStr = "window.AICC_MODULOS_DB = " + JSON.stringify(modulesList, null, 2) + ";\n";
+      const blob = new Blob([dataStr], { type: 'application/javascript' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'modulos-data.js';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    window.addEventListener('DOMContentLoaded', initModulesDB);
+  </script>
+</body>
+</html>
