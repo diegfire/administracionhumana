@@ -28,7 +28,7 @@
       --radius-sm: 8px;
       --radius: 14px;
       --radius-lg: 22px;
-      --max-width: 1120px;
+      --max-width: 1280px;
       --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -47,81 +47,87 @@
     .container {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 20px;
     }
 
-    /* ── HEADER & NAV ── */
+    /* ── HEADER & STICKY NAVIGATION PANEL ── */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--color-border);
-      padding: 16px 0;
+      padding: 10px 0 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
-    }
-    .nav-logo {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: #ffffff;
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
       gap: 10px;
     }
-    .nav-tag {
-      font-size: 0.68rem;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 2px 8px;
-      border-radius: 20px;
-      color: #aaa;
-      font-weight: 700;
-    }
-    .header-btns {
+    .nav-brand-group {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--color-border-bright);
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.82rem;
+    .nav-brand {
       font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.02rem;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity var(--transition);
+    }
+    .nav-brand:hover {
+      opacity: 0.85;
+    }
+    .nav-brand-logo {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .nav-tag-indicator {
+      font-size: 0.68rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 3px 8px;
+      border-radius: 20px;
+      color: #aaa;
       font-weight: 700;
-      cursor: pointer;
+      letter-spacing: 0.04em;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      transition: all var(--transition);
+      gap: 5px;
+      user-select: none;
     }
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: #fff;
+    .nav-tag-indicator i {
+      color: var(--color-accent-blue);
+    }
+    .header-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
     .btn-sondeo-top {
       background: rgba(56, 189, 248, 0.12);
       border: 1px solid rgba(56, 189, 248, 0.35);
       color: #38bdf8;
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 50px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-family: var(--font-heading);
       font-weight: 700;
       text-decoration: none;
@@ -138,10 +144,10 @@
     .btn-action-top {
       background: #ffffff;
       color: #000000;
-      padding: 9px 20px;
+      padding: 7px 16px;
       border-radius: 50px;
       font-weight: 800;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       font-family: var(--font-heading);
       text-decoration: none;
       transition: all var(--transition);
@@ -156,9 +162,122 @@
       box-shadow: 0 0 24px rgba(255, 255, 255, 0.25);
     }
 
+    /* ── STICKY CASE NAVIGATION BAR (PANEL DE NAVEGACIÓN PERMANENTE) ── */
+    .header-nav-subbar {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .case-nav-chips {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .case-chip-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #aaa;
+      padding: 5px 11px;
+      border-radius: 50px;
+      font-size: 0.76rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .case-chip-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .case-chip-btn.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+      font-weight: 800;
+    }
+    .section-jump-chips {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .section-jump-btn {
+      font-size: 0.72rem;
+      color: #888;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .section-jump-btn:hover {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* ── ACTIVE CASE STATUS BANNER & SCROLL ANCHOR ── */
+    .active-case-status-bar {
+      scroll-margin-top: 130px;
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.6));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius);
+      padding: 10px 16px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.08);
+    }
+    .active-case-status-text {
+      font-size: 0.88rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .active-case-status-text span.tag-counter {
+      font-size: 0.72rem;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+    .active-case-jump-list {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
     /* ── HERO BANNER ── */
     .dossier-hero {
-      padding: 50px 0 32px;
+      padding: 40px 0 28px;
       text-align: center;
       position: relative;
     }
@@ -181,11 +300,11 @@
     .hero-pill i { color: var(--color-accent-blue); }
     .dossier-hero h1 {
       font-family: var(--font-heading);
-      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-size: clamp(1.8rem, 4.4vw, 3rem);
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       max-width: 880px;
       margin-left: auto;
       margin-right: auto;
@@ -196,62 +315,220 @@
       -webkit-text-fill-color: transparent;
     }
     .dossier-hero p {
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       color: var(--color-text-muted);
       max-width: 740px;
-      margin: 0 auto 28px;
+      margin: 0 auto 24px;
     }
 
-    /* ── ARCHETYPE SELECTOR (TABS) ── */
+    /* ── ARCHETYPE SELECTOR (TABS / SALES CARDS) ── */
     .archetype-tabs-container {
-      margin-bottom: 32px;
+      margin-bottom: 30px;
+      width: 100%;
     }
     .archetype-tabs {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 10px;
+      width: 100%;
+    }
+    @media (max-width: 1180px) {
+      .archetype-tabs {
+        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      }
     }
     .tab-btn {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       color: var(--color-text-muted);
-      padding: 14px 16px;
+      padding: 12px 12px 10px;
       border-radius: var(--radius);
-      font-family: var(--font-heading);
+      font-family: var(--font-sans);
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 4px;
+      gap: 5px;
       text-align: left;
       transition: all var(--transition);
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
     }
     .tab-btn:hover {
       border-color: var(--color-border-bright);
       color: #ffffff;
       background: var(--color-surface-2);
+      transform: translateY(-2px);
     }
     .tab-btn.active {
       background: #ffffff;
       color: #000000;
       border-color: #ffffff;
-      box-shadow: 0 0 24px rgba(255, 255, 255, 0.18);
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
-    .tab-btn-title {
+    .tab-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 4px;
+    }
+    .tab-case-tag {
+      font-family: var(--font-heading);
+      font-size: 0.66rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-accent-blue);
+    }
+    .tab-btn.active .tab-case-tag {
+      color: #0369a1;
+    }
+    .tab-status-pill {
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .tab-btn.active .tab-status-pill {
+      background: rgba(16, 185, 129, 0.2);
+      color: #047857;
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+    .tab-person-header {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.88rem;
+      margin-top: 2px;
+    }
+    .tab-person-avatar {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .tab-person-name {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
       font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .tab-btn.active .tab-person-name {
+      color: #000000;
+    }
+    .tab-person-role {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #888;
+      line-height: 1.2;
+    }
+    .tab-btn.active .tab-person-role {
+      color: #444;
     }
     .tab-btn-desc {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: #888;
-      line-height: 1.3;
+      font-size: 0.74rem;
+      font-weight: 400;
+      color: #999;
+      line-height: 1.35;
+      margin: 2px 0 4px;
+      flex-grow: 1;
     }
     .tab-btn.active .tab-btn-desc {
-      color: #333;
+      color: #222;
+    }
+    .tab-outcome-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 6px;
+      padding: 3px 6px;
+      width: 100%;
+      line-height: 1.25;
+    }
+    .tab-btn.active .tab-outcome-tag {
+      background: rgba(16, 185, 129, 0.15);
+      color: #047857;
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    /* ── SALES GUIDE BANNER (HERRAMIENTA DE VENTA) ── */
+    .sales-guide-banner {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(16, 185, 129, 0.05));
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+    }
+    .sales-guide-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .sales-guide-text {
+      font-size: 0.86rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+    .sales-guide-text strong {
+      color: #ffffff;
+    }
+
+    /* ── PROFILE CARD COMMERCIAL BOXES ── */
+    .profile-context-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+    }
+    .profile-context-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sales-hook-box {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-left: 4px solid #10b981;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+    }
+    .sales-hook-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #34d399;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pda-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      background: #111;
+      border: 1px solid #2d2d2d;
+      padding: 5px 12px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      margin-bottom: 10px;
     }
 
     /* ── BEFORE VS AFTER SIMULATOR WIDGET ── */
@@ -816,6 +1093,233 @@
       color: #666;
     }
 
+    /* ── MOBILE & TABLET RESPONSIVE STYLES (100% VISIBILIDAD TOTAL) ── */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      /* Header en móvil */
+      header {
+        padding: 8px 0 8px;
+      }
+      .header-inner {
+        gap: 8px;
+      }
+      .nav-brand {
+        font-size: 0.92rem;
+      }
+      .nav-brand-logo {
+        height: 30px;
+      }
+      .nav-tag-indicator {
+        font-size: 0.62rem;
+        padding: 2px 6px;
+      }
+      .header-btns {
+        gap: 6px;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .btn-sondeo-top {
+        padding: 6px 10px;
+        font-size: 0.72rem;
+        flex: 1;
+        justify-content: center;
+      }
+      .btn-action-top {
+        padding: 6px 12px;
+        font-size: 0.72rem;
+        flex: 1;
+        justify-content: center;
+      }
+
+      /* Sub-barra de navegación móvil: Todos los casos y secciones visibles sin cortes */
+      .header-nav-subbar {
+        margin-top: 8px;
+        padding-top: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+      }
+      .case-nav-chips {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        width: 100%;
+      }
+      .case-chip-btn {
+        padding: 5px 9px;
+        font-size: 0.72rem;
+      }
+      .section-jump-chips {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+        width: 100%;
+        margin-top: 4px;
+      }
+      .section-jump-btn {
+        font-size: 0.68rem;
+        padding: 3px 6px;
+      }
+
+      /* Hero */
+      .dossier-hero {
+        padding: 24px 0 20px;
+      }
+      .hero-pill {
+        font-size: 0.68rem;
+        padding: 4px 12px;
+        margin-bottom: 12px;
+      }
+      .dossier-hero h1 {
+        font-size: 1.55rem;
+        margin-bottom: 10px;
+      }
+      .dossier-hero p {
+        font-size: 0.88rem;
+        margin-bottom: 18px;
+      }
+
+      /* TODAS LAS 5 OPCIONES DE CASOS VISIBLES EN VERTICAL (SIN OCULTAMIENTO) */
+      .archetype-tabs-container {
+        margin-bottom: 24px;
+        width: 100%;
+      }
+      .archetype-tabs {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        width: 100%;
+      }
+      .tab-btn {
+        width: 100%;
+        padding: 14px;
+      }
+      .tab-btn-desc {
+        font-size: 0.82rem;
+        line-height: 1.45;
+        margin: 4px 0 8px;
+      }
+      .tab-outcome-tag {
+        font-size: 0.72rem;
+        width: 100%;
+      }
+
+      /* Barra de estado del caso activo */
+      .active-case-status-bar {
+        padding: 12px 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .active-case-status-text {
+        font-size: 0.82rem;
+      }
+      .active-case-jump-list {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      /* Profile Card */
+      .profile-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 14px;
+        gap: 12px;
+      }
+      .profile-avatar-box {
+        font-size: 2.2rem;
+        width: 54px;
+        height: 54px;
+      }
+      .profile-meta-grid {
+        gap: 6px;
+      }
+      .profile-pill {
+        font-size: 0.72rem;
+        padding: 3px 8px;
+      }
+
+      /* Botones de acción full-width en móvil */
+      .profile-card a[target="_blank"] {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* Simulador */
+      .contrast-simulator-card {
+        padding: 16px 14px;
+      }
+      .sim-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .sim-toggle-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .sim-toggle-btn {
+        width: 100%;
+        text-align: center;
+        padding: 8px 6px;
+        font-size: 0.75rem;
+      }
+      .sim-state-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      /* Roadmap Strip en móvil: cuadrícula completa visible */
+      .roadmap-strip {
+        padding: 14px 10px;
+      }
+      .roadmap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 8px;
+        width: 100%;
+      }
+      .roadmap-node {
+        padding: 10px 6px;
+      }
+
+      /* Journey Cards */
+      .journey-card {
+        padding: 14px;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      /* Kanban en móvil */
+      .sim-kanban-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      /* Metric Strip */
+      .metric-strip {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      /* Anti-DIY Banner */
+      .anti-diy-banner {
+        padding: 24px 14px;
+      }
+      .btn-main-cta, .btn-secondary-cta {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
     /* ── PRINT STYLES ── */
     @media print {
       body {
@@ -854,26 +1358,63 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER & STICKY NAVIGATION PANEL -->
   <header>
-    <div class="container header-inner">
-      <a href="index.html" class="nav-logo">
-        <span>ADMINISTRACIÓN HUMANA</span>
-        <span class="nav-tag">DOSSIER & PLAN DE VUELO 2.0</span>
-      </a>
-      <div class="header-btns">
-        <a href="planes-demo.html" target="_blank" class="btn-sondeo-top" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); border:none; box-shadow:0 0 12px rgba(59,130,246,0.4); font-weight:800;">
-          <i class="fa-solid fa-plane-departure"></i> Abrir Plan de Vuelo Interactivo ↗
-        </a>
-        <a href="sondeo.html" class="btn-sondeo-top">
-          <i class="fa-solid fa-compass"></i> Sondeo Maestro 360°
-        </a>
-        <button class="btn-outline" onclick="window.print()">
-          <i class="fa-solid fa-file-pdf"></i> Imprimir / PDF
-        </button>
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20el%20Dossier%20de%20Casos%20Reales%20y%20me%20gustar%C3%ADa%20coordinar%20mi%20sesi%C3%B3n%20diagn%C3%B3stica." class="btn-action-top" target="_blank">
-          <i class="fa-brands fa-whatsapp"></i> Diagnóstico 1 a 1
-        </a>
+    <div class="container">
+      <div class="header-inner">
+        <div class="nav-brand-group">
+          <a href="index.html" class="nav-brand" title="Volver al Portal Principal de Administración Humana">
+            <img src="logo_oficial.png" alt="Logo Oficial Administración Humana" class="nav-brand-logo" />
+            <span>ADMINISTRACIÓN HUMANA</span>
+          </a>
+          <span class="nav-tag-indicator">
+            <i class="fa-solid fa-folder-open"></i> DOSSIER EJECUTIVO
+          </span>
+        </div>
+        <div class="header-btns">
+          <a href="planes-demo.html" target="_blank" id="btn-top-flight-plan" class="btn-sondeo-top" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); border:none; box-shadow:0 0 14px rgba(59,130,246,0.4); font-weight:800; color: #fff;">
+            <i class="fa-solid fa-plane-departure"></i>
+            <span id="btn-top-flight-plan-text">Plan Interactivo: Sofía ↗</span>
+          </a>
+          <a href="sondeo.html" class="btn-sondeo-top">
+            <i class="fa-solid fa-compass"></i> Sondeo Maestro 360°
+          </a>
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20el%20Dossier%20de%20Casos%20Reales%20y%20me%20gustar%C3%ADa%20coordinar%20mi%20sesi%C3%B3n%20diagn%C3%B3stica." class="btn-action-top" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> Diagnóstico 1 a 1
+          </a>
+        </div>
+      </div>
+
+      <!-- PANEL DE NAVEGACIÓN PERMANENTE DE 5 CASOS -->
+      <div class="header-nav-subbar">
+        <div style="font-size:0.72rem; font-weight:800; text-transform:uppercase; color:#888; display:flex; align-items:center; gap:6px; flex-shrink:0;">
+          <i class="fa-solid fa-layer-group" style="color:var(--color-accent-blue);"></i> 5 Casos:
+        </div>
+        <div class="case-nav-chips">
+          <button class="case-chip-btn active" onclick="switchArchetype('caso_a', null, true)" id="chip-caso_a">
+            <span>🧘‍♀️</span> 1. Sofía (Cuidados)
+          </button>
+          <button class="case-chip-btn" onclick="switchArchetype('caso_b', null, true)" id="chip-caso_b">
+            <span>💆‍♀️</span> 2. Camila (Sensorial)
+          </button>
+          <button class="case-chip-btn" onclick="switchArchetype('caso_c', null, true)" id="chip-caso_c">
+            <span>🎒</span> 3. Lucas (TDAH)
+          </button>
+          <button class="case-chip-btn" onclick="switchArchetype('caso_d', null, true)" id="chip-caso_d">
+            <span>👓</span> 4. Gabriel (Comercio)
+          </button>
+          <button class="case-chip-btn" onclick="switchArchetype('caso_e', null, true)" id="chip-caso_e">
+            <span>🌏</span> 5. Valeria (Carrera)
+          </button>
+        </div>
+        <div class="section-jump-chips">
+          <a href="#sec-perfil" class="section-jump-btn"><i class="fa-solid fa-id-card"></i> Perfil</a>
+          <a href="#sec-simulador" class="section-jump-btn"><i class="fa-solid fa-scale-balanced"></i> Antes/Después</a>
+          <a href="#sec-diagnostico" class="section-jump-btn"><i class="fa-solid fa-brain"></i> Diagnóstico</a>
+          <a href="#sec-herramientas" class="section-jump-btn"><i class="fa-solid fa-toolbox"></i> Herramientas</a>
+          <a href="#sec-plan" class="section-jump-btn"><i class="fa-solid fa-plane"></i> Plan 2.0</a>
+          <a href="#sec-resultados" class="section-jump-btn"><i class="fa-solid fa-trophy"></i> Resultados</a>
+        </div>
       </div>
     </div>
   </header>
@@ -893,35 +1434,125 @@
         Cómo la escucha empática, la eliminación del juicio moral y la ingeniería de hábitos transforman la fatiga en soberanía operativa, paz mental y resultados financieros medibles.
       </p>
 
-      <!-- ARCHETYPE SELECTOR (5 CASOS REALES) -->
+      <!-- CONTEXTO COMERCIAL & GUÍA DEL DOSSIER -->
+      <div class="sales-guide-banner">
+        <div class="sales-guide-icon">💡</div>
+        <div class="sales-guide-text">
+          <strong>Catálogo de Casos de Estudio & Herramienta de Demostración:</strong>
+          Cada caso a continuación representa un perfil vital y profesional acompañado 1 a 1 por Administración Humana. Selecciona cada pestaña para conocer el <strong>contexto humano de partida</strong>, la <strong>fricción inicial</strong>, el <strong>diagnóstico sin juicio moral</strong> y la solución instalada en su <strong>Plan de Vuelo 2.0 en vivo</strong>.
+        </div>
+      </div>
+
+      <!-- ARCHETYPE SELECTOR (5 CASOS REALES ENRIQUECIDOS) -->
       <div class="archetype-tabs-container">
         <div class="archetype-tabs">
-          <button class="tab-btn active" onclick="switchArchetype('caso_a', this)">
-            <div class="tab-btn-title"><span>🧘‍♀️ 1. Cuidados & Servicios</span></div>
-            <div class="tab-btn-desc">Carga mental, culpa y meta pasajes ($160k)</div>
+          <!-- CASO 1 -->
+          <button class="tab-btn active" onclick="switchArchetype('caso_a', this, true)" id="tab-caso_a">
+            <div class="tab-badge-row">
+              <span class="tab-case-tag">01 • Cuidados & Servicios</span>
+              <span class="tab-status-pill">✅ Resuelto</span>
+            </div>
+            <div class="tab-person-header">
+              <span class="tab-person-avatar">🧘‍♀️</span>
+              <div>
+                <div class="tab-person-name">Caso Sofía (28)</div>
+                <div class="tab-person-role">Yoga Somático & Cuidadora</div>
+              </div>
+            </div>
+            <p class="tab-btn-desc">Carga mental por cuidados familiares, culpa por no rendir 8h rígidas y meta de pasajes ($160k).</p>
+            <div class="tab-outcome-tag">✨ Meta $160k + Clases en 1 Clic + 0 Culpa</div>
           </button>
-          <button class="tab-btn" onclick="switchArchetype('caso_b', this)">
-            <div class="tab-btn-title"><span>💆‍♀️ 2. Sensorial & Masajes</span></div>
-            <div class="tab-btn-desc">Neurodivergencia, pausas y paquetes 4x</div>
+
+          <!-- CASO 2 -->
+          <button class="tab-btn" onclick="switchArchetype('caso_b', this, true)" id="tab-caso_b">
+            <div class="tab-badge-row">
+              <span class="tab-case-tag">02 • Sensorial & Masajes</span>
+              <span class="tab-status-pill">✅ Resuelto</span>
+            </div>
+            <div class="tab-person-header">
+              <span class="tab-person-avatar">💆‍♀️</span>
+              <div>
+                <div class="tab-person-name">Caso Camila (26)</div>
+                <div class="tab-person-role">Masoterapeuta & Perfil TEA</div>
+              </div>
+            </div>
+            <p class="tab-btn-desc">Sobrecarga sensorial, colapsos por falta de pausas y desorden en cobros por WhatsApp.</p>
+            <div class="tab-outcome-tag">✨ 3x Ingresos (Paquetes 4x) + 2 Turnos Fijos</div>
           </button>
-          <button class="tab-btn" onclick="switchArchetype('caso_c', this)">
-            <div class="tab-btn-title"><span>🎒 3. Estudiante TDAH</span></div>
-            <div class="tab-btn-desc">Paso Cero (5 min), resúmenes visuales y autonomía</div>
+
+          <!-- CASO 3 -->
+          <button class="tab-btn" onclick="switchArchetype('caso_c', this, true)" id="tab-caso_c">
+            <div class="tab-badge-row">
+              <span class="tab-case-tag">03 • Estudiante TDAH</span>
+              <span class="tab-status-pill">✅ Resuelto</span>
+            </div>
+            <div class="tab-person-header">
+              <span class="tab-person-avatar">🎒</span>
+              <div>
+                <div class="tab-person-name">Caso Lucas (16)</div>
+                <div class="tab-person-role">Estudiante Secundaria & Arte</div>
+              </div>
+            </div>
+            <p class="tab-btn-desc">Resistencia al estudio denso, discusiones diarias y parálisis de arranque escolar.</p>
+            <div class="tab-outcome-tag">✨ Paso Cero (5 min) + 100% Aprobado + Autonomía</div>
           </button>
-          <button class="tab-btn" onclick="switchArchetype('caso_d', this)">
-            <div class="tab-btn-title"><span>👓 4. Parálisis por Análisis</span></div>
-            <div class="tab-btn-desc">Comercio, overthinking y lanzamiento 7 días</div>
+
+          <!-- CASO 4 -->
+          <button class="tab-btn" onclick="switchArchetype('caso_d', this, true)" id="tab-caso_d">
+            <div class="tab-badge-row">
+              <span class="tab-case-tag">04 • Parálisis por Análisis</span>
+              <span class="tab-status-pill">✅ Resuelto</span>
+            </div>
+            <div class="tab-person-header">
+              <span class="tab-person-avatar">👓</span>
+              <div>
+                <div class="tab-person-name">Caso Gabriel (30)</div>
+                <div class="tab-person-role">Emprendedor Comercio & Accesorios</div>
+              </div>
+            </div>
+            <p class="tab-btn-desc">Atrapado en perfeccionismo: 6 meses puliendo empaque y logo sin salir a vender.</p>
+            <div class="tab-outcome-tag">✨ 12 Ventas en 14 Días + Lanzamiento Mínimo</div>
           </button>
-          <button class="tab-btn" onclick="switchArchetype('caso_e', this)">
-            <div class="tab-btn-title"><span>🌏 5. Transición & Carrera</span></div>
-            <div class="tab-btn-desc">Proyecto internacional (Road to Sidney) e hitos</div>
+
+          <!-- CASO 5 -->
+          <button class="tab-btn" onclick="switchArchetype('caso_e', this, true)" id="tab-caso_e">
+            <div class="tab-badge-row">
+              <span class="tab-case-tag">05 • Transición & Carrera</span>
+              <span class="tab-status-pill">✅ Resuelto</span>
+            </div>
+            <div class="tab-person-header">
+              <span class="tab-person-avatar">🌏</span>
+              <div>
+                <div class="tab-person-name">Caso Valeria (29)</div>
+                <div class="tab-person-role">Proyecto "Road to Sidney 2.0"</div>
+              </div>
+            </div>
+            <p class="tab-btn-desc">Doble jornada (empleo + visa + idioma), miedo al burnout antes de viajar y ahorro de solvencia.</p>
+            <div class="tab-outcome-tag">✨ $2.4M Ahorro Blindado + Nivel C1 + Hitos Claros</div>
           </button>
         </div>
       </div>
     </section>
 
+    <!-- ACTIVE CASE STATUS & SCROLL ANCHOR -->
+    <div id="case-detail-anchor" class="active-case-status-bar">
+      <div class="active-case-status-text" id="active-case-banner-title">
+        <i class="fa-solid fa-folder-open" style="color:var(--color-accent-blue);"></i>
+        <span>Viendo Caso Activo: <strong>Caso 1: Sofía (28) • Yoga Somático & Cuidadora</strong></span>
+        <span class="tag-counter">1 de 5 Casos</span>
+      </div>
+      <div class="active-case-jump-list">
+        <a href="#sec-perfil" class="section-jump-btn" style="color:#fff; background:rgba(255,255,255,0.08);"><i class="fa-solid fa-id-card"></i> Perfil</a>
+        <a href="#sec-simulador" class="section-jump-btn" style="color:#fff; background:rgba(255,255,255,0.08);"><i class="fa-solid fa-scale-balanced"></i> Simulador</a>
+        <a href="#sec-diagnostico" class="section-jump-btn" style="color:#fff; background:rgba(255,255,255,0.08);"><i class="fa-solid fa-brain"></i> Diagnóstico</a>
+        <a href="#sec-herramientas" class="section-jump-btn" style="color:#fff; background:rgba(255,255,255,0.08);"><i class="fa-solid fa-toolbox"></i> Herramientas</a>
+        <a href="#sec-plan" class="section-jump-btn" style="color:#fff; background:rgba(255,255,255,0.08);"><i class="fa-solid fa-plane"></i> Plan 2.0</a>
+        <a href="#sec-resultados" class="section-jump-btn" style="color:#fff; background:rgba(255,255,255,0.08);"><i class="fa-solid fa-trophy"></i> Resultados</a>
+      </div>
+    </div>
+
     <!-- BEFORE VS AFTER SIMULATOR -->
-    <section class="contrast-simulator-card">
+    <section class="contrast-simulator-card" id="sec-simulador">
       <div class="sim-header">
         <div>
           <h3 style="font-family:var(--font-heading); font-size:1rem; font-weight:800; color:#fff;">
@@ -1008,11 +1639,15 @@
       caso_a: {
         profile: {
           avatar: "🧘‍♀️",
+          shortName: "Sofía",
+          demoTag: "Caso 01 • Cuidados & Servicios (Ejemplo Real)",
           portalUrl: "planes-demo.html",
-          name: "Caso 1: Sofía • Terapeuta Somática & Instructora de Zumba",
-          role: "Yoga Restaurativo para Cuerpos Cansados & Baile Fitness",
-          context: "Responsabilidad principal de cuidados médicos y trámites familiares, con deseo de sostener sus clases online y presenciales con pistas originales HQ sin fallar ante urgencias domésticas.",
-          pills: ["28 Años", "Sobrecarga Emocional", "Lanzamiento Dual (Yoga + Zumba)", "Meta Pasajes ($160.000)", "Pistas HQ PayPal", "Límite WIP = 2"]
+          name: "Caso 1: Sofía (28 años) • Instructora de Yoga Somático & Cuidadora Familiar",
+          role: "Yoga Restaurativo para Cuerpos Cansados, Zumba Fitness & Cuidados Médicos",
+          context: "Sostiene una alta responsabilidad de cuidados médicos y trámites de familiares mayores (más de 6h diarias de trabajo invisible). Su meta vital era estructurar sus clases de yoga y zumba, financiar su meta de pasajes mensuales a Santiago ($160.000 CLP) y dictar con pistas de música originales de alta fidelidad, pero vivía con constante culpa e insomnio por no poder cumplir un 'horario tradicional de 8 horas'.",
+          salesHook: "¿Cuidas a familiares o tienes responsabilidades domésticas intensas y sientes culpa por no avanzar en tus proyectos profesionales? Con Bloques de Oro innegociables, un secuenciador somático y la eliminación del juicio moral, creas un negocio que se adapta a tu vida real sin colapsar.",
+          pdaProfile: "P-Alta (Paciencia 85%) | N-Alta (Norma 90%) | R-Baja (Cautelosa 40%) • Arquetipo: La Cuidadora Vocacional con Sobreexigencia",
+          pills: ["28 Años", "Cuidados Médicos Familiares", "Lanzamiento Dual (Yoga + Zumba)", "Meta Pasajes ($160.000)", "Pistas HQ PayPal", "Límite GTD WIP = 2"]
         },
         simulator: {
           before: [
@@ -1168,11 +1803,15 @@
       caso_b: {
         profile: {
           avatar: "💆‍♀️",
-          portalUrl: "planes-demo.html",
-          name: "Caso 2: Camila • Emprendedora Sensorial & Masoterapeuta",
-          role: "Terapeuta Corporal Holística & Estudiante de Psicopedagogía",
-          context: "Perfil neurodivergente (alta sensibilidad al ruido y sobreestimulación). Maneja consulta terapéutica, estudio universitario y cuidado personal.",
-          pills: ["26 Años", "Sensibilidad Sensorial", "Servicios Presenciales", "Regulación TEA", "Paquetes 4x"]
+          shortName: "Camila",
+          demoTag: "Caso 02 • Sensorial & TEA (Ejemplo Real)",
+          portalUrl: "planes-rocio.html",
+          name: "Caso 2: Camila (26 años) • Emprendedora Sensorial & Masoterapeuta Holística",
+          role: "Masoterapia Integrativa, Descompresión Sensorial & Estudiante de Psicopedagogía",
+          context: "Perfil neurodivergente con hipersensibilidad sensorial (TEA/PAS). Atendía clientes a cualquier hora por WhatsApp sin pausas, cobraba sesión a sesión con alta incertidumbre y sufría colapsos de agotamiento que la dejaban días enteros en cama sin energía para atender ni estudiar.",
+          salesHook: "¿Eres neurodivergente, terapeuta o altamente sensible y te agotan las demandas de mensajes, el desorden de citas y la negociación de tarifas? Instalamos turnos fijos protegidos, vaciado mental nocturno en libreta física y Paquetes de 4 Sesiones para triplicar tus ingresos con la mitad de desgaste.",
+          pdaProfile: "P-Alta (Paciencia 85%) | N-Alta (Norma 90%) | Autocontrol Variable (Modulación TEA) • Arquetipo: La Especialista Terapéutica Sensible",
+          pills: ["26 Años", "Neurodivergencia TEA / PAS", "2 Turnos Fijos (11:00 y 16:00)", "Pausas de Silencio", "Paquetes 4x Sesiones", "3x Ingresos"]
         },
         simulator: {
           before: [
@@ -1281,11 +1920,15 @@
       caso_c: {
         profile: {
           avatar: "🎒",
-          portalUrl: "planes-demo.html",
-          name: "Caso 3: Lucas • Estudiante & Regulación TDAH",
-          role: "Estudiante de Secundaria • Creador Visual & Deportista",
-          context: "Diagnóstico TDAH, talentoso para el arte y el deporte, pero con alta resistencia al estudio tradicional denso y fricción familiar.",
-          pills: ["16 Años", "TDAH", "Bajo Roce Cognitivo", "Autonomía Familiar", "Paso Cero"]
+          shortName: "Lucas",
+          demoTag: "Caso 03 • Estudiante TDAH (Ejemplo Real)",
+          portalUrl: "planes-matias.html",
+          name: "Caso 3: Lucas (16 años) • Estudiante de Secundaria & Desafío TDAH",
+          role: "Estudiante de Secundaria, Creador Visual / Ilustración & Deportista",
+          context: "Diagnosticado con TDAH, creativo y talentoso para el arte, pero con parálisis extrema ante materias teóricas densas y cuadernos de 20 páginas. Caía en evasión constante en redes sociales, lo que desataba discusiones familiares diarias, castigos y una severa pérdida de confianza y autonomía escolar.",
+          salesHook: "¿Tus hijos o tú se bloquean ante el estudio denso, postergan hasta la noche anterior y viven en conflicto familiar por las tareas? El Protocolo Paso Cero (5 min con cronómetro), los Apuntes Mínimos de 5 Líneas y la Cuenta Corriente de Confianza restablecen la autonomía escolar y la armonía en casa.",
+          pdaProfile: "E-Alta (Extroversión 80%) | R-Media/Alta (Riesgo 70%) | P-Baja (Paciencia 30%) | N-Baja (Norma 40%) • Arquetipo: El Creativo Impulsivo con Fricción de Inicio",
+          pills: ["16 Años", "Neurodivergencia TDAH", "Protocolo Paso Cero (5 min)", "Apuntes Visuales 5 Líneas", "Dopamina Sana (Arte/Deporte)", "100% Aprobado"]
         },
         simulator: {
           before: [
@@ -1394,11 +2037,15 @@
       caso_d: {
         profile: {
           avatar: "👓",
-          portalUrl: "planes-demo.html",
-          name: "Caso 4: Gabriel • Del Análisis a la Acción",
-          role: "Emprendedor Comercial & Creador de Marca de Accesorios",
-          context: "Profesional perfeccionista con un producto de excelente calidad, pero atrapado en el 'overthinking', parálisis de lanzamiento y dispersión operativa.",
-          pills: ["30 Años", "Parálisis por Análisis", "E-commerce & Ventas", "Reto 7 Días"]
+          shortName: "Gabriel",
+          demoTag: "Caso 04 • Parálisis por Análisis (Ejemplo Real)",
+          portalUrl: "planes-alvaro.html",
+          name: "Caso 4: Gabriel (30 años) • Emprendedor de Comercio & Accesorios",
+          role: "Emprendedor Comercial, Creador de Marca de Accesorios Ópticos & Ventas",
+          context: "Mente analítica brillante con un producto físico de excelente calidad, pero atrapado durante más de 6 meses en el perfeccionismo defensivo: investigando proveedores infinitos, rediseñando logos y empaques sin salir a vender ni contactar a un solo cliente por miedo al juicio y a la imperfección.",
+          salesHook: "¿Tienes una idea o producto excelente pero llevas semanas o meses retrasando el lanzamiento porque 'falta pulir detalles'? Con la Matriz Eisenhower, la Regla del 70% de Acción Imperfecta y el Embudo Mínimo de 7 Días rompemos la parálisis y generamos tus primeros cobros en menos de una semana.",
+          pdaProfile: "N-Muy Alta (Norma 98%) | R-Baja (Riesgo 30%) | AC-Alto (Racionalización 80%) • Arquetipo: El Perfeccionista Paralizado por Análisis",
+          pills: ["30 Años", "Parálisis por Análisis", "Regla del 70% Acción Imperfecta", "Catálogo PDF 2 Páginas", "Embudo 7 Días", "12 Ventas en 14d"]
         },
         simulator: {
           before: [
@@ -1507,11 +2154,15 @@
       caso_e: {
         profile: {
           avatar: "🌏",
-          portalUrl: "planes-demo.html",
-          name: "Caso 5: Valeria • Transición de Carrera & Proyecto Internacional",
-          role: "Profesional en Transición • Proyecto de Vida Internacional",
-          context: "Planificando mudanza y estudios en el extranjero mientras sostiene su trabajo actual, gestión de visas, certificación de idioma y ahorro intensivo.",
-          pills: ["29 Años", "Transición Internacional", "Multitarea Crítica", "Gestión de Ahorro", "Fases de Vuelo"]
+          shortName: "Valeria",
+          demoTag: "Caso 05 • Transición Internacional (Ejemplo Real)",
+          portalUrl: "planes-karina.html",
+          name: "Caso 5: Valeria (29 años) • Proyecto 'Road to Sidney 2.0' (Transición Internacional)",
+          role: "Profesional en Transición de Carrera • Proyecto Migratorio & Certificación de Idioma",
+          context: "Planificando su mudanza y desarrollo profesional en Australia mientras sostenía su empleo actual de 9 horas diarias. La mezcla caótica de trámites consulares, exámenes de inglés, cotizaciones de pasajes y metas de ahorro le generaba sobrecarga mental severa y miedo a quemarse antes de viajar.",
+          salesHook: "¿Te enfrentas a un cambio de vida monumental (migración, nuevo negocio, cambio de carrera) y sientes que la cantidad de requisitos te sobrepasa? Estructuramos tu proyecto en Fases de Vuelo trimestrales cerradas, protegemos tu estudio matutino de 35 min y blindamos tu fondo de solvencia 50/30/20.",
+          pdaProfile: "R-Alta (Riesgo 80%) | N-Alta (Norma 80%) | AC-Alto (Autocontrol 80%) • Arquetipo: La Ejecutora Estratégica con Proyecto de Vida",
+          pills: ["29 Años", "Transición Migratoria", "Fases de Vuelo Trimestrales", "Bloque Matutino Idioma (35m)", "GPS Ahorro Solvencia", "$2.4M Blindado"]
         },
         simulator: {
           before: [
@@ -1658,33 +2309,70 @@
       renderSimulator(caseKey, currentSimState);
 
       container.innerHTML = `
-        <!-- FICHA DE PERFIL HUMANO -->
-        <div class="profile-card">
+        <!-- FICHA DE PERFIL HUMANO & HERRAMIENTA DE VENTA -->
+        <div class="profile-card" id="sec-perfil" style="scroll-margin-top: 140px;">
           <div class="profile-avatar-box">${data.profile.avatar}</div>
           <div>
-            <h2 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; margin-bottom:4px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:6px;">
+              <span class="tab-case-tag" style="font-size:0.75rem; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); padding:3px 10px; border-radius:20px;">
+                ${data.profile.demoTag || 'CASO DE ESTUDIO REAL'}
+              </span>
+              <span class="tab-status-pill" style="font-size:0.7rem; padding:3px 8px;">
+                ✅ Proceso AICC 100% Calibrado
+              </span>
+            </div>
+            <h2 style="font-family:var(--font-heading); font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:4px;">
               ${data.profile.name}
             </h2>
-            <div style="font-size:0.86rem; color:var(--color-accent-blue); font-weight:700; margin-bottom:6px;">
+            <div style="font-size:0.88rem; color:var(--color-accent-blue); font-weight:700; margin-bottom:12px;">
               ${data.profile.role}
             </div>
-            <p style="font-size:0.85rem; color:var(--color-text-light); line-height:1.45;">
-              ${data.profile.context}
-            </p>
+
+            <!-- CONTEXTO VITAL DEL CASO -->
+            <div class="profile-context-box">
+              <div class="profile-context-title">
+                <i class="fa-solid fa-user-tag" style="color:#38bdf8;"></i> Contexto Vital & Punto de Partida:
+              </div>
+              <p style="font-size:0.86rem; color:var(--color-text-light); line-height:1.5;">
+                ${data.profile.context}
+              </p>
+            </div>
+
+            <!-- GANCHO COMERCIAL & PARA QUIÉN ES -->
+            <div class="sales-hook-box">
+              <div class="sales-hook-title">
+                <i class="fa-solid fa-bullhorn"></i> ¿Por qué este caso es relevante para ti? (Herramienta de Venta):
+              </div>
+              <p style="font-size:0.85rem; color:#d1fae5; line-height:1.45;">
+                ${data.profile.salesHook}
+              </p>
+            </div>
+
+            <!-- DIAGNÓSTICO CONDUCTUAL PDA -->
+            ${data.profile.pdaProfile ? `
+            <div class="pda-pill-badge">
+              <strong style="color:#f59e0b;"><i class="fa-solid fa-fingerprint"></i> Diagnóstico PDA:</strong>
+              <span>${data.profile.pdaProfile}</span>
+            </div>` : ''}
+
             <div class="profile-meta-grid">
               ${data.profile.pills.map(p => `<span class="profile-pill">${p}</span>`).join("")}
             </div>
+
             ${data.profile.portalUrl ? `
-            <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;">
-              <a href="${data.profile.portalUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #ffffff; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 0.84rem; text-decoration: none; box-shadow: 0 0 14px rgba(59, 130, 246, 0.35); transition: 0.2s;">
-                <i class="fa-solid fa-plane-departure"></i> Ver Plan de Vuelo en Vivo (Muestra Interactiva) ↗
+            <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
+              <a href="${data.profile.portalUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #ffffff; padding: 9px 20px; border-radius: 8px; font-weight: 800; font-size: 0.86rem; text-decoration: none; box-shadow: 0 0 16px rgba(59, 130, 246, 0.4); transition: 0.2s;">
+                <i class="fa-solid fa-plane-departure"></i> Abrir Plan de Vuelo en Vivo (${data.profile.shortName}) ↗
+              </a>
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20el%20caso%20de%20${encodeURIComponent(data.profile.shortName)}%20en%20el%20Dossier%20y%20quiero%20agendar%20mi%20Diagn%C3%B3stico%201%20a%201." target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.35); color: #34d399; padding: 9px 18px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; text-decoration: none; transition: 0.2s;">
+                <i class="fa-brands fa-whatsapp"></i> Quiero un Plan como el de ${data.profile.shortName}
               </a>
             </div>` : ''}
           </div>
         </div>
 
         <!-- ETAPA 1: EL SÍNTOMA -->
-        <div class="journey-card">
+        <div class="journey-card" id="sec-diagnostico" style="scroll-margin-top: 140px;">
           <div class="journey-card-header">
             <div class="step-indicator">
               <div class="step-number-circle">1</div>
@@ -1755,7 +2443,7 @@
         </div>
 
         <!-- ETAPA 3: CURADURÍA DE HERRAMIENTAS -->
-        <div class="journey-card">
+        <div class="journey-card" id="sec-herramientas" style="scroll-margin-top: 140px;">
           <div class="journey-card-header">
             <div class="step-indicator">
               <div class="step-number-circle" style="background:#064e3b; border-color:#10b981;">3</div>
@@ -1788,7 +2476,7 @@
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 5px;">
                       ${t.checklist.map((item, idx) => `
-                        <label class="sim-check-item" style="padding: 5px 8px; margin-bottom: 0; background: rgba(0,0,0,0.5); font-size: 0.76rem; border-color: rgba(255,255,255,0.06);">
+                        <label class="sim-check-item" style="padding: 5px 8px; margin-bottom: 0; background: rgba(0,0,0,0.5); font-size: 0.76rem; border-color: rgba(255,255,256,0.06);">
                           <input type="checkbox" ${idx === 0 ? 'checked' : ''}>
                           <span>${item}</span>
                         </label>
@@ -1802,7 +2490,7 @@
         </div>
 
         <!-- ETAPA 4: EL PLAN DE VUELO 2.0 -->
-        <div class="journey-card">
+        <div class="journey-card" id="sec-plan" style="scroll-margin-top: 140px;">
           <div class="journey-card-header">
             <div class="step-indicator">
               <div class="step-number-circle" style="background:#4c1d95; border-color:#c084fc;">4</div>
@@ -1877,7 +2565,7 @@
         </div>
 
         <!-- ETAPA 5: LOS RESULTADOS -->
-        <div class="journey-card" style="border-color:rgba(16,185,129,0.3);">
+        <div class="journey-card" id="sec-resultados" style="border-color:rgba(16,185,129,0.3); scroll-margin-top: 140px;">
           <div class="journey-card-header" style="background:rgba(16,185,129,0.03);">
             <div class="step-indicator">
               <div class="step-number-circle" style="background:#064e3b; border-color:#10b981;">5</div>
@@ -1905,16 +2593,66 @@
       `;
     }
 
-    function switchArchetype(caseKey, el) {
+    function switchArchetype(caseKey, el, shouldScroll = false) {
+      // Sincronizar botones del Hero
       document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
-      if (el) el.classList.add("active");
+      const targetTab = document.getElementById("tab-" + caseKey);
+      if (targetTab) targetTab.classList.add("active");
+
+      // Sincronizar chips del Header Sticky
+      document.querySelectorAll(".case-chip-btn").forEach(chip => chip.classList.remove("active"));
+      const targetChip = document.getElementById("chip-" + caseKey);
+      if (targetChip) targetChip.classList.add("active");
+
       renderArchetype(caseKey);
+
+      // Sincronizar botón superior del Plan de Vuelo
+      const data = DOSSIER_DATA[caseKey];
+      const topBtn = document.getElementById("btn-top-flight-plan");
+      const topBtnText = document.getElementById("btn-top-flight-plan-text");
+      if (topBtn && data) {
+        topBtn.href = data.profile.portalUrl || "planes-demo.html";
+        if (topBtnText) {
+          const shortName = data.profile.shortName || "Demo";
+          topBtnText.textContent = `Plan Interactivo: ${shortName} ↗`;
+        }
+      }
+
+      // Sincronizar Banner de Estado
+      const bannerTitle = document.getElementById("active-case-banner-title");
+      if (bannerTitle && data) {
+        const caseNumber = caseKey.replace("caso_", "").toUpperCase();
+        const numMap = { A: "1", B: "2", C: "3", D: "4", E: "5" };
+        const num = numMap[caseNumber] || "1";
+        bannerTitle.innerHTML = `
+          <i class="fa-solid fa-folder-open" style="color:var(--color-accent-blue);"></i>
+          <span>Viendo Caso Activo: <strong>${data.profile.name}</strong></span>
+          <span class="tag-counter">${num} de 5 Casos</span>
+        `;
+      }
+
+      // Auto-scroll suave hacia el contenido del caso si fue gatillado por interacción de usuario
+      if (shouldScroll) {
+        const anchor = document.getElementById("case-detail-anchor");
+        if (anchor) {
+          const yOffset = -115;
+          const y = anchor.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
     }
 
     // Initialize on load
     window.addEventListener("DOMContentLoaded", () => {
       renderArchetype("caso_a");
+      const firstTab = document.getElementById("tab-caso_a");
+      if (firstTab) firstTab.classList.add("active");
+      const firstChip = document.getElementById("chip-caso_a");
+      if (firstChip) firstChip.classList.add("active");
     });
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>

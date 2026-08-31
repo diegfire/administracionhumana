@@ -287,8 +287,11 @@
   </div>
 
   <script src="js/auth.js"></script>
+  <script src="js/modulos-data.js"></script>
+  <script src="js/prescriptor-engine.js"></script>
   <script>
-    const AHAuth = window.AHAuth;
+    // AHAuth disponible vía js/auth.js
+    const authInstance = window.AHAuth;
 
     document.addEventListener('DOMContentLoaded', async () => {
       await AHAuth.init();
@@ -351,8 +354,15 @@
         tbody.innerHTML = filtered.map(c => `
           <tr>
             <td>
-              <div class="user-info">${c.fullName || 'Sin nombre'}</div>
-              <div class="user-email">${c.email}</div>
+              <div class="user-info">
+                ${c.fullName || 'Sin nombre'} ${c.hasAudio ? `<span style="background:rgba(56,189,248,0.2); border:1px solid #38bdf8; color:#38bdf8; font-size:0.7rem; font-weight:800; padding:2px 6px; border-radius:10px; margin-left:4px;">🎙️ Audio</span>` : ''}
+                ${c.edad ? `<span style="font-size:0.75rem; color:#a1a1aa; font-weight:600; margin-left:4px;">(${c.edad} años, ${c.ciudad || 'Chile'})</span>` : (c.ciudad ? `<span style="font-size:0.75rem; color:#a1a1aa; font-weight:600; margin-left:4px;">(${c.ciudad})</span>` : '')}
+              </div>
+              <div class="user-email">
+                ${c.email || c.whatsapp || ''}
+                ${c.ocupacion ? `• <span style="color:#38bdf8; font-weight:600;">${c.ocupacion}</span>` : ''}
+              </div>
+              ${c.dolorPrincipal ? `<div style="font-size:0.74rem; color:#f59e0b; font-weight:700; margin-top:3px;">🎯 ${c.dolorPrincipal} ${c.horasFuga ? `(~${c.horasFuga}h/sem)` : ''}</div>` : ''}
             </td>
             <td>
               <select class="status-select" style="padding:4px 8px; font-size:0.78rem;" onchange="window.changeStatus('${c.uid}', this.value)">
@@ -372,6 +382,7 @@
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
                 <button class="btn-action" onclick="window.saveRow('${c.uid}')">Guardar</button>
                 <button class="btn-action-view" onclick="window.openDiagModal('${c.uid}', '${c.fullName || c.email}')">👁️ Sondeo</button>
+                ${c.whatsapp ? `<a href="https://wa.me/${c.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hola ' + (c.fullName || '') + ', estuve revisando tu Sondeo en Administración Humana...')}" target="_blank" class="btn-action-view" style="text-decoration:none; background:rgba(37,211,102,0.15); border-color:#25d366; color:#25d366; padding:6px 10px;">💬 WA</a>` : ''}
                 ${c.flightPlanUrl ? `<a href="${c.flightPlanUrl}" target="_blank" class="btn-action-view" style="text-decoration:none; background:rgba(56,189,248,0.15); border-color:#38bdf8; color:#38bdf8; padding:6px 10px;">🚀 Plan</a>` : ''}
               </div>
             </td>
@@ -408,7 +419,7 @@
       document.getElementById('modal-close-btn').onclick = () => diagModal.classList.remove('active');
 
       window.openDiagModal = async (uid, userName) => {
-        document.getElementById('diag-user-title').innerText = `Diagnóstico 360° · ${userName}`;
+        document.getElementById('diag-user-title').innerText = `Expediente & Diagnóstico 360° · ${userName}`;
         const scoresList = document.getElementById('diag-scores-list');
         
         let diag = null;
@@ -419,82 +430,217 @@
           if (savedDiag) diag = JSON.parse(savedDiag);
         }
 
+        let scores = {};
+        let d = {};
+
         if (!diag || (!diag.scores && !diag.data)) {
           // Demo fallback
-          const defaultScores = {
-            'Propósito': 8, 'Gestión del Tiempo': 5, 'Finanzas': 6,
-            'Bienestar & Salud': 7, 'Hábitos & Rutinas': 4, 'Relaciones': 8,
-            'Entorno Trabajo': 7, 'Desarrollo Personal': 8
+          scores = {
+            'Propósito': 8, 'Gestión del Tiempo': 4, 'Finanzas': 5,
+            'Bienestar & Salud': 6, 'Hábitos & Rutinas': 4, 'Relaciones': 8,
+            'Entorno Trabajo': 6, 'Desarrollo Personal': 8
           };
-          scoresList.innerHTML = Object.keys(defaultScores).map(dim => `
-            <div class="diag-item">
-              <span>${dim}</span>
-              <div style="display:flex; align-items:center; gap:12px;">
-                <div class="diag-score-bar">
-                  <div class="diag-score-fill" style="width: ${defaultScores[dim] * 10}%;"></div>
-                </div>
-                <strong style="width:30px; text-align:right;">${defaultScores[dim]}/10</strong>
-              </div>
-            </div>
-          `).join('');
+          d = { fugas: [4, 4, 3, 3, 4, 3, 2, 3, 2, 2] };
         } else {
-          const scores = diag.scores || {};
-          let html = Object.keys(scores).map(dim => `
-            <div class="diag-item">
-              <span>${dim}</span>
-              <div style="display:flex; align-items:center; gap:12px;">
-                <div class="diag-score-bar">
-                  <div class="diag-score-fill" style="width: ${scores[dim] * 10}%;"></div>
-                </div>
-                <strong style="width:30px; text-align:right; color:${scores[dim] <= 5 ? '#ff4d4f' : '#ffffff'};">${scores[dim]}/10</strong>
-              </div>
-            </div>
-          `).join('');
-
-          // Si hay datos completos del sondeo (FODA, Tareas, etc.)
-          if (diag.data) {
-            const d = diag.data;
-            if (d.fugas && Array.isArray(d.fugas)) {
-              const sum = d.fugas.reduce((a, b) => a + b, 0);
-              const satPct = Math.round(((sum - 10) / 40) * 100);
-              html += `
-                <div style="margin-top:16px; padding:12px; background:#141414; border:1px solid #333; border-radius:8px;">
-                  <div style="font-weight:800; color:#fff; font-size:0.85rem; margin-bottom:4px;">🚨 Fricción & Saturómetro Operativo: <b>${satPct}%</b></div>
-                  <div style="font-size:0.78rem; color:#a1a1aa;">Nivel de saturación estimado según 10 síntomas de fuga.</div>
-                </div>
-              `;
-            }
-
-            if (d.eisenhower && d.eisenhower.length > 0) {
-              html += `
-                <div style="margin-top:12px; padding:12px; background:#141414; border:1px solid #333; border-radius:8px;">
-                  <div style="font-weight:800; color:#fff; font-size:0.85rem; margin-bottom:6px;">📋 Pendientes Priorizados (Eisenhower):</div>
-                  <ul style="margin:0; padding-left:16px; font-size:0.8rem; color:#d4d4d8;">
-                    ${d.eisenhower.map(t => `<li><b>${t.name}</b> (Urg: ${t.urgency}, Imp: ${t.importance})</li>`).join('')}
-                  </ul>
-                </div>
-              `;
-            }
-
-            if (d.foda) {
-              html += `
-                <div style="margin-top:12px; padding:12px; background:#141414; border:1px solid #333; border-radius:8px;">
-                  <div style="font-weight:800; color:#fff; font-size:0.85rem; margin-bottom:6px;">🧩 FODA del Cliente:</div>
-                  <div style="font-size:0.78rem; color:#d4d4d8; line-height:1.4;">
-                    ${d.foda.fortalezas ? `<div><b>💪 Fortalezas:</b> ${d.foda.fortalezas}</div>` : ''}
-                    ${d.foda.debilidades ? `<div><b>⚠️ Debilidades:</b> ${d.foda.debilidades}</div>` : ''}
-                    ${d.foda.oportunidades ? `<div><b>🚀 Oportunidades:</b> ${d.foda.oportunidades}</div>` : ''}
-                    ${d.foda.amenazas ? `<div><b>🛡️ Amenazas:</b> ${d.foda.amenazas}</div>` : ''}
-                  </div>
-                </div>
-              `;
-            }
-          }
-
-          scoresList.innerHTML = html;
+          scores = diag.scores || {};
+          d = diag.data || {};
         }
 
+        // 1. Render Radar de Signos Vitales
+        let html = `
+          ${d.audioData ? `
+            <div style="margin-bottom:16px; padding:14px; background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.3); border-radius:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:1.2rem;">🎙️</span>
+                  <span style="font-weight:800; color:#38bdf8; font-size:0.88rem;">Nota de Voz del Cliente (Escucha Activa):</span>
+                </div>
+                <a href="${d.audioData}" download="Audio_Diagnostico_${userName.replace(/\s+/g, '_')}.webm" class="btn-action-view" style="font-size:0.72rem; padding:4px 8px; text-decoration:none;">⬇️ Descargar</a>
+              </div>
+              <audio controls src="${d.audioData}" style="width:100%; height:38px; border-radius:8px; outline:none;"></audio>
+            </div>
+          ` : ''}
+          <div style="margin-bottom: 20px;">
+            <div style="font-size:0.82rem; font-weight:800; text-transform:uppercase; color:#888; margin-bottom:10px; letter-spacing:0.04em;">
+              📊 Signos Vitales (Rueda de la Vida 360°)
+            </div>
+            ${Object.keys(scores).map(dim => `
+              <div class="diag-item">
+                <span>${dim}</span>
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <div class="diag-score-bar">
+                    <div class="diag-score-fill" style="width: ${scores[dim] * 10}%;"></div>
+                  </div>
+                  <strong style="width:30px; text-align:right; color:${scores[dim] <= 5 ? '#ff4d4f' : '#ffffff'};">${scores[dim]}/10</strong>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+
+        // 2. Saturómetro & Fricción
+        if (d.fugas && Array.isArray(d.fugas)) {
+          const sum = d.fugas.reduce((a, b) => a + b, 0);
+          const satPct = Math.round(((sum - 10) / 40) * 100);
+          html += `
+            <div style="margin-bottom:16px; padding:14px; background:#141414; border:1px solid #333; border-radius:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-weight:800; color:#fff; font-size:0.88rem;">🚨 Fricción & Saturómetro:</span>
+                <span style="font-weight:800; color:${satPct >= 60 ? '#ff4d4f' : '#f59e0b'}; font-size:1.05rem;">${satPct}%</span>
+              </div>
+              <div style="font-size:0.78rem; color:#a1a1aa;">Nivel de saturación estimado según 10 síntomas de fuga del Sondeo Maestro.</div>
+            </div>
+          `;
+        }
+
+        // 3. 🩺 MOTOR PRESCRIPTOR AICC v2.0 (EXCLUSIVO DIEGO)
+        try {
+          if (window.AICCPrescriptorEngine && window.AICC_MODULOS_DB) {
+            const engine = new AICCPrescriptorEngine(window.AICC_MODULOS_DB);
+            
+            // Inferencia de variables clínicas
+            const sumFugas = (d.fugas && Array.isArray(d.fugas)) ? d.fugas.reduce((a,b)=>a+b, 0) : 25;
+            const perfilClinico = {
+              nombre: userName,
+              horasFugaSemana: sumFugas >= 28 ? 20 : (sumFugas >= 20 ? 12 : 6),
+              saturacionSensorial: (scores['Bienestar & Salud'] <= 5) ? 8 : 4,
+              dificultadHorarios: (scores['Gestión del Tiempo'] <= 5),
+              faltaProposito: (scores['Propósito'] <= 5),
+              apagaIncendios: (d.fugas && d.fugas[0] >= 3) || (scores['Gestión del Tiempo'] <= 5),
+              multitareaCompulsiva: (d.fugas && d.fugas[1] >= 3),
+              rumiacionNocturna: (d.fugas && d.fugas[4] >= 3) ? 7 : 3,
+              ventaHoraSuelta: (scores['Finanzas'] <= 5),
+              desordenEspacioFisico: (scores['Entorno Trabajo'] <= 5),
+              condicionTeaPas: Boolean(d.condicionTea || d.pas || (scores['Bienestar & Salud'] <= 4 && sumFugas >= 30)),
+              multipotencialFrentes: (d.frentes || (d.eisenhower && d.eisenhower.length >= 4)) ? 3 : 1,
+              auditoriaRequerida: true
+            };
+
+            const receta = engine.prescribir(perfilClinico);
+            window._lastPrescripcion = receta;
+
+            html += `
+              <div style="margin-top:24px; padding:18px; background:rgba(56, 189, 248, 0.04); border:1px solid rgba(56, 189, 248, 0.3); border-radius:14px; position:relative;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:1.2rem;">🩺</span>
+                    <div>
+                      <div style="font-family:var(--font-heading); font-weight:800; font-size:0.98rem; color:#38bdf8;">
+                        Prescripción Quirúrgica AICC v2.0 (Solo Consultor)
+                      </div>
+                      <div style="font-size:0.75rem; color:#888;">Motor de Inferencia Antigravity • Tratamiento Sugerido</div>
+                    </div>
+                  </div>
+                  <span style="background:#38bdf8; color:#000; font-weight:800; font-size:0.72rem; padding:3px 10px; border-radius:20px;">
+                    ${receta.totalModulosPrescritos} Módulos Asignados
+                  </span>
+                </div>
+
+                <!-- AUDITORÍA DE COMPLETITUD DE FICHA MAESTRA -->
+                ${(() => {
+                  const checkList = [
+                    { label: 'Identidad & PIN', ok: true },
+                    { label: 'Signos Vitales 360°', ok: Object.keys(scores).length >= 5 },
+                    { label: 'Auditoría Fugas 168H', ok: Boolean(d.fugas) },
+                    { label: 'Priorización Eisenhower', ok: Boolean(d.eisenhower && d.eisenhower.length > 0) },
+                    { label: 'FODA / CAME', ok: Boolean(d.foda && d.foda.fortalezas) },
+                    { label: 'Biorritmo & Batería Sensorial', ok: Boolean(d.condicionTea || d.pas || d.stimming) },
+                    { label: 'Finanzas 50/30/20 & Costo Vida', ok: Boolean(d.finanzas || d.presupuesto) }
+                  ];
+                  const completitud = Math.round((checkList.filter(c => c.ok).length / checkList.length) * 100);
+                  const faltantes = checkList.filter(c => !c.ok);
+
+                  return `
+                    <div style="margin-bottom:16px; padding:14px; background:#0d0d0d; border:1px solid #262626; border-radius:10px;">
+                      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-size:0.8rem; font-weight:800; color:#fff;">📋 Madurez de Ficha Maestra:</span>
+                        <span style="font-weight:800; font-size:0.85rem; color:${completitud >= 80 ? '#10b981' : (completitud >= 50 ? '#f59e0b' : '#ff4d4f')};">
+                          ${completitud}% (${checkList.filter(c => c.ok).length}/${checkList.length} Bloques)
+                        </span>
+                      </div>
+                      <div style="width:100%; height:6px; background:#222; border-radius:3px; overflow:hidden; margin-bottom:10px;">
+                        <div style="width:${completitud}%; height:100%; background:${completitud >= 80 ? '#10b981' : (completitud >= 50 ? '#f59e0b' : '#ff4d4f')}; border-radius:3px;"></div>
+                      </div>
+
+                      ${faltantes.length > 0 ? `
+                        <div style="font-size:0.75rem; color:#a1a1aa; margin-top:8px;">
+                          <b style="color:#f59e0b;">🔍 ¿Qué falta recabar en la próxima sesión?</b>
+                          <ul style="margin:4px 0 0 16px; padding:0; line-height:1.4;">
+                            ${faltantes.map(f => {
+                              let modSondeo = 'Sondeo Maestro';
+                              if (f.label.includes('FODA')) modSondeo = 'foda_came';
+                              else if (f.label.includes('Biorritmo')) modSondeo = 'somatica_y_autorregulacion_tea';
+                              else if (f.label.includes('Finanzas')) modSondeo = 'finanzas_503020';
+                              else if (f.label.includes('Eisenhower')) modSondeo = 'matriz_eisenhower';
+                              return `<li><b>${f.label}</b> ➔ <i>Recabar con: <span style="color:#38bdf8;">${modSondeo}</span></i></li>`;
+                            }).join('')}
+                          </ul>
+                        </div>
+                      ` : `
+                        <div style="font-size:0.75rem; color:#10b981; font-weight:700;">
+                          ✅ Ficha Maestra al 100% de madurez. Lista para Plan de Vuelo definitivo.
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })()}
+
+                <!-- LISTA DE MÓDULOS PRESCRITOS -->
+                <div style="margin-bottom:14px;">
+                  <div style="font-size:0.78rem; font-weight:700; color:#fff; margin-bottom:8px;">🎯 Receta de Módulos a Inyectar en Plan de Vuelo:</div>
+                  <div style="display:flex; flex-direction:column; gap:6px;">
+                    ${receta.modulos.map(m => `
+                      <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#0d0d0d; border:1px solid #262626; border-radius:8px; font-size:0.8rem;">
+                        <div>
+                          <b style="color:#ffffff;">${m.nombre}</b>
+                          <div style="font-size:0.72rem; color:#38bdf8;">💡 ${m.metafora}</div>
+                        </div>
+                        <span style="font-size:0.68rem; background:#1e1e1e; border:1px solid #444; color:#a1a1aa; padding:2px 8px; border-radius:4px; white-space:nowrap;">
+                          ${m.fase}
+                        </span>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <!-- PASO CERO SESIÓN 1 -->
+                ${receta.planAccion24Horas.length > 0 ? `
+                  <div style="margin-bottom:14px; padding:12px; background:#0a0a0a; border:1px solid #333; border-radius:8px;">
+                    <div style="font-weight:800; color:#10b981; font-size:0.8rem; margin-bottom:6px;">⚡ Micro-Compromiso de Paso Cero (Sesión 1):</div>
+                    <div style="font-size:0.78rem; color:#d4d4d8; line-height:1.4;">
+                      ${receta.planAccion24Horas[0]?.accion || 'Definir 1 sola prioridad de rescate.'}
+                    </div>
+                  </div>
+                ` : ''}
+
+                <!-- BOTÓN COPIAR PAYLOAD JSON -->
+                <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:14px; flex-wrap:wrap;">
+                  <button type="button" onclick="window.copiarPayloadPlanVuelo()" class="btn-action" style="background:#38bdf8; color:#000; font-weight:800; font-size:0.78rem; padding:8px 14px; border:none; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                    📋 Copiar Configuración Plan de Vuelo (JSON)
+                  </button>
+                </div>
+              </div>
+            `;
+          }
+        } catch(errPresc) {
+          console.error("Error en prescriptor:", errPresc);
+        }
+
+        scoresList.innerHTML = html;
         diagModal.classList.add('active');
+      };
+
+      window.copiarPayloadPlanVuelo = () => {
+        if (!window._lastPrescripcion) {
+          alert('No hay prescripción activa.');
+          return;
+        }
+        const jsonStr = JSON.stringify(window._lastPrescripcion, null, 2);
+        navigator.clipboard.writeText(jsonStr).then(() => {
+          alert('✅ Configuración del Plan de Vuelo copiada al portapapeles en formato JSON.\nLista para inyectar en Ficha_Maestra.json o el portal del cliente.');
+        }).catch(err => {
+          alert('Error al copiar: ' + err.message);
+        });
       };
 
       // MODAL IMPORTACIÓN WHATSAPP
@@ -514,7 +660,7 @@
           let parsed;
           if (rawText.includes('AICC-DATA:')) {
             const b64 = rawText.split('AICC-DATA:')[1].trim();
-            parsed = JSON.parse(decodeURIComponent(escape(atob(b64)))));
+            parsed = JSON.parse(decodeURIComponent(escape(atob(b64))));
           } else if (rawText.startsWith('{')) {
             parsed = JSON.parse(rawText);
           } else {
