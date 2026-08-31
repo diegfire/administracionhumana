@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hub de Reels & Estrategia de Contenidos | Administración Humana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface-2: #121212;
+      --surface-3: #181818;
+      --border: #262626;
+      --border-bright: #333333;
+      --accent-blue: #38bdf8;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-purple: #a855f7;
+      --accent-pink: #ec4899;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+      --radius-lg: 18px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+    .container { max-width: 1540px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 14px 0;
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-logo { font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; color: #fff; text-decoration: none; text-transform: uppercase; }
+    .nav-badge { background: rgba(236,72,153,0.15); border: 1px solid var(--accent-pink); color: var(--accent-pink); font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .btn-nav { background: rgba(255,255,255,0.06); border: 1px solid var(--border-bright); color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.2s; }
+    .btn-nav:hover { border-color: #fff; background: rgba(255,255,255,0.12); }
+    .btn-nav-primary { background: var(--accent-pink); color: #fff; border: none; font-weight: 800; }
+    .btn-nav-primary:hover { background: #db2777; }
+
+    /* HEADER */
+    .header-section { padding: 32px 0 20px; }
+    .header-title { font-family: var(--font-heading); font-size: 1.85rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .header-sub { color: #888; font-size: 0.88rem; max-width: 900px; line-height: 1.6; }
+
+    /* STATS / PILLARS ROTATION BAR */
+    .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 20px 0; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+    .stat-val { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--accent-pink); }
+    .stat-lbl { font-size: 0.72rem; color: #888; text-transform: uppercase; font-weight: 700; }
+
+    /* TOOLBAR */
+    .toolbar {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 20px; margin-bottom: 24px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 14px;
+    }
+    .search-box { flex-grow: 1; max-width: 440px; position: relative; }
+    .search-input {
+      width: 100%; background: #141414; border: 1px solid var(--border-bright);
+      color: #fff; padding: 10px 14px 10px 38px; border-radius: 8px; font-size: 0.88rem; outline: none;
+    }
+    .search-input:focus { border-color: var(--accent-pink); }
+    .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #888; font-size: 0.9rem; }
+    .filter-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .filter-select {
+      background: #141414; border: 1px solid var(--border-bright); color: #fff;
+      padding: 9px 14px; border-radius: 8px; font-size: 0.82rem; outline: none; cursor: pointer;
+    }
+
+    /* REELS GRID */
+    .reels-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 20px;
+    }
+    .reel-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 24px; display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.2s; position: relative;
+    }
+    .reel-card:hover { border-color: rgba(236,72,153,0.4); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.7); }
+    
+    .reel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .reel-num-badge { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 800; background: rgba(236,72,153,0.12); color: var(--accent-pink); border: 1px solid rgba(236,72,153,0.3); padding: 3px 8px; border-radius: 6px; }
+    
+    .status-badge {
+      font-size: 0.68rem; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 20px;
+    }
+    .status-por-grabar { background: rgba(245,158,11,0.15); border: 1px solid var(--accent-amber); color: var(--accent-amber); }
+    .status-en-edicion { background: rgba(56,189,248,0.15); border: 1px solid var(--accent-blue); color: var(--accent-blue); }
+    .status-publicado { background: rgba(16,185,129,0.15); border: 1px solid var(--accent-green); color: var(--accent-green); }
+
+    .reel-title { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .reel-pilar-tag { font-size: 0.75rem; color: #888; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    
+    .hook-box {
+      background: #141414; border-left: 3px solid var(--accent-pink); padding: 10px 14px; border-radius: 6px;
+      font-size: 0.82rem; color: #f3f4f6; margin-bottom: 14px; line-height: 1.5;
+    }
+    .hook-lbl { font-size: 0.68rem; color: var(--accent-pink); font-weight: 800; text-transform: uppercase; margin-bottom: 2px; }
+
+    .format-badge {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; color: #a1a1aa;
+      background: rgba(255,255,255,0.04); border: 1px solid #222; padding: 4px 10px; border-radius: 6px; margin-bottom: 16px;
+    }
+
+    .reel-actions { display: flex; gap: 8px; justify-content: flex-end; border-top: 1px solid #1a1a1a; padding-top: 14px; flex-wrap: wrap; }
+    .btn-action-primary { background: #ffffff; color: #000; font-weight: 800; font-size: 0.75rem; border: none; padding: 7px 14px; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+    .btn-action-primary:hover { background: #e5e5e5; }
+    .btn-action-view { background: transparent; border: 1px solid var(--border-bright); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 7px 12px; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    .btn-action-view:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+
+    /* TELEPROMPTER / MODAL COMPLETO */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(14px);
+      z-index: 1000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
+    }
+    .modal-overlay.active { display: flex; opacity: 1; }
+    .modal-box {
+      background: var(--surface-2); border: 1px solid var(--border-bright); border-radius: var(--radius-lg);
+      width: 92%; max-width: 860px; max-height: 92vh; overflow-y: auto; padding: 32px; position: relative;
+    }
+    .modal-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: #888; font-size: 1.5rem; cursor: pointer; }
+    .modal-close:hover { color: #fff; }
+
+    .script-section {
+      background: #141414; border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;
+    }
+    .script-time { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--accent-pink); margin-bottom: 4px; }
+    .script-text { font-size: 0.95rem; color: #fff; line-height: 1.6; }
+    .script-cue { font-size: 0.8rem; color: #a1a1aa; font-style: italic; margin-bottom: 6px; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
+    .form-input, .form-textarea, .form-select {
+      width: 100%; background: #141414; border: 1px solid var(--border-bright); color: #fff;
+      padding: 10px 12px; border-radius: 8px; font-size: 0.85rem; font-family: var(--font-sans); outline: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent-pink); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* TELEPROMPTER VIEW MODE */
+    .teleprompter-mode {
+      background: #000; color: #fff; font-size: 1.35rem; line-height: 1.8; padding: 30px; border-radius: 12px;
+      border: 1px solid #333; font-family: var(--font-sans); max-height: 60vh; overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <div class="nav-brand">
+        <a href="panel_admin.html" class="nav-logo">Administración Humana</a>
+        <span class="nav-badge">Hub de Reels & Contenidos</span>
+      </div>
+      <div class="nav-links">
+        <button class="btn-nav btn-nav-primary" onclick="window.openNewReelModal()">+ Crear Nuevo Guion</button>
+        <button class="btn-nav" onclick="window.exportReelsJson()">💾 Guardar / Exportar JSON</button>
+        <a href="panel_admin.html" class="btn-nav">← Panel Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- HEADER -->
+    <div class="header-section">
+      <h1 class="header-title">Estrategia & Banco de Guiones para Reels / TikTok</h1>
+      <p class="header-sub">
+        Guiones estructurados por pilares temáticos para evitar repetir temas, rotar formatos (Pantalla Verde, Parodia Infomercial, Demo en Vivo) y dirigir tráfico cualificado al <b>Sondeo Express (90s)</b>.
+      </p>
+    </div>
+
+    <!-- STATS / ROTATION BAR -->
+    <div class="stats-bar" id="stats-bar">
+      <!-- Calculado dinámicamente -->
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Buscar por título, gancho o pilar..." />
+      </div>
+      <div class="filter-group">
+        <select id="filter-pilar" class="filter-select">
+          <option value="ALL">Todos los Pilares</option>
+          <option value="Diferenciación">🧭 Diferenciación (Psicólogo vs Admin)</option>
+          <option value="Herramientas">🛠️ Herramientas & Infomercial Absurdo</option>
+          <option value="Tiempo">🕒 Tiempo & Fuga de Horas (168h)</option>
+          <option value="Multipotencial">🤹 Múltiples Roles & Multipotencial</option>
+          <option value="Finanzas">💰 Finanzas & Regla 50/30/20</option>
+        </select>
+        <select id="filter-status" class="filter-select">
+          <option value="ALL">Todos los Estados</option>
+          <option value="Por Grabar">🟡 Por Grabar</option>
+          <option value="En Edición">🔵 En Edición</option>
+          <option value="Publicado">🟢 Publicado</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="reels-grid" id="reels-grid">
+      <!-- Renderizado por JS -->
+    </div>
+  </main>
+
+  <!-- MODAL TELEPROMPTER / EDITOR -->
+  <div class="modal-overlay" id="reel-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="window.closeReelModal()">&times;</button>
+      
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+        <div>
+          <span id="modal-reel-badge" style="font-size:0.75rem; color:var(--accent-pink); font-family:var(--font-mono); font-weight:800;">#REEL-01</span>
+          <h2 id="modal-reel-title" style="font-family:var(--font-heading); font-size:1.45rem; font-weight:800; color:#fff;">
+            Título del Reel
+          </h2>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn-action-primary" onclick="window.toggleTeleprompter()">🔴 Teleprompter En Vivo</button>
+        </div>
+      </div>
+
+      <div id="modal-view-content">
+        <!-- RENDER GUION -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT DE DATOS Y GESTIÓN -->
+  <script>
+    const DEFAULT_REELS = [
+      {
+        id: "REEL-01",
+        pilar: "Diferenciación",
+        titulo: "El Gancho Provocador: Psicólogo vs. Administrador",
+        formato: "🟢 Pantalla Verde con Web de fondo (Sección Psicología)",
+        duracion: "50 segundos",
+        estado: "Por Grabar",
+        hook: "«Si en Chile estás colapsado, con mil cosas que hacer y no te alcanza el día... ¿qué es lo primero que te dice todo el mundo? 'Ándate al psicólogo'.»",
+        bloques: [
+          {
+            tiempo: "00:00 - 00:06",
+            cue: "Tú apuntando al texto de la web con complicidad y sonrisa pícara.",
+            texto: "Si en Chile estás colapsado, con mil cosas que hacer y no te alcanza el día... ¿qué es lo primero que te dice todo el mundo? 'Ándate al psicólogo'."
+          },
+          {
+            tiempo: "00:06 - 00:20",
+            cue: "Hablando con humor y validación.",
+            texto: "Y ojo, el psicólogo es un crack, te ayuda a sanar por dentro, a entender tus traumas y emociones. Pero seamos honestos: el psicólogo NO se va a sentar contigo a armar tu horario de la semana, ni te va a decir por qué estás cobrando la hora a diez lucas cuando deberías cobrar el triple, ni te va a ordenar los 4 proyectos que tienes abiertos a la vez."
+          },
+          {
+            tiempo: "00:20 - 00:38",
+            cue: "Mostrando de fondo el Mapeador 24H y la Regla de Máximo 2 Tareas.",
+            texto: "Ahí es donde entra la Administración Humana. Yo no trato heridas de tu infancia; yo diseño el sistema de tu afuera: tus horarios en cajitas de colores, tu presupuesto 50/30/20 y tus límites para que no te explote la cabeza apagando incendios."
+          },
+          {
+            tiempo: "00:38 - 00:50",
+            cue: "Llamado a la acción directo.",
+            texto: "Diseñé un Sondeo Express de 90 segundos que te dice exactamente en qué área estás teniendo fugas. Anda al link de mi perfil, haz el sondeo y te envío tu diagnóstico."
+          }
+        ],
+        caption: "En Chile te dicen 'ándate al psicólogo', pero nadie te dijo 'anda al administrador'. 🧠 vs 🧭 El psicólogo repara tu motor interno; yo diseño tu GPS y hoja de ruta. Haz el Sondeo Express en el link de mi bio.",
+        hashtags: "#productividad #gestiondeltiempo #administracionhumana #saludmentalchile #emprendedoreschile #foco"
+      },
+      {
+        id: "REEL-02",
+        pilar: "Herramientas",
+        titulo: "El Infomercial Absurdo: La Herramienta Equivocada",
+        formato: "📺 Parodia B&W (Cuchara con Naranja) ➔ Color Consultoría",
+        duracion: "50 segundos",
+        estado: "Por Grabar",
+        hook: "«¿Cansado de no poder cortar tus frutas? (Toma en blanco y negro intentando cortar naranja con cuchara).»",
+        bloques: [
+          {
+            tiempo: "00:00 - 00:12",
+            cue: "Blanco y negro con música dramática y sonido de ❌ buzzer. Tomas absurdas (cuchara/naranja, tenedor/sopa, pala/piso).",
+            texto: "Narrador dramático: ¿Cansado de no poder cortar tus frutas? ¿Harto de que tu almuerzo se te escape entre los dientes? ¡Tiene que haber una mejor manera!"
+          },
+          {
+            tiempo: "00:12 - 00:30",
+            cue: "Corte a color. Diego hablando con risa y naturalidad.",
+            texto: "Se ve ridículo, ¿verdad? Nadie en su sano juicio intentaría cortar una naranja con una cuchara ni barrer una casa con una palita de mano. Entonces... ¿por qué intentas ordenar tu semana de 168 horas, tus finanzas y tus 4 proyectos con pura fuerza de voluntad y notas mentales desordenadas?"
+          },
+          {
+            tiempo: "00:30 - 00:42",
+            cue: "Conectando con la empatía sin culpa.",
+            texto: "Cuando algo no te funciona en la vida, el 90% de las veces no es que seas flojo ni desordenado: ¡es que estás usando la herramienta equivocada!"
+          },
+          {
+            tiempo: "00:42 - 00:52",
+            cue: "Cierre y CTA con la web de fondo.",
+            texto: "En Administración Humana te pasamos el cuchillo afilado: tus horarios en cajitas y máximo 2 tareas a la vez. Deja de cortar naranjas con una cuchara y haz el Sondeo en mi bio."
+          }
+        ],
+        caption: "No te falta disciplina, ¡estás usando la herramienta equivocada! 😂 Cortar una naranja con una cuchara se ve ridículo... igual que intentar ordenar tu vida solo con fuerza de voluntad. Descubre tu herramienta exacta en el Sondeo de mi bio.",
+        hashtags: "#humorchileno #productividadreal #organizacionpersonal #administracionhumana #creativoschile"
+      },
+      {
+        id: "REEL-03",
+        pilar: "Tiempo",
+        titulo: "La Fuga Silenciosa: 18 Horas Perdidas al Mes",
+        formato: "🟢 Pantalla Verde con Simulador de Horas en Vivo",
+        duracion: "45 segundos",
+        estado: "Por Grabar",
+        hook: "«¿Sabías que la mayoría de los profesionales independientes regalan entre 15 y 25 horas a la semana sin darse cuenta?»",
+        bloques: [
+          {
+            tiempo: "00:00 - 00:06",
+            cue: "Gancho apuntando al slider interactivo.",
+            texto: "¿Sabías que la mayoría de los profesionales independientes y personas creativas regalan entre 15 y 25 horas a la semana... sin darse cuenta?"
+          },
+          {
+            tiempo: "00:06 - 00:22",
+            cue: "Moviendo el slider de 18h a 28h en vivo.",
+            texto: "Mira este simulador: si vives cambiando de una tarea a otra, contestando mensajes a deshora y sin bloques protegidos, estás regalando literalmente 72 horas al mes. ¡Eso son 3 días enteros de tu vida a la basura cada mes!"
+          },
+          {
+            tiempo: "00:22 - 00:35",
+            cue: "Presentando la solución de dique de contención.",
+            texto: "Con un sistema de administración personal no necesitas levantarte a las 5 AM a sufrir. Solo necesitas un dique de contención: blindar tus bloques de oro y limitar tus tareas activas."
+          },
+          {
+            tiempo: "00:35 - 00:45",
+            cue: "CTA directo.",
+            texto: "Pruébalo tú mismo en mi página o haz el Sondeo Express en el link de mi bio para ver cuántas horas podemos devolverte este mes."
+          }
+        ],
+        caption: "¿Cuántas horas estás regalando al mes por desorden operativo? 🕒 Recupera hasta 72 horas con un sistema a tu medida. Link en bio para tu diagnóstico.",
+        hashtags: "#gestiondeltiempo #productividad #foco #sinestres #emprendimientochile"
+      },
+      {
+        id: "REEL-04",
+        pilar: "Multipotencial",
+        titulo: "El Caos de los 4 Frentes (Para Creativos y Multipotenciales)",
+        formato: "🟢 Pantalla Verde con Bento Grid de la Web",
+        duracion: "45 segundos",
+        estado: "Por Grabar",
+        hook: "«Si tienes un trabajo, estás estudiando, tienes un proyecto personal y además la casa... este video es para ti.»",
+        bloques: [
+          {
+            tiempo: "00:00 - 00:06",
+            cue: "Gancho de empatía directa.",
+            texto: "Si tienes un trabajo, estás estudiando algo, tienes un proyecto personal y además tienes que ordenar tu casa... este video es para ti."
+          },
+          {
+            tiempo: "00:06 - 00:22",
+            cue: "Validando la culpa cruzada.",
+            texto: "El problema no es que seas desordenado. El problema es que estás usando la misma cabeza para los cuatro roles al mismo tiempo: cuando trabajas sientes culpa por tu proyecto, y cuando descansas sientes culpa por no estar trabajando."
+          },
+          {
+            tiempo: "00:22 - 00:35",
+            cue: "Mostrando la solución de sombreros protegidos.",
+            texto: "Lo que hacemos en Administración Humana es compartimentar: asignamos sombreros claros y horarios protegidos para que cuando trabajes estés 100% ahí, y cuando descanses, descanses de verdad sin culpa."
+          },
+          {
+            tiempo: "00:35 - 00:45",
+            cue: "CTA con nota de voz.",
+            texto: "Haz el Sondeo en mi bio y cuéntame en una nota de voz de 1 minuto cuál es tu mayor enredo hoy."
+          }
+        ],
+        caption: "La culpa de nunca estar donde deberías estar se cura con compartimentación de roles. 🤹 Deja de mezclar tus sombreros. Sondeo Express en mi perfil.",
+        hashtags: "#multipotencial #creativos #burnout #gestionpersonal #emprendedores"
+      },
+      {
+        id: "REEL-05",
+        pilar: "Finanzas",
+        titulo: "La Trampa de Cobrar por Hora Suelta",
+        formato: "🟢 Pantalla Verde con Matriz de Finanzas 50/30/20",
+        duracion: "50 segundos",
+        estado: "Por Grabar",
+        hook: "«Si eres terapeuta, diseñador o consultor y sigues vendiendo tu tiempo por hora suelta... estás atrapado en un techo invisible.»",
+        bloques: [
+          {
+            tiempo: "00:00 - 00:08",
+            cue: "Gancho financiero directo.",
+            texto: "Si eres terapeuta, diseñador o consultor independiente y sigues vendiendo tu tiempo por hora suelta... estás atrapado en un techo invisible."
+          },
+          {
+            tiempo: "00:08 - 00:24",
+            cue: "Explicando la asfixia del intercambio tiempo-dinero.",
+            texto: "Porque el día solo tiene 24 horas. Si te enfermas, no cobras. Si quieres descansar, sientes culpa. Y además te da pudor subir tus tarifas porque crees que la gente te paga por 'un ratito'."
+          },
+          {
+            tiempo: "00:24 - 00:38",
+            cue: "Mostrando la paquetización de valor y regla 50/30/20.",
+            texto: "En Administración Humana transformamos tu servicio en un Paquete Integral de Acompañamiento con piso financiero y entregables claros, para que ganes el doble trabajando la mitad de horas."
+          },
+          {
+            tiempo: "00:38 - 00:50",
+            cue: "CTA.",
+            texto: "Haz el Sondeo Express en el link de mi perfil y evaluemos la salud operativa y financiera de tu proyecto."
+          }
+        ],
+        caption: "Vender horas sueltas es el camino más rápido al agotamiento. 💸 Pasa de cobrar por hora a estructurar paquetes de valor. Sondeo en mi bio.",
+        hashtags: "#finanzaspersonales #tarifas #freelancechile #terapeutas #consultores"
+      }
+    ];
+
+    let reelsList = [];
+
+    function initReelsHub() {
+      const saved = localStorage.getItem('ah_reels_db');
+      if (saved) {
+        try { reelsList = JSON.parse(saved); } catch(e) { reelsList = DEFAULT_REELS; }
+      } else {
+        reelsList = DEFAULT_REELS;
+        localStorage.setItem('ah_reels_db', JSON.stringify(reelsList));
+      }
+      renderStats();
+      renderGrid();
+    }
+
+    function renderStats() {
+      const statsEl = document.getElementById('stats-bar');
+      const total = reelsList.length;
+      const porGrabar = reelsList.filter(r => r.estado === 'Por Grabar').length;
+      const enEdicion = reelsList.filter(r => r.estado === 'En Edición').length;
+      const publicados = reelsList.filter(r => r.estado === 'Publicado').length;
+
+      statsEl.innerHTML = `
+        <div class="stat-card">
+          <div class="stat-val">${total}</div>
+          <div class="stat-lbl">Guiones Listos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" style="color:var(--accent-amber);">${porGrabar}</div>
+          <div class="stat-lbl">Por Grabar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" style="color:var(--accent-blue);">${enEdicion}</div>
+          <div class="stat-lbl">En Edición</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" style="color:var(--accent-green);">${publicados}</div>
+          <div class="stat-lbl">Publicados</div>
+        </div>
+      `;
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('reels-grid');
+      const search = (document.getElementById('search-input').value || '').toLowerCase().trim();
+      const pilarFilter = document.getElementById('filter-pilar').value;
+      const statusFilter = document.getElementById('filter-status').value;
+
+      const filtered = reelsList.filter(r => {
+        const matchSearch = !search ||
+          (r.titulo || '').toLowerCase().includes(search) ||
+          (r.hook || '').toLowerCase().includes(search) ||
+          (r.pilar || '').toLowerCase().includes(search);
+
+        const matchPilar = pilarFilter === 'ALL' || (r.pilar || '').includes(pilarFilter);
+        const matchStatus = statusFilter === 'ALL' || r.estado === statusFilter;
+
+        return matchSearch && matchPilar && matchStatus;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:48px; color:#888;">No se encontraron guiones con los filtros actuales.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(r => {
+        let statusClass = 'status-por-grabar';
+        if (r.estado === 'En Edición') statusClass = 'status-en-edicion';
+        if (r.estado === 'Publicado') statusClass = 'status-publicado';
+
+        return `
+          <div class="reel-card">
+            <div>
+              <div class="reel-header">
+                <span class="reel-num-badge">#${r.id}</span>
+                <span class="status-badge ${statusClass}">${r.estado}</span>
+              </div>
+              <h3 class="reel-title">${r.titulo}</h3>
+              <div class="reel-pilar-tag">📌 ${r.pilar} • ⏱️ ${r.duracion || '45s'}</div>
+              
+              <div class="format-badge">${r.formato}</div>
+
+              <div class="hook-box">
+                <div class="hook-lbl">🎣 Gancho 3s:</div>
+                ${r.hook}
+              </div>
+            </div>
+
+            <div class="reel-actions">
+              <button class="btn-action-view" onclick="window.changeReelStatus('${r.id}')">🔄 Estado</button>
+              <button class="btn-action-view" onclick="window.copyFullScript('${r.id}')">📋 Copiar Guion</button>
+              <button class="btn-action-primary" onclick="window.openReelModal('${r.id}')">🎬 Ver Guion / Grabar</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('search-input').addEventListener('input', renderGrid);
+    document.getElementById('filter-pilar').addEventListener('change', renderGrid);
+    document.getElementById('filter-status').addEventListener('change', renderGrid);
+
+    let currentReel = null;
+    let isTeleprompter = false;
+
+    window.openReelModal = function(id) {
+      currentReel = reelsList.find(r => r.id === id);
+      if (!currentReel) return;
+      isTeleprompter = false;
+      document.getElementById('modal-reel-badge').innerText = `#${currentReel.id} • ${currentReel.pilar} (${currentReel.duracion})`;
+      document.getElementById('modal-reel-title').innerText = currentReel.titulo;
+      renderModalContent();
+      document.getElementById('reel-modal').classList.add('active');
+    };
+
+    function renderModalContent() {
+      const container = document.getElementById('modal-view-content');
+      if (isTeleprompter) {
+        container.innerHTML = `
+          <div class="teleprompter-mode">
+            ${currentReel.bloques.map((b, i) => `
+              <p style="margin-bottom:20px;">
+                <strong style="color:var(--accent-pink); font-size:0.9rem;">[${b.tiempo}]</strong><br />
+                ${b.texto}
+              </p>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <div style="margin-bottom:16px;">
+            <span style="font-size:0.8rem; color:#888;">Formato de Grabación:</span>
+            <div style="font-weight:700; color:#fff; margin-top:2px;">${currentReel.formato}</div>
+          </div>
+
+          <div style="margin-bottom:20px;">
+            <h4 style="font-size:0.8rem; text-transform:uppercase; color:#aaa; margin-bottom:8px; font-weight:800;">Guion Paso a Paso con Tiempos:</h4>
+            ${currentReel.bloques.map(b => `
+              <div class="script-section">
+                <div class="script-time">⏱️ ${b.tiempo}</div>
+                <div class="script-cue">🎬 Cámara / Actuación: ${b.cue}</div>
+                <div class="script-text">«${b.texto}»</div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div style="background:#141414; border:1px solid #222; border-radius:8px; padding:14px; margin-bottom:16px;">
+            <div style="font-size:0.75rem; color:var(--accent-pink); font-weight:800; text-transform:uppercase; margin-bottom:4px;">📝 Copy / Caption para Instagram & TikTok:</div>
+            <div style="font-size:0.85rem; color:#d4d4d8; line-height:1.5;">${currentReel.caption}</div>
+            <div style="font-size:0.78rem; color:#888; margin-top:6px;">${currentReel.hashtags}</div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <button class="btn-action-view" onclick="window.copyCaption('${currentReel.id}')">📋 Copiar Caption</button>
+            <button class="btn-action-primary" onclick="window.copyFullScript('${currentReel.id}')">📋 Copiar Guion Completo</button>
+          </div>
+        `;
+      }
+    }
+
+    window.toggleTeleprompter = function() {
+      isTeleprompter = !isTeleprompter;
+      renderModalContent();
+    };
+
+    window.closeReelModal = function() {
+      document.getElementById('reel-modal').classList.remove('active');
+    };
+
+    window.changeReelStatus = function(id) {
+      const reel = reelsList.find(r => r.id === id);
+      if (!reel) return;
+      if (reel.estado === 'Por Grabar') reel.estado = 'En Edición';
+      else if (reel.estado === 'En Edición') reel.estado = 'Publicado';
+      else reel.estado = 'Por Grabar';
+      localStorage.setItem('ah_reels_db', JSON.stringify(reelsList));
+      renderStats();
+      renderGrid();
+    };
+
+    window.copyFullScript = function(id) {
+      const reel = reelsList.find(r => r.id === id);
+      if (!reel) return;
+      const scriptText = `🎬 GUION ${reel.id}: ${reel.titulo}\nFormato: ${reel.formato}\n\n` +
+        reel.bloques.map(b => `[${b.tiempo}]\nCámara: ${b.cue}\nDice: "${b.texto}"\n`).join('\n') +
+        `\nCAPTION:\n${reel.caption}\n${reel.hashtags}`;
+      navigator.clipboard.writeText(scriptText).then(() => {
+        alert(`✅ Guion ${reel.id} copiado al portapapeles listo para grabar.`);
+      });
+    };
+
+    window.copyCaption = function(id) {
+      const reel = reelsList.find(r => r.id === id);
+      if (!reel) return;
+      navigator.clipboard.writeText(`${reel.caption}\n\n${reel.hashtags}`).then(() => {
+        alert(`✅ Caption y Hashtags de ${reel.id} copiados al portapapeles.`);
+      });
+    };
+
+    window.exportReelsJson = function() {
+      const dataStr = JSON.stringify(reelsList, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'reels_db.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    window.openNewReelModal = function() {
+      const title = prompt('Título de la idea de Reel:');
+      if (!title) return;
+      const newId = `REEL-0${reelsList.length + 1}`;
+      const newReel = {
+        id: newId,
+        pilar: "Herramientas",
+        titulo: title,
+        formato: "🟢 Pantalla Verde con Web de fondo",
+        duracion: "45 segundos",
+        estado: "Por Grabar",
+        hook: `«${title}»`,
+        bloques: [
+          { tiempo: "00:00 - 00:06", cue: "Gancho a cámara.", texto: `Gancho de ${title}` },
+          { tiempo: "00:06 - 00:30", cue: "Desarrollo del dolor y solución.", texto: "Explicar el concepto con humor y claridad." },
+          { tiempo: "00:30 - 00:45", cue: "Llamado a la acción.", texto: "Haz el Sondeo Express en el link de mi bio." }
+        ],
+        caption: `${title}. Haz el Sondeo Express en el link de mi bio.`,
+        hashtags: "#productividad #administracionhumana #organizacion"
+      };
+      reelsList.push(newReel);
+      localStorage.setItem('ah_reels_db', JSON.stringify(reelsList));
+      renderStats();
+      renderGrid();
+      window.openReelModal(newId);
+    };
+
+    window.addEventListener('DOMContentLoaded', initReelsHub);
+  </script>
+</body>
+</html>
