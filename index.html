@@ -1164,6 +1164,165 @@
         gap: 24px !important;
       }
     }
+  
+    /* ── STYLES: SIMULADOR & BENTO GRID VISUAL AICC ── */
+    .sim-container {
+      background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.1);
+      margin: 40px auto 20px;
+      max-width: 960px;
+      position: relative;
+    }
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #262626;
+      padding-bottom: 16px;
+    }
+    .sim-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .sim-metric-card {
+      background: #0d0d0d;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .sim-metric-card:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+    .sim-metric-val {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      color: #38bdf8;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .sim-metric-lbl {
+      font-size: 0.76rem;
+      color: #a1a1aa;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── BENTO GRID VISUAL TRANSFORMACIÓN ── */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .bento-card {
+      background: #0d0d0d;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .bento-card.bad {
+      border-color: rgba(239, 68, 68, 0.3);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.04) 0%, rgba(13, 13, 13, 1) 100%);
+    }
+    .bento-card.good {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(13, 13, 13, 1) 100%);
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.08);
+    }
+
+    /* ── MINI MAPPER INTERACTIVO ── */
+    .mini-mapper-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 4px;
+      margin: 14px 0;
+      background: #141414;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #262626;
+    }
+    .mini-hour-box {
+      height: 32px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.15s, filter 0.15s;
+    }
+    .mini-hour-box:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+    .box-sleep { background: #3b82f6; color: #fff; }
+    .box-gold { background: #f59e0b; color: #000; }
+    .box-work { background: #10b981; color: #000; }
+    .box-free { background: #8b5cf6; color: #fff; }
+    .box-chaos { background: #ef4444; color: #fff; }
+
+    /* ── MINI KANBAN INTERACTIVO ── */
+    .mini-kanban-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .mini-kanban-col {
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .mini-kanban-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .mini-task-card {
+      background: #1f1f1f;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 0.75rem;
+      color: #fff;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .mini-task-card:hover {
+      border-color: #38bdf8;
+      transform: translateX(2px);
+    }
+
+    @media (max-width: 860px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .mini-mapper-grid { grid-template-columns: repeat(6, 1fr); }
+    }
+
   </style>
 </head>
 <body>
@@ -1215,6 +1374,87 @@
   </div>
 </section>
 
+
+<!-- SECCIÓN INTERACTIVA: SIMULADOR DE HORAS DEVUELTAS -->
+<section class="simulator-section" id="simulador-impacto" style="padding: 40px 0 60px; background: radial-gradient(circle at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 70%);">
+  <div class="container">
+    <div class="sim-container">
+      <div class="sim-header">
+        <div>
+          <span style="background:rgba(56,189,248,0.15); border:1px solid #38bdf8; color:#38bdf8; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px; text-transform:uppercase;">
+            ⚡ Simulador de Impacto en Vivo
+          </span>
+          <h2 style="font-family:var(--font-heading); font-size:1.55rem; font-weight:800; color:#fff; margin-top:8px;">
+            ¿Cuántas horas de vida recuperas con Administración Humana?
+          </h2>
+          <p style="font-size:0.86rem; color:#a1a1aa; margin-top:4px;">
+            Calcula el rescate de tiempo real según tu nivel actual de fricción operativa y frentes abiertos:
+          </p>
+        </div>
+        <div style="text-align:right;">
+          <span id="sim-hours-badge" style="background:#ffffff; color:#000000; font-family:var(--font-heading); font-size:1.1rem; font-weight:800; padding:6px 16px; border-radius:50px; box-shadow:0 0 16px rgba(255,255,255,0.3);">
+            18h / sem perdidas
+          </span>
+        </div>
+      </div>
+
+      <!-- SLIDER INTERACTIVO -->
+      <div style="margin-bottom: 24px;">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#888; margin-bottom:8px;">
+          <span>🟢 6h (Fricción Leve)</span>
+          <span>🟡 18h (Caos Habitual)</span>
+          <span>🔴 30h+ (Saturación & Quemazón)</span>
+        </div>
+        <input type="range" id="sim-fuga-slider" min="6" max="30" value="18" step="1" oninput="window.updateImpactSim(this.value)" style="width:100%; cursor:pointer; accent-color:#38bdf8;" />
+      </div>
+
+      <!-- MÉTRICAS DE IMPACTO CALCULADAS -->
+      <div class="sim-metrics-grid">
+        <div class="sim-metric-card">
+          <div class="sim-metric-val" id="sim-liberadas-mes">+54h</div>
+          <div class="sim-metric-lbl">Horas Libres al Mes</div>
+          <div style="font-size:0.75rem; color:#10b981; font-weight:600; margin-top:4px;" id="sim-dias-equivalentes">≈ 2.25 días completos de vida</div>
+        </div>
+        <div class="sim-metric-card">
+          <div class="sim-metric-val" id="sim-reduccion-friccion">-75%</div>
+          <div class="sim-metric-lbl">Reducción de Apagafuegos</div>
+          <div style="font-size:0.75rem; color:#38bdf8; font-weight:600; margin-top:4px;">Con Mapeador 24H & Kanban WIP=2</div>
+        </div>
+        <div class="sim-metric-card">
+          <div class="sim-metric-val" style="color:#10b981;">100%</div>
+          <div class="sim-metric-lbl">Cero Culpa Nocturna</div>
+          <div style="font-size:0.75rem; color:#a1a1aa; font-weight:600; margin-top:4px;">Límite estricto de tareas abiertas</div>
+        </div>
+      </div>
+
+      <!-- MÓDULOS DE RESCATE ACTIVADOS EN VIVO -->
+      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:12px; padding:16px 20px;">
+        <div style="font-size:0.8rem; font-weight:800; color:#888; text-transform:uppercase; margin-bottom:10px;">
+          🛠️ Diques de Contención que se activan en tu Plan de Vuelo:
+        </div>
+        <div id="sim-modulos-list" style="display:flex; gap:10px; flex-wrap:wrap;">
+          <span style="background:rgba(56,189,248,0.1); border:1px solid #38bdf8; color:#38bdf8; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">
+            🧩 MOD-01: Mapeador Horario 24H
+          </span>
+          <span style="background:rgba(16,185,129,0.1); border:1px solid #10b981; color:#10b981; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">
+            🎯 MOD-03: Kanban Personal WIP=2
+          </span>
+          <span style="background:rgba(245,158,11,0.1); border:1px solid #f59e0b; color:#f59e0b; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">
+            🧠 MOD-12: Pausas Sensoriales & Batería
+          </span>
+        </div>
+      </div>
+
+      <!-- CTA DIRECTO DEL SIMULADOR -->
+      <div style="text-align:center; margin-top:24px;">
+        <a href="sondeo.html" class="btn-primary" style="background:#38bdf8; color:#000; font-weight:800; padding:12px 30px; font-size:0.92rem; border-radius:50px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px rgba(56,189,248,0.35);">
+          <span>⚡</span> Reclamar Mis Horas en el Sondeo Express (90s) →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROBLEM -->
 <section class="problem">
   <div class="container">
@@ -1257,69 +1497,118 @@
 </section>
 
 <!-- COMPARISON SECTION -->
+<!-- COMPARISON SECTION: BENTO GRID VISUAL (ANTES VS DESPUÉS) -->
 <section class="compare-section" id="comparativa">
   <div class="container">
-    <span class="section-tag">Cambio de Paradigma</span>
-    <h2 class="section-title">¿Por qué fallan los métodos tradicionales?</h2>
-    <p class="section-sub">
-      La mayoría de las herramientas están diseñadas para robots corporativos de oficina, no para personas reales con frentes múltiples, cuidados familiares o neurodivergencia.
-    </p>
+    <div style="text-align:center; max-width:760px; margin:0 auto 32px auto;">
+      <span class="section-tag">Transformación Operativa en 1 Vistazo</span>
+      <h2 class="section-title">El Antes vs. El Después: Devolver Horas Reales</h2>
+      <p class="section-sub" style="margin-top:8px;">
+        No te vendemos recetas mágicas. Te entregamos software interactivo, metodología visual y herramientas tangibles diseñadas a tu medida para blindar tu tiempo y tu sistema nervioso.
+      </p>
+    </div>
     
-    <div class="compare-grid">
-      <!-- CARD BAD -->
-      <div class="compare-card bad">
-        <span class="compare-badge bad">❌ Productividad Rígida & Tóxica</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 8px;">El Enfoque Convencional</h3>
-        <p style="font-size: 0.86rem; color: #9ca3af;">Herramientas genéricas que aumentan la culpa y la sensación de deuda constante.</p>
-        
-        <ul class="compare-list">
-          <li>
-            <span class="compare-icon" style="color: #ef4444;">✕</span>
-            <span><strong>Horarios rígidos de 8 horas:</strong> Ignora urgencias domésticas, picos de fatiga y cuidados familiares.</span>
-          </li>
-          <li>
-            <span class="compare-icon" style="color: #ef4444;">✕</span>
-            <span><strong>Listas infinitas de 30 pendientes:</strong> Genera parálisis por análisis, multitarea dispersa y burnout.</span>
-          </li>
-          <li>
-            <span class="compare-icon" style="color: #ef4444;">✕</span>
-            <span><strong>Saturación de 5 apps complejas:</strong> Notion, Trello, Asana... que terminas abandonando al tercer día.</span>
-          </li>
-          <li>
-            <span class="compare-icon" style="color: #ef4444;">✕</span>
-            <span><strong>Juicio moral destructivo:</strong> Si no cumples, el sistema asume que *"te falta fuerza de voluntad"*.</span>
-          </li>
+    <div class="bento-grid">
+      <!-- CARD ANTES (EL CAOS OPERATIVO) -->
+      <div class="bento-card bad">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <span style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); color:#f87171; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px; text-transform:uppercase;">
+              🚨 ANTES: El Caos Habitual
+            </span>
+            <span style="color:#ef4444; font-weight:800; font-size:0.85rem;">~21h / sem perdidas</span>
+          </div>
+          <h3 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin-bottom:8px;">
+            Sobrecarga, Culpa & Fuga de Energía
+          </h3>
+          <p style="font-size:0.85rem; color:#a1a1aa; line-height:1.5; margin-bottom:16px;">
+            50 pestañas abiertas, sensación constante de ir tarde a todo, cobro por hora suelta y mente que no apaga de noche.
+          </p>
+
+          <!-- MINI MOCKUP VISUAL ANTES -->
+          <div style="background:#141414; border:1px dashed #ef4444; border-radius:8px; padding:12px; margin-bottom:14px;">
+            <div style="font-size:0.74rem; color:#ef4444; font-weight:700; margin-bottom:6px;">💥 Día fragmentado sin límites claros:</div>
+            <div class="mini-mapper-grid" style="border-color:#331111;">
+              <div class="mini-hour-box box-chaos" title="Apagafuegos">🔥</div>
+              <div class="mini-hour-box box-chaos" title="Interrupción">⚠️</div>
+              <div class="mini-hour-box box-work">💼</div>
+              <div class="mini-hour-box box-chaos" title="Dudas / Procrastinación">🌀</div>
+              <div class="mini-hour-box box-work">💼</div>
+              <div class="mini-hour-box box-chaos" title="Urgencia doméstica">🤯</div>
+              <div class="mini-hour-box box-chaos" title="Multitarea dispersa">🤹</div>
+              <div class="mini-hour-box box-work">💼</div>
+              <div class="mini-hour-box box-chaos" title="Culpa nocturna">🛌</div>
+              <div class="mini-hour-box box-chaos" title="Insomnio">🌙</div>
+              <div class="mini-hour-box box-sleep">💤</div>
+              <div class="mini-hour-box box-sleep">💤</div>
+            </div>
+            <div style="font-size:0.7rem; color:#888; text-align:center;">Multiples cambios de contexto = Fatiga y parálisis</div>
+          </div>
+        </div>
+
+        <ul style="list-style:none; font-size:0.84rem; color:#d1d5db; display:flex; flex-direction:column; gap:8px;">
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#ef4444;">✕</span> Listas infinitas de 30 pendientes sin priorizar</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#ef4444;">✕</span> Cobro por hora suelta que te obliga a trabajar sin parar</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#ef4444;">✕</span> Apps complejas que se abandonan en 3 días</li>
         </ul>
       </div>
 
-      <!-- CARD GOOD -->
-      <div class="compare-card good">
-        <span class="compare-badge good">✨ Administración Humana (AICC)</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 8px;">El Enfoque a Escala Humana</h3>
-        <p style="font-size: 0.86rem; color: #9ca3af;">Ingeniería de hábitos y software adaptado a tu biología y contexto real.</p>
-        
-        <ul class="compare-list">
-          <li>
-            <span class="compare-icon" style="color: #10b981;">✓</span>
-            <span><strong>Bloques de Oro & Horario 24H:</strong> Micro-ventanas protegidas que respetan tus tiempos de descanso y vida familiar.</span>
-          </li>
-          <li>
-            <span class="compare-icon" style="color: #10b981;">✓</span>
-            <span><strong>Límite estricto WIP = 2:</strong> Solo 2 tareas en ejecución simultánea para blindar tu sistema nervioso.</span>
-          </li>
-          <li>
-            <span class="compare-icon" style="color: #10b981;">✓</span>
-            <span><strong>Dossier & Plan de Vuelo unificado:</strong> Todo tu centro de mando en 1 pantalla interactiva + Hub físico de 1 hoja.</span>
-          </li>
-          <li>
-            <span class="compare-icon" style="color: #10b981;">✓</span>
-            <span><strong>Cero juicio moral:</strong> Si algo no funciona, calibramos la herramienta, nunca tu valor como persona.</span>
-          </li>
+      <!-- CARD DESPUÉS (SOBERANÍA OPERATIVA CON AICC) -->
+      <div class="bento-card good">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <span style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); color:#34d399; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px; text-transform:uppercase;">
+              ✨ DESPUÉS: Con Administración Humana
+            </span>
+            <span style="color:#10b981; font-weight:800; font-size:0.85rem;">+18h / sem recuperadas</span>
+          </div>
+          <h3 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin-bottom:8px;">
+            Claridad, Bloques de Oro & Paz Mental
+          </h3>
+          <p style="font-size:0.85rem; color:#a1a1aa; line-height:1.5; margin-bottom:16px;">
+            Horario 24H blindado con editor en vivo, Kanban con límite estricto WIP=2 y Hub de imprimibles de 1 hoja.
+          </p>
+
+          <!-- MINI MOCKUP VISUAL DESPUÉS (INTERACTIVO) -->
+          <div style="background:#141414; border:1px solid rgba(16,185,129,0.4); border-radius:8px; padding:12px; margin-bottom:14px;">
+            <div style="font-size:0.74rem; color:#10b981; font-weight:700; margin-bottom:6px; display:flex; justify-content:space-between;">
+              <span>🛡️ Mapeador 24H Equilibrado:</span>
+              <span style="color:#38bdf8;">Pasa el mouse / toca las cajitas</span>
+            </div>
+            <div class="mini-mapper-grid">
+              <div class="mini-hour-box box-sleep" title="Sueño Reparador (00:00 - 08:00)">💤</div>
+              <div class="mini-hour-box box-sleep" title="Sueño Reparador">💤</div>
+              <div class="mini-hour-box box-gold" title="Bloque de Oro Personal (08:00)">👑</div>
+              <div class="mini-hour-box box-work" title="Trabajo Profundo (WIP=2)">🎯</div>
+              <div class="mini-hour-box box-work" title="Trabajo Profundo">🎯</div>
+              <div class="mini-hour-box box-free" title="Pausa Sensorial / Almuerzo">☕</div>
+              <div class="mini-hour-box box-work" title="Clientes / Sesiones">💼</div>
+              <div class="mini-hour-box box-work" title="Cierre del día">✅</div>
+              <div class="mini-hour-box box-free" title="Tiempo Libre & Familia">🏡</div>
+              <div class="mini-hour-box box-free" title="Desconexión total">🌿</div>
+              <div class="mini-hour-box box-sleep" title="Rutina de noche">🌙</div>
+              <div class="mini-hour-box box-sleep" title="Sueño">💤</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.68rem; color:#a1a1aa; margin-top:4px;">
+              <span>👑 Oro</span>
+              <span>🎯 Trabajo</span>
+              <span>☕ Pausa</span>
+              <span>🏡 Familia</span>
+              <span>💤 Sueño</span>
+            </div>
+          </div>
+        </div>
+
+        <ul style="list-style:none; font-size:0.84rem; color:#e5e7eb; display:flex; flex-direction:column; gap:8px;">
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981;">✓</span> <strong>Límite estricto WIP=2:</strong> Solo 2 tareas activas para blindar tu foco</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981;">✓</span> <strong>Tarifas Paquetizadas:</strong> Rompe el techo de venderte por hora suelta</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981;">✓</span> <strong>Hub de Imprimibles 1 Hoja:</strong> Cero saturación digital ni fatiga visual</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- PHILOSOPHY (GOLDEN CIRCLE) -->
 <section class="philosophy" id="filosofia">
@@ -2035,13 +2324,13 @@
     return false;
   };
 </script>
-
-<script type="module">
-  import { AHAuth } from './js/auth.js';
-
+<script src="js/auth.js"></script>
+<script>
   async function setupApp() {
     try {
-      await AHAuth.init();
+      if (window.AHAuth && window.AHAuth.init) {
+        await window.AHAuth.init();
+      }
     } catch(e) {
       console.warn("AHAuth init error:", e);
     }
@@ -2206,11 +2495,54 @@
     });
   };
 
+  // ── LÓGICA DEL SIMULADOR DE IMPACTO AICC EN VIVO ──
+  window.updateImpactSim = function(val) {
+    const hours = parseInt(val, 10);
+    const badge = document.getElementById('sim-hours-badge');
+    if (badge) badge.innerText = `${hours}h / sem perdidas`;
+
+    const recuperadasSem = Math.round(hours * 0.75);
+    const recuperadasMes = recuperadasSem * 4;
+    const diasEquiv = (recuperadasMes / 24).toFixed(1);
+
+    const elMes = document.getElementById('sim-liberadas-mes');
+    if (elMes) elMes.innerText = `+${recuperadasMes}h`;
+
+    const elDias = document.getElementById('sim-dias-equivalentes');
+    if (elDias) elDias.innerText = `≈ ${diasEquiv} días completos de vida`;
+
+    const listEl = document.getElementById('sim-modulos-list');
+    if (listEl) {
+      if (hours >= 22) {
+        listEl.innerHTML = `
+          <span style="background:rgba(239,68,68,0.15); border:1px solid #ef4444; color:#f87171; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">🚨 MOD-04: Protocolo Rescate Burnout</span>
+          <span style="background:rgba(56,189,248,0.15); border:1px solid #38bdf8; color:#38bdf8; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">🧩 MOD-01: Mapeador Horario 24H</span>
+          <span style="background:rgba(16,185,129,0.15); border:1px solid #10b981; color:#10b981; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">🎯 MOD-03: Kanban Personal WIP=2</span>
+        `;
+      } else if (hours >= 14) {
+        listEl.innerHTML = `
+          <span style="background:rgba(56,189,248,0.15); border:1px solid #38bdf8; color:#38bdf8; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">🧩 MOD-01: Mapeador Horario 24H</span>
+          <span style="background:rgba(16,185,129,0.15); border:1px solid #10b981; color:#10b981; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">🎯 MOD-03: Kanban Personal WIP=2</span>
+          <span style="background:rgba(245,158,11,0.15); border:1px solid #f59e0b; color:#f59e0b; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">🧠 MOD-12: Pausas Sensoriales & Batería</span>
+        `;
+      } else {
+        listEl.innerHTML = `
+          <span style="background:rgba(56,189,248,0.15); border:1px solid #38bdf8; color:#38bdf8; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">🧩 MOD-01: Mapeador Horario 24H</span>
+          <span style="background:rgba(16,185,129,0.15); border:1px solid #10b981; color:#10b981; font-size:0.78rem; font-weight:700; padding:4px 12px; border-radius:20px;">💸 MOD-02: Presupuesto 50/30/20</span>
+        `;
+      }
+    }
+  };
+
   // Run setup
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupApp);
+    document.addEventListener('DOMContentLoaded', () => {
+      setupApp();
+      window.updateImpactSim(18);
+    });
   } else {
     setupApp();
+    window.updateImpactSim(18);
   }
 </script>
 
