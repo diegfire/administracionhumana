@@ -406,37 +406,60 @@
   <script src="js/auth.js"></script>
   <script>
     // GLOBAL CLIENT DATA AND SYNC CONTROLLER
+    // GLOBAL CLIENT DATA AND EXPANDED MULTI-CLIENT PORTAL CONTROLLER
     const DEFAULT_CLIENT_DATA = {
-      'user_antonia_jofre': {
-        fullName: 'Antonia Jofré',
-        status: '🟢 En Acompañamiento Activo',
-        flightPlanUrl: 'planes-antonia.html',
-        flightPlanDesc: 'Mapeador de Horarios 24H, Tablero de Foco (Máximo 2 Tareas a la Vez), Metas de Clases de Yoga y Rutinas Somáticas.',
-        storageKey: 'ah_auth_token_antonia',
-        driveUrl: 'planes-antonia.html#recursos',
-        scores: { 'Propósito': 9, 'Bienestar': 8, 'Tiempo': 5, 'Hábitos': 6, 'Finanzas': 7, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8 },
-        defaultTasks: [
-          { id: 1, text: 'Calcular 14 clases de yoga para meta pasajes Santiago ($160.000)', completed: false },
-          { id: 2, text: 'Mapear bloque matutino de movimiento somático en Generador 24H', completed: false },
-          { id: 3, text: 'Configurar tablero Tablero de Máx 2 Tareas para evitar sobrecarga operativa', completed: false }
-        ]
-      },
       'user_rocio_ust': {
+        id: 'rocio',
         fullName: 'Rocío',
-        status: '🟢 En Acompañamiento Activo',
+        pin: 'rocio2026',
+        status: '🟢 En Acompañamiento Activo (Fase 2)',
         flightPlanUrl: 'planes-rocio.html',
-        flightPlanDesc: 'Psicopedagogía UST (1er año), Puya Masajes (Planes 1 mes), Voz Caleidoscopio y Protocolos TEA.',
+        flightPlanDesc: 'Psicopedagogía UST, Puya Masajes (Planes 1 mes), Voz Caleidoscopio, Radar PESTEL y Protocolos TEA.',
         storageKey: 'ah_auth_token_rocio',
         driveUrl: 'planes-rocio.html#recursos',
+        hubImprimiblesUrl: '04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html',
         scores: { 'Propósito': 8, 'Bienestar': 7, 'Tiempo': 6, 'Hábitos': 7, 'Finanzas': 7, 'Relaciones': 8, 'Entorno': 8, 'Desarrollo': 8 },
         defaultTasks: [
           { id: 1, text: 'Delimitar bloques de descanso vs. trabajo en clínica y estudio', completed: false },
-          { id: 2, text: 'Configurar matriz de priorización para delegar tareas operativas', completed: false },
-          { id: 3, text: 'Revisar métricas de balance y finanzas semanales', completed: false }
+          { id: 2, text: 'Aplicar Radar PESTEL de Doble Vía para Puya Masajes y Voz Caleidoscopio', completed: false },
+          { id: 3, text: 'Proteger pausas de Stimming TEA (10:15 y 16:45) en el Mapeador 24H', completed: false }
+        ]
+      },
+      'user_alvaro_consultoria': {
+        id: 'alvaro',
+        fullName: 'Álvaro',
+        pin: 'alvaro2026',
+        status: '🟢 En Acompañamiento Activo (Del Análisis a la Acción)',
+        flightPlanUrl: 'planes-alvaro.html',
+        flightPlanDesc: 'Estructuración de Consultoría B2B, Paquetes de Alto Valor, Tablero de Foco y Vencimiento del Síndrome del Impostor.',
+        storageKey: 'ah_auth_token_alvaro',
+        driveUrl: 'planes-alvaro.html#recursos',
+        scores: { 'Propósito': 9, 'Bienestar': 8, 'Tiempo': 7, 'Hábitos': 8, 'Finanzas': 8, 'Relaciones': 7, 'Entorno': 8, 'Desarrollo': 9 },
+        defaultTasks: [
+          { id: 1, text: 'Definir propuesta de valor de Consultoría y entregables clave', completed: false },
+          { id: 2, text: 'Configurar Tablero de Foco con límite de máximo 2 propuestas activas', completed: false },
+          { id: 3, text: 'Revisar matriz financiera 50/30/20 y colchón de tranquilidad', completed: false }
+        ]
+      },
+      'user_karina_terapias': {
+        id: 'karina',
+        fullName: 'Karina',
+        pin: 'karina2026',
+        status: '🟢 En Acompañamiento Activo',
+        flightPlanUrl: 'planes-karina.html',
+        flightPlanDesc: 'Diseño y Terapias Holísticas, Paquetización Mensual, Soberanía de Horarios y Finanzas Claras.',
+        storageKey: 'ah_auth_token_karina',
+        driveUrl: 'planes-karina.html#recursos',
+        scores: { 'Propósito': 8, 'Bienestar': 8, 'Tiempo': 6, 'Hábitos': 7, 'Finanzas': 7, 'Relaciones': 8, 'Entorno': 8, 'Desarrollo': 8 },
+        defaultTasks: [
+          { id: 1, text: 'Reestructurar agenda semanal en cajitas de 24H', completed: false },
+          { id: 2, text: 'Paquetizar servicios terapéuticos en abonos mensuales', completed: false }
         ]
       },
       'user_matias_gonzalez': {
+        id: 'matias',
         fullName: 'Matías González',
+        pin: 'matias2026',
         status: '🟢 En Acompañamiento (Fase 1)',
         flightPlanUrl: 'planes-matias.html',
         flightPlanDesc: '3º Medio Colegio Concepción, Preparación PAES, Balance Estudio vs. Recreación y Bloques de Enfoque.',
@@ -449,17 +472,50 @@
           { id: 3, text: 'Revisar metas del Plan de Vuelo 2.0 y avance semanal', completed: false }
         ]
       },
+      'user_carlos_ingenieria': {
+        id: 'carlos',
+        fullName: 'Carlos',
+        pin: 'carlos2026',
+        status: '🟢 En Acompañamiento Activo',
+        flightPlanUrl: 'planes-carlos.html',
+        flightPlanDesc: 'Ingeniería de Software & Proyectos Remotos, Límite WIP=2, Blindaje de Horarios y Finanzas de Inversión.',
+        storageKey: 'ah_auth_token_carlos',
+        driveUrl: 'planes-carlos.html#recursos',
+        scores: { 'Propósito': 8, 'Bienestar': 7, 'Tiempo': 6, 'Hábitos': 8, 'Finanzas': 8, 'Relaciones': 7, 'Entorno': 8, 'Desarrollo': 8 },
+        defaultTasks: [
+          { id: 1, text: 'Blindar bloque de trabajo profundo (Deep Work) matutino', completed: false },
+          { id: 2, text: 'Limitar proyectos en paralelo a máximo 2 a la vez', completed: false }
+        ]
+      },
+      'user_antonia_jofre': {
+        id: 'antonia',
+        fullName: 'Antonia Jofré (Sofía)',
+        pin: 'antonia2026',
+        status: '🟢 En Acompañamiento Activo',
+        flightPlanUrl: 'planes-antonia.html',
+        flightPlanDesc: 'Mapeador de Horarios 24H, Tablero de Foco (Máximo 2 Tareas a la Vez), Metas de Clases de Yoga y Rutinas Somáticas.',
+        storageKey: 'ah_auth_token_antonia',
+        driveUrl: 'planes-antonia.html#recursos',
+        scores: { 'Propósito': 9, 'Bienestar': 8, 'Tiempo': 5, 'Hábitos': 6, 'Finanzas': 7, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8 },
+        defaultTasks: [
+          { id: 1, text: 'Calcular 14 clases de yoga para meta pasajes Santiago ($160.000)', completed: false },
+          { id: 2, text: 'Mapear bloque matutino de movimiento somático en Generador 24H', completed: false },
+          { id: 3, text: 'Configurar Tablero de Foco para evitar sobrecarga operativa', completed: false }
+        ]
+      },
       'user_admin_diego': {
-        fullName: 'Diego (Administrador)',
-        status: '👑 Director / Consultor',
-        flightPlanUrl: 'visualizador.html',
-        flightPlanDesc: 'Panel Maestro de Clientes Activos, Comparador de Planes de Vuelo y Generador de Horarios.',
+        id: 'diego',
+        fullName: 'Diego (Consultor & Administrador)',
+        pin: 'diego_ah_master',
+        status: '👑 Director / Consultor AH',
+        flightPlanUrl: 'panel_admin.html',
+        flightPlanDesc: 'Panel Maestro de Clientes Activos, Taller de Módulos AH y Hub de Reels.',
         storageKey: 'ah_auth_token_admin',
-        driveUrl: 'visualizador.html',
+        driveUrl: 'panel_admin.html',
         scores: { 'Propósito': 10, 'Bienestar': 9, 'Tiempo': 8, 'Hábitos': 9, 'Finanzas': 9, 'Relaciones': 9, 'Entorno': 9, 'Desarrollo': 10 },
         defaultTasks: [
           { id: 1, text: 'Revisar actualizaciones de planes de vuelo de clientes activos', completed: false },
-          { id: 2, text: 'Validar diagnósticos 360° en Sondeo Maestro', completed: false }
+          { id: 2, text: 'Prescribir módulos contextuales para sesiones de la semana', completed: false }
         ]
       }
     };
@@ -482,7 +538,19 @@
 
       // Check URL query parameters (e.g. ?client=antojofre) as fallback
       const urlParams = new URLSearchParams(window.location.search);
-      const clientParam = urlParams.get('client') || urlParams.get('user');
+      const clientParam = urlParams.get('c') || urlParams.get('client') || urlParams.get('user') || urlParams.get('id');
+      if (clientParam) {
+        const norm = clientParam.toLowerCase().trim();
+        for (const [uid, config] of Object.entries(DEFAULT_CLIENT_DATA)) {
+          if (config.id === norm || norm.includes(config.id) || uid.toLowerCase().includes(norm)) {
+            user = { uid: uid, fullName: config.fullName, role: uid.includes('admin') ? 'admin' : 'client', flightPlanUrl: config.flightPlanUrl, storageKey: config.storageKey };
+            break;
+          }
+        }
+        if (user) {
+          localStorage.setItem('ah_current_user', JSON.stringify(user));
+        }
+      }
       if (!user && clientParam) {
         const norm = clientParam.toLowerCase();
         if (norm.includes('anto')) user = { uid: 'user_antonia_jofre', fullName: 'Antonia Jofré', role: 'client', flightPlanUrl: 'planes-antonia.html', storageKey: 'ah_auth_token_antonia' };
