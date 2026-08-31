@@ -2800,23 +2800,27 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
         });
     </script>
 
-    <!-- MOTORES MODULARES -->
+        <!-- MOTORES MODULARES -->
     <script src="js/portal-gateway.js?v=3.2"></script>
     <script src="js/schedule-engine.js?v=3.2"></script>
     <script src="js/kanban-engine.js?v=3.2"></script>
-    <script src="js/whatsapp-widget.js?v=3.2">
+    <script src="js/whatsapp-widget.js?v=3.2"></script>
+
+    <script>
     // SWITCHER PESTEL DINÁMICO (ROCÍO)
-    function switchPestelView(mode, btn) {
+    window.switchPestelView = function(mode, btn) {
         document.querySelectorAll('.btn-toggle-pestel').forEach(b => {
             b.style.background = 'transparent';
             b.style.color = '#888';
             b.style.fontWeight = '700';
             b.classList.remove('active');
         });
-        btn.style.background = '#fff';
-        btn.style.color = '#000';
-        btn.style.fontWeight = '800';
-        btn.classList.add('active');
+        if (btn) {
+            btn.style.background = '#fff';
+            btn.style.color = '#000';
+            btn.style.fontWeight = '800';
+            btn.classList.add('active');
+        }
 
         const masajesEls = document.querySelectorAll('.pestel-content-masajes');
         const vozEls = document.querySelectorAll('.pestel-content-voz');
@@ -2839,16 +2843,16 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                 el.style.paddingTop = '8px';
             });
         }
-    }
+    };
 
-    
-    function copyScriptText(elementId) {
-        const text = document.getElementById(elementId).innerText;
+    window.copyScriptText = function(elementId) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        const text = el.innerText;
         navigator.clipboard.writeText(text).then(() => {
             alert('✅ Mensaje copiado al portapapeles listo para enviar por WhatsApp.');
         });
-    }
-
+    };
     </script>
 </body>
 </html>
