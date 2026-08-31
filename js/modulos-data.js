@@ -806,7 +806,7 @@ window.AICC_MODULOS_DB = [
   },
   {
     "id": "kanban_gtd_wip2",
-    "nombre_oficial": "Kanban Minimalista con Límite WIP=2",
+    "nombre_oficial": "Kanban Minimalista con Límite Máximo 2 Tareas",
     "nombre_humano": "El Embudo de Sola-Ejecución (Máximo 2 Tareas Activas)",
     "pilar": "Pilar 2: Tiempo & Ejecución",
     "fase_madurez": "Fase 1: Rescate & Oxígeno",
@@ -835,7 +835,7 @@ window.AICC_MODULOS_DB = [
     "doble_salida": {
       "componente_web": {
         "widget_id": "kanban-wip2-board",
-        "tipo_interaccion": "Tablero drag-and-drop con límite estricto WIP=2 y alertas visuales",
+        "tipo_interaccion": "Tablero drag-and-drop con límite estricto Máximo 2 Tareas y alertas visuales",
         "persistencia": "localStorage"
       },
       "imprimible_fisico": {

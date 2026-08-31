@@ -230,7 +230,7 @@
               <div class="badge-plan">🚀 Plan de Vuelo 2.0 Activo</div>
               <h2 class="card-title" style="font-size:1.55rem;" id="flight-plan-title">Plan de Vuelo 2.0</h2>
               <p class="card-desc" style="margin-bottom:0;" id="flight-plan-desc">
-                Accede a tu Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Metas y Caja de Herramientas.
+                Accede a tu Mapeador de Horarios 24H, Tablero de Foco (Máximo 2 Tareas a la Vez), Metas y Caja de Herramientas.
               </p>
             </div>
             <a href="#" id="flight-plan-btn" class="btn-card-action" style="background:#ffffff; color:#000; font-size:0.95rem; padding:14px 28px; flex-shrink:0;">
@@ -411,14 +411,14 @@
         fullName: 'Antonia Jofré',
         status: '🟢 En Acompañamiento Activo',
         flightPlanUrl: 'planes-antonia.html',
-        flightPlanDesc: 'Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Metas de Clases de Yoga y Rutinas Somáticas.',
+        flightPlanDesc: 'Mapeador de Horarios 24H, Tablero de Foco (Máximo 2 Tareas a la Vez), Metas de Clases de Yoga y Rutinas Somáticas.',
         storageKey: 'ah_auth_token_antonia',
         driveUrl: 'planes-antonia.html#recursos',
         scores: { 'Propósito': 9, 'Bienestar': 8, 'Tiempo': 5, 'Hábitos': 6, 'Finanzas': 7, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8 },
         defaultTasks: [
           { id: 1, text: 'Calcular 14 clases de yoga para meta pasajes Santiago ($160.000)', completed: false },
           { id: 2, text: 'Mapear bloque matutino de movimiento somático en Generador 24H', completed: false },
-          { id: 3, text: 'Configurar tablero Kanban WIP=2 para evitar sobrecarga operativa', completed: false }
+          { id: 3, text: 'Configurar tablero Tablero de Máx 2 Tareas para evitar sobrecarga operativa', completed: false }
         ]
       },
       'user_rocio_ust': {
@@ -528,7 +528,7 @@
       if (flightUrl) {
         flightBtn.href = flightUrl;
         flightTitle.innerText = `Plan de Vuelo 2.0 • ${user.fullName || 'Cliente'}`;
-        flightDesc.innerText = clientConfig.flightPlanDesc || 'Accede a tu Mapeador de Horarios 24H, Tablero Kanban GTD (WIP=2), Metas y Caja de Herramientas.';
+        flightDesc.innerText = clientConfig.flightPlanDesc || 'Accede a tu Mapeador de Horarios 24H, Tablero de Foco (Máximo 2 Tareas a la Vez), Metas y Caja de Herramientas.';
         flightBtn.innerText = 'Abrir Mi Plan de Vuelo 🚀';
         if (planBadge) planBadge.innerText = '🚀 Plan de Vuelo 2.0 Activo';
       } else {

@@ -1,5 +1,5 @@
 /**
- * AICC KANBAN GTD ENGINE (LÍMITE ESTRICTO WIP = 2)
+ * AICC KANBAN GTD ENGINE (LÍMITE ESTRICTO Máximo 2 Tareas a la Vez)
  */
 
 let kanbanTaskList = [];
@@ -104,7 +104,7 @@ function moveKanbanTaskItem(taskId, targetCol) {
     if (targetCol === "doing") {
         const currentDoing = kanbanTaskList.filter(t => t.col === "doing" && t.id !== taskId).length;
         if (currentDoing >= 2) {
-            alert("⚠️ ¡Límite WIP = 2 Alcanzado! Tienes 2 tareas activas en curso. Mueve o termina una antes de ingresar otra a 'En Ejecución'.");
+            alert("⚠️ ¡Límite Máximo 2 Tareas a la Vez Alcanzado! Tienes 2 tareas activas en curso. Mueve o termina una antes de ingresar otra a 'En Ejecución'.");
             return;
         }
     }
