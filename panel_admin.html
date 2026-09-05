@@ -423,7 +423,9 @@
       window.openDiagModal = async (uid, userName) => {
         currentModalClientUid = uid;
         currentModalClientName = userName;
-        populateQuickPrescribeSelect();
+        if (typeof populateQuickPrescribeSelect === 'function') {
+          populateQuickPrescribeSelect();
+        }
         const quickRes = document.getElementById('quick-prescribe-result');
         if (quickRes) quickRes.style.display = 'none';
         document.getElementById('diag-user-title').innerText = `Expediente & Diagnóstico 360° · ${userName}`;
@@ -454,17 +456,18 @@
         }
 
         // 1. Render Radar de Signos Vitales
+        const activeAudio = d.audioUrl || d.audioData;
         let html = `
-          ${d.audioData ? `
+          ${activeAudio ? `
             <div style="margin-bottom:16px; padding:14px; background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.3); border-radius:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <div style="display:flex; align-items:center; gap:8px;">
                   <span style="font-size:1.2rem;">🎙️</span>
                   <span style="font-weight:800; color:#38bdf8; font-size:0.88rem;">Nota de Voz del Cliente (Escucha Activa):</span>
                 </div>
-                <a href="${d.audioData}" download="Audio_Diagnostico_${userName.replace(/\s+/g, '_')}.webm" class="btn-action-view" style="font-size:0.72rem; padding:4px 8px; text-decoration:none;">⬇️ Descargar</a>
+                <a href="${activeAudio}" target="_blank" download="Audio_Diagnostico_${userName.replace(/\s+/g, '_')}.webm" class="btn-action-view" style="font-size:0.72rem; padding:4px 8px; text-decoration:none;">⬇️ Abrir / Descargar</a>
               </div>
-              <audio controls src="${d.audioData}" style="width:100%; height:38px; border-radius:8px; outline:none;"></audio>
+              <audio controls src="${activeAudio}" style="width:100%; height:38px; border-radius:8px; outline:none;"></audio>
             </div>
           ` : ''}
           <div style="margin-bottom: 20px;">
@@ -670,8 +673,51 @@
             parsed = JSON.parse(decodeURIComponent(escape(atob(b64))));
           } else if (rawText.startsWith('{')) {
             parsed = JSON.parse(rawText);
+          } else if (rawText.includes('Radiografía Express') || rawText.includes('Nombre:') || rawText.includes('Fuga estimada:')) {
+            // Parser inteligente para mensajes de WhatsApp de Radiografía Express
+            const matchName = rawText.match(/Nombre:\s*([^\n\r(]+)/i);
+            const matchEdad = rawText.match(/Nombre:[^(]*\((\d+)\s*años\)/i);
+            const matchCiudad = rawText.match(/Ciudad:\s*([^\n\r]+)/i);
+            const matchOcupacion = rawText.match(/Ocupación:\s*([^\n\r]+)/i);
+            const matchWa = rawText.match(/WhatsApp:\s*([^\n\r]+)/i);
+            const matchFuga = rawText.match(/Fuga estimada:\s*~?(\d+)/i);
+            const matchDolor = rawText.match(/Cuello de Botella:\s*([^\n\r]+)/i);
+            const matchAudioUrl = rawText.match(/(https?:\/\/[^\s\n\r]+(?:tmpfiles|catbox|audio|webm|mp4)[^\s\n\r]*)/i) || rawText.match(/Nota de Voz[^\n\r]*:\s*(https?:\/\/[^\s\n\r]+)/i);
+
+            const cName = matchName ? matchName[1].trim() : 'Cliente Express';
+            const cEdad = matchEdad ? matchEdad[1].trim() : '';
+            const cCiudad = matchCiudad ? matchCiudad[1].trim() : '';
+            const cOcupacion = matchOcupacion ? matchOcupacion[1].trim() : '';
+            const cWa = matchWa ? matchWa[1].trim() : '';
+            const cFuga = matchFuga ? parseInt(matchFuga[1], 10) : 18;
+            const cDolor = matchDolor ? matchDolor[1].trim() : 'Caos de Horarios & Fuga de Tiempo';
+            const cAudio = matchAudioUrl ? matchAudioUrl[1].trim() : null;
+
+            parsed = {
+              clientName: cName,
+              edad: cEdad,
+              ciudad: cCiudad,
+              ocupacion: cOcupacion,
+              whatsapp: cWa,
+              horasFuga: cFuga,
+              dolorPrincipal: cDolor,
+              audioData: cAudio,
+              audioUrl: cAudio,
+              hasAudio: Boolean(cAudio),
+              fugas: [Math.min(5, Math.ceil(cFuga / 6)), Math.min(5, Math.ceil(cFuga / 6)), 3, 3, 3, 3, 3, 3, 3, 3],
+              scores: {
+                'Gestión del Tiempo': cDolor.includes('Horarios') ? 3 : 6,
+                'Bienestar & Salud': cDolor.includes('Sensorial') ? 3 : 6,
+                'Finanzas': cDolor.includes('Finanzas') ? 3 : 6,
+                'Hábitos & Rutinas': cDolor.includes('Rumiación') ? 3 : 6,
+                'Entorno Trabajo': cDolor.includes('Roles') ? 4 : 6,
+                'Propósito': 6,
+                'Relaciones': 7,
+                'Desarrollo Personal': 7
+              }
+            };
           } else {
-            throw new Error('No se encontró el código AICC-DATA en el texto ingresado.');
+            throw new Error('No se reconoció el formato. Puedes pegar el texto completo del WhatsApp de la Radiografía Express o el código AICC-DATA del Sondeo Maestro.');
           }
 
           // Crear cliente nuevo o actualizar existente
@@ -680,17 +726,25 @@
           const newClient = {
             uid: newUid,
             fullName: clientName,
-            email: 'lead.whatsapp@diagnostico.cl',
+            email: parsed.email || `${clientName.toLowerCase().replace(/[^a-z0-9]/g, '')}@whatsapp.ah`,
+            whatsapp: parsed.whatsapp || '',
+            edad: parsed.edad || '',
+            ciudad: parsed.ciudad || '',
+            ocupacion: parsed.ocupacion || '',
+            dolorPrincipal: parsed.dolorPrincipal || '',
+            horasFuga: parsed.horasFuga || 18,
+            hasAudio: Boolean(parsed.hasAudio || parsed.audioUrl || parsed.audioData),
+            audioUrl: parsed.audioUrl || null,
             status: 'Sondeo Recibido',
             driveUrl: '',
-            notes: `Importado desde WhatsApp el ${new Date().toLocaleDateString('es-ES')}`
+            notes: `Importado desde WhatsApp el ${new Date().toLocaleDateString('es-CL')}${parsed.audioUrl ? ' • Audio: ' + parsed.audioUrl : ''}`
           };
 
           allClients.unshift(newClient);
           localStorage.setItem('ah_admin_clients', JSON.stringify(allClients));
 
           // Guardar diagnóstico
-          const scoresObj = {};
+          const scoresObj = parsed.scores || {};
           if (parsed.rueda) {
             parsed.rueda.forEach(r => { scoresObj[r.name] = r.score; });
           }
@@ -699,9 +753,9 @@
           document.getElementById('import-modal').classList.remove('active');
           renderTable();
           window.openDiagModal(newUid, clientName);
-          alert(`✅ Diagnóstico de "${clientName}" importado y registrado con éxito.`);
+          alert(`✅ Radiografía de "${clientName}" importada y registrada con éxito.`);
         } catch(err) {
-          alert('Error al decodificar: ' + err.message);
+          alert('Error al importar: ' + err.message);
         }
       };
     });

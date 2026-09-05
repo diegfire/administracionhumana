@@ -348,7 +348,7 @@
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
             <button class="tab-btn" onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns"></i> Tablero de Foco (Máx 2 Tareas)
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
             </button>
             <button class="tab-btn" onclick="switchTab('tab-herramientas')">
                 <i class="fa-solid fa-toolbox"></i> Herramientas
@@ -412,7 +412,7 @@
                     <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
                     <ul class="custom-list">
                         <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
-                        <li><strong>🛡️ Protección Antidispersión:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
+                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
                         <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
                     </ul>
                 </div>
@@ -989,7 +989,7 @@ Por favor genera:
                     <div style="background:#121212; border:1px solid #222; border-radius:6px; padding:0.6rem;">
                         <strong style="color:#fbbf24; display:block; margin-bottom:0.3rem;">⚡ Productividad & Tiempo</strong>
                         <div style="color:#ccc;">✓ <code>mapeador_24h</code> (Cajitas en vivo)</div>
-                        <div style="color:#ccc;">✓ <code>kanban_gtd_wip2</code> (Máximo 2 Tareas límite)</div>
+                        <div style="color:#ccc;">✓ <code>kanban_gtd_wip2</code> (WIP=2 límite)</div>
                         <div style="color:#ccc;">✓ <code>time_blocking_flexible</code> (90m UST)</div>
                         <div style="color:#ccc;">✓ <code>protocolo_paso_cero</code> (5 min reloj)</div>
                     </div>
@@ -1519,6 +1519,31 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                     </div>
                 </div>
 
+                <!-- SELECTOR DESPLEGABLE DE CALENDARIOS GUARDADOS -->
+                <div id="schedule-calendar-bar-container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; background:#101010; border:1px solid #282828; border-radius:10px; padding:10px 14px; margin-bottom:1rem;">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; flex:1;">
+                        <span style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-calendar-check" style="color:#38bdf8;"></i> Calendario Activo:
+                        </span>
+                        <select id="schedule-calendar-select" class="schedule-calendar-select" onchange="handleCalendarSelectChange(this.value)" style="background:#181818; border:1px solid #38bdf855; color:#fff; padding:6px 12px; border-radius:6px; font-size:0.85rem; font-weight:700; min-width:280px; max-width:100%; outline:none; cursor:pointer;">
+                        </select>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn-schedule-action" onclick="openSaveAsNewCalendarModal()" style="background:rgba(16,185,129,0.12); color:#10b981; border:1px solid rgba(16,185,129,0.35); font-weight:700;">
+                            <i class="fa-solid fa-folder-plus"></i> + Guardar Semana Actual
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-merge-calendar" onclick="openMergeCalendarsModal()" style="background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.35); font-weight:700;">
+                            <i class="fa-solid fa-layer-group"></i> Solapar / Fusionar
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="openRenameCalendarModal()" style="color:#ccc;">
+                            <i class="fa-solid fa-pen"></i> Renombrar
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-delete-active-calendar" onclick="deleteActiveCalendar()" style="color:#f87171; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);">
+                            <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
                     Pinta tus bloques semanales para proteger tu descanso, tu foco productivo y tus momentos libres de culpa.
                 </p>
@@ -1556,7 +1581,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
             <div class="card">
                 <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
                     <span style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:#fff; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-table-columns"></i> Tablero de Foco (Máximo 2 Tareas a la Vez)
+                        <i class="fa-solid fa-table-columns"></i> Tablero Kanban GTD (Límite Estricto WIP = 2)
                     </span>
                     <button class="btn-schedule-action" onclick="resetKanbanDefault()" style="color:#aaa;">
                         <i class="fa-solid fa-rotate-left"></i> Restaurar Tablero
@@ -1581,7 +1606,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
 
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (Máximo 2 Tareas a la Vez)</div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -1755,7 +1780,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                     </div>
                 </div>
 
-                <!-- HERRAMIENTA 5: KANBAN GTD Máximo 2 Tareas -->
+                <!-- HERRAMIENTA 5: KANBAN GTD WIP=2 -->
                 <div class="card" style="border-color: rgba(168, 85, 247, 0.3);">
                     <div class="tool-box">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
@@ -1763,7 +1788,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                                 📋 Herramienta 5 • Flujo Visual
                             </span>
                         </div>
-                        <h3>5. Tablero Kanban Visual (Flujo Tres Vías Máximo 2 Tareas)</h3>
+                        <h3>5. Tablero Kanban Visual (Flujo Tres Vías WIP=2)</h3>
                         <p class="tool-meta">Control de Tareas en Pared • Límite Anti-Abrumo</p>
                         <p class="tool-desc">Tres columnas con Post-its por color (UST, Puya, Canto, Hogar) con la regla innegociable de máximo 2 tareas activas en ejecución.</p>
                         
@@ -1853,7 +1878,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                     </div>
                 </div>
 
-                <!-- HERRAMIENTA 8: FEEDBACK SBI & PROTOCOLO ZEIGARNIK -->
+                <!-- HERRAMIENTA 8: FEEDBACK SBI & PROTOCOLO DE ACUERDOS CLAROS -->
                 <div class="card" style="border-color: rgba(99, 102, 241, 0.3);">
                     <div class="tool-box">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
@@ -1861,9 +1886,9 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                                 🧘 Herramienta 8 • Regulación & Pausa
                             </span>
                         </div>
-                        <h3>8. Feedback SBI & Protocolo Zeigarnik (Pausa Fija)</h3>
+                        <h3>8. Feedback SBI & Protocolo de Acuerdos Claros (Pausa Fija)</h3>
                         <p class="tool-meta">Desescalamiento Emocional & Retorno Responsable</p>
-                        <p class="tool-desc">Poner una hora exacta de retorno desactiva el conflicto y te da tiempo para calmarte sin abrir un bucle de evasión ni culpa.</p>
+                        <p class="tool-desc">Poner una hora exacta de retorno desactiva el conflicto y te da tiempo para calmarte sin abrir espacios de evasión ni culpa.</p>
                         
                         <div class="image-preview">
                             <img src="assets/img/herramientas/Feedback SBI.webp" data-fallback="assets/img/herramientas/Feedback SBI.png" alt="Feedback SBI" onclick="openLightbox(this.src)">
@@ -2235,7 +2260,171 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
             masterPIN: "diego_ah_master"
         };
 
-        window.CLIENT_SCHEDULE_CATEGORIES = [{"id": "sueno", "nombre": "\ud83d\ude34 Sue\u00f1o & Recuperaci\u00f3n", "color": "#1e293b", "tag": "SUE\u00d1O"}, {"id": "ust", "nombre": "\ud83c\udf93 Universidad UST (Psicopedagog\u00eda)", "color": "#2563eb", "tag": "UST"}, {"id": "puya", "nombre": "\ud83d\udc86\u200d\u2640\ufe0f Puya Masajes (Atenciones)", "color": "#0d9488", "tag": "PUYA"}, {"id": "canto", "nombre": "\ud83c\udfa4 Voz Caleidoscopio (Clases)", "color": "#7c3aed", "tag": "CANTO"}, {"id": "stimming", "nombre": "\ud83e\uddd8 Stimming & Descarga Sensorial (TEA)", "color": "#d97706", "tag": "STIMM"}, {"id": "hogar", "nombre": "\ud83c\udfe1 Hogar & Mascota Nieve", "color": "#059669", "tag": "HOGAR"}, {"id": "libre", "nombre": "\ud83c\udf31 Libre / Ocio Regenerativo", "color": "#db2777", "tag": "LIBRE"}];
+        window.CLIENT_SCHEDULE_CATEGORIES = [
+            { id: "sueno", name: "😴 Sueño & Recuperación", label: "😴 Sueño & Recuperación", color: "#1e293b", tag: "SUEÑO" },
+            { id: "ust", name: "🎓 Universidad UST (Psicopedagogía)", label: "🎓 Universidad UST (Psicopedagogía)", color: "#2563eb", tag: "UST" },
+            { id: "puya", name: "💆‍♀️ Puya Masajes (Atenciones)", label: "💆‍♀️ Puya Masajes (Atenciones)", color: "#0d9488", tag: "PUYA" },
+            { id: "canto", name: "🎤 Voz Caleidoscopio (Clases)", label: "🎤 Voz Caleidoscopio (Clases)", color: "#7c3aed", tag: "CANTO" },
+            { id: "stimming", name: "🧘 Stimming & Descarga Sensorial (TEA)", label: "🧘 Stimming & Descarga Sensorial (TEA)", color: "#d97706", tag: "STIMM" },
+            { id: "hogar", name: "🏡 Hogar & Mascota Nieve", label: "🏡 Hogar & Mascota Nieve", color: "#059669", tag: "HOGAR" },
+            { id: "libre", name: "🌱 Libre / Ocio Regenerativo", label: "🌱 Libre / Ocio Regenerativo", color: "#db2777", tag: "LIBRE" }
+        ];
+
+        window.CLIENT_SCHEDULE_PRESETS = [
+            {
+                id: "base_rocio",
+                name: "🌟 Horario Base Semanal • Universidad UST & Puya Masajes (Vigente)",
+                generator: function() {
+                    const data = {};
+                    for (let d = 0; d < 7; d++) {
+                        for (let h = 0; h < 7; h++) data[`${d}-${h}`] = "sueno";
+                        data[`${d}-23`] = "sueno";
+                    }
+                    for (let d = 0; d < 5; d++) {
+                        data[`${d}-7`] = "stimming";
+                        data[`${d}-13`] = "hogar";
+                        data[`${d}-14`] = "stimming";
+                        data[`${d}-20`] = "hogar";
+                        data[`${d}-21`] = "libre";
+                        data[`${d}-22`] = "stimming";
+                    }
+                    [0, 2, 4].forEach(d => {
+                        data[`${d}-8`] = "ust";
+                        data[`${d}-9`] = "ust";
+                        data[`${d}-10`] = "ust";
+                        data[`${d}-11`] = "ust";
+                        data[`${d}-12`] = "ust";
+                        data[`${d}-15`] = "ust";
+                        data[`${d}-16`] = "ust";
+                        data[`${d}-17`] = "hogar";
+                        data[`${d}-18`] = "libre";
+                        data[`${d}-19`] = "libre";
+                    });
+                    [1, 3].forEach(d => {
+                        data[`${d}-8`] = "ust";
+                        data[`${d}-9`] = "ust";
+                        data[`${d}-10`] = "stimming";
+                        data[`${d}-11`] = "canto";
+                        data[`${d}-12`] = "puya";
+                        data[`${d}-15`] = "puya";
+                        data[`${d}-16`] = "puya";
+                        data[`${d}-17`] = "puya";
+                        data[`${d}-18`] = "puya";
+                        data[`${d}-19`] = "hogar";
+                    });
+                    data[`5-7`] = "stimming";
+                    data[`5-8`] = "hogar";
+                    data[`5-9`] = "canto";
+                    data[`5-10`] = "canto";
+                    data[`5-11`] = "canto";
+                    data[`5-12`] = "puya";
+                    data[`5-13`] = "hogar";
+                    for (let h = 14; h <= 21; h++) data[`5-${h}`] = "libre";
+                    data[`5-22`] = "stimming";
+                    data[`6-7`] = "sueno";
+                    data[`6-8`] = "stimming";
+                    for (let h = 9; h <= 21; h++) data[`6-${h}`] = (h % 3 === 0) ? "hogar" : "libre";
+                    data[`6-22`] = "stimming";
+                    return data;
+                }
+            },
+            {
+                id: "examenes_ust",
+                name: "📚 Semana de Exámenes & Lecturas UST (Intensivo Académico)",
+                generator: function() {
+                    const data = {};
+                    for (let d = 0; d < 7; d++) {
+                        for (let h = 0; h < 7; h++) data[`${d}-${h}`] = "sueno";
+                        data[`${d}-23`] = "sueno";
+                    }
+                    for (let d = 0; d < 6; d++) {
+                        data[`${d}-7`] = "stimming";
+                        data[`${d}-8`] = "ust";
+                        data[`${d}-9`] = "ust";
+                        data[`${d}-10`] = "ust";
+                        data[`${d}-11`] = "ust";
+                        data[`${d}-12`] = "ust";
+                        data[`${d}-13`] = "hogar";
+                        data[`${d}-14`] = "stimming";
+                        data[`${d}-15`] = "ust";
+                        data[`${d}-16`] = "ust";
+                        data[`${d}-17`] = "ust";
+                        data[`${d}-18`] = "stimming";
+                        data[`${d}-19`] = "hogar";
+                        data[`${d}-20`] = "hogar";
+                        data[`${d}-21`] = "libre";
+                        data[`${d}-22`] = "stimming";
+                    }
+                    data[`6-7`] = "sueno";
+                    data[`6-8`] = "stimming";
+                    for (let h = 9; h <= 21; h++) data[`6-${h}`] = "libre";
+                    data[`6-22`] = "stimming";
+                    return data;
+                }
+            },
+            {
+                id: "semana_puya_alta",
+                name: "💆‍♀️ Semana Alta Puya Masajes & Duetos Charli (Clínico)",
+                generator: function() {
+                    const data = {};
+                    for (let d = 0; d < 7; d++) {
+                        for (let h = 0; h < 7; h++) data[`${d}-${h}`] = "sueno";
+                        data[`${d}-23`] = "sueno";
+                    }
+                    for (let d = 0; d < 5; d++) {
+                        data[`${d}-7`] = "stimming";
+                        data[`${d}-8`] = "ust";
+                        data[`${d}-9`] = "ust";
+                        data[`${d}-10`] = "ust";
+                        data[`${d}-11`] = "puya";
+                        data[`${d}-12`] = "puya";
+                        data[`${d}-13`] = "hogar";
+                        data[`${d}-14`] = "stimming";
+                        data[`${d}-15`] = "puya";
+                        data[`${d}-16`] = "puya";
+                        data[`${d}-17`] = "puya";
+                        data[`${d}-18`] = "puya";
+                        data[`${d}-19`] = "puya";
+                        data[`${d}-20`] = "hogar";
+                        data[`${d}-21`] = "libre";
+                        data[`${d}-22`] = "stimming";
+                    }
+                    for (let h = 8; h <= 14; h++) data[`5-${h}`] = "puya";
+                    for (let h = 15; h <= 21; h++) data[`5-${h}`] = "libre";
+                    data[`5-22`] = "stimming";
+                    for (let h = 7; h <= 21; h++) data[`6-${h}`] = "libre";
+                    data[`6-22`] = "stimming";
+                    return data;
+                }
+            },
+            {
+                id: "descarga_sensorial",
+                name: "🧘 Semana de Descarga Sensorial & Vacaciones (Regenerativo)",
+                generator: function() {
+                    const data = {};
+                    for (let d = 0; d < 7; d++) {
+                        for (let h = 0; h < 8; h++) data[`${d}-${h}`] = "sueno";
+                        data[`${d}-23`] = "sueno";
+                        data[`${d}-8`] = "stimming";
+                        data[`${d}-9`] = "libre";
+                        data[`${d}-10`] = "libre";
+                        data[`${d}-11`] = "canto";
+                        data[`${d}-12`] = "libre";
+                        data[`${d}-13`] = "hogar";
+                        data[`${d}-14`] = "stimming";
+                        data[`${d}-15`] = "libre";
+                        data[`${d}-16`] = "libre";
+                        data[`${d}-17`] = "hogar";
+                        data[`${d}-18`] = "libre";
+                        data[`${d}-19`] = "libre";
+                        data[`${d}-20`] = "hogar";
+                        data[`${d}-21`] = "libre";
+                        data[`${d}-22`] = "stimming";
+                    }
+                    return data;
+                }
+            }
+        ];
         window.CLIENT_KANBAN_DEFAULT = [
             {"id": "r1", "text": "Redactar borrador petitorio transporte estudiantil UST", "tag": "UST"},
             {"id": "r2", "text": "Configurar WhatsApp Business para Puya Masajes", "tag": "Puya"},

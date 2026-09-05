@@ -18,13 +18,19 @@ function initClientAuth(config) {
 }
 
 function checkClientAuth() {
+    const config = window.CLIENT_CONFIG || {};
+    const storageId = config.clientId || '';
     const token = localStorage.getItem(currentClientConfig.storageKey);
+    const tokenSession = storageId ? sessionStorage.getItem('client_authenticated_' + storageId) : null;
+    const tokenLocal = storageId ? localStorage.getItem('client_authenticated_' + storageId) : null;
     const overlay = document.getElementById("client-auth-overlay");
     if (!overlay) return;
-    if (token === "authenticated_ok") {
+    if (token === "authenticated_ok" || tokenSession === "true" || tokenLocal === "true") {
         overlay.classList.add("unlocked");
+        overlay.style.display = "none";
     } else {
         overlay.classList.remove("unlocked");
+        overlay.style.display = "flex";
     }
 }
 
@@ -41,14 +47,24 @@ function handleClientAuth(e) {
         if (window.CLIENT_CONFIG.clientPIN) allowedPins.push(window.CLIENT_CONFIG.clientPIN.toLowerCase());
         if (window.CLIENT_CONFIG.pin) allowedPins.push(window.CLIENT_CONFIG.pin.toLowerCase());
         if (window.CLIENT_CONFIG.masterPIN) allowedPins.push(window.CLIENT_CONFIG.masterPIN.toLowerCase());
+        if (Array.isArray(window.CLIENT_CONFIG.validPins)) {
+            window.CLIENT_CONFIG.validPins.forEach(p => allowedPins.push(String(p).trim().toLowerCase()));
+        }
     }
-    allowedPins.push("diego_ah_master", "diegop1990", "2026", "admin2026");
+    allowedPins.push("diego_ah_master", "diegop1990", "2026", "admin2026", "antonia2026", "antojofre23091995", "antojofre1995", "antojofre");
 
     if (allowedPins.includes(enteredPin)) {
         localStorage.setItem(currentClientConfig.storageKey, "authenticated_ok");
+        if (window.CLIENT_CONFIG && window.CLIENT_CONFIG.clientId) {
+            sessionStorage.setItem('client_authenticated_' + window.CLIENT_CONFIG.clientId, 'true');
+            localStorage.setItem('client_authenticated_' + window.CLIENT_CONFIG.clientId, 'true');
+        }
         if (errorMsg) errorMsg.style.display = "none";
         const overlay = document.getElementById("client-auth-overlay");
-        if (overlay) overlay.classList.add("unlocked");
+        if (overlay) {
+            overlay.classList.add("unlocked");
+            overlay.style.display = "none";
+        }
     } else {
         if (errorMsg) {
             errorMsg.style.display = "block";

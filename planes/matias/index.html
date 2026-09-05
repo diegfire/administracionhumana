@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan de Vuelo 2.0 • Matías González • Administración Humana</title>
@@ -187,7 +188,7 @@
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
             <button class="tab-btn " onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns"></i> Tablero de Foco (Máx 2 Tareas)
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
             </button>
             <button class="tab-btn " onclick="switchTab('tab-voice')">
                 <i class="fa-solid fa-bullhorn"></i> Sacar la Voz & Valentía
@@ -226,7 +227,7 @@
                     <span style="font-size: 0.75rem; color: #888;">Vencer la parálisis inicial</span>
                 </div>
                 <div class="stat-card" style="border-color: #f59e0b44;">
-                    <span class="stat-val" style="color: #f59e0b;">Máximo 2 Tareas a la Vez</span>
+                    <span class="stat-val" style="color: #f59e0b;">WIP = 2</span>
                     <span class="stat-lbl">Límite Kanban</span>
                     <span style="font-size: 0.75rem; color: #888;">Máximo 2 tareas activas</span>
                 </div>
@@ -251,7 +252,7 @@
                     <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
                     <ul class="custom-list">
                         <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
-                        <li><strong>🛡️ Protección Antidispersión:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
+                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
                         <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
                     </ul>
                 </div>
@@ -366,6 +367,31 @@
                     Pinta tus bloques semanales para proteger tu descanso, tu foco productivo y tus momentos libres de culpa.
                 </p>
 
+                <!-- SELECTOR DESPLEGABLE DE MIS CALENDARIOS GUARDADOS -->
+                <div id="schedule-calendar-bar-container" class="schedule-calendar-bar-container">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; flex:1;">
+                        <span style="font-size:0.82rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-calendar-days" style="color:var(--primary, #10b981);"></i> Mis Calendarios:
+                        </span>
+                        <select id="schedule-calendar-select" class="schedule-calendar-select" onchange="handleCalendarSelectChange(this.value)">
+                        </select>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn-schedule-action" onclick="openSaveAsNewCalendarModal()" style="background:rgba(16,185,129,0.12); color:#10b981; border:1px solid rgba(16,185,129,0.35); font-weight:700;">
+                            <i class="fa-solid fa-folder-plus"></i> + Guardar Semana Actual
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-merge-calendar" onclick="openMergeCalendarsModal()" style="background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.35); font-weight:700;">
+                            <i class="fa-solid fa-layer-group"></i> Solapar / Fusionar
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="openRenameCalendarModal()" style="color:#ccc;">
+                            <i class="fa-solid fa-pen"></i> Renombrar
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-delete-active-calendar" onclick="deleteActiveCalendar()" style="color:#f87171; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);">
+                            <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+
                 <div class="schedule-controls">
                     <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
                     <div class="brush-selector" id="brush-selector-container"></div>
@@ -399,7 +425,7 @@
             <div class="card">
                 <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
                     <span style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:#fff; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-table-columns"></i> Tablero de Foco (Máximo 2 Tareas a la Vez)
+                        <i class="fa-solid fa-table-columns"></i> Tablero Kanban GTD (Límite Estricto WIP = 2)
                     </span>
                     <button class="btn-schedule-action" onclick="resetKanbanDefault()" style="color:#aaa;">
                         <i class="fa-solid fa-rotate-left"></i> Restaurar Tablero
@@ -424,7 +450,7 @@
 
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (Máximo 2 Tareas a la Vez)</div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">

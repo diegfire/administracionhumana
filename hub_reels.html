@@ -162,6 +162,74 @@
       background: #000; color: #fff; font-size: 1.35rem; line-height: 1.8; padding: 30px; border-radius: 12px;
       border: 1px solid #333; font-family: var(--font-sans); max-height: 60vh; overflow-y: auto;
     }
+
+    /* GUIA DE GRABACION DE PANTALLA (FONDO) */
+    .screen-recording-box {
+      background: rgba(56, 189, 248, 0.07);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 22px;
+    }
+    .screen-rec-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .screen-rec-url {
+      font-size: 0.84rem;
+      color: #e4e4e7;
+      margin-bottom: 10px;
+      background: rgba(0,0,0,0.4);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #222;
+    }
+    .screen-rec-url a {
+      color: var(--accent-blue);
+      text-decoration: underline;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+    .screen-rec-steps-title {
+      font-size: 0.78rem;
+      color: #aaa;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .screen-rec-steps {
+      margin-left: 20px;
+      font-size: 0.85rem;
+      color: #d4d4d8;
+      line-height: 1.6;
+    }
+    .screen-guide-preview {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      background: rgba(56, 189, 248, 0.05);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      margin-bottom: 14px;
+      line-height: 1.45;
+    }
+    .script-fondo {
+      font-size: 0.8rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.09);
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      border-left: 3px solid #38bdf8;
+      line-height: 1.4;
+    }
+    .script-fondo strong { color: #fff; }
   </style>
 </head>
 <body>
@@ -175,6 +243,7 @@
       </div>
       <div class="nav-links">
         <button class="btn-nav btn-nav-primary" onclick="window.openNewReelModal()">+ Crear Nuevo Guion</button>
+        <button class="btn-nav" onclick="window.resetOfficialReels()">🔄 Restablecer Guiones</button>
         <button class="btn-nav" onclick="window.exportReelsJson()">💾 Guardar / Exportar JSON</button>
         <a href="panel_admin.html" class="btn-nav">← Panel Admin</a>
       </div>
@@ -186,7 +255,7 @@
     <div class="header-section">
       <h1 class="header-title">Estrategia & Banco de Guiones para Reels / TikTok</h1>
       <p class="header-sub">
-        Guiones estructurados por pilares temáticos para evitar repetir temas, rotar formatos (Pantalla Verde, Parodia Infomercial, Demo en Vivo) y dirigir tráfico cualificado al <b>Sondeo Express (90s)</b>.
+        Guiones estructurados por pilares con <b>guía exacta de qué grabar en pantalla para el fondo verde</b>, tiempos segundo a segundo, teleprompter en vivo y llamados a la acción al <b>Sondeo Express (90s)</b>.
       </p>
     </div>
 
@@ -204,6 +273,8 @@
       <div class="filter-group">
         <select id="filter-pilar" class="filter-select">
           <option value="ALL">Todos los Pilares</option>
+          <option value="Manifiesto">🌟 Presentación & Manifiesto</option>
+          <option value="Plan de Vuelo">🗺️ Plan de Vuelo & Acompañamiento</option>
           <option value="Cocreación">🧩 Co-creación & Sistemas a Medida</option>
           <option value="Diferenciación">🧭 Diferenciación (Psicólogo vs Admin)</option>
           <option value="Herramientas">🛠️ Herramientas & Infomercial Absurdo</option>
@@ -253,65 +324,202 @@
   <script>
     const DEFAULT_REELS = [
       {
-        id: "REEL-06",
+        id: "REEL-01",
+        pilar: "Manifiesto",
+        titulo: "Presentación Oficial: Quién soy, qué es Administración Humana y cómo es el proceso",
+        formato: "🎙️ Cámara Frontal Cercana + Demostración Plan de Vuelo en Pantalla",
+        duracion: "60 segundos",
+        estado: "Por Grabar",
+        hook: "«Si sientes que trabajas todo el día pero no avanzas, que vives apagando incendios o que tu cabeza tiene 30 pestañas abiertas... déjame presentarme.»",
+        pantalla_fondo: {
+          resumen: "Portada de la web AICC ➔ Plan de Vuelo real interactivo (Rocío) ➔ Pantalla del Sondeo de 90s.",
+          url_local: "http://localhost:8000/index.html",
+          url_label: "http://localhost:8000/index.html (y /planes-rocio.html)",
+          pasos: [
+            "Abre en el teléfono la web oficial (index.html) y haz un scroll lento por el titular principal.",
+            "Pasa a la pestaña del Plan de Vuelo interactivo (planes-rocio.html) mostrando las cajitas de colores y el mapa semanal.",
+            "Pasa a la pestaña del Sondeo Express (sondeo.html) y responde 2 preguntas de demostración mostrando que toma 90s.",
+            "Finaliza con el botón destacado de 'Hacer Sondeo Express'."
+          ]
+        },
+        bloques: [
+          {
+            tiempo: "00:00 - 00:08",
+            cue: "Gancho mirando a cámara, tono cercano, empático y seguro.",
+            fondo: "📱 Fondo: Portada de la web con el titular 'No te falta disciplina, te falta un sistema'.",
+            texto: "Si sientes que trabajas todo el día pero no avanzas, que vives apagando incendios o que tu cabeza tiene 30 pestañas abiertas al mismo tiempo... déjame presentarme."
+          },
+          {
+            tiempo: "00:08 - 00:22",
+            cue: "Presentando a Diego y el origen de Administración Humana.",
+            fondo: "📱 Fondo: Scroll suave por la sección de problemas reales y propuesta de valor en index.html.",
+            texto: "Hola, soy Diego, creador de Administración Humana. Y después de años en ingeniería y control de gestión, me di cuenta de una gran verdad: la mayoría de los profesionales y creativos no sufren por falta de disciplina, sufren porque nadie les enseñó a diseñar un sistema que respete su vida real."
+          },
+          {
+            tiempo: "00:22 - 00:36",
+            cue: "Mostrando de fondo el Portal de Cliente y el Plan de Vuelo interactivo.",
+            fondo: "📱 Fondo: Plan de Vuelo interactivo (planes-rocio.html) mostrando cajitas de colores, dique de contención y regla de 2 tareas.",
+            texto: "¿Qué es lo que hacemos? Diseñamos tu propio Plan de Vuelo: un sistema a tu medida con horarios en cajitas de colores, diques de contención contra interrupciones y orden financiero claro para cobrar bien y ahorrar sin culpa."
+          },
+          {
+            tiempo: "00:36 - 00:50",
+            cue: "Explicando el paso a paso del proceso de trabajo.",
+            fondo: "📱 Fondo: Pantalla del Sondeo Express (sondeo.html) completando un test de 90 segundos.",
+            texto: "¿Y cómo es el proceso? Es súper simple: primero haces un Sondeo de 90 segundos; luego nos sentamos en una sesión 1 a 1 a co-crear tus herramientas en vivo; y te entregamos tu portal interactivo y fichas listo para usar al día siguiente."
+          },
+          {
+            tiempo: "00:50 - 01:00",
+            cue: "Llamado a la acción con sonrisa.",
+            fondo: "📱 Fondo: Botón destacado de 'Comenzar Sondeo Express' con flecha señalando arriba/bio.",
+            texto: "Sin moldes rígidos ni gurús de las 5 AM. Si quieres ordenar tu trabajo y recuperar tu paz mental, haz el Sondeo Express en el link de mi perfil."
+          }
+        ],
+        caption: "Hola, soy Diego 👋 Bienvenido a Administración Humana. Si vives colapsado entre mil tareas, neblina financiera y culpa al descansar, esto es para ti. No te falta disciplina: te falta un sistema diseñado a tu medida. 🧭 Haz el Sondeo Express de 90s en el link de mi bio para iniciar tu diagnóstico.",
+        hashtags: "#administracionhumana #organizacionpersonal #productividadreal #emprendedoreschile #gestiondeltiempo #freelancechile"
+      },
+      {
+        id: "REEL-02",
+        pilar: "Plan de Vuelo",
+        titulo: "Qué es el Plan de Vuelo: Escucha Activa, Carpeta Digital y Acompañamiento Real",
+        formato: "🟢 Pantalla Verde navegando dentro del Plan de Vuelo y Portal del Cliente",
+        duracion: "55 segundos",
+        estado: "Por Grabar",
+        hook: "«Mucha gente me pregunta: 'Diego, cuando trabajo contigo en Administración Humana, ¿qué es exactamente lo que me entregas y cómo es el proceso?'»",
+        pantalla_fondo: {
+          resumen: "Navegar por el Plan de Vuelo interactivo de Rocío/Antonia: Portada con diagnóstico ➔ Horario en cajitas ➔ Ficha de calibración y seguimiento.",
+          url_local: "http://localhost:8000/planes-rocio.html",
+          url_label: "http://localhost:8000/planes-rocio.html (Portal & Plan de Vuelo)",
+          pasos: [
+            "Abre el Plan de Vuelo interactivo de Rocío (planes-rocio.html) en el teléfono.",
+            "Muestra el encabezado personalizado con el nombre, su radiografía operativa y objetivos reales.",
+            "Haz scroll por los módulos: el Mapeador 24H de cajitas de colores, el dique de contención y la estructura de finanzas.",
+            "Muestra que es una carpeta digital viva que se va editando y calibrando en conjunto."
+          ]
+        },
+        bloques: [
+          {
+            tiempo: "00:00 - 00:08",
+            cue: "Gancho mirando a cámara con tono cercano, transparente y reflexivo.",
+            fondo: "📱 Fondo: Portada del Plan de Vuelo interactivo con el nombre del cliente y diseño personalizado.",
+            texto: "Mucha gente me pregunta: 'Diego, cuando trabajo contigo en Administración Humana, ¿qué es exactamente lo que me entregas y cómo es el proceso?'"
+          },
+          {
+            tiempo: "00:08 - 00:22",
+            cue: "Hablando con calidez sobre la escucha activa y la contextualización.",
+            fondo: "📱 Fondo: Ficha de contextualización del cliente (horarios biológicos, familia, contexto freelance real).",
+            texto: "Todo parte con escucha activa y contextualización profunda: no te paso un cuestionario frío. Me siento contigo a entender tu vida real: a qué hora rinde tu cabeza, tus imprevistos con los niños, tus miedos con las lucas y cómo funciona tu energía."
+          },
+          {
+            tiempo: "00:22 - 00:36",
+            cue: "Señalando hacia atrás al Plan de Vuelo interactivo en la pantalla.",
+            fondo: "📱 Fondo: Scroll fluido por el Plan de Vuelo mostrando el horario en cajitas de colores y el dique de contención.",
+            texto: "Con eso diseñamos tu Plan de Vuelo: una Carpeta Digital interactiva que no es un PDF muerto. Es un portal vivo con tus horarios en cajitas de colores, tus reglas para no regalar tiempo y tu estructura financiera ordenada."
+          },
+          {
+            tiempo: "00:36 - 00:48",
+            cue: "Conectando con la tranquilidad del acompañamiento y mejora continua.",
+            fondo: "📱 Fondo: Ficha de calibración semanal y notas de ajuste en vivo.",
+            texto: "Y lo más importante: no te dejo solo. Lo pruebas en tu día a día, vemos qué funcionó y qué costó, y lo vamos calibrando y mejorando juntos hasta que te quede perfecto y sin esfuerzo."
+          },
+          {
+            tiempo: "00:48 - 00:58",
+            cue: "Llamado a la acción con sonrisa.",
+            fondo: "📱 Fondo: Pantalla del Sondeo Express de 90 segundos con el botón brillante.",
+            texto: "Un sistema no se impone, se co-crea a tu medida. Haz el Sondeo Express de 90 segundos en el link de mi perfil y empecemos a diseñar tu Plan de Vuelo."
+          }
+        ],
+        caption: "¿Qué es un Plan de Vuelo en Administración Humana? 🧭 No es una plantilla descargable ni un PDF que se queda en el olvido. Es un proceso de escucha activa, contextualización profunda de tu vida real y entrega de un portal interactivo que calibramos y mejoramos juntos con acompañamiento real. Haz el Sondeo Express en el link de mi bio para comenzar.",
+        hashtags: "#plandeduelo #administracionhumana #cocreacion #acompañamiento #organizacionpersonal #productividadhumana #freelancechile"
+      },
+      {
+        id: "REEL-03",
         pilar: "Cocreación",
-        titulo: "Por Qué Fracasan las Plantillas de Gurús (El Poder de la Co-creación)",
+        titulo: "Por Qué Fracasan las Plantillas de Gurús (El Poder de la Co-Creación)",
         formato: "🟢 Pantalla Verde con Bento Grid & Mapeador 24H",
         duracion: "50 segundos",
         estado: "Por Grabar",
-        hook: "«¿Cuántas veces te bajaste una plantilla de Notion o el horario de un gurú de internet... y a los 3 días lo abandonaste sintiéndote culpable?»",
+        hook: "«¿Cuántas veces te bajaste una plantilla perfecta de Notion o un horario de internet... y a los 3 días lo abandonaste sintiéndote culpable?»",
+        pantalla_fondo: {
+          resumen: "Mapeador 24H en vivo pintando bloques de colores y editando categorías personalizadas.",
+          url_local: "http://localhost:8000/generador-horarios.html",
+          url_label: "http://localhost:8000/generador-horarios.html (Mapeador 24H)",
+          pasos: [
+            "Abre el Mapeador de Horarios 24H en pantalla completa en el navegador del teléfono.",
+            "Pinta 2 o 3 bloques con color 'Trabajo Foco' (azul) y 'Descanso' (dorado).",
+            "Muestra cómo los bloques se ajustan a horarios reales (tardes, noches, descansos) sin rigidez.",
+            "Muestra el botón de '+ Categoría' para evidenciar que el sistema se adapta a la persona."
+          ]
+        },
         bloques: [
           {
             tiempo: "00:00 - 00:08",
             cue: "Gancho de empatía directa mirando a cámara.",
-            texto: "¿Cuántas veces te bajaste una plantilla de Notion o intentaste seguir el horario de un gurú de internet... y a los 3 días lo abandonaste sintiéndote culpable?"
+            fondo: "📱 Fondo: Una plantilla genérica típica de Notion o el titular de 'Plantillas de internet vs vida real'.",
+            texto: "¿Cuántas veces te bajaste una plantilla de Notion o intentaste seguir la rutina de un gurú de internet... y a los 3 días lo abandonaste sintiéndote culpable y frustrado?"
           },
           {
-            tiempo: "00:08 - 00:24",
+            tiempo: "00:08 - 00:22",
             cue: "Explicando el error de los sistemas impuestos.",
-            texto: "El problema nunca fuiste tú. El problema es que intentaste meter tu vida real, tus imprevistos y tus ritmos biológicos dentro de un molde rígido hecho por otra persona."
+            fondo: "📱 Fondo: Mapeador 24H mostrando cómo un horario rígido de 5 AM colapsa frente a la vida real.",
+            texto: "Te voy a decir la verdad: no fue culpa de tu fuerza de voluntad. El problema es que intentaste meter tu vida real, tus imprevistos familiares y tus ritmos de energía dentro de un molde rígido hecho por otra persona."
           },
           {
-            tiempo: "00:24 - 00:38",
+            tiempo: "00:22 - 00:36",
             cue: "Presentando el concepto de Co-creación en Administración Humana.",
-            texto: "En Administración Humana no te imponemos nada: co-creamos contigo tu sistema. Tú traes la verdad de tu contexto y tu forma de ser; yo aporto la ingeniería de procesos para que diseñemos herramientas que te queden como un guante a la medida."
+            fondo: "📱 Fondo: Tu dedo pintando bloques de colores personalizados en el Mapeador 24H en tiempo real.",
+            texto: "Por eso en Administración Humana no vendemos plantillas genéricas: trabajamos bajo Co-creación. Tú traes la verdad de tu contexto y tu forma de ser; yo aporto la ingeniería de procesos. Y juntos en vivo diseñamos un sistema que te queda cómodo como un guante."
           },
           {
-            tiempo: "00:38 - 00:50",
+            tiempo: "00:36 - 00:50",
             cue: "Llamado a la acción.",
-            texto: "Deja de forzarte a entrar en moldes ajenos. Haz el Sondeo Express en el link de mi perfil y empecemos a co-crear tu propio Plan de Vuelo."
+            fondo: "📱 Fondo: Horario semanal terminado con bloques balanceados y botón de Sondeo Express.",
+            texto: "Cuando el sistema nace de ti, no necesitas forzarte a cumplirlo: funciona solo. Haz el Sondeo Express en el link de mi perfil y co-creemos tu propio Plan de Vuelo."
           }
         ],
         caption: "Las plantillas genéricas no funcionan porque tu vida no es genérica. 🧩 En Administración Humana co-creamos un sistema a la medida de tu forma de ser y tus ritmos reales. Haz el Sondeo en mi bio.",
         hashtags: "#cocreacion #productividadhumana #organizacionpersonal #sinculpa #gestiondeltiempo #administracionhumana"
       },
       {
-        id: "REEL-01",
+        id: "REEL-04",
         pilar: "Diferenciación",
         titulo: "El Gancho Provocador: Psicólogo vs. Administrador",
         formato: "🟢 Pantalla Verde con Web de fondo (Sección Psicología)",
         duracion: "50 segundos",
         estado: "Por Grabar",
         hook: "«Si en Chile estás colapsado, con mil cosas que hacer y no te alcanza el día... ¿qué es lo primero que te dice todo el mundo? 'Ándate al psicólogo'.»",
+        pantalla_fondo: {
+          resumen: "Sección comparativa de la web (Salud mental vs Procesos) + Ficha de Regla de 2 Tareas Activas.",
+          url_local: "http://localhost:8000/index.html",
+          url_label: "http://localhost:8000/index.html (Sección Enfoque)",
+          pasos: [
+            "Abre index.html y haz scroll hasta la sección donde se compara el rol psicológico con el diseño de procesos.",
+            "Muestra una lista caótica con 20 tareas desordenadas vs la tarjeta de 'Máximo 2 Tareas Activas'.",
+            "Muestra la matriz 50/30/20 y el botón del Sondeo."
+          ]
+        },
         bloques: [
           {
             tiempo: "00:00 - 00:06",
             cue: "Tú apuntando al texto de la web con complicidad y sonrisa pícara.",
+            fondo: "📱 Fondo: Titular en la web sobre 'Ándate al psicólogo... ¿o al administrador?'.",
             texto: "Si en Chile estás colapsado, con mil cosas que hacer y no te alcanza el día... ¿qué es lo primero que te dice todo el mundo? 'Ándate al psicólogo'."
           },
           {
             tiempo: "00:06 - 00:20",
             cue: "Hablando con humor y validación.",
+            fondo: "📱 Fondo: Pantalla mostrando una lista caótica de 25 tareas sin priorizar y precios sin orden.",
             texto: "Y ojo, el psicólogo es un crack, te ayuda a sanar por dentro, a entender tus traumas y emociones. Pero seamos honestos: el psicólogo NO se va a sentar contigo a armar tu horario de la semana, ni te va a decir por qué estás cobrando la hora a diez lucas cuando deberías cobrar el triple, ni te va a ordenar los 4 proyectos que tienes abiertos a la vez."
           },
           {
             tiempo: "00:20 - 00:38",
             cue: "Mostrando de fondo el Mapeador 24H y la Regla de Máximo 2 Tareas.",
+            fondo: "📱 Fondo: Zoom a la tarjeta de 'Regla de Máximo 2 Tareas Activas' y cajitas de colores organizadas.",
             texto: "Ahí es donde entra la Administración Humana. Yo no trato heridas de tu infancia; yo diseño el sistema de tu afuera: tus horarios en cajitas de colores, tu presupuesto 50/30/20 y tus límites para que no te explote la cabeza apagando incendios."
           },
           {
             tiempo: "00:38 - 00:50",
             cue: "Llamado a la acción directo.",
+            fondo: "📱 Fondo: Pantalla del Sondeo Diagnóstico de 90 segundos.",
             texto: "Diseñé un Sondeo Express de 90 segundos que te dice exactamente en qué área estás teniendo fugas. Anda al link de mi perfil, haz el sondeo y te envío tu diagnóstico."
           }
         ],
@@ -319,32 +527,45 @@
         hashtags: "#productividad #gestiondeltiempo #administracionhumana #saludmentalchile #emprendedoreschile #foco"
       },
       {
-        id: "REEL-02",
+        id: "REEL-05",
         pilar: "Herramientas",
         titulo: "El Infomercial Absurdo: La Herramienta Equivocada",
         formato: "📺 Parodia B&W (Cuchara con Naranja) ➔ Color Consultoría",
         duracion: "50 segundos",
         estado: "Por Grabar",
         hook: "«¿Cansado de no poder cortar tus frutas? (Toma en blanco y negro intentando cortar naranja con cuchara).»",
+        pantalla_fondo: {
+          resumen: "Clip de cocina intentando cortar naranja con cuchara en B&N ➔ Suite digital y Mapeador 24H a color.",
+          url_local: "http://localhost:8000/generador-horarios.html",
+          url_label: "Clip Casero Cocina ➔ http://localhost:8000/generador-horarios.html",
+          pasos: [
+            "Graba 10 segundos en tu cocina intentando cortar torpemente una naranja con una cuchara de sopa (aplica filtro B&N en Instagram/CapCut).",
+            "Cambia a color mostrando en pantalla la interfaz web limpia de Administración Humana y el generador de horarios."
+          ]
+        },
         bloques: [
           {
             tiempo: "00:00 - 00:12",
-            cue: "Blanco y negro con música dramática y sonido de ❌ buzzer. Tomas absurdas (cuchara/naranja, tenedor/sopa, pala/piso).",
+            cue: "Blanco y negro con música dramática y sonido de ❌ buzzer. Tomas absurdas (cuchara/naranja).",
+            fondo: "📱 Fondo: Clip en blanco y negro intentando cortar una naranja con una cuchara.",
             texto: "Narrador dramático: ¿Cansado de no poder cortar tus frutas? ¿Harto de que tu almuerzo se te escape entre los dientes? ¡Tiene que haber una mejor manera!"
           },
           {
             tiempo: "00:12 - 00:30",
             cue: "Corte a color. Diego hablando con risa y naturalidad.",
+            fondo: "📱 Fondo: Cuaderno lleno de tachones o bloc de notas del celular saturado de pendientes desordenados.",
             texto: "Se ve ridículo, ¿verdad? Nadie en su sano juicio intentaría cortar una naranja con una cuchara ni barrer una casa con una palita de mano. Entonces... ¿por qué intentas ordenar tu semana de 168 horas, tus finanzas y tus 4 proyectos con pura fuerza de voluntad y notas mentales desordenadas?"
           },
           {
             tiempo: "00:30 - 00:42",
             cue: "Conectando con la empatía sin culpa.",
+            fondo: "📱 Fondo: La Suite Digital de AICC y el generador de horarios funcionando de manera limpia y visual.",
             texto: "Cuando algo no te funciona en la vida, el 90% de las veces no es que seas flojo ni desordenado: ¡es que estás usando la herramienta equivocada!"
           },
           {
             tiempo: "00:42 - 00:52",
             cue: "Cierre y CTA con la web de fondo.",
+            fondo: "📱 Fondo: Mapeador 24H con el titular 'Pásate a un sistema humano' y botón de Sondeo.",
             texto: "En Administración Humana te pasamos el cuchillo afilado: tus horarios en cajitas y máximo 2 tareas a la vez. Deja de cortar naranjas con una cuchara y haz el Sondeo en mi bio."
           }
         ],
@@ -352,32 +573,46 @@
         hashtags: "#humorchileno #productividadreal #organizacionpersonal #administracionhumana #creativoschile"
       },
       {
-        id: "REEL-03",
+        id: "REEL-06",
         pilar: "Tiempo",
         titulo: "La Fuga Silenciosa: 18 Horas Perdidas al Mes",
         formato: "🟢 Pantalla Verde con Simulador de Horas en Vivo",
         duracion: "45 segundos",
         estado: "Por Grabar",
         hook: "«¿Sabías que la mayoría de los profesionales independientes regalan entre 15 y 25 horas a la semana sin darse cuenta?»",
+        pantalla_fondo: {
+          resumen: "Mover el slider del simulador de horas en index.html subiendo en rojo a 72 horas perdidas al mes.",
+          url_local: "http://localhost:8000/index.html",
+          url_label: "http://localhost:8000/index.html (Simulador de Fuga de Tiempo)",
+          pasos: [
+            "Abre index.html en el teléfono y navega hasta la tarjeta del Simulador de Tiempo.",
+            "Mueve el slider con el dedo de 15h a 28h mostrando cómo el número de horas perdidas se actualiza en vivo.",
+            "Muestra la sección del 'Dique de Contención' y los 'Bloques de Oro protegidos'."
+          ]
+        },
         bloques: [
           {
             tiempo: "00:00 - 00:06",
             cue: "Gancho apuntando al slider interactivo.",
+            fondo: "📱 Fondo: Slider del simulador en posición inicial (18h semanales).",
             texto: "¿Sabías que la mayoría de los profesionales independientes y personas creativas regalan entre 15 y 25 horas a la semana... sin darse cuenta?"
           },
           {
             tiempo: "00:06 - 00:22",
             cue: "Moviendo el slider de 18h a 28h en vivo.",
+            fondo: "📱 Fondo: El contador en pantalla subiendo en rojo en tiempo real: '72 horas al mes / 3 días enteros perdidos'.",
             texto: "Mira este simulador: si vives cambiando de una tarea a otra, contestando mensajes a deshora y sin bloques protegidos, estás regalando literalmente 72 horas al mes. ¡Eso son 3 días enteros de tu vida a la basura cada mes!"
           },
           {
             tiempo: "00:22 - 00:35",
             cue: "Presentando la solución de dique de contención.",
+            fondo: "📱 Fondo: Tarjeta visual del 'Dique de Contención' y 'Bloques de Oro protegidos'.",
             texto: "Con un sistema de administración personal no necesitas levantarte a las 5 AM a sufrir. Solo necesitas un dique de contención: blindar tus bloques de oro y limitar tus tareas activas."
           },
           {
             tiempo: "00:35 - 00:45",
             cue: "CTA directo.",
+            fondo: "📱 Fondo: Pantalla del Sondeo Express para calcular tu propia fuga de horas.",
             texto: "Pruébalo tú mismo en mi página o haz el Sondeo Express en el link de mi bio para ver cuántas horas podemos devolverte este mes."
           }
         ],
@@ -385,65 +620,93 @@
         hashtags: "#gestiondeltiempo #productividad #foco #sinestres #emprendimientochile"
       },
       {
-        id: "REEL-04",
+        id: "REEL-07",
         pilar: "Multipotencial",
-        titulo: "El Caos de los 4 Frentes (Para Creativos y Multipotenciales)",
+        titulo: "El Caos de los 4 Frentes (Para Quienes Tienen Mil Proyectos a la Vez)",
         formato: "🟢 Pantalla Verde con Bento Grid de la Web",
         duracion: "45 segundos",
         estado: "Por Grabar",
-        hook: "«Si tienes un trabajo, estás estudiando, tienes un proyecto personal y además la casa... este video es para ti.»",
+        hook: "«Si tienes un trabajo, estás estudiando algo, tienes un proyecto personal y además la casa... este video es para ti.»",
+        pantalla_fondo: {
+          resumen: "Plan de Vuelo de Rocío/Antonia mostrando bloques de colores separados por mundo (Trabajo vs Vida Personal).",
+          url_local: "http://localhost:8000/planes-rocio.html",
+          url_label: "http://localhost:8000/planes-rocio.html (Plan de Vuelo)",
+          pasos: [
+            "Abre el Plan de Vuelo interactivo de Rocío (planes-rocio.html) en el teléfono.",
+            "Muestra los bloques de colores claramente diferenciados: Bloque Azul (Trabajo foco), Bloque Verde (Estudio) y Bloque Dorado (Descanso y Familia).",
+            "Muestra cómo no se solapan los mundos, eliminando la culpa al descansar."
+          ]
+        },
         bloques: [
           {
             tiempo: "00:00 - 00:06",
-            cue: "Gancho de empatía directa.",
+            cue: "Gancho de empatía directa mirando a cámara.",
+            fondo: "📱 Fondo: Calendario saturado con múltiples tareas cruzadas o la frase 'Múltiples frentes abiertos'.",
             texto: "Si tienes un trabajo, estás estudiando algo, tienes un proyecto personal y además tienes que ordenar tu casa... este video es para ti."
           },
           {
             tiempo: "00:06 - 00:22",
-            cue: "Validando la culpa cruzada.",
-            texto: "El problema no es que seas desordenado. El problema es que estás usando la misma cabeza para los cuatro roles al mismo tiempo: cuando trabajas sientes culpa por tu proyecto, y cuando descansas sientes culpa por no estar trabajando."
+            cue: "Validando la culpa cruzada de nunca estar presente.",
+            fondo: "📱 Fondo: Visual de sobrecarga mental / 4 pestañas abiertas a la vez consumiendo energía.",
+            texto: "El problema no es que seas desordenado. El problema es que estás intentando procesar todos esos mundos al mismo tiempo en la misma cabeza: cuando trabajas sientes culpa por tu proyecto personal, y cuando descansas sientes culpa por no estar produciendo."
           },
           {
             tiempo: "00:22 - 00:35",
-            cue: "Mostrando la solución de sombreros protegidos.",
-            texto: "Lo que hacemos en Administración Humana es compartimentar: asignamos sombreros claros y horarios protegidos para que cuando trabajes estés 100% ahí, y cuando descanses, descanses de verdad sin culpa."
+            cue: "Presentando la solución de separar los mundos y cambiar de chip.",
+            fondo: "📱 Fondo: Plan de Vuelo interactivo mostrando los bloques separados con colores nítidos (Azul Foco vs Dorado Descanso).",
+            texto: "En Administración Humana te ayudamos a separar tus mundos con bloques protegidos: para que cuando estés trabajando estés 100% enfocado sin ansiedad, y cuando sea hora de descansar, puedas apagar el chip del trabajo y disfrutar de verdad sin culpa."
           },
           {
             tiempo: "00:35 - 00:45",
-            cue: "CTA con nota de voz.",
-            texto: "Haz el Sondeo en mi bio y cuéntame en una nota de voz de 1 minuto cuál es tu mayor enredo hoy."
+            cue: "CTA con cercanía.",
+            fondo: "📱 Fondo: Botón del Sondeo Express en el perfil de Instagram.",
+            texto: "Haz el Sondeo Express en el link de mi bio y cuéntame cuál es el enredo que hoy no te deja apagar la cabeza."
           }
         ],
-        caption: "La culpa de nunca estar donde deberías estar se cura con compartimentación de roles. 🤹 Deja de mezclar tus sombreros. Sondeo Express en mi perfil.",
-        hashtags: "#multipotencial #creativos #burnout #gestionpersonal #emprendedores"
+        caption: "¿Te pasa que cuando trabajas sientes culpa por no descansar, y cuando descansas sientes culpa por no trabajar? 🤯 El problema no es tu falta de tiempo: es que no logras apagar el chip. En Administración Humana te ayudamos a separar tus mundos para recuperar tu tranquilidad. Sondeo Express en mi perfil.",
+        hashtags: "#multipotencial #creativos #apagarlafuente #burnout #gestionpersonal #sinculpa"
       },
       {
-        id: "REEL-05",
+        id: "REEL-08",
         pilar: "Finanzas",
         titulo: "La Trampa de Cobrar por Hora Suelta",
         formato: "🟢 Pantalla Verde con Matriz de Finanzas 50/30/20",
         duracion: "50 segundos",
         estado: "Por Grabar",
         hook: "«Si eres terapeuta, diseñador o consultor y sigues vendiendo tu tiempo por hora suelta... estás atrapado en un techo invisible.»",
+        pantalla_fondo: {
+          resumen: "Módulo de Finanzas 50/30/20 y la transición de 'cobro por hora' a 'paquetes de acompañamiento'.",
+          url_local: "http://localhost:8000/planes-rocio.html",
+          url_label: "http://localhost:8000/planes-rocio.html (Módulo Finanzas 50/30/20)",
+          pasos: [
+            "Abre la sección de Finanzas en el Plan de Vuelo de Rocío.",
+            "Muestra la tarjeta de cálculo con la regla 50% necesidades / 30% gustos / 20% tranquilidad.",
+            "Muestra cómo se estructura una tarifa cerrada en lugar de horas sueltas."
+          ]
+        },
         bloques: [
           {
             tiempo: "00:00 - 00:08",
             cue: "Gancho financiero directo.",
+            fondo: "📱 Fondo: Calculadora mostrando '10 horas x $15.000 = Techo de ingresos'.",
             texto: "Si eres terapeuta, diseñador o consultor independiente y sigues vendiendo tu tiempo por hora suelta... estás atrapado en un techo invisible."
           },
           {
             tiempo: "00:08 - 00:24",
             cue: "Explicando la asfixia del intercambio tiempo-dinero.",
+            fondo: "📱 Fondo: Gráfico de tope de 24 horas y agotamiento por vender horas sueltas.",
             texto: "Porque el día solo tiene 24 horas. Si te enfermas, no cobras. Si quieres descansar, sientes culpa. Y además te da pudor subir tus tarifas porque crees que la gente te paga por 'un ratito'."
           },
           {
             tiempo: "00:24 - 00:38",
             cue: "Mostrando la paquetización de valor y regla 50/30/20.",
+            fondo: "📱 Fondo: Matriz interactiva 50/30/20 con el fondo de tranquilidad del 20% y paquetes de valor estructurados.",
             texto: "En Administración Humana transformamos tu servicio en un Paquete Integral de Acompañamiento con piso financiero y entregables claros, para que ganes el doble trabajando la mitad de horas."
           },
           {
             tiempo: "00:38 - 00:50",
             cue: "CTA.",
+            fondo: "📱 Fondo: Pantalla del Sondeo Express de Diagnóstico Financiero y Operativo.",
             texto: "Haz el Sondeo Express en el link de mi perfil y evaluemos la salud operativa y financiera de tu proyecto."
           }
         ],
@@ -452,19 +715,34 @@
       }
     ];
 
+    const REELS_DB_VER = "2.5";
     let reelsList = [];
 
     function initReelsHub() {
+      const savedVer = localStorage.getItem('ah_reels_ver');
       const saved = localStorage.getItem('ah_reels_db');
-      if (saved) {
+      
+      if (saved && savedVer === REELS_DB_VER) {
         try { reelsList = JSON.parse(saved); } catch(e) { reelsList = DEFAULT_REELS; }
       } else {
-        reelsList = DEFAULT_REELS;
+        reelsList = [...DEFAULT_REELS];
         localStorage.setItem('ah_reels_db', JSON.stringify(reelsList));
+        localStorage.setItem('ah_reels_ver', REELS_DB_VER);
       }
       renderStats();
       renderGrid();
     }
+
+    window.resetOfficialReels = function() {
+      if (confirm('¿Deseas restablecer el banco de guiones con la versión oficial actualizada (incluye Guía de Grabación de Pantalla en cada Reel)?')) {
+        reelsList = JSON.parse(JSON.stringify(DEFAULT_REELS));
+        localStorage.setItem('ah_reels_db', JSON.stringify(reelsList));
+        localStorage.setItem('ah_reels_ver', REELS_DB_VER);
+        renderStats();
+        renderGrid();
+        alert('✅ Guiones oficiales restablecidos exitosamente.');
+      }
+    };
 
     function renderStats() {
       const statsEl = document.getElementById('stats-bar');
@@ -503,7 +781,8 @@
         const matchSearch = !search ||
           (r.titulo || '').toLowerCase().includes(search) ||
           (r.hook || '').toLowerCase().includes(search) ||
-          (r.pilar || '').toLowerCase().includes(search);
+          (r.pilar || '').toLowerCase().includes(search) ||
+          (r.pantalla_fondo?.resumen || '').toLowerCase().includes(search);
 
         const matchPilar = pilarFilter === 'ALL' || (r.pilar || '').includes(pilarFilter);
         const matchStatus = statusFilter === 'ALL' || r.estado === statusFilter;
@@ -521,6 +800,12 @@
         if (r.estado === 'En Edición') statusClass = 'status-en-edicion';
         if (r.estado === 'Publicado') statusClass = 'status-publicado';
 
+        const screenPreview = r.pantalla_fondo ? `
+          <div class="screen-guide-preview">
+            <strong style="color:var(--accent-blue);">📱 Qué grabar de fondo:</strong> ${r.pantalla_fondo.resumen}
+          </div>
+        ` : '';
+
         return `
           <div class="reel-card">
             <div>
@@ -533,6 +818,8 @@
               
               <div class="format-badge">${r.formato}</div>
 
+              ${screenPreview}
+
               <div class="hook-box">
                 <div class="hook-lbl">🎣 Gancho 3s:</div>
                 ${r.hook}
@@ -542,7 +829,7 @@
             <div class="reel-actions">
               <button class="btn-action-view" onclick="window.changeReelStatus('${r.id}')">🔄 Estado</button>
               <button class="btn-action-view" onclick="window.copyFullScript('${r.id}')">📋 Copiar Guion</button>
-              <button class="btn-action-primary" onclick="window.openReelModal('${r.id}')">🎬 Ver Guion / Grabar</button>
+              <button class="btn-action-primary" onclick="window.openReelModal('${r.id}')">🎬 Ver Guion & Fondo</button>
             </div>
           </div>
         `;
@@ -580,18 +867,35 @@
           </div>
         `;
       } else {
+        const screenBox = currentReel.pantalla_fondo ? `
+          <div class="screen-recording-box">
+            <div class="screen-rec-title">📱 Guía de Grabación de Pantalla (Fondo de Pantalla Verde)</div>
+            <div class="screen-rec-url">
+              <strong>🔗 Dónde entrar a grabar:</strong>
+              <a href="${currentReel.pantalla_fondo.url_local}" target="_blank">${currentReel.pantalla_fondo.url_label}</a>
+            </div>
+            <div class="screen-rec-steps-title">🎬 Qué hacer en la pantalla mientras grabas:</div>
+            <ul class="screen-rec-steps">
+              ${currentReel.pantalla_fondo.pasos.map(p => `<li>${p}</li>`).join('')}
+            </ul>
+          </div>
+        ` : '';
+
         container.innerHTML = `
           <div style="margin-bottom:16px;">
             <span style="font-size:0.8rem; color:#888;">Formato de Grabación:</span>
             <div style="font-weight:700; color:#fff; margin-top:2px;">${currentReel.formato}</div>
           </div>
 
+          ${screenBox}
+
           <div style="margin-bottom:20px;">
-            <h4 style="font-size:0.8rem; text-transform:uppercase; color:#aaa; margin-bottom:8px; font-weight:800;">Guion Paso a Paso con Tiempos:</h4>
+            <h4 style="font-size:0.8rem; text-transform:uppercase; color:#aaa; margin-bottom:8px; font-weight:800;">Guion Paso a Paso con Tiempos y Fondo Visual:</h4>
             ${currentReel.bloques.map(b => `
               <div class="script-section">
                 <div class="script-time">⏱️ ${b.tiempo}</div>
-                <div class="script-cue">🎬 Cámara / Actuación: ${b.cue}</div>
+                <div class="script-cue">🎬 Tu actuación frente a cámara: ${b.cue}</div>
+                ${b.fondo ? `<div class="script-fondo"><strong>📱 En pantalla de fondo:</strong> ${b.fondo.replace('📱 Fondo: ', '')}</div>` : ''}
                 <div class="script-text">«${b.texto}»</div>
               </div>
             `).join('')}
@@ -603,9 +907,9 @@
             <div style="font-size:0.78rem; color:#888; margin-top:6px;">${currentReel.hashtags}</div>
           </div>
 
-          <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
             <button class="btn-action-view" onclick="window.copyCaption('${currentReel.id}')">📋 Copiar Caption</button>
-            <button class="btn-action-primary" onclick="window.copyFullScript('${currentReel.id}')">📋 Copiar Guion Completo</button>
+            <button class="btn-action-primary" onclick="window.copyFullScript('${currentReel.id}')">📋 Copiar Guion & Guía Visual</button>
           </div>
         `;
       }
@@ -634,11 +938,21 @@
     window.copyFullScript = function(id) {
       const reel = reelsList.find(r => r.id === id);
       if (!reel) return;
+      
+      let screenGuideText = '';
+      if (reel.pantalla_fondo) {
+        screenGuideText = `📱 QUÉ GRABAR EN PANTALLA (FONDO VERDE):\n` +
+          `URL: ${reel.pantalla_fondo.url_label}\n` +
+          `Pasos:\n` + reel.pantalla_fondo.pasos.map((p, idx) => `  ${idx+1}. ${p}`).join('\n') + `\n\n`;
+      }
+
       const scriptText = `🎬 GUION ${reel.id}: ${reel.titulo}\nFormato: ${reel.formato}\n\n` +
-        reel.bloques.map(b => `[${b.tiempo}]\nCámara: ${b.cue}\nDice: "${b.texto}"\n`).join('\n') +
+        screenGuideText +
+        reel.bloques.map(b => `[${b.tiempo}]\nCámara: ${b.cue}\n${b.fondo ? b.fondo + '\n' : ''}Dice: "${b.texto}"\n`).join('\n') +
         `\nCAPTION:\n${reel.caption}\n${reel.hashtags}`;
+      
       navigator.clipboard.writeText(scriptText).then(() => {
-        alert(`✅ Guion ${reel.id} copiado al portapapeles listo para grabar.`);
+        alert(`✅ Guion y Guía Visual de ${reel.id} copiados al portapapeles listos para grabar.`);
       });
     };
 
@@ -673,10 +987,16 @@
         duracion: "45 segundos",
         estado: "Por Grabar",
         hook: `«${title}»`,
+        pantalla_fondo: {
+          resumen: `Grabación de pantalla para ${title}.`,
+          url_local: "http://localhost:8000/index.html",
+          url_label: "http://localhost:8000/index.html",
+          pasos: ["Abrir la sección relevante y hacer scroll pausado."]
+        },
         bloques: [
-          { tiempo: "00:00 - 00:06", cue: "Gancho a cámara.", texto: `Gancho de ${title}` },
-          { tiempo: "00:06 - 00:30", cue: "Desarrollo del dolor y solución.", texto: "Explicar el concepto con humor y claridad." },
-          { tiempo: "00:30 - 00:45", cue: "Llamado a la acción.", texto: "Haz el Sondeo Express en el link de mi bio." }
+          { tiempo: "00:00 - 00:06", cue: "Gancho a cámara.", fondo: "📱 Fondo: Portada de la web.", texto: `Gancho de ${title}` },
+          { tiempo: "00:06 - 00:30", cue: "Desarrollo del dolor y solución.", fondo: "📱 Fondo: Herramienta en vivo.", texto: "Explicar el concepto con humor y claridad." },
+          { tiempo: "00:30 - 00:45", cue: "Llamado a la acción.", fondo: "📱 Fondo: Botón de Sondeo.", texto: "Haz el Sondeo Express en el link de mi bio." }
         ],
         caption: `${title}. Haz el Sondeo Express en el link de mi bio.`,
         hashtags: "#productividad #administracionhumana #organizacion"

@@ -1,6 +1,46 @@
 /* ========================================================= */
-/* 24-HOUR SCHEDULE MAPPER WITH CATEGORY MANAGEMENT          */
+/* 24-HOUR SCHEDULE MAPPER WITH MULTI-CALENDAR MANAGER       */
 /* ========================================================= */
+
+.schedule-calendar-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: rgba(18, 18, 22, 0.75);
+    border: 1px solid var(--border, #262626);
+    border-radius: var(--radius-md, 12px);
+    padding: 10px 16px;
+    margin-bottom: 1.2rem;
+    backdrop-filter: blur(10px);
+}
+
+.schedule-calendar-select {
+    background: #141417 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    padding: 7px 14px !important;
+    border-radius: 8px !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    min-width: 280px !important;
+    max-width: 100% !important;
+    outline: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.schedule-calendar-select:focus {
+    border-color: var(--primary, #10b981) !important;
+    box-shadow: 0 0 12px var(--primary-glow, rgba(16, 185, 129, 0.3)) !important;
+}
+
+.schedule-calendar-select option {
+    background: #141417;
+    color: #ffffff;
+    padding: 8px;
+}
 
 .schedule-controls {
     display: flex;
@@ -100,6 +140,7 @@
     min-width: 750px;
     font-size: 0.75rem;
     user-select: none;
+    table-layout: fixed;
 }
 
 .schedule-grid-table th {
@@ -163,6 +204,40 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     padding: 0 2px;
+}
+
+/* Blank / Unassigned cells */
+.schedule-grid-table td.cell-empty {
+    background: transparent !important;
+}
+
+.schedule-grid-table td.cell-empty:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.cell-content-box.cell-blank {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Eraser / Blank Brush */
+.brush-eraser {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #a1a1aa !important;
+}
+
+.brush-eraser:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.brush-eraser.active {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.3) !important;
 }
 
 .schedule-stats-bar {

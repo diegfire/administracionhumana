@@ -313,12 +313,46 @@
             appearance: none;
             width: 100%;
             height: 6px;
-            background: #262626 !important;
+            background: #262626;
             border-radius: 3px;
             outline: none;
             margin: 4px 0 !important;
             border: none !important;
             padding: 0 !important;
+        }
+
+        /* Estilo Destacado para la Barra de Fricción Express */
+        #exp-fuga-slider {
+            height: 8px;
+            border-radius: 6px;
+            background: linear-gradient(to right, #38bdf8 0%, #38bdf8 53.8%, #262626 53.8%, #262626 100%);
+            cursor: pointer;
+        }
+
+        #exp-fuga-slider::-webkit-slider-thumb {
+            width: 22px;
+            height: 22px;
+            background: #ffffff !important;
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
+            cursor: grab;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        #exp-fuga-slider::-webkit-slider-thumb:hover,
+        #exp-fuga-slider::-webkit-slider-thumb:active {
+            transform: scale(1.2);
+            cursor: grabbing;
+            box-shadow: 0 0 22px rgba(56, 189, 248, 1);
+        }
+
+        #exp-fuga-slider::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            background: #ffffff !important;
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
+            cursor: grab;
         }
 
         input[type="range"]::-webkit-slider-thumb {
@@ -1087,56 +1121,36 @@
                 </div>
             </div>
 
-                        <!-- PASO 4: NOTA DE VOZ DIAGNÓSTICA (HASTA 5 MINUTOS) -->
+            <!-- PASO 4: CONTEXTO EN NOTA DE VOZ (DIRECTO EN WHATSAPP) -->
             <div class="express-card" style="border-color: rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.02);">
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
                     <div style="display:flex; align-items:center; gap:8px;">
                         <span style="font-size:1.25rem;">🎙️</span>
-                        <h3 style="font-size:1.05rem; font-weight:800; color:#fff;">4. Tu Nota de Voz Diagnóstica (Opcional - Hasta 5 min)</h3>
+                        <h3 style="font-size:1.05rem; font-weight:800; color:#fff;">4. Tu Contexto por Nota de Voz (Directo en WhatsApp)</h3>
                     </div>
-                    <span style="background:rgba(56,189,248,0.15); color:#38bdf8; font-weight:700; font-size:0.75rem; padding:3px 10px; border-radius:20px;">
-                        🎙️ Escucha Activa 1a1
+                    <span style="background:rgba(37,211,102,0.15); color:#25D366; border:1px solid rgba(37,211,102,0.3); font-weight:700; font-size:0.75rem; padding:3px 10px; border-radius:20px;">
+                        📲 100% Privado en WhatsApp
                     </span>
                 </div>
-                <p style="font-size:0.82rem; color:#d4d4d8; line-height:1.45; margin-bottom:14px;">
-                    A veces hablar libera mucha más claridad que escribir. Cuéntale a Diego con tus propias palabras: <b>¿Qué te está pasando en el día a día, por qué sientes que necesitas ordenar tu gestión y qué tranquilidad o metas quieres recuperar?</b>
+                <p style="font-size:0.84rem; color:#d4d4d8; line-height:1.5; margin-bottom:12px;">
+                    Para evitar audios cortados o problemas de permisos en el navegador, <b>tu nota de voz la enviarás directamente en el chat de WhatsApp con Diego</b> una vez que revises tu Radiografía abajo.
                 </p>
 
-                <!-- INTERFAZ DEL GRABADOR -->
-                <div id="exp-recorder-container" style="background:#141414; border:1px solid #333; border-radius:12px; padding:16px; text-align:center;">
-                    <div id="exp-recorder-idle">
-                        <button type="button" id="btn-start-record" onclick="window.SondeoExpress.startAudioRecording()" style="display:inline-flex; align-items:center; gap:8px; background:#ffffff; color:#000000; font-weight:800; font-size:0.88rem; padding:10px 22px; border-radius:50px; border:none; cursor:pointer; box-shadow:0 0 16px rgba(255,255,255,0.2); transition:transform 0.2s;">
-                            <span>🔴</span> Grabar Nota de Voz (Micrófono)
-                        </button>
-                        <div style="font-size:0.75rem; color:#888; margin-top:8px;">Puedes grabar desde tu celular o computador hasta 5 minutos.</div>
+                <div style="background:#141414; border:1px dashed rgba(56,189,248,0.35); border-radius:12px; padding:14px; text-align:left;">
+                    <div style="font-size:0.82rem; font-weight:800; color:#38bdf8; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+                        <span>💡</span> ¿Qué contarle a Diego en tu audio de 1 a 2 minutos?
                     </div>
-
-                    <div id="exp-recorder-active" style="display:none;">
-                        <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:12px;">
-                            <span style="display:inline-block; width:12px; height:12px; background:#ef4444; border-radius:50%; animation: pulse 1s infinite;"></span>
-                            <span id="exp-record-timer" style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#fff;">00:00</span>
-                            <span style="font-size:0.8rem; color:#888;">/ 05:00 max</span>
-                        </div>
-                        <button type="button" onclick="window.SondeoExpress.stopAudioRecording()" style="display:inline-flex; align-items:center; gap:8px; background:#ef4444; color:#ffffff; font-weight:800; font-size:0.88rem; padding:10px 22px; border-radius:50px; border:none; cursor:pointer; box-shadow:0 0 20px rgba(239,68,68,0.4);">
-                            <span>⏹️</span> Detener y Guardar Grabación
-                        </button>
-                    </div>
-
-                    <div id="exp-audio-player-box" style="display:none; margin-top:12px;">
-                        <div style="font-size:0.8rem; color:#10b981; font-weight:700; margin-bottom:8px;">✅ Audio grabado listo para Diego:</div>
-                        <audio id="exp-audio-player" controls style="width:100%; max-width:400px; height:40px; border-radius:8px; outline:none;"></audio>
-                        <div style="margin-top:8px;">
-                            <button type="button" onclick="window.SondeoExpress.resetAudioRecording()" style="background:transparent; border:none; color:#a1a1aa; font-size:0.75rem; text-decoration:underline; cursor:pointer;">
-                                🔄 Descartar y grabar de nuevo
-                            </button>
-                        </div>
+                    <div style="font-size:0.78rem; color:#a1a1aa; line-height:1.55;">
+                        • <b>Tu mayor fricción actual:</b> En qué tareas o dinámicas se te fuga la mayor energía o tiempo durante la semana.<br>
+                        • <b>Lo que has probado:</b> Qué métodos, agendas o hábitos intentaste antes y por qué no lograron sostenerse.<br>
+                        • <b>Tu objetivo prioritario:</b> Qué cambio concreto te devolvería la paz mental en las primeras sesiones.
                     </div>
                 </div>
             </div>
 
             <!-- BOTÓN GENERAR RADIOGRAFÍA -->
             <div style="text-align:center; margin: 2rem 0;">
-                <button type="button" onclick="window.SondeoExpress.submitExpress()" class="btn btn-primary" style="padding:14px 36px; font-size:1.05rem; font-weight:800; background:#ffffff; color:#000000; border-radius:50px; cursor:pointer; box-shadow:0 0 25px rgba(255,255,255,0.3); border:none; transition:transform 0.2s ease;">
+                <button id="exp-submit-btn" type="button" onclick="window.SondeoExpress.submitExpress()" class="btn btn-primary" style="padding:14px 36px; font-size:1.05rem; font-weight:800; background:#ffffff; color:#000000; border-radius:50px; cursor:pointer; box-shadow:0 0 25px rgba(255,255,255,0.3); border:none; transition:transform 0.2s ease;">
                     ⚡ Generar Mi Radiografía y Coordinar con Diego →
                 </button>
             </div>
@@ -1157,11 +1171,35 @@
                     <!-- Módulos de rescate recomendados -->
                 </div>
 
-                <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
-                    <a id="exp-wa-btn" href="#" target="_blank" class="btn btn-primary" style="width:100%; max-width:440px; padding:14px 24px; font-size:0.95rem; font-weight:800; background:#25D366; color:#ffffff; border-radius:50px; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 0 25px rgba(37,211,102,0.4);">
-                        <span>📲</span> Enviar Radiografía a Diego por WhatsApp
+                <!-- ACCIONES Y ENTREGA A WHATSAPP -->
+                <div id="exp-actions-wrapper" class="no-card-capture" style="display:flex; flex-direction:column; gap:12px; align-items:center; margin-top:20px;">
+                    <!-- GUÍA DE ENVÍO DIRECTO -->
+                    <div style="width:100%; max-width:480px; background:rgba(37,211,102,0.06); border:1px solid rgba(37,211,102,0.3); border-radius:14px; padding:14px 18px; text-align:left;">
+                        <div style="font-size:0.86rem; font-weight:800; color:#25D366; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+                            <span>🚀</span> Próximos Pasos para tu Plan de Vuelo:
+                        </div>
+                        <div style="font-size:0.80rem; color:#d4d4d8; line-height:1.5;">
+                            <b>1.</b> Haz clic en el botón verde abajo para abrir el chat de WhatsApp con Diego.<br>
+                            <b>2.</b> Puedes adjuntar la <b>imagen descargada</b> de tu ficha para que Diego la revise visualmente.<br>
+                            <b>3.</b> En el mismo chat, <b>mándale una nota de voz</b> contándole tu caso actual. ¡Con eso Diego preparará la base de tu expediente y Plan de Vuelo!
+                        </div>
+                    </div>
+
+                    <!-- BOTONES DE IMAGEN Y WHATSAPP -->
+                    <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; width:100%; max-width:480px;">
+                        <button type="button" id="btn-download-card-img" onclick="window.SondeoExpress.downloadCardImage()" style="flex:1; min-width:210px; padding:12px 18px; font-size:0.84rem; font-weight:800; background:#18181b; color:#38bdf8; border:1px solid #38bdf8; border-radius:50px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 0 15px rgba(56,189,248,0.15); transition:all 0.2s;">
+                            <span>📸</span> Descargar Ficha (Imagen HD)
+                        </button>
+                        <button type="button" id="btn-share-card-img" onclick="window.SondeoExpress.shareCardImage()" style="flex:1; min-width:210px; padding:12px 18px; font-size:0.84rem; font-weight:800; background:#18181b; color:#ffffff; border:1px solid #3f3f46; border-radius:50px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:all 0.2s;">
+                            <span>📲</span> Compartir Ficha
+                        </button>
+                    </div>
+
+                    <a id="exp-wa-btn" href="#" target="_blank" onclick="window.SondeoExpress.onWhatsAppClick()" class="btn btn-primary" style="width:100%; max-width:480px; padding:14px 24px; font-size:0.96rem; font-weight:800; background:#25D366; color:#ffffff; border-radius:50px; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 0 25px rgba(37,211,102,0.4); transition:transform 0.2s;">
+                        <span>💬</span> Abrir Chat de WhatsApp con Diego →
                     </a>
-                    <button type="button" onclick="window.switchSondeoMode('full')" style="background:transparent; border:none; color:#a1a1aa; font-size:0.8rem; text-decoration:underline; cursor:pointer; margin-top:6px;">
+
+                    <button type="button" onclick="window.switchSondeoMode('full')" style="background:transparent; border:none; color:#a1a1aa; font-size:0.8rem; text-decoration:underline; cursor:pointer; margin-top:4px;">
                         🧭 ¿Deseas completar la Rueda 360° y el FODA completo? Haz clic aquí →
                     </button>
                 </div>
@@ -3505,6 +3543,703 @@
 
         // Alias global para handlers HTML
         window.Sonda = window.SondeoWizard;
+
+    // ================= ALTERNANCIA DE MODO: EXPRESS vs FULL 360° =================
+    window.switchSondeoMode = function(mode) {
+        const expressSec = document.getElementById('sondeo-express-section');
+        const fullSec = document.getElementById('sondeo-full-section');
+        const tabExpress = document.getElementById('btnTabExpress');
+        const tabFull = document.getElementById('btnTabFull');
+
+        if (mode === 'full') {
+            if (expressSec) expressSec.style.display = 'none';
+            if (fullSec) fullSec.style.display = 'block';
+            if (tabExpress) tabExpress.classList.remove('active');
+            if (tabFull) tabFull.classList.add('active');
+            if (window.SondeoWizard && typeof window.SondeoWizard.goToStep === 'function') {
+                window.SondeoWizard.goToStep(1);
+            }
+        } else {
+            if (expressSec) expressSec.style.display = 'block';
+            if (fullSec) fullSec.style.display = 'none';
+            if (tabExpress) tabExpress.classList.add('active');
+            if (tabFull) tabFull.classList.remove('active');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // ================= MOTOR DE SONDEO EXPRESS FAST-TRACK =================
+    window.SondeoExpress = (function() {
+        let currentPain = 'horarios';
+        let currentFugaHoras = 18;
+        let currentNombre = 'Cliente';
+        let audioCloudUrl = null;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let recordInterval = null;
+        let recordSeconds = 0;
+        let recordedAudioBlob = null;
+        let recordedAudioDataUrl = null;
+
+        const PAIN_METADATA = {
+            horarios: {
+                title: "Caos de Horarios & Fuga de Tiempo",
+                pilar: "Gestión del Tiempo & Enfoque",
+                focus: "Mapeador 24H & Protocolo Paso Cero",
+                sintesis: "Horas perdidas en apagar incendios y dificultad para estructurar la semana."
+            },
+            sensorial: {
+                title: "Sobrecarga Mental & Batería de Energía",
+                pilar: "Cuidado Sensorial & Neurodivergencia",
+                focus: "Batería de Energía & Descompresión Somática",
+                sintesis: "Agotamiento al final del día y sobreestimulación de rutinas rígidas."
+            },
+            frentes: {
+                title: "Múltiples Roles & Multipotencialidad",
+                pilar: "Triangulación de Roles & Sistemas",
+                focus: "Kanban WIP=2 & Principio MECE",
+                sintesis: "Múltiples proyectos simultáneos mezclados sin límites claros."
+            },
+            finanzas: {
+                title: "Fuga Financiera & Venta por Hora",
+                pilar: "Finanzas & Modelo de Negocio",
+                focus: "Paquetización por Mes & Finanzas 50/30/20",
+                sintesis: "Venta por hora suelta y fricción para cobrar tarifas profesionales justas."
+            },
+            rumiacion: {
+                title: "Culpa, Procrastinación & Rumiación",
+                pilar: "Paz Mental & Hábitos Sostenibles",
+                focus: "GTD Vaciado Mental & Inventario Cero Culpa",
+                sintesis: "Rumiación nocturna al acostarse y culpa por pendientes acumulados."
+            }
+        };
+
+        function selectPain(painKey, el) {
+            currentPain = painKey;
+            document.querySelectorAll('.pain-option-card').forEach(card => card.classList.remove('selected'));
+            if (el) el.classList.add('selected');
+        }
+
+        function onSliderChange(val) {
+            const v = parseInt(val, 10) || 18;
+            currentFugaHoras = v;
+
+            const badge = document.getElementById('exp-fuga-badge');
+            if (badge) {
+                if (v <= 8) {
+                    badge.innerHTML = `🟢 <b>~${v} Horas / Semana</b> (Fuga Leve)`;
+                    badge.style.boxShadow = '0 0 12px rgba(16, 185, 129, 0.35)';
+                } else if (v <= 20) {
+                    badge.innerHTML = `🟡 <b>~${v} Horas / Semana</b> (Fricción Habitual)`;
+                    badge.style.boxShadow = '0 0 12px rgba(245, 158, 11, 0.35)';
+                } else {
+                    badge.innerHTML = `🔴 <b>~${v} Horas / Semana</b> (Colapso Operativo)`;
+                    badge.style.boxShadow = '0 0 16px rgba(239, 68, 68, 0.5)';
+                }
+            }
+
+            const slider = document.getElementById('exp-fuga-slider');
+            if (slider) {
+                const pct = Math.max(0, Math.min(100, ((v - 4) / (30 - 4)) * 100));
+                slider.style.setProperty('background', `linear-gradient(to right, #38bdf8 0%, #38bdf8 ${pct}%, #262626 ${pct}%, #262626 100%)`, 'important');
+            }
+        }
+
+        async function startAudioRecording() {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                alert("Tu navegador no permite captura directa de micrófono. Puedes completar el formulario y enviarle tu nota de voz a Diego directamente por WhatsApp.");
+                return;
+            }
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioChunks = [];
+
+                let mimeType = 'audio/webm';
+                if (typeof MediaRecorder !== 'undefined' && typeof MediaRecorder.isTypeSupported === 'function') {
+                    if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) mimeType = 'audio/webm;codecs=opus';
+                    else if (MediaRecorder.isTypeSupported('audio/webm')) mimeType = 'audio/webm';
+                    else if (MediaRecorder.isTypeSupported('audio/mp4')) mimeType = 'audio/mp4';
+                    else if (MediaRecorder.isTypeSupported('audio/ogg')) mimeType = 'audio/ogg';
+                    else mimeType = '';
+                }
+
+                mediaRecorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
+
+                mediaRecorder.ondataavailable = function(e) {
+                    if (e.data && e.data.size > 0) audioChunks.push(e.data);
+                };
+
+                mediaRecorder.onstop = function() {
+                    stream.getTracks().forEach(t => t.stop());
+                    if (audioChunks.length > 0) {
+                        recordedAudioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+                        const player = document.getElementById('exp-audio-player');
+                        const box = document.getElementById('exp-audio-player-box');
+                        const activeUI = document.getElementById('exp-recorder-active');
+
+                        if (player) {
+                            player.src = URL.createObjectURL(recordedAudioBlob);
+                        }
+                        if (box) box.style.display = 'block';
+                        if (activeUI) activeUI.style.display = 'none';
+
+                        const reader = new FileReader();
+                        reader.onloadend = function() {
+                            recordedAudioDataUrl = reader.result;
+                        };
+                        reader.readAsDataURL(recordedAudioBlob);
+                    }
+                };
+
+                mediaRecorder.start(250);
+
+                const idleUI = document.getElementById('exp-recorder-idle');
+                const activeUI = document.getElementById('exp-recorder-active');
+                const box = document.getElementById('exp-audio-player-box');
+                if (idleUI) idleUI.style.display = 'none';
+                if (box) box.style.display = 'none';
+                if (activeUI) activeUI.style.display = 'block';
+
+                recordSeconds = 0;
+                const timerEl = document.getElementById('exp-record-timer');
+                if (timerEl) timerEl.innerText = "00:00";
+
+                if (recordInterval) clearInterval(recordInterval);
+                recordInterval = setInterval(() => {
+                    recordSeconds++;
+                    const m = String(Math.floor(recordSeconds / 60)).padStart(2, '0');
+                    const s = String(recordSeconds % 60).padStart(2, '0');
+                    if (timerEl) timerEl.innerText = `${m}:${s}`;
+                    if (recordSeconds >= 300) {
+                        stopAudioRecording();
+                    }
+                }, 1000);
+
+            } catch(err) {
+                console.error("Error al acceder al micrófono:", err);
+                alert("No se pudo iniciar la grabación: " + (err.message || "Permiso denegado. Puedes enviar tu nota de voz directo por WhatsApp."));
+            }
+        }
+
+        function stopAudioRecording() {
+            if (recordInterval) {
+                clearInterval(recordInterval);
+                recordInterval = null;
+            }
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                try { mediaRecorder.stop(); } catch(e) {}
+            }
+        }
+
+        function resetAudioRecording() {
+            if (recordInterval) {
+                clearInterval(recordInterval);
+                recordInterval = null;
+            }
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                try { mediaRecorder.stop(); } catch(e) {}
+            }
+            recordedAudioBlob = null;
+            recordedAudioDataUrl = null;
+            audioCloudUrl = null;
+            const player = document.getElementById('exp-audio-player');
+            if (player) {
+                player.pause();
+                player.src = '';
+            }
+            const idleUI = document.getElementById('exp-recorder-idle');
+            const activeUI = document.getElementById('exp-recorder-active');
+            const box = document.getElementById('exp-audio-player-box');
+            if (idleUI) idleUI.style.display = 'block';
+            if (activeUI) activeUI.style.display = 'none';
+            if (box) box.style.display = 'none';
+        }
+
+        async function downloadCardImage() {
+            const card = document.getElementById('exp-results-card');
+            if (!card) return;
+            const btn = document.getElementById('btn-download-card-img');
+            const origText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '⏳ Generando Imagen...';
+            }
+
+            try {
+                // Ocultar temporalmente los botones de acción para que la ficha quede limpia
+                const actionsSlot = document.getElementById('exp-actions-wrapper');
+                if (actionsSlot) actionsSlot.style.display = 'none';
+
+                if (typeof html2canvas === 'undefined') {
+                    await new Promise((resolve, reject) => {
+                        const s = document.createElement('script');
+                        s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+                        s.onload = resolve;
+                        s.onerror = reject;
+                        document.head.appendChild(s);
+                    });
+                }
+
+                const canvas = await html2canvas(card, {
+                    backgroundColor: '#0a0a0a',
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                });
+
+                if (actionsSlot) actionsSlot.style.display = 'flex';
+
+                const safeName = (currentNombre || 'Cliente').replace(/[^a-zA-Z0-9]/g, '_');
+                const imgData = canvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = imgData;
+                a.download = `Radiografia_${safeName}_Administracion_Humana.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                return canvas;
+            } catch(err) {
+                console.error('Error generando imagen:', err);
+                alert('No se pudo generar la descarga de imagen automática. Puedes tomar una captura de pantalla de la ficha.');
+            } finally {
+                const actionsSlot = document.getElementById('exp-actions-wrapper');
+                if (actionsSlot) actionsSlot.style.display = 'flex';
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = origText;
+                }
+            }
+        }
+
+        async function shareCardImage() {
+            const btn = document.getElementById('btn-share-card-img');
+            const origText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '⏳ Preparando...';
+            }
+
+            try {
+                const card = document.getElementById('exp-results-card');
+                if (!card) return;
+
+                const actionsSlot = document.getElementById('exp-actions-wrapper');
+                if (actionsSlot) actionsSlot.style.display = 'none';
+
+                if (typeof html2canvas === 'undefined') {
+                    await new Promise((resolve, reject) => {
+                        const s = document.createElement('script');
+                        s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+                        s.onload = resolve;
+                        s.onerror = reject;
+                        document.head.appendChild(s);
+                    });
+                }
+
+                const canvas = await html2canvas(card, {
+                    backgroundColor: '#0a0a0a',
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                });
+
+                if (actionsSlot) actionsSlot.style.display = 'flex';
+
+                const safeName = (currentNombre || 'Cliente').replace(/[^a-zA-Z0-9]/g, '_');
+
+                if (canvas.toBlob) {
+                    canvas.toBlob(async (blob) => {
+                        if (!blob) { downloadCardImage(); return; }
+                        const file = new File([blob], `Radiografia_${safeName}_AH.png`, { type: 'image/png' });
+
+                        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                            try {
+                                await navigator.share({
+                                    files: [file],
+                                    title: `Radiografía de ${currentNombre} · Administración Humana`,
+                                    text: `Ficha de Radiografía Express de ${currentNombre}`
+                                });
+                                return;
+                            } catch(e) {
+                                if (e.name !== 'AbortError') console.log('Share cancelado:', e);
+                            }
+                        }
+                        // Fallback a descarga normal
+                        const a = document.createElement('a');
+                        a.href = URL.createObjectURL(blob);
+                        a.download = `Radiografia_${safeName}_Administracion_Humana.png`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    }, 'image/png');
+                } else {
+                    downloadCardImage();
+                }
+            } catch(err) {
+                console.error('Error compartiendo imagen:', err);
+                downloadCardImage();
+            } finally {
+                const actionsSlot = document.getElementById('exp-actions-wrapper');
+                if (actionsSlot) actionsSlot.style.display = 'flex';
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = origText;
+                }
+            }
+        }
+
+        function onWhatsAppClick() {
+            // Disparar descarga automática de la imagen para que el usuario la tenga lista para adjuntar
+            setTimeout(() => {
+                downloadCardImage();
+            }, 600);
+        }
+
+        function getCuratedDefaultModules(pain, horas) {
+            const foundations = [
+                { id: 'mapeador_24h', nombre: 'Mapeador 24H por Cajitas', metafora: 'Auditoría Visual de 168 Horas Semanales', fase: 'Fase 1: Diagnóstico', pasoCero: 'Colorear 3 colores innegociables de la semana.' },
+                { id: 'time_blocking_flexible', nombre: 'Time Blocking Flexible', metafora: 'Bloques de Enfoque con Zonas Amortiguador', fase: 'Fase 2: Estructura', pasoCero: 'Blindar 1 bloque matutino de 90 min sin celular.' },
+                { id: 'protocolo_paso_cero', nombre: 'Protocolo Paso Cero', metafora: 'Micro-acción Inmediata para Vencer la Inercia', fase: 'Fase 1: Diagnóstico', pasoCero: 'Reducir la tarea temida a su mínima expresión de 2 minutos.' }
+            ];
+
+            const painMap = {
+                horarios: [
+                    { id: 'matriz_eisenhower', nombre: 'Matriz Eisenhower Dinámica', metafora: 'Filtro Quirúrgico de Urgencias vs Estratégico', fase: 'Fase 2: Estructura', pasoCero: 'Clasificar los fuegos diarios antes de abrir el correo.' },
+                    { id: 'ley_pareto_8020', nombre: 'Ley de Pareto 80/20', metafora: 'Identificación del 20% Vital', fase: 'Fase 3: Optimización', pasoCero: 'Eliminar 1 reunión semanal de baja tracción.' }
+                ],
+                sensorial: [
+                    { id: 'somatica_y_autorregulacion_tea', nombre: 'Somática y Cuidado Sensorial', metafora: 'Monitoreo de Batería y Reducción de Ruido', fase: 'Fase 2: Bienestar', pasoCero: 'Agendar micro-pausas sensoriales de 5 minutos sin pantallas.' },
+                    { id: 'cero_pantallas_celular', nombre: 'Protocolo Cero Pantallas en Cama', metafora: 'Blindaje del Sueño Profundo y Rumiación', fase: 'Fase 1: Hábitos', pasoCero: 'Cargar el teléfono fuera del dormitorio.' }
+                ],
+                frentes: [
+                    { id: 'triangulacion_roles', nombre: 'Triangulación de Roles Activos', metafora: 'Delimitación Clara de Sombreros Operativos', fase: 'Fase 2: Estructura', pasoCero: 'Nombrar tus 3 sombreros clave y fijarles bloques exclusivos.' },
+                    { id: 'kanban_gtd_wip2', nombre: 'Kanban WIP=2 (Trabajo en Progreso)', metafora: 'Máximo 2 Frentes Abiertos en Simultáneo', fase: 'Fase 2: Flujo', pasoCero: 'Mover pendientes secundarios a "En Espera".' }
+                ],
+                finanzas: [
+                    { id: 'paquetizacion_servicios_mes', nombre: 'Paquetización de Servicios Mensuales', metafora: 'Salida de la Venta por Hora Suelta a Retainer', fase: 'Fase 3: Modelo', pasoCero: 'Diseñar 1 oferta empaquetada con entregables cerrados.' },
+                    { id: 'finanzas_503020', nombre: 'Distribución Financiera 50/30/20', metafora: 'Estructura de Necesidades, Deseos y Paz', fase: 'Fase 2: Finanzas', pasoCero: 'Apartar el 10% de reserva antes de gastar.' }
+                ],
+                rumiacion: [
+                    { id: 'inventario_cero_culpa', nombre: 'Inventario Cero Culpa', metafora: 'Separación Quirúrgica entre Pendientes y Vida', fase: 'Fase 1: Paz Mental', pasoCero: 'Vaciar la mente en cuaderno 20 min antes de acostarse.' },
+                    { id: 'gtd_vaciado_mental', nombre: 'GTD Vaciado Mental Semanal', metafora: 'Cierre de Ciclos Abiertos y Claridad', fase: 'Fase 2: Hábitos', pasoCero: 'Realizar un barrido de 15 minutos los viernes por la tarde.' }
+                ]
+            };
+
+            const specific = painMap[pain] || painMap.horarios;
+            return [...foundations, ...specific];
+        }
+
+        async function submitExpress() {
+            const submitBtn = document.getElementById('exp-submit-btn');
+            const nombreInp = document.getElementById('exp-nombre');
+            const edadInp = document.getElementById('exp-edad');
+            const ciudadInp = document.getElementById('exp-ciudad');
+            const ocupacionInp = document.getElementById('exp-ocupacion');
+            const waInp = document.getElementById('exp-whatsapp');
+            const sliderInp = document.getElementById('exp-fuga-slider');
+
+            const nombre = (nombreInp ? nombreInp.value : '').trim();
+            const edad = (edadInp ? edadInp.value : '').trim();
+            const ciudad = (ciudadInp ? ciudadInp.value : '').trim();
+            const ocupacion = (ocupacionInp ? ocupacionInp.value : '').trim();
+            const whatsapp = (waInp ? waInp.value : '').trim();
+            const fugaHoras = parseInt(sliderInp ? sliderInp.value : currentFugaHoras, 10) || 18;
+            const pain = currentPain || 'horarios';
+            currentNombre = nombre || 'Cliente';
+
+            // Validaciones
+            const missing = [];
+            if (!nombre) { missing.push('Nombre y Apellido'); if (nombreInp) nombreInp.style.borderColor = '#ef4444'; } else if (nombreInp) nombreInp.style.borderColor = '';
+            if (!ciudad) { missing.push('Ciudad / Localidad'); if (ciudadInp) ciudadInp.style.borderColor = '#ef4444'; } else if (ciudadInp) ciudadInp.style.borderColor = '';
+            if (!ocupacion) { missing.push('Ocupación / Roles Activos'); if (ocupacionInp) ocupacionInp.style.borderColor = '#ef4444'; } else if (ocupacionInp) ocupacionInp.style.borderColor = '';
+            if (!whatsapp) { missing.push('WhatsApp / Teléfono'); if (waInp) waInp.style.borderColor = '#ef4444'; } else if (waInp) waInp.style.borderColor = '';
+
+            if (missing.length > 0) {
+                alert('Por favor completa los siguientes datos para procesar tu Radiografía:\n• ' + missing.join('\n• '));
+                if (!nombre && nombreInp) nombreInp.focus();
+                else if (!ciudad && ciudadInp) ciudadInp.focus();
+                else if (!ocupacion && ocupacionInp) ocupacionInp.focus();
+                else if (!whatsapp && waInp) waInp.focus();
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerText = '⚡ Generando tu Radiografía...';
+            }
+
+            const painInfo = PAIN_METADATA[pain] || PAIN_METADATA.horarios;
+
+            // Inferencia de Módulos mediante AICCPrescriptorEngine
+            let modulosPrescritos = [];
+            let pasoCeroAccion = "Definir 1 solo micro-compromiso de 2 minutos para hoy.";
+
+            try {
+                if (window.AICCPrescriptorEngine && window.AICC_MODULOS_DB) {
+                    const engine = new AICCPrescriptorEngine(window.AICC_MODULOS_DB);
+                    const oLower = ocupacion.toLowerCase();
+                    const perfilClinico = {
+                        nombre: nombre,
+                        horasFugaSemana: fugaHoras,
+                        dificultadHorarios: pain === 'horarios' || fugaHoras >= 14,
+                        saturacionSensorial: pain === 'sensorial' ? 8 : (fugaHoras >= 20 ? 6 : 3),
+                        condicionTeaPas: pain === 'sensorial' || fugaHoras >= 24,
+                        multipotencialFrentes: pain === 'frentes' ? 3 : 1,
+                        ventaHoraSuelta: pain === 'finanzas',
+                        rumiacionNocturna: pain === 'rumiacion' ? 9 : (fugaHoras >= 18 ? 6 : 3),
+                        apagaIncendios: pain === 'horarios' || fugaHoras >= 15,
+                        multitareaCompulsiva: pain === 'frentes' || fugaHoras >= 18,
+                        instructorDanzaFitness: oLower.includes('danza') || oLower.includes('baile') || oLower.includes('zumba') || oLower.includes('fitness'),
+                        serviciosTerreno: oLower.includes('terreno') || oLower.includes('visita') || oLower.includes('clínica') || oLower.includes('domicilio'),
+                        auditoriaRequerida: true
+                    };
+                    const receta = engine.prescribir(perfilClinico);
+                    if (receta && Array.isArray(receta.modulos) && receta.modulos.length > 0) {
+                        modulosPrescritos = receta.modulos;
+                        if (receta.planAccion24Horas && receta.planAccion24Horas[0]?.accion) {
+                            pasoCeroAccion = receta.planAccion24Horas[0].accion;
+                        }
+                    }
+                }
+            } catch(e) {
+                console.warn("Motor prescriptor fallback:", e);
+            }
+
+            if (modulosPrescritos.length === 0) {
+                modulosPrescritos = getCuratedDefaultModules(pain, fugaHoras);
+            }
+
+            // Filtrar módulos prioritarios visibles (excluir utilitarios de sistema)
+            const keyModules = modulosPrescritos.filter(m => !['seguridad_pin', 'whatsapp_directo', 'inventario_sesiones_results', 'hub_imprimibles_maestro'].includes(m.id)).slice(0, 6);
+            if (keyModules.length === 0) keyModules.push(...modulosPrescritos.slice(0, 4));
+
+            // Métricas de Saturación
+            const satPct = Math.min(100, Math.round((fugaHoras / 30) * 100));
+            let satColor = '#10b981';
+            let satTitle = `${satPct}% • Leve`;
+            let satSub = '🟢 Fricción manejable. Ajuste preventivo.';
+            if (fugaHoras >= 21) {
+                satColor = '#ef4444';
+                satTitle = `${satPct}% • Colapso`;
+                satSub = '🔴 Fricción crítica. Alto riesgo de burnout y apagafuegos.';
+            } else if (fugaHoras >= 10) {
+                satColor = '#f59e0b';
+                satTitle = `${satPct}% • Fricción`;
+                satSub = '🟡 Fricción habitual. Foco fragmentado durante la semana.';
+            }
+
+            // 1. Renderizar Métricas
+            const metricsContainer = document.getElementById('exp-res-metrics');
+            if (metricsContainer) {
+                metricsContainer.innerHTML = `
+                    <div style="background:#141414; border:1px solid #262626; border-radius:12px; padding:14px; text-align:center;">
+                        <div style="font-size:0.72rem; color:#a1a1aa; text-transform:uppercase; font-weight:700; margin-bottom:4px;">⏱️ Fuga Estimada</div>
+                        <div style="font-size:1.35rem; font-weight:800; color:#ffffff; font-family:var(--font-heading);">~${fugaHoras} hrs/sem</div>
+                        <div style="font-size:0.72rem; color:#f59e0b; margin-top:3px;">~${fugaHoras * 4}h al mes en fricción</div>
+                    </div>
+                    <div style="background:#141414; border:1px solid #262626; border-radius:12px; padding:14px; text-align:center;">
+                        <div style="font-size:0.72rem; color:#a1a1aa; text-transform:uppercase; font-weight:700; margin-bottom:4px;">🚨 Índice de Saturación</div>
+                        <div style="font-size:1.35rem; font-weight:800; color:${satColor}; font-family:var(--font-heading);">${satTitle}</div>
+                        <div style="font-size:0.72rem; color:#a1a1aa; margin-top:3px;">${satSub}</div>
+                    </div>
+                    <div style="background:#141414; border:1px solid #262626; border-radius:12px; padding:14px; text-align:center;">
+                        <div style="font-size:0.72rem; color:#a1a1aa; text-transform:uppercase; font-weight:700; margin-bottom:4px;">🎯 Cuello de Botella</div>
+                        <div style="font-size:0.92rem; font-weight:800; color:#38bdf8; font-family:var(--font-heading); margin-top:2px;">${painInfo.title}</div>
+                        <div style="font-size:0.72rem; color:#a1a1aa; margin-top:3px;">${painInfo.focus}</div>
+                    </div>
+                    <div style="background:#141414; border:1px solid #262626; border-radius:12px; padding:14px; text-align:center;">
+                        <div style="font-size:0.72rem; color:#a1a1aa; text-transform:uppercase; font-weight:700; margin-bottom:4px;">🧩 Módulos Sugeridos</div>
+                        <div style="font-size:1.35rem; font-weight:800; color:#ffffff; font-family:var(--font-heading);">${modulosPrescritos.length} Módulos</div>
+                        <div style="font-size:0.72rem; color:#10b981; margin-top:3px;">Propuesta Plan de Vuelo</div>
+                    </div>
+                `;
+            }
+
+            // 2. Renderizar Módulos Recomendados
+            const modulesContainer = document.getElementById('exp-res-modules');
+            if (modulesContainer) {
+                modulesContainer.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:6px;">
+                        <div style="font-size:0.88rem; font-weight:800; color:#ffffff; display:flex; align-items:center; gap:6px;">
+                            <span>🎯</span> Receta Quirúrgica de Módulos para tu Plan de Vuelo:
+                        </div>
+                        <span style="font-size:0.72rem; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:2px 8px; border-radius:12px;">
+                            ${painInfo.pilar}
+                        </span>
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px;">
+                        ${keyModules.map(m => `
+                            <div style="background:#141414; border:1px solid #262626; border-radius:10px; padding:12px; display:flex; flex-direction:column; justify-content:space-between;">
+                                <div>
+                                    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:6px; margin-bottom:4px;">
+                                        <b style="color:#ffffff; font-size:0.86rem;">${m.nombre}</b>
+                                        <span style="font-size:0.66rem; background:#1e1e1e; color:#a1a1aa; border:1px solid #333; padding:1px 6px; border-radius:4px; white-space:nowrap;">${m.fase || 'Módulo AH'}</span>
+                                    </div>
+                                    <div style="font-size:0.76rem; color:#38bdf8; line-height:1.35; margin-bottom:6px;">💡 ${m.metafora}</div>
+                                </div>
+                                ${m.pasoCero ? `<div style="font-size:0.72rem; color:#10b981; border-top:1px dashed #262626; padding-top:6px; margin-top:4px;">⚡ <b>Paso Cero:</b> ${m.pasoCero}</div>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div style="margin-top:12px; padding:10px 14px; background:rgba(16, 185, 129, 0.08); border:1px solid rgba(16, 185, 129, 0.3); border-radius:8px;">
+                        <div style="font-size:0.78rem; font-weight:800; color:#10b981; margin-bottom:2px;">⚡ Micro-Compromiso Inmediato para Sesión 1:</div>
+                        <div style="font-size:0.75rem; color:#d4d4d8;">${pasoCeroAccion}</div>
+                    </div>
+                `;
+            }
+
+            // 3. Formatear Mensaje de WhatsApp
+            const topListText = keyModules.slice(0, 4).map(m => `• ${m.nombre} (${m.metafora})`).join('\n');
+            const waMsg = `¡Hola Diego! Acabo de realizar mi Radiografía Express en Administración Humana:
+
+👤 Nombre: ${nombre}${edad ? ` (${edad} años)` : ''}
+📍 Ciudad: ${ciudad}
+💼 Ocupación: ${ocupacion}
+📱 WhatsApp: ${whatsapp}
+
+⏱️ Fuga estimada: ~${fugaHoras}h/sem (~${fugaHoras * 4}h/mes)
+🎯 Mayor Cuello de Botella: ${painInfo.title}
+🚨 Nivel de Saturación: ${satTitle}
+
+🧩 Módulos Clave de mi Radiografía:
+${topListText}
+
+⚡ Micro-Compromiso Inmediato para Sesión 1:
+${pasoCeroAccion}
+
+🎙️ (Te dejaré una nota de voz por aquí contándote un poco más de mi situación actual para que me sirva de base para mi Plan de Vuelo).
+
+Me gustaría coordinar una sesión 1a1 contigo para revisar mi caso y armar mi Plan de Vuelo.`;
+
+            const waBtn = document.getElementById('exp-wa-btn');
+            if (waBtn) {
+                waBtn.href = `https://wa.me/56975590132?text=${encodeURIComponent(waMsg)}`;
+            }
+
+            // 4. Actualizar Título y Subtítulo
+            const resTitle = document.getElementById('exp-res-title');
+            const resSub = document.getElementById('exp-res-sub');
+            if (resTitle) resTitle.innerText = `¡Radiografía de ${nombre} Generada con Éxito!`;
+            if (resSub) resSub.innerText = `${ciudad} • ${ocupacion} • Cuello de Botella: ${painInfo.title}`;
+
+            // 5. Persistencia Local & Integración con Panel de Diego
+            const clientUid = 'exp-' + Date.now();
+            const clientRecord = {
+                uid: clientUid,
+                fullName: nombre,
+                email: `${nombre.toLowerCase().replace(/[^a-z0-9]/g, '')}@express.ah`,
+                whatsapp: whatsapp,
+                edad: edad || '',
+                ciudad: ciudad,
+                ocupacion: ocupacion,
+                dolorPrincipal: painInfo.title,
+                horasFuga: fugaHoras,
+                hasAudio: false,
+                status: 'Sondeo Recibido',
+                driveUrl: '',
+                notes: `Radiografía Express generada el ${new Date().toLocaleDateString('es-CL')}. Fuga: ~${fugaHoras}h/sem. Cuello de botella: ${painInfo.title}.`
+            };
+
+            // Guardar en clientes de panel_admin
+            try {
+                let adminClients = [];
+                const rawClients = localStorage.getItem('ah_admin_clients');
+                if (rawClients) adminClients = JSON.parse(rawClients);
+                const existingIdx = adminClients.findIndex(c => (c.fullName && c.fullName.toLowerCase() === nombre.toLowerCase()) || (c.whatsapp && c.whatsapp === whatsapp));
+                if (existingIdx >= 0) {
+                    adminClients[existingIdx] = Object.assign(adminClients[existingIdx], clientRecord);
+                } else {
+                    adminClients.unshift(clientRecord);
+                }
+                localStorage.setItem('ah_admin_clients', JSON.stringify(adminClients));
+            } catch(e) {
+                console.warn("Storage admin clients warning:", e);
+            }
+
+            // Guardar diagnóstico para panel_admin (ah_diag_${uid})
+            const diagPayload = {
+                data: {
+                    fugas: [Math.min(5, Math.ceil(fugaHoras / 6)), Math.min(5, Math.ceil(fugaHoras / 6)), 3, 3, 3, 3, 3, 3, 3, 3],
+                    pain: pain,
+                    horasFuga: fugaHoras,
+                    ciudad, ocupacion, edad, whatsapp
+                },
+                scores: {
+                    'Gestión del Tiempo': pain === 'horarios' ? 3 : 6,
+                    'Bienestar & Salud': pain === 'sensorial' ? 3 : 6,
+                    'Finanzas': pain === 'finanzas' ? 3 : 6,
+                    'Propósito': 6,
+                    'Hábitos & Rutinas': pain === 'rumiacion' ? 3 : 6,
+                    'Relaciones': 7,
+                    'Entorno Trabajo': pain === 'frentes' ? 4 : 6,
+                    'Desarrollo Personal': 7
+                }
+            };
+
+            try {
+                localStorage.setItem(`ah_diag_${clientUid}`, JSON.stringify(diagPayload));
+            } catch(e) {}
+
+            // Guardar último express en localStorage
+            try {
+                localStorage.setItem('ah_sondeo_express_data', JSON.stringify({
+                    nombre, edad, ciudad, ocupacion, whatsapp, pain, fugaHoras,
+                    fecha: new Date().toISOString()
+                }));
+            } catch(e) {}
+
+            // Notificación asíncrona a Formspree
+            try {
+                fetch("https://formspree.io/f/mqkrvkzz", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                    body: JSON.stringify({
+                        tipo: "Radiografía Express AH",
+                        cliente: nombre,
+                        whatsapp: whatsapp,
+                        ciudad: ciudad,
+                        ocupacion: ocupacion,
+                        dolorPrincipal: painInfo.title,
+                        horasFugaSemana: fugaHoras,
+                        fecha: new Date().toLocaleString('es-CL'),
+                        enlacePanel: "https://diegfire.github.io/administracionhumana/panel_admin.html"
+                    })
+                }).catch(() => {});
+            } catch(e) {}
+
+            // 6. Mostrar Resultados
+            const resultsCard = document.getElementById('exp-results-card');
+            if (resultsCard) {
+                resultsCard.style.display = 'block';
+                resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerText = '⚡ Generar Mi Radiografía y Coordinar con Diego →';
+            }
+        }
+
+        // Inicializar slider visual al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                onSliderChange(18);
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('mode') === 'full' || urlParams.get('step')) {
+                    window.switchSondeoMode('full');
+                }
+            }, 100);
+        });
+
+        return {
+            selectPain,
+            onSliderChange,
+            downloadCardImage,
+            shareCardImage,
+            onWhatsAppClick,
+            submitExpress
+        };
+    })();
     
     // ================= FUNCIONES GLOBALES DE AUTENTICACIÓN Y HEADER =================
     window.openSondeoAuthModal = function(mode) {

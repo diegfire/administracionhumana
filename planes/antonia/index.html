@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan de Vuelo 2.0 • Antonia Jofré • Administración Humana</title>
@@ -21,39 +22,88 @@
 
     <!-- Inmersión Visual & Reglas Móviles de Alta Prioridad -->
     <style>
+        /* Inmersión Visual: Navegación de Módulos en 2 Columnas */
+        .tabs {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.65rem 0.85rem !important;
+            padding: 0.85rem !important;
+            background: rgba(18, 18, 22, 0.75) !important;
+            border: 1px solid var(--border, #262626) !important;
+            border-radius: var(--radius-md, 14px) !important;
+            margin-bottom: 2rem !important;
+            width: 100% !important;
+            overflow: visible !important;
+            box-sizing: border-box !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+        }
+
+        .tab-btn {
+            width: 100% !important;
+            padding: 0.85rem 1.15rem !important;
+            font-size: 0.9rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 0.7rem !important;
+            border-radius: 10px !important;
+            white-space: normal !important;
+            line-height: 1.3 !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: var(--text-muted, #a1a1aa) !important;
+            box-sizing: border-box !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .tab-btn i {
+            font-size: 1.05rem !important;
+            width: 1.3rem !important;
+            text-align: center !important;
+            flex-shrink: 0 !important;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .tab-btn.active {
+            background: var(--primary, #10b981) !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            border-color: var(--primary, #10b981) !important;
+            box-shadow: 0 4px 18px var(--primary-glow, rgba(16, 185, 129, 0.35)) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* Si el número total de módulos es impar, el último abarca las 2 columnas centrado */
+        .tab-btn:last-child:nth-child(odd) {
+            grid-column: span 2 !important;
+            justify-content: center !important;
+        }
+
         @media (max-width: 768px) {
             .tabs {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.45rem !important;
-                padding: 0.5rem !important;
-                background: rgba(255, 255, 255, 0.03) !important;
-                border: 1px solid #262626 !important;
-                border-radius: 12px !important;
+                gap: 0.5rem !important;
+                padding: 0.55rem !important;
                 margin-bottom: 1.4rem !important;
-                width: 100% !important;
-                overflow-x: visible !important;
-                flex-wrap: wrap !important;
             }
 
             .tab-btn {
-                width: 100% !important;
-                padding: 0.65rem 0.4rem !important;
-                font-size: 0.74rem !important;
-                justify-content: center !important;
-                text-align: center !important;
-                gap: 0.35rem !important;
-                border-radius: 8px !important;
-                white-space: normal !important;
-                line-height: 1.25 !important;
-                flex: none !important;
+                padding: 0.7rem 0.6rem !important;
+                font-size: 0.76rem !important;
+                gap: 0.45rem !important;
             }
 
-            .tab-btn.active {
-                background: #ffffff !important;
-                color: #000000 !important;
-                box-shadow: 0 0 14px rgba(255, 255, 255, 0.3) !important;
-                font-weight: 800 !important;
+            .tab-btn i {
+                font-size: 0.88rem !important;
+                width: 1rem !important;
             }
         }
 
@@ -327,7 +377,7 @@
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
             <button class="tab-btn" onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns"></i> Tablero de Foco (Máx 2 Tareas)
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
             </button>
             <button class="tab-btn" onclick="switchTab('tab-herramientas')">
                 <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
@@ -372,7 +422,7 @@
                     <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
                     <ul class="custom-list">
                         <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
-                        <li><strong>🛡️ Protección Antidispersión:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
+                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
                         <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
                     </ul>
                 </div>
@@ -615,7 +665,7 @@ Formatea para guardar en: "02_Gestion_Operativa_y_Metas/Mapeo_Horario_Semanal.md
                             <i class="fa-solid fa-folder"></i> 02_Gestion_Operativa_y_Metas
                         </span>
                         <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
-                            📋 Módulo 4 • Tablero Kanban GTD (Vaciado Mental Máximo 2 Tareas)
+                            📋 Módulo 4 • Tablero Kanban GTD (Vaciado Mental WIP=2)
                         </h3>
                     </div>
                     <button class="btn-copy-prompt" onclick="copyPromptText('prompt-kanban-text', this)">
@@ -632,7 +682,7 @@ Te voy a listar todo lo que tengo pendiente:
 [INSERTAR AQUÍ TUS PENDIENTES / AUDIOS / PENSAMIENTOS]
 
 Por favor:
-1. Filtra y organiza esta lista bajo la metodología GTD (Getting Things Done) con regla estricta Máximo 2 Tareas (máximo 2 cosas en "En Ejecución").
+1. Filtra y organiza esta lista bajo la metodología GTD (Getting Things Done) con regla estricta WIP=2 (máximo 2 cosas en "En Ejecución").
 2. Clasifícalo en 3 columnas:
    - 📋 Por Empezar (To-Do): Ordenadas de menor a mayor fricción.
    - ⚡ En Ejecución (Doing - Máximo 2): Las 2 únicas micro-acciones prioritarias para hoy.
@@ -806,7 +856,7 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
                         <i class="fa-regular fa-copy"></i> Copiar Prompt Antigravity
                     </button>
                 </div>
-                <p style="font-size: 0.8rem; color: #aaa;">Pídele a Antigravity que gestione tus tareas respetando tu límite Máximo 2 Tareas.</p>
+                <p style="font-size: 0.8rem; color: #aaa;">Pídele a Antigravity que gestione tus tareas respetando tu límite WIP=2.</p>
                 <div class="prompt-box" id="tip-prompt-2">Antigravity, logré completar la tarea de [INSERTAR TAREA CUMPLIDA].
 Muévela a 'Hito Cumplido' en mi tablero Kanban, y coloca en 'En Ejecución' la siguiente micro-acción: [INSERTAR NUEVA TAREA]. Respeta siempre mi límite de máximo 2 tareas activas.</div>
             </div>
@@ -860,7 +910,7 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
                         <div>📂 <strong>2. Indica la carpeta o archivo:</strong> Si guardaste una nota o audio, dile el nombre o carpeta (ej: <code>04_Servicios</code>).</div>
                     </div>
                     <div>
-                        <div>🛡️ <strong>3. Límite de Foco Protegido:</strong> Antigravity siempre cuidará tu salud mental respetando el límite Máximo 2 Tareas.</div>
+                        <div>🛡️ <strong>3. Límite de Foco Protegido:</strong> Antigravity siempre cuidará tu salud mental respetando el límite WIP=2.</div>
                         <div>☁️ <strong>4. Sincronización Automática:</strong> Cualquier cambio que hagas en tu computador se sincroniza de inmediato con el Drive de Diego.</div>
                     </div>
                 </div>
@@ -1050,6 +1100,31 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
                     Pinta tus bloques semanales para proteger tus <strong>2 Bloques de Oro para Yoga</strong>, tus horas de cuidado familiar y tus momentos de descanso reparador.
                 </p>
 
+                <!-- SELECTOR DESPLEGABLE DE MIS CALENDARIOS GUARDADOS -->
+                <div id="schedule-calendar-bar-container" class="schedule-calendar-bar-container">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; flex:1;">
+                        <span style="font-size:0.82rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-calendar-days" style="color:var(--primary, #10b981);"></i> Mis Calendarios:
+                        </span>
+                        <select id="schedule-calendar-select" class="schedule-calendar-select" onchange="handleCalendarSelectChange(this.value)">
+                        </select>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn-schedule-action" onclick="openSaveAsNewCalendarModal()" style="background:rgba(16,185,129,0.12); color:#10b981; border:1px solid rgba(16,185,129,0.35); font-weight:700;">
+                            <i class="fa-solid fa-folder-plus"></i> + Guardar Semana Actual
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-merge-calendar" onclick="openMergeCalendarsModal()" style="background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.35); font-weight:700;">
+                            <i class="fa-solid fa-layer-group"></i> Solapar / Fusionar
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="openRenameCalendarModal()" style="color:#ccc;">
+                            <i class="fa-solid fa-pen"></i> Renombrar
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-delete-active-calendar" onclick="deleteActiveCalendar()" style="color:#f87171; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);">
+                            <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+
                 <div class="schedule-controls">
                     <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
                     <div class="brush-selector" id="brush-selector-container"></div>
@@ -1082,7 +1157,7 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
             <div class="card">
                 <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
                     <span style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:#fff; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-table-columns"></i> Tablero de Foco (Máximo 2 Tareas a la Vez)
+                        <i class="fa-solid fa-table-columns"></i> Tablero Kanban GTD (Límite Estricto WIP = 2)
                     </span>
                     <button class="btn-schedule-action" onclick="resetKanbanDefault()" style="color:#aaa;">
                         <i class="fa-solid fa-rotate-left"></i> Restaurar Tablero
@@ -1107,7 +1182,7 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
 
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (Máximo 2 Tareas a la Vez)</div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -1202,7 +1277,7 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
                 <div class="card">
                     <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Foco)</span></h3>
                     <ul class="custom-list danger-list">
-                        <li>🚫 Multitarea tóxica sin límite de tareas abiertas.</li>
+                        <li>🚫 Multitarea tóxica sin límite WIP.</li>
                         <li>🚫 Acostarse con pendientes en la cabeza sin vaciado análogo.</li>
                         <li>🚫 Postergar conversaciones difíciles o sentir culpa por cuidar a tu familia.</li>
                     </ul>
@@ -1377,6 +1452,7 @@ Ajusta mi Mapeador 24 Horas para proteger mis 2 Bloques de Oro de Yoga en otros 
             clientId: "antonia",
             clientName: "Antonia Jofré",
             clientPIN: "antonia2026",
+            validPins: ["antonia2026", "antojofre23091995", "antojofre1995", "antojofre", "2026", "admin2026", "diego_ah_master", "diegop1990"],
             masterPIN: "diego_ah_master"
         };
 

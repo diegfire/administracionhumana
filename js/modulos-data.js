@@ -777,7 +777,7 @@ window.AICC_MODULOS_DB = [
       "Mi mente se siente como un navegador con 50 pestañas abiertas al mismo tiempo"
     ],
     "pregunta_diagnostica": "¿Confías en tu memoria para recordar tus pendientes, o tienes un sistema externo 100% confiable donde guardas todo?",
-    "carta_tactica_asociada": "Efecto Zeigarnik",
+    "carta_tactica_asociada": "Ley de Carlson",
     "protocolo_paso_cero": "Tomar una hoja en blanco y anotar 5 pendientes sueltos para sacarlos de la cabeza.",
     "microdosis_24h": "Hacer un vaciado mental completo de 15 minutos y clasificar entre Acción (<2 min), Proyecto o Archivo.",
     "sinergias": [
@@ -1474,7 +1474,7 @@ window.AICC_MODULOS_DB = [
       "Me trabo a mitad de semana y me da pudor consultar o no sé cómo explicar en qué pantalla estoy"
     ],
     "pregunta_diagnostica": "Cuando tienes una duda en medio de tu trabajo, ¿puedes consultar a tu consultor con un solo toque?",
-    "carta_tactica_asociada": "Efecto Zeigarnik",
+    "carta_tactica_asociada": "Ley de Carlson",
     "protocolo_paso_cero": "Tocar el botón de WhatsApp flotante para enviar la consulta precargada con la pestaña activa.",
     "microdosis_24h": "Hacer una prueba de envío desde el portal web en PC o móvil.",
     "sinergias": [
@@ -2360,7 +2360,7 @@ window.AICC_MODULOS_DB = [
       "Siento que no merezco descansar porque no fui lo suficientemente productivo"
     ],
     "pregunta_diagnostica": "¿Por qué le exiges a tu mente que duerma si antes de acostarte solo le recordaste tus fallas y no tus victorias?",
-    "carta_tactica_asociada": "Efecto Zeigarnik",
+    "carta_tactica_asociada": "Ley de Carlson",
     "protocolo_paso_cero": "Escribir en una hoja 1 sola cosa buena que hiciste hoy (incluso si fue levantarte y tomar agua).",
     "microdosis_24h": "Anotar 3 micro-victorias del día y validar el trabajo invisible de cuidados antes de apagar la luz.",
     "sinergias": [
@@ -2685,7 +2685,7 @@ window.AICC_MODULOS_DB = [
       "Salgo de mi casa con el corazón acelerado revisando cinco veces si llevo todo"
     ],
     "pregunta_diagnostica": "¿Tienes un checklist visual pegado en tu mochila para revisar en 30 segundos antes de salir?",
-    "carta_tactica_asociada": "Efecto Zeigarnik",
+    "carta_tactica_asociada": "Ley de Carlson",
     "protocolo_paso_cero": "Verificar únicamente el ítem más crítico (ej. Micrófono cargado al 100%).",
     "microdosis_24h": "Imprimir el checklist en micas y colocarlo en el bolsillo frontal de la mochila de trabajo.",
     "sinergias": [
@@ -2806,3 +2806,4 @@ window.AICC_MODULOS_DB = [
     }
   }
 ];
+window.AH_MODULOS_DB = window.AICC_MODULOS_DB;
