@@ -37,40 +37,166 @@
             --radius-lg: 20px;
         }
 
-        /* ── SELECTOR SUPERIOR DE CASOS ── */
+        /* ── SELECTOR SUPERIOR DE CASOS (REDISEÑO EN 2 NIVELES) ── */
         .case-selector-bar {
             background: rgba(10, 10, 10, 0.96);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
             position: sticky;
             top: 0;
             z-index: 10000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.7);
         }
-        .case-selector-inner {
+        .case-selector-container {
             max-width: 1350px;
             margin: 0 auto;
+            padding: 8px 18px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Fila 1: Header Brand & Acciones */
+        .case-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding-bottom: 4px;
+        }
+        .case-brand-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .case-brand-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+            transition: opacity 0.2s ease;
+        }
+        .case-brand-link:hover { opacity: 0.85; }
+        .case-brand-logo {
+            height: 30px;
+            width: auto;
+            border-radius: 6px;
+        }
+        .case-brand-pill {
+            font-size: 0.72rem;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .case-actions-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn-cta-sondeo {
+            background: #ffffff;
+            color: #000000;
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 0.82rem;
+            text-decoration: none;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .btn-cta-sondeo:hover {
+            background: #e5e5e5;
+            transform: translateY(-1px);
+            box-shadow: 0 0 22px rgba(255, 255, 255, 0.4);
+        }
+        .btn-cta-whatsapp {
+            background: #10b981;
+            color: #000000;
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 0.82rem;
+            text-decoration: none;
+            box-shadow: 0 0 14px rgba(16, 185, 129, 0.35);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .btn-cta-whatsapp:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Fila 2: Selector Dedicado de Casos */
+        .case-bottom-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 6px 12px;
             flex-wrap: wrap;
         }
+        .cases-selector-heading {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .cases-label-main {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.04em;
+            font-size: 0.82rem;
+        }
+        .cases-label-hint {
+            color: #71717a;
+            font-size: 0.72rem;
+        }
+
         .case-chips-group {
             display: flex;
             align-items: center;
             gap: 6px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
+        .case-chips-group::-webkit-scrollbar { display: none; }
+
         .case-chip {
-            background: rgba(255, 255, 255, 0.04);
+            background: #121212;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #aaa;
+            color: #cccccc;
             padding: 6px 13px;
             border-radius: 50px;
-            font-size: 0.76rem;
+            font-size: 0.79rem;
             font-family: var(--font-heading);
             font-weight: 700;
             cursor: pointer;
@@ -79,19 +205,31 @@
             gap: 6px;
             transition: all 0.2s ease;
             text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .case-chip:hover {
             background: rgba(255, 255, 255, 0.12);
             border-color: rgba(255, 255, 255, 0.3);
-            color: #fff;
+            color: #ffffff;
             transform: translateY(-1px);
         }
         .case-chip.active {
             background: #ffffff;
             color: #000000;
             border-color: #ffffff;
-            box-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.4);
             font-weight: 800;
+        }
+        .case-chip.active b {
+            color: #000000;
+        }
+
+        @media (max-width: 992px) {
+            .case-top-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .case-actions-group { width: 100%; justify-content: flex-start; }
+            .case-bottom-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .case-chips-group { width: 100%; justify-content: flex-start; overflow-x: auto; padding-bottom: 4px; }
         }
 
         /* ── BARRA DE PESTAÑAS MODULARES ── */
@@ -423,49 +561,70 @@
 </head>
 <body>
 
-    <!-- 1. BARRA SUPERIOR FIJA: SELECTOR RÁPIDO DE 5 CASOS REALES -->
+    <!-- 1. BARRA SUPERIOR FIJA: NAVEGACIÓN Y SELECTOR DE 5 CASOS REALES -->
     <aside class="case-selector-bar" aria-label="Selector de Casos">
-        <div class="case-selector-inner">
-            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 8px; color: #fff; font-family: var(--font-heading); font-weight: 800; font-size: 0.88rem;">
-                    <img src="logo_oficial.png" alt="Logo AH" style="height: 28px; width: auto; border-radius: 6px;">
-                    <span>AH • PLAN DE VUELO 2.0</span>
-                </a>
-                <span style="font-size: 0.72rem; color: #888; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; gap: 4px;">
-                    <i class="fa-solid fa-layer-group" style="color: var(--color-accent-blue);"></i> 5 Casos:
-                </span>
+        <div class="case-selector-container">
+            <!-- FILA 1: BRANDING & ACCIONES PRINCIPALES -->
+            <div class="case-top-row">
+                <!-- Izquierda: Brand / Logo -->
+                <div class="case-brand-group">
+                    <a href="index.html" class="case-brand-link" title="Volver al Inicio • Administración Humana">
+                        <img src="logo_oficial.png" alt="Logo AH" class="case-brand-logo">
+                        <span class="case-brand-name">AH • PLAN DE VUELO 2.0</span>
+                    </a>
+                    <span class="case-brand-pill">
+                        Casos Reales en Vivo
+                    </span>
+                </div>
+
+                <!-- Derecha: Acciones / CTAs -->
+                <div class="case-actions-group">
+                    <button id="btn-toggle-consultor" class="consultor-toggle-btn" onclick="toggleConsultorMode()" title="Cambiar entre Vista Cliente y Modo Consultor">
+                        <i class="fa-solid fa-lock" id="consultor-toggle-icon"></i>
+                        <span id="consultor-toggle-label">Vista Cliente</span>
+                    </button>
+                    
+                    <a href="sondeo.html" class="btn-cta-sondeo" title="Hacer Sondeo Express de 90 segundos">
+                        <span>⚡ Sondeo Express (90s) →</span>
+                    </a>
+                    
+                    <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estoy%20revisando%20el%20Plan%20de%20Vuelo%202.0%20y%20quiero%20crear%20el%20m%C3%ADo." target="_blank" rel="noopener noreferrer" class="btn-cta-whatsapp" title="Hablar directamente con Diego">
+                        <i class="fa-brands fa-whatsapp"></i> Hablar con Diego
+                    </a>
+                </div>
             </div>
 
-            <!-- CHIPS SELECTORES DE CASOS -->
-            <div class="case-chips-group">
-                <button class="case-chip active" id="chip-caso_a" onclick="handleCaseSelect('caso_a')">
-                    <span>🧘‍♀️</span> 1. Sofía (Cuidados)
-                </button>
-                <button class="case-chip" id="chip-caso_b" onclick="handleCaseSelect('caso_b')">
-                    <span>💆‍♀️</span> 2. Camila (Sensorial)
-                </button>
-                <button class="case-chip" id="chip-caso_c" onclick="handleCaseSelect('caso_c')">
-                    <span>🎒</span> 3. Lucas (TDAH)
-                </button>
-                <button class="case-chip" id="chip-caso_d" onclick="handleCaseSelect('caso_d')">
-                    <span>👓</span> 4. Gabriel (Comercio)
-                </button>
-                <button class="case-chip" id="chip-caso_e" onclick="handleCaseSelect('caso_e')">
-                    <span>🌏</span> 5. Valeria (Carrera)
-                </button>
-            </div>
+            <!-- FILA 2: SELECTOR DE LOS 5 CASOS DE EJEMPLO -->
+            <div class="case-bottom-row">
+                <div class="cases-selector-heading">
+                    <i class="fa-solid fa-layer-group" style="color: var(--color-accent-blue); font-size: 0.95rem;"></i>
+                    <span class="cases-label-main">5 CASOS REALES:</span>
+                    <span class="cases-label-hint">Selecciona un ejemplo →</span>
+                </div>
 
-            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                <button id="btn-toggle-consultor" class="consultor-toggle-btn" onclick="toggleConsultorMode()" title="Cambiar entre Vista Cliente y Modo Consultor">
-                    <i class="fa-solid fa-lock" id="consultor-toggle-icon"></i>
-                    <span id="consultor-toggle-label">Vista Cliente</span>
-                </button>
-                <a href="sondeo.html" style="color: #93c5fd; text-decoration: none; font-weight: 700; font-size: 0.78rem; padding: 5px 11px; border-radius: 6px; border: 1px solid rgba(147,197,253,0.3); background: rgba(147,197,253,0.08);">
-                    🔮 Sondeo 360° Gratuito →
-                </a>
-                <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estoy%20revisando%20el%20Plan%20de%20Vuelo%202.0%20y%20quiero%20crear%20el%20m%C3%ADo." target="_blank" style="background: #10b981; color: #000000; padding: 5px 14px; border-radius: 50px; font-weight: 800; text-decoration: none; font-size: 0.78rem; box-shadow: 0 0 12px rgba(16,185,129,0.35);">
-                    💬 Hablar con Diego
-                </a>
+                <!-- CHIPS SELECTORES DE CASOS (MÁS GRANDES Y LEGIBLES) -->
+                <div class="case-chips-group" role="tablist" aria-label="Casos de ejemplo">
+                    <button class="case-chip active" id="chip-caso_a" onclick="handleCaseSelect('caso_a')" role="tab" aria-selected="true">
+                        <span class="chip-icon">🧘‍♀️</span>
+                        <span class="chip-text"><b>1.</b> Sofía (Cuidados)</span>
+                    </button>
+                    <button class="case-chip" id="chip-caso_b" onclick="handleCaseSelect('caso_b')" role="tab" aria-selected="false">
+                        <span class="chip-icon">💆‍♀️</span>
+                        <span class="chip-text"><b>2.</b> Camila (Sensorial)</span>
+                    </button>
+                    <button class="case-chip" id="chip-caso_c" onclick="handleCaseSelect('caso_c')" role="tab" aria-selected="false">
+                        <span class="chip-icon">🎒</span>
+                        <span class="chip-text"><b>3.</b> Lucas (TDAH)</span>
+                    </button>
+                    <button class="case-chip" id="chip-caso_d" onclick="handleCaseSelect('caso_d')" role="tab" aria-selected="false">
+                        <span class="chip-icon">👓</span>
+                        <span class="chip-text"><b>4.</b> Gabriel (Comercio)</span>
+                    </button>
+                    <button class="case-chip" id="chip-caso_e" onclick="handleCaseSelect('caso_e')" role="tab" aria-selected="false">
+                        <span class="chip-icon">🌏</span>
+                        <span class="chip-text"><b>5.</b> Valeria (Carrera)</span>
+                    </button>
+                </div>
             </div>
         </div>
     </aside>

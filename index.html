@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Administración Humana</title>
+  <title>Tu Sistema de Gestión Personalizado | Administración Humana</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -536,130 +536,745 @@
     }
     .footer-links a:hover { color: #ffffff; }
 
-    /* ── NUEVAS SECCIONES ── */
+    /* ── PHILOSOPHY (GOLDEN CIRCLE: DE ADENTRO HACIA AFUERA) ── */
+    .philosophy {
+      background: radial-gradient(circle at 50% 15%, rgba(245, 158, 11, 0.05) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
+                  var(--color-bg);
+      position: relative;
+      overflow: hidden;
+      padding: 110px 0 90px;
+      scroll-margin-top: 90px;
+    }
+
+    /* Diagrama Concéntrico Interactivo */
+    .gc-interactive-banner {
+      background: #0d0d0d;
+      border: 1px solid #242424;
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      margin-bottom: 36px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+    @media (max-width: 920px) {
+      .gc-interactive-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 26px 20px;
+        gap: 28px;
+      }
+    }
+
+    /* Anillos Concéntricos */
+    .gc-rings-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 0 auto;
+    }
+
+    .gc-ring {
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Anillo 3 (Exterior - El Qué) */
+    .gc-ring.ring-3 {
+      width: 250px;
+      height: 250px;
+      border: 2px dashed rgba(16, 185, 129, 0.45);
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.02) 0%, rgba(16, 185, 129, 0.08) 100%);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.12);
+    }
+    .gc-ring.ring-3:hover, .gc-ring.ring-3.highlighted {
+      border-color: #10b981;
+      border-style: solid;
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.4);
+      transform: scale(1.02);
+    }
+
+    /* Anillo 2 (Intermedio - El Cómo) */
+    .gc-ring.ring-2 {
+      width: 175px;
+      height: 175px;
+      border: 2px dashed rgba(56, 189, 248, 0.5);
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.04) 0%, rgba(56, 189, 248, 0.12) 100%);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+    }
+    .gc-ring.ring-2:hover, .gc-ring.ring-2.highlighted {
+      border-color: #38bdf8;
+      border-style: solid;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.45);
+      transform: scale(1.03);
+    }
+
+    /* Anillo 1 (Núcleo - El Por Qué) */
+    .gc-ring.ring-1 {
+      width: 105px;
+      height: 105px;
+      border: 2px solid rgba(245, 158, 11, 0.8);
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.35) 0%, rgba(245, 158, 11, 0.15) 100%);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
+      animation: pulseCore 3.5s infinite ease-in-out;
+    }
+    @keyframes pulseCore {
+      0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.35); }
+      50% { box-shadow: 0 0 35px rgba(245, 158, 11, 0.7); }
+    }
+    .gc-ring.ring-1:hover, .gc-ring.ring-1.highlighted {
+      border-color: #fbbf24;
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.75);
+      transform: scale(1.06);
+    }
+
+    .gc-ring-center {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+    }
+    .gc-center-icon { font-size: 1.25rem; line-height: 1; margin-bottom: 2px; }
+    .gc-center-label { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 800; color: #fbbf24; letter-spacing: 0.05em; }
+    .gc-center-sub { font-size: 0.52rem; color: #fde68a; text-transform: uppercase; font-weight: 700; }
+
+    .gc-ring-tag {
+      position: absolute;
+      top: -11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .tag-green { background: #064e3b; color: #34d399; border: 1px solid rgba(16, 185, 129, 0.5); }
+    .tag-blue { background: #0c4a6e; color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.5); }
+
+    /* Track de Flujo Explicativo */
+    .gc-flow-track {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .gc-flow-node {
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .gc-flow-node:hover, .gc-flow-node.active {
+      transform: translateX(5px);
+    }
+    .gc-flow-node.node-why:hover, .gc-flow-node.node-why.active {
+      border-color: rgba(245, 158, 11, 0.6);
+      background: rgba(245, 158, 11, 0.06);
+    }
+    .gc-flow-node.node-how:hover, .gc-flow-node.node-how.active {
+      border-color: rgba(56, 189, 248, 0.6);
+      background: rgba(56, 189, 248, 0.06);
+    }
+    .gc-flow-node.node-what:hover, .gc-flow-node.node-what.active {
+      border-color: rgba(16, 185, 129, 0.6);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .node-content { display: flex; flex-direction: column; gap: 3px; }
+    .node-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.68rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .badge-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
+    .badge-cyan { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); }
+    .badge-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); }
+
+    .node-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+    }
+    .node-desc {
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      margin: 0;
+      line-height: 1.4;
+    }
+    .node-arrow-icon {
+      font-size: 1.1rem;
+      color: #71717a;
+      flex-shrink: 0;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .gc-flow-node:hover .node-arrow-icon { color: #ffffff; transform: translateX(3px); }
+
+    /* ── Tarjetas Rediseñadas ── */
     .circle-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 24px;
+      gap: 22px;
+      margin-top: 10px;
     }
+    @media (max-width: 960px) {
+      .circle-grid { grid-template-columns: 1fr; }
+    }
+
     .circle-card {
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border);
+      background: #0d0d0d;
+      border: 1px solid #222222;
       border-radius: var(--radius-lg);
-      padding: 32px 24px;
+      padding: 28px 24px;
       position: relative;
-      transition: border-color var(--transition), transform var(--transition);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
-    .circle-card:hover {
-      border-color: #ffffff;
-      transform: translateY(-2px);
-    }
-    .circle-card::before {
-      content: '';
+    .circle-card::before { display: none; }
+
+    .card-glow-bar {
       position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      background: #ffffff;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      top: 0; left: 0; right: 0;
+      height: 3px;
     }
+    .glow-amber { background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24); }
+    .glow-cyan { background: linear-gradient(90deg, #0284c7, #38bdf8, #7dd3fc); }
+    .glow-emerald { background: linear-gradient(90deg, #059669, #10b981, #34d399); }
+
+    .circle-card:hover, .circle-card.highlighted {
+      transform: translateY(-4px);
+    }
+    .circle-card.card-why:hover, .circle-card.card-why.highlighted {
+      border-color: rgba(245, 158, 11, 0.6);
+      box-shadow: 0 12px 32px rgba(245, 158, 11, 0.16);
+    }
+    .circle-card.card-how:hover, .circle-card.card-how.highlighted {
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 12px 32px rgba(56, 189, 248, 0.16);
+    }
+    .circle-card.card-what:hover, .circle-card.card-what.highlighted {
+      border-color: rgba(16, 185, 129, 0.6);
+      box-shadow: 0 12px 32px rgba(16, 185, 129, 0.16);
+    }
+
+    .card-head-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .card-icon-emblem {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .icon-amber { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); }
+    .icon-cyan { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); }
+    .icon-emerald { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); }
+
+    .card-step-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
     .circle-label {
       font-family: var(--font-heading);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 800;
       text-transform: uppercase;
-      color: var(--color-text-muted);
       letter-spacing: 0.1em;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       display: block;
     }
     .circle-card h3 {
       font-family: var(--font-heading);
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-      color: var(--color-text);
+      font-size: 1.26rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #ffffff;
+      line-height: 1.3;
     }
     .circle-card p {
-      font-size: 0.9rem;
-      color: var(--color-text-light);
+      font-size: 0.88rem;
+      color: #a1a1aa;
       line-height: 1.6;
-      flex-grow: 1;
-    }
-    .circle-card cite {
-      display: block;
-      margin-top: 14px;
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-      font-style: normal;
+      margin-bottom: 18px;
     }
 
-    .caminos { background: var(--color-surface); }
-    .caminos-grid {
+    /* Inset Visuales de Cada Tarjeta */
+    .card-visual-inset {
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .inset-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #202020;
+    }
+    .inset-title {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #d4d4d8;
+    }
+
+    /* Comparador de lógica en Card 1 */
+    .inset-comparison-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.78rem;
+    }
+    .comp-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+      padding: 6px 8px;
+      border-radius: 6px;
+    }
+    .comp-row.bad {
+      background: rgba(239, 68, 68, 0.08);
+      color: #fca5a5;
+      border-left: 2px solid #ef4444;
+    }
+    .comp-row.good {
+      background: rgba(16, 185, 129, 0.08);
+      color: #a7f3d0;
+      border-left: 2px solid #10b981;
+    }
+    .comp-icon { font-weight: 800; font-size: 0.82rem; }
+
+    /* Mockup de Carpeta Drive en Card 2 */
+    .drive-mockup {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 0.78rem;
+    }
+    .drive-row.main-folder {
+      font-weight: 700;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 6px;
+      background: rgba(56, 189, 248, 0.08);
+      border-radius: 4px;
+    }
+    .drive-files-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-left: 12px;
+      border-left: 1px dashed #333333;
+      margin-left: 6px;
+    }
+    .drive-file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #d4d4d8;
+      font-size: 0.75rem;
+      gap: 6px;
+    }
+    .file-pill {
+      font-size: 0.65rem;
+      color: #71717a;
+      background: #1f1f1f;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* Grid de Herramientas en Card 3 */
+    .tools-micro-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 8px;
     }
-    .camino-card {
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border-bright);
+    .tool-micro-pill {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tool-icon { font-size: 1.1rem; }
+    .tool-info { display: flex; flex-direction: column; }
+    .tool-info strong { font-size: 0.76rem; color: #ffffff; }
+    .tool-info small { font-size: 0.67rem; color: #34d399; }
+
+    /* Tags en la base de las tarjetas */
+    .card-tags-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .card-tag {
+      font-size: 0.72rem;
+      background: #171717;
+      border: 1px solid #262626;
+      color: #cccccc;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .circle-card cite {
+      display: block;
+      font-size: 0.78rem;
+      font-style: italic;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid #1a1a1a;
+    }
+    .card-cite-amber { color: #fbbf24; }
+    .card-cite-cyan { color: #38bdf8; }
+    .card-cite-emerald { color: #34d399; }
+
+    /* ── ESTRUCTURA LÍQUIDA (METODOLOGÍA DE ACOMPAÑAMIENTO) ── */
+    .caminos {
+      background: radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.05) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
+                  var(--color-surface);
+      position: relative;
+      overflow: hidden;
+      padding: 110px 0 90px;
+      scroll-margin-top: 90px;
+    }
+
+    /* Banner Dual: Concepto y Sesión */
+    .liquid-concept-banner {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 960px) {
+      .liquid-concept-banner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .liquid-card {
+      background: #0d0d0d;
+      border: 1px solid #222222;
       border-radius: var(--radius-lg);
-      padding: 40px;
-      transition: border-color var(--transition), transform var(--transition);
+      padding: 36px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
     }
-    .camino-card:hover {
-      border-color: #ffffff;
-      transform: translateY(-4px);
+    .liquid-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 16px 36px rgba(6, 182, 212, 0.12);
     }
-    .camino-badge {
-      display: inline-flex;
+
+    .liquid-glow-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .glow-cyan { background: linear-gradient(90deg, #0891b2, #06b6d4, #22d3ee); }
+    .glow-blue { background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa); }
+
+    .liquid-card-header {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      font-family: var(--font-heading);
-      font-size: 0.75rem;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .liquid-icon-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .icon-cyan { background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.35); }
+    .icon-blue { background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.35); }
+    .icon-sky { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); }
+    .icon-emerald { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); }
+
+    .liquid-badge {
+      font-size: 0.72rem;
       font-weight: 800;
-      text-transform: uppercase;
-      padding: 4px 14px;
-      border-radius: 50px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      align-self: flex-start;
-    }
-    .camino-card h3 {
       font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--color-text);
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
     }
-    .camino-card p {
-      font-size: 0.95rem;
-      color: var(--color-text-light);
-      margin-bottom: 24px;
-      line-height: 1.65;
+    .badge-cyan { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.35); }
+    .badge-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.35); }
+
+    .liquid-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #ffffff;
+      line-height: 1.3;
     }
-    .camino-features {
-      list-style: none;
-      margin-bottom: 24px;
-      padding: 0;
+    .liquid-card p {
+      font-size: 0.9rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 14px;
     }
-    .camino-features li {
+
+    /* Comparativa Inset en Tarjeta de Concepto */
+    .liquid-vs-box {
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .vs-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+    .vs-row.bad {
+      background: rgba(239, 68, 68, 0.08);
+      color: #fca5a5;
+      border-left: 2px solid #ef4444;
+    }
+    .vs-row.good {
+      background: rgba(6, 182, 212, 0.08);
+      color: #a5f3fc;
+      border-left: 2px solid #06b6d4;
+    }
+    .vs-icon { font-weight: 800; font-size: 0.85rem; }
+
+    /* Lista de la Sesión Insignia */
+    .session-features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .session-feat-item {
+      background: #141414;
+      border: 1px solid #242424;
+      border-radius: 8px;
+      padding: 10px 14px;
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 0.9rem;
-      color: var(--color-text-light);
-      margin-bottom: 12px;
+      transition: border-color 0.2s;
     }
-    .camino-features li::before {
-      content: '✦';
+    .session-feat-item:hover {
+      border-color: #38bdf8;
+    }
+    .feat-bullet {
+      width: 24px;
+      height: 24px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #60a5fa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      flex-shrink: 0;
+    }
+    .session-feat-item div {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .session-feat-item strong {
+      font-size: 0.82rem;
       color: #ffffff;
-      font-size: 0.8rem;
+      font-family: var(--font-heading);
+    }
+    .session-feat-item small {
+      font-size: 0.74rem;
+      color: #a1a1aa;
+    }
+
+    /* Grid de las 4 Fases del Recorrido */
+    .liquid-process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 960px) {
+      .liquid-process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .liquid-process-grid { grid-template-columns: 1fr; }
+    }
+
+    .proc-step-card {
+      background: #0d0d0d;
+      border: 1px solid #222222;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      position: relative;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .proc-step-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 10px 25px rgba(6, 182, 212, 0.1);
+    }
+    .proc-step-num {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #222222;
+      letter-spacing: -0.02em;
+    }
+    .proc-step-card:hover .proc-step-num {
+      color: #38bdf8;
+    }
+    .proc-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+    .proc-step-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .proc-step-card p {
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      flex-grow: 1;
+    }
+    .proc-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 3px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+      text-transform: uppercase;
+    }
+
+    /* Cintillo de Activos Entregados */
+    .liquid-assets-strip {
+      background: #111111;
+      border: 1px solid #242424;
+      border-radius: var(--radius);
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .strip-label {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .strip-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .strip-tag {
+      background: #18181b;
+      border: 1px solid #27272a;
+      color: #d4d4d8;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
     }
 
     /* ── RESPONSIVE ── */
@@ -1342,7 +1957,10 @@
         <span>📸</span> @administracionhumana
       </a>
       <a href="sondeo.html" class="nav-cta" style="padding:8px 18px; font-size:0.82rem; background:#ffffff; color:#000000; font-weight:800; box-shadow:0 0 16px rgba(255,255,255,0.3);">⚡ Sondeo Express (90s)</a>
-      <button id="btn-nav-auth" onclick="window.openAuthModal()" class="btn-secondary" style="padding: 8px 16px; font-size: 0.82rem; cursor:pointer;">🔑 Acceso Clientes</button>
+      <div id="nav-auth-wrapper" style="display:inline-flex; align-items:center; gap:6px;">
+        <button id="btn-nav-auth" onclick="window.openAuthModal()" class="btn-secondary" style="padding: 8px 16px; font-size: 0.82rem; cursor:pointer;">🔑 Acceso Clientes</button>
+        <button id="btn-nav-logout" style="display:none; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#aaa; border-radius:50px; padding:7px 12px; font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s;" title="Cerrar sesión activa" onmouseover="this.style.color='#fff'; this.style.borderColor='#ef4444';" onmouseout="this.style.color='#aaa'; this.style.borderColor='rgba(255,255,255,0.2)';">✕ Salir</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -1350,10 +1968,10 @@
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <span class="hero-tag">Asesoría en Gestión Personal y Administrativa</span>
-    <h1>Deja de correr en círculos.<br />Empieza a <em>avanzar con sentido.</em></h1>
+    <span class="hero-tag">Administración Aplicada • Co-creación 1 a 1 con Diego</span>
+    <h1>Tu Sistema de Gestión Personalizado.<br /><em>Para dejar de correr en círculos.</em></h1>
     <p class="hero-sub">
-      Creemos que la estructura debe darte libertad, no quitarte autenticidad. Te acompaño a transformar el caos diario en hábitos y sistemas prácticos a tu medida, recuperando el control de tu tiempo sin perder tu esencia.
+      No te adaptes a aplicaciones rígidas ni a plantillas genéricas. Desde las ciencias de la administración, diagnostico tus fricciones reales y co-creo contigo tu Sistema de Gestión Personalizado: vamos agregando de forma modular solo las herramientas que tu realidad necesita (de una biblioteca de +60 módulos), para que avances con tracción real y dejes de correr en círculos.
     </p>
     <div class="hero-actions" style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; align-items:center;">
       <a href="planes-demo.html" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); border:none; box-shadow: 0 0 20px rgba(16,185,129,0.4); font-weight:800; font-size:0.95rem;">
@@ -1504,7 +2122,7 @@
       <span class="section-tag">Transformación Operativa en 1 Vistazo</span>
       <h2 class="section-title">El Antes vs. El Después: Devolver Horas Reales</h2>
       <p class="section-sub" style="margin-top:8px;">
-        No te vendemos recetas mágicas. Te entregamos software interactivo, metodología visual y herramientas tangibles diseñadas a tu medida para blindar tu tiempo y tu sistema nervioso.
+        No te vendo recetas mágicas ni plantillas genéricas. Co-creo y te entrego software interactivo, metodología visual y herramientas tangibles diseñadas a tu medida para blindar tu tiempo y tu energía.
       </p>
     </div>
     
@@ -1610,41 +2228,267 @@
 </section>
 
 
-<!-- PHILOSOPHY (GOLDEN CIRCLE) -->
+<!-- PHILOSOPHY (GOLDEN CIRCLE: DE ADENTRO HACIA AFUERA) -->
 <section class="philosophy" id="filosofia">
   <div class="container">
-    <span class="section-tag">Nuestra Filosofía</span>
-    <h2 class="section-title">Estructura de adentro hacia afuera</h2>
-    <p class="section-sub">
-      En Administración Humana invertimos la lógica corporativa tradicional para poner el orden al servicio de tu bienestar.
-    </p>
+    <div style="text-align: center; max-width: 780px; margin: 0 auto 36px;">
+      <span class="section-tag" style="background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35); color:#fbbf24; font-size:0.75rem; font-weight:800; padding:5px 14px; border-radius:20px; text-transform:uppercase; letter-spacing:0.08em;">
+        🧭 Mi Filosofía de Trabajo • El Círculo Dorado
+      </span>
+      <h2 class="section-title" style="margin-top:14px; font-size: clamp(2rem, 4vw, 2.9rem);">
+        Estructura de adentro hacia afuera
+      </h2>
+      <p class="section-sub" style="margin: 0 auto; color:#a1a1aa; font-size: 1.05rem;">
+        En Administración Humana invierto la lógica corporativa tradicional: ponemos a la persona y su bienestar al centro para que el orden sea un puente hacia la libertad, no una prisión de reglas frías.
+      </p>
+    </div>
+
+    <!-- DIAGRAMA VISUAL INTERACTIVO CONCÉNTRICO (GOLDEN CIRCLE) -->
+    <div class="gc-interactive-banner">
+      <!-- Lado Izquierdo: Anillos Concéntricos Iluminados -->
+      <div class="gc-rings-wrap" aria-label="Diagrama Círculo Dorado">
+        <div class="gc-ring ring-3" id="ring-3" onclick="focusPhilosophyCard('card-que')" title="Nivel 3: El Qué (Resultado Tangible)">
+          <span class="gc-ring-tag tag-green">3. QUÉ • SISTEMA SGP</span>
+          <div class="gc-ring ring-2" id="ring-2" onclick="focusPhilosophyCard('card-como')" title="Nivel 2: El Cómo (Metodología y Proceso)">
+            <span class="gc-ring-tag tag-blue">2. CÓMO • PROCESO</span>
+            <div class="gc-ring ring-1" id="ring-1" onclick="focusPhilosophyCard('card-porque')" title="Nivel 1: El Por Qué (Propósito Humano)">
+              <div class="gc-ring-center">
+                <span class="gc-center-icon">🎯</span>
+                <span class="gc-center-label">1. POR QUÉ</span>
+                <span class="gc-center-sub">PROPÓSITO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado Derecho: Flujo de Transformación de Adentro Hacia Afuera -->
+      <div class="gc-flow-track">
+        <div class="gc-flow-node node-why active" id="node-why" onclick="focusPhilosophyCard('card-porque')">
+          <div class="node-content">
+            <span class="node-badge badge-amber">1. De Adentro • El Núcleo</span>
+            <h4 class="node-title">El Por Qué (Propósito)</h4>
+            <p class="node-desc">Humanizar la técnica: la persona, su ritmo biológico y sus valores al centro.</p>
+          </div>
+          <span class="node-arrow-icon">➔</span>
+        </div>
+
+        <div class="gc-flow-node node-how" id="node-how" onclick="focusPhilosophyCard('card-como')">
+          <div class="node-content">
+            <span class="node-badge badge-cyan">2. La Órbita • Metodología</span>
+            <h4 class="node-title">El Cómo (Proceso)</h4>
+            <p class="node-desc">Acompañamiento a escala humana: escucha activa 1 a 1 y co-diseño en Google Drive.</p>
+          </div>
+          <span class="node-arrow-icon">➔</span>
+        </div>
+
+        <div class="gc-flow-node node-what" id="node-what" onclick="focusPhilosophyCard('card-que')">
+          <div class="node-content">
+            <span class="node-badge badge-emerald">3. Hacia Afuera • Impacto Visible</span>
+            <h4 class="node-title">El Qué (Resultado)</h4>
+            <p class="node-desc">Tu Sistema de Gestión Personalizado (SGP): herramientas vivas y calibradas en tu mano.</p>
+          </div>
+          <span class="node-arrow-icon">➔</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 TARJETAS VISUALES Y DETALLADAS -->
     <div class="circle-grid">
-      <div class="circle-card">
-        <span class="circle-label">1. El Por Qué (Propósito)</span>
+      <!-- 1. EL POR QUÉ -->
+      <div class="circle-card card-why" id="card-porque">
+        <div class="card-glow-bar glow-amber"></div>
+        <div class="card-head-row">
+          <div class="card-icon-emblem icon-amber">🎯</div>
+          <span class="card-step-badge badge-amber">NIVEL 01 • NÚCLEO</span>
+        </div>
+        <span class="circle-label" style="color: #fbbf24;">1. El Por Qué (Propósito)</span>
         <h3>Humanizar la técnica</h3>
         <p>
-          Creemos firmemente que la estructura no tiene por qué ser rígida ni fría, y que la administración debe estar al servicio de las personas, no al revés. Nadie debería sentir que el caos diario apaga su talento o tranquilidad.
+          Creo firmemente que la estructura no tiene por qué ser rígida ni fría, y que la administración debe estar al servicio de las personas, no al revés. Nadie debería sentir que el caos diario apaga su talento o tranquilidad.
         </p>
-        <cite>El orden como camino hacia la libertad.</cite>
+
+        <!-- INSET VISUAL: COMPARADOR DE LÓGICA -->
+        <div class="card-visual-inset">
+          <div class="inset-header">
+            <span class="inset-title">⚖️ Inversión de Lógica</span>
+          </div>
+          <div class="inset-comparison-box">
+            <div class="comp-row bad">
+              <span class="comp-icon">✕</span>
+              <div>
+                <strong style="color:#f87171;">Lógica Fría:</strong>
+                <span>Sistema rígido ➔ Persona obligada a encajar ➔ Culpa y abandono.</span>
+              </div>
+            </div>
+            <div class="comp-row good">
+              <span class="comp-icon">✓</span>
+              <div>
+                <strong style="color:#34d399;">Adm. Humana:</strong>
+                <span>Persona y ritmos al centro ➔ Sistema adaptado ➔ Libertad y foco.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-tags-group">
+          <span class="card-tag">❤️ Persona al centro</span>
+          <span class="card-tag">🌿 Cero rigidez</span>
+          <span class="card-tag">🔓 Libertad operativa</span>
+        </div>
+
+        <cite class="card-cite-amber">✦ "El orden como camino hacia la libertad."</cite>
       </div>
-      <div class="circle-card">
-        <span class="circle-label">2. El Cómo (Proceso)</span>
+
+      <!-- 2. EL CÓMO -->
+      <div class="circle-card card-how" id="card-como">
+        <div class="card-glow-bar glow-cyan"></div>
+        <div class="card-head-row">
+          <div class="card-icon-emblem icon-cyan">🎙️</div>
+          <span class="card-step-badge badge-cyan">NIVEL 02 • ÓRBITA</span>
+        </div>
+        <span class="circle-label" style="color: #38bdf8;">2. El Cómo (Proceso)</span>
         <h3>Acompañamiento a escala humana</h3>
         <p>
-          Lo hacemos a través de una conversación profunda y escucha activa para detectar qué herramientas necesitas. En base a tu dolor, digitalizamos y diseñamos tu kit de organización, entregándote una carpeta en Google Drive con tus archivos, plantillas y una checklist de acción clave personalizada.
+          Lo hago a través de una conversación profunda y escucha activa para detectar qué herramientas necesitas. En base a tu fricción, digitalizo y diseño tu kit de organización, entregándote una carpeta en Google Drive con tus archivos, plantillas y tu checklist de acción clave personalizada.
         </p>
-        <cite>Sistemas vivos y adaptados a tu propio ritmo.</cite>
+
+        <!-- INSET VISUAL: CARPETA DRIVE MOCKUP -->
+        <div class="card-visual-inset">
+          <div class="inset-header">
+            <span class="inset-title">📁 Entregable Tangible en Google Drive</span>
+          </div>
+          <div class="drive-mockup">
+            <div class="drive-row main-folder">
+              <span>📁 [Tu Nombre] • Plan de Vuelo Personalizado</span>
+            </div>
+            <div class="drive-files-list">
+              <div class="drive-file-item">
+                <span>📄 01_Checklist_Accion_Clave.pdf</span>
+                <span class="file-pill">Inmediato</span>
+              </div>
+              <div class="drive-file-item">
+                <span>🕒 02_Mapeador_24H_Cajitas.html</span>
+                <span class="file-pill">Interactivo</span>
+              </div>
+              <div class="drive-file-item">
+                <span>📋 03_Plantillas_y_Tableros.xlsx</span>
+                <span class="file-pill">A Medida</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-tags-group">
+          <span class="card-tag">🗣️ Escucha activa 1 a 1</span>
+          <span class="card-tag">📁 Carpeta Drive lista</span>
+          <span class="card-tag">☑️ Checklist vivo</span>
+        </div>
+
+        <cite class="card-cite-cyan">✦ "Sistemas vivos y adaptados a tu propio ritmo."</cite>
       </div>
-      <div class="circle-card">
-        <span class="circle-label">3. El Qué (Resultado)</span>
-        <h3>Asesoría en Gestión Personal</h3>
+
+      <!-- 3. EL QUÉ -->
+      <div class="circle-card card-what" id="card-que">
+        <div class="card-glow-bar glow-emerald"></div>
+        <div class="card-head-row">
+          <div class="card-icon-emblem icon-emerald">⚡</div>
+          <span class="card-step-badge badge-emerald">NIVEL 03 • IMPACTO TANGIBLE</span>
+        </div>
+        <span class="circle-label" style="color: #34d399;">3. El Qué (Resultado)</span>
+        <h3>Tu Sistema de Gestión Personalizado (SGP)</h3>
         <p>
-          Diseñamos sistemas y flujos de trabajo a medida (matrices de prioridad, tableros Kanban, time blocking) para que recuperes el control de tu tiempo y automatices tu día a día sin perder tu autenticidad.
+          Diseño contigo sistemas y flujos de trabajo a tu medida (matrices de prioridad, tableros Kanban, time blocking) para que recuperes el control de tu tiempo y avances en tu día a día sin perder tu autenticidad.
         </p>
-        <cite>Herramientas ordenadas sin perder tu esencia.</cite>
+
+        <!-- INSET VISUAL: HERRAMIENTAS ACTIVAS -->
+        <div class="card-visual-inset">
+          <div class="inset-header">
+            <span class="inset-title">🛠️ Componentes Activos en tu Rutina</span>
+          </div>
+          <div class="tools-micro-grid">
+            <div class="tool-micro-pill">
+              <span class="tool-icon">🕒</span>
+              <div class="tool-info">
+                <strong>Mapeador 24H</strong>
+                <small>168h equilibradas</small>
+              </div>
+            </div>
+            <div class="tool-micro-pill">
+              <span class="tool-icon">🎯</span>
+              <div class="tool-info">
+                <strong>Máx 2 Tareas</strong>
+                <small>Foco protegido</small>
+              </div>
+            </div>
+            <div class="tool-micro-pill">
+              <span class="tool-icon">📑</span>
+              <div class="tool-info">
+                <strong>Hub 1 Hoja</strong>
+                <small>Cero saturación</small>
+              </div>
+            </div>
+            <div class="tool-micro-pill">
+              <span class="tool-icon">💎</span>
+              <div class="tool-info">
+                <strong>Bloques Oro</strong>
+                <small>Blindados</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-tags-group">
+          <span class="card-tag">🛡️ Foco blindado</span>
+          <span class="card-tag">⏱️ +18h recuperadas/sem</span>
+          <span class="card-tag">💎 Autonomía pura</span>
+        </div>
+
+        <cite class="card-cite-emerald">✦ "Herramientas ordenadas sin perder tu esencia."</cite>
       </div>
     </div>
   </div>
+
+  <!-- SCRIPT DE SINCRONIZACIÓN INTERACTIVA -->
+  <script>
+    function focusPhilosophyCard(cardId) {
+      const cards = document.querySelectorAll('.circle-card');
+      cards.forEach(c => c.classList.remove('highlighted'));
+      const target = document.getElementById(cardId);
+      if (target) {
+        target.classList.add('highlighted');
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const mapping = [
+        { ring: 'ring-1', node: 'node-why', card: 'card-porque' },
+        { ring: 'ring-2', node: 'node-how', card: 'card-como' },
+        { ring: 'ring-3', node: 'node-what', card: 'card-que' }
+      ];
+      mapping.forEach(m => {
+        const r = document.getElementById(m.ring);
+        const n = document.getElementById(m.node);
+        const c = document.getElementById(m.card);
+        const activate = () => {
+          if (r) r.classList.add('highlighted');
+          if (n) n.classList.add('active');
+          if (c) c.classList.add('highlighted');
+        };
+        const deactivate = () => {
+          if (r) r.classList.remove('highlighted');
+          if (n) n.classList.remove('active');
+          if (c) c.classList.remove('highlighted');
+        };
+        [r, n, c].forEach(el => {
+          if (el) {
+            el.addEventListener('mouseenter', activate);
+            el.addEventListener('mouseleave', deactivate);
+          }
+        });
+      });
+    });
+  </script>
 </section>
 
 <!-- MODULES CATALOG -->
@@ -1657,7 +2501,7 @@
         </span>
         <h2 class="section-title" style="margin-top:10px;">Más de 60 Módulos del Sistema: Tu Traje a la Medida</h2>
         <p class="section-sub" style="margin-bottom:0; max-width:760px;">
-          No te entregamos un molde cerrado ni plantillas genéricas. De nuestra biblioteca de <b>más de 60 herramientas de administración aplicada</b>, co-creamos contigo y activamos únicamente los diques de contención que resuelven tus fricciones operativas actuales.
+          No te entrego un molde cerrado ni plantillas genéricas. De mi biblioteca de <b>más de 60 herramientas de administración aplicada</b>, co-creo contigo y activo únicamente los diques de contención que resuelven tus fricciones operativas actuales.
         </p>
       </div>
       <a href="dossier.html" class="btn-primary" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); border:none; box-shadow:0 0 16px rgba(59,130,246,0.4); font-size:0.86rem; padding: 12px 24px;">
@@ -1809,7 +2653,7 @@
           ¿Tu situación requiere una intervención diferente?
         </h4>
         <p style="color:#888; font-size:0.86rem; margin:0; max-width:620px;">
-          Disponemos de <b>más de 60 módulos especializados</b> (Radar PESTEL, Matriz FODA/CAME, Círculo Dorado, Ley de Pareto, Gestión de Deuda, etc.). En tu Sondeo Express detectamos exactamente cuáles activar.
+          Cuento con <b>más de 60 módulos especializados</b> (Radar PESTEL, Matriz FODA/CAME, Círculo Dorado, Ley de Pareto, Gestión de Deuda, etc.). En tu Sondeo Express detecto exactamente cuáles activar contigo.
         </p>
       </div>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
@@ -1820,6 +2664,298 @@
     </div>
   </div>
 </section>
+
+<!-- SECCIÓN INTERACTIVA: SISTEMAS DE GESTIÓN PERSONALIZADOS (SGP) -->
+<section class="sgp-cases-section" id="sgp-casos" style="background: radial-gradient(circle at 50% 0%, rgba(56,189,248,0.06) 0%, #060606 80%); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 85px 0;">
+  <div class="container">
+    <div style="text-align:center; max-width:820px; margin:0 auto 36px auto;">
+      <span class="section-tag" style="background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3); color:#38bdf8; font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px; text-transform:uppercase;">
+        ⚡ Arquitectura de Sistemas Operativos
+      </span>
+      <h2 class="section-title" style="margin-top:10px;">
+        Sistemas de Gestión Personalizados:<br />
+        <span style="color:#38bdf8;">Un Mismo Módulo, Realidades Distintas</span>
+      </h2>
+      <p class="section-sub" style="margin-top:8px; max-width:760px; margin-left:auto; margin-right:auto;">
+        No creo en plantillas genéricas de productividad. Cuento con una <b>biblioteca de más de 60 herramientas de administración aplicada</b>, y co-creo contigo lo que vamos agregando modularmente: una parametrización 100% calibrada a tu contexto para dejar de correr en círculos. 
+      </p>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.04); border:1px solid #262626; border-radius:50px; padding:6px 16px; font-size:0.78rem; color:#a1a1aa;">
+        <span>🔍 Haz clic abajo para ver cómo se adapta el <b>Módulo Mapeador 24H</b> según quién lo opera:</span>
+      </div>
+    </div>
+
+    <!-- SELECTOR DE CASOS INTERACTIVO (TABS) -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; max-width:1040px; margin:0 auto 28px auto;">
+      <!-- TAB 1: FREELANCER -->
+      <button onclick="window.switchSgpCase('freelancer')" id="sgp-tab-freelancer" class="sgp-tab-btn active-tab" style="background:#141414; border:1px solid #38bdf8; border-radius:14px; padding:16px; text-align:left; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:14px; box-shadow:0 0 20px rgba(56,189,248,0.15);">
+        <span style="font-size:1.8rem; background:rgba(56,189,248,0.12); width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(56,189,248,0.3); flex-shrink:0;">👤</span>
+        <div>
+          <div style="font-family:var(--font-heading); font-size:0.95rem; font-weight:800; color:#fff;">Caso 1: Profesional / Freelancer</div>
+          <div style="font-size:0.75rem; color:#38bdf8; font-weight:600;">Venta por hora &amp; Fuga de tiempo</div>
+        </div>
+      </button>
+
+      <!-- TAB 2: NEURODIVERGENCIA -->
+      <button onclick="window.switchSgpCase('sensorial')" id="sgp-tab-sensorial" class="sgp-tab-btn" style="background:#0d0d0d; border:1px solid #262626; border-radius:14px; padding:16px; text-align:left; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:14px;">
+        <span style="font-size:1.8rem; background:rgba(236,72,153,0.12); width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(236,72,153,0.3); flex-shrink:0;">🌿</span>
+        <div>
+          <div style="font-family:var(--font-heading); font-size:0.95rem; font-weight:800; color:#fff;">Caso 2: Alta Sensibilidad &amp; TEA</div>
+          <div style="font-size:0.75rem; color:#888; font-weight:600;">Sobrecarga sensorial &amp; Fatiga digital</div>
+        </div>
+      </button>
+
+      <!-- TAB 3: PYME / NEGOCIO -->
+      <button onclick="window.switchSgpCase('negocio')" id="sgp-tab-negocio" class="sgp-tab-btn" style="background:#0d0d0d; border:1px solid #262626; border-radius:14px; padding:16px; text-align:left; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:14px;">
+        <span style="font-size:1.8rem; background:rgba(16,185,129,0.12); width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(16,185,129,0.3); flex-shrink:0;">🏢</span>
+        <div>
+          <div style="font-family:var(--font-heading); font-size:0.95rem; font-weight:800; color:#fff;">Caso 3: Pequeño Negocio (2 a 5 pers.)</div>
+          <div style="font-size:0.75rem; color:#888; font-weight:600;">Dueño apagafuegos &amp; Delegación</div>
+        </div>
+      </button>
+    </div>
+
+    <!-- CONTENEDOR DINÁMICO DEL CASO ACTIVO -->
+    <div id="sgp-case-content" style="max-width:1040px; margin:0 auto; background:#0c0c0c; border:1px solid #262626; border-radius:var(--radius-lg); padding:32px 28px; position:relative; overflow:hidden;">
+      <!-- RENDERED BY JS -->
+    </div>
+
+    <!-- MANIFIESTO DE LEGITIMIDAD ADMINISTRATIVA -->
+    <div style="background:linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(16,185,129,0.04) 100%); border:1px solid #262626; border-left:4px solid #10b981; border-radius:14px; padding:22px 28px; margin:32px auto 0 auto; max-width:1040px; display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+      <div style="font-size:2rem; background:rgba(16,185,129,0.1); width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(16,185,129,0.3); flex-shrink:0;">
+        🧭
+      </div>
+      <div style="flex:1; min-width:280px;">
+        <div style="font-size:0.75rem; font-weight:800; color:#10b981; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">
+          Frontera Profesional y Rigor Operativo
+        </div>
+        <h4 style="font-family:var(--font-heading); color:#fff; font-size:1.12rem; font-weight:800; margin-bottom:6px;">
+          Trabajo desde las Ciencias de la Administración: Cero recetas médicas, cero pacientes.
+        </h4>
+        <p style="font-size:0.86rem; color:#a1a1aa; line-height:1.55; margin:0;">
+          No soy psicólogo ni terapeuta. Mi ámbito son los <b>recursos, procesos, tiempos y flujos de trabajo</b>. Tu día a día o tu negocio es el proyecto más importante que tienes: lo intervengo contigo mediante ingeniería de hábitos, herramientas de gestión y soporte tangible para que avances sin quemarte.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // LÓGICA INTERACTIVA DE CASOS SGP
+  const SGP_CASES = {
+    freelancer: {
+      tag: "CASO 1 • PROFESIONAL INDEPENDIENTE / FREELANCER",
+      tagColor: "#38bdf8",
+      borderColor: "#38bdf8",
+      icon: "👤",
+      title: "De la Venta de Horas y la Dispersión Nocturna al Bloque de Oro Blindado",
+      problema: "Trabaja 11 a 13 horas diarias respondiendo WhatsApps, correos y urgencias. Cobra por hora suelta, siente que el dinero no rinde y termina trabajando de noche con la cabeza saturada.",
+      moduloNombre: "MOD-06: Mapeador 24H (Cajitas de Colores) + MOD-03: Límite WIP (2 Tareas)",
+      parametrizacion: "Se instala <b>1 Bloque de Oro Matutino (90 min innegociables)</b> para la tarea de mayor impacto antes de abrir mensajes. Se delimita la jornada a las 18:30 y se empaquetan sus servicios en tarifas mensuales en vez de cobro por hora.",
+      entregable: "📱 <b>Portal Web Móvil en la palma de la mano</b> (1 sola pantalla interactiva en el celular para consultar en 5 segundos sin abrir Notion ni hojas densas).",
+      mockupVisual: `
+        <div style="background:#141414; border:1px solid #333; border-radius:8px; padding:12px; margin:10px 0;">
+          <div style="font-size:0.72rem; color:#38bdf8; font-weight:800; margin-bottom:6px; text-transform:uppercase;">📅 Estructura de Horario Parametrizada:</div>
+          <div style="display:grid; grid-template-columns:repeat(12, 1fr); gap:3px;">
+            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Sueño">💤</div>
+            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Sueño">💤</div>
+            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Sueño">💤</div>
+            <div style="background:#f59e0b; height:24px; border-radius:3px; font-size:0.6rem; color:#000; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Bloque de Oro">👑</div>
+            <div style="background:#f59e0b; height:24px; border-radius:3px; font-size:0.6rem; color:#000; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Bloque de Oro">👑</div>
+            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Clientes">💼</div>
+            <div style="background:#8b5cf6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Almuerzo">☕</div>
+            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Operaciones">💼</div>
+            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Cierre">✅</div>
+            <div style="background:#8b5cf6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Libre">🏡</div>
+            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Desconexión">🌙</div>
+            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Sueño">💤</div>
+          </div>
+          <div style="font-size:0.68rem; color:#888; text-align:center; margin-top:4px;">Bloque de Oro (👑) blindado a primera hora = Jornada terminada a las 18:30</div>
+        </div>
+      `,
+      metricas: [
+        { val: "+18h", lbl: "Horas semanales recuperadas", col: "#38bdf8" },
+        { val: "-80%", lbl: "Reducción de trabajo nocturno", col: "#10b981" },
+        { val: "+45%", lbl: "Ingreso mensual por paquetización", col: "#f59e0b" }
+      ],
+      cita: "«Pasé de sentir que corría todo el día sin avanzar a cerrar el computador a las 6:30 PM sabiendo exactamente qué logré.»"
+    },
+    sensorial: {
+      tag: "CASO 2 • NEURODIVERGENCIA & ALTA SENSIBILIDAD (TEA / TDAH)",
+      tagColor: "#ec4899",
+      borderColor: "#ec4899",
+      icon: "🌿",
+      title: "De la Saturación por Pantallas a la Regulación Sensorial en Papel Físico",
+      problema: "Agotamiento sensorial agudo a las 16:00. Las aplicaciones digitales complejas (Notion, Trello) le generan rechazo y ansiedad. Rumiación mental e insomnio por no saber cómo cerrar el día.",
+      moduloNombre: "MOD-18: Gestión de Energía & Ritmos + MOD-24: Hub de Imprimibles de 1 Hoja",
+      parametrizacion: "Se programan <b>2 pausas innegociables de 15 min de regulación sensorial</b> en el día. Se erradican las apps digitales para la gestión cotidiana y se reemplazan por un <b>Hub Único de Imprimibles físicos de 1 hoja Carta</b> para tener en la pared o escritorio.",
+      entregable: "📄 <b>Hub Maestro de Imprimibles Físicos</b> (Hojas limpias en blanco y negro sin pantallas, con vaciado nocturno analógico 10 min antes de dormir).",
+      mockupVisual: `
+        <div style="background:#141414; border:1px solid #333; border-radius:8px; padding:12px; margin:10px 0;">
+          <div style="font-size:0.72rem; color:#ec4899; font-weight:800; margin-bottom:6px; text-transform:uppercase;">🌿 Protocolo de Recarga Sensorial Parametrizado:</div>
+          <div style="display:grid; grid-template-columns:repeat(12, 1fr); gap:3px;">
+            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;">💤</div>
+            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;">💤</div>
+            <div style="background:#ec4899; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Ritual Inicio">🧘</div>
+            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Foco">🎯</div>
+            <div style="background:#ec4899; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Pausa Sensorial">🌿</div>
+            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Atención">💆</div>
+            <div style="background:#8b5cf6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Almuerzo">☕</div>
+            <div style="background:#ec4899; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Pausa Sensorial">🌿</div>
+            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Estudio">📚</div>
+            <div style="background:#8b5cf6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Hogar">🏡</div>
+            <div style="background:#f59e0b; height:24px; border-radius:3px; font-size:0.6rem; color:#000; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Vaciado Papel">📝</div>
+            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;">💤</div>
+          </div>
+          <div style="font-size:0.68rem; color:#888; text-align:center; margin-top:4px;">Pausas sensoriales (🌿) + Vaciado nocturno en libreta de papel (📝) = Cero fatiga visual</div>
+        </div>
+      `,
+      metricas: [
+        { val: "0%", lbl: "Fatiga visual por apps digitales", col: "#ec4899" },
+        { val: "100%", lbl: "Sostenibilidad sin crisis sensoriales", col: "#10b981" },
+        { val: "+4x", lbl: "Valorización de clases y servicios", col: "#f59e0b" }
+      ],
+      cita: "«Tener mis planillas impresas en una sola hoja en la pared me quitó el terror a las aplicaciones. Por fin un sistema que respeta mi condición.»"
+    },
+    negocio: {
+      tag: "CASO 3 • PEQUEÑO NEGOCIO / MICROEMPRESA (2 A 5 PERSONAS)",
+      tagColor: "#10b981",
+      borderColor: "#10b981",
+      icon: "🏢",
+      title: "Del Fundador Cuello de Botella a la Estandarización de Operaciones",
+      problema: "El dueño pasa el día apagando incendios operativos y contestando consultas del equipo. No le queda tiempo para cotizar clientes nuevos ni ordenar las finanzas de la empresa.",
+      moduloNombre: "MOD-09: Kanban de Flujo de Operaciones + MOD-15: Fichas SOP de Traspaso",
+      parametrizacion: "Se construye un <b>Tablero Kanban Operativo de 3 etapas</b> (Recibido ➔ En Ejecución ➔ Entregado con Control de Calidad) y se estandariza el protocolo de entrega para que los colaboradores no dependan de la validación del dueño.",
+      entregable: "📋 <b>Tablero Operativo Compartido + Manual Vivo de Procesos</b> (Protocolos de un solo vistazo para que el negocio funcione sin que el fundador tenga que estar presente).",
+      mockupVisual: `
+        <div style="background:#141414; border:1px solid #333; border-radius:8px; padding:12px; margin:10px 0;">
+          <div style="font-size:0.72rem; color:#10b981; font-weight:800; margin-bottom:6px; text-transform:uppercase;">🏢 Flujo Operativo Estandarizado (Kanban 3 Etapas):</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+            <div style="background:#1e1e1e; border:1px solid #333; border-radius:6px; padding:8px;">
+              <div style="font-size:0.68rem; color:#888; font-weight:800;">1. ENTRANTE</div>
+              <div style="background:#262626; padding:4px 6px; border-radius:4px; font-size:0.65rem; color:#fff; margin-top:4px;">Cotización #104</div>
+            </div>
+            <div style="background:#1e1e1e; border:1px solid #10b981; border-radius:6px; padding:8px;">
+              <div style="font-size:0.68rem; color:#10b981; font-weight:800;">2. EN CURSO (SOP)</div>
+              <div style="background:#262626; padding:4px 6px; border-radius:4px; font-size:0.65rem; color:#fff; margin-top:4px;">Servicio Terreno B</div>
+            </div>
+            <div style="background:#1e1e1e; border:1px solid #333; border-radius:6px; padding:8px;">
+              <div style="font-size:0.68rem; color:#888; font-weight:800;">3. ENTREGADO</div>
+              <div style="background:#262626; padding:4px 6px; border-radius:4px; font-size:0.65rem; color:#10b981; margin-top:4px;">Facturado OK ✓</div>
+            </div>
+          </div>
+          <div style="font-size:0.68rem; color:#888; text-align:center; margin-top:4px;">Procesos claros = El equipo ejecuta sin llamar al dueño un domingo</div>
+        </div>
+      `,
+      metricas: [
+        { val: "+60%", lbl: "Velocidad de entrega de cotizaciones", col: "#10b981" },
+        { val: "10h", lbl: "Semanales liberadas para el fundador", col: "#38bdf8" },
+        { val: "Cero", lbl: "Errores de entrega en terreno", col: "#f59e0b" }
+      ],
+      cita: "«Logramos que el taller opere con un estándar claro. Pude tomarme un fin de semana completo sin que el negocio colapsara.»"
+    }
+  };
+
+  window.switchSgpCase = function(caseKey) {
+    const data = SGP_CASES[caseKey];
+    if (!data) return;
+
+    // Actualizar botones de tabs
+    document.querySelectorAll('.sgp-tab-btn').forEach(btn => {
+      btn.style.borderColor = '#262626';
+      btn.style.background = '#0d0d0d';
+      btn.style.boxShadow = 'none';
+      const labelDiv = btn.querySelector('div div:last-child');
+      if (labelDiv) labelDiv.style.color = '#888';
+    });
+
+    const activeBtn = document.getElementById('sgp-tab-' + caseKey);
+    if (activeBtn) {
+      activeBtn.style.borderColor = data.borderColor;
+      activeBtn.style.background = '#141414';
+      activeBtn.style.boxShadow = '0 0 20px ' + data.borderColor + '25';
+      const labelDiv = activeBtn.querySelector('div div:last-child');
+      if (labelDiv) labelDiv.style.color = data.tagColor;
+    }
+
+    // Renderizar panel de contenido
+    const container = document.getElementById('sgp-case-content');
+    if (!container) return;
+    container.style.borderTop = '3px solid ' + data.borderColor;
+    container.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px; border-bottom:1px solid #1f1f1f; padding-bottom:14px;">
+        <span style="background:${data.tagColor}15; border:1px solid ${data.tagColor}40; color:${data.tagColor}; font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px; text-transform:uppercase;">
+          ${data.tag}
+        </span>
+        <span style="font-size:0.75rem; color:#888; font-family:var(--font-mono);">
+          🧩 Módulo Aplicado: <strong style="color:#fff;">${data.moduloNombre}</strong>
+        </span>
+      </div>
+
+      <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; margin-bottom:20px; line-height:1.3;">
+        ${data.title}
+      </h3>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; margin-bottom:24px;">
+        <!-- COLUMNA 1: DIAGNÓSTICO & DOLOR -->
+        <div style="background:#111; border:1px solid #222; border-radius:12px; padding:20px;">
+          <div style="font-size:0.75rem; font-weight:800; color:#f87171; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+            <span>🚨</span> Situación de Entrada (El Caos Real):
+          </div>
+          <p style="font-size:0.86rem; color:#d4d4d8; line-height:1.55; margin-bottom:14px;">
+            ${data.problema}
+          </p>
+          <div style="font-size:0.75rem; font-weight:800; color:#10b981; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+            <span>🛠️</span> La Parametrización a su Medida:
+          </div>
+          <p style="font-size:0.84rem; color:#a1a1aa; line-height:1.5;">
+            ${data.parametrizacion}
+          </p>
+        </div>
+
+        <!-- COLUMNA 2: ENTREGABLE & MOCKUP VISUAL -->
+        <div style="background:#111; border:1px solid #222; border-radius:12px; padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="font-size:0.75rem; font-weight:800; color:#38bdf8; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+              <span>📦</span> Formato del Activo en la Palma de su Mano:
+            </div>
+            <div style="font-size:0.85rem; color:#fff; line-height:1.5; margin-bottom:10px;">
+              ${data.entregable}
+            </div>
+            ${data.mockupVisual}
+          </div>
+        </div>
+      </div>
+
+      <!-- MÉTRICAS DE IMPACTO CUANTIFICABLE -->
+      <div style="background:#090909; border:1px solid #1f1f1f; border-radius:12px; padding:18px 20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; align-items:center;">
+        ${data.metricas.map(m => `
+          <div style="text-align:center;">
+            <div style="font-family:var(--font-heading); font-size:1.8rem; font-weight:800; color:${m.col}; line-height:1.1;">${m.val}</div>
+            <div style="font-size:0.74rem; color:#888; text-transform:uppercase; font-weight:700; margin-top:2px;">${m.lbl}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- CITA REAL -->
+      <div style="margin-top:16px; text-align:center; font-size:0.84rem; color:#888; font-style:italic;">
+        ${data.cita}
+      </div>
+    `;
+  };
+
+  // Inicializar caso por defecto al cargar DOM
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.switchSgpCase) {
+      window.switchSgpCase('freelancer');
+    }
+  });
+  // Fallback directo por si ya se cargó el DOM
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(function() {
+      if (window.switchSgpCase) window.switchSgpCase('freelancer');
+    }, 100);
+  }
+</script>
 
 
 <!-- SECCIÓN DIFERENCIACIÓN: PSICOLOGÍA VS ADMINISTRACIÓN HUMANA -->
@@ -1895,45 +3031,158 @@
   </div>
 </section>
 
-<!-- CAMINOS (METHODOLOGIES) -->
+<!-- METODOLOGÍA: ESTRUCTURA LÍQUIDA -->
 <section class="caminos" id="caminos">
   <div class="container">
-    <span class="section-tag">Metodología de Acompañamiento</span>
-    <h2 class="section-title">Dos caminos, un mismo destino.</h2>
-    <p class="section-sub">
-      No creemos en recetas mágicas ni plantillas genéricas impuestas por gurús. Cada sistema se <b>co-crea en sintonía contigo</b>, adaptando las herramientas a tu estilo cognitivo, tu nivel de energía y tu contexto real.
-    </p>
-    <div class="caminos-grid">
-      <div class="camino-card">
-        <div>
-          <span class="camino-badge">Ruta Estructurada</span>
-          <h3>Lineal y Evolutiva</h3>
-          <p>
-            Pensada para quienes buscan predictibilidad y un avance secuencial. Abordamos una sola herramienta por sesión a través de metas e hitos cronológicos claros para construir tus sistemas paso a paso usando nuestras plantillas maestras.
-          </p>
-          <ul class="camino-features">
-            <li>Planificación secuencial por hitos</li>
-            <li>Uso directo de las plantillas oficiales de Excel</li>
-            <li>Apropiación progresiva de metodologías ágiles</li>
-            <li>Ideal para jefaturas y perfiles lineales</li>
-          </ul>
+    <div style="text-align: center; max-width: 820px; margin: 0 auto 40px;">
+      <span class="section-tag" style="background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.35); color:#22d3ee; font-size:0.75rem; font-weight:800; padding:5px 14px; border-radius:20px; text-transform:uppercase; letter-spacing:0.08em;">
+        💧 Metodología Propietaria • Administración Humana
+      </span>
+      <h2 class="section-title" style="margin-top:14px; font-size: clamp(2rem, 4vw, 2.9rem);">
+        Estructura Líquida: Orden que se adapta a ti, no tú al orden
+      </h2>
+      <p class="section-sub" style="margin: 0 auto; color:#a1a1aa; font-size: 1.05rem;">
+        El método de acompañamiento y co-diseño favorito de creativos, independientes y personas al borde del burnout. No te encierro en moldes corporativos fríos: como el agua, el sistema toma la forma exacta de tu vida, tus ritmos biológicos y tu nivel de energía real.
+      </p>
+    </div>
+
+    <!-- BANNER DUAL: EL CONCEPTO Y LA EXPERIENCIA DE LA SESIÓN -->
+    <div class="liquid-concept-banner">
+      <!-- Lado 1: La Física de la Estructura Líquida -->
+      <div class="liquid-card concept">
+        <div class="liquid-glow-bar glow-cyan"></div>
+        <div class="liquid-card-header">
+          <div class="liquid-icon-badge icon-cyan">🌊</div>
+          <span class="liquid-badge badge-cyan">Viscosidad Adaptable</span>
+        </div>
+        <h3>¿Por qué "Estructura Líquida"?</h3>
+        <p>
+          Los métodos corporativos tradicionales fracasan porque son jaulas rígidas: exigen que rindas al 100% todos los días. Si te enfermas, surge un imprevisto familiar o tu batería sensorial baja al 20%, el sistema colapsa y te invade la culpa.
+        </p>
+        <p style="color:#e5e7eb; font-weight:600; line-height:1.55;">
+          La <strong>Estructura Líquida</strong> te da tracción cuando tienes energía alta y se amolda con compasión cuando estás al 30%, protegiendo lo esencial sin que el orden se convierta en una carga.
+        </p>
+        
+        <div class="liquid-vs-box">
+          <div class="vs-row bad">
+            <span class="vs-icon">✕</span>
+            <div>
+              <strong style="color:#f87171;">Estructura Rígida:</strong>
+              <span>Reglas fijas ➔ Juicio moral ➔ Colapso ante imprevistos ➔ Abandono en 3 días.</span>
+            </div>
+          </div>
+          <div class="vs-row good">
+            <span class="vs-icon">✓</span>
+            <div>
+              <strong style="color:#22d3ee;">Estructura Líquida:</strong>
+              <span>Diques de contención ➔ Flexibilidad real ➔ Calma y sostenibilidad anual.</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="camino-card">
-        <div>
-          <span class="camino-badge">Ruta Libre (La más elegida)</span>
-          <h3>Estructura Líquida</h3>
-          <p>
-            El camino favorito de creativos y personas al borde del burnout. A través de una sesión de escucha activa profunda (de 2 a 3 horas) y un diagnóstico previo de tu situación, detecto las herramientas idóneas para tu caos y diseño tu carpeta personalizada de Google Drive con tus plantillas y archivos listos.
-          </p>
-          <ul class="camino-features">
-            <li>Sesión profunda de sintonía y descarga emocional</li>
-            <li>Selección intuitiva de múltiples herramientas</li>
-            <li>Digitalización y entrega de tu carpeta en Google Drive</li>
-            <li>Checklist clave personalizada con tus siguientes pasos</li>
-            <li>Ajustes y verificación final de archivos y plantillas</li>
-          </ul>
+
+      <!-- Lado 2: La Sesión Insignia 1 a 1 -->
+      <div class="liquid-card session">
+        <div class="liquid-glow-bar glow-blue"></div>
+        <div class="liquid-card-header">
+          <div class="liquid-icon-badge icon-blue">🎙️</div>
+          <span class="liquid-badge badge-blue">La Sesión Insignia 1 a 1</span>
         </div>
+        <h3>De 2 a 3 Horas de Co-Diseño Profundo</h3>
+        <p>
+          No es una clase teórica ni una charla motivacional. Es un taller de ingeniería operativa donde nos sentamos juntos a ordenar el caos de tu vida y construir tus activos en vivo.
+        </p>
+
+        <div class="session-features-list">
+          <div class="session-feat-item">
+            <span class="feat-bullet">1</span>
+            <div>
+              <strong>Diagnóstico & Escucha Activa sin Juicios</strong>
+              <small>120 a 180 min para vaciar pendientes y mapear fugas reales de energía.</small>
+            </div>
+          </div>
+          <div class="session-feat-item">
+            <span class="feat-bullet">2</span>
+            <div>
+              <strong>Selección Quirúrgica de Herramientas</strong>
+              <small>Activamos solo 3 a 5 diques de mi catálogo de +60 módulos a tu medida.</small>
+            </div>
+          </div>
+          <div class="session-feat-item">
+            <span class="feat-bullet">3</span>
+            <div>
+              <strong>Entrega de Carpeta en Google Drive en Mano</strong>
+              <small>Plantillas maestras, Mapeador 24H y formatos imprimibles ya configurados.</small>
+            </div>
+          </div>
+          <div class="session-feat-item">
+            <span class="feat-bullet">4</span>
+            <div>
+              <strong>Checklist Clave para tus Primeras 48 Horas</strong>
+              <small>Pasos claros, viables y sin dispersión para empezar a operar con alivio.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAS 4 FASES DEL VIAJE EN ESTRUCTURA LÍQUIDA -->
+    <div style="margin-top: 36px; margin-bottom: 24px; text-align: center;">
+      <span style="font-family:var(--font-heading); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: #38bdf8; letter-spacing: 0.1em;">
+        ✦ El Recorrido Paso a Paso
+      </span>
+      <h3 style="font-family:var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #fff; margin-top: 6px;">
+        Cómo co-creamos tu sistema en 4 movimientos
+      </h3>
+    </div>
+
+    <div class="liquid-process-grid">
+      <!-- FASE 1 -->
+      <div class="proc-step-card">
+        <div class="proc-step-num">01</div>
+        <div class="proc-icon-wrap icon-cyan">🎙️</div>
+        <h4>Sintonía & Descarga</h4>
+        <p>Conversación profunda de 2 a 3 horas para vaciar las 50 pestañas abiertas en tu cabeza y mapear tu realidad cotidiana real.</p>
+        <span class="proc-tag">Sesión 1 a 1 sin prisa</span>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="proc-step-card">
+        <div class="proc-step-num">02</div>
+        <div class="proc-icon-wrap icon-blue">🧩</div>
+        <h4>Filtrado & Co-Diseño</h4>
+        <p>De más de 60 herramientas de administración aplicada, seleccionamos con precisión quirúrgica los diques exactos para tu fricción.</p>
+        <span class="proc-tag">Cero sobrecarga</span>
+      </div>
+
+      <!-- FASE 3 -->
+      <div class="proc-step-card">
+        <div class="proc-step-num">03</div>
+        <div class="proc-icon-wrap icon-sky">📁</div>
+        <h4>Digitalización en Drive</h4>
+        <p>Te entrego tu carpeta personalizada en Google Drive con tus planillas, Mapeador 24H y formatos imprimibles listos para usar.</p>
+        <span class="proc-tag">Entregables listos</span>
+      </div>
+
+      <!-- FASE 4 -->
+      <div class="proc-step-card">
+        <div class="proc-step-num">04</div>
+        <div class="proc-icon-wrap icon-emerald">🌱</div>
+        <h4>Ajustes & Autonomía</h4>
+        <p>Verificamos en vivo tu checklist de acción y calibramos los módulos a tu propio ritmo para garantizar que perdure en el tiempo.</p>
+        <span class="proc-tag">Sostenible sin culpa</span>
+      </div>
+    </div>
+
+    <!-- CINTILLO DE ACTIVOS ENTREGADOS -->
+    <div class="liquid-assets-strip">
+      <span class="strip-label">📦 Todo lo que te llevas listo:</span>
+      <div class="strip-tags">
+        <span class="strip-tag">📁 Carpeta Google Drive dedicada</span>
+        <span class="strip-tag">🕒 Mapeador 24H parametrizado</span>
+        <span class="strip-tag">📑 Hub de Imprimibles 1 Hoja</span>
+        <span class="strip-tag">☑️ Checklist de acción clave</span>
+        <span class="strip-tag">💬 Acompañamiento directo con Diego</span>
       </div>
     </div>
   </div>
@@ -1986,13 +3235,13 @@
     <span class="section-tag">El Proceso</span>
     <h2 class="section-title">Del caos a tu sistema ordenado en 4 pasos.</h2>
     <p class="section-sub" style="margin-bottom: 48px;">
-      Así es como trabajamos juntos para humanizar la técnica y diseñar una estructura que de verdad se adapte a tu día a día.
+      Así es como trabajo contigo para humanizar la técnica y diseñar una estructura que de verdad se adapte a tu día a día.
     </p>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <h3>Mapeo & Contexto</h3>
-        <p>Me envías un resumen de tu situación. Lo analizo y preparo un borrador inicial de tu espacio de trabajo antes de nuestra sesión.</p>
+        <p>Me envías un resumen de tu situación. Lo analizo y preparo un borrador inicial de tu espacio de trabajo antes de nuestra sesión 1 a 1.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
@@ -2019,7 +3268,7 @@
     <span class="section-tag">Entregables Concretos</span>
     <h2 class="section-title">Lo que te llevas: Tu Dossier & Carpeta Digital</h2>
     <p class="section-sub">
-      No te entregamos teoría genérica ni informes en PDF sin uso. Construimos para ti un ecosistema digital práctico, personalizado a tu contexto y listo para operar desde el primer día.
+      No te entrego teoría genérica ni informes en PDF sin uso. Construyo para ti un ecosistema digital práctico, personalizado a tu contexto y listo para operar desde el primer día.
     </p>
 
     <div class="circle-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
@@ -2056,7 +3305,7 @@
         <span class="circle-label" style="color: #34d399; font-weight: 800;">🛠️ Entregable #3</span>
         <h3>Kit de Módulos a Medida</h3>
         <p>
-          Activamos únicamente los módulos que destraban tu dolor (presupuesto 50/30/20, inventario cero culpa, pausas TEA o prompts IA).
+          Activo únicamente los módulos que destraban tu dolor (presupuesto 50/30/20, inventario cero culpa, pausas TEA o prompts IA).
         </p>
         <div style="margin-top: 16px; font-size: 0.82rem; color: var(--color-text-light); line-height: 1.5; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--color-border);">
           ✦ Selección entre 27+ módulos oficiales<br>
@@ -2087,7 +3336,7 @@
       </div>
       <h3 style="font-family: var(--font-heading); font-size: 1.45rem; margin-bottom: 10px; color: var(--color-text);">Tu Dossier Ejecutivo con tu Plan de Vuelo 2.0 en Vivo</h3>
       <p style="font-size: 0.94rem; color: var(--color-text-light); max-width: 720px; margin: 0 auto 24px; line-height: 1.6;">
-        No recibes teoría empaquetada: te entregamos tu propio <strong>Dossier Estratégico</strong> con tu <strong>Plan de Vuelo 2.0 interactivo</strong> (Tablero de Máx 2 Tareas, Mapeador 24H, finanzas 50/30/20 y Hub de imprimibles de 1 página).
+        No recibes teoría empaquetada: te entrego tu propio <strong>Dossier Estratégico</strong> con tu <strong>Plan de Vuelo 2.0 interactivo</strong> (Tablero de Máx 2 Tareas, Mapeador 24H, finanzas 50/30/20 y Hub de imprimibles de 1 página).
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <a href="planes-demo.html" class="btn-primary" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); border:none; box-shadow: 0 0 20px rgba(59,130,246,0.35); font-weight:800;">
@@ -2133,7 +3382,7 @@
           Fundé <strong>Administración Humana</strong> para resolver una paradoja que viví en carne propia y vi repetirse en decenas de personas talentosas: la sensación de correr todo el día, apagando incendios y cargando una mochila invisible de culpa por no encajar en los moldes rígidos de la productividad tradicional.
         </p>
         <p>
-          Mi rol no es darte charlas motivacionales vacías ni imponerte plantillas complejas de 100 pestañas. <strong>Mi labor es hacer de puente clínico-operativo</strong>: escucharte sin juicio moral, diagnosticar con exactitud tus cuellos de botella y construir contigo un sistema vivo, simple y hermoso que sostenga tus metas mientras cuidas tu salud mental.
+          Mi rol no es darte charlas motivacionales vacías ni imponerte plantillas complejas de 100 pestañas. <strong>Mi labor es hacer de puente estratégico y operativo desde las ciencias de la administración</strong>: escucharte sin juicio moral, diagnosticar con exactitud tus cuellos de botella y construir contigo un sistema vivo, simple y hermoso que sostenga tus metas mientras cuidas tu energía, recursos y tranquilidad.
         </p>
 
         <div class="consultant-highlights">
@@ -2466,19 +3715,34 @@
 
     try {
       AHAuth.onAuthChange((user) => {
+        const btnNavAuth = document.getElementById('btn-nav-auth');
+        const btnNavLogout = document.getElementById('btn-nav-logout');
         if (!btnNavAuth) return;
         if (user) {
           btnNavAuth.innerHTML = `👤 ${user.fullName || 'Mi Portal'}`;
+          btnNavAuth.title = `Sesión activa como ${user.fullName || user.username} • Clic para ir al portal`;
           btnNavAuth.onclick = (e) => {
             e.preventDefault();
             window.location.href = user.role === 'admin' ? 'panel_admin.html' : 'portal_cliente.html';
           };
+          if (btnNavLogout) {
+            btnNavLogout.style.display = 'inline-flex';
+            btnNavLogout.onclick = async (e) => {
+              e.preventDefault();
+              await AHAuth.logout();
+              window.location.reload();
+            };
+          }
         } else {
           btnNavAuth.innerHTML = '🔑 Acceso Clientes';
+          btnNavAuth.title = 'Iniciar sesión o registrarse';
           btnNavAuth.onclick = (e) => {
             e.preventDefault();
             window.openAuthModal();
           };
+          if (btnNavLogout) {
+            btnNavLogout.style.display = 'none';
+          }
         }
       });
     } catch(e) {}
