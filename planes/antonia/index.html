@@ -292,6 +292,211 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* ESTILOS DIDÁCTICOS DEL KIT DE HERRAMIENTAS Y CHECKLISTS */
+        .tool-card-rich {
+            background: rgba(18, 18, 24, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            transition: all 0.25s ease;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .tool-card-rich:hover {
+            border-color: rgba(16, 185, 129, 0.35);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        .tool-header-rich {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tool-title-group h3 {
+            font-family: var(--font-display);
+            font-size: 1.22rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        .tool-context-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);
+            border-left: 3px solid #10b981;
+            border-radius: 0 10px 10px 0;
+            padding: 1rem 1.15rem;
+            font-size: 0.86rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        .tool-context-box h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #34d399;
+            margin: 0 0 0.45rem 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .tool-context-box p {
+            margin: 0 0 0.45rem 0;
+        }
+        .tool-context-box p:last-child {
+            margin-bottom: 0;
+        }
+        .tool-checklist-wrapper {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            padding: 1.1rem;
+        }
+        .tool-checklist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.85rem;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tool-checklist-title {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tool-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-progress-track {
+            width: 90px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .tool-progress-fill {
+            height: 100%;
+            background: #10b981;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .tool-progress-text {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #10b981;
+            min-width: 45px;
+            text-align: right;
+        }
+        .tool-checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .tool-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 0.55rem 0.7rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+        .tool-check-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .tool-check-item input[type="checkbox"] {
+            margin-top: 2px;
+            width: 16px;
+            height: 16px;
+            accent-color: #10b981;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .tool-check-item span {
+            font-size: 0.83rem;
+            color: #d1d5db;
+            line-height: 1.45;
+            transition: color 0.15s ease;
+        }
+        .tool-check-item.completed {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+        .tool-check-item.completed span {
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .tool-checklist-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.8rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+        }
+        .btn-tool-reset {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 0.72rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+        .btn-tool-reset:hover {
+            color: #f87171;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* MATRIZ DE ARQUETIPOS ENRIQUECIDA */
+        .archetype-card-rich {
+            background: rgba(18, 18, 24, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            transition: all 0.25s ease;
+        }
+        .archetype-card-rich:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -496,40 +701,129 @@
 
         <!-- TAB CONTENT: IDENTIDADES -->
         <div id="tab-identidades" class="tab-content">
-            <div class="section-title">
-                <span>Matriz de los 4 Arquetipos de Energía Personal</span>
+            <div class="diagnostic-box" style="border-left: 4px solid #60a5fa; background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%); margin-bottom: 1.5rem;">
+                <div class="hero-tea-badge" style="background: rgba(96, 165, 250, 0.15); border-color: rgba(96, 165, 250, 0.4); color: #60a5fa;">
+                    <i class="fa-solid fa-masks-theater"></i> Regulación Psicoemocional & Gestión de Batería
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0.4rem 0 0.3rem 0;">
+                    Matriz de los 4 Arquetipos de Energía • Antonia Jofré
+                </h2>
+                <p style="font-size: 0.92rem; color: #cbd5e1; max-width: 820px; line-height: 1.6; margin: 0;">
+                    En tu proceso terapéutico actual, una de las mayores claves es comprender que cuando te sientes mal o sobrecargada, la mente busca <strong>estímulo constante</strong> como mecanismo involuntario de escape. Conocer qué arquetipo está activo te permite poner un <strong>freno compasivo</strong>, descargar la mente y operar con estructura sin sentir culpa.
+                </p>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
-                Comprender qué identidad está activa en cada momento te permite neutralizar el auto-sabotaje y activar tu foco operativo.
-            </p>
-            <div class="grid-2">
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> La Estratega
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;"><strong>Rol / Función:</strong> Diseña programas y calcula metas financieras</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Alta / Foco</span>
+
+            <div class="grid-2" style="gap: 1.2rem;">
+                <!-- ARQUETIPO 1: LA ESTRATEGA -->
+                <div class="archetype-card-rich" style="border-top: 3px solid #60a5fa;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 800; color: #60a5fa; background: rgba(96, 165, 250, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                                Dirección & Finanzas
+                            </span>
+                            <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin: 0.4rem 0 0.2rem 0; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-compass" style="color: #60a5fa;"></i> 1. La Estratega
+                            </h3>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color: rgba(96,165,250,0.4); color: #93c5fd; background: rgba(96,165,250,0.08);">
+                            Foco / Máx 60 min
+                        </span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
+                        <strong>Misión Operativa:</strong> Diseña los programas de Habitarte, monitorea el hito de las <strong>8 alumnas ($160.000 para pasajes a Santiago)</strong> y mapea las 24 horas protegiendo las 58h de sueño.
+                    </p>
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 0.75rem; font-size: 0.8rem; line-height: 1.5;">
+                        <div style="color: #f87171; margin-bottom: 0.35rem;">
+                            <strong>⚠️ Trampa de Sobrecarga:</strong> Rumiar números y listas infinitas en la cama o querer planificar 6 meses de golpe cuando está cansada.
+                        </div>
+                        <div style="color: #34d399;">
+                            <strong>🛡️ Antídoto Estructural:</strong> 1 bloque semanal fijo de 45-60 min (Cita de Gestión AH). Fuera de esa ventana, el pensamiento financiero se apaga.
+                        </div>
+                    </div>
                 </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> La Ejecutora
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;"><strong>Rol / Función:</strong> Ejerce guiando clases en vivo de Habitarte y Muni</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Presente / Somática</span>
+
+                <!-- ARQUETIPO 2: LA EJECUTORA -->
+                <div class="archetype-card-rich" style="border-top: 3px solid #10b981;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                                Presencia Somática
+                            </span>
+                            <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin: 0.4rem 0 0.2rem 0; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-person-walking" style="color: #10b981;"></i> 2. La Ejecutora
+                            </h3>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color: rgba(16,185,129,0.4); color: #34d399; background: rgba(16,185,129,0.08);">
+                            Cuerpo / Presente
+                        </span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
+                        <strong>Misión Operativa:</strong> Ejerce en vivo guiando los <strong>2 bloques de 45 min de Habitarte</strong> y cumple sus <strong>7,5h en la Muni</strong> (Zumba y Pilates) conectando con el disfrute del movimiento.
+                    </p>
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 0.75rem; font-size: 0.8rem; line-height: 1.5;">
+                        <div style="color: #f87171; margin-bottom: 0.35rem;">
+                            <strong>⚠️ Trampa de Sobrecarga:</strong> Dar clases con fatiga extrema o rumiar problemas del hogar mientras está frente a sus alumnas.
+                        </div>
+                        <div style="color: #34d399;">
+                            <strong>🛡️ Antídoto Estructural:</strong> Ritual de aterrizaje de 3 minutos (respiración diafragmática) antes de la sesión; delimitar la clase a 45 min exactos.
+                        </div>
+                    </div>
                 </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> La Nutricia
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;"><strong>Rol / Función:</strong> Acompaña a su familia y realiza trámites</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Empática / Emocional</span>
+
+                <!-- ARQUETIPO 3: LA NUTRICIA -->
+                <div class="archetype-card-rich" style="border-top: 3px solid #ec4899;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 800; color: #ec4899; background: rgba(236, 72, 153, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                                Cuidados & Amor Familiar
+                            </span>
+                            <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin: 0.4rem 0 0.2rem 0; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-heart" style="color: #ec4899;"></i> 3. La Nutricia
+                            </h3>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color: rgba(236,72,153,0.4); color: #f472b6; background: rgba(236,72,153,0.08);">
+                            Prioridad Noble
+                        </span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
+                        <strong>Misión Operativa:</strong> Acompañamiento integral a <strong>Mateo y Roma</strong> en salud, terapias médicas, afecto y sostén cotidiano del hogar.
+                    </p>
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 0.75rem; font-size: 0.8rem; line-height: 1.5;">
+                        <div style="color: #f87171; margin-bottom: 0.35rem;">
+                            <strong>⚠️ Trampa de Sobrecarga:</strong> Sentir que el tiempo dedicado a sus hijos es 'tiempo perdido de trabajo', detonando culpa nocturna injusta.
+                        </div>
+                        <div style="color: #34d399;">
+                            <strong>🛡️ Antídoto Estructural:</strong> Reconocer que el cuidado es un eje prioritario vital. Fuera de las horas fijadas para Habitarte y Muni, la dedicación familiar es plenitud y no genera deuda.
+                        </div>
+                    </div>
                 </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> La Saboteadora
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;"><strong>Rol / Función:</strong> Genera culpa nocturna por trabajo invisible</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Rumiación / Freno</span>
+
+                <!-- ARQUETIPO 4: LA REGULADORA -->
+                <div class="archetype-card-rich" style="border-top: 3px solid #f59e0b;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 800; color: #f59e0b; background: rgba(245, 158, 11, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                                Alerta Temprana & Contención
+                            </span>
+                            <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.2rem; margin: 0.4rem 0 0.2rem 0; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-shield-heart" style="color: #f59e0b;"></i> 4. La Reguladora (Ex Saboteadora)
+                            </h3>
+                        </div>
+                        <span class="wip-limit-pill" style="border-color: rgba(245,158,11,0.4); color: #fbbf24; background: rgba(245,158,11,0.08);">
+                            Freno Analógico
+                        </span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
+                        <strong>Misión Operativa:</strong> Detectar la fatiga antes del colapso. Comprender que la dispersión o búsqueda compulsiva de estímulo es una señal fisiológica de que el sistema nervioso está sobrecargado.
+                    </p>
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 0.75rem; font-size: 0.8rem; line-height: 1.5;">
+                        <div style="color: #f87171; margin-bottom: 0.35rem;">
+                            <strong>⚠️ Trampa de Sobrecarga:</strong> Juzgarse duramente por distraerse, saltar de micro-tarea en micro-tarea o quedarse pegada en pantallas de noche.
+                        </div>
+                        <div style="color: #34d399;">
+                            <strong>🛡️ Antídoto Estructural:</strong> Freno analógico inmediato: cerrar pantallas, libreta física en mano (vaciado mental de 3 min) y regla de oro de máximo 2 tareas activas (WIP=2).
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1940,138 +2234,397 @@ Ajusta mi Mapeador 24 Horas para proteger mis horas fijadas de Habitarte (ejerce
 
         <!-- TAB CONTENT: HERRAMIENTAS -->
         <div id="tab-herramientas" class="tab-content">
-            <div class="section-title">
-                <span>Kit de Herramientas Didácticas & Diagramas</span>
+            <div class="diagnostic-box" style="border-left: 4px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%); margin-bottom: 1.5rem;">
+                <div class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #10b981;">
+                    <i class="fa-solid fa-toolbox"></i> Metodología Didáctica & Ergonomía Cognitiva
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0.4rem 0 0.3rem 0;">
+                    Kit de Herramientas Didácticas & Diagramas • Antonia Jofré
+                </h2>
+                <p style="font-size: 0.92rem; color: #cbd5e1; max-width: 820px; line-height: 1.6; margin: 0;">
+                    Cada herramienta está calibrada para tu caso real: desarmar la búsqueda involuntaria de estímulo, proteger tu batería emocional ante la sobrecarga de cuidados y blindar tus horas de <strong>Habitarte</strong> y <strong>Muni</strong>. Haz clic en los diagramas para ampliarlos en Lightbox y completa tus checklists interactivos.
+                </p>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
-                Haz clic sobre cualquier diagrama para ampliarlo en pantalla completa con el <strong>Visor Lightbox</strong>.
-            </p>
-            <!-- BANNER DEL HUB MAESTRO DE IMPRIMIBLES FÍSICOS -->
-            <div class="card" style="border: 2px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.95) 100%); margin-bottom: 2rem; padding: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 15px;">
+
+            <!-- ACCESO DIRECTO COMPACTO AL HUB DE IMPRIMIBLES FÍSICOS -->
+            <div class="card" style="border: 1px solid rgba(139, 92, 246, 0.3); background: rgba(139, 92, 246, 0.05); margin-bottom: 1.8rem; padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 38px; height: 38px; border-radius: 8px; background: rgba(139, 92, 246, 0.2); display: flex; align-items: center; justify-content: center; color: #a78bfa; font-size: 1.15rem;">
+                        <i class="fa-solid fa-print"></i>
+                    </div>
                     <div>
-                        <div class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #34d399;">
-                            <i class="fa-solid fa-print"></i> Hub Único de Imprimibles Físicos
+                        <strong style="color: #fff; font-size: 0.95rem; display: block;">¿Prefieres trabajar estas herramientas en papel analógico?</strong>
+                        <span style="font-size: 0.8rem; color: #cbd5e1;">Tienes disponible tu Cuadernillo Maestro de 5 hojas listas para imprimir en 1 hoja Carta exacta.</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="switchTab('tab-imprimibles')" class="btn-schedule-action" style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); font-weight: 700; padding: 7px 14px;">
+                        <i class="fa-regular fa-eye"></i> Ver Módulo de Imprimibles
+                    </button>
+                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html" target="_blank" class="btn-schedule-action" style="background: #8b5cf6; color: #fff; font-weight: 700; text-decoration: none; padding: 7px 14px;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Hub Imprimibles
+                    </a>
+                </div>
+            </div>
+
+            <!-- GRID DE LAS 4 HERRAMIENTAS ENRIQUECIDAS -->
+            <div class="grid-2" style="gap: 1.5rem;">
+                
+                <!-- HERRAMIENTA 1: TIME BLOCKING -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
+                                <i class="fa-regular fa-clock"></i> Ergonomía del Tiempo
+                            </span>
+                            <h3>1. Time Blocking & Blindaje de Foco</h3>
                         </div>
-                        <h2 style="font-family: var(--font-display); font-size: 1.45rem; color: #fff; margin: 0.5rem 0 0.3rem 0;">
-                            📄 Cuadernillo Maestro & Fichas Imprimibles • Antonia Jofré
-                        </h2>
-                        <p style="font-size: 0.9rem; color: #cbd5e1; max-width: 760px; line-height: 1.5; margin: 0;">
-                            Consolida en un solo documento interactivo las <strong>5 herramientas físicas esenciales</strong> listas para imprimir en 1 hoja Carta/A4 exacta, con modo de hoja individual o cuadernillo completo.
+                    </div>
+
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN CLÍNICA / ESTRATÉGICA PARA EL CASO DE ANTONIA -->
+                    <div class="tool-context-box">
+                        <h4><i class="fa-solid fa-bullseye"></i> ¿Para qué le sirve a Antonia? (En tu caso específico)</h4>
+                        <p>
+                            Antonia, en tu proceso terapéutico descubriste que cuando te sientes mal o sobrecargada, buscas <strong>estímulo constante</strong> de manera involuntaria. Cuando tus roles (mamá de Mateo y Roma, casa, clases de Muni y Habitarte) no tienen fronteras visibles, tu cerebro siente que siempre está en deuda y se acelera.
+                        </p>
+                        <p>
+                            El Time Blocking es tu <strong>estructura contenedora</strong>: no es una jaula para exigirte más, sino un escudo para no ser víctima de las circunstancias. Te permite blindar tus <strong>58h de sueño intocable</strong>, aislar tus <strong>7,5h de la Muni</strong>, fijar tus <strong>2 clases de 45 min para ejercer Habitarte</strong> y 1 hora para desarrollarlo. Fuera de esos bloques, no hay deuda operativa; puedes cuidar a tu familia con presencia plena sabiendo que tu trabajo ya tiene un lugar seguro.
                         </p>
                     </div>
-                    <div>
-                        <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html" target="_blank" class="btn-card-action" style="background: #10b981; color: #000; font-weight: 800; font-size: 0.9rem; text-decoration: none; padding: 10px 18px; display: inline-flex; align-items: center; gap: 8px;">
-                            <i class="fa-solid fa-book-open"></i> Abrir Cuadernillo Completo
-                        </a>
+
+                    <!-- CHECKLIST ASOCIADO INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #10b981;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-tb"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-tb">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_1" onchange="toggleToolCheck(this)">
+                                <span>He blindado en mi agenda mis <strong>58 horas mínimas de sueño semanal</strong> (8h diarias de recarga biológica sin pantallas).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_2" onchange="toggleToolCheck(this)">
+                                <span>Tengo identificados y respetados mis <strong>5 bloques fijos de la Muni</strong> (7,5h en total de Zumba y Pilates).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_3" onchange="toggleToolCheck(this)">
+                                <span>Fijé mis <strong>2 Bloques de Oro de 45 min</strong> para impartir clases en vivo de Habitarte (Martes y Jueves).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_4" onchange="toggleToolCheck(this)">
+                                <span>Asigné 1 bloque semanal de 45–60 min exclusivo para <strong>Desarrollar Habitarte</strong> (monitoreo de 8 cupos y finanzas).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_5" onchange="toggleToolCheck(this)">
+                                <span>Declaré al menos <strong>1 bloque sagrado de 90 min de autocuidado y silencio</strong> a la semana (Eje Antonia).</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('tb')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- ACCESOS DIRECTOS A CADA HOJA -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.6rem; margin-top: 1.2rem;">
-                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html#hoja-claves-sesion" target="_blank" class="printable-card" style="margin: 0; text-decoration: none; padding: 0.8rem; background: rgba(255,255,255,0.03);">
-                        <div>
-                            <strong style="color: #34d399; font-size: 0.82rem; display: block;">🌿 Hoja 1: Claves Sesión</strong>
-                            <span style="font-size: 0.72rem; color: #aaa;">5 Ejes, Habitarte y acuerdos</span>
+                <!-- HERRAMIENTA 2: MATRIZ DE EISENHOWER -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">
+                                <i class="fa-solid fa-table-cells-large"></i> Priorización Estratégica
+                            </span>
+                            <h3>2. Matriz de Eisenhower (Priorización)</h3>
                         </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square" style="color: #10b981; font-size: 0.8rem;"></i>
-                    </a>
-                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html#hoja-mapeador-24h" target="_blank" class="printable-card" style="margin: 0; text-decoration: none; padding: 0.8rem; background: rgba(255,255,255,0.03);">
-                        <div>
-                            <strong style="color: #38bdf8; font-size: 0.82rem; display: block;">⏰ Hoja 2: Mapeador 24H</strong>
-                            <span style="font-size: 0.72rem; color: #aaa;">Grilla manual para rayar</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square" style="color: #38bdf8; font-size: 0.8rem;"></i>
-                    </a>
-                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html#hoja-habitarte-pedagogia" target="_blank" class="printable-card" style="margin: 0; text-decoration: none; padding: 0.8rem; background: rgba(255,255,255,0.03);">
-                        <div>
-                            <strong style="color: #f472b6; font-size: 0.82rem; display: block;">🌸 Hoja 3: Ficha Habitarte</strong>
-                            <span style="font-size: 0.72rem; color: #aaa;">Clase 45m y 8 alumnas</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square" style="color: #f472b6; font-size: 0.8rem;"></i>
-                    </a>
-                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html#hoja-inventario-cero-culpa" target="_blank" class="printable-card" style="margin: 0; text-decoration: none; padding: 0.8rem; background: rgba(255,255,255,0.03);">
-                        <div>
-                            <strong style="color: #fcd34d; font-size: 0.82rem; display: block;">🌙 Hoja 4: Cero Culpa</strong>
-                            <span style="font-size: 0.72rem; color: #aaa;">Vaciado mental de 3 min</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square" style="color: #fcd34d; font-size: 0.8rem;"></i>
-                    </a>
-                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html#hoja-arquetipos-gtd" target="_blank" class="printable-card" style="margin: 0; text-decoration: none; padding: 0.8rem; background: rgba(255,255,255,0.03);">
-                        <div>
-                            <strong style="color: #c4b5fd; font-size: 0.82rem; display: block;">🎭 Hoja 5: 4 Arquetipos</strong>
-                            <span style="font-size: 0.72rem; color: #aaa;">Tablero diario WIP=2</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square" style="color: #c4b5fd; font-size: 0.8rem;"></i>
-                    </a>
-                </div>
-            </div>
+                    </div>
 
-            <div class="grid-2">
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>1. Time Blocking & Blindaje de Foco</h3>
-                        <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
-                        <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN CLÍNICA / ESTRATÉGICA PARA EL CASO DE ANTONIA -->
+                    <div class="tool-context-box" style="border-left-color: #60a5fa; background: linear-gradient(135deg, rgba(96, 165, 250, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #60a5fa;"><i class="fa-solid fa-bullseye"></i> ¿Para qué le sirve a Antonia? (En tu caso específico)</h4>
+                        <p>
+                            Viviendo entre terapias, trámites médicos y demandas del hogar, cualquier mensaje o pensamiento pendiente se experimenta como una alarma. En tu terapia estás resolviendo cómo la sobrecarga te lleva a la parálisis.
+                        </p>
+                        <p>
+                            La Matriz de Eisenhower te entrega un filtro compasivo: separa las <strong>emergencias médicas reales</strong> de Mateo o Roma (Cuadrante I: atender sin culpa) de las <strong>falsas urgencias ajenas o autoexigencias</strong> (Cuadrante III y IV: delegar o eliminar). Tu tesoro más valioso es el <strong>Cuadrante II (Lo Importante No Urgente)</strong>: preparar tus clases con calma, tu alimentación, tu terapia y la meta de las 8 alumnas ($160k para pasajes a Santiago). Si no lo blindas, las falsas urgencias se devoran tu energía.
+                        </p>
+                    </div>
+
+                    <!-- CHECKLIST ASOCIADO INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #60a5fa;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-eisen" style="background: #60a5fa;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-eisen" style="color: #60a5fa;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_1" onchange="toggleToolCheck(this)">
+                                <span>Ante una demanda imprevista, filtro: ¿Afecta la salud o seguridad inmediata de Mateo/Roma? Si no, no es emergencia.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_2" onchange="toggleToolCheck(this)">
+                                <span>Blindé hoy al menos 1 acción de mi <strong>Cuadrante II</strong> (mi terapia, mi descanso o planificar Habitarte).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_3" onchange="toggleToolCheck(this)">
+                                <span>Identifiqué y delegué o simplifiqué 1 tarea del hogar que otra persona puede realizar.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_4" onchange="toggleToolCheck(this)">
+                                <span>Dije que 'NO' o pospuse sin culpa un pedido externo que amenazaba mis horas de sueño o mis clases.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_5" onchange="toggleToolCheck(this)">
+                                <span>Verifiqué si una solicitud externa aporta al hito de las <strong>8 alumnas ($160k)</strong> antes de comprometerme.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('eisen')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>2. Matriz de Eisenhower (Priorización)</h3>
-                        <p class="tool-meta">Urgente vs Importante</p>
-                        <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
+
+                <!-- HERRAMIENTA 3: GTD & VACIADO MENTAL -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fa-solid fa-brain"></i> Descarga Mental & Límite WIP=2
+                            </span>
+                            <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN CLÍNICA / ESTRATÉGICA PARA EL CASO DE ANTONIA -->
+                    <div class="tool-context-box" style="border-left-color: #f59e0b; background: linear-gradient(135deg, rgba(245, 158, 11, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #f59e0b;"><i class="fa-solid fa-bullseye"></i> ¿Para qué le sirve a Antonia? (En tu caso específico)</h4>
+                        <p>
+                            Cuando te sientes mal o agotada, tu mente busca estímulos constantes (redes, saltar entre microtareas desordenadas) como un intento involuntario de autorregulación. Retener los pendientes en la cabeza sobrecarga tu memoria de trabajo y detona insomnio.
+                        </p>
+                        <p>
+                            El Vaciado Mental GTD te ofrece un <strong>freno analógico</strong>: escribir en papel o libreta física antes de acostarte le envía a tu sistema nervioso la señal de 'está a salvo, ya no tienes que recordarlo'. Además, la <strong>Regla WIP = 2 (Work In Progress)</strong> te prohíbe tener más de 2 tareas en curso simultáneamente, neutralizando la parálisis y la culpa por dispersión.
+                        </p>
+                    </div>
+
+                    <!-- CHECKLIST ASOCIADO INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #f59e0b;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-gtd" style="background: #f59e0b;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-gtd" style="color: #f59e0b;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_1" onchange="toggleToolCheck(this)">
+                                <span>Ejecuté mi <strong>vaciado mental nocturno en papel (3 min)</strong> antes de apagar la luz, fuera de pantallas.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_2" onchange="toggleToolCheck(this)">
+                                <span>Respeté la regla de oro: <strong>Máximo 2 tareas activas en mi día (WIP ≤ 2)</strong>; no abro una 3ra sin cerrar una.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_3" onchange="toggleToolCheck(this)">
+                                <span>Ante la tentación de buscar estímulo en el celular o saltar de tarea, pausé, respiré y anoté el distractor en una lista de espera.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_4" onchange="toggleToolCheck(this)">
+                                <span>Registré mis <strong>3 micro-victorias del día</strong> validando las horas dedicadas a la salud y contención de Mateo y Roma.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_5" onchange="toggleToolCheck(this)">
+                                <span>Al notar saturación mental, me aparté de pantallas y realicé 5 minutos de respiración somática o estiramiento.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('gtd')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
-                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
-                        <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
+
+                <!-- HERRAMIENTA 4: VENTANA DE JOHARI -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3);">
+                                <i class="fa-solid fa-users-viewfinder"></i> Red de Apoyo & Comunicación
+                            </span>
+                            <h3>4. La Ventana de Johari (Alineación)</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana Johari Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN CLÍNICA / ESTRATÉGICA PARA EL CASO DE ANTONIA -->
+                    <div class="tool-context-box" style="border-left-color: #a855f7; background: linear-gradient(135deg, rgba(168, 85, 247, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #c084fc;"><i class="fa-solid fa-bullseye"></i> ¿Para qué le sirve a Antonia? (En tu caso específico)</h4>
+                        <p>
+                            Sostener sola la responsabilidad de múltiples roles genera un 'Área Oculta' pesada donde se acumulan el miedo a no rendir, el cansancio y la culpa silenciosa.
+                        </p>
+                        <p>
+                            La Ventana de Johari te ayuda a mover esa carga hacia el <strong>Área Abierta y Compartida</strong>: transparentar con Diego en Administración Humana, con tu terapeuta y con tu entorno en qué nivel de batería te encuentras cada día (Verde = disponible, Amarillo = ritmo pausado, Rojo = solo emergencias). Declarar tu estado real desarma el aislamiento, permite que tu red asuma relevos en el hogar y celebra tus victorias sin exigirte más de la cuenta.
+                        </p>
+                    </div>
+
+                    <!-- CHECKLIST ASOCIADO INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #a855f7;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-johari" style="background: #a855f7;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-johari" style="color: #a855f7;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_1" onchange="toggleToolCheck(this)">
+                                <span>Comuniqué con honestidad mi <strong>nivel de batería emocional hoy</strong> (Verde / Amarillo / Rojo) en mi entorno o bitácora.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_2" onchange="toggleToolCheck(this)">
+                                <span>Acordé con mi red de apoyo quién acompaña a los niños durante mis 45 min de clases en vivo de Habitarte.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_3" onchange="toggleToolCheck(this)">
+                                <span>Envié una nota de voz o mensaje a Diego con mis bloqueos o dudas reales en lugar de rumiarlas sola.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_4" onchange="toggleToolCheck(this)">
+                                <span>Reconocí ante mí misma que pedir contención o hacer pausas no es debilidad, sino honestidad operativa.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_5" onchange="toggleToolCheck(this)">
+                                <span>Validé que el cuidado familiar es noble y prioritario, alineando expectativas con mi red sin sentirme en falta.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('johari')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>4. La Ventana de Johari (Alineación)</h3>
-                        <p class="tool-meta">Comunicación & Autopercepción</p>
-                        <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
         <!-- TAB CONTENT: ACTION & ANTIPATTERNS -->
         <div id="tab-accion" class="tab-content">
-            <div class="grid-2">
-                <div class="card">
-                    <h3 class="section-title"><span>Tu Plan de Acción: Próximas 24 Horas</span></h3>
-                    <ul class="custom-list">
-                        <li><strong>1. Ejecutar el Paso Cero de 5 minutos.</strong></li>
-                        <li><strong>2. Copiar el Prompt de Habitarte en ChatGPT para definir el mensaje de WhatsApp.</strong></li>
-                        <li><strong>3. Bloquear en el Mapeador 24H tus horas para ejercer y desarrollar Habitarte.</strong></li>
+            <div class="diagnostic-box" style="border-left: 4px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%); margin-bottom: 1.5rem;">
+                <div class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #10b981;">
+                    <i class="fa-solid fa-bolt"></i> Soberanía Operativa Inmediata
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0.4rem 0 0.3rem 0;">
+                    Plan de Vuelo 24 Horas & Guardianes de Foco • Antonia Jofré
+                </h2>
+                <p style="font-size: 0.92rem; color: #cbd5e1; max-width: 820px; line-height: 1.6; margin: 0;">
+                    Un protocolo de contención paso a paso para neutralizar la sobrecarga, no perderte en la dispersión y avanzar sólidamente hacia tu independencia operativa y el financiamiento de tus pasajes a Santiago.
+                </p>
+            </div>
+
+            <div class="grid-2" style="gap: 1.5rem;">
+                <!-- PLAN 24H -->
+                <div class="card" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.03);">
+                    <h3 class="section-title"><span>🚀 Tu Plan de Acción: Próximas 24 Horas</span></h3>
+                    <ul class="custom-list" style="line-height: 1.7; font-size: 0.88rem; color: #cbd5e1;">
+                        <li>
+                            <strong style="color: #34d399;">1. Ejecutar el Paso Cero Antiestrés (5 min):</strong> Si sientes fatiga o impulso involuntario de estímulo, suelta el celular, toma agua y haz 3 respiraciones profundas antes de tomar cualquier decisión.
+                        </li>
+                        <li>
+                            <strong style="color: #60a5fa;">2. Bloquear tus Horarios en el Mapeador 24H:</strong> Asegúrate de tener coloreadas tus 58h de sueño, las 7,5h de Muni y tus 2 clases de 45 min de Habitarte (Martes y Jueves).
+                        </li>
+                        <li>
+                            <strong style="color: #f472b6;">3. Copiar y Enviar el Prompt de WhatsApp de Habitarte:</strong> Pega el prompt en ChatGPT para ajustar el copy y escribirle a las primeras 3 interesadas en el pase prepagado de $20.000 ($160k Hito Santiago).
+                        </li>
+                        <li>
+                            <strong style="color: #f59e0b;">4. Respetar el Límite WIP = 2:</strong> Prohibido abrir una 3ra tarea hoy sin haber concluido o pausado las 2 en ejecución en tu tablero Kanban.
+                        </li>
+                        <li>
+                            <strong style="color: #c084fc;">5. Cierre Nocturno Cero Culpa (3 min):</strong> Llenar en papel tu inventario de 3 micro-victorias reconociendo todo el esfuerzo invisible de cuidado familiar invertido en el día.
+                        </li>
                     </ul>
                 </div>
-                <div class="card">
-                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Foco)</span></h3>
-                    <ul class="custom-list danger-list">
-                        <li>🚫 Multitarea tóxica sin límite WIP.</li>
-                        <li>🚫 Acostarse con pendientes en la cabeza sin vaciado análogo.</li>
-                        <li>🚫 Postergar conversaciones difíciles o sentir culpa por cuidar a tu familia.</li>
+
+                <!-- ANTIPATRONES -->
+                <div class="card" style="border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.03);">
+                    <h3 class="section-title"><span style="color:var(--danger)"><i class="fa-solid fa-shield-halved"></i> Antipatrones (Los Guardianes de tu Foco)</span></h3>
+                    <ul class="custom-list danger-list" style="line-height: 1.7; font-size: 0.88rem; color: #cbd5e1;">
+                        <li>
+                            <strong>🚫 Búsqueda Compulsiva de Estímulo por Agotamiento:</strong> Cuando notes que estás scrolleando o saltando de tarea en tarea, detente: es tu cerebro pidiendo descanso analógico, no más información.
+                        </li>
+                        <li>
+                            <strong>🚫 Venta por Horas Sueltas:</strong> Prohibido vender clases individuales por $3.000 o $5.000. Siempre se cobra el pase mensual anticipado de $20.000 (1 al 5 de cada mes).
+                        </li>
+                        <li>
+                            <strong>🚫 Culpa Nocturna por Cuidar a Mateo o Roma:</strong> El acompañamiento de salud y crianza de tus hijos es un eje vital noble y prioritario, jamás tiempo perdido de trabajo.
+                        </li>
+                        <li>
+                            <strong>🚫 Romper el Límite WIP=2:</strong> Abrir 5 cosas a la vez genera la ilusión de avanzar pero multiplica la fatiga mental y produce parálisis.
+                        </li>
+                        <li>
+                            <strong>🚫 Pantallas hasta la Cama:</strong> Llevarse el celular a la almohada re-activa el sistema nervioso. Tu cierre del día es siempre analógico y en papel.
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -2795,9 +3348,100 @@ Total Recaudado: $__________ | Destino Pasajes Santiago: [ ] Separado 100%
             saveImprimiblesNotes();
         }
 
+        /* ── MOTOR DE CHECKLISTS DIDÁCTICOS DEL KIT DE HERRAMIENTAS ── */
+        const TOOLS_CHECKLIST_KEY = 'antonia_tools_checklist_v1';
+
+        function getToolsChecklistState() {
+            try {
+                const raw = localStorage.getItem(TOOLS_CHECKLIST_KEY);
+                return raw ? JSON.parse(raw) : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveToolsChecklistState(state) {
+            try {
+                localStorage.setItem(TOOLS_CHECKLIST_KEY, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        function toggleToolCheck(checkbox) {
+            const id = checkbox.getAttribute('data-tool-check');
+            const toolId = checkbox.getAttribute('data-tool-id');
+            const state = getToolsChecklistState();
+            state[id] = checkbox.checked;
+            saveToolsChecklistState(state);
+
+            const label = checkbox.closest('.tool-check-item');
+            if (label) {
+                if (checkbox.checked) {
+                    label.classList.add('completed');
+                } else {
+                    label.classList.remove('completed');
+                }
+            }
+
+            updateToolProgress(toolId);
+            showToast('Checklist actualizado y guardado en tu equipo');
+        }
+
+        function updateToolProgress(toolId) {
+            const checkboxes = document.querySelectorAll(`input[data-tool-id="${toolId}"]`);
+            if (!checkboxes.length) return;
+
+            let checkedCount = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) checkedCount++;
+            });
+
+            const total = checkboxes.length;
+            const pct = Math.round((checkedCount / total) * 100);
+
+            const fill = document.getElementById(`progress-fill-${toolId}`);
+            const text = document.getElementById(`progress-text-${toolId}`);
+            if (fill) fill.style.width = pct + '%';
+            if (text) text.textContent = `${checkedCount}/${total} (${pct}%)`;
+        }
+
+        function resetToolChecklist(toolId) {
+            if (!confirm("¿Deseas reiniciar este checklist para una nueva semana?")) return;
+            const checkboxes = document.querySelectorAll(`input[data-tool-id="${toolId}"]`);
+            const state = getToolsChecklistState();
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                const id = cb.getAttribute('data-tool-check');
+                delete state[id];
+                const label = cb.closest('.tool-check-item');
+                if (label) label.classList.remove('completed');
+            });
+            saveToolsChecklistState(state);
+            updateToolProgress(toolId);
+            showToast('Checklist restablecido');
+        }
+
+        function initToolsChecklists() {
+            const state = getToolsChecklistState();
+            const tools = ['tb', 'eisen', 'gtd', 'johari'];
+
+            document.querySelectorAll('input[data-tool-check]').forEach(cb => {
+                const id = cb.getAttribute('data-tool-check');
+                if (state[id]) {
+                    cb.checked = true;
+                    const label = cb.closest('.tool-check-item');
+                    if (label) label.classList.add('completed');
+                }
+            });
+
+            tools.forEach(toolId => {
+                updateToolProgress(toolId);
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             loadHabitarteNotes();
             loadImprimiblesNotes();
+            initToolsChecklists();
             const textarea = document.getElementById('habitarte-live-notes');
             if (textarea) {
                 textarea.addEventListener('input', () => {
@@ -2815,7 +3459,7 @@ Total Recaudado: $__________ | Destino Pasajes Santiago: [ ] Separado 100%
             }
 
             const isSub = window.location.pathname.includes('/planes/') || window.location.pathname.includes('/02_CLIENTES_ACTIVOS/');
-            document.querySelectorAll('.image-preview img, .tool-box img, .card img').forEach(img => {
+            document.querySelectorAll('.image-preview img, .tool-box img, .card img, .tool-card-rich img').forEach(img => {
                 img.style.cursor = 'zoom-in';
                 img.setAttribute('title', 'Haz clic para ampliar');
                 img.addEventListener('click', function() { openLightbox(this.src); });
