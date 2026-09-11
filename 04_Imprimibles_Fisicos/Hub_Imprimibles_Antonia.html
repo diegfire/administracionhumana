@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Maestro de Imprimibles Físicos — Antonia Jofré • Administración Humana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #10B981;
+            --purple: #7C3AED;
+            --teal: #0D9488;
+            --amber: #D97706;
+            --emerald: #059669;
+            --rose: #E11D48;
+            --blue: #2563EB;
+            --border: #CBD5E1;
+            --bg-card: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        @page {
+            size: letter portrait;
+            margin: 0.6cm 0.7cm 0.5cm 0.7cm;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #0B0F17;
+            padding: 0;
+            margin: 0;
+            font-size: 8.5pt;
+            line-height: 1.25;
+        }
+
+        /* ── TOOLBAR DE CONTROL (NO-PRINT) ── */
+        .hub-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #0F172A;
+            border-bottom: 2px solid var(--accent);
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .hub-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #FFF;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .hub-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .select-sheet {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btn-hub {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-hub:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-hub-secondary { background: #334155; color: #FFF; }
+        .btn-hub-purple { background: var(--purple); color: #FFF; }
+
+        /* ── CONTENEDOR DE PÁGINAS ── */
+        .hub-container {
+            max-width: 900px;
+            margin: 1.5rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* ── HOJA INDIVIDUAL (1 PÁGINA CARTA) ── */
+        .sheet-page {
+            background: #FFF;
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+            page-break-after: always;
+            break-after: page;
+            min-height: 10.2in;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sheet-page:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        /* ── ELEMENTOS COMUNES DE HOJA ── */
+        header.sheet-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-block { display: flex; align-items: center; gap: 0.5rem; }
+        h1.sheet-h1 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: var(--primary); font-weight: 800; }
+        .subtitle { font-size: 0.74rem; color: #64748B; font-weight: 600; }
+
+        .meta-fields {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .meta-line {
+            border-bottom: 1px solid var(--primary);
+            width: 75px;
+            display: inline-block;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .grid-3col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .card-box {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.55rem 0.65rem;
+            background: var(--bg-card);
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 0.25rem;
+        }
+
+        .chk-list { list-style: none; }
+
+        .chk-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            padding: 0.22rem 0;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 0.78rem;
+        }
+        .chk-item:last-child { border-bottom: none; }
+
+        .chk-box {
+            width: 13px;
+            height: 13px;
+            min-width: 13px;
+            border: 1.5px solid var(--primary);
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 1px;
+            background: #FFF;
+        }
+
+        .table-mini {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        .table-mini th {
+            background: #EDE9FE;
+            color: #5B21B6;
+            text-align: left;
+            padding: 3px 6px;
+            font-weight: 700;
+            border: 1px solid var(--border);
+        }
+        .table-mini td {
+            padding: 3px 6px;
+            border: 1px solid var(--border);
+        }
+
+        .sheet-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 0.35rem;
+            margin-top: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #64748B;
+            font-weight: 600;
+        }
+
+        /* ── ESTILOS DE IMPRESIÓN ── */
+        @media print {
+            body { background: #FFF !important; padding: 0 !important; }
+            .hub-toolbar { display: none !important; }
+            .hub-container { max-width: 100% !important; margin: 0 !important; gap: 0 !important; }
+            .sheet-page {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                min-height: auto !important;
+                height: 100vh !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOOLBAR SUPERIOR INTERACTIVA (NO-PRINT) -->
+    <div class="hub-toolbar no-print">
+        <div class="hub-title">
+            <i class="fa-solid fa-print" style="color: var(--accent);"></i>
+            <span>Hub Maestro de Imprimibles Físicos • Antonia Jofré</span>
+        </div>
+        <div class="hub-controls">
+            <select id="sheetSelector" class="select-sheet" onchange="filterSheet(this.value)">
+                <option value="all">📚 Cuadernillo Completo (5 Hojas)</option>
+                <option value="hoja-claves-sesion">🌿 Hoja 1: Claves de Sesión & 5 Ejes (11 Sep)</option>
+                <option value="hoja-mapeador-24h">⏰ Hoja 2: Mapeador Semanal 24H en Blanco</option>
+                <option value="hoja-habitarte-pedagogia">🌸 Hoja 3: Ficha de Clase & Cupos • Habitarte</option>
+                <option value="hoja-inventario-cero-culpa">🌙 Hoja 4: Inventario Cero Culpa (3 min)</option>
+                <option value="hoja-arquetipos-gtd">🎭 Hoja 5: 4 Arquetipos & GTD WIP=2</option>
+            </select>
+            <button class="btn-hub" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Imprimir Vista Actual
+            </button>
+            <button class="btn-hub btn-hub-purple" onclick="showAllAndPrint()">
+                <i class="fa-solid fa-book-open"></i> Imprimir Cuadernillo Completo
+            </button>
+            <a href="../Plan de Vuelo 2.0 - Antonia.html" class="btn-hub btn-hub-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Plan Digital
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR MAESTRO DE HOJAS IMPRIMIBLES -->
+    <div class="hub-container">
+
+        <!-- ==========================================
+             HOJA 1: HOJA DE RUTA & CLAVES DE SESIÓN (11 SEP)
+             ========================================== -->
+        <div id="hoja-claves-sesion" class="sheet-page">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span style="font-size: 1.4rem;">🌿</span>
+                        <div>
+                            <h1 class="sheet-h1">Hoja de Ruta de Sesión • Claves del 11 de Septiembre</h1>
+                            <div class="subtitle">Estructura Contenedora, 5 Ejes Vitales & Emprendimiento "Habitarte"</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>CLIENTE: Antonia Jofré</span>
+                        <span>FECHA: 11 / 09 / 2026</span>
+                    </div>
+                </header>
+
+                <!-- RESUMEN CLÍNICO & FRICCIÓN -->
+                <div class="card-box" style="border-left: 3px solid #EF4444; margin-bottom: 0.6rem; background: #FEF2F2;">
+                    <div class="card-title" style="color: #991B1B;">
+                        <span>🚨 Diagnóstico de Fricción: De la Sobrecarga a la Estructura Contenedora</span>
+                        <span style="font-size: 0.75rem; background: #FEE2E2; padding: 2px 6px; border-radius: 4px;">~21 h/semana a recuperar</span>
+                    </div>
+                    <p style="font-size: 0.77rem; color: #334155; line-height: 1.35;">
+                        En el sondeo se identificaron los 5 cuellos de botella simultáneos (caos de horarios, sobrecarga mental, múltiples roles sin fronteras, cobro por hora y culpa nocturna). En tu proceso terapéutico actual, la búsqueda de estímulo constante es un amortiguador involuntario a la fatiga. <strong>La solución no es exigirte más, sino darte una estructura predecible que sostenga tu mente y tus decisiones.</strong>
+                    </p>
+                </div>
+
+                <!-- LOS 5 EJES VITALES SINTETIZADOS POR DIEGO -->
+                <div class="card-box" style="border-left: 3px solid var(--purple); margin-bottom: 0.6rem;">
+                    <div class="card-title" style="color: var(--purple);">
+                        <span>🌟 Los 5 Ejes Vitales de Antonia (Estructura de Contención)</span>
+                        <span style="font-size: 0.72rem; color: #64748B;">Delimitación en 5 recipientes cerrados</span>
+                    </div>
+                    <div class="grid-2col" style="gap: 0.5rem;">
+                        <div style="font-size: 0.76rem;">
+                            <strong style="color: #0284C7;">1. 🌸 Antonia:</strong> Autocuidado, terapia psicológica, descanso biológico (58h sueño) y ocio libre de culpa.<br>
+                            <strong style="color: #64748B;">2. 🏡 Casa:</strong> Logística doméstica, comida y orden concentrados en bloques fijos para no dispersar el día.<br>
+                            <strong style="color: #D97706;">3. 👶 Hijas:</strong> Mateo & Roma, presencia de calidad, afecto y llamados médicos protegidos.
+                        </div>
+                        <div style="font-size: 0.76rem;">
+                            <strong style="color: var(--emerald);">4. 💼 Lo Laboral:</strong> Clases fijas Muni (7,5h/sem) + docencia de Habitarte (solo 90 min/sem en vivo, cero desgaste físico).<br>
+                            <strong style="color: var(--purple);">5. 💰 Finanzas & Cupos:</strong> 1 bloque semanal de 45-60 min para revisar aranceles, pases de $20k y llenar los 8 cupos. <em>Al terminar, la persiana se cierra: mente en paz.</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EL PROYECTO HABITARTE -->
+                <div class="card-box" style="border-left: 3px solid var(--accent); margin-bottom: 0.6rem;">
+                    <div class="card-title" style="color: #065F46;">
+                        <span>🌿 Habitarte • Estudio Somático & Movimiento Consciente</span>
+                        <span style="font-size: 0.72rem; color: #065F46; font-weight: 700;">Hito Santiago: 8 alumnas x $20.000 = $160.000 CLP</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; text-align: center; margin-bottom: 0.4rem;">
+                        <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:4px; border-radius:4px; font-size:0.7rem;">
+                            <strong>1. Cuerpos Cansados</strong><br><span style="color:#64748B;">Descompresión</span>
+                        </div>
+                        <div style="background:#F0F9FF; border:1px solid #BAE6FD; padding:4px; border-radius:4px; font-size:0.7rem;">
+                            <strong>2. Pilates Somático</strong><br><span style="color:#64748B;">Core Profundo</span>
+                        </div>
+                        <div style="background:#FAF5FF; border:1px solid #E9D5FF; padding:4px; border-radius:4px; font-size:0.7rem;">
+                            <strong>3. Movilidad</strong><br><span style="color:#64748B;">Articulaciones</span>
+                        </div>
+                        <div style="background:#FFFBEB; border:1px solid #FDE68A; padding:4px; border-radius:4px; font-size:0.7rem;">
+                            <strong>4. Flexibilidad</strong><br><span style="color:#64748B;">Sin Tirones</span>
+                        </div>
+                        <div style="background:#FDF2F8; border:1px solid #FBCFE8; padding:4px; border-radius:4px; font-size:0.7rem;">
+                            <strong>5. Fuerza Isométrica</strong><br><span style="color:#64748B;">Cero Impacto</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.75rem; color: #334155; line-height: 1.3;">
+                        <strong>Inclusividad Amplia (18 a 70+ años):</strong> Desde teletrabajo con dolor de cuello hasta adultas mayores que buscan longevidad articular. Clases grabadas de respaldo para eliminar la rumiación por inasistencias.
+                    </p>
+                </div>
+
+                <!-- ACUERDOS DE LA SEMANA & FIRMAS -->
+                <div class="grid-2col">
+                    <div class="card-box">
+                        <div class="card-title"><span>✍️ Acuerdos Inmediatos de la Semana</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Proteger las 7-8h nocturnas de sueño biológico sin pantallas.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Mantener las 7.5h fijas de la Muni sin sobrecargarte con extras.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Agendar el bloque de 1h del domingo para la Cita de Finanzas y Cupos.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Completar a mano los bloques del Mapeador 24H con Diego.</div></li>
+                        </ul>
+                    </div>
+                    <div class="card-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-title"><span>🤝 Validación & Compromiso</span></div>
+                        <div style="font-size: 0.74rem; color: #64748B; margin-bottom: 0.4rem;">
+                            "Habito mi cuerpo, respeto mi energía y permito que la estructura me cuide."
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px dashed #CBD5E1; padding-top: 0.6rem;">
+                            <div><div style="border-bottom: 1px solid #000; width: 120px; height: 18px;"></div><span style="font-size: 0.7rem;">Antonia Jofré</span></div>
+                            <div><div style="border-bottom: 1px solid #000; width: 120px; height: 18px;"></div><span style="font-size: 0.7rem;">Diego • Admin Humana</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="sheet-footer">
+                <span>Antonia Jofré • Plan de Vuelo 2.0</span>
+                <span>Hoja 1 de 5 • Hub Maestro de Imprimibles</span>
+            </footer>
+        </div>
+
+        <!-- ==========================================
+             HOJA 2: MAPEADOR SEMANAL 24H EN BLANCO (MANUAL)
+             ========================================== -->
+        <div id="hoja-mapeador-24h" class="sheet-page">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span style="font-size: 1.4rem;">⏰</span>
+                        <div>
+                            <h1 class="sheet-h1">Mapeador Semanal 24H de Bloques • Plantilla de Trabajo</h1>
+                            <div class="subtitle">Visibilización Visual del Mosaico 168h para pintar y ajustar a mano en sesión</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>CLIENTE: Antonia Jofré</span>
+                        <span>SEMANA: ____ / ____ / 2026</span>
+                    </div>
+                </header>
+
+                <!-- CÓDIGO DE COLORES & CATEGORÍAS -->
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.5rem; font-size: 0.73rem;">
+                    <span style="background: #EDE9FE; color: #5B21B6; border: 1px solid #C4B5FD; padding: 2px 6px; border-radius: 4px;"><strong>😴 Sueño:</strong> 58h (Intocable)</span>
+                    <span style="background: #FCE7F3; color: #9D174D; border: 1px solid #FBCFE8; padding: 2px 6px; border-radius: 4px;"><strong>💃 Muni:</strong> 7.5h (Zumba/Pilates)</span>
+                    <span style="background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; padding: 2px 6px; border-radius: 4px;"><strong>💼 Lo Laboral:</strong> 10h (Habitarte)</span>
+                    <span style="background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD; padding: 2px 6px; border-radius: 4px;"><strong>🌱 Antonia:</strong> 25h (Terapia/Ocio)</span>
+                    <span style="background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; padding: 2px 6px; border-radius: 4px;"><strong>👶 Hijas:</strong> 32h (Mateo/Roma)</span>
+                    <span style="background: #F1F5F9; color: #334155; border: 1px solid #CBD5E1; padding: 2px 6px; border-radius: 4px;"><strong>🏡 Casa:</strong> 34.5h (Logística)</span>
+                    <span style="background: #EDE9FE; color: #6D28D9; border: 1px solid #DDD6FE; padding: 2px 6px; border-radius: 4px;"><strong>💰 Finanzas:</strong> 1h (Cupos)</span>
+                </div>
+
+                <!-- GRILLA 24H IMPRIMIBLE -->
+                <table class="table-mini" style="font-size: 0.68rem; line-height: 1.15;">
+                    <thead>
+                        <tr style="background: #0F172A; color: #FFF;">
+                            <th style="width: 50px; text-align: center;">HORA</th>
+                            <th style="width: 13.5%; text-align: center;">LUNES</th>
+                            <th style="width: 13.5%; text-align: center;">MARTES</th>
+                            <th style="width: 13.5%; text-align: center;">MIÉRCOLES</th>
+                            <th style="width: 13.5%; text-align: center;">JUEVES</th>
+                            <th style="width: 13.5%; text-align: center;">VIERNES</th>
+                            <th style="width: 13.5%; text-align: center;">SÁBADO</th>
+                            <th style="width: 13.5%; text-align: center;">DOMINGO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="text-align: center; font-weight: 700;">06:00</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">07:00</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">08:00</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">09:00</td><td style="background:#E0F2FE;">Antonia</td><td>Casa</td><td style="background:#E0F2FE;">Antonia</td><td>Casa</td><td style="background:#E0F2FE;">Antonia</td><td>Casa</td><td>Casa</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">10:00</td><td style="background:#FCE7F3; font-weight: 700;">Zumba Muni</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td style="background:#FCE7F3; font-weight: 700;">Zumba Muni</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td style="background:#FCE7F3; font-weight: 700;">Pilates Muni</td><td>Hijas</td><td>Hijas</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">11:00</td><td style="background:#FCE7F3; font-weight: 700;">Zumba Muni</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td style="background:#FCE7F3; font-weight: 700;">Zumba Muni</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td style="background:#FCE7F3; font-weight: 700;">Pilates Muni</td><td>Hijas</td><td>Hijas</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">12:00</td><td>Casa</td><td style="background:#E0F2FE;">Antonia</td><td>Casa</td><td style="background:#E0F2FE;">Antonia</td><td>Casa</td><td>Hijas</td><td style="background:#E0F2FE;">Antonia</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">13:00</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td><td>Casa</td><td style="background:#E0F2FE;">Antonia</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">14:00</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td>Casa</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td>Casa</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td>Casa</td><td>Casa</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">15:00</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td>Hijas</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td>Hijas</td><td style="background:#ECFDF5;">Laboral / Yoga</td><td style="background:#E0F2FE;">Antonia</td><td>Casa</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">16:00</td><td>Hijas</td><td>Hijas</td><td>Hijas</td><td>Hijas</td><td>Hijas</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#EDE9FE; font-weight: 800; border: 1.5px solid #7C3AED;">💰 Finanzas/Cupos</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">17:00</td><td>Hijas</td><td>Hijas</td><td>Hijas</td><td>Hijas</td><td>Hijas</td><td style="background:#E0F2FE;">Antonia</td><td>Hijas</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">18:00</td><td>Hijas</td><td style="background:#FCE7F3; font-weight: 700;">Zumba Muni</td><td>Hijas</td><td style="background:#FCE7F3; font-weight: 700;">Zumba Muni</td><td style="background:#E0F2FE;">Antonia</td><td>Casa</td><td>Hijas</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">19:00</td><td>Casa</td><td style="background:#FCE7F3; font-weight: 700;">Zumba Muni</td><td>Casa</td><td style="background:#FCE7F3; font-weight: 700;">Zumba Muni</td><td style="background:#E0F2FE;">Antonia</td><td>Casa</td><td>Hijas</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">20:00</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">21:00</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td><td style="background:#E0F2FE;">Antonia</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">22:00</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td></tr>
+                        <tr><td style="text-align: center; font-weight: 700;">23:00</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td><td style="background:#F1F5F9;">Sueño</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="card-box" style="margin-top: 0.5rem; padding: 0.4rem 0.6rem;">
+                    <span style="font-weight: 700; font-size: 0.74rem;">📝 Espacio de Notas para completar con Diego:</span>
+                    <div style="height: 35px; border-bottom: 1px dashed #CBD5E1;"></div>
+                </div>
+            </div>
+            <footer class="sheet-footer">
+                <span>Antonia Jofré • Plan de Vuelo 2.0</span>
+                <span>Hoja 2 de 5 • Hub Maestro de Imprimibles</span>
+            </footer>
+        </div>
+
+        <!-- ==========================================
+             HOJA 3: FICHA DE DISEÑO DE CLASE & CUPOS (HABITARTE)
+             ========================================== -->
+        <div id="hoja-habitarte-pedagogia" class="sheet-page">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span style="font-size: 1.4rem;">🌸</span>
+                        <div>
+                            <h1 class="sheet-h1">Ficha Pedagógica & Control de Cupos • Habitarte</h1>
+                            <div class="subtitle">Estructura Somática de 45 min y Seguimiento de los 8 Pases Mensuales ($160k)</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>GUÍA: Antonia Jofré</span>
+                        <span>CLASE Nº: _____</span>
+                    </div>
+                </header>
+
+                <!-- ESTRUCTURA DE CLASE TIPO (4 FASES) -->
+                <div class="card-box" style="margin-bottom: 0.6rem; border-left: 3px solid var(--accent);">
+                    <div class="card-title"><span>📐 Estructura de Clase Tipo (45 a 50 Minutos Exactos)</span></div>
+                    <div class="grid-2col" style="gap: 0.5rem;">
+                        <div style="background: #FFF; padding: 5px; border: 1px solid #E2E8F0; border-radius: 4px; font-size: 0.74rem;">
+                            <strong style="color: #059669;">1. Aterrizaje & Vaciado (00–08 min):</strong><br>
+                            En suelo. Chequeo de apoyos, respiración 4-7-8, soltar mandíbula, cuello y sacro. Cero exigencia.
+                        </div>
+                        <div style="background: #FFF; padding: 5px; border: 1px solid #E2E8F0; border-radius: 4px; font-size: 0.74rem;">
+                            <strong style="color: #0284C7;">2. Despertar Articular (08–20 min):</strong><br>
+                            Olas de columna en 4 apoyos (cat-cow suave), círculos de cadera, lubricación de escápulas y hombros.
+                        </div>
+                        <div style="background: #FFF; padding: 5px; border: 1px solid #E2E8F0; border-radius: 4px; font-size: 0.74rem;">
+                            <strong style="color: #DB2777;">3. Pilates & Fuerza Isométrica (20–35 min):</strong><br>
+                            Conexión de transverso abdominal, puentes de hombros sostenidos (holds de 15s), planchas en rodillas.
+                        </div>
+                        <div style="background: #FFF; padding: 5px; border: 1px solid #E2E8F0; border-radius: 4px; font-size: 0.74rem;">
+                            <strong style="color: #D97706;">4. Elongación Fascial & Cierre (35–50 min):</strong><br>
+                            Estiramientos en suelo asistidos por la gravedad y la exhalación lenta. Relax final de integración.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MATRIZ DE CONTROL DE 8 ALUMNAS (HITO SANTIAGO) -->
+                <div class="card-box" style="margin-bottom: 0.6rem; border-left: 3px solid var(--purple);">
+                    <div class="card-title" style="color: var(--purple);">
+                        <span>🎯 Matriz de Control de Cupos • Pase Mensual $20.000 (Meta: $160.000 CLP)</span>
+                        <span style="font-size: 0.72rem; color: #64748B;">Cobro del 1 al 5 de cada mes</span>
+                    </div>
+                    <table class="table-mini" style="font-size: 0.72rem;">
+                        <thead>
+                            <tr>
+                                <th style="width: 30px; text-align: center;">#</th>
+                                <th>Nombre Alumna</th>
+                                <th style="width: 100px;">Contacto / Tel</th>
+                                <th style="width: 60px; text-align: center;">Pagado</th>
+                                <th style="width: 80px; text-align: right;">Monto</th>
+                                <th>Observaciones Biomecánicas / Adaptaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="text-align: center;">1</td><td></td><td></td><td style="text-align: center;">[ ]</td><td style="text-align: right;">$20.000</td><td></td></tr>
+                            <tr><td style="text-align: center;">2</td><td></td><td></td><td style="text-align: center;">[ ]</td><td style="text-align: right;">$20.000</td><td></td></tr>
+                            <tr><td style="text-align: center;">3</td><td></td><td></td><td style="text-align: center;">[ ]</td><td style="text-align: right;">$20.000</td><td></td></tr>
+                            <tr><td style="text-align: center;">4</td><td></td><td></td><td style="text-align: center;">[ ]</td><td style="text-align: right;">$20.000</td><td></td></tr>
+                            <tr><td style="text-align: center;">5</td><td></td><td></td><td style="text-align: center;">[ ]</td><td style="text-align: right;">$20.000</td><td></td></tr>
+                            <tr><td style="text-align: center;">6</td><td></td><td></td><td style="text-align: center;">[ ]</td><td style="text-align: right;">$20.000</td><td></td></tr>
+                            <tr><td style="text-align: center;">7</td><td></td><td></td><td style="text-align: center;">[ ]</td><td style="text-align: right;">$20.000</td><td></td></tr>
+                            <tr><td style="text-align: center;">8</td><td></td><td></td><td style="text-align: center;">[ ]</td><td style="text-align: right;">$20.000</td><td></td></tr>
+                        </tbody>
+                    </table>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.4rem; font-size: 0.75rem; font-weight: 700;">
+                        <span>TOTAL RECAUDADO DEL MES: $ ____________ CLP</span>
+                        <span style="color: var(--emerald);">META SANTIAGO: $160.000 CLP [ ] CUMPLIDA</span>
+                    </div>
+                </div>
+
+                <!-- NOTAS DE LA SESIÓN & FEEDBACK DE ALUMNAS -->
+                <div class="card-box">
+                    <div class="card-title"><span>📝 Bitácora Somática de la Clase (Sensaciones de las Alumnas)</span></div>
+                    <div style="height: 65px; border-bottom: 1px dashed #CBD5E1;"></div>
+                </div>
+            </div>
+            <footer class="sheet-footer">
+                <span>Antonia Jofré • Habitarte Estudio Somático</span>
+                <span>Hoja 3 de 5 • Hub Maestro de Imprimibles</span>
+            </footer>
+        </div>
+
+        <!-- ==========================================
+             HOJA 4: INVENTARIO CERO CULPA & VACIADO NOCTURNO
+             ========================================== -->
+        <div id="hoja-inventario-cero-culpa" class="sheet-page">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span style="font-size: 1.4rem;">🌙</span>
+                        <div>
+                            <h1 class="sheet-h1">Inventario Cero Culpa & Vaciado Mental Nocturno</h1>
+                            <div class="subtitle">Herramienta Clínica de 3 Minutos para Descargar la Mente antes de Dormir</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>CLIENTE: Antonia Jofré</span>
+                        <span>DÍA: ____________</span>
+                    </div>
+                </header>
+
+                <div class="card-box" style="border-left: 3px solid var(--amber); margin-bottom: 0.6rem; background: #FFFBEB;">
+                    <div class="card-title" style="color: #B45309;">
+                        <span>💡 La Regla de los 3 Minutos (Cero Pantallas en Cama)</span>
+                    </div>
+                    <p style="font-size: 0.77rem; color: #334155; line-height: 1.35;">
+                        Acostarse repasando lo que "no alcanzaste a hacer" es una trampa de La Saboteadora que activa el insomnio y la búsqueda de estímulo en el celular. <strong>Este inventario hace visible todo el trabajo real de cuidado que sostuviste hoy.</strong> Lo que está anotado en papel ya no necesita estar dando vueltas en tu cabeza.
+                    </p>
+                </div>
+
+                <div class="grid-2col" style="gap: 0.6rem; margin-bottom: 0.6rem;">
+                    <!-- COLUMNA 1: TRABAJO INVISIBLE VALIDADO -->
+                    <div class="card-box">
+                        <div class="card-title"><span>❤️ 1. Trabajo Invisible de Cuidados Sostenido Hoy</span></div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span> <div>Acompañamiento médico, remedios y contención de Mateo.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Presencia afectiva, alimentación y rutinas con Roma.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Sostén logístico del hogar (compras, orden, limpieza básica).</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Atención y coordinación de trámites familiares.</div></li>
+                            <li class="chk-item"><span class="chk-box"></span> <div>Otro acto de cuidado invisible: _______________________</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- COLUMNA 2: MIS 2 LOGROS PROFESIONALES O PERSONALES -->
+                    <div class="card-box">
+                        <div class="card-title"><span>⭐ 2. Mis 2 Victorias del Día (Sin Comparación)</span></div>
+                        <div style="font-size: 0.77rem; margin-bottom: 0.5rem;">
+                            <strong>Victoria 1:</strong><br>
+                            <div style="border-bottom: 1px solid #CBD5E1; height: 18px; margin-top: 3px;"></div>
+                        </div>
+                        <div style="font-size: 0.77rem;">
+                            <strong>Victoria 2:</strong><br>
+                            <div style="border-bottom: 1px solid #CBD5E1; height: 18px; margin-top: 3px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VACIADO MENTAL ANÁLOGO (ATRAPAR PENDIENTES) -->
+                <div class="card-box" style="margin-bottom: 0.6rem;">
+                    <div class="card-title">
+                        <span>📥 3. Vaciado Mental: Lo que queda en pausa para mañana (Descarga Análoga)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Atrapar en papel para no rumiar</span>
+                    </div>
+                    <ul class="chk-list">
+                        <li class="chk-item"><span class="chk-box"></span> <div style="width: 100%; border-bottom: 1px dashed #E2E8F0; height: 16px;"></div></li>
+                        <li class="chk-item"><span class="chk-box"></span> <div style="width: 100%; border-bottom: 1px dashed #E2E8F0; height: 16px;"></div></li>
+                        <li class="chk-item"><span class="chk-box"></span> <div style="width: 100%; border-bottom: 1px dashed #E2E8F0; height: 16px;"></div></li>
+                        <li class="chk-item"><span class="chk-box"></span> <div style="width: 100%; border-bottom: 1px dashed #E2E8F0; height: 16px;"></div></li>
+                    </ul>
+                </div>
+
+                <!-- ANCLAJE SOMÁTICO DE CIERRE -->
+                <div class="card-box" style="border-left: 3px solid var(--emerald); background: #ECFDF5;">
+                    <div style="font-size: 0.78rem; color: #065F46; font-weight: 700; text-align: center;">
+                        "Mi valor como mujer y madre no depende de una lista infinita de tareas. Hoy hice suficiente. Mi cuerpo merece descansar."
+                    </div>
+                </div>
+            </div>
+            <footer class="sheet-footer">
+                <span>Antonia Jofré • Autocuidado Clínico</span>
+                <span>Hoja 4 de 5 • Hub Maestro de Imprimibles</span>
+            </footer>
+        </div>
+
+        <!-- ==========================================
+             HOJA 5: MATRIZ DE 4 ARQUETIPOS & GTD (WIP=2)
+             ========================================== -->
+        <div id="hoja-arquetipos-gtd" class="sheet-page">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span style="font-size: 1.4rem;">🎭</span>
+                        <div>
+                            <h1 class="sheet-h1">Matriz de los 4 Arquetipos & Blindaje GTD (WIP = 2)</h1>
+                            <div class="subtitle">Gestión de Energía Personal y Foco Quirúrgico contra la Parálisis por Sobreestímulo</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>CLIENTE: Antonia Jofré</span>
+                        <span>FOCO SEMANAL</span>
+                    </div>
+                </header>
+
+                <!-- LOS 4 ARQUETIPOS -->
+                <div class="grid-2col" style="gap: 0.6rem; margin-bottom: 0.6rem;">
+                    <div class="card-box" style="border-top: 3px solid #0284C7;">
+                        <div class="card-title"><span style="color: #0284C7;">🚀 1. La Estratega (Foco & Visión)</span></div>
+                        <p style="font-size: 0.76rem; color: #334155;"><strong>Cuándo actúa:</strong> En la Cita Semanal de Finanzas de 1h.<br><strong>Función:</strong> Calcula los pases de $20k, planifica los 8 cupos y protege los pasajes a Santiago.</p>
+                    </div>
+                    <div class="card-box" style="border-top: 3px solid var(--emerald);">
+                        <div class="card-title"><span style="color: var(--emerald);">🧘‍♀️ 2. La Ejecutora (Presencia Somática)</span></div>
+                        <p style="font-size: 0.76rem; color: #334155;"><strong>Cuándo actúa:</strong> Durante los 45 min de clase de Habitarte.<br><strong>Función:</strong> Guía desde el cuerpo, atiende alumnas y se conecta con el placer del movimiento.</p>
+                    </div>
+                    <div class="card-box" style="border-top: 3px solid var(--amber);">
+                        <div class="card-title"><span style="color: var(--amber);">🤱 3. La Nutricia (Cuidado & Amor)</span></div>
+                        <p style="font-size: 0.76rem; color: #334155;"><strong>Cuándo actúa:</strong> En los bloques de Hijas y Casa.<br><strong>Función:</strong> Sostiene y cuida a su familia. Es un rol noble que NO compite con el trabajo.</p>
+                    </div>
+                    <div class="card-box" style="border-top: 3px solid #EF4444;">
+                        <div class="card-title"><span style="color: #EF4444;">🛑 4. La Saboteadora (Culpa & Freno)</span></div>
+                        <p style="font-size: 0.76rem; color: #334155;"><strong>Cómo detectarla:</strong> Rumiación nocturna, abrir 5 cosas a la vez.<br><strong>Antídoto:</strong> Decirle: <em>"Hoy ya cumplí mi bloque; lo demás está en pausa controlada."</em></p>
+                    </div>
+                </div>
+
+                <!-- TABLERO FÍSICO GTD: MÁXIMO 2 TAREAS EN CURSO (WIP=2) -->
+                <div class="card-box" style="border-left: 3px solid var(--purple); margin-bottom: 0.6rem;">
+                    <div class="card-title" style="color: var(--purple);">
+                        <span>⚡ Tablero Diario de Foco Protegido • Regla Inquebrantable: WIP = 2</span>
+                        <span style="font-size: 0.72rem; color: #64748B;">Prohibido abrir una 3ª tarea sin cerrar una</span>
+                    </div>
+                    <div class="grid-3col" style="gap: 0.5rem; margin-top: 0.4rem;">
+                        <div style="background: #F1F5F9; border: 1px solid #CBD5E1; padding: 6px; border-radius: 6px;">
+                            <strong style="font-size: 0.74rem; color: #334155; display: block; border-bottom: 1px solid #CBD5E1; padding-bottom: 3px; margin-bottom: 4px;">📥 POR HACER (Máx 4)</strong>
+                            <div style="height: 16px; border-bottom: 1px dashed #94A3B8;"></div>
+                            <div style="height: 16px; border-bottom: 1px dashed #94A3B8;"></div>
+                            <div style="height: 16px; border-bottom: 1px dashed #94A3B8;"></div>
+                            <div style="height: 16px; border-bottom: 1px dashed #94A3B8;"></div>
+                        </div>
+                        <div style="background: #EDE9FE; border: 1.5px solid #7C3AED; padding: 6px; border-radius: 6px;">
+                            <strong style="font-size: 0.74rem; color: #5B21B6; display: block; border-bottom: 1px solid #DDD6FE; padding-bottom: 3px; margin-bottom: 4px;">🔥 EN CURSO (ESTRICTO WIP=2)</strong>
+                            <div style="background: #FFF; border: 1px solid #C4B5FD; padding: 4px; border-radius: 4px; margin-bottom: 4px; height: 24px;"></div>
+                            <div style="background: #FFF; border: 1px solid #C4B5FD; padding: 4px; border-radius: 4px; height: 24px;"></div>
+                        </div>
+                        <div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 6px; border-radius: 6px;">
+                            <strong style="font-size: 0.74rem; color: #065F46; display: block; border-bottom: 1px solid #A7F3D0; padding-bottom: 3px; margin-bottom: 4px;">✅ COMPLETADO HOY</strong>
+                            <div style="height: 16px; border-bottom: 1px dashed #6EE7B7;"></div>
+                            <div style="height: 16px; border-bottom: 1px dashed #6EE7B7;"></div>
+                            <div style="height: 16px; border-bottom: 1px dashed #6EE7B7;"></div>
+                            <div style="height: 16px; border-bottom: 1px dashed #6EE7B7;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOTA DE SALUD MENTAL -->
+                <div class="card-box" style="font-size: 0.75rem; color: #475569; line-height: 1.35;">
+                    <strong>🛡️ Blindaje contra la parálisis:</strong> Si sientes abrumación o ganas de abrir muchas cosas a la vez, detén el movimiento, toma 3 respiraciones diafragmáticas y elige UNA sola micro-acción de 10 minutos.
+                </div>
+            </div>
+            <footer class="sheet-footer">
+                <span>Antonia Jofré • Productividad Sostenible</span>
+                <span>Hoja 5 de 5 • Hub Maestro de Imprimibles</span>
+            </footer>
+        </div>
+
+    </div><!-- /hub-container -->
+
+    <script>
+        // Filtrar hoja individual o cuadernillo completo
+        function filterSheet(sheetId) {
+            const pages = document.querySelectorAll('.sheet-page');
+            if (sheetId === 'all') {
+                pages.forEach(p => p.style.display = 'flex');
+            } else {
+                pages.forEach(p => {
+                    if (p.id === sheetId) {
+                        p.style.display = 'flex';
+                    } else {
+                        p.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function showAllAndPrint() {
+            filterSheet('all');
+            document.getElementById('sheetSelector').value = 'all';
+            setTimeout(() => { window.print(); }, 150);
+        }
+
+        // Detectar hash en la URL (ej: Hub_Imprimibles_Antonia.html#hoja-claves-sesion)
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash ? window.location.hash.substring(1) : '';
+            if (hash && document.getElementById(hash)) {
+                filterSheet(hash);
+                const selector = document.getElementById('sheetSelector');
+                if (selector) selector.value = hash;
+            }
+        });
+    </script>
+</body>
+</html>
