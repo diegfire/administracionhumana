@@ -375,8 +375,8 @@
             <button class="tab-btn" onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
-            <button class="tab-btn" onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
+            <button class="tab-btn" onclick="switchTab('tab-imprimibles')" style="border: 1px solid rgba(139, 92, 246, 0.45); background: rgba(139, 92, 246, 0.08);">
+                <i class="fa-solid fa-print" style="color: #a78bfa;"></i> 📄 Hub Imprimibles Físicos
             </button>
             <button class="tab-btn" onclick="switchTab('tab-ia-chatgpt')" style="border: 1px solid rgba(255,255,255,0.25);">
                 <i class="fa-solid fa-wand-magic-sparkles" style="color: #60a5fa;"></i> Activador IA & ChatGPT
@@ -1655,6 +1655,233 @@ Ajusta mi Mapeador 24 Horas para proteger mis horas fijadas de Habitarte (ejerce
             </div>
         </div>
 
+        <!-- TAB CONTENT: HUB MAESTRO DE IMPRIMIBLES FÍSICOS -->
+        <div id="tab-imprimibles" class="tab-content">
+            <!-- HEADER HERO -->
+            <div class="ai-hub-header" style="border-color: rgba(139, 92, 246, 0.3); background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(0, 0, 0, 0.5)); margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 15px;">
+                    <div>
+                        <div class="hero-tea-badge" style="background: rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.35); color: #a78bfa;">
+                            <i class="fa-solid fa-print"></i> Metodología Cero Fatiga de Pantallas • Cuadernillo Maestro 1 Hoja Carta
+                        </div>
+                        <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; margin-top: 0.4rem; margin-bottom: 0.4rem;">
+                            📄 Hub Maestro de Imprimibles Físicos • Antonia Jofré
+                        </h2>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 850px; line-height: 1.5;">
+                            Para cuidar tu batería mental y erradicar la sobrecarga sensorial provocada por pantallas complejas, este módulo reúne tus <strong>5 herramientas maestras en hojas de papel independientes (1 hoja Carta exacta)</strong>. Puedes estudiarlas aquí en vivo, abrirlas a pantalla completa, imprimirlas individualmente o en cuadernillo, y registrar mejoras pedagógicas o nuevas fichas en la bitácora inferior.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html" target="_blank" class="btn-hub" style="background: #8b5cf6; color: #fff; text-decoration: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Hub Pantalla Completa
+                        </a>
+                        <button onclick="printIframeSheet('all')" class="btn-hub" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.65rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-book-open"></i> Imprimir Cuadernillo Completo
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR DEL VISOR INTERACTIVO EN VIVO -->
+            <div class="card" style="border-color: rgba(139, 92, 246, 0.25); background: rgba(15, 15, 20, 0.8); margin-bottom: 1.5rem; padding: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.85rem;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-regular fa-eye" style="color: #a78bfa;"></i> Visor Interactivo en Vivo
+                        </span>
+                        <span style="font-size: 0.75rem; background: rgba(139, 92, 246, 0.15); color: #c4b5fd; padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(139, 92, 246, 0.3);">
+                            5 Hojas Cargadas
+                        </span>
+                    </div>
+
+                    <!-- SELECTOR DE HOJA EN EL VISOR -->
+                    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                        <span style="font-size: 0.8rem; color: #aaa;">Filtrar Hoja:</span>
+                        <select id="hubSheetTabSelector" onchange="filterFrameSheet(this.value)" style="background: #18181f; border: 1px solid rgba(139, 92, 246, 0.4); color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; outline: none; cursor: pointer;">
+                            <option value="all">📚 Cuadernillo Completo (5 Hojas)</option>
+                            <option value="hoja-claves-sesion">🌿 Hoja 1: Claves de Sesión & 5 Ejes (11 Sep)</option>
+                            <option value="hoja-mapeador-24h">⏰ Hoja 2: Mapeador Semanal 24H Manual</option>
+                            <option value="hoja-habitarte-pedagogia">🌸 Hoja 3: Ficha de Clase & 8 Alumnas • Habitarte</option>
+                            <option value="hoja-inventario-cero-culpa">🌙 Hoja 4: Inventario Cero Culpa (3 min)</option>
+                            <option value="hoja-arquetipos-gtd">🎭 Hoja 5: 4 Arquetipos & GTD WIP=2</option>
+                        </select>
+                        <button onclick="printIframeActive()" style="background: #10b981; border: none; color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-print"></i> Imprimir Selección
+                        </button>
+                    </div>
+                </div>
+
+                <!-- IFRAME EMBEBIDO -->
+                <div style="position: relative; width: 100%; height: 740px; border-radius: 10px; overflow: hidden; background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <iframe id="imprimibles-embed-frame" src="04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html" style="width: 100%; height: 100%; border: none; background: #fff;" title="Hub Maestro de Imprimibles Físicos"></iframe>
+                </div>
+            </div>
+
+            <!-- MATRIZ DE ESTUDIO & ANÁLISIS DE LAS 5 HOJAS -->
+            <div class="section-title" style="margin-top: 1rem;">
+                <span>📚 Guía de Estudio & Criterios de Uso de cada Hoja</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+                Cada herramienta física cumple una función neurocognitiva y somática específica para proteger tu atención y tu energía:
+            </p>
+
+            <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                <!-- FICHA 1 -->
+                <div class="card" style="border-color: rgba(16, 185, 129, 0.25); background: rgba(16, 185, 129, 0.03);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                            Hoja 1 • Fundamento
+                        </span>
+                        <button onclick="quickViewSheet('hoja-claves-sesion')" style="background: transparent; border: 1px solid rgba(16,185,129,0.3); color: #10b981; font-size: 0.75rem; border-radius: 6px; padding: 2px 8px; cursor: pointer;">
+                            Ver en Visor
+                        </button>
+                    </div>
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.4rem;">
+                        🌿 Claves de Sesión & 5 Ejes Vitales
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #ccc; line-height: 1.5; margin-bottom: 0.6rem;">
+                        <strong>Para qué sirve:</strong> Es tu brújula de seguridad ante la saturación. Desglosa tus 5 ejes (Antonia, Casa, Hijas, Habitarte y Finanzas), desactiva la culpa y recuerda que cuidar de Mateo y Roma es tu prioridad noble.
+                    </p>
+                    <div style="font-size: 0.75rem; color: #aaa; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.5rem;">
+                        <div>📍 <strong>Ubicación ideal:</strong> En la pared frente a tu mesa o corcho.</div>
+                        <div>⏱️ <strong>Frecuencia:</strong> Mirar los lunes por la mañana o ante días difíciles.</div>
+                    </div>
+                </div>
+
+                <!-- FICHA 2 -->
+                <div class="card" style="border-color: rgba(96, 165, 250, 0.25); background: rgba(96, 165, 250, 0.03);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #60a5fa; background: rgba(96, 165, 250, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                            Hoja 2 • Ergonomía 24H
+                        </span>
+                        <button onclick="quickViewSheet('hoja-mapeador-24h')" style="background: transparent; border: 1px solid rgba(96,165,250,0.3); color: #60a5fa; font-size: 0.75rem; border-radius: 6px; padding: 2px 8px; cursor: pointer;">
+                            Ver en Visor
+                        </button>
+                    </div>
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.4rem;">
+                        ⏰ Mapeador Semanal 24H Manual
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #ccc; line-height: 1.5; margin-bottom: 0.6rem;">
+                        <strong>Para qué sirve:</strong> Plantilla en blanco con la grilla de 168 horas para colorear a mano alzada. Visualiza las 58h de sueño intocable, 7.5h de Muni, y fija tus horas de Habitarte (ejercer y desarrollar).
+                    </p>
+                    <div style="font-size: 0.75rem; color: #aaa; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.5rem;">
+                        <div>📍 <strong>Ubicación ideal:</strong> En tu libreta de planificación semanal.</div>
+                        <div>⏱️ <strong>Frecuencia:</strong> Domingos en tu Cita Semanal de Gestión (16:00).</div>
+                    </div>
+                </div>
+
+                <!-- FICHA 3 -->
+                <div class="card" style="border-color: rgba(236, 72, 153, 0.25); background: rgba(236, 72, 153, 0.03);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #ec4899; background: rgba(236, 72, 153, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                            Hoja 3 • Emprendimiento
+                        </span>
+                        <button onclick="quickViewSheet('hoja-habitarte-pedagogia')" style="background: transparent; border: 1px solid rgba(236,72,153,0.3); color: #ec4899; font-size: 0.75rem; border-radius: 6px; padding: 2px 8px; cursor: pointer;">
+                            Ver en Visor
+                        </button>
+                    </div>
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.4rem;">
+                        🌸 Ficha de Clase & 8 Alumnas • Habitarte
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #ccc; line-height: 1.5; margin-bottom: 0.6rem;">
+                        <strong>Para qué sirve:</strong> Estructura quirúrgica de 45 min (Aterrizaje, Movilidad, Pilates y Relax) + Matriz de cobro de las primeras 8 alumnas ($20.000) para cubrir los $160.000 de pasajes a Santiago.
+                    </p>
+                    <div style="font-size: 0.75rem; color: #aaa; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.5rem;">
+                        <div>📍 <strong>Ubicación ideal:</strong> Al lado de tu mat y computador al dictar la clase.</div>
+                        <div>⏱️ <strong>Frecuencia:</strong> Martes y Jueves al iniciar la sesión y cobro del 1 al 5.</div>
+                    </div>
+                </div>
+
+                <!-- FICHA 4 -->
+                <div class="card" style="border-color: rgba(245, 158, 11, 0.25); background: rgba(245, 158, 11, 0.03);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #f59e0b; background: rgba(245, 158, 11, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                            Hoja 4 • Higiene Mental
+                        </span>
+                        <button onclick="quickViewSheet('hoja-inventario-cero-culpa')" style="background: transparent; border: 1px solid rgba(245,158,11,0.3); color: #f59e0b; font-size: 0.75rem; border-radius: 6px; padding: 2px 8px; cursor: pointer;">
+                            Ver en Visor
+                        </button>
+                    </div>
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.4rem;">
+                        🌙 Inventario Cero Culpa & Vaciado (3 min)
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #ccc; line-height: 1.5; margin-bottom: 0.6rem;">
+                        <strong>Para qué sirve:</strong> Ritual nocturno de 3 minutos sin pantallas. Registra tus 3 victorias del día (incluyendo acompañamiento médico), anota pendientes en el cajón de descarga y cierra la jornada en paz.
+                    </p>
+                    <div style="font-size: 0.75rem; color: #aaa; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.5rem;">
+                        <div>📍 <strong>Ubicación ideal:</strong> En tu velador junto a un lápiz pasta suave.</div>
+                        <div>⏱️ <strong>Frecuencia:</strong> Diario, 10 minutos antes de apagar la luz.</div>
+                    </div>
+                </div>
+
+                <!-- FICHA 5 -->
+                <div class="card" style="border-color: rgba(168, 85, 247, 0.25); background: rgba(168, 85, 247, 0.03);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #a855f7; background: rgba(168, 85, 247, 0.15); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">
+                            Hoja 5 • Productividad Foco
+                        </span>
+                        <button onclick="quickViewSheet('hoja-arquetipos-gtd')" style="background: transparent; border: 1px solid rgba(168,85,247,0.3); color: #a855f7; font-size: 0.75rem; border-radius: 6px; padding: 2px 8px; cursor: pointer;">
+                            Ver en Visor
+                        </button>
+                    </div>
+                    <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.4rem;">
+                        🎭 4 Arquetipos & Tablero GTD de Papel
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #ccc; line-height: 1.5; margin-bottom: 0.6rem;">
+                        <strong>Para qué sirve:</strong> Los 4 sombreros de Antonia y las 3 columnas físicas (To-Do, Doing, Done) para gestionar tus tareas pegando pequeños post-its con regla estricta de máximo 2 tareas simultáneas (WIP=2).
+                    </p>
+                    <div style="font-size: 0.75rem; color: #aaa; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                        <div>📍 <strong>Ubicación ideal:</strong> En tu escritorio o pared.</div>
+                        <button onclick="switchTab('tab-kanban')" style="background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.4); color: #c4b5fd; font-size: 0.72rem; border-radius: 6px; padding: 2px 8px; cursor: pointer;">
+                            Abrir Kanban Digital ⚡
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PIZARRA DE ACTUALIZACIÓN & MEJORA CONTINUA (PERSISTENTE) -->
+            <div class="card" id="seccion-bitacora-imprimibles" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(10, 15, 12, 0.75);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 0.8rem;">
+                    <div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: #10b981; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-pen-ruler"></i> Bitácora de Mejoras & Nuevas Fichas Físicas
+                        </h3>
+                        <p style="font-size: 0.82rem; color: #aaa; margin: 0;">
+                            Anota aquí ajustes pedagógicos, nuevas planillas para agregar o modificaciones que definan con Diego en sesión. Se guarda automáticamente en este navegador.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <span id="imprimibles-save-status" style="font-size: 0.75rem; color: #10b981; font-weight: 600;"></span>
+                        <button onclick="copyImprimiblesNotes()" class="btn-hub" style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer;">
+                            <i class="fa-regular fa-copy"></i> Copiar Notas para Diego
+                        </button>
+                        <button onclick="resetImprimiblesTemplate()" class="btn-hub" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #aaa; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer;">
+                            <i class="fa-solid fa-rotate-left"></i> Restablecer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CHIPS DE INSERCIÓN RÁPIDA -->
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
+                    <span style="font-size: 0.75rem; color: #888; align-self: center;">+ Insertar Idea:</span>
+                    <button onclick="insertImprimibleSnippet('dolor')" class="badge-sombrero" style="cursor: pointer; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #ccc; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">
+                        🩺 Ficha Control Alivio/Dolor Alumnas
+                    </button>
+                    <button onclick="insertImprimibleSnippet('pagos')" class="badge-sombrero" style="cursor: pointer; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #ccc; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">
+                        💰 Ficha de Aranceles & Transferencias
+                    </button>
+                    <button onclick="insertImprimibleSnippet('emergencia')" class="badge-sombrero" style="cursor: pointer; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #ccc; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">
+                        🚨 Protocolo Hospital / Contingencia
+                    </button>
+                    <button onclick="insertImprimibleSnippet('ajuste')" class="badge-sombrero" style="cursor: pointer; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #ccc; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">
+                        📐 Ajuste a una Hoja Existente
+                    </button>
+                </div>
+
+                <textarea id="imprimibles-live-notes" style="width: 100%; min-height: 180px; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; color: #e2e8f0; font-family: 'Space Grotesk', monospace; font-size: 0.85rem; padding: 12px; line-height: 1.5; resize: vertical; box-sizing: border-box; outline: none;"></textarea>
+            </div>
+        </div>
+
         <!-- TAB CONTENT: KANBAN -->
         <div id="tab-kanban" class="tab-content">
             <div class="card">
@@ -2405,14 +2632,184 @@ Duración: 45 - 60 min (Al terminar, se cierra la persiana y no se vuelve a mira
             saveHabitarteNotes();
         }
 
+        /* ── FUNCIONES DE GESTIÓN & VISOR DE IMPRIMIBLES FÍSICOS ── */
+        const DEFAULT_IMPRIMIBLES_TEMPLATE = `# 📋 BITÁCORA DE ESTUDIO, AJUSTES & NUEVOS IMPRIMIBLES (ANTONIA & DIEGO)
+Cliente: Antonia Jofré | Consultor: Diego González (Administración Humana)
+Fecha: Septiembre 2026
+
+## 1. ESTADO DE LAS 5 HOJAS ACTIVAS
+- [x] Hoja 1: Claves de Sesión & 5 Ejes (11 Sep) -> Validada y alineada.
+- [x] Hoja 2: Mapeador Semanal 24H en Blanco -> Lista para colorear a mano alzada.
+- [x] Hoja 3: Ficha de Clase & 8 Alumnas ($160k) -> Estructura 45m + Hito Santiago.
+- [x] Hoja 4: Inventario Cero Culpa & Vaciado Nocturno -> Ritual de 3 min en velador.
+- [x] Hoja 5: 4 Arquetipos & Tablero GTD de Papel -> Sistema con post-its (WIP=2).
+
+## 2. MEJORAS O AJUSTES DETECTADOS EN EL DÍA A DÍA
+- Escribe aquí ajustes al usarlas en la práctica...
+
+## 3. PROPUESTAS DE NUEVAS FICHAS (AGREGAR AL CUADERNILLO)
+- [ ] Propuesta A: Ficha de Control de Alivio y Dolor de Alumnas de Habitarte.
+- [ ] Propuesta B: Registro mensual de transferencias y pases activos de $20.000.
+`;
+
+        function filterFrameSheet(sheetId) {
+            const frame = document.getElementById('imprimibles-embed-frame');
+            if (frame && frame.contentWindow && typeof frame.contentWindow.filterSheet === 'function') {
+                frame.contentWindow.filterSheet(sheetId);
+            }
+        }
+
+        function quickViewSheet(sheetId) {
+            const selector = document.getElementById('hubSheetTabSelector');
+            if (selector) selector.value = sheetId;
+            filterFrameSheet(sheetId);
+            const frame = document.getElementById('imprimibles-embed-frame');
+            if (frame) frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function printIframeSheet(sheetId) {
+            const frame = document.getElementById('imprimibles-embed-frame');
+            if (frame && frame.contentWindow) {
+                if (sheetId === 'all' && typeof frame.contentWindow.showAllAndPrint === 'function') {
+                    frame.contentWindow.showAllAndPrint();
+                } else if (typeof frame.contentWindow.filterSheet === 'function') {
+                    frame.contentWindow.filterSheet(sheetId);
+                    setTimeout(() => { frame.contentWindow.print(); }, 250);
+                }
+            } else {
+                window.open('04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html', '_blank');
+            }
+        }
+
+        function printIframeActive() {
+            const selector = document.getElementById('hubSheetTabSelector');
+            const val = selector ? selector.value : 'all';
+            printIframeSheet(val);
+        }
+
+        function scrollToImprimiblesNotes() {
+            const el = document.getElementById('seccion-bitacora-imprimibles');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const ta = document.getElementById('imprimibles-live-notes');
+            if (ta) ta.focus();
+        }
+
+        function loadImprimiblesNotes() {
+            const textarea = document.getElementById('imprimibles-live-notes');
+            if (!textarea) return;
+            const saved = localStorage.getItem('antonia_imprimibles_notes');
+            if (saved) {
+                textarea.value = saved;
+                const status = document.getElementById('imprimibles-save-status');
+                if (status) status.innerText = '✓ Guardado en memoria';
+            } else {
+                textarea.value = DEFAULT_IMPRIMIBLES_TEMPLATE;
+            }
+        }
+
+        function saveImprimiblesNotes() {
+            const textarea = document.getElementById('imprimibles-live-notes');
+            if (!textarea) return;
+            localStorage.setItem('antonia_imprimibles_notes', textarea.value);
+            const status = document.getElementById('imprimibles-save-status');
+            if (status) {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                status.innerText = `✓ Guardado (${timeStr})`;
+                setTimeout(() => { status.innerText = ''; }, 3000);
+            }
+        }
+
+        function copyImprimiblesNotes() {
+            const textarea = document.getElementById('imprimibles-live-notes');
+            if (!textarea) return;
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                alert("¡Notas de Imprimibles copiadas al portapapeles con éxito para Diego!");
+            }).catch(() => {
+                textarea.select();
+                document.execCommand('copy');
+                alert("¡Notas copiadas!");
+            });
+        }
+
+        function resetImprimiblesTemplate() {
+            if (confirm("¿Restablecer la plantilla base de imprimibles? Se perderán las notas no copiadas.")) {
+                const textarea = document.getElementById('imprimibles-live-notes');
+                if (textarea) {
+                    textarea.value = DEFAULT_IMPRIMIBLES_TEMPLATE;
+                    saveImprimiblesNotes();
+                }
+            }
+        }
+
+        function insertImprimibleSnippet(type) {
+            const textarea = document.getElementById('imprimibles-live-notes');
+            if (!textarea) return;
+            let snippet = '';
+
+            if (type === 'dolor') {
+                snippet = `
+### 🩺 NUEVA FICHA: CONTROL DE ALIVIO & DOLOR (ALUMNAS HABITARTE)
+- Alumna: _____________________ | Fecha: ___/___/2026
+- Zona de tensión inicial (1 a 10): Cuello [ ] | Espalda Baja [ ] | Caderas [ ]
+- Movilidad post-clase: [ ] Mucho más liviana | [ ] Alivio moderado | [ ] Requiere pauta suave
+- Observación somática: __________________________________________________
+`;
+            } else if (type === 'pagos') {
+                snippet = `
+### 💰 NUEVA FICHA: CONTROL DE TRANSFERENCIAS MENSUALES ($160.000)
+Mes: ___________________ 2026 | Meta: 8 pases de $20.000 (Hito Santiago)
+- [ ] 1. Alumna: ________________ | Fecha: __/__ | $20.000 | Comprobante [ ]
+- [ ] 2. Alumna: ________________ | Fecha: __/__ | $20.000 | Comprobante [ ]
+- [ ] 3. Alumna: ________________ | Fecha: __/__ | $20.000 | Comprobante [ ]
+- [ ] 4. Alumna: ________________ | Fecha: __/__ | $20.000 | Comprobante [ ]
+- [ ] 5. Alumna: ________________ | Fecha: __/__ | $20.000 | Comprobante [ ]
+- [ ] 6. Alumna: ________________ | Fecha: __/__ | $20.000 | Comprobante [ ]
+- [ ] 7. Alumna: ________________ | Fecha: __/__ | $20.000 | Comprobante [ ]
+- [ ] 8. Alumna: ________________ | Fecha: __/__ | $20.000 | Comprobante [ ]
+Total Recaudado: $__________ | Destino Pasajes Santiago: [ ] Separado 100%
+`;
+            } else if (type === 'emergencia') {
+                snippet = `
+### 🚨 PROTOCOLO DE CONTINGENCIA FAMILIAR / VISITA MÉDICA
+- Situación de urgencia: Acompañamiento Mateo / Cuidado de Salud
+- Acción inmediata: Enviar mensaje tipo por WhatsApp a alumnas liberando la clase comodín grabada de 7 días.
+- Regla Cero Culpa: Prioridad familiar absoluta y noble. Reagendar horas de desarrollo en el siguiente espacio libre.
+`;
+            } else if (type === 'ajuste') {
+                snippet = `
+### 📐 AJUSTE SUGERIDO A HOJA [___]:
+- Hoja a modificar: Hoja [ 1 / 2 / 3 / 4 / 5 ]
+- Cambio solicitado: __________________________________________________
+- Razón pedagógica o somática: _________________________________________
+`;
+            }
+
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const text = textarea.value;
+            textarea.value = text.substring(0, start) + snippet + text.substring(end);
+            textarea.selectionStart = textarea.selectionEnd = start + snippet.length;
+            textarea.focus();
+            saveImprimiblesNotes();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             loadHabitarteNotes();
+            loadImprimiblesNotes();
             const textarea = document.getElementById('habitarte-live-notes');
             if (textarea) {
                 textarea.addEventListener('input', () => {
                     // Auto-save debounced
                     clearTimeout(window._habitarteSaveTimer);
                     window._habitarteSaveTimer = setTimeout(saveHabitarteNotes, 1000);
+                });
+            }
+            const imprimiblesTextarea = document.getElementById('imprimibles-live-notes');
+            if (imprimiblesTextarea) {
+                imprimiblesTextarea.addEventListener('input', () => {
+                    clearTimeout(window._imprimiblesSaveTimer);
+                    window._imprimiblesSaveTimer = setTimeout(saveImprimiblesNotes, 1000);
                 });
             }
 
