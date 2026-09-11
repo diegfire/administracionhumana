@@ -218,8 +218,8 @@ const AHAuth = {
         scores: { 'Propósito': 9, 'Tiempo': 5, 'Finanzas': 6, 'Bienestar': 8, 'Hábitos': 6, 'Relaciones': 9, 'Entorno': 8, 'Desarrollo': 8 }
       }));
       localStorage.setItem('ah_demo_tasks_user_antonia_jofre', JSON.stringify([
-        { id: 1, text: 'Definir 2 bloques de 45 min semanales para crear videos de Yoga Suave', completed: true },
-        { id: 2, text: 'Contactar a 5 alumnas para el grupo de Cuerpos Cansados', completed: false },
+        { id: 1, text: 'Fijar horas en el Mapeador 24H para ejercer Habitarte y para desarrollarlo', completed: true },
+        { id: 2, text: 'Contactar a 5 alumnas para el grupo de Cuerpos Cansados ($160k)', completed: false },
         { id: 3, text: 'Completar el Inventario Diario de Resultados en mi cuaderno', completed: false }
       ]));
     }

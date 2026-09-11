@@ -103,6 +103,37 @@
                                 : JSON.parse(JSON.stringify(defaultScheduleCategories));
                         
                         cats = cats.map(cat => {
+                            if (cat.id === "cat-yoga" || (cat.name && (cat.name.includes("Yoga Suave") || cat.name.includes("Piloto Online") || cat.name.includes("Yoga Online")))) {
+                                return {
+                                    id: "cat-habitarte-clases",
+                                    name: "🌿 Habitarte • Ejercer (Clases en Vivo)",
+                                    label: "🌿 Habitarte • Ejercer (Clases en Vivo)",
+                                    nombre: "🌿 Habitarte • Ejercer (Clases en Vivo)",
+                                    tag: "HAB-EJERCER",
+                                    color: "#10b981",
+                                    isSystem: cat.isSystem || false
+                                };
+                            }
+                            if (cat.id === "cat-habitarte-clases") {
+                                return {
+                                    ...cat,
+                                    name: "🌿 Habitarte • Ejercer (Clases en Vivo)",
+                                    label: "🌿 Habitarte • Ejercer (Clases en Vivo)",
+                                    nombre: "🌿 Habitarte • Ejercer (Clases en Vivo)",
+                                    tag: "HAB-EJERCER",
+                                    color: "#10b981"
+                                };
+                            }
+                            if (cat.id === "cat-habitarte-desarrollo") {
+                                return {
+                                    ...cat,
+                                    name: "📐 Habitarte • Desarrollar (Estructura, Copys & Plan)",
+                                    label: "📐 Habitarte • Desarrollar (Estructura, Copys & Plan)",
+                                    nombre: "📐 Habitarte • Desarrollar (Estructura, Copys & Plan)",
+                                    tag: "HAB-DESARROLLO",
+                                    color: "#059669"
+                                };
+                            }
                             if (cat.name === "Categoría") {
                                 const defMatch = defaultScheduleCategories.find(dc => dc.id === cat.id);
                                 if (defMatch) return { ...cat, name: defMatch.name, label: defMatch.name, nombre: defMatch.name };
@@ -110,11 +141,42 @@
                             return cat;
                         });
 
+                        // Asegurar que si existe cat-habitarte-clases, también esté cat-habitarte-desarrollo
+                        if (cats.some(c => c.id === "cat-habitarte-clases") && !cats.some(c => c.id === "cat-habitarte-desarrollo")) {
+                            const defDesarrollo = defaultScheduleCategories.find(dc => dc.id === "cat-habitarte-desarrollo");
+                            if (defDesarrollo) {
+                                cats.splice(cats.findIndex(c => c.id === "cat-habitarte-clases") + 1, 0, { ...defDesarrollo });
+                            }
+                        }
+
+                        // Migrar celdas que apunten a cat-yoga en la grilla
+                        if (c.data) {
+                            for (const k in c.data) {
+                                if (c.data[k] === "cat-yoga") {
+                                    c.data[k] = "cat-habitarte-clases";
+                                }
+                            }
+                        }
+
                         return {
                             ...c,
                             categories: cats
                         };
                     });
+                    defaultCalendars.forEach(dc => {
+                        const existingIdx = savedCalendars.findIndex(c => c.id === dc.id);
+                        if (existingIdx === -1) {
+                            savedCalendars.push(dc);
+                        } else if (dc.data && Object.keys(dc.data).length > 0 && (!savedCalendars[existingIdx].data || Object.keys(savedCalendars[existingIdx].data).length === 0)) {
+                            savedCalendars[existingIdx].data = dc.data;
+                            savedCalendars[existingIdx].name = dc.name;
+                        }
+                    });
+
+                    // Persistir la versión limpia inmediatamente
+                    try {
+                        localStorage.setItem(`${scheduleStoragePrefix}_saved_calendars_v3`, JSON.stringify(savedCalendars));
+                    } catch(e) {}
                 } else {
                     savedCalendars = defaultCalendars;
                 }
@@ -161,6 +223,16 @@
             activeCalendarId = savedActiveId;
         } else {
             activeCalendarId = savedCalendars[0]?.id || "semana_1";
+        }
+
+        // Si el calendario activo actual no tiene horas asignadas y existe otro con datos (ej. Semana Base v1), activarlo
+        const currentActive = savedCalendars.find(c => c.id === activeCalendarId);
+        const currentHasData = currentActive && currentActive.data && Object.values(currentActive.data).some(v => v && v !== "libre" && v !== "blanco" && v !== "vacio");
+        if (!currentHasData) {
+            const populatedPreset = savedCalendars.find(c => c.data && Object.values(c.data).some(v => v && v !== "libre" && v !== "blanco" && v !== "vacio"));
+            if (populatedPreset) {
+                activeCalendarId = populatedPreset.id;
+            }
         }
 
         const activeCal = savedCalendars.find(c => c.id === activeCalendarId) || savedCalendars[0];
@@ -912,7 +984,6 @@
     window.applyRangeFill = applyRangeFill;
     window.exportSchedulePNG = exportSchedulePNG;
     window.showScheduleToast = showScheduleToast;
-    window.initScheduleEngine = initScheduleEngine;
 
     // Auto-inicialización inteligente por cliente
     document.addEventListener("DOMContentLoaded", () => {

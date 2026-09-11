@@ -45,25 +45,25 @@ window.CASOS_PLAN_VUELO_DATA = {
       insight: "«El problema no es falta de disciplina ni de vocación. El bloqueo ocurre porque intentas forzar un horario de oficina de 8 horas rígidas en una vida que exige flexibilidad de cuidados. Desarmamos la culpa, dotamos a la instructora de un secuenciador inteligente de clases y blindamos micro-ventanas innegociables.»",
       diagnosisPoints: [
         "<strong>Cuello de botella real:</strong> Ausencia de un límite superior de tareas simultáneas (WIP infinito), perfeccionismo paralizante y armado manual de clases.",
-        "<strong>Palanca de destrabe:</strong> Proteger 2 bloques de 45 min para yoga, armar clases de zumba en 1 clic con curvas somáticas y medir matemáticamente las 8 alumnas requeridas para los pasajes."
+        "<strong>Palanca de destrabe:</strong> Fijar horas para ejercer Habitarte (clases en vivo) y desarrollarlo, armar clases de zumba en 1 clic y medir matemáticamente las 8 alumnas requeridas para los pasajes."
       ]
     },
     calibration: [
       { ver: "Semana 1", before: "Horario rígido de 8 horas diarias de lunes a viernes", after: "Fracaso al 2do día por urgencias médicas familiares (culpa acumulada)" },
-      { ver: "Semana 2", before: "Ajuste del Plan: 'Bloque de Oro' de 45 min Martes y Jueves", after: "100% de asistencia. Se añade 1 clase grabada comodín ante imprevistos" },
+      { ver: "Semana 2", before: "Ajuste del Plan: Horas protegidas para ejercer y desarrollar Habitarte", after: "100% de asistencia. Se añade 1 clase grabada comodín ante imprevistos" },
       { ver: "Semana 3", before: "Inventario general de 15 tareas diarias", after: "Inventario Cero Culpa: Registrar solo 3 victorias nocturnas (paz mental asegurada)" },
       { ver: "Semana 4", before: "Descargas de YouTube con ruido de público", after: "Biblioteca Musical HQ PayPal + Secuenciador somático de 52 min por ola de intensidad" }
     ],
     scheduleCategories: [
-      { id: "cat-oro", label: "🧘‍♀️ Bloque de Oro Yoga (Innegociable)", color: "#10b981", tag: "ORO" },
+      { id: "cat-oro", label: "🌿 Habitarte • Ejercer (Clases en Vivo)", color: "#10b981", tag: "HABITARTE" },
       { id: "cat-zumba", label: "🎶 Zumba Fitness & Ensayos", color: "#ec4899", tag: "ZUMBA" },
       { id: "cat-cuidado", label: "🩺 Cuidados Familiares & Trámites", color: "#f59e0b", tag: "CUIDADOS" },
       { id: "cat-descanso", label: "🌿 Recarga & Pausa Cero Culpa", color: "#8b5cf6", tag: "PAUSA" },
       { id: "cat-gestion", label: "⚡ Gestión & Cierre Nocturno", color: "#3b82f6", tag: "GESTIÓN" }
     ],
     defaultScheduleBlocks: [
-      { day: 2, hour: 19, duration: 2, catId: "cat-oro", title: "Clase Yoga Somático Online" },
-      { day: 4, hour: 19, duration: 2, catId: "cat-oro", title: "Clase Yoga Somático Online" },
+      { day: 2, hour: 19, duration: 2, catId: "cat-oro", title: "Habitarte • Clase en Vivo" },
+      { day: 4, hour: 19, duration: 2, catId: "cat-oro", title: "Habitarte • Clase en Vivo" },
       { day: 1, hour: 18, duration: 2, catId: "cat-zumba", title: "Ensayo Secuenciador Zumba 52m" },
       { day: 3, hour: 18, duration: 2, catId: "cat-zumba", title: "Clase Zumba Alumnas" },
       { day: 1, hour: 9, duration: 4, catId: "cat-cuidado", title: "Acompañamiento Médico Familiar" },
@@ -79,7 +79,7 @@ window.CASOS_PLAN_VUELO_DATA = {
       { day: 5, hour: 17, duration: 2, catId: "cat-gestion", title: "Arqueo Pasajes ($160k) & Cierre" }
     ],
     kanbanTasks: [
-      { id: "sa-1", text: "🧘‍♀️ Dictar clase piloto online de yoga somático", tag: "Yoga", col: "doing" },
+      { id: "sa-1", text: "🌿 Guiar clase en vivo de Habitarte", tag: "Habitarte", col: "doing" },
       { id: "sa-2", text: "🎶 Secuenciar playlist de 52 min con pistas HQ", tag: "Zumba", col: "doing" },
       { id: "sa-3", text: "💰 Apartar fondo de pasajes al cobrar mensualidades", tag: "Finanzas", col: "done" },
       { id: "sa-4", text: "📝 Registrar 3 micro-victorias en inventario nocturno", tag: "Rutina", col: "todo" }
