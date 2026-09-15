@@ -465,6 +465,9 @@
             <button class="tab-btn" onclick="switchTab('tab-doctorado')">
                 <i class="fa-solid fa-graduation-cap"></i> Doctorado & Obra Literaria
             </button>
+            <button class="tab-btn" onclick="switchTab('tab-ritma')" style="border: 1px solid rgba(236, 72, 153, 0.5); background: rgba(236, 72, 153, 0.1);">
+                <i class="fa-solid fa-seedling" style="color: #f472b6;"></i> 🌿 Ritma × AH (Laboratorio)
+            </button>
             <button class="tab-btn" onclick="switchTab('tab-tomas')">
                 <i class="fa-solid fa-child-reaching"></i> Logística Familiar & Tomás (13 años)
             </button>
@@ -974,6 +977,212 @@
         </div>
 
         <!-- =========================================================================
+             TAB: LABORATORIO RITMA × ADMINISTRACIÓN HUMANA
+             ========================================================================= -->
+        <div id="tab-ritma" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:#ec4899; background:linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(15,23,42,0.7) 100%);">
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(236,72,153,0.2); color:#f472b6; padding:4px 12px; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:0.5rem;">
+                    <i class="fa-solid fa-flask"></i> LABORATORIO DE CO-CREACIÓN • SEPTIEMBRE – OCTUBRE 2026
+                </div>
+                <h3 style="font-family:var(--font-display); font-size:1.45rem; font-weight:800; margin:0.2rem 0 0.4rem 0;">
+                    🌿 Ritma × Administración Humana: Conservación de Capacidad vs. Extracción de Rendimiento
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.92rem; line-height:1.6; margin:0; max-width:880px;">
+                    Espacio de experimentación activa entre Alejandra Mattei y Diego González Yáñez. La hipótesis de fondo: <strong>"El sistema debe optimizar la conservación de capacidad, no la extracción máxima de rendimiento."</strong>
+                </p>
+            </div>
+
+            <!-- CITA MANIFIESTO DESTACADA -->
+            <div class="card-custom" style="border:1.5px solid rgba(236,72,153,0.35); background:radial-gradient(circle at top right, rgba(236,72,153,0.08), transparent 70%), rgba(20,20,20,0.7); margin-bottom:1.5rem;">
+                <div style="font-size:1.18rem; font-family:var(--font-display); font-weight:800; color:#fff; line-height:1.5; margin-bottom:0.8rem; font-style:italic;">
+                    “No quiero una aplicación que me diga cómo vivir. Quiero una infraestructura que aprenda conmigo cómo sostener mi manera de vivir.”
+                </div>
+                <p style="font-size:0.88rem; color:#cbd5e1; line-height:1.6; margin:0;">
+                    Alejandra sostiene varios frentes simultáneos: doctorado, beca, búsqueda de trabajo, investigación, escritura, Ritma, economía, relaciones, cuidados y vida cotidiana. Su problema <strong>no es que no sepa organizarse: es que tiene mucha capacidad y demasiadas cosas potencialmente capaces de ocuparla</strong>. El propósito aquí no es optimizar la productividad extractiva, sino averiguar cuánto necesita hacer para sostener lo importante y cuánto necesita reservar para no quemar su capacidad creativa, física y mental.
+                </p>
+            </div>
+
+            <!-- TAXONOMÍA DE LOS 5 ESTADOS DE ENERGÍA Y CAPACIDAD -->
+            <div class="card-custom" style="margin-bottom:1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; flex-wrap:wrap; gap:0.5rem;">
+                    <div>
+                        <h4 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin:0; color:#fff;">
+                            ⚡ La Matriz de los 5 Estados de Energía Vital
+                        </h4>
+                        <p style="font-size:0.82rem; color:#94a3b8; margin:0.2rem 0 0 0;">
+                            Clasificación no productivista para gobernar la capacidad sin quemarla.
+                        </p>
+                    </div>
+                    <span style="font-size:0.75rem; background:rgba(236,72,153,0.15); color:#f472b6; border:1px solid rgba(236,72,153,0.3); padding:3px 10px; border-radius:20px; font-weight:700;">
+                        Laboratorio Sept-Oct
+                    </span>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem;">
+                    <!-- 1. SOSTENER -->
+                    <div style="background:#141414; border:1px solid rgba(59,130,246,0.3); border-radius:10px; padding:1.1rem; border-top:4px solid #3b82f6;">
+                        <div style="font-size:0.75rem; font-weight:800; color:#60a5fa; text-transform:uppercase; margin-bottom:4px;">1. 🛡️ SOSTENER</div>
+                        <h5 style="font-size:0.95rem; font-weight:800; color:#fff; margin:0 0 0.5rem 0;">Lo que requiere mi intervención</h5>
+                        <p style="font-size:0.8rem; color:#cbd5e1; line-height:1.5; margin:0 0 0.6rem 0;">
+                            Aquello realmente indelegable que garantiza la base de la vida y los compromisos clave.
+                        </p>
+                        <ul style="font-size:0.76rem; color:#94a3b8; line-height:1.4; padding-left:1rem; margin:0;">
+                            <li>Maternidad presente y acuerdos con Tomás (13 años).</li>
+                            <li>Expediente formal beca doctoral (12 octubre).</li>
+                            <li>Postulación a puesto laboral de 1 año.</li>
+                            <li>Salud, sueño biológico y trámites oficiales.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. CONTRIBUIR -->
+                    <div style="background:#141414; border:1px solid rgba(16,185,129,0.3); border-radius:10px; padding:1.1rem; border-top:4px solid #10b981;">
+                        <div style="font-size:0.75rem; font-weight:800; color:#34d399; text-transform:uppercase; margin-bottom:4px;">2. 🤝 CONTRIBUIR</div>
+                        <h5 style="font-size:0.95rem; font-weight:800; color:#fff; margin:0 0 0.5rem 0;">Participar sin sostener sola</h5>
+                        <p style="font-size:0.8rem; color:#cbd5e1; line-height:1.5; margin:0 0 0.6rem 0;">
+                            Espacios colectivos donde Alejandra aporta energía, pero no asume el peso de la dirección.
+                        </p>
+                        <ul style="font-size:0.76rem; color:#94a3b8; line-height:1.4; padding-left:1rem; margin:0;">
+                            <li>Huerta comunitaria quincenal en Oviedo.</li>
+                            <li>Redes de escritoras y colectivos de filosofía.</li>
+                            <li>Intercambios creativos y apoyos mutuos.</li>
+                            <li>Retirada libre de culpa si la energía baja.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3. CREAR -->
+                    <div style="background:#141414; border:1px solid rgba(139,92,246,0.3); border-radius:10px; padding:1.1rem; border-top:4px solid #8b5cf6;">
+                        <div style="font-size:0.75rem; font-weight:800; color:#a78bfa; text-transform:uppercase; margin-bottom:4px;">3. 🎨 CREAR</div>
+                        <h5 style="font-size:0.95rem; font-weight:800; color:#fff; margin:0 0 0.5rem 0;">Investigación & Obra Viva</h5>
+                        <p style="font-size:0.8rem; color:#cbd5e1; line-height:1.5; margin:0 0 0.6rem 0;">
+                            El territorio protegido donde florece el intelecto y la sensibilidad de Alejandra y Juana Mattei.
+                        </p>
+                        <ul style="font-size:0.76rem; color:#94a3b8; line-height:1.4; padding-left:1rem; margin:0;">
+                            <li>Tesis doctoral en Filosofía de la Ciencia (UniOvi).</li>
+                            <li>Creación literaria (novelas, poemarios, teatro).</li>
+                            <li>Desarrollo conceptual y metodológico de Ritma.</li>
+                            <li>Ventana de Oro matutina (08:00 a 14:00 h).</li>
+                        </ul>
+                    </div>
+
+                    <!-- 4. NADEAR -->
+                    <div style="background:#141414; border:1.5px solid rgba(20,184,166,0.5); border-radius:10px; padding:1.1rem; border-top:4px solid #14b8a6; box-shadow:0 0 20px rgba(20,184,166,0.1);">
+                        <div style="font-size:0.75rem; font-weight:800; color:#2dd4bf; text-transform:uppercase; margin-bottom:4px;">4. 🍃 NADEAR</div>
+                        <h5 style="font-size:0.95rem; font-weight:800; color:#fff; margin:0 0 0.5rem 0;">No producir absolutamente nada</h5>
+                        <p style="font-size:0.8rem; color:#cbd5e1; line-height:1.5; margin:0 0 0.6rem 0;">
+                            <strong>No es descanso como productividad diferida.</strong> Es reconocer los procesos que solo ocurren sin dirección consciente.
+                        </p>
+                        <ul style="font-size:0.76rem; color:#94a3b8; line-height:1.4; padding-left:1rem; margin:0;">
+                            <li>Integrar lecturas densas e imaginar libremente.</li>
+                            <li>Regular el sistema nervioso y el tono biológico.</li>
+                            <li>Pasear por Oviedo o mirar el paisaje sin libreta.</li>
+                            <li>Simplemente estar: la reserva no se justifica por lo que producirá después.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 5. RESERVA -->
+                    <div style="background:#141414; border:1.5px solid rgba(236,72,153,0.5); border-radius:10px; padding:1.1rem; border-top:4px solid #ec4899; box-shadow:0 0 20px rgba(236,72,153,0.1);">
+                        <div style="font-size:0.75rem; font-weight:800; color:#f472b6; text-transform:uppercase; margin-bottom:4px;">5. 📦 RESERVA</div>
+                        <h5 style="font-size:0.95rem; font-weight:800; color:#fff; margin:0 0 0.5rem 0;">Capacidad no asignada</h5>
+                        <p style="font-size:0.8rem; color:#cbd5e1; line-height:1.5; margin:0 0 0.6rem 0;">
+                            El colchón biológico deliberadamente vacío. Un sistema programado al 100% colapsa ante el primer imprevisto.
+                        </p>
+                        <ul style="font-size:0.76rem; color:#94a3b8; line-height:1.4; padding-left:1rem; margin:0;">
+                            <li>15% a 20% del mosaico semanal intocable.</li>
+                            <li>Absorbe imprevistos escolares o picos de fatiga.</li>
+                            <li>Impide que las urgencias invadan el sueño o a Tomás.</li>
+                            <li>Espacio en blanco que garantiza soberanía.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EL PROYECTO RITMA: SISTEMA INTEGRAL DE RITMOS HUMANOS -->
+            <div class="grid-2" style="margin-bottom:1.5rem;">
+                <div class="card-custom">
+                    <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(236,72,153,0.15); color:#f472b6; padding:2px 8px; border-radius:12px; font-size:0.75rem; font-weight:800; margin-bottom:0.5rem;">
+                        🌸 METODOLOGÍA RITMA
+                    </div>
+                    <h4 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; color:#fff; margin:0 0 0.6rem 0;">
+                        De la Observación Cíclica a los Ritmos Humanos
+                    </h4>
+                    <p style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; margin-bottom:0.8rem;">
+                        Alejandra está desarrollando <strong>Ritma</strong>, inicialmente como una metodología para observar el ciclo menstrual sin reducirlo a fertilidad, permitiendo registrar variables físicas, emocionales, mentales y cualitativas de forma intuitiva, sin fichas interminables.
+                    </p>
+                    <p style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; margin:0;">
+                        La visión expandida: <strong>Ritma como sistema amplio de ritmos humanos</strong>. Para personas menstruantes o no, aplicable a sueño, energía, fluctuaciones estacionales, estrés o entrenamiento, sin imponer normas ni binarismos cerrados.
+                    </p>
+                </div>
+
+                <div class="card-custom" style="border-left:4px solid #10b981;">
+                    <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.15); color:#34d399; padding:2px 8px; border-radius:12px; font-size:0.75rem; font-weight:800; margin-bottom:0.5rem;">
+                        🤝 LA SINERGIA
+                    </div>
+                    <h4 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; color:#fff; margin:0 0 0.6rem 0;">
+                        Administración Humana + Ritma
+                    </h4>
+                    <div style="font-size:0.84rem; color:#cbd5e1; line-height:1.55;">
+                        <p style="margin:0 0 0.6rem 0;">
+                            • <strong>Administración Humana</strong> aporta la <em>infraestructura contenedora</em>: la arquitectura que sostiene la vida externa (horarios, finanzas, GTD, prioridades) para que la mente no tenga que administrase a sí misma continuamente.
+                        </p>
+                        <p style="margin:0 0 0.6rem 0;">
+                            • <strong>Ritma</strong> aporta la <em>capa de percepción y observación</em>: los datos cualitativos, la experiencia subjetiva y el respeto por los ritmos y oscilaciones naturales de la persona.
+                        </p>
+                        <p style="margin:0; font-weight:700; color:#34d399;">
+                            Juntos experimentan la pregunta: ¿Podemos diseñar una tecnología que aumente la capacidad de una persona sin consumirla?
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAJA DE CONSULTORÍA IA: PROMPT MAESTRO PARA ALEJANDRA -->
+            <div class="card-custom" style="border:1.5px solid #38bdf8; background:linear-gradient(135deg, rgba(56,189,248,0.06) 0%, rgba(15,23,42,0.85) 100%);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1rem;">
+                    <div>
+                        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(56,189,248,0.18); color:#38bdf8; padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:800;">
+                            <i class="fa-solid fa-robot"></i> RECOMENDACIÓN DIRECTA DE DIEGO
+                        </div>
+                        <h4 style="font-family:var(--font-display); font-size:1.25rem; font-weight:800; color:#fff; margin:0.4rem 0 0.2rem 0;">
+                            🤖 Consulta a tu IA: ¿En qué te conviene que te ayude Administración Humana?
+                        </h4>
+                        <p style="color:#94a3b8; font-size:0.82rem; margin:0;">
+                            Pégale el link web de Administración Humana a tu modelo de IA habitual (Claude, ChatGPT o Gemini) junto con este prompt pre-configurado:
+                        </p>
+                    </div>
+                    <a href="https://diegfire.github.io/administracionhumana/" target="_blank" style="background:#0284c7; color:#fff; text-decoration:none; padding:8px 16px; border-radius:8px; font-weight:800; font-size:0.8rem; display:inline-flex; align-items:center; gap:6px; box-shadow:0 4px 14px rgba(2,132,199,0.35);">
+                        <i class="fa-solid fa-globe"></i> Abrir Web de Admin Humana <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem;"></i>
+                    </a>
+                </div>
+
+                <!-- CAJA DE PROMPT -->
+                <div style="position:relative; background:#0d1117; border:1px solid #30363d; border-radius:8px; padding:1.2rem; margin-bottom:1rem;">
+                    <button onclick="copyRitmaPrompt()" id="btn-copy-ritma-prompt" style="position:absolute; top:10px; right:10px; background:#1f2937; color:#38bdf8; border:1px solid rgba(56,189,248,0.4); padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:5px;">
+                        <i class="fa-regular fa-copy"></i> Copiar Prompt
+                    </button>
+                    <pre id="ritma-prompt-text" style="white-space:pre-wrap; font-family:'Space Grotesk', monospace; font-size:0.8rem; color:#e2e8f0; line-height:1.55; margin:0;">Hola. Estoy trabajando con Diego González Yáñez en Administración Humana (puedes revisar el marco metodológico en https://diegfire.github.io/administracionhumana/).
+
+Soy Alejandra Mattei: investigadora doctoral en Filosofía de la Ciencia (Universidad de Oviedo), escritora (bajo el nombre Juana Mattei) y madre de Tomás (13 años) en Asturias. Actualmente enfrento un sprint crítico al 12 de octubre (cierre de beca doctoral de 4 años y puesto laboral de 1 año) y estoy experimentando con Diego un laboratorio conjunto durante septiembre-octubre bajo la siguiente premisa:
+"El sistema debe optimizar la conservación de capacidad, no la extracción máxima de rendimiento. No quiero una aplicación que me diga cómo vivir: quiero una infraestructura que aprenda conmigo cómo sostener mi manera de vivir."
+
+En paralelo, desarrollo "Ritma", una metodología de observación de ritmos humanos (ciclos, energía, fluctuaciones) no reduccionista. Estamos organizando mi energía en 5 recipientes: SOSTENER, CONTRIBUIR, CREAR, NADEAR y RESERVA.
+
+A partir de la web de Administración Humana y de mi contexto específico:
+1. ¿En qué áreas operativas y estratégicas me conviene apoyarme en Administración Humana durante este sprint?
+2. ¿Cómo me recomiendas delimitar con precisión qué entra en SOSTENER y qué debe ir a RESERVA o NADEAR para no agotar mi capacidad creativa?
+3. ¿De qué manera puede la infraestructura de Administración Humana contener las demandas cotidianas para que mi mente no tenga que administrarlo todo continuamente?</pre>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                    <span style="font-size:0.78rem; color:#94a3b8;">
+                        💡 <em>Tip: Pega la respuesta de tu IA en una nota o coméntasela a Diego por WhatsApp para integrarla al plan de vuelo.</em>
+                    </span>
+                    <button onclick="switchTab('tab-horario')" class="btn-schedule-action" style="background:rgba(236,72,153,0.15); color:#f472b6; border:1px solid rgba(236,72,153,0.35); font-weight:800;">
+                        🕒 Ir al Mapeador 24H a pintar bloques de Nadear / Reserva →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
              TAB 8: LOGÍSTICA FAMILIAR & TOMÁS
              ========================================================================= -->
         <div id="tab-tomas" class="tab-content">
@@ -1378,6 +1587,8 @@
             { id: "cat-literatura", name: "🖋️ Creación Literaria & Obra (Juana Mattei)", label: "🖋️ Creación Literaria & Obra (Juana Mattei)", color: "#3b82f6", tag: "OBRA" },
             { id: "cat-huerta", name: "🌱 Huerta Comunitaria, Naturaleza & Deporte", label: "🌱 Huerta Comunitaria, Naturaleza & Deporte", color: "#10b981", tag: "HUERTA" },
             { id: "cat-logistica", name: "🏡 Logística Hogar & Cocina Adelantada", label: "🏡 Logística Hogar & Cocina Adelantada", color: "#64748b", tag: "HOGAR" },
+            { id: "cat-nadear", name: "🍃 Nadear (Recuperación Pura & No Producir)", label: "🍃 Nadear (Recuperación Pura & No Producir)", color: "#14b8a6", tag: "NADEAR" },
+            { id: "cat-reserva", name: "📦 Reserva Intocable (Capacidad No Asignada)", label: "📦 Reserva Intocable (Capacidad No Asignada)", color: "#ec4899", tag: "RESERVA" },
             { id: "cat-libre", name: "⚪ Margen Flexible & Descanso Mental", label: "⚪ Margen Flexible & Descanso Mental", color: "#334155", tag: "LIBRE" }
         ];
 
@@ -1576,6 +1787,26 @@
             text.textContent = msg;
             toast.style.display = 'flex';
             setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+
+        // COPIAR PROMPT DE RITMA PARA IA
+        function copyRitmaPrompt() {
+            const el = document.getElementById("ritma-prompt-text");
+            if (!el) return;
+            navigator.clipboard.writeText(el.innerText).then(() => {
+                const btn = document.getElementById("btn-copy-ritma-prompt");
+                if (btn) {
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Prompt Copiado!';
+                    btn.style.color = '#10B981';
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar Prompt';
+                        btn.style.color = '#38bdf8';
+                    }, 2500);
+                }
+                showToast("¡Prompt copiado al portapapeles! Pégalo en tu IA.");
+            }).catch(err => {
+                showToast("Error al copiar. Puedes seleccionarlo manualmente.");
+            });
         }
 
         // INVENTARIO DE RESULTADOS (PERSISTENCIA LOCAL)
