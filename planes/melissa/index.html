@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <base href="../../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Vuelo 2.0 • Melissa Henríquez Soto • Administración Humana</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Modular CSS Core & Components -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.2">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.2">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.2">
+
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #121212;
+            --primary: #ffffff;
+            --secondary: #888888;
+            --forest: #10B981;
+            --amber: #F59E0B;
+            --blue: #3B82F6;
+            --border: #262626;
+            --border-hover: #333333;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: var(--font-body);
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(0, 0, 0, 0.6) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .stat-grid-melissa {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            transition: all 0.2s ease;
+        }
+        .stat-box:hover {
+            border-color: var(--forest);
+            transform: translateY(-2px);
+        }
+        .stat-val { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: #fff; }
+        .stat-lbl { font-size: 0.76rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+        .stat-sub { font-size: 0.72rem; color: #10b981; font-weight: 600; }
+
+        .card-custom {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-role {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .alliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.2rem;
+        }
+        .alliance-card {
+            background: #0f0f0f;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        /* PRINTABLE CARDS */
+        .printable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .printable-card-preview {
+            background: #111;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 0.8rem;
+            transition: all 0.2s ease;
+        }
+        .printable-card-preview:hover {
+            border-color: var(--forest);
+            background: #161616;
+            transform: translateY(-2px);
+        }
+
+        /* LIGHTBOX */
+        #lightbox-modal {
+            position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(15px);
+            z-index: 999999;
+            display: none;
+            align-items: center; justify-content: center;
+            padding: 2rem; cursor: zoom-out;
+        }
+        #lightbox-modal.active { display: flex; }
+        #lightbox-img {
+            max-width: 92vw; max-height: 88vh;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DE ACCESO SEGURO (PIN) -->
+    <div id="pin-modal" class="pin-overlay active">
+        <div class="pin-box">
+            <div style="font-size:2.4rem; margin-bottom:0.5rem;">🌿🧸</div>
+            <h2 style="font-family:var(--font-display); font-size:1.4rem; margin-bottom:0.3rem;">Portal Seguro • Melissa Henríquez</h2>
+            <p style="font-size:0.85rem; color:var(--secondary); margin-bottom:1.2rem;">Ingresa tu clave privada para desbloquear tu Plan de Vuelo 2.0</p>
+            <div style="display:flex; justify-content:center; gap:0.5rem; margin-bottom:1.2rem;">
+                <input type="password" id="pin-input" placeholder="••••••••" style="background:#141414; border:1px solid #333; color:#fff; font-size:1.2rem; text-align:center; padding:10px 16px; border-radius:8px; width:180px; letter-spacing:2px;">
+            </div>
+            <button class="btn-gateway-login" onclick="validatePIN()">Ingresar al Dashboard</button>
+            <p id="pin-error" style="color:#ef4444; font-size:0.78rem; margin-top:0.8rem; display:none;">PIN incorrecto. Intenta nuevamente.</p>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Ampliación">
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL DEL DASHBOARD -->
+    <div class="portal-wrapper" id="main-content" style="display:none; max-width:1440px; margin:0 auto; padding:1.5rem;">
+
+        <!-- TOP BAR / BRANDING -->
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:1rem; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+                <div style="background:#ffffff; color:#000; width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; font-family:var(--font-display); font-size:1.1rem;">
+                    AH
+                </div>
+                <div>
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--forest); font-weight:800;">ADMINISTRACIÓN HUMANA • SISTEMA AICC</div>
+                    <div style="font-family:var(--font-display); font-size:1.25rem; font-weight:800;">Plan de Vuelo 2.0 • Melissa Henríquez Soto</div>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+                <span class="badge-role"><i class="fa-solid fa-location-dot" style="color:#ef4444;"></i> Pueblo Seco, Ñuble</span>
+                <span class="badge-role"><i class="fa-solid fa-graduation-cap" style="color:var(--forest);"></i> Kinesióloga Escolar & Diplomado</span>
+                <button onclick="lockPortal()" style="background:#1a1a1a; border:1px solid #333; color:#ccc; padding:6px 12px; border-radius:6px; font-size:0.76rem; cursor:pointer;"><i class="fa-solid fa-lock"></i> Bloquear</button>
+            </div>
+        </div>
+
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+            <div>
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16, 185, 129, 0.15); border:1px solid rgba(16, 185, 129, 0.4); color:#10b981; padding:4px 12px; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:0.6rem;">
+                    <i class="fa-solid fa-shield-check"></i> CASO CLÍNICO-OPERATIVO ACTIVO
+                </div>
+                <h1 style="font-family:var(--font-display); font-size:2rem; font-weight:800; margin-bottom:0.4rem; line-height:1.15;">
+                    De la Dispersión de Múltiples Roles a la Soberanía Operativa
+                </h1>
+                <p style="color:var(--secondary); font-size:0.92rem; max-width:820px; line-height:1.4;">
+                    Estructura integral para blindar 40.5 horas de kinesiología escolar en Pueblo Seco, proteger la crianza de tu hijo ("Chinito"), avanzar en tu Diplomado y consolidar la fabricación de juguetes de madera y talleres de <strong>Juego y Movimiento Trafmen</strong>.
+                </p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html" target="_blank" style="background:#ffffff; color:#000000; text-decoration:none; padding:10px 18px; border-radius:8px; font-weight:800; font-size:0.85rem; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px rgba(255,255,255,0.2);">
+                    <i class="fa-solid fa-print"></i> Abrir Hub de Imprimibles (5 Hojas)
+                </a>
+                <button onclick="sendWhatsAppUpdate()" style="background:#25D366; color:#000000; border:none; padding:9px 16px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fa-brands fa-whatsapp"></i> Chat Directo con Diego
+                </button>
+            </div>
+        </div>
+
+        <!-- STATS CUANTITATIVAS (DIAGNÓSTICO SONDEO EXPRESS) -->
+        <div class="stat-grid-melissa">
+            <div class="stat-box">
+                <div class="stat-val" style="color:#ef4444;">~14 h/sem</div>
+                <div class="stat-lbl">Fricción Recuperable</div>
+                <div class="stat-sub">2h/día dando vueltas (Sondeo Express)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" style="color:#3b82f6;">40.5 h/sem</div>
+                <div class="stat-lbl">Jornada Escolar Fija</div>
+                <div class="stat-sub">Colegio en Pueblo Seco (L-V)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" style="color:#10b981;">10.5 h/sem</div>
+                <div class="stat-lbl">Ventanas de Oro</div>
+                <div class="stat-sub">Trafmen + Diplomado (Time Blocking)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" style="color:#f59e0b;">Cap. Abeja 2023</div>
+                <div class="stat-lbl">Activo Ganado</div>
+                <div class="stat-sub">Juego y Movimiento Trafmen</div>
+            </div>
+        </div>
+
+        <!-- PESTAÑAS DE NAVEGACIÓN -->
+        <div class="tabs" style="display:flex; gap:0.5rem; border-bottom:1px solid var(--border); margin-bottom:1.5rem; overflow-x:auto; padding-bottom:4px;">
+            <button class="tab-btn active" onclick="switchTab('tab-diagnostico', this)"><i class="fa-solid fa-compass"></i> Brújula Diagnóstica</button>
+            <button class="tab-btn" onclick="switchTab('tab-horario', this)"><i class="fa-solid fa-calendar-days"></i> Mapeador 24H</button>
+            <button class="tab-btn" onclick="switchTab('tab-kanban', this)"><i class="fa-solid fa-list-check"></i> Kanban GTD (WIP=2)</button>
+            <button class="tab-btn" onclick="switchTab('tab-trafmen', this)"><i class="fa-solid fa-cubes"></i> Proyecto Trafmen</button>
+            <button class="tab-btn" onclick="switchTab('tab-finanzas', this)"><i class="fa-solid fa-wallet"></i> GPS Financiero 50/30/20</button>
+            <button class="tab-btn" onclick="switchTab('tab-alianzas', this)"><i class="fa-solid fa-handshake"></i> Alianzas Estratégicas</button>
+            <button class="tab-btn" onclick="switchTab('tab-imprimibles', this)"><i class="fa-solid fa-print"></i> Hub de Imprimibles</button>
+        </div>
+
+        <!-- =========================================================================
+             TAB 1: BRÚJULA DIAGNÓSTICA & 5 IDENTIDADES
+             ========================================================================= -->
+        <div id="tab-diagnostico" class="tab-pane active">
+            <div class="card-custom">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin-bottom:0.8rem;">
+                    🧭 Diagnóstico Clínico-Operativo • Hallazgos del Sondeo Express
+                </h3>
+                <p style="color:#ccc; font-size:0.88rem; line-height:1.5; margin-bottom:1.2rem;">
+                    En la auditoría diagnóstica identificaste como cuello de botella número 1 la <strong>coexistencia de múltiples roles y la procrastinación</strong>, reportando que se te van <em>"por lo menos un par de horas al día dando vueltas"</em>. Desde el enfoque de Administración Humana, este fenómeno no es un defecto de fuerza de voluntad, sino una respuesta adaptativa de fatiga cognitiva: tu mente intenta protegerse del peso de criar sola, trabajar 40.5 horas y sostener proyectos de emprendimiento sin fronteras limpias.
+                </p>
+
+                <!-- 5 IDENTIDADES ENERGÉTICAS -->
+                <h4 style="font-family:var(--font-display); font-size:0.95rem; font-weight:700; color:var(--forest); margin-bottom:0.8rem; text-transform:uppercase; letter-spacing:0.5px;">
+                    Triangulación Quirúrgica de Roles (Los 5 Sombreros de Melissa)
+                </h4>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
+                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">1. 🌸 Melissa Mujer</div>
+                        <div style="font-size:0.78rem; color:var(--secondary);">Autocuidado, clases de karate, descanso y salud emocional. Sin este pilar, todo lo demás colapsa.</div>
+                    </div>
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
+                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">2. 👶 Mamá Presente</div>
+                        <div style="font-size:0.78rem; color:var(--secondary);">Crianza de Chinito (6 años), acompañamiento escolar y juego. Presencia afectiva sin culpa laboral.</div>
+                    </div>
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
+                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">3. 🏫 Kinesióloga Escolar</div>
+                        <div style="font-size:0.78rem; color:var(--secondary);">40.5 horas en el colegio en Pueblo Seco. Corte radical al tocar el timbre: el trabajo escolar no entra a casa.</div>
+                    </div>
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
+                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">4. 🎓 Estudiante Especialista</div>
+                        <div style="font-size:0.78rem; color:var(--secondary);">Diplomado online en Kinesiología Educativa. Avanza exclusivamente en su ventana de oro de los Martes tarde.</div>
+                    </div>
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
+                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">5. 🧸 Directora Trafmen</div>
+                        <div style="font-size:0.78rem; color:var(--secondary);">Diseño de juguetes didácticos en madera noble y reactivación de talleres psicomotores.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 2: MAPEADOR DE HORARIOS 24H (INTEGRADO CON SCHEDULE ENGINE)
+             ========================================================================= -->
+        <div id="tab-horario" class="tab-pane">
+            <div class="card-custom">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+                    <div>
+                        <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">
+                            ⏰ Mapeador Semanal de 168 Horas (Semana Base Real)
+                        </h3>
+                        <p style="color:var(--secondary); font-size:0.82rem;">
+                            Horarios exactos de colegio (L-Mi-J 8:00 a 17:30, Ma 8:30 a 15:30, Vi 9:00 a 14:00) + Ventanas de Oro protegidas.
+                        </p>
+                    </div>
+                    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                        <button class="btn-schedule-action" onclick="openCategoryManager()"><i class="fa-solid fa-gear"></i> Gestionar Categorías</button>
+                        <button class="btn-schedule-action" onclick="openRangeFillModal()"><i class="fa-solid fa-fill-drip"></i> Relleno por Rango</button>
+                        <button class="btn-schedule-action" onclick="exportScheduleImage()"><i class="fa-solid fa-camera"></i> Guardar Imagen (PNG)</button>
+                    </div>
+                </div>
+
+                <!-- PALETA DE PINCELES / CATEGORÍAS -->
+                <div class="palette-container" id="schedule-palette">
+                    <!-- Se inyecta dinámicamente con schedule-engine.js -->
+                </div>
+
+                <!-- CUADRÍCULA DEL CRONOGRAMA -->
+                <div class="schedule-grid-container" id="schedule-grid" style="overflow-x:auto;">
+                    <!-- Se inyecta dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 3: KANBAN GTD (LÍMITE ESTRICTO WIP = 2)
+             ========================================================================= -->
+        <div id="tab-kanban" class="tab-pane">
+            <div class="card-custom">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.8rem;">
+                    <div>
+                        <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">
+                            📋 Tablero Kanban GTD • Enfoque Quirúrgico
+                        </h3>
+                        <p style="color:var(--secondary); font-size:0.82rem;">
+                            Límite estricto de Trabajo en Proceso: <strong>Máximo 2 tareas simultáneas</strong> en la columna "En Curso".
+                        </p>
+                    </div>
+                    <button class="btn-schedule-action" onclick="openAddKanbanModal()"><i class="fa-solid fa-plus"></i> Nueva Tarea</button>
+                </div>
+
+                <!-- TABLERO KANBAN MODULAR -->
+                <div class="kanban-board" id="kanban-container">
+                    <!-- Inyectado por kanban-engine.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 4: PROYECTO TRAFMEN & JUGUETES DE MADERA
+             ========================================================================= -->
+        <div id="tab-trafmen" class="tab-pane">
+            <div class="card-custom">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin-bottom:0.6rem;">
+                    🧸 Juego y Movimiento Trafmen • Hoja de Ruta de Producto & Talleres
+                </h3>
+                <p style="color:#ccc; font-size:0.88rem; line-height:1.5; margin-bottom:1.5rem;">
+                    Trafmen cuenta con el respaldo del Capital Abeja 2023. La meta estratégica es construir un modelo híbrido: <strong>productos físicos de estimulación sensoriomotriz en madera noble</strong> combinados con <strong>talleres presenciales</strong>.
+                </p>
+
+                <div class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.2rem; margin-bottom:1.5rem;">
+                    <div style="background:#111; border:1px solid #222; border-radius:12px; padding:1.2rem;">
+                        <h4 style="font-family:var(--font-display); font-size:1rem; font-weight:800; color:var(--forest); margin-bottom:0.6rem;">
+                            <i class="fa-solid fa-tree"></i> Línea de Juguetes de Madera (En Prototipado)
+                        </h4>
+                        <ul style="font-size:0.82rem; color:#aaa; line-height:1.6; padding-left:1.2rem;">
+                            <li><strong>Balancín Curvo / Arco Waldorf:</strong> Desarrollo de equilibrio estático y dinámico para niños de 2 a 8 años.</li>
+                            <li><strong>Triángulo Pikler & Rampa:</strong> Hitos de trepa, propiocepción y autoconfianza motriz.</li>
+                            <li><strong>Bloques Sensoriales de Madera Noble:</strong> Textura viva, peso orgánico y acabado con ceras naturales atóxicas.</li>
+                        </ul>
+                    </div>
+
+                    <div style="background:#111; border:1px solid #222; border-radius:12px; padding:1.2rem;">
+                        <h4 style="font-family:var(--font-display); font-size:1rem; font-weight:800; color:var(--amber); margin-bottom:0.6rem;">
+                            <i class="fa-solid fa-child-reaching"></i> Talleres Psicomotores Probados
+                        </h4>
+                        <ul style="font-size:0.82rem; color:#aaa; line-height:1.6; padding-left:1.2rem;">
+                            <li><strong>Taller de Masajes para Bebés (0 a 6 meses):</strong> Estimulación táctil, alivio de cólicos y apego seguro.</li>
+                            <li><strong>Grupo 1 (3 a 4 años):</strong> Exploración y juego libre en colchonetas y módulos.</li>
+                            <li><strong>Grupo 2 (5 a 6 años):</strong> Esquema corporal, coordinación visomotriz y lateralidad.</li>
+                            <li><strong>Grupo 3 (7 a 8 años):</strong> Destrezas complejas, juego en equipo y autorregulación.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background:rgba(245, 158, 11, 0.08); border:1px solid rgba(245, 158, 11, 0.3); border-radius:10px; padding:1.2rem;">
+                    <h4 style="font-family:var(--font-display); font-size:0.92rem; font-weight:800; color:var(--amber); margin-bottom:0.4rem;">
+                        <i class="fa-solid fa-bullhorn"></i> Misión de Comunicación: "Explicar en Cristiano"
+                    </h4>
+                    <p style="font-size:0.82rem; color:#ddd; line-height:1.45;">
+                        Tienes un dominio técnico impecable. El gran salto comercial de Trafmen reside en comunicar sin tecnicismos paralizantes. Los padres no buscan "integración de reflejos propioceptivos", buscan que sus hijos se caigan menos, duerman tranquilos y jueguen felices sin pantallas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 5: GPS FINANCIERO 50/30/20
+             ========================================================================= -->
+        <div id="tab-finanzas" class="tab-pane">
+            <div class="card-custom">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin-bottom:0.6rem;">
+                    💰 GPS Financiero • Posición de Oportunidad (Regla 50/30/20)
+                </h3>
+                <p style="color:#ccc; font-size:0.88rem; line-height:1.5; margin-bottom:1.5rem;">
+                    Tu empleo escolar formal te brinda una base estable y cómoda. Esto te permite emprender desde la calma estratégica: el 50% sustenta el hogar, el 30% protege tu bienestar y el de Chinito (karate, salidas), y el 20% financia tu Diplomado y los primeros prototipos de madera.
+                </p>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem;">
+                    <div style="background:#0f172a; border:1px solid #1e3a8a; border-radius:12px; padding:1.2rem;">
+                        <div style="color:#60a5fa; font-weight:800; font-size:0.9rem; margin-bottom:6px;">50% NECESIDADES</div>
+                        <div style="font-size:1.4rem; font-weight:800; font-family:var(--font-display); color:#fff; margin-bottom:4px;">Sustento Base</div>
+                        <p style="font-size:0.78rem; color:#94a3b8;">Vivienda en Pueblo Seco, servicios, alimentación y gastos escolares de Chinito. Cero asfixia.</p>
+                    </div>
+
+                    <div style="background:#1c1917; border:1px solid #78350f; border-radius:12px; padding:1.2rem;">
+                        <div style="color:#fbbf24; font-weight:800; font-size:0.9rem; margin-bottom:6px;">30% ESTILO DE VIDA</div>
+                        <div style="font-size:1.4rem; font-weight:800; font-family:var(--font-display); color:#fff; margin-bottom:4px;">Salud & Bienestar</div>
+                        <p style="font-size:0.78rem; color:#d6d3d1;">Clases de karate madre-hijo con el profe nutricionista, paseos familiares y compras personales.</p>
+                    </div>
+
+                    <div style="background:#064e3b; border:1px solid #047857; border-radius:12px; padding:1.2rem;">
+                        <div style="color:#34d399; font-weight:800; font-size:0.9rem; margin-bottom:6px;">20% REINVERSIÓN</div>
+                        <div style="font-size:1.4rem; font-weight:800; font-family:var(--font-display); color:#fff; margin-bottom:4px;">Activos & Futuro</div>
+                        <p style="font-size:0.78rem; color:#a7f3d0;">Cuota mensual del Diplomado Educativo + fondo para maderas nobles y prototipado Trafmen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 6: ALIANZAS ESTRATÉGICAS (CESFAM + FONOAUDIOLOGÍA)
+             ========================================================================= -->
+        <div id="tab-alianzas" class="tab-pane">
+            <div class="card-custom">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin-bottom:0.6rem;">
+                    🤝 Red de Alianzas Estratégicas y Espacios Clínicos
+                </h3>
+                <p style="color:#ccc; font-size:0.88rem; line-height:1.5; margin-bottom:1.5rem;">
+                    Potenciar tu profesión de kinesióloga sin invertir en arriendos costosos a ciegas. Aprovechar los vínculos de confianza ya existentes:
+                </p>
+
+                <div class="alliance-grid">
+                    <div class="alliance-card">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                                <span class="badge-role" style="color:var(--amber);"><i class="fa-solid fa-dumbbell"></i> Karate & Cesfam</span>
+                                <span style="font-size:0.7rem; color:var(--secondary);">En Conversación</span>
+                            </div>
+                            <h4 style="font-family:var(--font-display); font-size:1.05rem; font-weight:800; color:#fff; margin-bottom:0.4rem;">
+                                Profe de Karate / Nutricionista de Cesfam
+                            </h4>
+                            <p style="font-size:0.8rem; color:#aaa; line-height:1.4;">
+                                Comparten la disciplina deportiva del karate con Chinito. Oportunidad de habilitar atenciones compartidas en su box o sala, integrando nutrición y psicomotricidad para niños y familias.
+                            </p>
+                        </div>
+                        <button onclick="copyPitchCesfam()" style="background:#1c1917; border:1px solid #444; color:#f59e0b; padding:8px 12px; border-radius:6px; font-size:0.75rem; font-weight:700; cursor:pointer;">
+                            <i class="fa-solid fa-copy"></i> Copiar Mensaje de Invitación
+                        </button>
+                    </div>
+
+                    <div class="alliance-card">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                                <span class="badge-role" style="color:var(--forest);"><i class="fa-solid fa-comments"></i> Dúo Clínico</span>
+                                <span style="font-size:0.7rem; color:var(--secondary);">Socia Potencial</span>
+                            </div>
+                            <h4 style="font-family:var(--font-display); font-size:1.05rem; font-weight:800; color:#fff; margin-bottom:0.4rem;">
+                                Amiga Fonoaudióloga (Neurodesarrollo Total)
+                            </h4>
+                            <p style="font-size:0.8rem; color:#aaa; line-height:1.4;">
+                                El desarrollo motor y el habla caminan de la mano. Un taller de estimulación temprana co-guiado por Kinesióloga + Fonoaudióloga tiene un valor clínico y comercial muy superior en la región.
+                            </p>
+                        </div>
+                        <button onclick="copyPitchFono()" style="background:#064e3b; border:1px solid #047857; color:#34d399; padding:8px 12px; border-radius:6px; font-size:0.75rem; font-weight:700; cursor:pointer;">
+                            <i class="fa-solid fa-copy"></i> Copiar Propuesta para Fonoaudióloga
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 7: HUB DE IMPRIMIBLES FÍSICOS
+             ========================================================================= -->
+        <div id="tab-imprimibles" class="tab-pane">
+            <div class="card-custom">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; flex-wrap:wrap; gap:1rem;">
+                    <div>
+                        <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">
+                            📄 Hub Maestro de Imprimibles Físicos (5 Herramientas)
+                        </h3>
+                        <p style="color:var(--secondary); font-size:0.82rem;">
+                            Diseñado a la medida de tu perfil analógico para usar en tus agendas físicas. Cada ficha ocupa exactamente 1 hoja Carta/A4.
+                        </p>
+                    </div>
+                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html" target="_blank" class="btn-schedule-action" style="background:var(--forest); color:#fff; font-weight:800;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Cuadernillo Completo
+                    </a>
+                </div>
+
+                <div class="printable-grid">
+                    <div class="printable-card-preview">
+                        <div>
+                            <div style="font-size:0.7rem; font-weight:800; color:var(--forest); text-transform:uppercase;">Hoja 1 • Organización</div>
+                            <div style="font-weight:800; font-size:0.95rem; margin-top:2px; margin-bottom:4px;">Planificador Semanal 24H</div>
+                            <p style="font-size:0.76rem; color:#aaa;">Horarios exactos de colegio, franja Chinito, Diplomado y ventana de oro Trafmen.</p>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html#sheet-1" target="_blank" style="color:var(--forest); font-size:0.75rem; font-weight:700; text-decoration:none;">Imprimir Hoja 1 →</a>
+                    </div>
+
+                    <div class="printable-card-preview">
+                        <div>
+                            <div style="font-size:0.7rem; font-weight:800; color:var(--amber); text-transform:uppercase;">Hoja 2 • Autoestima</div>
+                            <div style="font-weight:800; font-size:0.95rem; margin-top:2px; margin-bottom:4px;">Inventario Diario de Resultados</div>
+                            <p style="font-size:0.76rem; color:#aaa;">El ritual nocturno de 3 minutos para registrar 3 logros y apagar la rumiación.</p>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html#sheet-2" target="_blank" style="color:var(--amber); font-size:0.75rem; font-weight:700; text-decoration:none;">Imprimir Hoja 2 →</a>
+                    </div>
+
+                    <div class="printable-card-preview">
+                        <div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#ef4444; text-transform:uppercase;">Hoja 3 • Foco</div>
+                            <div style="font-weight:800; font-size:0.95rem; margin-top:2px; margin-bottom:4px;">Matriz Quirúrgica Eisenhower</div>
+                            <p style="font-size:0.76rem; color:#aaa;">Separar lo urgente del colegio de lo trascendente (Trafmen, salud y Chinito).</p>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html#sheet-3" target="_blank" style="color:#ef4444; font-size:0.75rem; font-weight:700; text-decoration:none;">Imprimir Hoja 3 →</a>
+                    </div>
+
+                    <div class="printable-card-preview">
+                        <div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#8b5cf6; text-transform:uppercase;">Hoja 4 • Clínica</div>
+                            <div style="font-weight:800; font-size:0.95rem; margin-top:2px; margin-bottom:4px;">Ficha Taller Psicomotriz Trafmen</div>
+                            <p style="font-size:0.76rem; color:#aaa;">Evaluación de 0 a 8 años y sección de devolución "en cristiano" para las familias.</p>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html#sheet-4" target="_blank" style="color:#8b5cf6; font-size:0.75rem; font-weight:700; text-decoration:none;">Imprimir Hoja 4 →</a>
+                    </div>
+
+                    <div class="printable-card-preview">
+                        <div>
+                            <div style="font-size:0.7rem; font-weight:800; color:#3b82f6; text-transform:uppercase;">Hoja 5 • Finanzas</div>
+                            <div style="font-weight:800; font-size:0.95rem; margin-top:2px; margin-bottom:4px;">Control Presupuesto 50/30/20</div>
+                            <p style="font-size:0.76rem; color:#aaa;">Control de gastos fijos y monitoreo del fondo de madera para prototipos.</p>
+                        </div>
+                        <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html#sheet-5" target="_blank" style="color:#3b82f6; font-size:0.75rem; font-weight:700; text-decoration:none;">Imprimir Hoja 5 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONFIGURACIÓN GLOBAL JAVASCRIPT DEL CLIENTE -->
+    <script>
+        window.CLIENT_CONFIG = {
+            clientId: "melissa",
+            clientName: "Melissa Henríquez Soto",
+            clientPIN: "melissa2026",
+            masterPIN: "diego_ah_master"
+        };
+
+        // CATEGORÍAS PRE-CONFIGURADAS PARA SU HORARIO SEMANAL REAL
+        window.CLIENT_SCHEDULE_CATEGORIES = [
+            { id: "dormir", label: "Sueño & Recarga", color: "#334155", shortTag: "SUE", default: true },
+            { id: "colegio", label: "Colegio / Kinesiología Escolar (40.5h)", color: "#1E40AF", shortTag: "COL", default: true },
+            { id: "chinito", label: "Crianza Chinito & Hogar", color: "#D97706", shortTag: "CHI", default: true },
+            { id: "diplomado", label: "Diplomado Kinesiología Educativa", color: "#7C3AED", shortTag: "DIP", default: true },
+            { id: "trafmen", label: "Ventana de Oro Trafmen", color: "#059669", shortTag: "TRAF", default: true },
+            { id: "karate", label: "Karate Madre-Hijo / Autocuidado", color: "#BE123C", shortTag: "KAR", default: true },
+            { id: "libre", label: "Margen Libre / Descanso", color: "#141414", shortTag: "LIB", default: true }
+        ];
+
+        // TAREAS KANBAN PREDETERMINADAS
+        window.CLIENT_KANBAN_DEFAULT = [
+            { id: "m1", text: "Inventariar implementos y herramientas de psicomotricidad en casa", tag: "Trafmen", status: "todo" },
+            { id: "m2", text: "Agendar café post-karate con Profe Nutricionista para espacio conjunto", tag: "Alianzas", status: "todo" },
+            { id: "m3", text: "Definir boceto de los 2 primeros juguetes didácticos en madera", tag: "Trafmen", status: "todo" },
+            { id: "m4", text: "Completar módulo activo del Diplomado en Kinesiología Educativa", tag: "Diplomado", status: "in_progress" },
+            { id: "m5", text: "Realizar el Inventario de Resultados nocturno (3 min)", tag: "Hábitos", status: "in_progress" },
+            { id: "m6", text: "Sesión de ingreso diagnóstica y sondeo express con Diego", tag: "AH", status: "done" }
+        ];
+
+        // GESTIÓN DE PESTAÑAS
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add('active');
+            if (btn) btn.classList.add('active');
+        }
+
+        // VALIDACIÓN DE PIN
+        function validatePIN() {
+            const val = document.getElementById("pin-input").value.trim();
+            if (val === window.CLIENT_CONFIG.clientPIN || val === window.CLIENT_CONFIG.masterPIN) {
+                document.getElementById("pin-modal").classList.remove("active");
+                document.getElementById("main-content").style.display = "block";
+                sessionStorage.setItem("ah_client_auth_" + window.CLIENT_CONFIG.clientId, "true");
+                // Inicializar motores si es necesario
+                if (window.renderScheduleGrid) window.renderScheduleGrid();
+                if (window.initKanban) window.initKanban();
+            } else {
+                document.getElementById("pin-error").style.display = "block";
+            }
+        }
+
+        function lockPortal() {
+            sessionStorage.removeItem("ah_client_auth_" + window.CLIENT_CONFIG.clientId);
+            document.getElementById("main-content").style.display = "none";
+            document.getElementById("pin-modal").classList.add("active");
+            document.getElementById("pin-input").value = "";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const isAuth = sessionStorage.getItem("ah_client_auth_" + window.CLIENT_CONFIG.clientId);
+            if (isAuth === "true") {
+                document.getElementById("pin-modal").classList.remove("active");
+                document.getElementById("main-content").style.display = "block";
+            }
+            document.getElementById("pin-input").addEventListener("keypress", (e) => {
+                if (e.key === "Enter") validatePIN();
+            });
+        });
+
+        // WHATSAPP DIRECTO CON DIEGO
+        function sendWhatsAppUpdate() {
+            const phone = "56975590132";
+            const msg = encodeURIComponent("¡Hola Diego! Te escribo desde mi Plan de Vuelo de Administración Humana (Melissa Henríquez). Quería coordinar sobre mis avances...");
+            window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+        }
+
+        function copyPitchCesfam() {
+            const text = "Hola! Te quería comentar algo breve. Como sabes, soy kinesióloga y estoy proyectando mis talleres de psicomotricidad y atenciones infantiles con mi marca Trafmen. Me encantaría que nos tomemos un café de 15 minutos para explorar si podemos hacer algo en conjunto en tu espacio o armar un programa interdisciplinario nutrición-kinesiología. ¿Qué día te acomoda?";
+            navigator.clipboard.writeText(text).then(() => alert("¡Mensaje para el Nutricionista copiado al portapapeles!"));
+        }
+
+        function copyPitchFono() {
+            const text = "Amiga! He estado estructurando los talleres de psicomotricidad de Trafmen y creo que el impacto se multiplicaría por mil si armamos un programa conjunto Kine + Fono para estimulación temprana y neurodesarrollo en la zona. ¿Nos tomamos algo esta semana y lo conversamos?";
+            navigator.clipboard.writeText(text).then(() => alert("¡Mensaje para Fonoaudióloga copiado al portapapeles!"));
+        }
+    </script>
+
+    <!-- MOTORES MODULARES DEL SISTEMA AH -->
+    <script src="js/portal-gateway.js?v=3.2"></script>
+    <script src="js/schedule-engine.js?v=3.2"></script>
+    <script src="js/kanban-engine.js?v=3.2"></script>
+    <script src="js/whatsapp-widget.js?v=3.2"></script>
+</body>
+</html>

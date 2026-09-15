@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Maestro de Imprimibles Físicos — Melissa Henríquez Soto • Administración Humana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #0284C7;
+            --forest: #059669;
+            --amber: #D97706;
+            --purple: #7C3AED;
+            --rose: #E11D48;
+            --border: #CBD5E1;
+            --border-dark: #334155;
+            --bg-card: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        @page {
+            size: letter portrait;
+            margin: 0.6cm 0.7cm 0.5cm 0.7cm;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #0B0F17;
+            padding: 0;
+            margin: 0;
+            font-size: 8.5pt;
+            line-height: 1.25;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ── TOOLBAR DE CONTROL (NO-PRINT) ── */
+        .hub-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #0F172A;
+            border-bottom: 2px solid var(--forest);
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .hub-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #FFF;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .hub-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .select-sheet {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btn-hub {
+            background: var(--forest);
+            color: #FFF;
+            border: none;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-hub:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-hub-secondary {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #E2E8F0;
+        }
+        .btn-hub-secondary:hover { background: #334155; }
+
+        /* ── ESTRUCTURA DE PÁGINA IMPRIMIBLE ── */
+        .sheet-page {
+            width: 21.59cm;
+            min-height: 27.94cm;
+            height: 27.94cm;
+            margin: 1.5rem auto;
+            background: #FFF;
+            padding: 0.8cm 0.9cm 0.7cm 0.9cm;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        /* ── ENCABEZADO DE CADA FICHA ── */
+        .sheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #0F172A;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.55rem;
+        }
+        .brand-meta {
+            font-size: 6.8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 800;
+            color: var(--forest);
+        }
+        .sheet-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 13.5pt;
+            font-weight: 800;
+            color: #0F172A;
+            line-height: 1.1;
+        }
+        .sheet-subtitle {
+            font-size: 7.6pt;
+            color: #475569;
+            font-weight: 500;
+        }
+        .user-badge {
+            text-align: right;
+            font-size: 7.2pt;
+            font-weight: 700;
+            color: #334155;
+            background: #F1F5F9;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid #E2E8F0;
+        }
+
+        /* ── PIE DE PÁGINA ── */
+        .sheet-footer {
+            border-top: 1px solid #E2E8F0;
+            padding-top: 0.35rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 6.8pt;
+            color: #64748B;
+            font-weight: 600;
+        }
+
+        /* ── ELEMENTOS GRÁFICOS INTERNOS ── */
+        .box {
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            background: #FFF;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .box-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 8.5pt;
+            font-weight: 800;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 0.35rem;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 0.2rem;
+        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.45rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
+
+        .line-field {
+            border-bottom: 1px dashed #94A3B8;
+            height: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* ESTILOS ESPECÍFICOS DE HORARIO */
+        .time-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 6.8pt;
+        }
+        .time-table th, .time-table td {
+            border: 1px solid #CBD5E1;
+            padding: 2.5px 3px;
+            text-align: center;
+        }
+        .time-table th {
+            background: #0F172A;
+            color: #FFF;
+            font-weight: 700;
+        }
+        .time-table td.hour-col {
+            font-weight: 800;
+            background: #F8FAFC;
+            width: 50px;
+        }
+        .slot-school { background: rgba(59, 130, 246, 0.12); font-weight: 700; color: #1D4ED8; }
+        .slot-gold { background: rgba(5, 150, 105, 0.15); font-weight: 800; color: #047857; }
+        .slot-chinito { background: rgba(245, 158, 11, 0.12); font-weight: 700; color: #B45309; }
+
+        /* ESTILO PARA IMPRESIÓN */
+        @media print {
+            body { background: #FFF !important; }
+            .hub-toolbar { display: none !important; }
+            .sheet-page {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+            .hide-on-print { display: none !important; }
+            .solo-sheet-mode .sheet-page:not(.active-print) { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── BARRA SUPERIOR DE CONTROL (NO IMPRIMIBLE) ── -->
+    <div class="hub-toolbar hide-on-print">
+        <div class="hub-title">
+            <i class="fa-solid fa-folder-tree" style="color:var(--forest);"></i>
+            <span>Hub de Imprimibles Físicos • Melissa Henríquez</span>
+            <span style="font-size:0.75rem; color:#94A3B8; font-weight:400; margin-left:8px;">(San Ignacio, Ñuble)</span>
+        </div>
+        <div class="hub-controls">
+            <select class="select-sheet" id="sheet-selector" onchange="filterSheet(this.value)">
+                <option value="all">📂 Ver Cuadernillo Completo (5 Hojas)</option>
+                <option value="sheet-1">📄 Hoja 1: Planificador Semanal Time Blocking 24H</option>
+                <option value="sheet-2">📄 Hoja 2: Inventario Diario de Resultados & Autoestima</option>
+                <option value="sheet-3">📄 Hoja 3: Matriz de Priorización Quirúrgica Eisenhower</option>
+                <option value="sheet-4">📄 Hoja 4: Ficha Clínica y Taller Psicomotriz Trafmen</option>
+                <option value="sheet-5">📄 Hoja 5: GPS Financiero 50/30/20 & Fondo Madera</option>
+            </select>
+            <button class="btn-hub" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Imprimir Vista Actual
+            </button>
+            <a href="../Plan%20de%20Vuelo%202.0%20-%20Melissa.html" class="btn-hub btn-hub-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Portal Web
+            </a>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         HOJA 1: PLANIFICADOR SEMANAL TIME BLOCKING 24H
+         ========================================================================= -->
+    <section class="sheet-page" id="sheet-1">
+        <div>
+            <div class="sheet-header">
+                <div>
+                    <div class="brand-meta">ADMINISTRACIÓN HUMANA • SISTEMA AICC • METODOLOGÍA TIME BLOCKING</div>
+                    <div class="sheet-title">Planificador Semanal 24H & Ventanas de Oro</div>
+                    <div class="sheet-subtitle">Estructura soberana: Colegio 40.5h + Crianza Chinito + Foco Trafmen & Diplomado</div>
+                </div>
+                <div class="user-badge">
+                    <strong>Melissa Henríquez S.</strong><br>
+                    Semana del: ____/____/2026
+                </div>
+            </div>
+
+            <table class="time-table" style="margin-bottom:0.5rem;">
+                <thead>
+                    <tr>
+                        <th style="width:48px;">Hora</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                        <th>Domingo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="hour-col">07:00</td>
+                        <td>Despertar / Casa</td>
+                        <td>Despertar / Casa</td>
+                        <td>Despertar / Casa</td>
+                        <td>Despertar / Casa</td>
+                        <td>Despertar / Casa</td>
+                        <td>Descanso</td>
+                        <td>Descanso</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">08:00</td>
+                        <td class="slot-school" rowspan="4">COLEGIO (08:00 - 12:30)<br><span style="font-size:5.8pt; opacity:0.8;">Kinesiología Escolar</span></td>
+                        <td>Traslado Escuela</td>
+                        <td class="slot-school" rowspan="4">COLEGIO (08:00 - 12:30)<br><span style="font-size:5.8pt; opacity:0.8;">Kinesiología Escolar</span></td>
+                        <td class="slot-school" rowspan="4">COLEGIO (08:00 - 12:30)<br><span style="font-size:5.8pt; opacity:0.8;">Kinesiología Escolar</span></td>
+                        <td>Traslado Escuela</td>
+                        <td class="slot-gold" rowspan="2">VENTANA TRAFMEN / ALIANZAS<br><span style="font-size:5.8pt;">10:00 - 11:30</span></td>
+                        <td rowspan="4">Desayuno en familia & Esparcimiento Chinito</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">09:00</td>
+                        <td class="slot-school" rowspan="3">COLEGIO (08:30 - 12:30)<br><span style="font-size:5.8pt; opacity:0.8;">Kinesiología Escolar</span></td>
+                        <td class="slot-school" rowspan="3">COLEGIO (09:00 - 12:30)<br><span style="font-size:5.8pt; opacity:0.8;">Kinesiología Escolar</span></td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">10:30</td>
+                        <td rowspan="2">Compras / Logística Hogar</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">12:00</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">13:00</td>
+                        <td colspan="5" style="background:#F1F5F9; font-weight:700;">Almuerzo Escuela / Pausa con Chinito</td>
+                        <td colspan="2" style="background:#F1F5F9; font-weight:700;">Almuerzo en Casa</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">14:00</td>
+                        <td class="slot-school" rowspan="3">COLEGIO (14:00 - 17:30)</td>
+                        <td class="slot-school">COLEGIO (hasta 15:30)</td>
+                        <td class="slot-school" rowspan="3">COLEGIO (14:00 - 17:30)</td>
+                        <td class="slot-school" rowspan="3">COLEGIO (14:00 - 17:30)</td>
+                        <td class="slot-gold" rowspan="3">VENTANA DE ORO TRAFMEN<br><span style="font-size:6pt;">15:30 - 17:30 (Juguetes madera & diseño)</span></td>
+                        <td rowspan="4">Tarde Libre / Juegos al Aire Libre con Chinito</td>
+                        <td rowspan="4">Descanso / Preparación Semana</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">16:00</td>
+                        <td class="slot-gold" rowspan="2">VENTANA DIPLOMADO<br><span style="font-size:6pt;">16:30 - 18:00 (Estudio sin culpa)</span></td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">17:00</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">18:00</td>
+                        <td class="slot-chinito" colspan="5">TARDES EN FAMILIA CON CHINITO: Crianza, Juego, Karate Madre-Hijo & Tareas Escolares</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">21:00</td>
+                        <td colspan="7" style="background:#FFFBEB; font-weight:700; color:#B45309;">RITUAL NOCTURNO: Cierre de cocina, baño tibio, Inventario de Resultados (3 min) & Sueño Reparador</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="grid-3">
+                <div class="box">
+                    <div class="box-title"><i class="fa-solid fa-bullseye" style="color:var(--forest);"></i> 2 Objetivos Innegociables</div>
+                    <div style="font-size:7.2pt; color:#475569; margin-bottom:0.3rem;">Solo 2 metas estratégicas para esta semana:</div>
+                    <div class="line-field"></div>
+                    <div class="line-field"></div>
+                </div>
+                <div class="box">
+                    <div class="box-title"><i class="fa-solid fa-shield-heart" style="color:var(--amber);"></i> Límite & Boundary Semanal</div>
+                    <div style="font-size:7.2pt; color:#475569; margin-bottom:0.3rem;">¿Qué voy a proteger de interrupciones?</div>
+                    <div class="line-field"></div>
+                    <div class="line-field"></div>
+                </div>
+                <div class="box">
+                    <div class="box-title"><i class="fa-solid fa-sparkles" style="color:var(--purple);"></i> Recompensa de Fin de Semana</div>
+                    <div style="font-size:7.2pt; color:#475569; margin-bottom:0.3rem;">Mi espacio de gozo con Chinito o personal:</div>
+                    <div class="line-field"></div>
+                    <div class="line-field"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • www.administracionhumana.com</span>
+            <span>WhatsApp Diego: +56975590132</span>
+            <span>Hoja 1 de 5 • Módulo: Time Blocking 24H</span>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         HOJA 2: INVENTARIO DIARIO DE RESULTADOS & AUTOESTIMA
+         ========================================================================= -->
+    <section class="sheet-page" id="sheet-2">
+        <div>
+            <div class="sheet-header">
+                <div>
+                    <div class="brand-meta">ADMINISTRACIÓN HUMANA • SISTEMA AICC • AUTOESTIMA OPERATIVA</div>
+                    <div class="sheet-title">Inventario Diario de Resultados (Cero Culpa)</div>
+                    <div class="sheet-subtitle">El ritual nocturno de 3 minutos para visibilizar el trabajo invisible y apagar la mente</div>
+                </div>
+                <div class="user-badge">
+                    <strong>Registro Semanal</strong><br>
+                    Lunes a Domingo
+                </div>
+            </div>
+
+            <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:6px; padding:0.45rem 0.7rem; margin-bottom:0.55rem; font-size:7.4pt; color:#166534; line-height:1.3;">
+                <strong>💡 Protocolo Anti-Rumiación de Diego:</strong> Cada noche antes de acostarte, tu mente intenta juzgarte por lo que "faltó hacer". Este inventario obliga a tu cerebro a registrar 3 victorias concretas: <strong>1 en el Colegio</strong>, <strong>1 en el Hogar / Crianza de Chinito</strong> y <strong>1 en tu Proyecto Personal (Trafmen o Diplomado)</strong>. Luego firmas y descansas en paz.
+            </div>
+
+            <div class="box" style="margin-bottom:0.4rem; padding:0.4rem 0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:8pt; border-bottom:1px solid #E2E8F0; padding-bottom:2px; margin-bottom:3px;">
+                    <span>LUNES</span>
+                    <span style="font-size:7pt; color:#64748B;">Fecha: ___/___</span>
+                </div>
+                <div class="grid-3" style="gap:0.3rem;">
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#2563EB;">🏫 COLEGIO (40h):</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#D97706;">👶 CHINITO / CASA:</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#059669;">🌿 TRAFMEN / FOCO:</span><div class="line-field"></div></div>
+                </div>
+            </div>
+
+            <div class="box" style="margin-bottom:0.4rem; padding:0.4rem 0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:8pt; border-bottom:1px solid #E2E8F0; padding-bottom:2px; margin-bottom:3px;">
+                    <span>MARTES (Salida 15:30)</span>
+                    <span style="font-size:7pt; color:#64748B;">Fecha: ___/___</span>
+                </div>
+                <div class="grid-3" style="gap:0.3rem;">
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#2563EB;">🏫 COLEGIO (40h):</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#D97706;">👶 CHINITO / CASA:</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#059669;">🎓 DIPLOMADO (Ventana Oro):</span><div class="line-field"></div></div>
+                </div>
+            </div>
+
+            <div class="box" style="margin-bottom:0.4rem; padding:0.4rem 0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:8pt; border-bottom:1px solid #E2E8F0; padding-bottom:2px; margin-bottom:3px;">
+                    <span>MIÉRCOLES</span>
+                    <span style="font-size:7pt; color:#64748B;">Fecha: ___/___</span>
+                </div>
+                <div class="grid-3" style="gap:0.3rem;">
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#2563EB;">🏫 COLEGIO (40h):</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#D97706;">👶 CHINITO / CASA:</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#059669;">🌿 TRAFMEN / FOCO:</span><div class="line-field"></div></div>
+                </div>
+            </div>
+
+            <div class="box" style="margin-bottom:0.4rem; padding:0.4rem 0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:8pt; border-bottom:1px solid #E2E8F0; padding-bottom:2px; margin-bottom:3px;">
+                    <span>JUEVES</span>
+                    <span style="font-size:7pt; color:#64748B;">Fecha: ___/___</span>
+                </div>
+                <div class="grid-3" style="gap:0.3rem;">
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#2563EB;">🏫 COLEGIO (40h):</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#D97706;">👶 CHINITO / CASA:</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#059669;">🌿 TRAFMEN / FOCO:</span><div class="line-field"></div></div>
+                </div>
+            </div>
+
+            <div class="box" style="margin-bottom:0.4rem; padding:0.4rem 0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:8pt; border-bottom:1px solid #E2E8F0; padding-bottom:2px; margin-bottom:3px;">
+                    <span>VIERNES (Salida 14:00)</span>
+                    <span style="font-size:7pt; color:#64748B;">Fecha: ___/___</span>
+                </div>
+                <div class="grid-3" style="gap:0.3rem;">
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#2563EB;">🏫 COLEGIO (40h):</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#D97706;">👶 CHINITO / CASA:</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#059669;">🧸 TRAFMEN (Ventana Oro):</span><div class="line-field"></div></div>
+                </div>
+            </div>
+
+            <div class="box" style="margin-bottom:0.4rem; padding:0.4rem 0.6rem;">
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:8pt; border-bottom:1px solid #E2E8F0; padding-bottom:2px; margin-bottom:3px;">
+                    <span>SÁBADO & DOMINGO</span>
+                    <span style="font-size:7pt; color:#64748B;">Fin de semana</span>
+                </div>
+                <div class="grid-3" style="gap:0.3rem;">
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#7C3AED;">🥋 KARATE & JUEGO:</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#D97706;">👶 DESCANSO FAMILIA:</span><div class="line-field"></div></div>
+                    <div><span style="font-size:6.5pt; font-weight:700; color:#059669;">🌸 AUTOCUIDADO MELISSA:</span><div class="line-field"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • Metodología AICC</span>
+            <span>Declaración: "Hoy sostuve mi mundo con excelencia y amor. Mi mente tiene permiso para descansar."</span>
+            <span>Hoja 2 de 5 • Módulo: Autoestima</span>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         HOJA 3: MATRIZ DE PRIORIZACIÓN QUIRÚRGICA EISENHOWER
+         ========================================================================= -->
+    <section class="sheet-page" id="sheet-3">
+        <div>
+            <div class="sheet-header">
+                <div>
+                    <div class="brand-meta">ADMINISTRACIÓN HUMANA • SISTEMA AICC • FILTRADO COGNITIVO</div>
+                    <div class="sheet-title">Matriz de Priorización Quirúrgica Eisenhower</div>
+                    <div class="sheet-subtitle">Separar la urgencia escolar de lo verdaderamente trascendente (Trafmen & Familia)</div>
+                </div>
+                <div class="user-badge">
+                    <strong>Filtro Semanal</strong><br>
+                    WIP = 2 Estricto
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; height:20.5cm;">
+                <div class="box" style="border:2px solid #EF4444; background:#FEF2F2; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div class="box-title" style="color:#B91C1C;">
+                            <i class="fa-solid fa-fire"></i> 1. HACER YA (Crisis & Plazos Fatales)
+                        </div>
+                        <div style="font-size:6.8pt; color:#7F1D1D; margin-bottom:0.4rem;">
+                            Urgencias reales del colegio, salud de Chinito o trámites inaplazables. Máximo 2 frentes a la vez.
+                        </div>
+                        <div class="line-field" style="border-color:#F87171;"></div>
+                        <div class="line-field" style="border-color:#F87171;"></div>
+                        <div class="line-field" style="border-color:#F87171;"></div>
+                        <div class="line-field" style="border-color:#F87171;"></div>
+                    </div>
+                    <div style="font-size:6.5pt; font-weight:700; color:#991B1B; text-align:right;">Regla: Ejecutar sin rumiar</div>
+                </div>
+
+                <div class="box" style="border:2px solid #059669; background:#F0FDF4; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div class="box-title" style="color:#047857;">
+                            <i class="fa-solid fa-star"></i> 2. AGENDAR & BLINDAR (Construcción Trafmen)
+                        </div>
+                        <div style="font-size:6.8pt; color:#065F46; margin-bottom:0.4rem;">
+                            <strong>¡Aquí se construye el futuro!</strong> Juguetes de madera, diplomado, alianzas con Nutricionista y Fonoaudióloga.
+                        </div>
+                        <div class="line-field" style="border-color:#34D399;"></div>
+                        <div class="line-field" style="border-color:#34D399;"></div>
+                        <div class="line-field" style="border-color:#34D399;"></div>
+                        <div class="line-field" style="border-color:#34D399;"></div>
+                    </div>
+                    <div style="font-size:6.5pt; font-weight:700; color:#065F46; text-align:right;">Regla: Proteger en Time Blocking</div>
+                </div>
+
+                <div class="box" style="border:2px solid #F59E0B; background:#FFFBEB; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div class="box-title" style="color:#B45309;">
+                            <i class="fa-solid fa-clock-rotate-left"></i> 3. DELEGAR / CONDENSAR (Apaga-fuegos)
+                        </div>
+                        <div style="font-size:6.8pt; color:#92400E; margin-bottom:0.4rem;">
+                            Peticiones de pasillo en la escuela, mensajes de WhatsApp sueltos, compras menores. Agrupar en 1 solo bloque.
+                        </div>
+                        <div class="line-field" style="border-color:#FBBF24;"></div>
+                        <div class="line-field" style="border-color:#FBBF24;"></div>
+                        <div class="line-field" style="border-color:#FBBF24;"></div>
+                        <div class="line-field" style="border-color:#FBBF24;"></div>
+                    </div>
+                    <div style="font-size:6.5pt; font-weight:700; color:#78350F; text-align:right;">Regla: No interrumpir la hora de oro</div>
+                </div>
+
+                <div class="box" style="border:2px solid #64748B; background:#F8FAFC; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div class="box-title" style="color:#334155;">
+                            <i class="fa-solid fa-trash-can"></i> 4. ELIMINAR (Fuga de 14h / Dando Vueltas)
+                        </div>
+                        <div style="font-size:6.8pt; color:#475569; margin-bottom:0.4rem;">
+                            Procrastinación por sobreinformación en Instagram, rumiación nocturna sobre lo que no se hizo, culpa parental estéril.
+                        </div>
+                        <div class="line-field" style="border-color:#94A3B8;"></div>
+                        <div class="line-field" style="border-color:#94A3B8;"></div>
+                        <div class="line-field" style="border-color:#94A3B8;"></div>
+                        <div class="line-field" style="border-color:#94A3B8;"></div>
+                    </div>
+                    <div style="font-size:6.5pt; font-weight:700; color:#1E293B; text-align:right;">Regla: Soltar y tachar de raíz</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • Sistema AICC</span>
+            <span>WhatsApp Diego: +56975590132</span>
+            <span>Hoja 3 de 5 • Módulo: Matriz Eisenhower</span>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         HOJA 4: FICHA CLÍNICA & BITÁCORA DE TALLER PSICOMOTRIZ TRAFMEN
+         ========================================================================= -->
+    <section class="sheet-page" id="sheet-4">
+        <div>
+            <div class="sheet-header">
+                <div>
+                    <div class="brand-meta">JUEGO Y MOVIMIENTO TRAFMEN • KINESIOLOGÍA & NEURODESARROLLO</div>
+                    <div class="sheet-title">Ficha de Taller Psicomotriz & Valoración Motriz</div>
+                    <div class="sheet-subtitle">Herramienta clínica para Masajes (0-6m) y Grupos Psicomotores (3-4, 5-6 y 7-8 años)</div>
+                </div>
+                <div class="user-badge">
+                    <strong>Trafmen • 2026</strong><br>
+                    Cap. Abeja Sercotec
+                </div>
+            </div>
+
+            <div class="box" style="margin-bottom:0.45rem;">
+                <div class="box-title"><i class="fa-solid fa-child"></i> Datos del Niño / Niña & Cuidadores</div>
+                <div class="grid-3" style="margin-bottom:0.3rem;">
+                    <div><strong>Nombre Niño(a):</strong> ___________________________</div>
+                    <div><strong>Edad / Meses:</strong> _______________</div>
+                    <div><strong>Fecha Sesión:</strong> ____/____/2026</div>
+                </div>
+                <div class="grid-2">
+                    <div><strong>Nombre Mamá / Papá / Tutor:</strong> ___________________________</div>
+                    <div><strong>Teléfono / WhatsApp:</strong> ___________________________</div>
+                </div>
+            </div>
+
+            <div class="box" style="margin-bottom:0.45rem;">
+                <div class="box-title"><i class="fa-solid fa-shapes"></i> Modalidad de Atención Trafmen</div>
+                <div class="grid-4" style="font-size:7.2pt; font-weight:700;">
+                    <label><input type="checkbox"> Masajes Bebé (0-6m)</label>
+                    <label><input type="checkbox"> Grupo 1 (3-4 años)</label>
+                    <label><input type="checkbox"> Grupo 2 (5-6 años)</label>
+                    <label><input type="checkbox"> Grupo 3 (7-8 años)</label>
+                </div>
+            </div>
+
+            <div class="box" style="margin-bottom:0.45rem;">
+                <div class="box-title"><i class="fa-solid fa-person-running"></i> Ejes de Observación Psicomotriz & Sensorial</div>
+                <div class="grid-2" style="gap:0.6rem;">
+                    <div>
+                        <span style="font-weight:700; font-size:7.2pt; color:var(--forest);">1. Tono, Postura & Equilibrio:</span>
+                        <div class="line-field"></div>
+                        <span style="font-weight:700; font-size:7.2pt; color:var(--forest);">2. Coordinación Dinámica & Salto:</span>
+                        <div class="line-field"></div>
+                    </div>
+                    <div>
+                        <span style="font-weight:700; font-size:7.2pt; color:var(--forest);">3. Esquema Corporal & Lateralidad:</span>
+                        <div class="line-field"></div>
+                        <span style="font-weight:700; font-size:7.2pt; color:var(--forest);">4. Respuesta Sensorial & Juego Libre:</span>
+                        <div class="line-field"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box" style="background:#FEFCE8; border:1px solid #FEF08A; margin-bottom:0.45rem;">
+                <div class="box-title" style="color:#A16207;">
+                    <i class="fa-solid fa-comment-dots"></i> Devolución a la Familia ("En Cristiano" • Cero Tecnicismos)
+                </div>
+                <div style="font-size:6.8pt; color:#713F12; margin-bottom:0.3rem;">
+                    ¿Qué observamos hoy que empodere y tranquilice a los padres? Recomendación práctica de juego para el hogar:
+                </div>
+                <div class="line-field" style="border-color:#EAB308;"></div>
+                <div class="line-field" style="border-color:#EAB308;"></div>
+                <div class="line-field" style="border-color:#EAB308;"></div>
+            </div>
+
+            <div class="box" style="padding:0.4rem 0.6rem;">
+                <div class="grid-3" style="font-size:7.2pt; font-weight:700;">
+                    <div>Próxima Sesión: ____/____/2026</div>
+                    <div>Pase Prepagado: [ ] Sí  [ ] Pendiente</div>
+                    <div>Material de Madera Recomendado: _____________</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Juego y Movimiento Trafmen • Kinesióloga Melissa Henríquez</span>
+            <span>Instagram: @juegoymovimientotrafmen • Pueblo Seco, Ñuble</span>
+            <span>Hoja 4 de 5 • Módulo: Psicomotricidad</span>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         HOJA 5: PLANILLA CONTROL PRESUPUESTARIO 50/30/20 & FONDO MADERA
+         ========================================================================= -->
+    <section class="sheet-page" id="sheet-5">
+        <div>
+            <div class="sheet-header">
+                <div>
+                    <div class="brand-meta">ADMINISTRACIÓN HUMANA • SISTEMA AICC • PAZ FINANCIERA</div>
+                    <div class="sheet-title">Planilla de Control 50/30/20 & Fondo Trafmen</div>
+                    <div class="sheet-subtitle">Estructura mensual para consolidar la oportunidad financiera e invertir en madera noble</div>
+                </div>
+                <div class="user-badge">
+                    <strong>Mes de Control</strong><br>
+                    Año: 2026
+                </div>
+            </div>
+
+            <div class="grid-3" style="margin-bottom:0.55rem;">
+                <div class="box" style="border-top:3px solid #2563EB;">
+                    <div class="box-title" style="color:#1D4ED8;">
+                        <i class="fa-solid fa-house"></i> 50% NECESIDADES
+                    </div>
+                    <div style="font-size:6.8pt; color:#475569; margin-bottom:0.3rem;">Sustento innegociable de Chinito y hogar:</div>
+                    <table style="width:100%; font-size:6.8pt; border-collapse:collapse;">
+                        <tr><td style="padding:2px 0;">Vivienda / Gastos básicos:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Alimentación y despensa:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Colegio / Escuela Chinito:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Salud y farmacia:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr style="font-weight:800; border-top:1px solid #CBD5E1;"><td style="padding:3px 0;">TOTAL (Meta 50%):</td><td style="text-align:right;">$ ________</td></tr>
+                    </table>
+                </div>
+
+                <div class="box" style="border-top:3px solid #F59E0B;">
+                    <div class="box-title" style="color:#B45309;">
+                        <i class="fa-solid fa-mug-saucer"></i> 30% ESTILO DE VIDA
+                    </div>
+                    <div style="font-size:6.8pt; color:#475569; margin-bottom:0.3rem;">Esparcimiento, salud y bienestar:</div>
+                    <table style="width:100%; font-size:6.8pt; border-collapse:collapse;">
+                        <tr><td style="padding:2px 0;">Karate (Melissa + Chinito):</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Paseos y salidas recreativas:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Ropa / Cuidado personal:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Cafés / Válvulas de paz:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr style="font-weight:800; border-top:1px solid #CBD5E1;"><td style="padding:3px 0;">TOTAL (Tope 30%):</td><td style="text-align:right;">$ ________</td></tr>
+                    </table>
+                </div>
+
+                <div class="box" style="border-top:3px solid #059669;">
+                    <div class="box-title" style="color:#047857;">
+                        <i class="fa-solid fa-seedling"></i> 20% INVERSIÓN & PAZ
+                    </div>
+                    <div style="font-size:6.8pt; color:#475569; margin-bottom:0.3rem;">Construcción del activo futuro:</div>
+                    <table style="width:100%; font-size:6.8pt; border-collapse:collapse;">
+                        <tr><td style="padding:2px 0;">Cuota Diplomado Educativo:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Fondo Madera / Prototipos:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Colchón de Reserva (3 meses):</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr><td style="padding:2px 0;">Herramientas Trafmen:</td><td style="text-align:right;">$ ________</td></tr>
+                        <tr style="font-weight:800; border-top:1px solid #CBD5E1;"><td style="padding:3px 0;">TOTAL (Meta 20%):</td><td style="text-align:right;">$ ________</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="box" style="background:#F8FAFC;">
+                <div class="box-title"><i class="fa-solid fa-calculator"></i> Balance Mensual & Flujo de Oportunidad</div>
+                <div class="grid-3" style="text-align:center; padding:0.4rem 0;">
+                    <div>
+                        <div style="font-size:7pt; color:#64748B;">Ingreso Fijo Escuela</div>
+                        <div style="font-size:11pt; font-weight:800; color:#0F172A;">$ _____________</div>
+                    </div>
+                    <div>
+                        <div style="font-size:7pt; color:#64748B;">Ingreso Trafmen / Talleres</div>
+                        <div style="font-size:11pt; font-weight:800; color:#059669;">$ _____________</div>
+                    </div>
+                    <div>
+                        <div style="font-size:7pt; color:#64748B;">Fondo Acumulado Prototipos Madera</div>
+                        <div style="font-size:11pt; font-weight:800; color:#D97706;">$ _____________</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box" style="margin-top:0.45rem;">
+                <div class="box-title"><i class="fa-solid fa-handshake"></i> Regla de Separación Innegociable</div>
+                <div style="font-size:7.4pt; color:#334155; line-height:1.35;">
+                    📌 <strong>Pase Prepagado Exclusivo:</strong> Los talleres de Trafmen no se cobran por clase suelta. Se reciben del 1 al 5 de cada mes en cuenta separada. Ese dinero jamás se utiliza para el gasto corriente del hogar; financia los insumos de madera noble y herramientas para seguir creciendo.
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • www.administracionhumana.com</span>
+            <span>WhatsApp Diego: +56975590132</span>
+            <span>Hoja 5 de 5 • Módulo: Finanzas 50/30/20</span>
+        </div>
+    </section>
+
+    <script>
+        function filterSheet(sheetId) {
+            const sheets = document.querySelectorAll('.sheet-page');
+            const body = document.body;
+
+            if (sheetId === 'all') {
+                body.classList.remove('solo-sheet-mode');
+                sheets.forEach(s => {
+                    s.style.display = 'flex';
+                    s.classList.remove('active-print');
+                });
+            } else {
+                body.classList.add('solo-sheet-mode');
+                sheets.forEach(s => {
+                    if (s.id === sheetId) {
+                        s.style.display = 'flex';
+                        s.classList.add('active-print');
+                    } else {
+                        s.style.display = 'none';
+                        s.classList.remove('active-print');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
