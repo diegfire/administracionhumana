@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <base href="../../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Vuelo 2.0 • Alejandra Mattei • Administración Humana</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Modular CSS Core & Components -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.2">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.2">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.2">
+
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #121212;
+            --primary: #8b5cf6;
+            --secondary: #888888;
+            --accent-purple: #8b5cf6;
+            --forest: #10B981;
+            --amber: #F59E0B;
+            --blue: #3B82F6;
+            --rose: #EF4444;
+            --border: #262626;
+            --border-hover: #383838;
+            --text-muted: #a1a1aa;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 6px;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 12% 18%, rgba(139, 92, 246, 0.07) 0%, transparent 45%),
+                radial-gradient(circle at 88% 82%, rgba(16, 185, 129, 0.05) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* TAB CONMUTATION RULES */
+        .tab-content {
+            display: none !important;
+            animation: fadeIn 0.25s ease;
+        }
+        .tab-content.active {
+            display: block !important;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* NAVEGACIÓN EN 2 COLUMNAS (ESTÁNDAR VISUAL AICC) */
+        .tabs {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.65rem 0.85rem !important;
+            padding: 0.85rem !important;
+            background: rgba(18, 18, 22, 0.75) !important;
+            border: 1px solid var(--border, #262626) !important;
+            border-radius: var(--radius-md, 14px) !important;
+            margin-bottom: 2rem !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+        }
+
+        .tab-btn {
+            width: 100% !important;
+            padding: 0.85rem 1.15rem !important;
+            font-size: 0.88rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 0.7rem !important;
+            border-radius: 10px !important;
+            white-space: normal !important;
+            line-height: 1.3 !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: var(--text-muted, #a1a1aa) !important;
+            box-sizing: border-box !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .tab-btn i {
+            font-size: 1.05rem !important;
+            width: 1.3rem !important;
+            text-align: center !important;
+            flex-shrink: 0 !important;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-purple) !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            border-color: var(--accent-purple) !important;
+            box-shadow: 0 4px 18px rgba(139, 92, 246, 0.35) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .tab-btn:last-child:nth-child(odd) {
+            grid-column: span 2 !important;
+            justify-content: center !important;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                grid-template-columns: 1fr !important;
+                gap: 0.5rem !important;
+                padding: 0.55rem !important;
+            }
+            .tab-btn:last-child:nth-child(odd) {
+                grid-column: span 1 !important;
+            }
+        }
+
+        /* HERO & STATS BOXES */
+        .diagnostic-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-left: 4px solid var(--accent-purple);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.09) 0%, rgba(0, 0, 0, 0.65) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .stat-grid-ale {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            transition: all 0.2s ease;
+        }
+        .stat-box:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+        .stat-val { font-family: var(--font-display); font-size: 1.65rem; font-weight: 800; color: #fff; }
+        .stat-lbl { font-size: 0.76rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+        .stat-sub { font-size: 0.72rem; color: #a78bfa; font-weight: 600; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-custom {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-role {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* CHECKLISTS & HERRAMIENTAS INTERACTIVAS */
+        .tool-card-rich {
+            background: rgba(18, 18, 24, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            transition: all 0.25s ease;
+            margin-bottom: 1.5rem;
+        }
+        .tool-card-rich:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .tool-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 0.6rem 0.75rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+        .tool-check-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .tool-check-item input[type="checkbox"] {
+            margin-top: 3px;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent-purple);
+            cursor: pointer;
+        }
+        .tool-check-item span {
+            font-size: 0.84rem;
+            color: #d1d5db;
+            line-height: 1.45;
+        }
+        .tool-check-item.completed {
+            background: rgba(139, 92, 246, 0.08);
+            border-color: rgba(139, 92, 246, 0.25);
+        }
+        .tool-check-item.completed span {
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+
+        /* INVENTARIO DE RESULTADOS COMPONENT */
+        .inventory-form-box {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .inventory-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            box-sizing: border-box;
+            outline: none;
+            margin-bottom: 0.8rem;
+            transition: border-color 0.2s ease;
+        }
+        .inventory-input:focus {
+            border-color: var(--accent-purple);
+        }
+        .inventory-log-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent-purple);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* TOAST NOTIFICATION */
+        .toast-notification {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #ffffff;
+            color: #000000;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            z-index: 99999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- OVERLAY DE SEGURIDAD ESTÁNDAR (PORTAL GATEWAY) -->
+    <div id="client-auth-overlay" class="client-auth-overlay">
+        <div class="client-auth-card">
+            <div class="gateway-avatar">🖋️🦉</div>
+            <div class="gateway-badge">
+                <i class="fa-solid fa-shield-halved"></i> Acceso Privado & Exclusivo
+            </div>
+            <h2 class="gateway-title">Plan de Vuelo 2.0</h2>
+            <p class="gateway-subtitle">De la Falsa Insuficiencia a la Soberanía Intelectual • <strong>Alejandra Mattei</strong></p>
+            
+            <form onsubmit="handleClientAuth(event)">
+                <div class="gateway-input-wrapper">
+                    <input type="password" id="auth-client-pin" class="gateway-input" placeholder="Ingresa tu clave PIN..." autocomplete="current-password" autofocus>
+                </div>
+                <button type="submit" class="btn-gateway-login">
+                    <span>Desbloquear Portal</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+            <div id="auth-error-msg" class="gateway-error" style="display:none;"></div>
+            <div class="gateway-footer">
+                <span>Administración Humana © 2026</span>
+                <span style="opacity: 0.5;">• Clave: alejandra2026</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="toast-notification">
+        <i class="fa-solid fa-circle-check" style="color: #8b5cf6; font-size: 1.1rem;"></i>
+        <span id="toast-text">¡Guardado con éxito en tu equipo!</span>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL DEL DASHBOARD -->
+    <div class="container" style="max-width:1440px; margin:0 auto; padding:1.5rem;">
+
+        <!-- TOP BAR / BRANDING -->
+        <header style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.8rem; border-bottom:1px solid var(--border); padding-bottom:1.2rem;">
+            <div style="display:flex; align-items:center; gap:1rem;">
+                <div style="font-size:2.2rem; background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); border-radius:12px; width:52px; height:52px; display:flex; align-items:center; justify-content:center;">🖋️</div>
+                <div>
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--accent-purple); font-weight:800;">ADMINISTRACIÓN HUMANA • SISTEMA AICC v2.0</div>
+                    <h1 style="font-family:var(--font-display); font-size:1.65rem; font-weight:800; margin:0; line-height:1.2;">Plan de Vuelo 2.0 • Alejandra Mattei</h1>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin-top:2px; margin-bottom:0;">De la Falsa Insuficiencia a la Soberanía Intelectual • Crianza Tomás & Doctorado</p>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;">
+                <span class="badge-role"><i class="fa-solid fa-location-dot" style="color:#ef4444;"></i> Oviedo, Asturias</span>
+                <span class="badge-role"><i class="fa-solid fa-graduation-cap" style="color:var(--accent-purple);"></i> Doctorado Filosofía de la Ciencia</span>
+                <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Alejandra.html" target="_blank" class="badge-role" style="text-decoration:none; background:rgba(139, 92, 246, 0.15); border-color:#8b5cf6; color:#a78bfa;">
+                    <i class="fa-solid fa-print"></i> 📄 Imprimibles Físicos (5 Hojas)
+                </a>
+                <button onclick="logoutClientAuth()" style="background:#1a1a1a; border:1px solid #333; color:#ccc; padding:6px 12px; border-radius:6px; font-size:0.76rem; cursor:pointer;">
+                    <i class="fa-solid fa-lock"></i> Bloquear
+                </button>
+            </div>
+        </header>
+
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+            <div>
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(139, 92, 246, 0.15); border:1px solid rgba(139, 92, 246, 0.4); color:#a78bfa; padding:4px 12px; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:0.6rem;">
+                    <i class="fa-solid fa-shield-check"></i> CASO CLÍNICO-OPERATIVO ACTIVO
+                </div>
+                <h2 style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; margin-bottom:0.4rem; line-height:1.2;">
+                    De la Falsa Insuficiencia a la Soberanía Intelectual y Familiar
+                </h2>
+                <p style="color:var(--secondary); font-size:0.9rem; max-width:840px; line-height:1.45; margin:0;">
+                    Estructura integral para el <strong>Sprint Crítico al 12 de Octubre</strong> (Beca Doctoral 4 años + Convocatoria Laboral 1 año), protección de la crianza presente de tu hijo Tomás (13 años), avance libre de culpa en tu obra literaria (Juana Mattei) y huerta comunitaria en Asturias.
+                </p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Alejandra.html" target="_blank" style="background:#ffffff; color:#000000; text-decoration:none; padding:10px 18px; border-radius:8px; font-weight:800; font-size:0.85rem; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px rgba(255,255,255,0.2);">
+                    <i class="fa-solid fa-print"></i> Abrir Hub Imprimibles (5 Hojas)
+                </a>
+                <button onclick="sendWhatsAppUpdate()" style="background:#25D366; color:#000000; border:none; padding:9px 16px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fa-brands fa-whatsapp"></i> Chat Directo con Diego
+                </button>
+            </div>
+        </div>
+
+        <!-- STATS CUANTITATIVAS CLAVE -->
+        <div class="stat-grid-ale">
+            <div class="stat-box">
+                <div class="stat-val" style="color:#ef4444;">12 Octubre</div>
+                <div class="stat-lbl">Sprint Crítico (27 Días)</div>
+                <div class="stat-sub">Beca 4 Años + Trabajo 1 Año</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" style="color:#10b981;">30 h/sem</div>
+                <div class="stat-lbl">Ventana Matutina de Foco</div>
+                <div class="stat-sub">08:00 a 14:00 (Lunes a Viernes)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" style="color:#f59e0b;">3 Libros + 1 Novela</div>
+                <div class="stat-lbl">Obra Prolífica Publicada</div>
+                <div class="stat-sub">Poesía, Filosofía FpN & Teatro</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" style="color:#3b82f6;">Jueves Tarde</div>
+                <div class="stat-lbl">Ritual Sagrado con Tomás</div>
+                <div class="stat-sub">Encuentro & Balance Semanal Mutuo</div>
+            </div>
+        </div>
+
+        <!-- BARRA MAESTRA DE NAVEGACIÓN EN 2 COLUMNAS (ESTILO AICC) -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-diagnostico')">
+                <i class="fa-regular fa-compass"></i> Diagnóstico & Triangulación de Roles
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-herramientas')" style="border: 1px solid rgba(139, 92, 246, 0.4); background: rgba(139, 92, 246, 0.08);">
+                <i class="fa-solid fa-toolbox" style="color: var(--accent-purple);"></i> 🛠️ Kit de Herramientas & Checklists
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-horario')">
+                <i class="fa-regular fa-clock"></i> Time Blocking 24H (Mapeador)
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-kanban')">
+                <i class="fa-solid fa-list-check"></i> Kanban GTD (Límite WIP=2)
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-eisenhower')">
+                <i class="fa-solid fa-table-cells-large"></i> Matriz Eisenhower Quirúrgica
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-inventario')" style="border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08);">
+                <i class="fa-solid fa-award" style="color: #10b981;"></i> 🏆 Inventario Diario de Resultados
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-doctorado')">
+                <i class="fa-solid fa-graduation-cap"></i> Doctorado & Obra Literaria
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-tomas')">
+                <i class="fa-solid fa-child-reaching"></i> Logística Familiar & Tomás (13 años)
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-finanzas')">
+                <i class="fa-solid fa-wallet"></i> GPS Financiero 50/30/20
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-imprimibles')" style="border: 1px solid rgba(139, 92, 246, 0.45); background: rgba(139, 92, 246, 0.08);">
+                <i class="fa-solid fa-print" style="color: #a78bfa;"></i> 📄 Hub Imprimibles Físicos
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-accion')" style="border: 1px solid rgba(255, 255, 255, 0.2);">
+                <i class="fa-solid fa-bolt" style="color: #60a5fa;"></i> ⚡ Plan Inmediato: Semana sin Tomás
+            </button>
+        </nav>
+
+        <!-- =========================================================================
+             TAB 1: DIAGNÓSTICO & TRIANGULACIÓN DE ROLES
+             ========================================================================= -->
+        <div id="tab-diagnostico" class="tab-content active">
+            <div class="diagnostic-box">
+                <div class="hero-tea-badge" style="background:rgba(139,92,246,0.15); border-color:#8b5cf6; color:#a78bfa;">
+                    <i class="fa-solid fa-compass"></i> Diagnóstico Humano & Deconstrucción de la Insuficiencia
+                </div>
+                <h3 style="font-family:var(--font-display); font-size:1.45rem; font-weight:800; margin:0.4rem 0 0.5rem 0;">
+                    Desactivando la Falsa Insuficiencia: Del Cansancio Mental a la Paz Operativa
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.6; max-width:980px;">
+                    Alejandra, la evaluación clínica de Diego confirma que <strong>haces muchísimo más que lo suficiente</strong>. Sostienes una crianza en solitario como inmigrante en Asturias, preparas una postulación doctoral de altísimo rigor metodológico, publicas libros con regularidad y atiendes la logística doméstica. El sentimiento de "no avanzar" es generado porque las tareas invisibles de cuidado y trámites consumen energía real pero tu mente hiperanalítica no las registra como "producción". Este plan divide tu vida en 5 territorios delimitados para erradicar la culpa cruzada.
+                </p>
+            </div>
+
+            <!-- Los 5 Sombreros Vitales -->
+            <div class="card-custom">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin-bottom:1.2rem; display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-masks-theater" style="color:var(--accent-purple);"></i> Los 5 Sombreros Vitales de Alejandra
+                </h3>
+                <div class="grid-3">
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-left:4px solid #ec4899; border-radius:10px; padding:1.2rem;">
+                        <h4 style="color:#f472b6; font-size:0.95rem; font-weight:800; margin:0 0 0.4rem 0;">🌸 Alejandra Corporal</h4>
+                        <p style="font-size:0.82rem; color:#cbd5e1; line-height:1.5;">Sueño de 7.5h, alimentación, caminatas por Oviedo, clases de esgrima o gimnasio. <em>Boundary: Luces fuera a las 23:00.</em></p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-left:4px solid #3b82f6; border-radius:10px; padding:1.2rem;">
+                        <h4 style="color:#60a5fa; font-size:0.95rem; font-weight:800; margin:0 0 0.4rem 0;">👶 Mamá Presente</h4>
+                        <p style="font-size:0.82rem; color:#cbd5e1; line-height:1.5;">Crianza de Tomás (13 años), logística escolar, karate, piano y el <strong>Jueves Sagrado de Balance</strong>. <em>Boundary: Cero correos en tardes familiares.</em></p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-left:4px solid var(--accent-purple); border-radius:10px; padding:1.2rem;">
+                        <h4 style="color:#a78bfa; font-size:0.95rem; font-weight:800; margin:0 0 0.4rem 0;">🎓 Investigadora Doctoral</h4>
+                        <p style="font-size:0.82rem; color:#cbd5e1; line-height:1.5;">Universidad de Oviedo, Filosofía de la Ciencia, propuesta al 12 de Octubre y beca de 4 años. <em>Boundary: Mañanas 08:00 a 14:00 blindadas.</em></p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-left:4px solid #f59e0b; border-radius:10px; padding:1.2rem;">
+                        <h4 style="color:#fbbf24; font-size:0.95rem; font-weight:800; margin:0 0 0.4rem 0;">🖋️ Escritora (Juana Mattei)</h4>
+                        <p style="font-size:0.82rem; color:#cbd5e1; line-height:1.5;">Poesía, 2da novela y filosofía para niños. <em>Boundary: Captura rápida en libreta; posponer desarrollo largo a post-12 oct.</em></p>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-left:4px solid #10b981; border-radius:10px; padding:1.2rem;">
+                        <h4 style="color:#34d399; font-size:0.95rem; font-weight:800; margin:0 0 0.4rem 0;">🌿 Gestora Inmigrante</h4>
+                        <p style="font-size:0.82rem; color:#cbd5e1; line-height:1.5;">Trámites de extranjería, huerta comunitaria, ahorro para licencia de conducir y búsqueda de vivienda. <em>Boundary: Viernes por la mañana.</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 2: KIT DE HERRAMIENTAS & CHECKLISTS
+             ========================================================================= -->
+        <div id="tab-herramientas" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:#10b981; background:linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(15,23,42,0.7) 100%);">
+                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
+                    🛠️ Kit de Herramientas Didácticas & Protocolos Clínicos
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
+                    Micro-hábitos y protocolos de rescate operativo con memorización de progreso en tu equipo para superar la inercia sin agotamiento.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <!-- Herramienta 1: Protocolo Paso Cero -->
+                <div class="tool-card-rich">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h4 style="color:#fff; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0;">
+                            ⏱️ Protocolo Paso Cero (5 Minutos)
+                        </h4>
+                        <span style="background:rgba(139,92,246,0.15); color:#a78bfa; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px;">Baja Energía</span>
+                    </div>
+                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.45;">Para vencer la resistencia ante un documento burocrático o texto denso: abre el archivo y programa solo 5 minutos.</p>
+                    <div class="tool-checklist-items" id="checklist-paso-cero">
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_p0_1')">
+                            <span>1. Abrir el archivo Word de la Propuesta de Tesis sin la obligación de escribir perfecto.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_p0_2')">
+                            <span>2. Poner temporizador de 5 minutos en el celular (modo avión).</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_p0_3')">
+                            <span>3. Escribir 3 frases semilla o ajustar 1 subtítulo. Al sonar el timbre, eres libre de parar o continuar.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Herramienta 2: Cocina Adelantada -->
+                <div class="tool-card-rich">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h4 style="color:#fff; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0;">
+                            🍳 Protocolo Cocina Adelantada
+                        </h4>
+                        <span style="background:rgba(16,185,129,0.15); color:#34d399; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px;">Blindaje Matutino</span>
+                    </div>
+                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.45;">Protege tus mañanas de 08:00 a 14:00 asegurando que la comida de Tomás esté resuelta desde la noche anterior.</p>
+                    <div class="tool-checklist-items" id="checklist-cocina">
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_c1')">
+                            <span>1. Dejar comida cocinada en recipientes de vidrio la noche anterior (19:30 – 20:30).</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_c2')">
+                            <span>2. Revisar merienda y agua de Tomás para el colegio antes de dormir.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_c3')">
+                            <span>3. A las 14:00: solo calentar y sentarse a disfrutar de la charla con Tomás sin estrés.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Herramienta 3: Ventana de Oro 90 min -->
+                <div class="tool-card-rich">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h4 style="color:#fff; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0;">
+                            ⏳ Ventana de Oro de Foco Profundo (90 min)
+                        </h4>
+                        <span style="background:rgba(59,130,246,0.15); color:#60a5fa; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px;">Doctorado Puro</span>
+                    </div>
+                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.45;">Bloques ininterrumpidos en tu mañana (08:30 – 10:00 y 10:30 – 12:00) para el avance de la propuesta.</p>
+                    <div class="tool-checklist-items" id="checklist-oro">
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_vo1')">
+                            <span>1. Celular en otra habitación o en modo silencio absoluto.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_vo2')">
+                            <span>2. Una sola pestaña abierta: documento de trabajo de la Beca Doctoral.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_vo3')">
+                            <span>3. Pausa activa de 15 min con estiramiento y té antes del segundo bloque.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Herramienta 4: Cierre Sagrado 23:00 -->
+                <div class="tool-card-rich">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h4 style="color:#fff; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0;">
+                            🌙 Cierre de Jornada Cero Culpa (22:45)
+                        </h4>
+                        <span style="background:rgba(239,68,68,0.15); color:#f87171; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px;">Higiene del Sueño</span>
+                    </div>
+                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.45;">Cierre mental para impedir que la cabeza siga trabajando en la cama.</p>
+                    <div class="tool-checklist-items" id="checklist-cierre">
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_cr1')">
+                            <span>1. Escribir 3 victorias en la pestaña de Inventario de Resultados o libreta.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_cr2')">
+                            <span>2. Apagar computador y alejar pantallas del velador a las 23:00.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_cr3')">
+                            <span>3. Respirar 3 veces profundo y soltar el control: "Lo hecho hoy fue suficiente".</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 3: TIME BLOCKING 24H & MAPEADOR POR CAJITAS
+             ========================================================================= -->
+        <div id="tab-horario" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:var(--amber); background:linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(15,23,42,0.7) 100%);">
+                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
+                    🕒 Time Blocking 24H & Mapeador por Cajitas de Colores
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
+                    Pinta tus bloques semanales para proteger tus <strong>30h de Foco Doctoral</strong>, tus <strong>Tardes de Tomás (Karate y Piano)</strong>, tu <strong>Jueves Sagrado de Balance</strong> y tus <strong>56h de sueño intocable</strong>. Puedes <strong>agregar nuevas categorías personalizadas (`+ Categoría`)</strong> o editar colores y nombres en cualquier momento.
+                </p>
+            </div>
+
+            <!-- Interfaz del Mapeador de Horarios -->
+            <div class="card">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:0.8rem;">
+                    <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;">
+                        ⏰ Mapeador Semanal 24 Horas (Alejandra Mattei)
+                    </span>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                        <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right:4px;">
+                            <i class="fa-solid fa-circle" style="font-size:7px;"></i> Auto-guardado en tu equipo
+                        </span>
+                        <button class="btn-schedule-action" id="btn-manual-save-schedule" onclick="manualSaveSchedule()" style="background:#ffffff; color:#000000; font-weight:800;">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Horario
+                        </button>
+                        <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
+                        <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG('Alejandra Mattei')">📸 Exportar Imagen (PNG)</button>
+                        <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
+                    </div>
+                </div>
+
+                <!-- SELECTOR DESPLEGABLE DE CALENDARIOS GUARDADOS -->
+                <div id="schedule-calendar-bar-container" class="schedule-calendar-bar-container">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; flex:1;">
+                        <span style="font-size:0.82rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-calendar-days" style="color:var(--accent-purple);"></i> Mis Calendarios:
+                        </span>
+                        <select id="schedule-calendar-select" class="schedule-calendar-select" onchange="handleCalendarSelectChange(this.value)">
+                        </select>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn-schedule-action" onclick="openSaveAsNewCalendarModal()" style="background:rgba(139,92,246,0.12); color:#a78bfa; border:1px solid rgba(139,92,246,0.35); font-weight:700;">
+                            <i class="fa-solid fa-folder-plus"></i> + Guardar Semana Actual
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-merge-calendar" onclick="openMergeCalendarsModal()" style="background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.35); font-weight:700;">
+                            <i class="fa-solid fa-layer-group"></i> Solapar / Fusionar
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="openRenameCalendarModal()" style="color:#ccc;">
+                            <i class="fa-solid fa-pen"></i> Renombrar
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-delete-active-calendar" onclick="deleteActiveCalendar()" style="color:#f87171; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);">
+                            <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="schedule-controls">
+                    <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
+                    <div class="brush-selector" id="brush-selector-container"></div>
+                </div>
+
+                <div class="schedule-scroll-wrapper" id="schedule-export-container">
+                    <table class="schedule-grid-table" id="schedule-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Hora</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-stats-bar" id="schedule-stats-container"></div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 4: KANBAN GTD CON LÍMITE WIP=2
+             ========================================================================= -->
+        <div id="tab-kanban" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:var(--blue); background:linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(15,23,42,0.7) 100%);">
+                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
+                    📋 Tablero Kanban GTD Minimalista (Regla Inquebrantable WIP = 2)
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
+                    Elimina la parálisis por exceso de frentes. La columna <strong>"En Proceso" no permite más de 2 tareas simultáneas</strong>. Para iniciar una tercera, debes cerrar una de las actuales o devolverla al Backlog.
+                </p>
+            </div>
+
+            <div class="card-custom">
+                <!-- Formulario Rápido de Captura -->
+                <div style="display:flex; gap:10px; margin-bottom:1.5rem; flex-wrap:wrap;">
+                    <input type="text" id="kanban-input-text" placeholder="Escribe una tarea o siguiente acción física..." style="flex:1; min-width:250px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:10px 14px; border-radius:8px; font-size:0.85rem; outline:none;">
+                    <select id="kanban-input-tag" style="background:#1a1a1a; border:1px solid #333; color:#fff; padding:10px 14px; border-radius:8px; font-size:0.85rem;">
+                        <option value="Doctorado">Doctorado</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Familia">Familia / Tomás</option>
+                        <option value="Literatura">Literatura</option>
+                        <option value="Trámites">Trámites / Extranjería</option>
+                    </select>
+                    <button onclick="addKanbanTaskManual()" style="background:var(--blue); color:#fff; border:none; padding:10px 18px; border-radius:8px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+                        <i class="fa-solid fa-plus"></i> Capturar Tarea
+                    </button>
+                </div>
+
+                <!-- Columnas Kanban -->
+                <div class="grid-3" style="align-items:start;">
+                    <!-- Columna 1: Backlog -->
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:10px; padding:1rem;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem;">
+                            <span style="font-family:var(--font-display); font-weight:800; font-size:0.9rem; color:#94a3b8;">🟡 BACKLOG / POR HACER</span>
+                            <span id="kanban-count-todo" style="background:#222; color:#aaa; font-size:0.75rem; padding:2px 7px; border-radius:10px;">0</span>
+                        </div>
+                        <div id="kanban-col-todo" style="display:flex; flex-direction:column; gap:0.7rem; min-height:200px;"></div>
+                    </div>
+
+                    <!-- Columna 2: En Proceso (WIP=2) -->
+                    <div style="background:rgba(59,130,246,0.04); border:2px solid var(--blue); border-radius:10px; padding:1rem;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid rgba(59,130,246,0.3); padding-bottom:0.5rem;">
+                            <span style="font-family:var(--font-display); font-weight:800; font-size:0.9rem; color:#60a5fa;">🔵 EN PROCESO (WIP=2)</span>
+                            <span id="kanban-count-wip" style="background:var(--blue); color:#fff; font-size:0.75rem; padding:2px 7px; border-radius:10px; font-weight:800;">0/2</span>
+                        </div>
+                        <div id="kanban-col-wip" style="display:flex; flex-direction:column; gap:0.7rem; min-height:200px;"></div>
+                    </div>
+
+                    <!-- Columna 3: Terminado -->
+                    <div style="background:rgba(16,185,129,0.04); border:1px solid var(--forest); border-radius:10px; padding:1rem;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid rgba(16,185,129,0.3); padding-bottom:0.5rem;">
+                            <span style="font-family:var(--font-display); font-weight:800; font-size:0.9rem; color:#34d399;">🟢 TERMINADO</span>
+                            <span id="kanban-count-done" style="background:var(--forest); color:#fff; font-size:0.75rem; padding:2px 7px; border-radius:10px; font-weight:800;">0</span>
+                        </div>
+                        <div id="kanban-col-done" style="display:flex; flex-direction:column; gap:0.7rem; min-height:200px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 5: MATRIZ DE EISENHOWER QUIRÚRGICA
+             ========================================================================= -->
+        <div id="tab-eisenhower" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:var(--rose); background:linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(15,23,42,0.7) 100%);">
+                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
+                    🗂️ Matriz de Eisenhower Quirúrgica (Sprint 12 de Octubre)
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
+                    Distingue con frialdad analítica lo que tiene fecha de vencimiento inmediata (12 de Octubre) de aquello que es vital para tu espíritu pero puede esperar su momento sin generar angustia.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <!-- Q1 -->
+                <div class="card-custom" style="border:2px solid #ef4444; background:rgba(239,68,68,0.04);">
+                    <h4 style="color:#f87171; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0 0 0.8rem 0;">
+                        🔴 Q1: URGENTE & IMPORTANTE (HACER YA)
+                    </h4>
+                    <ul style="color:#cbd5e1; font-size:0.86rem; line-height:1.6; padding-left:1.2rem; margin:0;">
+                        <li><strong>Propuesta de Tesis Doctoral:</strong> Fundamentación, estado de la cuestión y objetivos.</li>
+                        <li><strong>Cronograma a 4 Años:</strong> Plan de trabajo metodológico para la Beca.</li>
+                        <li><strong>Burocracia & Firmas:</strong> Compromisos de directores en la Univ. de Oviedo.</li>
+                        <li><strong>Expediente de Trabajo:</strong> Postulación formal al puesto de 1 año (8 a 16h).</li>
+                    </ul>
+                </div>
+
+                <!-- Q2 -->
+                <div class="card-custom" style="border:2px solid var(--forest); background:rgba(16,185,129,0.04);">
+                    <h4 style="color:#34d399; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0 0 0.8rem 0;">
+                        🟢 Q2: NO URGENTE & IMPORTANTE (AGENDAR & PROTEGER)
+                    </h4>
+                    <ul style="color:#cbd5e1; font-size:0.86rem; line-height:1.6; padding-left:1.2rem; margin:0;">
+                        <li><strong>Jueves de Balance con Tomás:</strong> Conversación y presencia afectiva sin pantallas.</li>
+                        <li><strong>Inventario Nocturno de Resultados:</strong> 3 minutos cada noche para tu salud mental.</li>
+                        <li><strong>Huerta Comunitaria & Senderismo:</strong> Conexión con la tierra asturiana (quincenal).</li>
+                        <li><strong>Plan Ahorro Licencia de Conducir:</strong> Soberanía de traslado a mediano plazo.</li>
+                    </ul>
+                </div>
+
+                <!-- Q3 -->
+                <div class="card-custom" style="border:1px solid #f59e0b; background:rgba(245,158,11,0.04);">
+                    <h4 style="color:#fbbf24; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0 0 0.8rem 0;">
+                        🟡 Q3: URGENTE PERO NO IMPORTANTE (DELEGAR / LIMITAR)
+                    </h4>
+                    <ul style="color:#cbd5e1; font-size:0.86rem; line-height:1.6; padding-left:1.2rem; margin:0;">
+                        <li><strong>Cocinar a última hora al mediodía:</strong> Resuelto con la regla de cocina adelantada.</li>
+                        <li><strong>Aseo matutino del hogar:</strong> Prohibido en la ventana de 08:00 a 14:00.</li>
+                        <li><strong>Mensajes y solicitudes de terceros:</strong> Responder solo al final de la tarde.</li>
+                    </ul>
+                </div>
+
+                <!-- Q4 -->
+                <div class="card-custom" style="border:1px solid #64748b; background:rgba(255,255,255,0.01);">
+                    <h4 style="color:#94a3b8; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0 0 0.8rem 0;">
+                        ⚪ Q4: NI URGENTE NI IMPORTANTE (ELIMINAR SIN CULPA)
+                    </h4>
+                    <ul style="color:#cbd5e1; font-size:0.86rem; line-height:1.6; padding-left:1.2rem; margin:0;">
+                        <li><strong>Rumiación sobre "no hacer lo suficiente":</strong> Falso sesgo a desactivar.</li>
+                        <li><strong>Exigencia de escribir la segunda novela ya:</strong> Posponer a post-12 de octubre.</li>
+                        <li><strong>Dispersión en redes o lectura infinita de noticias geopolíticas.</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 6: INVENTARIO DIARIO DE RESULTADOS (HERRAMIENTA CENTRAL)
+             ========================================================================= -->
+        <div id="tab-inventario" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:var(--forest); background:linear-gradient(135deg, rgba(16,185,129,0.09) 0%, rgba(15,23,42,0.7) 100%);">
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.2); color:#34d399; padding:4px 12px; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:0.5rem;">
+                    <i class="fa-solid fa-star"></i> PRESCRIPCIÓN CRÍTICA DE DIEGO (AH)
+                </div>
+                <h3 style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; margin:0.2rem 0 0.4rem 0;">
+                    🏆 El Inventario Diario de Resultados ("Cero Insuficiencia")
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.55; margin:0;">
+                    Alejandra, esta herramienta es tu anclaje de paz. Como tu mente tiende a olvidar todo el esfuerzo invisible del día y te susurra que "no hiciste nada", este registro digital y análogo te obliga a certificar <strong>3 victorias diarias</strong> antes de dormir. Al cabo de una semana tendrás 21 pruebas irrefutables de tu inmenso trabajo.
+                </p>
+            </div>
+
+            <!-- Formulario de Registro Diario -->
+            <div class="inventory-form-box">
+                <h4 style="font-family:var(--font-display); color:#fff; font-size:1.1rem; font-weight:800; margin:0 0 1rem 0; display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-pen-nib" style="color:var(--forest);"></i> Registrar Victorias de Hoy (3 Minutos)
+                </h4>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1rem;">
+                    <div>
+                        <label style="font-size:0.78rem; font-weight:700; color:#60a5fa; text-transform:uppercase; margin-bottom:4px; display:block;">1. Maternidad / Tomás / Hogar</label>
+                        <input type="text" id="inv-input-fam" class="inventory-input" placeholder="Ej: Dejé lista la comida, charlé 20 min con Tomás...">
+                    </div>
+                    <div>
+                        <label style="font-size:0.78rem; font-weight:700; color:#a78bfa; text-transform:uppercase; margin-bottom:4px; display:block;">2. Intelecto / Doctorado / Obra</label>
+                        <input type="text" id="inv-input-doc" class="inventory-input" placeholder="Ej: Redacté 2 páginas de la propuesta, organicé citas...">
+                    </div>
+                    <div>
+                        <label style="font-size:0.78rem; font-weight:700; color:#34d399; text-transform:uppercase; margin-bottom:4px; display:block;">3. Autocuidado / Salud / Emoción</label>
+                        <input type="text" id="inv-input-care" class="inventory-input" placeholder="Ej: Caminé 30 min, comí tranquila, dormí siesta...">
+                    </div>
+                </div>
+                <button onclick="saveInventoryEntry()" style="background:var(--forest); color:#000; border:none; padding:10px 22px; border-radius:8px; font-weight:800; font-size:0.88rem; cursor:pointer; display:inline-flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-check"></i> Archivar Victorias de Hoy & Descansar en Paz
+                </button>
+            </div>
+
+            <!-- Registro Acumulado de Logros -->
+            <div class="card-custom">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+                    <h4 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; margin:0;">
+                        📜 Bitácora Histórica de Victorias Registradas
+                    </h4>
+                    <span id="inv-total-counter" style="background:rgba(16,185,129,0.15); color:#34d399; font-weight:800; font-size:0.8rem; padding:4px 10px; border-radius:20px;">
+                        0 Días Registrados
+                    </span>
+                </div>
+                <div id="inventory-history-container">
+                    <!-- Inyectado dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 7: DOCTORADO & OBRA LITERARIA
+             ========================================================================= -->
+        <div id="tab-doctorado" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:var(--accent-purple);">
+                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
+                    🎓 Doctorado en Filosofía de la Ciencia & Creación Literaria
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
+                    Seguimiento riguroso del expediente para la Beca de 4 años en la Universidad de Oviedo y archivo de tu obra publicada bajo el seudónimo <strong>Juana Mattei</strong>.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <!-- Checklist Expediente 12 Octubre -->
+                <div class="card-custom">
+                    <h4 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin-bottom:1rem; color:#a78bfa;">
+                        📋 Expediente Beca Doctoral (4 Años) — 12 Octubre
+                    </h4>
+                    <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_doc_1')">
+                            <span>1. Propuesta de Tesis: Justificación epistemológica y estado del arte.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_doc_2')">
+                            <span>2. Cronograma de Trabajo y Metodología (Gantt 48 meses).</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_doc_3')">
+                            <span>3. Compromiso y firma del equipo de dirección doctoral (Univ. de Oviedo).</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_doc_4')">
+                            <span>4. Homologación y certificados oficiales de notas y grado académico.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" onchange="toggleCheck(this, 'ale_doc_5')">
+                            <span>5. Memoria curricular CVC/CVN actualizada con publicaciones.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Obra Literaria -->
+                <div class="card-custom">
+                    <h4 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin-bottom:1rem; color:#fbbf24;">
+                        📚 Obra Publicada & Proyectos Creativos (Juana Mattei)
+                    </h4>
+                    <ul style="color:#cbd5e1; font-size:0.86rem; line-height:1.6; padding-left:1.2rem; margin:0 0 1rem 0;">
+                        <li><strong>Primera Novela (2026):</strong> Publicada en Asturias; presentación inaugural en el Congreso de Filosofía para Niños.</li>
+                        <li><strong>Haz de Luz (2025):</strong> Poemario en coautoría con poeta del Biobío, galardonado por Editorial Mujeres de Letras (Chile).</li>
+                        <li><strong>El Secreto de la Madre (2024):</strong> Poemario ganador de premio manuscrito en Madrid.</li>
+                        <li><strong>Dramaturgia y Teatro:</strong> Cápsulas dramáticas puestas en escena por actrices en Chile y España.</li>
+                    </ul>
+                    <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.3); padding:0.8rem; border-radius:8px; font-size:0.82rem; color:#fde68a;">
+                        💡 <strong>Segunda Novela & Nuevos Poemarios:</strong> Capturar ideas sueltas en la libreta. La fase de redacción profunda se desbloqueará una vez concluido el sprint del 12 de octubre.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 8: LOGÍSTICA FAMILIAR & TOMÁS
+             ========================================================================= -->
+        <div id="tab-tomas" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:#3b82f6;">
+                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
+                    👶 Logística Familiar & Acompañamiento a Tomás (13 Años)
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
+                    Estructura clara de actividades extraprogramáticas, alimentación y el espacio protegido para el vínculo madre-hijo.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <!-- Horario de Actividades de Tomás -->
+                <div class="card-custom">
+                    <h4 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin-bottom:1rem; color:#60a5fa;">
+                        🥋 Cronograma Semanal de Tomás
+                    </h4>
+                    <table style="width:100%; border-collapse:collapse; font-size:0.83rem;">
+                        <thead>
+                            <tr style="border-bottom:1px solid #333; text-align:left; color:#94a3b8;">
+                                <th style="padding:6px 8px;">Día</th>
+                                <th style="padding:6px 8px;">Horario</th>
+                                <th style="padding:6px 8px;">Actividad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid #222;">
+                                <td style="padding:8px;"><strong>Lunes</strong></td>
+                                <td style="padding:8px; color:#a78bfa;">17:00 a 19:00</td>
+                                <td style="padding:8px;">🥋 Karate</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #222;">
+                                <td style="padding:8px;"><strong>Martes</strong></td>
+                                <td style="padding:8px; color:#f472b6;">17:00</td>
+                                <td style="padding:8px;">🎹 Piano</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #222;">
+                                <td style="padding:8px;"><strong>Miércoles</strong></td>
+                                <td style="padding:8px; color:#a78bfa;">17:00 a 19:00</td>
+                                <td style="padding:8px;">🥋 Karate</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #222; background:rgba(245,158,11,0.06);">
+                                <td style="padding:8px; font-weight:800; color:#fbbf24;">Jueves</td>
+                                <td style="padding:8px; color:#fbbf24; font-weight:800;">Tarde Libre</td>
+                                <td style="padding:8px; color:#fbbf24; font-weight:800;">🌟 Encuentro & Balance Semanal</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #222;">
+                                <td style="padding:8px;"><strong>Viernes</strong></td>
+                                <td style="padding:8px; color:#a78bfa;">17:00 a 19:00</td>
+                                <td style="padding:8px;">🥋 Karate</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #222;">
+                                <td style="padding:8px;"><strong>Sábado</strong></td>
+                                <td style="padding:8px; color:#34d399;">Mañana</td>
+                                <td style="padding:8px;">🤺 Esgrima (Alejandra evalúa sumarse)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px;"><strong>Domingo</strong></td>
+                                <td style="padding:8px; color:#10b981;">Quincenal</td>
+                                <td style="padding:8px;">🌿 Huerta Comunitaria Familiar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- El Ritual del Jueves -->
+                <div class="card-custom" style="border-left:4px solid #f59e0b;">
+                    <h4 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin-bottom:0.8rem; color:#fbbf24;">
+                        🌟 El Ritual Sagrado del Jueves de Balance
+                    </h4>
+                    <p style="font-size:0.86rem; color:#cbd5e1; line-height:1.55; margin-bottom:1rem;">
+                        Como Tomás tiene la tarde libre los jueves, este día se consagra al encuentro consciente. Es el espacio donde ambos se escuchan sin el apuro de las tareas o extraprogramáticas:
+                    </p>
+                    <ul style="color:#cbd5e1; font-size:0.84rem; line-height:1.6; padding-left:1.2rem; margin:0;">
+                        <li><strong>Escucha Activa:</strong> Saber cómo se sintió Tomás en la semana escolar.</li>
+                        <li><strong>Corresponsabilidad:</strong> Repasar juntos acuerdos del hogar y mochilas.</li>
+                        <li><strong>Celebración:</strong> Merienda especial o paseo corto por Oviedo.</li>
+                        <li><strong>Presencia Pura:</strong> Computador cerrado y modo descanso activado.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 9: GPS FINANCIERO 50/30/20 & ESCENARIOS
+             ========================================================================= -->
+        <div id="tab-finanzas" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:var(--forest);">
+                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
+                    💵 GPS Financiero 50/30/20 & Bifurcación al 12 de Octubre
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
+                    Modelado comparativo de los dos escenarios económicos posibles para sostener la tranquilidad de Alejandra y Tomás en España.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <!-- Escenario A -->
+                <div class="card-custom" style="border-top:4px solid var(--accent-purple);">
+                    <div style="display:inline-block; background:rgba(139,92,246,0.15); color:#a78bfa; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:10px; margin-bottom:0.5rem;">ESCENARIO A</div>
+                    <h4 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; margin:0 0 0.5rem 0; color:#fff;">
+                        Beca Doctoral FPI/FPU (4 Años de Contrato)
+                    </h4>
+                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.5;">Resolución en febrero de 2027. Ingresos estables de investigación a tiempo completo.</p>
+                    <ul style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; padding-left:1.2rem;">
+                        <li><strong>50% Necesidades:</strong> Arriendo en Oviedo, alimentación, suministros y gastos escolares de Tomás.</li>
+                        <li><strong>30% Estilo de Vida:</strong> Karate, piano, salidas y cuota de esgrima/gimnasio.</li>
+                        <li><strong>20% Ahorro:</strong> Fondo para licencia de conducir y fondo de vivienda definitiva.</li>
+                    </ul>
+                </div>
+
+                <!-- Escenario B -->
+                <div class="card-custom" style="border-top:4px solid #3b82f6;">
+                    <div style="display:inline-block; background:rgba(59,130,246,0.15); color:#60a5fa; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:10px; margin-bottom:0.5rem;">ESCENARIO B</div>
+                    <h4 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; margin:0 0 0.5rem 0; color:#fff;">
+                        Trabajo Formal 1 Año (Jornada 08:00 a 16:00)
+                    </h4>
+                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.5;">Comienzo en octubre de 2026. Estabilidad salarial inmediata combinada con tesis nocturna.</p>
+                    <ul style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; padding-left:1.2rem;">
+                        <li><strong>50% Necesidades:</strong> Cobertura holgada del presupuesto base de vida.</li>
+                        <li><strong>30% Soporte Operativo:</strong> Aliviar tareas domésticas para cuidar la energía nocturna.</li>
+                        <li><strong>20% Ahorro Acelerado:</strong> Conseguir la licencia de conducir en los primeros 4 meses.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Metas de Ahorro Clave -->
+            <div class="card-custom">
+                <h4 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin-bottom:1rem; color:#10b981;">
+                    🎯 Metas de Ahorro para la Soberanía de Vida
+                </h4>
+                <div class="grid-2">
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); padding:1rem; border-radius:10px;">
+                        <h5 style="color:#fff; font-size:0.92rem; font-weight:800; margin:0 0 0.3rem 0;">🚗 Licencia de Conducir en España</h5>
+                        <p style="font-size:0.82rem; color:#94a3b8; margin:0 0 0.6rem 0;">Meta estimada: ~1.000€ (autoescuela, tasas y clases prácticas). Clave para autonomía familiar y salidas de campo.</p>
+                        <div style="width:100%; height:8px; background:#222; border-radius:4px; overflow:hidden;">
+                            <div style="width:15%; height:100%; background:var(--forest);"></div>
+                        </div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); padding:1rem; border-radius:10px;">
+                        <h5 style="color:#fff; font-size:0.92rem; font-weight:800; margin:0 0 0.3rem 0;">🏠 Fondo de Mudanza / Hogar Definitivo</h5>
+                        <p style="font-size:0.82rem; color:#94a3b8; margin:0 0 0.6rem 0;">Reserva para fianza y mudanza a un espacio más amplio y cómodo en Asturias a largo plazo.</p>
+                        <div style="width:100%; height:8px; background:#222; border-radius:4px; overflow:hidden;">
+                            <div style="width:10%; height:100%; background:var(--accent-purple);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 10: HUB DE IMPRIMIBLES FÍSICOS
+             ========================================================================= -->
+        <div id="tab-imprimibles" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:#a78bfa;">
+                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
+                    📄 Hub Maestro de Imprimibles Físicos (5 Hojas Carta/A4)
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
+                    Para descansar la vista de las pantallas y trabajar en análogo sobre tu escritorio o pared. Este hub consolida todas las herramientas en un único documento imprimible.
+                </p>
+            </div>
+
+            <div class="card-custom" style="text-align:center; padding:2.5rem 1.5rem;">
+                <div style="font-size:3rem; margin-bottom:1rem;">🖨️</div>
+                <h4 style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; margin-bottom:0.5rem;">
+                    Cuadernillo Físico Maestro de Alejandra
+                </h4>
+                <p style="color:#94a3b8; font-size:0.88rem; max-width:600px; margin:0 auto 1.5rem auto; line-height:1.5;">
+                    Contiene: (1) Ficha de Triangulación de Roles 168h, (2) Malla Semanal Time Blocking, (3) Tablero Kanban Tres Vías, (4) Matriz de Eisenhower y (5) Bitácora Nocturna de 30 Días del Inventario de Resultados.
+                </p>
+                <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Alejandra.html" target="_blank" style="background:var(--accent-purple); color:#fff; text-decoration:none; padding:12px 24px; border-radius:8px; font-weight:800; font-size:0.92rem; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 20px rgba(139,92,246,0.35);">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Hub de Imprimibles en Nueva Pestaña
+                </a>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 11: PLAN INMEDIATO (ESTA SEMANA SIN TOMÁS)
+             ========================================================================= -->
+        <div id="tab-accion" class="tab-content">
+            <div class="diagnostic-box" style="border-left-color:#60a5fa; background:linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(15,23,42,0.7) 100%);">
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(59,130,246,0.2); color:#60a5fa; padding:4px 12px; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:0.5rem;">
+                    <i class="fa-solid fa-bolt"></i> VENTANA DE ORO: 15 AL 19 DE SEPTIEMBRE
+                </div>
+                <h3 style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; margin:0.2rem 0 0.4rem 0;">
+                    Plan Quirúrgico Inmediato: La Semana sin Tomás
+                </h3>
+                <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.55; margin:0;">
+                    Tomás regresa con su padre el sábado. Esta semana representa tu ventana de oro de máxima concentración para despejar la burocracia pesada y redactar el núcleo duro de la propuesta doctoral antes de retomar la logística compartida.
+                </p>
+            </div>
+
+            <div class="card-custom">
+                <h4 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; margin-bottom:1rem; color:#fff;">
+                    🚀 5 Compromisos Innegociables para Esta Semana
+                </h4>
+                <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                    <label class="tool-check-item">
+                        <input type="checkbox" onchange="toggleCheck(this, 'ale_sem_1')">
+                        <span><strong>1. Borrador Maestro de la Propuesta de Tesis:</strong> Redactar fundamentación epistemológica e hipótesis de trabajo.</span>
+                    </label>
+                    <label class="tool-check-item">
+                        <input type="checkbox" onchange="toggleCheck(this, 'ale_sem_2')">
+                        <span><strong>2. Plan de Trabajo a 4 Años:</strong> Estructurar cronograma de actividades por semestres para la Beca.</span>
+                    </label>
+                    <label class="tool-check-item">
+                        <input type="checkbox" onchange="toggleCheck(this, 'ale_sem_3')">
+                        <span><strong>3. Correos a Directores:</strong> Enviar propuesta preliminar solicitando cartas de aval y firmas oficiales.</span>
+                    </label>
+                    <label class="tool-check-item">
+                        <input type="checkbox" onchange="toggleCheck(this, 'ale_sem_4')">
+                        <span><strong>4. CV Normalizado (CVC/CVN):</strong> Actualizar formato español para la convocatoria del puesto laboral.</span>
+                    </label>
+                    <label class="tool-check-item">
+                        <input type="checkbox" onchange="toggleCheck(this, 'ale_sem_5')">
+                        <span><strong>5. Inventario Nocturno Diario:</strong> Registrar cada noche las victorias del día y dormir a las 23:00 sin culpa.</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL 1: GESTIÓN DE CATEGORÍAS 24H (SCHEDULE ENGINE) -->
+    <div id="modal-category-manager" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>⚙️ Gestionar Categorías 24H</span>
+                <button class="modal-close-btn" onclick="closeCategoryManagerModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Edita las categorías de tiempo o agrega nuevas.</p>
+            <div id="category-manager-list" style="display:flex; flex-direction:column; gap:0.6rem; max-height:240px; overflow-y:auto; margin-bottom:1.2rem; padding-right:4px;"></div>
+            <div style="border-top:1px solid #222; padding-top:0.8rem; margin-bottom:1rem;">
+                <span style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">+ Agregar Nueva Categoría:</span>
+                <div style="display:flex; gap:6px; margin-top:0.4rem;">
+                    <input type="text" id="new-cat-label" placeholder="Nombre (ej. Proyecto X)" style="flex:2; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="text" id="new-cat-tag" placeholder="Tag (ej. PROY)" style="flex:1; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
+                    <input type="color" id="new-cat-color" value="#8b5cf6" style="width:36px; height:32px; background:transparent; border:none; cursor:pointer;">
+                    <button class="btn-card-action" onclick="addNewCategoryFromModal()" style="background:#fff; color:#000; font-weight:800;">+</button>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; gap:8px;">
+                <button class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color:#f87171; font-size:0.75rem;">Restablecer Predeterminadas</button>
+                <button class="btn-gateway-login" onclick="closeCategoryManagerModal()" style="width:auto; padding:6px 16px; margin:0; font-size:0.8rem;">Cerrar y Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: RELLENAR POR RANGO (SCHEDULE ENGINE) -->
+    <div id="modal-range-fill" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>⚡ Rellenar Horario por Rango</span>
+                <button class="modal-close-btn" onclick="closeRangeFillModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Pinta bloques continuos de una sola vez.</p>
+            <div style="display:flex; flex-direction:column; gap:0.8rem; margin-bottom:1.2rem;">
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Categoría:</label>
+                    <select id="range-category-select" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Inicio:</label>
+                        <select id="range-start-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Fin (inclusive):</label>
+                        <select id="range-end-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                    </div>
+                </div>
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700; display:block; margin-bottom:4px;">Días a Aplicar:</label>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-0" checked> Lun</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-1" checked> Mar</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-2" checked> Mié</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-3" checked> Jue</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-4" checked> Vie</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-5"> Sáb</label>
+                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-6"> Dom</label>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:8px;">
+                <button class="btn-schedule-action" onclick="closeRangeFillModal()">Cancelar</button>
+                <button class="btn-gateway-login" onclick="applyRangeFill()" style="width:auto; padding:6px 16px; margin:0; font-size:0.85rem;">Aplicar Relleno</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: SOLAPAR / FUSIONAR CALENDARIOS -->
+    <div id="modal-merge-calendars" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>🔀 Solapar / Fusionar Calendarios</span>
+                <button class="modal-close-btn" onclick="closeMergeCalendarsModal()">&times;</button>
+            </div>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Trae los bloques de otro calendario guardado hacia este calendario activo.</p>
+            <div style="display:flex; flex-direction:column; gap:0.8rem; margin-bottom:1.2rem;">
+                <div>
+                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Calendario Origen:</label>
+                    <select id="merge-source-select" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
+                </div>
+                <div>
+                    <label style="font-size:0.8rem; color:#ccc; display:flex; align-items:center; gap:6px;">
+                        <input type="checkbox" id="merge-only-empty" checked>
+                        <span>Solo rellenar celdas en blanco (no sobreescribir bloques ya pintados)</span>
+                    </label>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:8px;">
+                <button class="btn-schedule-action" onclick="closeMergeCalendarsModal()">Cancelar</button>
+                <button class="btn-gateway-login" onclick="executeMergeCalendars()" style="width:auto; padding:6px 16px; margin:0; font-size:0.85rem; background:var(--accent-purple);">Fusionar Horarios</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIGURACIÓN GLOBAL JAVASCRIPT DE ALEJANDRA -->
+    <script>
+        window.CLIENT_CONFIG = {
+            clientId: "alejandra",
+            clientName: "Alejandra Mattei",
+            clientPIN: "alejandra2026",
+            masterPIN: "diego_ah_master"
+        };
+
+        // CATEGORÍAS PRE-CONFIGURADAS PARA HORARIO SEMANAL DE ALEJANDRA
+        window.CLIENT_SCHEDULE_CATEGORIES = [
+            { id: "cat-sueno", name: "😴 Sueño & Recarga Biológica (56h)", label: "😴 Sueño & Recarga Biológica (56h)", color: "#6366f1", tag: "SUEÑO" },
+            { id: "cat-doctorado", name: "🎓 Ventana Oro: Doctorado & Beca (30h)", label: "🎓 Ventana Oro: Doctorado & Beca (30h)", color: "#8b5cf6", tag: "DOCTOR" },
+            { id: "cat-tomas", name: "👶 Crianza Presente & Tomás (13 años)", label: "👶 Crianza Presente & Tomás (13 años)", color: "#f59e0b", tag: "TOMÁS" },
+            { id: "cat-jueves", name: "🌟 Jueves Sagrado: Balance Madre-Hijo", label: "🌟 Jueves Sagrado: Balance Madre-Hijo", color: "#eab308", tag: "BALANCE" },
+            { id: "cat-karate-piano", name: "🥋 Extraprogramáticas: Karate & Piano", label: "🥋 Extraprogramáticas: Karate & Piano", color: "#ec4899", tag: "EXTRA" },
+            { id: "cat-literatura", name: "🖋️ Creación Literaria & Obra (Juana Mattei)", label: "🖋️ Creación Literaria & Obra (Juana Mattei)", color: "#3b82f6", tag: "OBRA" },
+            { id: "cat-huerta", name: "🌱 Huerta Comunitaria, Naturaleza & Deporte", label: "🌱 Huerta Comunitaria, Naturaleza & Deporte", color: "#10b981", tag: "HUERTA" },
+            { id: "cat-logistica", name: "🏡 Logística Hogar & Cocina Adelantada", label: "🏡 Logística Hogar & Cocina Adelantada", color: "#64748b", tag: "HOGAR" },
+            { id: "cat-libre", name: "⚪ Margen Flexible & Descanso Mental", label: "⚪ Margen Flexible & Descanso Mental", color: "#334155", tag: "LIBRE" }
+        ];
+
+        // PRESETS SEMANALES PRE-CONFIGURADOS (CARGA REAL Y COMPLETA)
+        window.CLIENT_SCHEDULE_PRESETS = [
+            {
+                id: "semana_maestra_alejandra",
+                name: "Semana Maestra Alejandra (Doctorado + Tomás + Balance Jueves)",
+                categories: window.CLIENT_SCHEDULE_CATEGORIES,
+                data: (function() {
+                    const d = {};
+                    // Sueño de 23:00 a 07:00 todos los días (56h)
+                    for (let day = 0; day < 7; day++) {
+                        d[`${day}-23`] = "cat-sueno";
+                        for (let h = 0; h <= 6; h++) {
+                            d[`${day}-${h}`] = "cat-sueno";
+                        }
+                    }
+
+                    // LUNES (0): Doctorado 8 a 14h + Almuerzo Tomás + Karate 17 a 19h
+                    d["0-7"] = "cat-logistica"; // Puesta a punto casa y Tomás al cole a las 8:00
+                    for (let h = 8; h <= 13; h++) d[`0-${h}`] = "cat-doctorado";
+                    d["0-14"] = "cat-tomas"; // Almuerzo con comida adelantada
+                    d["0-15"] = "cat-tomas";
+                    d["0-16"] = "cat-logistica";
+                    d["0-17"] = "cat-karate-piano"; // Karate Tomás
+                    d["0-18"] = "cat-karate-piano";
+                    d["0-19"] = "cat-logistica"; // Cocina adelantada para mañana
+                    d["0-20"] = "cat-tomas"; // Cena familiar
+                    d["0-21"] = "cat-literatura"; // Lectura suave
+                    d["0-22"] = "cat-libre"; // Inventario de Resultados (3 min)
+
+                    // MARTES (1): Doctorado 8 a 14h + Piano 17h
+                    d["1-7"] = "cat-logistica";
+                    for (let h = 8; h <= 13; h++) d[`1-${h}`] = "cat-doctorado";
+                    d["1-14"] = "cat-tomas";
+                    d["1-15"] = "cat-tomas";
+                    d["1-16"] = "cat-logistica";
+                    d["1-17"] = "cat-karate-piano"; // Piano Tomás
+                    d["1-18"] = "cat-tomas";
+                    d["1-19"] = "cat-logistica"; // Cocina adelantada
+                    d["1-20"] = "cat-tomas";
+                    d["1-21"] = "cat-literatura";
+                    d["1-22"] = "cat-libre";
+
+                    // MIÉRCOLES (2): Doctorado 8 a 14h + Karate 17 a 19h
+                    d["2-7"] = "cat-logistica";
+                    for (let h = 8; h <= 13; h++) d[`2-${h}`] = "cat-doctorado";
+                    d["2-14"] = "cat-tomas";
+                    d["2-15"] = "cat-tomas";
+                    d["2-16"] = "cat-logistica";
+                    d["2-17"] = "cat-karate-piano"; // Karate Tomás
+                    d["2-18"] = "cat-karate-piano";
+                    d["2-19"] = "cat-logistica";
+                    d["2-20"] = "cat-tomas";
+                    d["2-21"] = "cat-literatura";
+                    d["2-22"] = "cat-libre";
+
+                    // JUEVES (3): Doctorado 8 a 14h + 🌟 JUEVES SAGRADO DE BALANCE CON TOMÁS
+                    d["3-7"] = "cat-logistica";
+                    for (let h = 8; h <= 13; h++) d[`3-${h}`] = "cat-doctorado";
+                    d["3-14"] = "cat-tomas";
+                    d["3-15"] = "cat-tomas";
+                    d["3-16"] = "cat-tomas";
+                    d["3-17"] = "cat-jueves"; // 🌟 BALANCE MADRE-HIJO
+                    d["3-18"] = "cat-jueves";
+                    d["3-19"] = "cat-jueves";
+                    d["3-20"] = "cat-tomas";
+                    d["3-21"] = "cat-libre";
+                    d["3-22"] = "cat-libre";
+
+                    // VIERNES (4): Trámites & Cierre Beca + Karate 17 a 19h
+                    d["4-7"] = "cat-logistica";
+                    for (let h = 8; h <= 13; h++) d[`4-${h}`] = "cat-doctorado";
+                    d["4-14"] = "cat-tomas";
+                    d["4-15"] = "cat-tomas";
+                    d["4-16"] = "cat-logistica";
+                    d["4-17"] = "cat-karate-piano"; // Karate Tomás
+                    d["4-18"] = "cat-karate-piano";
+                    d["4-19"] = "cat-logistica";
+                    d["4-20"] = "cat-tomas";
+                    d["4-21"] = "cat-libre";
+                    d["4-22"] = "cat-libre";
+
+                    // SÁBADO (5): Esgrima Tomás Mañana + Paseos + Obra
+                    d["5-7"] = "cat-sueno";
+                    d["5-8"] = "cat-logistica";
+                    d["5-9"] = "cat-huerta"; // Esgrima Tomás (Alejandra evalúa sumarse)
+                    d["5-10"] = "cat-huerta";
+                    d["5-11"] = "cat-huerta";
+                    d["5-12"] = "cat-tomas";
+                    d["5-13"] = "cat-tomas";
+                    d["5-14"] = "cat-tomas";
+                    d["5-15"] = "cat-literatura"; // Creación literaria libre
+                    d["5-16"] = "cat-literatura";
+                    d["5-17"] = "cat-huerta"; // Paseo o parque
+                    d["5-18"] = "cat-huerta";
+                    d["5-19"] = "cat-tomas";
+                    d["5-20"] = "cat-tomas";
+                    d["5-21"] = "cat-libre";
+                    d["5-22"] = "cat-libre";
+
+                    // DOMINGO (6): Huerta Comunitaria Familiar Quincenal
+                    d["6-7"] = "cat-sueno";
+                    d["6-8"] = "cat-logistica";
+                    d["6-9"] = "cat-huerta"; // Huerta comunitaria o naturaleza asturiana
+                    d["6-10"] = "cat-huerta";
+                    d["6-11"] = "cat-huerta";
+                    d["6-12"] = "cat-huerta";
+                    d["6-13"] = "cat-tomas";
+                    d["6-14"] = "cat-tomas";
+                    d["6-15"] = "cat-libre";
+                    d["6-16"] = "cat-libre";
+                    d["6-17"] = "cat-tomas";
+                    d["6-18"] = "cat-tomas";
+                    d["6-19"] = "cat-logistica"; // Planificar semana Tomás
+                    d["6-20"] = "cat-tomas";
+                    d["6-21"] = "cat-libre";
+                    d["6-22"] = "cat-libre";
+
+                    return d;
+                })()
+            },
+            {
+                id: "semana_blanco",
+                name: "Semana en Blanco (Diseñar desde Cero)",
+                categories: window.CLIENT_SCHEDULE_CATEGORIES,
+                data: (function() {
+                    const d = {};
+                    for (let day = 0; day < 7; day++) {
+                        for (let h = 0; h < 24; h++) d[`${day}-${h}`] = "cat-libre";
+                    }
+                    return d;
+                })()
+            }
+        ];
+
+        // Semilla para asegurar carga del preset inicial
+        if (!localStorage.getItem("ale_schedule_master_seed_v1")) {
+            localStorage.removeItem("ale_schedule_saved_calendars_v3");
+            localStorage.setItem("ale_schedule_active_calendar_id_v3", "semana_maestra_alejandra");
+            localStorage.setItem("ale_schedule_master_seed_v1", "true");
+        }
+
+        // CONMUTACIÓN DE PESTAÑAS
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add('active');
+            
+            const btn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick')?.includes(tabId));
+            if (btn) btn.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // PERSISTENCIA DE CHECKLISTS EN LOCALSTORAGE
+        function toggleCheck(checkbox, storageKey) {
+            const item = checkbox.closest('.tool-check-item');
+            if (checkbox.checked) {
+                item.classList.add('completed');
+                localStorage.setItem(storageKey, 'true');
+            } else {
+                item.classList.remove('completed');
+                localStorage.removeItem(storageKey);
+            }
+            showToast("¡Progreso actualizado y guardado!");
+        }
+
+        function restoreChecklists() {
+            document.querySelectorAll('.tool-check-item input[type="checkbox"]').forEach(cb => {
+                const onclickAttr = cb.getAttribute('onchange');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/'([^']+)'/);
+                    if (match && match[1]) {
+                        const key = match[1];
+                        if (localStorage.getItem(key) === 'true') {
+                            cb.checked = true;
+                            cb.closest('.tool-check-item')?.classList.add('completed');
+                        }
+                    }
+                }
+            });
+        }
+
+        // TOAST NOTIFICATIONS
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            const text = document.getElementById('toast-text');
+            if (!toast || !text) return;
+            text.textContent = msg;
+            toast.style.display = 'flex';
+            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+
+        // INVENTARIO DE RESULTADOS (PERSISTENCIA LOCAL)
+        function saveInventoryEntry() {
+            const fam = document.getElementById('inv-input-fam').value.trim();
+            const doc = document.getElementById('inv-input-doc').value.trim();
+            const care = document.getElementById('inv-input-care').value.trim();
+
+            if (!fam && !doc && !care) {
+                alert("Por favor anota al menos una victoria del día.");
+                return;
+            }
+
+            const today = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            const entry = {
+                id: Date.now(),
+                fecha: today,
+                familia: fam || "Descanso y acompañamiento presente",
+                doctorado: doc || "Reflexión y lectura de fondo",
+                autocuidado: care || "Alimentación consciente y descanso"
+            };
+
+            const history = JSON.parse(localStorage.getItem('ale_inv_history') || '[]');
+            history.unshift(entry);
+            localStorage.setItem('ale_inv_history', JSON.stringify(history));
+
+            // Limpiar inputs
+            document.getElementById('inv-input-fam').value = '';
+            document.getElementById('inv-input-doc').value = '';
+            document.getElementById('inv-input-care').value = '';
+
+            renderInventoryHistory();
+            showToast("🏆 ¡Victorias archivadas con éxito! Que descanses en paz.");
+        }
+
+        function renderInventoryHistory() {
+            const container = document.getElementById('inventory-history-container');
+            const counter = document.getElementById('inv-total-counter');
+            if (!container) return;
+
+            const history = JSON.parse(localStorage.getItem('ale_inv_history') || '[]');
+            if (counter) counter.textContent = `${history.length} Jornadas Archivadas`;
+
+            if (history.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:2rem; color:#64748b; font-size:0.86rem;">
+                        <i class="fa-solid fa-moon" style="font-size:2rem; margin-bottom:0.6rem; opacity:0.4;"></i><br>
+                        Aún no tienes victorias registradas. ¡Anota las de hoy arriba para comenzar tu bitácora de paz!
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = history.map(item => `
+                <div class="inventory-log-card">
+                    <div style="flex:1;">
+                        <div style="font-size:0.76rem; color:var(--forest); font-weight:800; text-transform:uppercase; margin-bottom:4px;">
+                            ${item.fecha}
+                        </div>
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+                            <div><strong style="color:#60a5fa;">👶 Hogar:</strong> <span style="color:#cbd5e1;">${item.familia}</span></div>
+                            <div><strong style="color:#a78bfa;">🎓 Intelecto:</strong> <span style="color:#cbd5e1;">${item.doctorado}</span></div>
+                            <div><strong style="color:#34d399;">🌸 Salud:</strong> <span style="color:#cbd5e1;">${item.autocuidado}</span></div>
+                        </div>
+                    </div>
+                    <button onclick="deleteInventoryEntry(${item.id})" style="background:transparent; border:none; color:#64748b; cursor:pointer; font-size:0.9rem;" title="Eliminar registro">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function deleteInventoryEntry(id) {
+            let history = JSON.parse(localStorage.getItem('ale_inv_history') || '[]');
+            history = history.filter(item => item.id !== id);
+            localStorage.setItem('ale_inv_history', JSON.stringify(history));
+            renderInventoryHistory();
+            showToast("Registro eliminado.");
+        }
+
+        // KANBAN GTD ESPECÍFICO DE ALEJANDRA
+        const DEFAULT_ALE_KANBAN = {
+            todo: [
+                { id: "k1", text: "Recopilar firmas y avales burocráticos para Beca Doctoral", tag: "Doctorado" },
+                { id: "k2", text: "Formalizar carpeta para trabajo de 1 año (8 a 16h)", tag: "Trabajo" },
+                { id: "k3", text: "Preparar preguntas del ritual de balance del jueves con Tomás", tag: "Familia" },
+                { id: "k4", text: "Estructurar sinopsis para postulación de la segunda novela", tag: "Literatura" }
+            ],
+            wip: [
+                { id: "k5", text: "Redactar propuesta doctoral y cronograma de 4 años para el 12 de Octubre", tag: "Doctorado" },
+                { id: "k6", text: "Completar cada noche el Inventario de Resultados (3 min)", tag: "Hábitos" }
+            ],
+            done: [
+                { id: "k7", text: "Admisión formal en el Doctorado en Investigaciones Humanísticas", tag: "Doctorado" },
+                { id: "k8", text: "Publicación de 1ra novela y ponencia en Congreso Filosofía para Niños", tag: "Literatura" },
+                { id: "k9", text: "Arranque del Plan de Vuelo 2.0 y mapeo clínico con Diego", tag: "AH" }
+            ]
+        };
+
+        function initAleKanban() {
+            if (!localStorage.getItem('ale_kanban_data')) {
+                localStorage.setItem('ale_kanban_data', JSON.stringify(DEFAULT_ALE_KANBAN));
+            }
+            renderAleKanban();
+        }
+
+        function renderAleKanban() {
+            const data = JSON.parse(localStorage.getItem('ale_kanban_data') || JSON.stringify(DEFAULT_ALE_KANBAN));
+            
+            const colTodo = document.getElementById('kanban-col-todo');
+            const colWip = document.getElementById('kanban-col-wip');
+            const colDone = document.getElementById('kanban-col-done');
+
+            if (!colTodo || !colWip || !colDone) return;
+
+            document.getElementById('kanban-count-todo').textContent = data.todo.length;
+            document.getElementById('kanban-count-wip').textContent = `${data.wip.length}/2`;
+            document.getElementById('kanban-count-done').textContent = data.done.length;
+
+            const renderCard = (t, col) => `
+                <div style="background:#111; border:1px solid #262626; border-radius:8px; padding:10px 12px; display:flex; flex-direction:column; gap:6px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="background:rgba(255,255,255,0.06); color:#aaa; font-size:0.7rem; font-weight:700; padding:2px 6px; border-radius:4px;">${t.tag}</span>
+                        <div style="display:flex; gap:6px;">
+                            ${col === 'todo' ? `<button onclick="moveKanbanTask('${t.id}', 'todo', 'wip')" style="background:transparent; border:none; color:var(--blue); cursor:pointer;" title="Mover a En Proceso"><i class="fa-solid fa-arrow-right"></i></button>` : ''}
+                            ${col === 'wip' ? `<button onclick="moveKanbanTask('${t.id}', 'wip', 'done')" style="background:transparent; border:none; color:var(--forest); cursor:pointer;" title="Mover a Terminado"><i class="fa-solid fa-check"></i></button>` : ''}
+                            ${col === 'wip' ? `<button onclick="moveKanbanTask('${t.id}', 'wip', 'todo')" style="background:transparent; border:none; color:#888; cursor:pointer;" title="Devolver a Backlog"><i class="fa-solid fa-arrow-left"></i></button>` : ''}
+                            <button onclick="removeKanbanTask('${t.id}', '${col}')" style="background:transparent; border:none; color:#555; cursor:pointer;" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <div style="font-size:0.83rem; color:#e2e8f0; line-height:1.4;">${t.text}</div>
+                </div>
+            `;
+
+            colTodo.innerHTML = data.todo.map(t => renderCard(t, 'todo')).join('');
+            colWip.innerHTML = data.wip.map(t => renderCard(t, 'wip')).join('');
+            colDone.innerHTML = data.done.map(t => renderCard(t, 'done')).join('');
+        }
+
+        function moveKanbanTask(id, fromCol, toCol) {
+            const data = JSON.parse(localStorage.getItem('ale_kanban_data'));
+            
+            if (toCol === 'wip' && data.wip.length >= 2) {
+                alert("⚠️ ¡Límite WIP=2 alcanzado! No puedes tener más de 2 tareas en proceso simultáneas. Termina una o devuélvela al Backlog.");
+                return;
+            }
+
+            const itemIndex = data[fromCol].findIndex(t => t.id === id);
+            if (itemIndex > -1) {
+                const [item] = data[fromCol].splice(itemIndex, 1);
+                data[toCol].push(item);
+                localStorage.setItem('ale_kanban_data', JSON.stringify(data));
+                renderAleKanban();
+                showToast("Tablero Kanban actualizado.");
+            }
+        }
+
+        function addKanbanTaskManual() {
+            const input = document.getElementById('kanban-input-text');
+            const tagSelect = document.getElementById('kanban-input-tag');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const data = JSON.parse(localStorage.getItem('ale_kanban_data'));
+            data.todo.push({
+                id: "k_" + Date.now(),
+                text: text,
+                tag: tagSelect.value
+            });
+
+            localStorage.setItem('ale_kanban_data', JSON.stringify(data));
+            input.value = '';
+            renderAleKanban();
+            showToast("Nueva tarea agregada al Backlog.");
+        }
+
+        function removeKanbanTask(id, col) {
+            const data = JSON.parse(localStorage.getItem('ale_kanban_data'));
+            data[col] = data[col].filter(t => t.id !== id);
+            localStorage.setItem('ale_kanban_data', JSON.stringify(data));
+            renderAleKanban();
+            showToast("Tarea eliminada.");
+        }
+
+        // WHATSAPP DIRECT LINK
+        function sendWhatsAppUpdate() {
+            const msg = encodeURIComponent("¡Hola Diego! Te escribo desde mi Plan de Vuelo 2.0 (Alejandra). Estuve revisando mi tablero y quería comentarte...");
+            window.open(`https://wa.me/56975590132?text=${msg}`, '_blank');
+        }
+
+        // INICIALIZACIÓN
+        document.addEventListener('DOMContentLoaded', () => {
+            restoreChecklists();
+            renderInventoryHistory();
+            initAleKanban();
+
+            // Inicializar Schedule Engine con clave de Alejandra
+            if (typeof initScheduleEngine === 'function') {
+                initScheduleEngine({
+                    storageKey: "ale_schedule",
+                    defaultCategories: window.CLIENT_SCHEDULE_CATEGORIES,
+                    presets: window.CLIENT_SCHEDULE_PRESETS
+                });
+            }
+        });
+    </script>
+
+    <!-- MOTORES MODULARES DEL SISTEMA AH -->
+    <script src="js/portal-gateway.js?v=3.2"></script>
+    <script src="js/schedule-engine.js?v=3.2"></script>
+    <script src="js/whatsapp-widget.js?v=3.2"></script>
+</body>
+</html>

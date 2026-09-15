@@ -2329,21 +2329,13 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
         }
 
         function isCaseUnlocked(caseId) {
-            if (isConsultorMode) return true;
-            return getSessionUnlockedCases().includes(caseId);
+            // Casos de ejemplo 100% abiertos sin clave para demostración comercial libre
+            return true;
         }
 
         function handleCaseSelect(targetCaseId) {
             if (targetCaseId === currentCaseId) return;
-
-            // Si está en Modo Consultor o ya desbloqueado en esta sesión, cambiar directo
-            if (isConsultorMode || isCaseUnlocked(targetCaseId)) {
-                switchCase(targetCaseId);
-                return;
-            }
-
-            // En Vista Cliente, proteger la privacidad solicitando PIN o Master Password
-            requestClientAuth(targetCaseId);
+            switchCase(targetCaseId);
         }
 
         function requestClientAuth(targetCaseId) {

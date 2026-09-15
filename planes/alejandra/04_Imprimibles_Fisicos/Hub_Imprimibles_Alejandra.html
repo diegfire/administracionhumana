@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Maestro de Imprimibles Físicos — Alejandra Mattei • Administración Humana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #8B5CF6;
+            --forest: #10B981;
+            --amber: #D97706;
+            --blue: #2563EB;
+            --rose: #E11D48;
+            --border: #CBD5E1;
+            --border-dark: #334155;
+            --bg-card: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        @page {
+            size: letter portrait;
+            margin: 0.6cm 0.7cm 0.5cm 0.7cm;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #0B0F17;
+            padding: 0;
+            margin: 0;
+            font-size: 8.5pt;
+            line-height: 1.25;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ── TOOLBAR DE CONTROL (NO-PRINT) ── */
+        .hub-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #0F172A;
+            border-bottom: 2px solid var(--accent);
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .hub-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #FFF;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .hub-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .select-sheet {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btn-hub {
+            background: var(--accent);
+            color: #FFF;
+            border: none;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-hub:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-hub-secondary {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #E2E8F0;
+        }
+        .btn-hub-secondary:hover { background: #334155; }
+
+        /* ── ESTRUCTURA DE PÁGINA IMPRIMIBLE ── */
+        .sheet-page {
+            width: 21.59cm;
+            min-height: 27.94cm;
+            height: 27.94cm;
+            margin: 1.5rem auto;
+            background: #FFF;
+            padding: 0.8cm 0.9cm 0.7cm 0.9cm;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            page-break-after: always;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* ── ENCABEZADO CLÍNICO DE FICHA ── */
+        .sheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+        .sh-left h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 13pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -0.2px;
+        }
+        .sh-left .subtitle {
+            font-size: 7.8pt;
+            color: #475569;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .sh-right {
+            text-align: right;
+            font-size: 7.2pt;
+            color: #64748B;
+        }
+        .sh-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #FFF;
+            font-size: 6.8pt;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        /* ── ELEMENTOS GRÁFICOS Y TABLAS ── */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 8px; }
+
+        .card-box {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 8px;
+            background: var(--bg-card);
+        }
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8.2pt;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 3px;
+        }
+
+        table.sheet-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.6pt;
+            margin-bottom: 6px;
+        }
+        table.sheet-table th, table.sheet-table td {
+            border: 1px solid var(--border);
+            padding: 4px 6px;
+            text-align: left;
+        }
+        table.sheet-table th {
+            background: #F1F5F9;
+            color: var(--primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 6.8pt;
+        }
+
+        /* ── FOOTER DE CADA PÁGINA ── */
+        .sheet-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 6.8pt;
+            color: #64748B;
+        }
+        .sheet-footer strong { color: var(--primary); }
+
+        /* ── ESTILOS ESPECÍFICOS DE IMPRESIÓN ── */
+        @media print {
+            body { background: #FFF !important; }
+            .no-print, .hub-toolbar { display: none !important; }
+            .sheet-page {
+                margin: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                width: 100% !important;
+                height: 100vh !important;
+                page-break-after: always !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── BARRA SUPERIOR DE CONTROL (NO-PRINT) ── -->
+    <header class="hub-toolbar no-print">
+        <div class="hub-title">
+            <i class="fa-solid fa-print" style="color:var(--accent);"></i>
+            <span>Hub de Imprimibles Físicos • <strong>Alejandra Mattei</strong> (5 Hojas)</span>
+        </div>
+        <div class="hub-controls">
+            <select id="sheet-selector" class="select-sheet" onchange="filterSheet(this.value)">
+                <option value="all">Ver Cuadernillo Completo (5 Hojas)</option>
+                <option value="sheet-1">Hoja 1: Triangulación de Roles & Diagnóstico 168h</option>
+                <option value="sheet-2">Hoja 2: Malla Semanal Time Blocking & Rutinas Tomás</option>
+                <option value="sheet-3">Hoja 3: Tablero Kanban GTD & Protocolo Paso Cero</option>
+                <option value="sheet-4">Hoja 4: Matriz de Eisenhower & Sprint 12 Octubre</option>
+                <option value="sheet-5">Hoja 5: Inventario Nocturno de Resultados (30 Días)</option>
+            </select>
+            <button onclick="printCurrentView()" class="btn-hub">
+                <i class="fa-solid fa-print"></i> Imprimir Selección
+            </button>
+            <a href="../Plan%20de%20Vuelo%202.0%20-%20Alejandra.html" class="btn-hub btn-hub-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Portal Web
+            </a>
+        </div>
+    </header>
+
+    <!-- =========================================================================
+         HOJA 1: TRIANGULACIÓN DE ROLES & DIAGNÓSTICO 168H
+         ========================================================================= -->
+    <section id="sheet-1" class="sheet-page">
+        <div>
+            <div class="sheet-header">
+                <div class="sh-left">
+                    <span class="sh-badge">Herramienta Clínica AH-01</span>
+                    <h1>Triangulación de Roles & Mosaico Semanal 168h</h1>
+                    <div class="subtitle">Estructura contenedora para erradicar la culpa cruzada y disolver la falsa insuficiencia</div>
+                </div>
+                <div class="sh-right">
+                    <strong>Alejandra Mattei</strong><br>
+                    Oviedo, Asturias • AICC v2.0<br>
+                    Diego González Yáñez
+                </div>
+            </div>
+
+            <!-- Box Diagnóstico -->
+            <div class="card-box" style="margin-bottom:8px; border-left: 3px solid var(--accent); background: #FAF5FF;">
+                <div class="card-title" style="color:var(--accent);">
+                    <i class="fa-solid fa-lightbulb"></i> Diagnóstico de Falsa Insuficiencia
+                </div>
+                <p style="font-size:7.5pt; line-height:1.3; color:#334155;">
+                    Alejandra sostiene simultáneamente: maternidad presente de Tomás (13 años) en el extranjero, investigación doctoral en Filosofía de la Ciencia, producción de novelas y poemarios, y logística del hogar. <strong>El sentimiento de "no hacer lo suficiente" es un sesgo cognitivo, no una realidad operativa.</strong> Esta ficha compartimenta los roles para habitar cada momento con presencia plena y cero culpa.
+                </p>
+            </div>
+
+            <!-- Matriz de los 5 Sombreros -->
+            <div class="card-title" style="margin-top:6px;"><i class="fa-solid fa-masks-theater"></i> Delimitación de los 5 Sombreros Vitales</div>
+            <table class="sheet-table" style="margin-bottom:8px;">
+                <thead>
+                    <tr>
+                        <th style="width:22%;">Sombrero / Identidad</th>
+                        <th style="width:38%;">Territorio & Compromisos Clave</th>
+                        <th style="width:25%;">Boundary / Límite Innegociable</th>
+                        <th style="width:15%;">Dedicación / Sem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🌸 Alejandra Corporal</strong></td>
+                        <td>Descanso biológico, sueño reparador, alimentación, paseos naturaleza, esgrima / gimnasio.</td>
+                        <td>Dormir mínimo 7.5h diarias; cero pantallas en la cama.</td>
+                        <td><strong>52.5 h</strong> sueño<br>+ 14h salud</td>
+                    </tr>
+                    <tr>
+                        <td><strong>👶 Mamá Presente</strong></td>
+                        <td>Crianza de Tomás, logística escolar, acompañamiento a karate/piano y Jueves de Balance.</td>
+                        <td>No responder correos de doctorado durante las tardes con Tomás.</td>
+                        <td><strong>28.0 h</strong> presencia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🎓 Investigadora Doctoral</strong></td>
+                        <td>Universidad de Oviedo, filosofía de la ciencia, propuesta de tesis, beca 12 de octubre.</td>
+                        <td>Foco matutino 08:00 a 14:00. Prohibido limpiar la casa en este bloque.</td>
+                        <td><strong>30.0 h</strong> oro puro</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🖋️ Escritora (Juana Mattei)</strong></td>
+                        <td>Poesía, segunda novela en incubación, filosofía para niños y laboratorio creador.</td>
+                        <td>Captura rápida de ideas en libreta; posponer desarrollo largo a post-12 oct.</td>
+                        <td><strong>10.0 h</strong> creatividad</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🌿 Gestora Inmigrante</strong></td>
+                        <td>Trámites en España, huerta comunitaria quincenal, ahorro para licencia de conducir y hogar.</td>
+                        <td>Agrupar gestiones en viernes por la mañana para no dispersar los días.</td>
+                        <td><strong>14.0 h</strong> logística</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Mosaico 168h Auditoría -->
+            <div class="grid-2">
+                <div class="card-box">
+                    <div class="card-title"><i class="fa-solid fa-chart-pie"></i> Distribución Semanal 168 Horas</div>
+                    <ul style="font-size:7.4pt; list-style:none; padding-left:0; line-height:1.45;">
+                        <li>🛌 <strong>Sueño & Reparación:</strong> 52.5 h (31.2%)</li>
+                        <li>🧠 <strong>Ventana Doctoral (8–14h):</strong> 30.0 h (17.8%)</li>
+                        <li>👶 <strong>Crianza & Tardes Tomás:</strong> 28.0 h (16.7%)</li>
+                        <li>🍳 <strong>Logística Hogar & Cocina:</strong> 14.0 h (8.3%)</li>
+                        <li>📚 <strong>Creación Literaria & Lectura:</strong> 10.0 h (6.0%)</li>
+                        <li>🌱 <strong>Huerta, Paseos & Deporte:</strong> 14.0 h (8.3%)</li>
+                        <li>⚡ <strong>Margen Libre / Imprevistos:</strong> 19.5 h (11.6%)</li>
+                    </ul>
+                </div>
+                <div class="card-box" style="background:#FFF;">
+                    <div class="card-title"><i class="fa-solid fa-signature"></i> Compromiso de Delimitación</div>
+                    <div style="font-size:7.2pt; color:#475569; line-height:1.4; margin-bottom:8px;">
+                        <em>"Reconozco que cada uno de mis 5 sombreros tiene un espacio legítimo en mi semana. Cuando escribo filosofía, no estoy en deuda con mi hijo; cuando acompaño a Tomás, no estoy en deuda con el doctorado. Mi valor no depende del agotamiento."</em>
+                    </div>
+                    <div style="margin-top:15px; border-top:1px dashed #CBD5E1; padding-top:4px; display:flex; justify-content:space-between; font-size:6.8pt;">
+                        <span>Firma Alejandra Mattei: _____________________</span>
+                        <span>Fecha: ___ / ___ / 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • Metodología AICC v2.0</span>
+            <span>Hoja 1 de 5 • Triangulación de Roles</span>
+            <span>Consultor: <strong>Diego González Yáñez</strong> (+56975590132)</span>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         HOJA 2: MALLA SEMANAL TIME BLOCKING & RUTINAS TOMÁS
+         ========================================================================= -->
+    <section id="sheet-2" class="sheet-page">
+        <div>
+            <div class="sheet-header">
+                <div class="sh-left">
+                    <span class="sh-badge" style="background:var(--forest);">Herramienta Operativa AH-02</span>
+                    <h1>Malla Semanal de Time Blocking & Rutinas Tomás</h1>
+                    <div class="subtitle">Arquitectura horaria de alta protección cognitiva, comidas adelantadas y tardes familiares</div>
+                </div>
+                <div class="sh-right">
+                    <strong>Alejandra Mattei</strong><br>
+                    Oviedo, Asturias • AICC v2.0<br>
+                    Hijo: Tomás (13 años)
+                </div>
+            </div>
+
+            <!-- Tabla de Horario Semanal 24H Resumido -->
+            <table class="sheet-table" style="font-size:7.2pt;">
+                <thead>
+                    <tr>
+                        <th style="width:12%;">Bloque Horario</th>
+                        <th style="width:14%;">Lunes</th>
+                        <th style="width:14%;">Martes</th>
+                        <th style="width:14%;">Miércoles</th>
+                        <th style="width:18%;">Jueves (🌟 Balance)</th>
+                        <th style="width:14%;">Viernes</th>
+                        <th style="width:14%;">Fin de Semana</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="background:#F8FAFC;"><strong>07:00 – 08:00</strong></td>
+                        <td colspan="5" style="text-align:center; background:#EFF6FF;">Puesta a punto hogar + Desayunos + Mochilas. 08:00: Tomás en el Cole</td>
+                        <td style="background:#FEF3C7;">Despertar suave</td>
+                    </tr>
+                    <tr>
+                        <td style="background:#F8FAFC;"><strong>08:00 – 14:00</strong><br><span style="color:var(--forest); font-weight:800;">VENTANA ORO</span></td>
+                        <td style="background:#ECFDF5;"><strong>DOCTORADO:</strong><br>Propuesta Beca 12 Octubre</td>
+                        <td style="background:#ECFDF5;"><strong>DOCTORADO:</strong><br>Metodología & Plan Trabajo</td>
+                        <td style="background:#ECFDF5;"><strong>DOCTORADO:</strong><br>Revisión Estado Cuestión</td>
+                        <td style="background:#ECFDF5;"><strong>DOCTORADO:</strong><br>Redacción de Tesis/Beca</td>
+                        <td style="background:#ECFDF5;"><strong>TRÁMITES:</strong><br>Expediente Beca & Firmas</td>
+                        <td rowspan="2" style="background:#FEF3C7;"><strong>SÁBADO:</strong><br>Esgrima Tomás (Mañana)<br><br><strong>DOMINGO:</strong><br>Huerta Comunitaria (Quincenal)</td>
+                    </tr>
+                    <tr>
+                        <td style="background:#F8FAFC;"><strong>14:00 – 15:30</strong></td>
+                        <td colspan="5" style="text-align:center; background:#FFFBEB;">Tomás sale del cole. Almuerzo juntos (Comida lista de la noche anterior) + Sobremesa tranquila</td>
+                    </tr>
+                    <tr>
+                        <td style="background:#F8FAFC;"><strong>15:30 – 17:00</strong></td>
+                        <td colspan="5" style="text-align:center;">Descanso cognitivo / Tareas escolares de Tomás / Lectura tranquila / Preparativos</td>
+                        <td style="background:#FEF3C7;">Paseos & Senderos</td>
+                    </tr>
+                    <tr>
+                        <td style="background:#F8FAFC;"><strong>17:00 – 19:00</strong><br><span style="color:var(--accent); font-weight:800;">EXTRA-PROG.</span></td>
+                        <td style="background:#F3E8FF;">🥋 <strong>Karate Tomás</strong><br>(17:00 a 19:00)</td>
+                        <td style="background:#FCE7F3;">🎹 <strong>Piano Tomás</strong><br>(17:00)</td>
+                        <td style="background:#F3E8FF;">🥋 <strong>Karate Tomás</strong><br>(17:00 a 19:00)</td>
+                        <td style="background:#FEF08A; border:2px solid #EAB308;">🌟 <strong>TARDE LIBRE TOMÁS:</strong><br>Sesión pactada de encuentro, balance y escucha mutua</td>
+                        <td style="background:#F3E8FF;">🥋 <strong>Karate Tomás</strong><br>(17:00 a 19:00)</td>
+                        <td style="background:#FEF3C7;">Juegos, lectura o visitas</td>
+                    </tr>
+                    <tr>
+                        <td style="background:#F8FAFC;"><strong>19:30 – 21:00</strong></td>
+                        <td colspan="5" style="text-align:center; background:#EFF6FF;">Regreso a casa + Ducha + Cocinar comida de mañana (Regla Cocina Adelantada) + Cena familiar</td>
+                        <td style="background:#FEF3C7;">Cena relajada</td>
+                    </tr>
+                    <tr>
+                        <td style="background:#F8FAFC;"><strong>21:30 – 23:00</strong></td>
+                        <td colspan="5" style="text-align:center; background:#FAF5FF;">
+                            🌟 <strong>INVENTARIO DE RESULTADOS (3 min)</strong> + Lectura literaria suave. (Si hay trabajo formal de 8-16h: bloque tesis 20:30-22:30). 23:00 Luces fuera.
+                        </td>
+                        <td style="background:#FEF3C7;">Desconexión total</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Reglas de Oro y Ritual del Jueves -->
+            <div class="grid-2" style="margin-top:6px;">
+                <div class="card-box" style="border-left:3px solid #EAB308; background:#FEFCE8;">
+                    <div class="card-title" style="color:#A16207;">
+                        <i class="fa-solid fa-star"></i> Protocolo: Jueves de Balance con Tomás
+                    </div>
+                    <ol style="font-size:7.2pt; padding-left:14px; line-height:1.4; color:#713F12;">
+                        <li><strong>Espacio Protegido:</strong> Cero pantallas de trabajo entre 17:00 y 19:30.</li>
+                        <li><strong>Pregunta 1 (Tomás):</strong> "¿Qué fue lo más bacán o lo más pesado de tu semana en el cole o con amigos?"</li>
+                        <li><strong>Pregunta 2 (Alejandra):</strong> Compartir 1 logro y 1 desafío vivido en sus estudios o proyectos de forma comprensible.</li>
+                        <li><strong>Acuerdo Práctico:</strong> Revisar mochilas y coordinar planes del fin de semana (esgrima, huerta o senderos).</li>
+                    </ol>
+                </div>
+                <div class="card-box" style="border-left:3px solid var(--forest); background:#F0FDF4;">
+                    <div class="card-title" style="color:var(--forest);">
+                        <i class="fa-solid fa-shield-check"></i> Las 3 Reglas Antifricción
+                    </div>
+                    <ul style="font-size:7.2pt; padding-left:12px; line-height:1.4; color:#14532D;">
+                        <li><strong>Cocina Adelantada:</strong> La comida de las 14:00 se cocina la noche previa. Jamás romper el bloque matutino para pelar papas o freír.</li>
+                        <li><strong>Soberanía Matutina (8 a 14h):</strong> 6 horas sagradas para la investigación. Las compras se hacen de camino a casa.</li>
+                        <li><strong>Cierre de Jornada a las 23:00:</strong> Proteger el cerebro de la investigadora mediante 7.5h de sueño biológico real.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • Metodología AICC v2.0</span>
+            <span>Hoja 2 de 5 • Malla Semanal Time Blocking</span>
+            <span>Consultor: <strong>Diego González Yáñez</strong> (+56975590132)</span>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         HOJA 3: TABLERO KANBAN GTD & PROTOCOLO PASO CERO
+         ========================================================================= -->
+    <section id="sheet-3" class="sheet-page">
+        <div>
+            <div class="sheet-header">
+                <div class="sh-left">
+                    <span class="sh-badge" style="background:var(--blue);">Herramienta de Flujo AH-03</span>
+                    <h1>Tablero Kanban GTD Tres Vías & Paso Cero</h1>
+                    <div class="subtitle">Límite estricto de Trabajo en Proceso (WIP=2) para erradicar la dispersión y la parálisis</div>
+                </div>
+                <div class="sh-right">
+                    <strong>Alejandra Mattei</strong><br>
+                    Oviedo, Asturias • AICC v2.0<br>
+                    Foco: Siguiente Acción Física
+                </div>
+            </div>
+
+            <!-- Protocolo Paso Cero Banner -->
+            <div class="card-box" style="margin-bottom:8px; background:#EFF6FF; border-left:3px solid var(--blue);">
+                <div class="card-title" style="color:var(--blue);"><i class="fa-solid fa-stopwatch"></i> Protocolo Paso Cero (Acción de 5 Minutos)</div>
+                <p style="font-size:7.4pt; color:#1E3A8A; line-height:1.35;">
+                    Cuando aparezca la parálisis por exceso de tareas o resistencia cognitiva ante un documento denso: <strong>No intentes terminar el proyecto hoy.</strong> Reduce la tarea al Paso Cero que demande solo el 10% de tu energía (ejemplo: abrir el archivo Word de la propuesta de tesis, escribir la fecha y colocar un temporizador de 5 minutos). <em>Cumplir el 70% en días difíciles es 100% de éxito.</em>
+                </p>
+            </div>
+
+            <!-- Tablero Kanban Tres Vías -->
+            <div class="card-title"><i class="fa-solid fa-table-columns"></i> Tablero Kanban Físico para Post-its</div>
+            <div class="grid-3" style="margin-bottom:8px; min-height:11.5cm;">
+                
+                <!-- Columna 1: Backlog -->
+                <div class="card-box" style="background:#F8FAFC; border:1px solid #CBD5E1; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="background:#64748B; color:#FFF; font-weight:800; font-size:7.5pt; padding:3px 6px; border-radius:4px; text-transform:uppercase; margin-bottom:6px; display:flex; justify-content:space-between;">
+                            <span>🟡 Backlog / Por Hacer</span>
+                            <span>(Captura)</span>
+                        </div>
+                        <div style="font-size:7pt; color:#64748B; margin-bottom:6px;">Pega aquí tus post-its de ideas o trámites pendientes:</div>
+                        
+                        <!-- Casillas prediseñadas para escribir o post-it -->
+                        <div style="border:1px dashed #CBD5E1; border-radius:4px; padding:6px; min-height:2.2cm; margin-bottom:6px; background:#FFF;">
+                            <span style="font-size:6.8pt; color:#94A3B8;">[Post-it / Tarea capturada]</span>
+                        </div>
+                        <div style="border:1px dashed #CBD5E1; border-radius:4px; padding:6px; min-height:2.2cm; margin-bottom:6px; background:#FFF;">
+                            <span style="font-size:6.8pt; color:#94A3B8;">[Post-it / Tarea capturada]</span>
+                        </div>
+                        <div style="border:1px dashed #CBD5E1; border-radius:4px; padding:6px; min-height:2.2cm; background:#FFF;">
+                            <span style="font-size:6.8pt; color:#94A3B8;">[Post-it / Tarea capturada]</span>
+                        </div>
+                    </div>
+                    <div style="font-size:6.6pt; color:#64748B; border-top:1px solid #E2E8F0; padding-top:4px;">Regla: Descargar ideas sin juzgar</div>
+                </div>
+
+                <!-- Columna 2: En Proceso (WIP=2) -->
+                <div class="card-box" style="background:#EFF6FF; border:2px solid var(--blue); display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="background:var(--blue); color:#FFF; font-weight:800; font-size:7.5pt; padding:3px 6px; border-radius:4px; text-transform:uppercase; margin-bottom:6px; display:flex; justify-content:space-between;">
+                            <span>🔵 En Proceso</span>
+                            <span style="background:#FFF; color:var(--blue); padding:1px 5px; border-radius:3px;">MÁX = 2</span>
+                        </div>
+                        <div style="font-size:7pt; color:#1E3A8A; font-weight:700; margin-bottom:6px;">⚠️ LÍMITE INQUEBRANTABLE WIP=2:</div>
+
+                        <div style="border:2px solid var(--blue); border-radius:4px; padding:8px; min-height:3.5cm; margin-bottom:8px; background:#FFF; box-shadow:0 2px 5px rgba(37,99,235,0.15);">
+                            <div style="font-size:7.2pt; font-weight:800; color:var(--blue); text-transform:uppercase; margin-bottom:4px;">⚡ Foco 1 (Activo Ahora)</div>
+                            <div style="font-size:7pt; color:#64748B;">Pega aquí el ÚNICO post-it en ejecución en este instante:</div>
+                        </div>
+
+                        <div style="border:2px solid var(--blue); border-radius:4px; padding:8px; min-height:3.5cm; background:#FFF; box-shadow:0 2px 5px rgba(37,99,235,0.15);">
+                            <div style="font-size:7.2pt; font-weight:800; color:var(--blue); text-transform:uppercase; margin-bottom:4px;">⚡ Foco 2 (Secundario en Proceso)</div>
+                            <div style="font-size:7pt; color:#64748B;">Pega aquí la segunda tarea activa si la primera está en espera:</div>
+                        </div>
+                    </div>
+                    <div style="font-size:6.6pt; color:var(--blue); font-weight:700; border-top:1px solid #BFDBFE; padding-top:4px;">No entra la tarea 3 sin terminar 1 o 2</div>
+                </div>
+
+                <!-- Columna 3: Terminado -->
+                <div class="card-box" style="background:#F0FDF4; border:1px solid var(--forest); display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="background:var(--forest); color:#FFF; font-weight:800; font-size:7.5pt; padding:3px 6px; border-radius:4px; text-transform:uppercase; margin-bottom:6px; display:flex; justify-content:space-between;">
+                            <span>🟢 Terminado</span>
+                            <span>(Victoria)</span>
+                        </div>
+                        <div style="font-size:7pt; color:#166534; margin-bottom:6px;">Mueve aquí los post-its concluidos:</div>
+
+                        <div style="border:1px dashed var(--forest); border-radius:4px; padding:6px; min-height:2.2cm; margin-bottom:6px; background:#FFF;">
+                            <span style="font-size:6.8pt; color:#15803D;">✓ Post-it completado con éxito</span>
+                        </div>
+                        <div style="border:1px dashed var(--forest); border-radius:4px; padding:6px; min-height:2.2cm; margin-bottom:6px; background:#FFF;">
+                            <span style="font-size:6.8pt; color:#15803D;">✓ Post-it completado con éxito</span>
+                        </div>
+                        <div style="border:1px dashed var(--forest); border-radius:4px; padding:6px; min-height:2.2cm; background:#FFF;">
+                            <span style="font-size:6.8pt; color:#15803D;">✓ Post-it completado con éxito</span>
+                        </div>
+                    </div>
+                    <div style="font-size:6.6pt; color:#166534; border-top:1px solid #BBF7D0; padding-top:4px;">Alimentar el Inventario de Resultados</div>
+                </div>
+            </div>
+
+            <!-- Filtro GTD de Procesamiento -->
+            <div class="card-box" style="background:#FFF;">
+                <div class="card-title"><i class="fa-solid fa-filter"></i> El Algoritmo GTD de 4 Vías ante un Ítem Nuevo</div>
+                <div class="grid-4" style="font-size:7pt; margin-bottom:0;">
+                    <div><strong>1. ¿Toma < 2 min?</strong><br>Hacerlo inmediatamente (ej. responder OK al profesor).</div>
+                    <div><strong>2. ¿Se puede delegar?</strong><br>Asignar a Tomás, al padre o pedir apoyo burocrático.</div>
+                    <div><strong>3. ¿Es fecha fija?</strong><br>Agendar en calendario (12 de Octubre, firmas).</div>
+                    <div><strong>4. ¿No es crítico?</strong><br><strong>ELIMINAR</strong> o archivar en "Algún día / Quizás".</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • Metodología AICC v2.0</span>
+            <span>Hoja 3 de 5 • Tablero Kanban GTD Tres Vías</span>
+            <span>Consultor: <strong>Diego González Yáñez</strong> (+56975590132)</span>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         HOJA 4: MATRIZ DE EISENHOWER & SPRINT 12 OCTUBRE
+         ========================================================================= -->
+    <section id="sheet-4" class="sheet-page">
+        <div>
+            <div class="sheet-header">
+                <div class="sh-left">
+                    <span class="sh-badge" style="background:var(--rose);">Herramienta Estratégica AH-04</span>
+                    <h1>Matriz de Eisenhower & Sprint Crítico 12 de Octubre</h1>
+                    <div class="subtitle">Blindaje contra la tiranía de lo urgente para asegurar la beca y el bienestar familiar</div>
+                </div>
+                <div class="sh-right">
+                    <strong>Alejandra Mattei</strong><br>
+                    Oviedo, Asturias • AICC v2.0<br>
+                    Sprint: 27 Días de Foco
+                </div>
+            </div>
+
+            <!-- Matriz de Eisenhower en 4 Cuadrantes -->
+            <div class="grid-2" style="gap:8px; margin-bottom:8px;">
+                
+                <!-- Q1: Urgente & Importante -->
+                <div class="card-box" style="border:2px solid #EF4444; background:#FEF2F2; min-height:5.2cm;">
+                    <div class="card-title" style="color:#B91C1C; border-bottom:1px solid #FECACA;">
+                        <span>🔴 Q1: URGENTE & IMPORTANTE (HACER AHORA)</span>
+                    </div>
+                    <p style="font-size:6.8pt; color:#991B1B; font-weight:700; margin-bottom:4px;">Sprint Crítico Convocatorias al 12 de Octubre:</p>
+                    <ul style="font-size:7.2pt; color:#7F1D1D; line-height:1.45; padding-left:14px;">
+                        <li>[ ] Redacción final de la Propuesta Doctoral de Tesis.</li>
+                        <li>[ ] Cronograma detallado de investigación a 4 años.</li>
+                        <li>[ ] Recolección de firmas y compromisos de directores de tesis.</li>
+                        <li>[ ] Legalización y homologación de expediente de notas/títulos.</li>
+                        <li>[ ] Formalización de carpeta para trabajo de 1 año (8 a 16h).</li>
+                        <li>[ ] Alimentación y logística escolar de Tomás al día.</li>
+                    </ul>
+                </div>
+
+                <!-- Q2: No Urgente pero Importante -->
+                <div class="card-box" style="border:2px solid var(--forest); background:#F0FDF4; min-height:5.2cm;">
+                    <div class="card-title" style="color:#15803D; border-bottom:1px solid #BBF7D0;">
+                        <span>🟢 Q2: NO URGENTE & IMPORTANTE (AGENDAR & PROTEGER)</span>
+                    </div>
+                    <p style="font-size:6.8pt; color:#166534; font-weight:700; margin-bottom:4px;">El Corazón de tu Vida y Visión de Futuro:</p>
+                    <ul style="font-size:7.2pt; color:#14532D; line-height:1.45; padding-left:14px;">
+                        <li>[ ] Jueves sagrado de evaluación y escucha con Tomás.</li>
+                        <li>[ ] Registro diario de 3 min en el Inventario de Resultados.</li>
+                        <li>[ ] Sueño biológico de 7.5h (cero pantallas a las 23h).</li>
+                        <li>[ ] Paseos y senderismo en la naturaleza asturiana.</li>
+                        <li>[ ] Participación quincenal en la Huerta Comunitaria.</li>
+                        <li>[ ] Plan de ahorro para la licencia de conducir española.</li>
+                        <li>[ ] Gestación libre de ideas para la 2da novela (libreta).</li>
+                    </ul>
+                </div>
+
+                <!-- Q3: Urgente pero No Importante -->
+                <div class="card-box" style="border:1px solid #F59E0B; background:#FFFBEB; min-height:4.8cm;">
+                    <div class="card-title" style="color:#B45309; border-bottom:1px solid #FDE68A;">
+                        <span>🟡 Q3: URGENTE PERO NO IMPORTANTE (DELEGAR / LIMITAR)</span>
+                    </div>
+                    <p style="font-size:6.8pt; color:#92400E; font-weight:700; margin-bottom:4px;">Interrupciones que devoran la energía matutina:</p>
+                    <ul style="font-size:7.2pt; color:#78350F; line-height:1.45; padding-left:14px;">
+                        <li>[ ] Limpieza y aseo pesado durante las mañanas (pasar a tarde).</li>
+                        <li>[ ] Cocinar a última hora al mediodía (aplicar cocina adelantada).</li>
+                        <li>[ ] Mensajes y chats grupales no esenciales (responder en bloque).</li>
+                        <li>[ ] Trámites domésticos menores (asignar corresponsabilidad).</li>
+                    </ul>
+                </div>
+
+                <!-- Q4: Ni Urgente Ni Importante -->
+                <div class="card-box" style="border:1px solid #94A3B8; background:#F8FAFC; min-height:4.8cm;">
+                    <div class="card-title" style="color:#475569; border-bottom:1px solid #E2E8F0;">
+                        <span>⚪ Q4: NI URGENTE NI IMPORTANTE (ELIMINAR SIN CULPA)</span>
+                    </div>
+                    <p style="font-size:6.8pt; color:#334155; font-weight:700; margin-bottom:4px;">Ladrones de Paz y Rumiación Estéril:</p>
+                    <ul style="font-size:7.2pt; color:#475569; line-height:1.45; padding-left:14px;">
+                        <li>[ ] Rumiación nocturna sobre "no estar haciendo lo suficiente".</li>
+                        <li>[ ] Autoexigencia de redactar la segunda novela en pleno sprint.</li>
+                        <li>[ ] Consumo ansioso de redes sociales durante las ventanas de foco.</li>
+                        <li>[ ] Compromisos sociales que agotan la batería sensorial.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tracker Visual del Sprint -->
+            <div class="card-box" style="background:#FFF;">
+                <div class="card-title"><i class="fa-solid fa-flag-checkered"></i> Checklist Quirúrgico: Convocatorias al 12 de Octubre</div>
+                <div class="grid-3" style="font-size:7.2pt; margin-bottom:0;">
+                    <div>
+                        <strong>Semana 1 (15–21 Septiembre):</strong><br>
+                        • Ventana de foco sin el niño.<br>
+                        • Borrador propuesta doctoral listo.<br>
+                        • Documentos burocráticos solicitados.
+                    </div>
+                    <div>
+                        <strong>Semana 2 (22–28 Septiembre):</strong><br>
+                        • Revisión propuesta con directores.<br>
+                        • Plan de trabajo 4 años afinado.<br>
+                        • Carpeta de trabajo 1 año completa.
+                    </div>
+                    <div>
+                        <strong>Semana 3 (29 Sept – 7 Oct):</strong><br>
+                        • Firmas y avales oficiales.<br>
+                        • Envío telemático antes del 7 oct.<br>
+                        • Celebración con Tomás y Diego.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • Metodología AICC v2.0</span>
+            <span>Hoja 4 de 5 • Matriz de Eisenhower</span>
+            <span>Consultor: <strong>Diego González Yáñez</strong> (+56975590132)</span>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         HOJA 5: INVENTARIO NOCTURNO DE RESULTADOS (30 DÍAS)
+         ========================================================================= -->
+    <section id="sheet-5" class="sheet-page">
+        <div>
+            <div class="sheet-header">
+                <div class="sh-left">
+                    <span class="sh-badge" style="background:var(--accent);">Herramienta Terapéutica AH-05</span>
+                    <h1>Bitácora del Inventario de Resultados (30 Días)</h1>
+                    <div class="subtitle">El antídoto empírico contra la falsa insuficiencia: 3 minutos nocturnos para validar tu mérito</div>
+                </div>
+                <div class="sh-right">
+                    <strong>Alejandra Mattei</strong><br>
+                    Oviedo, Asturias • AICC v2.0<br>
+                    Paz Mental & Mérito Objetivo
+                </div>
+            </div>
+
+            <!-- Banner de Instrucción Terapéutica -->
+            <div class="card-box" style="margin-bottom:8px; background:#FAF5FF; border-left:3px solid var(--accent);">
+                <div class="card-title" style="color:var(--accent);"><i class="fa-solid fa-moon"></i> Protocolo Nocturno de 3 Minutos ("Cero Insuficiencia")</div>
+                <p style="font-size:7.3pt; color:#581C87; line-height:1.35;">
+                    Cada noche a las 22:45, antes de apagar la luz: toma tu lápiz y escribe <strong>3 victorias concretas</strong> ocurridas en tu jornada: 1 en tu Maternidad/Hogar, 1 en tu Intelecto/Doctorado/Escritura, y 1 en tu Autocuidado. Lee en voz baja la declaración de cierre. <em>"Hoy sostuve mi mundo con dignidad y excelencia. Mi mente puede descansar."</em>
+                </p>
+            </div>
+
+            <!-- Tabla de Registro para 15 Días (Relleno manual) -->
+            <table class="sheet-table" style="font-size:6.9pt;">
+                <thead>
+                    <tr>
+                        <th style="width:6%;">Día</th>
+                        <th style="width:31%;">1. Victoria en Maternidad / Tomás / Hogar</th>
+                        <th style="width:31%;">2. Victoria Intelectual / Doctorado / Obra</th>
+                        <th style="width:26%;">3. Victoria en Autocuidado / Salud</th>
+                        <th style="width:6%;">Firma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="text-align:center; font-weight:700;">D1</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D2</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D3</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D4</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D5</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D6</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D7</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D8</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D9</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D10</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D11</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D12</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D13</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D14</td><td></td><td></td><td></td><td>✓</td></tr>
+                    <tr><td style="text-align:center; font-weight:700;">D15</td><td></td><td></td><td></td><td>✓</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Declaración de Cierre y Validación -->
+            <div class="card-box" style="background:#FFF; border:1px solid var(--border);">
+                <div class="card-title" style="color:var(--primary);"><i class="fa-solid fa-heart"></i> Validación Somática de Cierre de Semana</div>
+                <div style="font-size:7.2pt; color:#475569; line-height:1.4;">
+                    Al completar 7 casillas continuas, haz una pausa consciente: mira las 21 victorias escritas. Constata que <strong>no eres alguien que no hace lo suficiente; eres una mujer extraordinaria construyendo un porvenir soberano paso a paso.</strong> Respira 3 veces profundamente y regálate una noche de reposo total.
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet-footer">
+            <span>Administración Humana • Metodología AICC v2.0</span>
+            <span>Hoja 5 de 5 • Inventario Nocturno de Resultados</span>
+            <span>Consultor: <strong>Diego González Yáñez</strong> (+56975590132)</span>
+        </div>
+    </section>
+
+    <!-- ── LÓGICA DE CONTROL DE IMPRESIÓN Y FILTRO ── -->
+    <script>
+        function filterSheet(sheetId) {
+            const sheets = document.querySelectorAll('.sheet-page');
+            if (sheetId === 'all') {
+                sheets.forEach(s => s.style.display = 'flex');
+            } else {
+                sheets.forEach(s => {
+                    s.style.display = (s.id === sheetId) ? 'flex' : 'none';
+                });
+            }
+        }
+
+        function printCurrentView() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
