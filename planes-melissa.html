@@ -23,7 +23,7 @@
             --bg-dark: #000000;
             --bg-card: #0a0a0a;
             --bg-card-hover: #121212;
-            --primary: #ffffff;
+            --primary: #10b981;
             --secondary: #888888;
             --forest: #10B981;
             --amber: #F59E0B;
@@ -32,8 +32,9 @@
             --purple: #8B5CF6;
             --border: #262626;
             --border-hover: #333333;
+            --text-muted: #a1a1aa;
             --radius-lg: 16px;
-            --radius-md: 10px;
+            --radius-md: 12px;
             --radius-sm: 6px;
             --font-display: 'Space Grotesk', sans-serif;
             --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -61,6 +62,108 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* INMERSIÓN VISUAL: NAVEGACIÓN DE MÓDULOS ESTANDARIZADA EN 2 COLUMNAS (ESTILO ANTONIA) */
+        .tabs {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.65rem 0.85rem !important;
+            padding: 0.85rem !important;
+            background: rgba(18, 18, 22, 0.75) !important;
+            border: 1px solid var(--border, #262626) !important;
+            border-radius: var(--radius-md, 14px) !important;
+            margin-bottom: 2rem !important;
+            width: 100% !important;
+            overflow: visible !important;
+            box-sizing: border-box !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+        }
+
+        .tab-btn {
+            width: 100% !important;
+            padding: 0.85rem 1.15rem !important;
+            font-size: 0.88rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 0.7rem !important;
+            border-radius: 10px !important;
+            white-space: normal !important;
+            line-height: 1.3 !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: var(--text-muted, #a1a1aa) !important;
+            box-sizing: border-box !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .tab-btn i {
+            font-size: 1.05rem !important;
+            width: 1.3rem !important;
+            text-align: center !important;
+            flex-shrink: 0 !important;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .tab-btn.active {
+            background: var(--forest, #10b981) !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            border-color: var(--forest, #10b981) !important;
+            box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* Si el número total de módulos es impar, el último abarca las 2 columnas centrado */
+        .tab-btn:last-child:nth-child(odd) {
+            grid-column: span 2 !important;
+            justify-content: center !important;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                grid-template-columns: 1fr !important;
+                gap: 0.5rem !important;
+                padding: 0.55rem !important;
+            }
+            .tab-btn:last-child:nth-child(odd) {
+                grid-column: span 1 !important;
+            }
+        }
+
+        /* DIAGNOSTIC HERO BOX */
+        .diagnostic-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-left: 4px solid var(--forest);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-tea-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
         }
 
         .hero-banner {
@@ -100,6 +203,13 @@
         .stat-lbl { font-size: 0.76rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
         .stat-sub { font-size: 0.72rem; color: #10b981; font-weight: 600; }
 
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
         .card-custom {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -108,41 +218,276 @@
             margin-bottom: 1.5rem;
         }
 
-        .badge-role {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-            padding: 3px 10px;
-            border-radius: 50px;
-            font-size: 0.74rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* TOOL PREVIEWS WITH LIGHTBOX */
-        .tool-preview-box {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 1.2rem;
+        .custom-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
         }
-        .tool-preview-img {
-            width: 100%;
-            height: 180px;
+        .custom-list li {
+            position: relative;
+            padding-left: 1.4rem;
+            line-height: 1.55;
+            font-size: 0.86rem;
+            color: #cbd5e1;
+        }
+        .custom-list li::before {
+            content: "•";
+            color: var(--forest);
+            position: absolute;
+            left: 0;
+            font-weight: 800;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .danger-list li::before {
+            content: "✕";
+            color: #ef4444;
+            font-size: 0.9rem;
+        }
+
+        .badge-role {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ESTILOS DIDÁCTICOS DEL KIT DE HERRAMIENTAS Y CHECKLISTS (ESTÁNDAR ANTONIA) */
+        .tool-card-rich {
+            background: rgba(18, 18, 24, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            transition: all 0.25s ease;
+            position: relative;
+            box-sizing: border-box;
+            margin-bottom: 1.5rem;
+        }
+        .tool-card-rich:hover {
+            border-color: rgba(16, 185, 129, 0.35);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        .tool-header-rich {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tool-title-group h3 {
+            font-family: var(--font-display);
+            font-size: 1.22rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        .image-preview {
+            margin: 0;
+            text-align: center;
+        }
+        .image-preview img {
+            max-height: 220px;
             object-fit: contain;
+            width: 100%;
             background: #080808;
-            border-radius: 8px;
             border: 1px solid #262626;
+            border-radius: 8px;
             cursor: zoom-in;
             transition: all 0.2s ease;
         }
-        .tool-preview-img:hover {
+        .image-preview img:hover {
             border-color: var(--forest);
-            transform: scale(1.02);
+            transform: scale(1.01);
+        }
+
+        .tool-context-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);
+            border-left: 3px solid #10b981;
+            border-radius: 0 10px 10px 0;
+            padding: 1rem 1.15rem;
+            font-size: 0.86rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        .tool-context-box h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #34d399;
+            margin: 0 0 0.45rem 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .tool-context-box p {
+            margin: 0 0 0.45rem 0;
+        }
+        .tool-context-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tool-checklist-wrapper {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            padding: 1.1rem;
+        }
+        .tool-checklist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.85rem;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tool-checklist-title {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tool-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-progress-track {
+            width: 90px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .tool-progress-fill {
+            height: 100%;
+            background: #10b981;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .tool-progress-text {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #10b981;
+            min-width: 45px;
+            text-align: right;
+        }
+        .tool-checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .tool-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 0.55rem 0.7rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+        .tool-check-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .tool-check-item input[type="checkbox"] {
+            margin-top: 2px;
+            width: 16px;
+            height: 16px;
+            accent-color: #10b981;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .tool-check-item span {
+            font-size: 0.83rem;
+            color: #d1d5db;
+            line-height: 1.45;
+            transition: color 0.15s ease;
+        }
+        .tool-check-item.completed {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+        .tool-check-item.completed span {
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .tool-checklist-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.8rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+        }
+        .btn-tool-reset {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 0.72rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+        .btn-tool-reset:hover {
+            color: #f87171;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* TOAST NOTIFICATION */
+        .toast-notification {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #ffffff;
+            color: #000000;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 999999;
+            animation: fadeIn 0.3s ease;
         }
 
         /* EISENHOWER QUADRANTS */
@@ -207,6 +552,12 @@
             border-radius: 12px;
             border: 1px solid #333;
         }
+        #lightbox-close {
+            position: absolute; top: 20px; right: 25px;
+            color: #ffffff; font-size: 2.2rem;
+            background: transparent; border: none;
+            cursor: pointer; line-height: 1;
+        }
     </style>
 </head>
 <body>
@@ -238,9 +589,16 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX MODAL -->
+    <!-- LIGHTBOX MODAL FOR IMAGES -->
     <div id="lightbox-modal" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
         <img id="lightbox-img" src="" alt="Ampliación Diagrama">
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="toast-notification">
+        <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
+        <span id="toast-text">¡Checklist actualizado y guardado en tu equipo!</span>
     </div>
 
     <!-- CONTENEDOR PRINCIPAL DEL DASHBOARD -->
@@ -249,15 +607,19 @@
         <!-- TOP BAR / BRANDING -->
         <header>
             <div class="brand">
-                <div class="brand-logo">AH</div>
+                <div class="brand-logo">🌿</div>
                 <div class="brand-title">
                     <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--forest); font-weight:800;">ADMINISTRACIÓN HUMANA • SISTEMA AICC</div>
                     <h1>Plan de Vuelo 2.0 • Melissa Henríquez Soto</h1>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">De la Dispersión de Roles a la Soberanía Operativa • Crianza Chinito & Proyecto Trafmen</p>
                 </div>
             </div>
             <div style="display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;">
                 <span class="badge-role"><i class="fa-solid fa-location-dot" style="color:#ef4444;"></i> Pueblo Seco, Ñuble</span>
                 <span class="badge-role"><i class="fa-solid fa-graduation-cap" style="color:var(--forest);"></i> Kinesióloga Escolar 40.5h</span>
+                <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html" target="_blank" class="badge-role" style="text-decoration:none; background:rgba(16, 185, 129, 0.15); border-color:#10b981; color:#34d399;">
+                    <i class="fa-solid fa-print"></i> 📄 Imprimibles Físicos
+                </a>
                 <button onclick="logoutClientAuth()" style="background:#1a1a1a; border:1px solid #333; color:#ccc; padding:6px 12px; border-radius:6px; font-size:0.76rem; cursor:pointer;">
                     <i class="fa-solid fa-lock"></i> Bloquear
                 </button>
@@ -271,7 +633,7 @@
                     <i class="fa-solid fa-shield-check"></i> CASO CLÍNICO-OPERATIVO ACTIVO
                 </div>
                 <h2 style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; margin-bottom:0.4rem; line-height:1.2;">
-                    De la Dispersión de Roles a la Soberanía Operativa
+                    De la Dispersión de Múltiples Roles a la Soberanía Operativa
                 </h2>
                 <p style="color:var(--secondary); font-size:0.9rem; max-width:840px; line-height:1.45;">
                     Estructura integral para blindar tus 40.5 horas de kinesiología escolar en Pueblo Seco, proteger la crianza presente de tu hijo ("Chinito"), avanzar en tu Diplomado y consolidar la fabricación de juguetes de madera y talleres de <strong>Juego y Movimiento Trafmen</strong>.
@@ -301,66 +663,592 @@
             </div>
             <div class="stat-box">
                 <div class="stat-val" style="color:#10b981;">10.5 h/sem</div>
-                <div class="stat-lbl">Ventanas de Oro</div>
+                <div class="stat-lbl">Ventanas de Oro Protegidas</div>
                 <div class="stat-sub">Trafmen + Diplomado (Time Blocking)</div>
             </div>
             <div class="stat-box">
                 <div class="stat-val" style="color:#f59e0b;">Cap. Abeja 2023</div>
-                <div class="stat-lbl">Activo Ganado</div>
+                <div class="stat-lbl">Activo Ganado ($3.5M)</div>
                 <div class="stat-sub">Juego y Movimiento Trafmen</div>
             </div>
         </div>
 
-        <!-- BARRA MAESTRA DE NAVEGACIÓN (TABS 100% CONECTADOS) -->
-        <nav class="tabs" style="display:flex; gap:0.45rem; border-bottom:1px solid var(--border); margin-bottom:1.5rem; overflow-x:auto; padding-bottom:6px;">
-            <button class="tab-btn active" onclick="switchTab('tab-diagnostico')"><i class="fa-solid fa-compass"></i> Diagnóstico</button>
-            <button class="tab-btn" onclick="switchTab('tab-horario')"><i class="fa-solid fa-calendar-days"></i> Time Blocking 24H</button>
-            <button class="tab-btn" onclick="switchTab('tab-kanban')"><i class="fa-solid fa-list-check"></i> Kanban GTD (WIP=2)</button>
-            <button class="tab-btn" onclick="switchTab('tab-eisenhower')"><i class="fa-solid fa-table-cells-large"></i> Matriz Eisenhower</button>
-            <button class="tab-btn" onclick="switchTab('tab-inventario')"><i class="fa-solid fa-award"></i> Inventario de Resultados</button>
-            <button class="tab-btn" onclick="switchTab('tab-finanzas')"><i class="fa-solid fa-wallet"></i> Regla 50/30/20</button>
-            <button class="tab-btn" onclick="switchTab('tab-trafmen')"><i class="fa-solid fa-cubes"></i> Proyecto Trafmen</button>
-            <button class="tab-btn" onclick="switchTab('tab-alianzas')"><i class="fa-solid fa-handshake"></i> Alianzas</button>
-            <button class="tab-btn" onclick="switchTab('tab-imprimibles')"><i class="fa-solid fa-print"></i> Imprimibles</button>
+        <!-- BARRA MAESTRA DE NAVEGACIÓN ESTANDARIZADA EN 2 COLUMNAS (ESTILO ANTONIA) -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-diagnostico')">
+                <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-herramientas')" style="border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08);">
+                <i class="fa-solid fa-toolbox" style="color: #10b981;"></i> 🛠️ Kit de Herramientas & Checklists
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-horario')">
+                <i class="fa-regular fa-clock"></i> Time Blocking 24H
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-kanban')">
+                <i class="fa-solid fa-list-check"></i> Kanban GTD (WIP=2)
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-eisenhower')">
+                <i class="fa-solid fa-table-cells-large"></i> Matriz Eisenhower
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-inventario')">
+                <i class="fa-solid fa-award"></i> Inventario de Resultados
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-finanzas')">
+                <i class="fa-solid fa-wallet"></i> GPS Financiero 50/30/20
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-trafmen')" style="border: 1px solid rgba(245, 158, 11, 0.35); background: rgba(245, 158, 11, 0.06);">
+                <i class="fa-solid fa-cubes" style="color: #f59e0b;"></i> 🧸 Proyecto Trafmen
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-alianzas')">
+                <i class="fa-solid fa-handshake"></i> Alianzas Estratégicas
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-imprimibles')" style="border: 1px solid rgba(139, 92, 246, 0.45); background: rgba(139, 92, 246, 0.08);">
+                <i class="fa-solid fa-print" style="color: #a78bfa;"></i> 📄 Hub Imprimibles Físicos
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-accion')" style="border: 1px solid rgba(255, 255, 255, 0.2);">
+                <i class="fa-solid fa-bolt" style="color: #60a5fa;"></i> ⚡ Plan 24h & Límites
+            </button>
         </nav>
 
         <!-- =========================================================================
-             TAB 1: DIAGNÓSTICO & ROLES
+             TAB 1: DIAGNÓSTICO & ESTRUCTURA CONTENEDORA
              ========================================================================= -->
         <div id="tab-diagnostico" class="tab-content active">
-            <div class="card-custom">
-                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin-bottom:0.8rem;">
-                    🧭 Diagnóstico Clínico-Operativo • Sondeo Express & Fricción de Roles
+            <div class="diagnostic-box">
+                <div class="hero-tea-badge">
+                    <i class="fa-solid fa-compass"></i> Diagnóstico Humano & Estructura Contenedora
+                </div>
+                <h3 style="font-family:var(--font-display); font-size:1.45rem; font-weight:800; margin:0.4rem 0 0.5rem 0;">
+                    <span>Fricción de Múltiples Roles: De la Rumiación a la Soberanía Operativa</span>
                 </h3>
-                <p style="color:#ccc; font-size:0.88rem; line-height:1.5; margin-bottom:1.2rem;">
-                    En tu auditoría de ingreso marcaste como cuello de botella número 1 la <strong>coexistencia de múltiples roles y la procrastinación</strong>, indicando que se te van <em>"por lo menos un par de horas al día dando vueltas"</em>. Esta fuga de 14 horas semanales no es flojera ni falta de disciplina: es el desgaste adaptativo de ser madre soltera jefa de hogar, kinesióloga escolar 40.5h, estudiante de diplomado y emprendedora de juguetes de madera sin fronteras delimitadas.
+                <p style="font-size:0.92rem; color:#cbd5e1; line-height:1.6; margin:0;">
+                    Melissa sostiene la jefatura de hogar y la crianza de su hijo Chinito (6 años), junto a 40.5 horas semanales de kinesiología escolar en Pueblo Seco, un Diplomado de Kinesiología Educativa y su marca <strong>Juego y Movimiento Trafmen</strong>. En la auditoría inicial reportó que pierde <em>"por lo menos un par de horas al día dando vueltas"</em> (~14 horas semanales de fricción y rumiación). Este Plan de Vuelo 2.0 le entrega una <strong>estructura contenedora predecible</strong>: cortar radicalmente el colegio al sonar el timbre, blindar el descanso y la presencia con Chinito, y reservar Ventanas de Oro para transformar su miedo a emprender en pasos seguros y medibles. <strong>Melissa tiene con qué</strong>: es kinesióloga, ganó el Capital Abeja 2023 de Sercotec y sus juguetes tienen sentido neuropsicomotor real.
                 </p>
+            </div>
 
-                <h4 style="font-family:var(--font-display); font-size:0.95rem; font-weight:700; color:var(--forest); margin-bottom:0.8rem; text-transform:uppercase; letter-spacing:0.5px;">
-                    Triangulación Quirúrgica de Roles (Los 5 Sombreros de Melissa)
-                </h4>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
-                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
-                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">1. 🌸 Melissa Mujer</div>
-                        <div style="font-size:0.78rem; color:var(--secondary);">Autocuidado, entrenamiento karate, descanso y salud emocional. Sin este pilar, todo lo demás colapsa.</div>
+            <div class="grid-2">
+                <div class="card-custom">
+                    <h3 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; margin-bottom:1rem; color:#fff;">
+                        <span>🛡️ Blindaje Quirúrgico contra los 5 Cuellos de Botella</span>
+                    </h3>
+                    <ul class="custom-list">
+                        <li><strong>🏫 Corte de Timbre Radical:</strong> A las 17:30 (y 14:00 los viernes), el colegio en Pueblo Seco concluye. Cero informes, planificaciones o mensajes escolares en la casa.</li>
+                        <li><strong>⏰ Ventanas de Oro Protegidas:</strong> 10.5 horas semanales aisladas y sagradas: Martes tarde para Diplomado (16:30-18:00) y Sábado mañana para Trafmen (10:00-12:30).</li>
+                        <li><strong>🛡️ Regla de Oro WIP = 2:</strong> Prohibido abrir más de 2 tareas en ejecución al mismo tiempo para erradicar la parálisis y la culpa de no terminar nada.</li>
+                        <li><strong>🌙 Vaciado Mental Nocturno (3 min):</strong> Registro de 3 micro-victorias en papel antes de dormir para sacar pendientes de la cabeza y validar el esfuerzo diario.</li>
+                        <li><strong>💰 GPS Financiero 50/30/20:</strong> $750k aseguran necesidades básicas familiares, $450k calidad de vida sin culpa y $300k capitalizan el fondo de ahorro e inversión Trafmen.</li>
+                    </ul>
+                </div>
+
+                <div class="card-custom">
+                    <h3 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; margin-bottom:1rem; color:#fff;">
+                        <span>📱 Ecosistema de Gestión Digital Sincronizada</span>
+                    </h3>
+                    <ul class="custom-list">
+                        <li><strong>📂 Carpeta Compartida Drive:</strong> Single Source of Truth sincronizado directamente con el computador de Diego y Melissa.</li>
+                        <li><strong>📄 Hub Maestro de Imprimibles:</strong> 5 fichas en 1 solo archivo listas para imprimir en 1 hoja Carta/A4 exacta para uso analógico.</li>
+                        <li><strong>📲 Acceso Modo App en Celular:</strong> Guarda este portal en tu pantalla de inicio móvil para consulta rápida entre recreos y talleres.</li>
+                        <li><strong>💬 WhatsApp Directo con Diego:</strong> Canal de audio y reporte ágil al <code>+56975590132</code> para desbloquear dudas operativas en el acto.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MATRIZ DE LOS 5 EJES CLAVE DE MELISSA (ESTRUCTURA DE CONTENCIÓN VITAL) -->
+            <div class="card-custom" style="border: 1px solid rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(15, 23, 42, 0.6) 100%);">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 0.8rem;">
+                    <h3 style="font-family:var(--font-display); margin: 0; font-size: 1.15rem; font-weight:800; color:#fff;">
+                        <span>🌟 Matriz de los 5 Ejes Clave de Melissa (Estructura de Contención Vital)</span>
+                    </h3>
+                    <span class="badge-role" style="background: rgba(16, 185, 129, 0.15); border-color: #10b981; color: #34d399; font-weight: 700;">
+                        Sintetizado por Diego & AH
+                    </span>
+                </div>
+                <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 1rem; line-height: 1.5;">
+                    Para neutralizar la parálisis de los "múltiples roles" y la culpa nocturna, la vida operativa de Melissa se divide en <strong>5 recipientes cerrados</strong>. Si una tarea no pertenece al bloque actual, la mente tiene autorización explícita para soltarla:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.8rem;">
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 8px; padding: 0.85rem;">
+                        <strong style="color: #f87171; font-size: 0.92rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-heart-pulse"></i> 1. Melissa Personal
+                        </strong>
+                        <p style="font-size: 0.78rem; color: #cbd5e1; margin: 4px 0 0 0; line-height: 1.4;">Entrenamiento de karate, 56h semanales de sueño intocable, pausas sin pantallas y salud emocional.</p>
                     </div>
-                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
-                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">2. 👶 Mamá Presente</div>
-                        <div style="font-size:0.78rem; color:var(--secondary);">Crianza de Chinito (6 años), acompañamiento escolar y juego. Presencia afectiva de calidad sin culpa laboral.</div>
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 0.85rem;">
+                        <strong style="color: #fbbf24; font-size: 0.92rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-child-reaching"></i> 2. Crianza & Chinito
+                        </strong>
+                        <p style="font-size: 0.78rem; color: #cbd5e1; margin: 4px 0 0 0; line-height: 1.4;">Presencia afectiva plena con Chinito (6 años), juegos, comidas compartidas y contención sin ruido laboral.</p>
                     </div>
-                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
-                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">3. 🏫 Kinesióloga Escolar</div>
-                        <div style="font-size:0.78rem; color:var(--secondary);">40.5 horas en el colegio en Pueblo Seco. Al tocar el timbre, corte radical: el colegio no invade tu hogar.</div>
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px; padding: 0.85rem;">
+                        <strong style="color: #60a5fa; font-size: 0.92rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-school"></i> 3. Kine Escolar 40.5h
+                        </strong>
+                        <p style="font-size: 0.78rem; color: #cbd5e1; margin: 4px 0 0 0; line-height: 1.4;">Colegio en Pueblo Seco. Entrega profesional de excelencia, pero al sonar el timbre corte radical del rol.</p>
                     </div>
-                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
-                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">4. 🎓 Estudiante Especialista</div>
-                        <div style="font-size:0.78rem; color:var(--secondary);">Diplomado en Kinesiología Educativa. Avanza en su ventana de oro de los Martes tarde (16:30 a 18:00).</div>
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 0.85rem; background: rgba(16, 185, 129, 0.05);">
+                        <strong style="color: #34d399; font-size: 0.92rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-cubes"></i> 4. Proyecto Trafmen
+                        </strong>
+                        <p style="font-size: 0.78rem; color: #cbd5e1; margin: 4px 0 0 0; line-height: 1.4;">Diseño y corte de juguetes en madera noble + talleres psicomotores prepagados en bloques de fin de semana.</p>
                     </div>
-                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1rem;">
-                        <div style="font-weight:800; font-size:0.9rem; color:#fff; margin-bottom:4px;">5. 🧸 Directora Trafmen</div>
-                        <div style="font-size:0.78rem; color:var(--secondary);">Diseño de juguetes didácticos en madera noble y reactivación de talleres psicomotores por ciclos prepagados.</div>
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 0.85rem;">
+                        <strong style="color: #c084fc; font-size: 0.92rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-graduation-cap"></i> 5. Diplomado & Alianzas
+                        </strong>
+                        <p style="font-size: 0.78rem; color: #cbd5e1; margin: 4px 0 0 0; line-height: 1.4;">Martes tarde (16:30-18:00) kinesiología educativa + articulación con nutricionista (Cesfam) y fonoaudióloga.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 2: KIT DE HERRAMIENTAS DIDÁCTICAS & CHECKLISTS INTERACTIVOS (ESTÁNDAR ANTONIA)
+             ========================================================================= -->
+        <div id="tab-herramientas" class="tab-content">
+            <div class="diagnostic-box" style="border-left: 4px solid var(--forest); margin-bottom: 1.5rem;">
+                <div class="hero-tea-badge">
+                    <i class="fa-solid fa-toolbox"></i> Metodología Didáctica & Ergonomía Cognitiva
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0.4rem 0 0.3rem 0;">
+                    Kit de Herramientas Didácticas & Checklists • Melissa Henríquez
+                </h2>
+                <p style="font-size: 0.92rem; color: #cbd5e1; max-width: 860px; line-height: 1.6; margin: 0;">
+                    Cada herramienta está calibrada para tu realidad: desarmar las 14h de rumiación, blindar tu descanso y crianza presente con Chinito, saber qué es primero y construir la autoconfianza necesaria para emprender. <strong>Melissa, tienes con qué:</strong> eres kinesióloga, ganaste el Capital Abeja 2023 y tus productos tienen propósito. Haz clic en los diagramas para ampliarlos y completa tus checklists interactivos.
+                </p>
+            </div>
+
+            <!-- ACCESO DIRECTO COMPACTO AL HUB DE IMPRIMIBLES FÍSICOS -->
+            <div class="card-custom" style="border: 1px solid rgba(139, 92, 246, 0.3); background: rgba(139, 92, 246, 0.05); margin-bottom: 1.8rem; padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 38px; height: 38px; border-radius: 8px; background: rgba(139, 92, 246, 0.2); display: flex; align-items: center; justify-content: center; color: #a78bfa; font-size: 1.15rem;">
+                        <i class="fa-solid fa-print"></i>
+                    </div>
+                    <div>
+                        <strong style="color: #fff; font-size: 0.95rem; display: block;">¿Prefieres trabajar estas herramientas en formato analógico de papel?</strong>
+                        <span style="font-size: 0.8rem; color: #cbd5e1;">Tu Cuadernillo Maestro de 5 hojas está calibrado para impresión exacta de 1 hoja Carta/A4 por herramienta.</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="switchTab('tab-imprimibles')" class="btn-schedule-action" style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); font-weight: 700; padding: 7px 14px;">
+                        <i class="fa-regular fa-eye"></i> Ver Módulo Imprimibles
+                    </button>
+                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html" target="_blank" class="btn-schedule-action" style="background: #8b5cf6; color: #fff; font-weight: 700; text-decoration: none; padding: 7px 14px;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Cuadernillo Maestro
+                    </a>
+                </div>
+            </div>
+
+            <!-- GRID DE LAS 5 HERRAMIENTAS ENRIQUECIDAS -->
+            <div class="grid-2" style="gap: 1.5rem;">
+                
+                <!-- HERRAMIENTA 1: TIME BLOCKING FLEXIBLE -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
+                                <i class="fa-regular fa-clock"></i> Ergonomía del Tiempo & Descanso
+                            </span>
+                            <h3>1. Time Blocking: Descanso & Ventanas de Oro</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Diagrama Time Blocking" onclick="openLightbox(this.src)">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN DIDÁCTICA -->
+                    <div class="tool-context-box">
+                        <h4><i class="fa-solid fa-bullseye"></i> ¿Qué es y para qué le sirve a Melissa? (En tu caso específico)</h4>
+                        <p>
+                            <strong>Qué es:</strong> Es la ciencia de asignar bloques de tiempo cerrados para cada actividad, en lugar de vivir reaccionando a una lista interminable de pendientes.
+                        </p>
+                        <p>
+                            <strong>Para qué le sirve a Melissa:</strong> Melissa, tu jornada de colegio formal en Pueblo Seco ya tiene un horario fijo (40.5 horas semanales, de Lunes a Viernes). Por lo tanto, el Time Blocking <strong>no es para cargarte con más exigencias de trabajo</strong>, sino para dos objetivos vitales:
+                        </p>
+                        <p>
+                            <strong>1. Blindar bloques sagrados de descanso y presencia con Chinito (6 años):</strong> Al sonar el timbre escolar, el colegio termina. No se llevan planificaciones ni cuadernos a la casa. Tus tardes y fines de semana deben tener franjas intocables para jugar con tu hijo, descansar y recargar tu batería sin la culpa de sentir que 'deberías estar trabajando'.<br>
+                            <strong>2. Blindar Ventanas de Oro para tus proyectos propios fuera del colegio:</strong> Al proteger los Martes tarde (16:30 a 18:00) para tu Diplomado en Kinesiología Educativa y los Sábados mañana (10:00 a 12:30) para Trafmen, tus proyectos avanzan con predictibilidad sin robarle energía a tu descanso.
+                        </p>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #10b981;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-tb"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-tb">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_1" onchange="toggleToolCheck(this)">
+                                <span>Respeté el <strong>corte de timbre en Pueblo Seco</strong>: no traje informes ni planificaciones escolares a mi casa.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_2" onchange="toggleToolCheck(this)">
+                                <span>Blindé en mi agenda mis <strong>56 horas mínimas de sueño semanal</strong> (8h diarias de recarga biológica sin pantallas en la cama).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_3" onchange="toggleToolCheck(this)">
+                                <span>Protegí una tarde o fin de semana para <strong>presencia exclusiva y juego con Chinito</strong>, libre de celulares y trabajo.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_4" onchange="toggleToolCheck(this)">
+                                <span>Aproveché mi <strong>Ventana de Oro del Martes tarde (16:30 a 18:00)</strong> para avanzar en mi Diplomado de Kinesiología Educativa.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_5" onchange="toggleToolCheck(this)">
+                                <span>Dediqué mi bloque de <strong>Sábado mañana (10:00 a 12:30)</strong> exclusivamente a diseñar y prototipar juguetes Trafmen.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('tb')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HERRAMIENTA 2: GTD & VACIADO MENTAL -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fa-solid fa-brain"></i> Vaciado Mental & Regla WIP=2
+                            </span>
+                            <h3>2. GTD & Vaciado Mental (WIP = 2)</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="Diagrama GTD" onclick="openLightbox(this.src)">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN DIDÁCTICA -->
+                    <div class="tool-context-box" style="border-left-color: #f59e0b; background: linear-gradient(135deg, rgba(245, 158, 11, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #fbbf24;"><i class="fa-solid fa-bullseye"></i> ¿Qué es y para qué le sirve a Melissa? (En tu caso específico)</h4>
+                        <p>
+                            <strong>Qué es:</strong> Getting Things Done (GTD) es un sistema para vaciar los compromisos y pendientes a soportes externos, combinado con la limitación estricta del Trabajo en Proceso (WIP).
+                        </p>
+                        <p>
+                            <strong>Para qué le sirve a Melissa:</strong> Para el <strong>vaciado mental</strong>. Como madre autónoma jefa de hogar y kinesióloga, retener en tu cabeza las tareas del colegio, la casa, Chinito y las ideas de Trafmen satura tu memoria RAM biológica y detona insomnio y parálisis. Escribir todo en papel antes de dormir le avisa a tu sistema nervioso: <em>"está a salvo en la libreta, ya no tienes que recordarlo esta noche"</em>.
+                        </p>
+
+                        <!-- CÁPSULA PEDAGÓGICA WIP -->
+                        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 8px; padding: 0.85rem 1rem; margin: 0.8rem 0 0.4rem 0; font-size: 0.84rem; line-height: 1.55;">
+                            <div style="font-weight: 800; color: #fbbf24; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 7px; font-size: 0.88rem;">
+                                <i class="fa-solid fa-lightbulb"></i> ¿Qué significa "WIP" y por qué es tu mejor salvavidas contra la parálisis?
+                            </div>
+                            <p style="margin: 0 0 0.45rem 0; color: #fef3c7;">
+                                <strong>WIP</strong> significa <strong><em>Work In Progress</em></strong> (Trabajo en Proceso simultáneo).
+                            </p>
+                            <p style="margin: 0 0 0.45rem 0; color: #cbd5e1;">
+                                <strong>La Metáfora del Celular:</strong> Si en tu teléfono dejas abiertas 25 aplicaciones en segundo plano, la batería se agota en 2 horas, el procesador se recalienta y la pantalla se congela. A tu mente le pasa exactamente lo mismo: cuando intentas resolver 5 cosas a la vez, tu cerebro se bloquea y terminas perdiendo 2 horas al día dando vueltas.
+                            </p>
+                            <p style="margin: 0; color: #cbd5e1;">
+                                <strong>Por qué WIP = 2 para Melissa:</strong> En <strong>Administración Humana junto a Diego</strong>, la regla es tajante: en tu día solo pueden existir <strong>máximo 2 tareas activas en la columna "En Ejecución"</strong>. Si surge un tercer pendiente o distractor, lo anotas en la lista de espera, pero <em>está prohibido tocarlo</em> hasta haber cerrado o pausado formalmente una de las dos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #f59e0b;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-gtd" style="background: #f59e0b;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-gtd" style="color: #f59e0b;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_1" onchange="toggleToolCheck(this)">
+                                <span>Hice mi <strong>vaciado mental nocturno en papel físico (3 min)</strong> antes de acostarme para liberar mi memoria biológica.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_2" onchange="toggleToolCheck(this)">
+                                <span>Respeté la regla de oro: <strong>Máximo 2 tareas en ejecución a la vez (WIP ≤ 2)</strong>; no abro una 3ra sin cerrar una.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_3" onchange="toggleToolCheck(this)">
+                                <span>Ante la tentación de dispersarme o saltar a otra tarea, pausé, respiré y anoté el distractor en la lista de espera.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_4" onchange="toggleToolCheck(this)">
+                                <span>Cerré y archivé al menos 1 tarea del colegio antes de las 17:30 para no dejar ciclos abiertos al salir.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_5" onchange="toggleToolCheck(this)">
+                                <span>Descargué en mi libreta pensamientos de saturación en vez de intentar resolverlos mentalmente en la cama.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('gtd')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HERRAMIENTA 3: MATRIZ DE EISENHOWER -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">
+                                <i class="fa-solid fa-table-cells-large"></i> Priorización Estratégica
+                            </span>
+                            <h3>3. Matriz de Eisenhower: Saber Qué es Primero</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Diagrama Eisenhower" onclick="openLightbox(this.src)">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN DIDÁCTICA -->
+                    <div class="tool-context-box" style="border-left-color: #60a5fa; background: linear-gradient(135deg, rgba(96, 165, 250, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4><i class="fa-solid fa-bullseye"></i> ¿Qué es y para qué le sirve a Melissa? (En tu caso específico)</h4>
+                        <p>
+                            <strong>Qué es:</strong> Matriz que clasifica las tareas según su Urgencia (tiempo) e Importancia (impacto real en tus metas).
+                        </p>
+                        <p>
+                            <strong>Para qué le sirve a Melissa:</strong> <strong>Para saber qué es primero y no dejarse devorar por lo urgente.</strong> En tu rutina escolar y familiar siempre habrá alguien exigiendo atención inmediata. Sin un filtro objetivo, las falsas urgencias ajenas consumen toda tu energía y nunca queda tiempo para lo que realmente transformará tu futuro.
+                        </p>
+                        <p>
+                            <strong>• Cuadrante I (Urgente e Importante - HACER YA):</strong> Emergencias reales de salud de Chinito o plazos contractuales escolares impostergables.<br>
+                            <strong>• Cuadrante II (Importante No Urgente - PLANIFICAR Y PROTEGER):</strong> <em>¡Aquí vive tu independencia!</em> Diseñar juguetes Trafmen, estudiar tu diplomado, activar tus alianzas con el nutricionista/fonoaudióloga y tu descanso. Si no lo pones primero en tu agenda, las urgencias se lo comen.<br>
+                            <strong>• Cuadrante III y IV (Falsas urgencias y rumiación):</strong> Favores administrativos menores (delegar o acotar) y dar vueltas en el celular por agotamiento (eliminar).
+                        </p>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #60a5fa;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-eisen" style="background: #60a5fa;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-eisen" style="color: #60a5fa;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_1" onchange="toggleToolCheck(this)">
+                                <span>Ante una demanda imprevista, filtré: <strong>¿Afecta la salud de Chinito o un plazo legal del colegio?</strong> Si no, no es emergencia.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_2" onchange="toggleToolCheck(this)">
+                                <span>Blindé y ejecuté hoy al menos <strong>1 acción de mi Cuadrante II</strong> (Trafmen, Diplomado o descanso consciente).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_3" onchange="toggleToolCheck(this)">
+                                <span>Dije 'NO' o pospuse sin culpa una petición externa que amenazaba mi tiempo de descanso o con Chinito.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_4" onchange="toggleToolCheck(this)">
+                                <span>Delegué o resolví en menos de 5 minutos una tarea doméstica menor que me quitaba espacio mental.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_5" onchange="toggleToolCheck(this)">
+                                <span>Evalué si una tarea escolar extra aporta a mi propósito antes de ofrecer horas no remuneradas.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('eisen')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HERRAMIENTA 4: INVENTARIO DE RESULTADOS -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <i class="fa-solid fa-award"></i> Autoestima & Superación del Miedo
+                            </span>
+                            <h3>4. Inventario de Resultados: Ganar Confianza</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/Inventario de Resultados.webp" data-fallback="assets/img/herramientas/Inventario de Resultados.jpg" alt="Diagrama Inventario de Resultados" onclick="openLightbox(this.src)">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN DIDÁCTICA -->
+                    <div class="tool-context-box" style="border-left-color: #ef4444; background: linear-gradient(135deg, rgba(239, 68, 68, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #f87171;"><i class="fa-solid fa-bullseye"></i> ¿Qué es y para qué le sirve a Melissa? (En tu caso específico)</h4>
+                        <p>
+                            <strong>Qué es:</strong> El registro sistemático de 3 micro-victorias tangibles al final del día junto a tu nivel de energía y foco, entrenando al cerebro para registrar avances reales.
+                        </p>
+                        <p>
+                            <strong>Para qué le sirve a Melissa:</strong> <strong>Para ganar confianza y acercarte a emprender.</strong> Melissa, es completamente natural que sientas miedo a emprender: criar sola a Chinito te exige cuidar la estabilidad del hogar, y eso a veces detona dudas sobre si estás lista. Pero la realidad objetiva es que <strong>TIENES CON QUÉ:</strong>
+                        </p>
+                        <p>
+                            • Eres <strong>Kinesióloga titulada</strong> con experiencia clínica en motricidad infantil.<br>
+                            • Ganaste el fondo <strong>Sercotec Capital Abeja 2023</strong> ($3.5M) superando a cientos de proyectos.<br>
+                            • Tu propuesta en <strong>Trafmen</strong> (juguetes de madera noble y talleres psicomotores) es pedagógicamente sólida.<br>
+                            • Sostienes día a día la crianza y bienestar de tu hijo con entereza admirable.<br>
+                            El Inventario de Resultados es el remedio contra el miedo: al registrar cada noche 3 logros tangibles, tu cerebro comprueba con datos que sí eres capaz, disolviendo el síndrome del impostor y dándote la seguridad para hacer crecer Trafmen.
+                        </p>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #f87171;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-inv" style="background: #f87171;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-inv" style="color: #f87171;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="inv" data-tool-check="inv_1" onchange="toggleToolCheck(this)">
+                                <span>Registré mis <strong>3 micro-victorias tangibles</strong> de hoy en el formulario antes de dormir.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="inv" data-tool-check="inv_2" onchange="toggleToolCheck(this)">
+                                <span>Reconocí y validé como victoria el <strong>tiempo de calidad y contención dedicado a Chinito</strong>.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="inv" data-tool-check="inv_3" onchange="toggleToolCheck(this)">
+                                <span>Celebré al menos <strong>1 avance en Trafmen o en mi Diplomado</strong>, por modesto que pareciera.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="inv" data-tool-check="inv_4" onchange="toggleToolCheck(this)">
+                                <span>Medí mi energía y foco con honestidad (1-10) sin castigarme en los días de mayor cansancio.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="inv" data-tool-check="inv_5" onchange="toggleToolCheck(this)">
+                                <span>Releí mi historial acumulado para recordarme que <strong>tengo títulos, experiencia y un Capital Abeja ganado que respaldan mi valor</strong>.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('inv')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HERRAMIENTA 5: LA REGLA 50/30/20 -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(139, 92, 246, 0.15); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.3);">
+                                <i class="fa-solid fa-wallet"></i> GPS Financiero & Suelo de Concreto
+                            </span>
+                            <h3>5. Regla 50/30/20: Perder el Miedo a Invertir</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/La Regla 50 30 20.webp" data-fallback="assets/img/herramientas/La Regla 50 30 20.png" alt="Diagrama Regla 50 30 20" onclick="openLightbox(this.src)">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- EXPLICACIÓN DIDÁCTICA -->
+                    <div class="tool-context-box" style="border-left-color: #8b5cf6; background: linear-gradient(135deg, rgba(139, 92, 246, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #c084fc;"><i class="fa-solid fa-bullseye"></i> ¿Qué es y para qué le sirve a Melissa? (En tu caso específico)</h4>
+                        <p>
+                            <strong>Qué es:</strong> Sistema de distribución financiera que clasifica los ingresos en 50% Necesidades Básicas, 30% Calidad de Vida / Deseos y 20% Ahorro e Inversión Estratégica.
+                        </p>
+                        <p>
+                            <strong>Para qué le sirve a Melissa:</strong> <strong>Para construir un suelo de concreto y perderle el miedo a emprender.</strong> El temor a emprender casi siempre es temor a no llegar a fin de mes. Al estructurar tus $1.500.000 CLP de ingresos mensuales:
+                        </p>
+                        <p>
+                            • <strong>50% ($750.000):</strong> Cubre vivienda, comida, servicios y necesidades de Chinito. Están 100% asegurados por tu sueldo escolar.<br>
+                            • <strong>30% ($450.000):</strong> Salidas familiares, paseos con Chinito y bienestar sin un gramo de culpa.<br>
+                            • <strong>20% ($300.000):</strong> Fondo de Tranquilidad (colchón de emergencia) + Fondo de Inversión Trafmen (compra de maderas nobles secas, matrices y difusión de talleres).<br>
+                            Emprender no es apostar el pan de tu hijo: es reinvertir un porcentaje protegido con método y respaldo.
+                        </p>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #8b5cf6;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-fin" style="background: #8b5cf6;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-fin" style="color: #8b5cf6;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="fin" data-tool-check="fin_1" onchange="toggleToolCheck(this)">
+                                <span>Verifiqué que mis costos fijos y de Chinito se mantengan dentro del <strong>50% ($750.000 CLP)</strong> este mes.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="fin" data-tool-check="fin_2" onchange="toggleToolCheck(this)">
+                                <span>Utilicé mi presupuesto del <strong>30% ($450.000 CLP)</strong> en salidas y calidad de vida con Chinito sin culpa.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="fin" data-tool-check="fin_3" onchange="toggleToolCheck(this)">
+                                <span>Aparté el <strong>20% ($300.000 CLP)</strong> al recibir mi sueldo dividiéndolo en colchón de emergencia y Trafmen.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="fin" data-tool-check="fin_4" onchange="toggleToolCheck(this)">
+                                <span>Llevé un registro separado de compras de madera y materiales de Trafmen fuera de las cuentas de la casa.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="fin" data-tool-check="fin_5" onchange="toggleToolCheck(this)">
+                                <span>Utilicé el simulador dinámico del portal para proyectar mis ingresos con los primeros ciclos de talleres psicomotores.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('fin')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -909,6 +1797,73 @@
             </div>
         </div>
 
+        <!-- =========================================================================
+             TAB 11: PLAN 24 HORAS & GUARDIANES DE FOCO (ANTIPATRONES)
+             ========================================================================= -->
+        <div id="tab-accion" class="tab-content">
+            <div class="diagnostic-box" style="border-left: 4px solid #60a5fa; background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%); margin-bottom: 1.5rem;">
+                <div class="hero-tea-badge" style="background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.4); color: #60a5fa;">
+                    <i class="fa-solid fa-bolt"></i> Soberanía Operativa Inmediata
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0.4rem 0 0.3rem 0;">
+                    Plan de Vuelo 24 Horas & Guardianes de Foco • Melissa Henríquez
+                </h2>
+                <p style="font-size: 0.92rem; color: #cbd5e1; max-width: 860px; line-height: 1.6; margin: 0;">
+                    Un protocolo de contención claro paso a paso para neutralizar la rumiación, no perderte en la autoexigencia y dar pasos firmes hacia tu independencia profesional y la expansión de <strong>Trafmen</strong>.
+                </p>
+            </div>
+
+            <div class="grid-2" style="gap: 1.5rem;">
+                <!-- PLAN 24H -->
+                <div class="card-custom" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.03);">
+                    <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem; color: #34d399;">
+                        <span>🚀 Tu Plan de Acción: Próximas 24 Horas</span>
+                    </h3>
+                    <ul class="custom-list" style="line-height: 1.7; font-size: 0.88rem; color: #cbd5e1;">
+                        <li>
+                            <strong style="color: #34d399;">1. Ejecutar el Paso Cero Antiestrés (5 min):</strong> Al llegar del colegio o terminar la jornada, suelta el celular, toma un vaso con agua y haz 3 respiraciones diafragmáticas antes de atender cualquier otra cosa.
+                        </li>
+                        <li>
+                            <strong style="color: #60a5fa;">2. Bloquear tus Horarios en el Mapeador 24H:</strong> Asegúrate de pintar tus 56h de sueño, el corte de colegio a las 17:30 y tus 2 Ventanas de Oro (Martes tarde 16:30-18:00 y Sábado mañana 10:00-12:30).
+                        </li>
+                        <li>
+                            <strong style="color: #f59e0b;">3. Respetar el Límite WIP = 2:</strong> Prohibido abrir una 3ra tarea hoy sin haber concluido o pausado formalmente las 2 en ejecución en tu tablero Kanban.
+                        </li>
+                        <li>
+                            <strong style="color: #c084fc;">4. Enviar un Mensaje de Alianza Estratégica:</strong> Copia el pitch para el Nutricionista del Cesfam o tu colega Fonoaudióloga y envíalo para coordinar un café de 15 minutos.
+                        </li>
+                        <li>
+                            <strong style="color: #f87171;">5. Cierre Nocturno Cero Culpa (3 min):</strong> Llenar en tu libreta o portal el Inventario de Resultados con 3 micro-victorias tangibles validando el amor y esfuerzo invertido en Chinito.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ANTIPATRONES -->
+                <div class="card-custom" style="border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.03);">
+                    <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem; color: #f87171;">
+                        <span><i class="fa-solid fa-shield-halved"></i> Antipatrones (Los Guardianes de tu Foco)</span>
+                    </h3>
+                    <ul class="custom-list danger-list" style="line-height: 1.7; font-size: 0.88rem; color: #cbd5e1;">
+                        <li>
+                            <strong>🚫 Llevarse el Colegio a la Cama:</strong> Abrir informes escolares en la noche invade tu descanso y roba presencia a Chinito. Al sonar el timbre a las 17:30, el rol de kinesióloga escolar concluye.
+                        </li>
+                        <li>
+                            <strong>🚫 Parálisis por Perfeccionismo en Trafmen:</strong> No esperes a tener 50 juguetes fabricados o un estudio montado para reactivar tus talleres. Un ciclo prepagado de 4 niños ya valida el modelo.
+                        </li>
+                        <li>
+                            <strong>🚫 Romper el Límite WIP = 2:</strong> Intentar avanzar en el diplomado, lijar madera, responder WhatsApps del colegio y cocinar al mismo tiempo produce parálisis y 2 horas perdidas dando vueltas.
+                        </li>
+                        <li>
+                            <strong>🚫 Culpa por Descansar o Entrenar Karate:</strong> Tu energía biológica es el motor de tu hogar. Cuidarte no es egoísmo: es la única garantía de sostener a tu hijo y tus proyectos con alegría.
+                        </li>
+                        <li>
+                            <strong>🚫 Miedo a Cobrar lo que Vales:</strong> Eres kinesióloga titulada y ganadora de Sercotec. Prohibido regalar talleres o cobrar por horas sueltas: tus ciclos psicomotores tienen un valor profesional incuestionable.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- MODAL 1: GESTIÓN DE CATEGORÍAS 24H (SCHEDULE ENGINE) -->
@@ -1198,6 +2153,108 @@
             navigator.clipboard.writeText(text).then(() => alert("¡Mensaje para Fonoaudióloga copiado al portapapeles!"));
         }
 
+        // ==========================================
+        // 5. SISTEMA DIDÁCTICO DE CHECKLISTS & HERRAMIENTAS (ESTÁNDAR ANTONIA)
+        // ==========================================
+        const TOOLS_CHECKLIST_KEY = 'ah_melissa_tools_checklist_v1';
+
+        function getToolsChecklistState() {
+            try {
+                const raw = localStorage.getItem(TOOLS_CHECKLIST_KEY);
+                return raw ? JSON.parse(raw) : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveToolsChecklistState(state) {
+            try {
+                localStorage.setItem(TOOLS_CHECKLIST_KEY, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        function toggleToolCheck(checkbox) {
+            const id = checkbox.getAttribute('data-tool-check');
+            const toolId = checkbox.getAttribute('data-tool-id');
+            const state = getToolsChecklistState();
+            state[id] = checkbox.checked;
+            saveToolsChecklistState(state);
+
+            const label = checkbox.closest('.tool-check-item');
+            if (label) {
+                if (checkbox.checked) {
+                    label.classList.add('completed');
+                } else {
+                    label.classList.remove('completed');
+                }
+            }
+
+            updateToolProgress(toolId);
+            showToast('¡Checklist actualizado y guardado en tu equipo!');
+        }
+
+        function updateToolProgress(toolId) {
+            const checkboxes = document.querySelectorAll(`input[data-tool-id="${toolId}"]`);
+            if (!checkboxes.length) return;
+
+            let checkedCount = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) checkedCount++;
+            });
+
+            const total = checkboxes.length;
+            const pct = Math.round((checkedCount / total) * 100);
+
+            const fill = document.getElementById(`progress-fill-${toolId}`);
+            const text = document.getElementById(`progress-text-${toolId}`);
+            if (fill) fill.style.width = pct + '%';
+            if (text) text.textContent = `${checkedCount}/${total} (${pct}%)`;
+        }
+
+        function resetToolChecklist(toolId) {
+            if (!confirm("¿Deseas reiniciar este checklist para una nueva semana?")) return;
+            const checkboxes = document.querySelectorAll(`input[data-tool-id="${toolId}"]`);
+            const state = getToolsChecklistState();
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                const id = cb.getAttribute('data-tool-check');
+                delete state[id];
+                const label = cb.closest('.tool-check-item');
+                if (label) label.classList.remove('completed');
+            });
+            saveToolsChecklistState(state);
+            updateToolProgress(toolId);
+            showToast('Checklist restablecido');
+        }
+
+        function initToolsChecklists() {
+            const state = getToolsChecklistState();
+            const tools = ['tb', 'gtd', 'eisen', 'inv', 'fin'];
+
+            document.querySelectorAll('input[data-tool-check]').forEach(cb => {
+                const id = cb.getAttribute('data-tool-check');
+                if (state[id]) {
+                    cb.checked = true;
+                    const label = cb.closest('.tool-check-item');
+                    if (label) label.classList.add('completed');
+                }
+            });
+
+            tools.forEach(t => updateToolProgress(t));
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById("toast-notification");
+            const text = document.getElementById("toast-text");
+            if (toast && text) {
+                text.innerText = msg;
+                toast.style.display = "flex";
+                setTimeout(() => {
+                    toast.style.display = "none";
+                }, 2500);
+            }
+        }
+
         // INICIALIZADOR GENERAL
         document.addEventListener("DOMContentLoaded", () => {
             const curDateEl = document.getElementById("inv-current-date");
@@ -1205,9 +2262,10 @@
             calculate503020();
             loadInventoryHistory();
             loadEisenhower();
+            initToolsChecklists();
 
             // Lightbox en todas las imágenes de herramientas
-            document.querySelectorAll('.tool-preview-img').forEach(img => {
+            document.querySelectorAll('.tool-preview-img, .image-preview img').forEach(img => {
                 img.addEventListener('click', function() { openLightbox(this.src); });
                 img.addEventListener('error', function() {
                     const fb = this.getAttribute('data-fallback');
