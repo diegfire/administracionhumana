@@ -307,22 +307,59 @@
             border-radius: 20px;
         }
         .image-preview {
-            margin: 0;
+            margin: 0.8rem auto;
             text-align: center;
+            max-width: 580px;
         }
         .image-preview img {
-            max-height: 220px;
+            max-height: 200px;
             object-fit: contain;
             width: 100%;
+            max-width: 520px;
             background: #080808;
             border: 1px solid #262626;
             border-radius: 8px;
             cursor: zoom-in;
             transition: all 0.2s ease;
+            display: block;
+            margin: 0 auto;
         }
         .image-preview img:hover {
             border-color: var(--forest);
-            transform: scale(1.01);
+            transform: scale(1.015);
+        }
+
+        .tool-preview-box {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            max-width: 580px;
+            margin: 1rem auto 0 auto;
+        }
+        .tool-preview-img {
+            width: 100%;
+            max-width: 520px;
+            max-height: 200px;
+            object-fit: contain;
+            background: #080808;
+            border-radius: 8px;
+            border: 1px solid #262626;
+            cursor: zoom-in;
+            transition: all 0.2s ease;
+            margin: 0 auto;
+            display: block;
+        }
+        .tool-preview-img:hover {
+            border-color: var(--forest);
+            transform: scale(1.015);
+        }
+        img:not(#lightbox-img) {
+            max-width: 100%;
+            height: auto;
         }
 
         .tool-context-box {
@@ -1253,32 +1290,149 @@
         </div>
 
         <!-- =========================================================================
-             TAB 2: TIME BLOCKING 24H (INTEGRADO CON SCHEDULE ENGINE)
+             TAB 2: TIME BLOCKING 24H (INTEGRADO CON SCHEDULE ENGINE MAESTRO)
              ========================================================================= -->
         <div id="tab-horario" class="tab-content">
-            <div class="card-custom">
-                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+            <!-- TARJETA FIJA: CONTEXTO LABORAL ACTUAL -->
+            <div class="card" style="margin-bottom: 1.5rem; border-color: rgba(96, 165, 250, 0.35); background: linear-gradient(135deg, rgba(30, 58, 138, 0.15), rgba(15, 23, 42, 0.4));">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 0.9rem;">
                     <div>
-                        <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">
-                            ⏰ Time Blocking Flexible • Mapeador de 168 Horas
+                        <div class="hero-tea-badge" style="background: rgba(96, 165, 250, 0.15); border-color: rgba(96, 165, 250, 0.35); color: #60a5fa;">
+                            <i class="fa-solid fa-clock"></i> Diagnóstico Laboral • Septiembre 2026
+                        </div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: #fff; margin: 0.4rem 0 0.2rem 0;">
+                            📌 Contexto Laboral Real & Blindaje de Ventanas de Oro
                         </h3>
-                        <p style="color:var(--secondary); font-size:0.82rem;">
-                            Colegio formal (L-Mi-J 8:00 a 17:30, Ma 8:30 a 15:30, Vi 9:00 a 14:00) + Ventanas de Oro protegidas para Trafmen y Diplomado.
-                        </p>
                     </div>
-                    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-                        <button class="btn-schedule-action" onclick="openCategoryManagerModal()"><i class="fa-solid fa-gear"></i> Gestionar Categorías</button>
-                        <button class="btn-schedule-action" onclick="openRangeFillModal()"><i class="fa-solid fa-fill-drip"></i> Rellenar Rango</button>
-                        <button class="btn-schedule-action" onclick="exportSchedulePNG()"><i class="fa-solid fa-camera"></i> Guardar Imagen</button>
-                        <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html#sheet-1" target="_blank" class="btn-schedule-action" style="background:#222; color:#fff;"><i class="fa-solid fa-print"></i> Imprimir Hoja 1</a>
+                    <a href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html#sheet-1" target="_blank" class="btn-schedule-action" style="background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.35); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px;">
+                        <i class="fa-solid fa-print"></i> Ver Ficha Imprimible Hoja 1
+                    </a>
+                </div>
+
+                <div class="grid-2" style="gap: 1.2rem;">
+                    <!-- COLUMNA 1: CARGA ESCOLAR FIJA -->
+                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1rem;">
+                        <h4 style="font-size: 0.9rem; color: #38bdf8; margin: 0 0 0.6rem 0; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-school"></i> Carga Escolar Fija (40.5 Horas / Semana)
+                        </h4>
+                        <div style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.6;">
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 3px 0;">
+                                <span><strong>Lunes:</strong> 08:00–17:30 (9.5h)</span> <span style="color: #60a5fa;">🏫 Kine Pueblo Seco</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 3px 0;">
+                                <span><strong>Martes:</strong> 08:30–15:30 (7.0h)</span> <span style="color: #a78bfa;">⚡ Salida Temprana</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 3px 0;">
+                                <span><strong>Miércoles:</strong> 08:00–17:30 (9.5h)</span> <span style="color: #60a5fa;">🏫 Kine Pueblo Seco</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 3px 0;">
+                                <span><strong>Jueves:</strong> 08:00–17:30 (9.5h)</span> <span style="color: #60a5fa;">🏫 Kine Pueblo Seco</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 3px 0;">
+                                <span><strong>Viernes:</strong> 09:00–14:00 (5.0h)</span> <span style="color: #34d399;">🌿 Media Jornada</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 0.7rem; font-size: 0.75rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px;">
+                            <span>✅ <strong>Contrato:</strong> 40.5h estrictas</span> &nbsp;|&nbsp; <span>🚫 Cero horas extras voluntarias no pagadas</span>
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA 2: ESTRATEGIA DE BLINDAJE HACIA LA INDEPENDENCIA -->
+                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1rem;">
+                        <h4 style="font-size: 0.9rem; color: #10b981; margin: 0 0 0.6rem 0; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-shield-halved"></i> Blindaje Quirúrgico: Hacia la Independencia
+                        </h4>
+                        <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.5;">
+                            <div style="margin-bottom: 0.45rem;">
+                                <strong style="color: #a78bfa;">🎓 Ventana de Oro 1 (Martes 16:30–18:00):</strong> Diplomado en Kinesiología Educativa para respaldar tu liderazgo técnico.
+                            </div>
+                            <div style="margin-bottom: 0.45rem;">
+                                <strong style="color: #34d399;">🧸 Ventana de Oro 2 (Sábado 10:00–12:30):</strong> Proyecto Trafmen: prototipar juguetes de estimulación en madera y estructurar talleres psicomotores.
+                            </div>
+                            <div style="margin-bottom: 0.45rem;">
+                                <strong style="color: #fbbf24;">👶 Franja Sagrada con Chinito (18:00–20:30):</strong> Crianza presente sin distracciones laborales ni culpa.
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #a7f3d0;">
+                                <strong>Principio AH:</strong> El colegio sostiene la base material hoy; tus Ventanas de Oro construyen tu libertad de mañana sin quemarte.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TARJETA DEL MAPEADOR INTERACTIVO 24H -->
+            <div class="card">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
+                    <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;">
+                        ⏰ Mapeador Semanal 24 Horas (Melissa Henríquez)
+                    </span>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right: 4px;">
+                            <i class="fa-solid fa-circle" style="font-size:7px;"></i> Auto-guardado en tu equipo
+                        </span>
+                        <button class="btn-schedule-action" id="btn-manual-save-schedule" onclick="manualSaveSchedule()" style="background: #ffffff; color: #000000; font-weight: 800;">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Horario
+                        </button>
+                        <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
+                        <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG('Melissa Henríquez')">📸 Exportar Imagen (PNG)</button>
+                        <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
                     </div>
                 </div>
 
-                <!-- PALETA DE PINCELES / CATEGORÍAS -->
-                <div class="palette-container" id="schedule-palette" style="margin-bottom:1rem;"></div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+                    Pinta tus bloques semanales para proteger tus <strong>40.5h de Colegio</strong>, tus <strong>Ventanas de Oro</strong> para Trafmen y Diplomado, tu <strong>Franja Sagrada con Chinito</strong> y tus <strong>56h de sueño intocable</strong>.
+                </p>
 
-                <!-- CUADRÍCULA DEL CRONOGRAMA 24H -->
-                <div class="schedule-grid-container" id="schedule-grid" style="overflow-x:auto;"></div>
+                <!-- SELECTOR DESPLEGABLE DE MIS CALENDARIOS GUARDADOS -->
+                <div id="schedule-calendar-bar-container" class="schedule-calendar-bar-container">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; flex:1;">
+                        <span style="font-size:0.82rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-calendar-days" style="color:var(--primary, #10b981);"></i> Mis Calendarios:
+                        </span>
+                        <select id="schedule-calendar-select" class="schedule-calendar-select" onchange="handleCalendarSelectChange(this.value)">
+                        </select>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn-schedule-action" onclick="openSaveAsNewCalendarModal()" style="background:rgba(16,185,129,0.12); color:#10b981; border:1px solid rgba(16,185,129,0.35); font-weight:700;">
+                            <i class="fa-solid fa-folder-plus"></i> + Guardar Semana Actual
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-merge-calendar" onclick="openMergeCalendarsModal()" style="background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.35); font-weight:700;">
+                            <i class="fa-solid fa-layer-group"></i> Solapar / Fusionar
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="openRenameCalendarModal()" style="color:#ccc;">
+                            <i class="fa-solid fa-pen"></i> Renombrar
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-delete-active-calendar" onclick="deleteActiveCalendar()" style="color:#f87171; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);">
+                            <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="schedule-controls">
+                    <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
+                    <div class="brush-selector" id="brush-selector-container"></div>
+                </div>
+
+                <div class="schedule-scroll-wrapper" id="schedule-export-container">
+                    <table class="schedule-grid-table" id="schedule-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Hora</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-stats-bar" id="schedule-stats-container"></div>
 
                 <!-- DIAGRAMA DIDÁCTICO TIME BLOCKING -->
                 <div style="margin-top:1.5rem; border-top:1px solid #222; padding-top:1.2rem;">
@@ -1291,7 +1445,7 @@
                                 <h4 style="font-weight:800; font-size:0.95rem;">Time Blocking: La Ciencia de Blindar Ventanas de Oro</h4>
                                 <p style="font-size:0.78rem; color:#888;">Separa el trabajo por contextos y elimina la fricción de decidir qué hacer cada día.</p>
                             </div>
-                            <span style="font-size:0.75rem; color:var(--forest);"><i class="fa-solid fa-magnifying-glass-plus"></i> Clic en la imagen para ampliar</span>
+                            <span style="font-size:0.75rem; color:var(--forest);"><i class="fa-solid fa-magnifying-glass-plus"></i> Clic para ampliar</span>
                         </div>
                         <img class="tool-preview-img" src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Diagrama Time Blocking" onclick="openLightbox(this.src)">
                     </div>
@@ -1945,14 +2099,129 @@
 
         // CATEGORÍAS PRE-CONFIGURADAS PARA HORARIO SEMANAL DE MELISSA
         window.CLIENT_SCHEDULE_CATEGORIES = [
-            { id: "dormir", label: "Sueño & Recarga", color: "#334155", shortTag: "SUE", default: true },
-            { id: "colegio", label: "Colegio / Kinesiología Escolar (40.5h)", color: "#1E40AF", shortTag: "COL", default: true },
-            { id: "chinito", label: "Crianza Chinito & Hogar", color: "#D97706", shortTag: "CHI", default: true },
-            { id: "diplomado", label: "Diplomado Kinesiología Educativa", color: "#7C3AED", shortTag: "DIP", default: true },
-            { id: "trafmen", label: "Ventana de Oro Trafmen", color: "#059669", shortTag: "TRAF", default: true },
-            { id: "karate", label: "Karate Madre-Hijo / Autocuidado", color: "#BE123C", shortTag: "KAR", default: true },
-            { id: "libre", label: "Margen Libre / Descanso", color: "#141414", shortTag: "LIB", default: true }
+            { id: "cat-sueno", name: "😴 Sueño & Recarga Biológica (56h)", label: "😴 Sueño & Recarga Biológica (56h)", color: "#6366f1", tag: "SUENO" },
+            { id: "cat-colegio", name: "🏫 Kine Escolar Pueblo Seco (40.5h)", label: "🏫 Kine Escolar Pueblo Seco (40.5h)", color: "#2563eb", tag: "COLEGIO" },
+            { id: "cat-chinito", name: "👶 Crianza Presente & Chinito (Sagrada)", label: "👶 Crianza Presente & Chinito (Sagrada)", color: "#f59e0b", tag: "CHINITO" },
+            { id: "cat-diplomado", name: "🎓 Ventana Oro 1 • Diplomado Kine Educativa", label: "🎓 Ventana Oro 1 • Diplomado Kine Educativa", color: "#8b5cf6", tag: "DIPLOMADO" },
+            { id: "cat-trafmen", name: "🧸 Ventana Oro 2 • Trafmen (Madera & Psicomotricidad)", label: "🧸 Ventana Oro 2 • Trafmen (Madera & Psicomotricidad)", color: "#10b981", tag: "TRAFMEN" },
+            { id: "cat-karate", name: "🥋 Autocuidado & Karate Madre-Hijo", label: "🥋 Autocuidado & Karate Madre-Hijo", color: "#ef4444", tag: "KARATE" },
+            { id: "cat-logistica", name: "🏡 Logística Hogar, Traslados & Comida", label: "🏡 Logística Hogar, Traslados & Comida", color: "#64748b", tag: "HOGAR" },
+            { id: "cat-libre", name: "⚪ Tiempo Libre & Margen Flexible", label: "⚪ Tiempo Libre & Margen Flexible", color: "#334155", tag: "LIBRE" }
         ];
+
+        // PRESETS SEMANALES PRE-CONFIGURADOS (CARGA REAL Y COMPLETA)
+        window.CLIENT_SCHEDULE_PRESETS = [
+            {
+                id: "semana_maestra_melissa",
+                name: "Semana Maestra Melissa (Colegio 40.5h + Chinito + Trafmen + Diplomado)",
+                categories: window.CLIENT_SCHEDULE_CATEGORIES,
+                data: (function() {
+                    const d = {};
+                    // Sueño de 23:00 a 07:00 todos los días (56h)
+                    for (let day = 0; day < 7; day++) {
+                        d[`${day}-23`] = "cat-sueno";
+                        for (let h = 0; h <= 6; h++) {
+                            d[`${day}-${h}`] = "cat-sueno";
+                        }
+                    }
+
+                    // LUNES (0): Colegio 8:00 a 17:30
+                    d["0-7"] = "cat-logistica"; // Despertar y traslado Chillán -> Pueblo Seco
+                    for (let h = 8; h <= 17; h++) d[`0-${h}`] = "cat-colegio";
+                    d["0-18"] = "cat-logistica"; // Retorno Chillán
+                    d["0-19"] = "cat-karate"; // Karate madre-hijo
+                    d["0-20"] = "cat-chinito"; // Acompañamiento y cena Chinito
+                    d["0-21"] = "cat-logistica"; // Rutina nocturna hogar
+                    d["0-22"] = "cat-libre"; // Vaciado mental e inventario de resultados (3 min)
+
+                    // MARTES (1): Salida Temprana 15:30 -> Diplomado Kinesiología Educativa (Ventana Oro 1)
+                    d["1-7"] = "cat-logistica";
+                    d["1-8"] = "cat-logistica"; // Entra 8:30
+                    for (let h = 9; h <= 15; h++) d[`1-${h}`] = "cat-colegio"; // Salida anticipada 15:30
+                    d["1-16"] = "cat-diplomado"; // 16:30 a 18:00 Diplomado Kine Educativa (Ventana de Oro 1)
+                    d["1-17"] = "cat-diplomado"; // Continuación Diplomado
+                    d["1-18"] = "cat-chinito"; // Franja Sagrada Chinito
+                    d["1-19"] = "cat-chinito";
+                    d["1-20"] = "cat-chinito";
+                    d["1-21"] = "cat-logistica";
+                    d["1-22"] = "cat-libre";
+
+                    // MIÉRCOLES (2): Colegio 8:00 a 17:30 + Karate
+                    d["2-7"] = "cat-logistica";
+                    for (let h = 8; h <= 17; h++) d[`2-${h}`] = "cat-colegio";
+                    d["2-18"] = "cat-logistica";
+                    d["2-19"] = "cat-karate"; // Karate madre-hijo
+                    d["2-20"] = "cat-chinito";
+                    d["2-21"] = "cat-logistica";
+                    d["2-22"] = "cat-libre";
+
+                    // JUEVES (3): Colegio 8:00 a 17:30 + Tarde Chinito
+                    d["3-7"] = "cat-logistica";
+                    for (let h = 8; h <= 17; h++) d[`3-${h}`] = "cat-colegio";
+                    d["3-18"] = "cat-logistica";
+                    d["3-19"] = "cat-chinito"; // Juegos y tareas Chinito
+                    d["3-20"] = "cat-chinito";
+                    d["3-21"] = "cat-logistica";
+                    d["3-22"] = "cat-libre";
+
+                    // VIERNES (4): Media Jornada 9:00 a 14:00 -> Tarde libre y sagrada con Chinito
+                    d["4-7"] = "cat-logistica";
+                    d["4-8"] = "cat-logistica"; // Entra 9:00
+                    for (let h = 9; h <= 13; h++) d[`4-${h}`] = "cat-colegio"; // Sale a las 14:00
+                    d["4-14"] = "cat-logistica"; // Almuerzo de cierre de semana
+                    for (let h = 15; h <= 20; h++) d[`4-${h}`] = "cat-chinito"; // Tarde sagrada Chinito
+                    d["4-21"] = "cat-libre";
+                    d["4-22"] = "cat-libre";
+
+                    // SÁBADO (5): Ventana Oro 2 • Trafmen (10:00 a 12:30) + Crianza y Descanso
+                    d["5-7"] = "cat-sueno"; // Sueño hasta las 8:00
+                    d["5-8"] = "cat-logistica";
+                    d["5-9"] = "cat-logistica";
+                    d["5-10"] = "cat-trafmen"; // 10:00 a 12:30 Ventana de Oro 2: Trafmen (Diseño juguetes madera & psicomotricidad)
+                    d["5-11"] = "cat-trafmen";
+                    d["5-12"] = "cat-trafmen";
+                    d["5-13"] = "cat-logistica"; // Almuerzo familiar
+                    for (let h = 14; h <= 19; h++) d[`5-${h}`] = "cat-chinito"; // Tarde de parque / juegos con Chinito
+                    d["5-20"] = "cat-libre";
+                    d["5-21"] = "cat-libre";
+                    d["5-22"] = "cat-libre";
+
+                    // DOMINGO (6): Día Familiar, Recarga & Planificación Semanal
+                    d["6-7"] = "cat-sueno"; // Sueño hasta las 8:00
+                    d["6-8"] = "cat-libre";
+                    d["6-9"] = "cat-libre";
+                    for (let h = 10; h <= 12; h++) d[`6-${h}`] = "cat-chinito"; // Tiempo de calidad Chinito
+                    d["6-13"] = "cat-logistica"; // Almuerzo familiar
+                    d["6-14"] = "cat-libre";
+                    d["6-15"] = "cat-libre";
+                    d["6-16"] = "cat-diplomado"; // Cita Semanal de Gestión & Lectura Diplomado (1h)
+                    for (let h = 17; h <= 20; h++) d[`6-${h}`] = "cat-chinito"; // Rutina tranquila con Chinito
+                    d["6-21"] = "cat-logistica"; // Preparación mochila y semana escolar
+                    d["6-22"] = "cat-libre"; // Inventario de Resultados y descanso
+
+                    return d;
+                })()
+            },
+            {
+                id: "semana_blanco",
+                name: "Semana en Blanco (Diseñar desde Cero)",
+                categories: window.CLIENT_SCHEDULE_CATEGORIES,
+                data: (function() {
+                    const d = {};
+                    for (let day = 0; day < 7; day++) {
+                        for (let h = 0; h < 24; h++) d[`${day}-${h}`] = "cat-libre";
+                    }
+                    return d;
+                })()
+            }
+        ];
+
+        // Asegurar que la semana pre-poblada se inicialice correctamente con la Semana Maestra de Melissa
+        if (!localStorage.getItem("melissa_schedule_v3_master_seed_v5")) {
+            localStorage.removeItem("melissa_schedule_saved_calendars_v3");
+            localStorage.setItem("melissa_schedule_active_calendar_id_v3", "semana_maestra_melissa");
+            localStorage.setItem("melissa_schedule_v3_master_seed_v5", "true");
+        }
 
         // TAREAS KANBAN PREDETERMINADAS DE MELISSA
         window.CLIENT_KANBAN_DEFAULT = [
