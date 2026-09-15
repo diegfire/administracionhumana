@@ -211,6 +211,33 @@
             font-size: 6.8pt;
         }
 
+        /* ── TABLA MAPEADOR 24H HOURLY GRID ── */
+        table.table-grid-24h {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 6.2pt;
+            line-height: 1.15;
+            margin-bottom: 6px;
+        }
+        table.table-grid-24h th, table.table-grid-24h td {
+            border: 1px solid #CBD5E1;
+            padding: 2.2px 3px;
+            text-align: center;
+        }
+        table.table-grid-24h th {
+            background: #0F172A;
+            color: #FFF;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 6.5pt;
+        }
+        table.table-grid-24h td.hour-col {
+            background: #F8FAFC;
+            font-weight: 800;
+            color: #334155;
+            width: 44px;
+        }
+
         /* ── FOOTER DE CADA PÁGINA ── */
         .sheet-footer {
             border-top: 1px solid var(--border);
@@ -250,7 +277,7 @@
             <select id="sheet-selector" class="select-sheet" onchange="filterSheet(this.value)">
                 <option value="all">Ver Cuadernillo Completo (5 Hojas)</option>
                 <option value="sheet-1">Hoja 1: Triangulación de Roles & Diagnóstico 168h</option>
-                <option value="sheet-2">Hoja 2: Malla Semanal Time Blocking & Rutinas Tomás</option>
+                <option value="sheet-2">Hoja 2: Mapeador Semanal 24H de Bloques & Rutinas Tomás</option>
                 <option value="sheet-3">Hoja 3: Tablero Kanban GTD & Protocolo Paso Cero</option>
                 <option value="sheet-4">Hoja 4: Matriz de Eisenhower & Sprint 12 Octubre</option>
                 <option value="sheet-5">Hoja 5: Inventario Nocturno de Resultados (30 Días)</option>
@@ -372,15 +399,15 @@
     </section>
 
     <!-- =========================================================================
-         HOJA 2: MALLA SEMANAL TIME BLOCKING & RUTINAS TOMÁS
+         HOJA 2: MAPEADOR SEMANAL 24H DE BLOQUES & RUTINAS TOMÁS
          ========================================================================= -->
     <section id="sheet-2" class="sheet-page">
         <div>
             <div class="sheet-header">
                 <div class="sh-left">
-                    <span class="sh-badge" style="background:var(--forest);">Herramienta Operativa AH-02</span>
-                    <h1>Malla Semanal de Time Blocking & Rutinas Tomás</h1>
-                    <div class="subtitle">Arquitectura horaria de alta protección cognitiva, comidas adelantadas y tardes familiares</div>
+                    <span class="sh-badge" style="background:var(--accent-purple);">Herramienta Operativa AH-02</span>
+                    <h1>Mapeador Semanal 24H de Bloques • Plantilla de Trabajo</h1>
+                    <div class="subtitle">Mosaico visual 168h de alta protección: Doctorado 30h, Tardes Tomás, Jueves Balance & Sueño Sagrado</div>
                 </div>
                 <div class="sh-right">
                     <strong>Alejandra Mattei</strong><br>
@@ -389,88 +416,187 @@
                 </div>
             </div>
 
-            <!-- Tabla de Horario Semanal 24H Resumido -->
-            <table class="sheet-table" style="font-size:7.2pt;">
+            <!-- CÓDIGO DE COLORES & CATEGORÍAS 24H -->
+            <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:5px; font-size:6.4pt;">
+                <span style="background:#EDE9FE; color:#5B21B6; border:1px solid #C4B5FD; padding:1px 5px; border-radius:4px;"><strong>😴 Sueño:</strong> 56h (23:00 a 07:00)</span>
+                <span style="background:#F5F3FF; color:#6D28D9; border:1.5px solid #8B5CF6; padding:1px 5px; border-radius:4px; font-weight:800;"><strong>🎓 Doctorado 8-14h:</strong> 30h Ventana Oro</span>
+                <span style="background:#FEF3C7; color:#92400E; border:1px solid #FDE68A; padding:1px 5px; border-radius:4px;"><strong>👶 Tomás / Almuerzo:</strong> 14:00 - 16:00</span>
+                <span style="background:#FCE7F3; color:#9D174D; border:1px solid #FBCFE8; padding:1px 5px; border-radius:4px;"><strong>🥋 Karate & Piano:</strong> Extraprog. Tomás</span>
+                <span style="background:#FEF08A; color:#854D0E; border:1.5px solid #EAB308; padding:1px 5px; border-radius:4px; font-weight:800;"><strong>🌟 Jueves Balance:</strong> 17:00 - 19:30</span>
+                <span style="background:#EFF6FF; color:#1E40AF; border:1px solid #BFDBFE; padding:1px 5px; border-radius:4px;"><strong>🖋️ Obra:</strong> Juana Mattei</span>
+                <span style="background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0; padding:1px 5px; border-radius:4px;"><strong>🌱 Huerta/Esgrima:</strong> Fin de Semana</span>
+                <span style="background:#F1F5F9; color:#334155; border:1px solid #CBD5E1; padding:1px 5px; border-radius:4px;"><strong>🏡 Cocina Adelantada:</strong> 19:30</span>
+            </div>
+
+            <!-- GRILLA HORARIA VISUAL 24H (18 FILAS: 06:00 A 23:00) -->
+            <table class="table-grid-24h">
                 <thead>
                     <tr>
-                        <th style="width:12%;">Bloque Horario</th>
-                        <th style="width:14%;">Lunes</th>
-                        <th style="width:14%;">Martes</th>
-                        <th style="width:14%;">Miércoles</th>
-                        <th style="width:18%;">Jueves (🌟 Balance)</th>
-                        <th style="width:14%;">Viernes</th>
-                        <th style="width:14%;">Fin de Semana</th>
+                        <th style="width:44px;">HORA</th>
+                        <th style="width:13.5%;">LUNES</th>
+                        <th style="width:13.5%;">MARTES</th>
+                        <th style="width:13.5%;">MIÉRCOLES</th>
+                        <th style="width:14.5%;">JUEVES (🌟)</th>
+                        <th style="width:13.5%;">VIERNES</th>
+                        <th style="width:14.5%;">SÁBADO</th>
+                        <th style="width:14.5%;">DOMINGO</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="background:#F8FAFC;"><strong>07:00 – 08:00</strong></td>
-                        <td colspan="5" style="text-align:center; background:#EFF6FF;">Puesta a punto hogar + Desayunos + Mochilas. 08:00: Tomás en el Cole</td>
-                        <td style="background:#FEF3C7;">Despertar suave</td>
+                        <td class="hour-col">06:00</td>
+                        <td colspan="7" style="background:#EDE9FE; color:#5B21B6; font-weight:700;">😴 SUEÑO INTOCABLE • RECARGA BIOLÓGICA (7.5h - 8h)</td>
                     </tr>
                     <tr>
-                        <td style="background:#F8FAFC;"><strong>08:00 – 14:00</strong><br><span style="color:var(--forest); font-weight:800;">VENTANA ORO</span></td>
-                        <td style="background:#ECFDF5;"><strong>DOCTORADO:</strong><br>Propuesta Beca 12 Octubre</td>
-                        <td style="background:#ECFDF5;"><strong>DOCTORADO:</strong><br>Metodología & Plan Trabajo</td>
-                        <td style="background:#ECFDF5;"><strong>DOCTORADO:</strong><br>Revisión Estado Cuestión</td>
-                        <td style="background:#ECFDF5;"><strong>DOCTORADO:</strong><br>Redacción de Tesis/Beca</td>
-                        <td style="background:#ECFDF5;"><strong>TRÁMITES:</strong><br>Expediente Beca & Firmas</td>
-                        <td rowspan="2" style="background:#FEF3C7;"><strong>SÁBADO:</strong><br>Esgrima Tomás (Mañana)<br><br><strong>DOMINGO:</strong><br>Huerta Comunitaria (Quincenal)</td>
+                        <td class="hour-col">07:00</td>
+                        <td colspan="5" style="background:#F1F5F9; color:#334155;">🏡 Puesta a punto hogar + Desayunos + Mochilas. 08:00: Tomás en el Cole</td>
+                        <td style="background:#FEF3C7; color:#92400E;">Despertar suave</td>
+                        <td style="background:#FEF3C7; color:#92400E;">Despertar suave</td>
                     </tr>
                     <tr>
-                        <td style="background:#F8FAFC;"><strong>14:00 – 15:30</strong></td>
-                        <td colspan="5" style="text-align:center; background:#FFFBEB;">Tomás sale del cole. Almuerzo juntos (Comida lista de la noche anterior) + Sobremesa tranquila</td>
+                        <td class="hour-col">08:00</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">🎓 DOCTORADO</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">🎓 DOCTORADO</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">🎓 DOCTORADO</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">🎓 DOCTORADO</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">🎓 DOCTORADO</td>
+                        <td style="background:#FEF3C7;">Desayuno en familia</td>
+                        <td style="background:#FEF3C7;">Desayuno en familia</td>
                     </tr>
                     <tr>
-                        <td style="background:#F8FAFC;"><strong>15:30 – 17:00</strong></td>
-                        <td colspan="5" style="text-align:center;">Descanso cognitivo / Tareas escolares de Tomás / Lectura tranquila / Preparativos</td>
-                        <td style="background:#FEF3C7;">Paseos & Senderos</td>
+                        <td class="hour-col">09:00</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">Beca 12 Octubre</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">Metodología Tesis</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">Estado Cuestión</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">Redacción FPI/FPU</td>
+                        <td style="background:#F5F3FF; color:#6D28D9; font-weight:800;">Expediente & CVC</td>
+                        <td style="background:#ECFDF5; font-weight:700; color:#065F46;" rowspan="3">🤺 Esgrima Tomás<br>(Alejandra acompaña / evalúa unirse)</td>
+                        <td style="background:#ECFDF5; font-weight:700; color:#065F46;" rowspan="3">🌱 Huerta Comunitaria<br>(Quincenal o Naturaleza Asturiana)</td>
                     </tr>
                     <tr>
-                        <td style="background:#F8FAFC;"><strong>17:00 – 19:00</strong><br><span style="color:var(--accent); font-weight:800;">EXTRA-PROG.</span></td>
-                        <td style="background:#F3E8FF;">🥋 <strong>Karate Tomás</strong><br>(17:00 a 19:00)</td>
-                        <td style="background:#FCE7F3;">🎹 <strong>Piano Tomás</strong><br>(17:00)</td>
-                        <td style="background:#F3E8FF;">🥋 <strong>Karate Tomás</strong><br>(17:00 a 19:00)</td>
-                        <td style="background:#FEF08A; border:2px solid #EAB308;">🌟 <strong>TARDE LIBRE TOMÁS:</strong><br>Sesión pactada de encuentro, balance y escucha mutua</td>
-                        <td style="background:#F3E8FF;">🥋 <strong>Karate Tomás</strong><br>(17:00 a 19:00)</td>
-                        <td style="background:#FEF3C7;">Juegos, lectura o visitas</td>
+                        <td class="hour-col">10:00</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Filosofía Ciencia</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Filosofía Ciencia</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Filosofía Ciencia</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Filosofía Ciencia</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Trámites Convocatoria</td>
                     </tr>
                     <tr>
-                        <td style="background:#F8FAFC;"><strong>19:30 – 21:00</strong></td>
-                        <td colspan="5" style="text-align:center; background:#EFF6FF;">Regreso a casa + Ducha + Cocinar comida de mañana (Regla Cocina Adelantada) + Cena familiar</td>
+                        <td class="hour-col">11:00</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Lectura Profunda</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Lectura Profunda</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Lectura Profunda</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Lectura Profunda</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Correos Directores</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">12:00</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Redacción Avances</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Redacción Avances</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Redacción Avances</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Redacción Avances</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Revisión de Firmas</td>
+                        <td style="background:#F1F5F9;">Regreso a casa</td>
+                        <td style="background:#F1F5F9;">Cierre huerta</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">13:00</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Cierre Bloque Tesis</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Cierre Bloque Tesis</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Cierre Bloque Tesis</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Cierre Bloque Tesis</td>
+                        <td style="background:#F5F3FF; color:#6D28D9;">Cierre de Semana</td>
+                        <td style="background:#FFFBEB;">Almuerzo Tomás</td>
+                        <td style="background:#FFFBEB;">Almuerzo familiar</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">14:00</td>
+                        <td colspan="5" style="background:#FFFBEB; color:#92400E; font-weight:700;">👶 Tomás sale del cole • ALMUERZO JUNTOS (Comida lista de la noche anterior) + Sobremesa</td>
+                        <td style="background:#FFFBEB;">Sobremesa</td>
+                        <td style="background:#FFFBEB;">Sobremesa</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">15:00</td>
+                        <td colspan="5" style="background:#F8FAFC;">Pausa cognitiva / Tareas escolares de Tomás / Lectura tranquila</td>
+                        <td style="background:#EFF6FF; color:#1E40AF; font-weight:700;" rowspan="2">🖋️ OBRA LITERARIA<br>Juana Mattei (Novela/Poesía)</td>
+                        <td style="background:#F8FAFC;">Descanso tranquilo</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">16:00</td>
+                        <td colspan="5" style="background:#F8FAFC;">Merienda Tomás + Preparación salida extraprogramáticas</td>
+                        <td style="background:#F8FAFC;">Paseo o naturaleza</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">17:00</td>
+                        <td style="background:#FCE7F3; font-weight:800; color:#9D174D;" rowspan="2">🥋 Karate Tomás<br>(17:00 - 19:00)</td>
+                        <td style="background:#FCE7F3; font-weight:800; color:#9D174D;">🎹 Piano Tomás<br>(17:00)</td>
+                        <td style="background:#FCE7F3; font-weight:800; color:#9D174D;" rowspan="2">🥋 Karate Tomás<br>(17:00 - 19:00)</td>
+                        <td style="background:#FEF08A; border:1.5px solid #EAB308; font-weight:800; color:#854D0E;" rowspan="2">🌟 JUEVES SAGRADO<br>Encuentro & Balance Mutuo Madre-Hijo (Cero pantallas)</td>
+                        <td style="background:#FCE7F3; font-weight:800; color:#9D174D;" rowspan="2">🥋 Karate Tomás<br>(17:00 - 19:00)</td>
+                        <td style="background:#FEF3C7;" rowspan="2">Paseos por Oviedo / Parque / Senderos</td>
+                        <td style="background:#FEF3C7;">Juegos con Tomás</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">18:00</td>
+                        <td style="background:#FEF3C7;">Tareas / Lectura Tomás</td>
+                        <td style="background:#F1F5F9;">Planificación semanal</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">19:00</td>
+                        <td colspan="3" style="background:#F1F5F9;">Regreso casa + Ducha Tomás</td>
+                        <td style="background:#FEF08A; color:#854D0E; font-weight:700;">🌟 Cierre Encuentro</td>
+                        <td style="background:#F1F5F9;">Regreso + Ducha</td>
+                        <td style="background:#F8FAFC;">Regreso a casa</td>
+                        <td style="background:#F1F5F9;">Mochila cole Tomás</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">19:30</td>
+                        <td colspan="5" style="background:#EFF6FF; color:#1E40AF; font-weight:700;">🏡 COCINA ADELANTADA: Preparar comida de mañana (Regla Antifricción)</td>
+                        <td style="background:#FEF3C7;">Cena relajada</td>
                         <td style="background:#FEF3C7;">Cena relajada</td>
                     </tr>
                     <tr>
-                        <td style="background:#F8FAFC;"><strong>21:30 – 23:00</strong></td>
-                        <td colspan="5" style="text-align:center; background:#FAF5FF;">
-                            🌟 <strong>INVENTARIO DE RESULTADOS (3 min)</strong> + Lectura literaria suave. (Si hay trabajo formal de 8-16h: bloque tesis 20:30-22:30). 23:00 Luces fuera.
+                        <td class="hour-col">20:30</td>
+                        <td colspan="5" style="background:#FFFBEB; font-weight:700; color:#92400E;">Cena familiar con Tomás • Conversación y conexión sin apuros</td>
+                        <td style="background:#FEF3C7;">Película / Charla</td>
+                        <td style="background:#FEF3C7;">Charla de domingo</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">21:30</td>
+                        <td colspan="5" style="background:#FAF5FF;">Tiempo libre suave / Lectura literaria o descanso mental (Si trabajo 8-16h: bloque tesis 20:30-22:30)</td>
+                        <td style="background:#FAF5FF;">Desconexión total</td>
+                        <td style="background:#FAF5FF;">Vaciado mental</td>
+                    </tr>
+                    <tr>
+                        <td class="hour-col">22:30</td>
+                        <td colspan="7" style="background:#FAF5FF; border:1.5px solid #8B5CF6; color:#6D28D9; font-weight:800;">
+                            🌟 22:45 INVENTARIO DE RESULTADOS (3 min) • Anotar 3 victorias del día • 23:00 Cero pantallas y luces fuera
                         </td>
-                        <td style="background:#FEF3C7;">Desconexión total</td>
                     </tr>
                 </tbody>
             </table>
 
-            <!-- Reglas de Oro y Ritual del Jueves -->
-            <div class="grid-2" style="margin-top:6px;">
-                <div class="card-box" style="border-left:3px solid #EAB308; background:#FEFCE8;">
-                    <div class="card-title" style="color:#A16207;">
-                        <i class="fa-solid fa-star"></i> Protocolo: Jueves de Balance con Tomás
+            <!-- REGLAS DE ORO Y PROTOCOLO JUEVES -->
+            <div class="grid-2" style="margin-top:4px;">
+                <div class="card-box" style="border-left:3px solid #EAB308; background:#FEFCE8; padding:4px 7px;">
+                    <div class="card-title" style="color:#A16207; font-size:7.5pt;">
+                        <i class="fa-solid fa-star"></i> Protocolo: Jueves de Balance con Tomás (17:00 a 19:30)
                     </div>
-                    <ol style="font-size:7.2pt; padding-left:14px; line-height:1.4; color:#713F12;">
-                        <li><strong>Espacio Protegido:</strong> Cero pantallas de trabajo entre 17:00 y 19:30.</li>
-                        <li><strong>Pregunta 1 (Tomás):</strong> "¿Qué fue lo más bacán o lo más pesado de tu semana en el cole o con amigos?"</li>
-                        <li><strong>Pregunta 2 (Alejandra):</strong> Compartir 1 logro y 1 desafío vivido en sus estudios o proyectos de forma comprensible.</li>
-                        <li><strong>Acuerdo Práctico:</strong> Revisar mochilas y coordinar planes del fin de semana (esgrima, huerta o senderos).</li>
-                    </ol>
+                    <ul style="font-size:6.8pt; padding-left:12px; line-height:1.3; color:#713F12; margin:0;">
+                        <li><strong>Espacio Sagrado:</strong> Cero pantallas y cero correos. Dedicación 100% exclusiva madre-hijo.</li>
+                        <li><strong>Pregunta 1 (Tomás):</strong> "¿Qué fue lo más bacán o lo más pesado de tu semana en el cole?"</li>
+                        <li><strong>Pregunta 2 (Alejandra):</strong> Compartir 1 victoria y 1 reto vivido en los estudios con lenguaje cercano.</li>
+                        <li><strong>Acuerdos:</strong> Coordinar planes del finde (esgrima, huerta o senderos asturianos).</li>
+                    </ul>
                 </div>
-                <div class="card-box" style="border-left:3px solid var(--forest); background:#F0FDF4;">
-                    <div class="card-title" style="color:var(--forest);">
-                        <i class="fa-solid fa-shield-check"></i> Las 3 Reglas Antifricción
+                <div class="card-box" style="border-left:3px solid var(--forest); background:#F0FDF4; padding:4px 7px;">
+                    <div class="card-title" style="color:var(--forest); font-size:7.5pt;">
+                        <i class="fa-solid fa-shield-check"></i> Las 3 Reglas Antifricción Innegociables
                     </div>
-                    <ul style="font-size:7.2pt; padding-left:12px; line-height:1.4; color:#14532D;">
-                        <li><strong>Cocina Adelantada:</strong> La comida de las 14:00 se cocina la noche previa. Jamás romper el bloque matutino para pelar papas o freír.</li>
-                        <li><strong>Soberanía Matutina (8 a 14h):</strong> 6 horas sagradas para la investigación. Las compras se hacen de camino a casa.</li>
-                        <li><strong>Cierre de Jornada a las 23:00:</strong> Proteger el cerebro de la investigadora mediante 7.5h de sueño biológico real.</li>
+                    <ul style="font-size:6.8pt; padding-left:12px; line-height:1.3; color:#14532D; margin:0;">
+                        <li><strong>Cocina Adelantada (19:30):</strong> El almuerzo de mañana se cocina hoy. Jamás frenar la tesis a las 12h para pelar papas.</li>
+                        <li><strong>Soberanía Matutina (8 a 14h):</strong> 30 horas semanales intocables para redactar y ganar la beca.</li>
+                        <li><strong>Cierre a las 23:00 Cero Culpa:</strong> Proteger el sueño biológico real. Lo hecho hoy fue suficiente.</li>
                     </ul>
                 </div>
             </div>
@@ -478,7 +604,7 @@
 
         <div class="sheet-footer">
             <span>Administración Humana • Metodología AICC v2.0</span>
-            <span>Hoja 2 de 5 • Malla Semanal Time Blocking</span>
+            <span>Hoja 2 de 5 • Mapeador Semanal 24H de Bloques</span>
             <span>Consultor: <strong>Diego González Yáñez</strong> (+56975590132)</span>
         </div>
     </section>
