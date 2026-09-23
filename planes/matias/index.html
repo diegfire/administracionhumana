@@ -187,7 +187,12 @@
             <button class="tab-btn " onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-kanban')">
+                        <button class="tab-btn " onclick="switchTab('tab-kanban')">
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2 • En Foco)
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-paso-cero')" style="border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08);">
+                <i class="fa-solid fa-bolt" style="color: #10b981;"></i> ⚡ Paso Cero & Pomodoro
+            </button>
                 <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
             </button>
             <button class="tab-btn " onclick="switchTab('tab-voice')">
@@ -435,6 +440,20 @@
                     Matías González, este tablero es tu escudo contra la parálisis. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>máximo 2 tareas en simultáneo</strong>.
                 </p>
 
+                
+                <!-- CÁPSULA DIDÁCTICA TDAH: ¿QUÉ ES WIP? -->
+                <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 0.85rem 1.1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.3rem; font-size: 0.84rem; color: #cbd5e1; line-height: 1.6;">
+                    <strong style="color: #fbbf24; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; margin-bottom: 0.3rem;">
+                        <i class="fa-solid fa-lightbulb"></i> ¿Qué es WIP? = Work In Progress (Trabajo en Proceso / Tareas Abiertas)
+                    </strong>
+                    <p style="margin: 0 0 0.4rem 0;">
+                        <strong>WIP</strong> es el acrónimo de <em>Work In Progress</em> (Trabajo en Proceso). En el cerebro con TDAH, tener más de 2 tareas abiertas provoca ceguera atencional y parálisis por sobreestímulo.
+                    </p>
+                    <p style="margin: 0; color: #fef08a;">
+                        ⚡ <strong>Regla de Oro TDAH:</strong> Máximo <strong>2 tareas en "En Foco"</strong>. Prohibido abrir una 3ra tarea hasta terminar o devolver una de las dos activas. Cumplir el 70% es 100% de éxito.
+                    </p>
+                </div>
+
                 <div class="kanban-grid">
                     <div class="kanban-col">
                         <div class="kanban-col-header">
@@ -450,7 +469,7 @@
 
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Foco (WIP = 2 • Trabajo en Proceso)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -618,6 +637,61 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- P3-04: RITUAL DE CIERRE DE JORNADA (SHUTDOWN RITUAL) -->
+            <div class="card" style="border-color: rgba(96, 165, 250, 0.35); background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%); margin-top: 1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1rem;">
+                    <div>
+                        <span class="hero-tea-badge" style="background:rgba(96,165,250,0.15); border-color:#60a5fa; color:#93c5fd;">
+                            <i class="fa-solid fa-moon"></i> P3-04 • Ritual de Cierre de Jornada (Shutdown Ritual)
+                        </span>
+                        <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:0.3rem 0 0;">
+                            Corte Neurobiológico TDAH: Desconexión Escolar & Apagado Nocturno (21:30)
+                        </h4>
+                    </div>
+                    <span style="font-size:0.75rem; background:#1e3a8a; color:#93c5fd; padding:4px 10px; border-radius:20px; font-weight:700;">
+                        3 Minutos Diarios
+                    </span>
+                </div>
+                <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin-bottom:1.2rem;">
+                    El cerebro con TDAH entra en hiperfoco nocturno si no tiene un ritual físico de cierre. Al sonar las 21:30, completa estos 4 pasos para proteger tu sueño y despertar sin estrés:
+                </p>
+
+                <div class="grid-2" style="gap:1rem;">
+                    <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                        <input type="checkbox" id="matias_shut_1" onchange="toggleMatiasShutdown(1)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                        <div>
+                            <strong style="color:#fff; font-size:0.86rem; display:block;">1. Mochila & Estuche en la Puerta</strong>
+                            <span style="color:#aaa; font-size:0.78rem;">Cuadernos guardados y tareas listas para no buscar nada en la mañana.</span>
+                        </div>
+                    </label>
+                    <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                        <input type="checkbox" id="matias_shut_2" onchange="toggleMatiasShutdown(2)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                        <div>
+                            <strong style="color:#fff; font-size:0.86rem; display:block;">2. Pantallas Apagadas & Celular Lejos (21:30)</strong>
+                            <span style="color:#aaa; font-size:0.78rem;">Cero videos de estimulación pasiva en la cama para frenar el cerebro.</span>
+                        </div>
+                    </label>
+                    <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                        <input type="checkbox" id="matias_shut_3" onchange="toggleMatiasShutdown(3)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                        <div>
+                            <strong style="color:#fff; font-size:0.86rem; display:block;">3. Anotar el Paso Cero de Mañana (WIP = 2)</strong>
+                            <span style="color:#aaa; font-size:0.78rem;">Dejar en un post-it la primera micro-acción de 5 minutos al despertar.</span>
+                        </div>
+                    </label>
+                    <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                        <input type="checkbox" id="matias_shut_4" onchange="toggleMatiasShutdown(4)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                        <div>
+                            <strong style="color:#fff; font-size:0.86rem; display:block;">4. Dibujo o Lectura Analógica (15 min)</strong>
+                            <span style="color:#aaa; font-size:0.78rem;">Dopamina sana con lápiz y papel para inducir sueño reparador.</span>
+                        </div>
+                    </label>
+                </div>
+                <div id="matias-shutdown-status" style="font-size:0.82rem; font-weight:700; color:#60a5fa; margin-top:1rem; text-align:right;">
+                    Progreso: 0/4 pasos completados hoy
+                </div>
+            </div>
+
         </div>
 
     </div><!-- /container -->
@@ -751,6 +825,186 @@
     <script src="js/portal-gateway.js?v=3.2"></script>
     <script src="js/schedule-engine.js?v=3.2"></script>
     <script src="js/kanban-engine.js?v=3.2"></script>
-    <script src="js/whatsapp-widget.js?v=3.2"></script>
+    <script src="js/whatsapp-widget.js?v=3.2">
+        // =========================================================================
+        // P1-10 & P1-08: PASO CERO Y POMODORO (MATIAS)
+        // =========================================================================
+        let timer5mSeconds = 300;
+        let timer5mRunning = false;
+        let timer5mInterval = null;
+
+        function updateMatiasEnergy(val) {
+            const txt = document.getElementById("energy-val-txt");
+            if (txt) txt.innerText = val + "%";
+            const hint = document.getElementById("pasocero-hint");
+            if (val <= 30) {
+                if (hint) hint.innerText = "🔋 Batería baja: Tu único objetivo es sentarte en el escritorio y escribir la fecha.";
+            } else if (val <= 70) {
+                if (hint) hint.innerText = "⚡ Batería media: Lee 1 página o resuelve 1 ejercicio guiado. Eso es suficiente.";
+            } else {
+                if (hint) hint.innerText = "🚀 Buena energía: Avanza 5 minutos a buen ritmo sin mirar el celular.";
+            }
+        }
+
+        function updateMicroHint(text) {
+            const hint = document.getElementById("pasocero-hint");
+            const wsp = document.getElementById("btn-wsp-pasocero");
+            if (text.trim()) {
+                if (hint) hint.innerHTML = `✨ Acción: <strong>"${text}"</strong> (Solo 5 min cronometrados)`;
+                if (wsp) {
+                    const enc = encodeURIComponent(`¡Hola Diego! Acabo de cumplir mi Paso Cero de 5 minutos: "${text}". ¡Activé el foco!`);
+                    wsp.href = `https://wa.me/56975590132?text=${enc}`;
+                }
+            } else {
+                if (hint) hint.innerText = "✨ Acción: Solo abre el libro y escribe la fecha. Eso es 100% de éxito hoy.";
+            }
+        }
+
+        function toggleTimer5m() {
+            const btn = document.getElementById("btn-timer-5m-toggle");
+            const display = document.getElementById("timer-5m-display");
+
+            if (!timer5mRunning) {
+                timer5mRunning = true;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar 5m';
+                timer5mInterval = setInterval(() => {
+                    if (timer5mSeconds > 0) {
+                        timer5mSeconds--;
+                        const m = String(Math.floor(timer5mSeconds / 60)).padStart(2, '0');
+                        const s = String(timer5mSeconds % 60).padStart(2, '0');
+                        if (display) display.innerText = `${m}:${s}`;
+                    } else {
+                        clearInterval(timer5mInterval);
+                        timer5mRunning = false;
+                        if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar 5m';
+                        showToast('🎉 ¡5 Minutos cumplidos! Rompiste la inercia con éxito.');
+                        timer5mSeconds = 300;
+                        if (display) display.innerText = "05:00";
+                    }
+                }, 1000);
+            } else {
+                clearInterval(timer5mInterval);
+                timer5mRunning = false;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Reanudar';
+            }
+        }
+
+        function resetTimer5m() {
+            clearInterval(timer5mInterval);
+            timer5mRunning = false;
+            timer5mSeconds = 300;
+            const btn = document.getElementById("btn-timer-5m-toggle");
+            const display = document.getElementById("timer-5m-display");
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar 5m';
+            if (display) display.innerText = "05:00";
+        }
+
+        let pomoSeconds = 900;
+        let pomoRunning = false;
+        let pomoInterval = null;
+        let pomoModeMinutes = 15;
+
+        function setPomoMode(m) {
+            clearInterval(pomoInterval);
+            pomoRunning = false;
+            pomoModeMinutes = m;
+            pomoSeconds = m * 60;
+            const btn15 = document.getElementById("btn-pomo-15");
+            const btn25 = document.getElementById("btn-pomo-25");
+            const display = document.getElementById("pomo-timer-display");
+            const btn = document.getElementById("btn-pomo-toggle");
+
+            if (m === 15) {
+                if (btn15) { btn15.style.background = 'rgba(59,130,246,0.2)'; btn15.style.borderColor = '#3b82f6'; btn15.style.color = '#60a5fa'; }
+                if (btn25) { btn25.style.background = 'transparent'; btn25.style.borderColor = '#333'; btn25.style.color = '#ccc'; }
+            } else {
+                if (btn25) { btn25.style.background = 'rgba(59,130,246,0.2)'; btn25.style.borderColor = '#3b82f6'; btn25.style.color = '#60a5fa'; }
+                if (btn15) { btn15.style.background = 'transparent'; btn15.style.borderColor = '#333'; btn15.style.color = '#ccc'; }
+            }
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Foco';
+            if (display) display.innerText = `${String(m).padStart(2, '0')}:00`;
+        }
+
+        function togglePomoTimer() {
+            const btn = document.getElementById("btn-pomo-toggle");
+            const display = document.getElementById("pomo-timer-display");
+
+            if (!pomoRunning) {
+                pomoRunning = true;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar';
+                pomoInterval = setInterval(() => {
+                    if (pomoSeconds > 0) {
+                        pomoSeconds--;
+                        const m = String(Math.floor(pomoSeconds / 60)).padStart(2, '0');
+                        const s = String(pomoSeconds % 60).padStart(2, '0');
+                        if (display) display.innerText = `${m}:${s}`;
+                    } else {
+                        clearInterval(pomoInterval);
+                        pomoRunning = false;
+                        if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Foco';
+                        showToast('🔔 ¡Tiempo de Foco cumplido! Toma tu pausa sensorial de 5m.');
+                        pomoSeconds = pomoModeMinutes * 60;
+                        if (display) display.innerText = `${String(pomoModeMinutes).padStart(2, '0')}:00`;
+                    }
+                }, 1000);
+            } else {
+                clearInterval(pomoInterval);
+                pomoRunning = false;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Reanudar';
+            }
+        }
+
+        function resetPomoTimer() {
+            clearInterval(pomoInterval);
+            pomoRunning = false;
+            pomoSeconds = pomoModeMinutes * 60;
+            const btn = document.getElementById("btn-pomo-toggle");
+            const display = document.getElementById("pomo-timer-display");
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Foco';
+            if (display) display.innerText = `${String(pomoModeMinutes).padStart(2, '0')}:00`;
+        }
+
+        // =========================================================================
+        // P3-04 SHUTDOWN RITUAL (MATIAS)
+        // =========================================================================
+        function initMatiasShutdown() {
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const cb = document.getElementById(`matias_shut_${i}`);
+                if (cb) {
+                    const checked = localStorage.getItem(`matias_shut_${i}`) === 'true';
+                    cb.checked = checked;
+                    if (checked) count++;
+                }
+            }
+            updateMatiasShutdownStatus(count);
+        }
+
+        function toggleMatiasShutdown(idx) {
+            const cb = document.getElementById(`matias_shut_${idx}`);
+            if (cb) {
+                localStorage.setItem(`matias_shut_${idx}`, cb.checked ? 'true' : 'false');
+            }
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById(`matias_shut_${i}`);
+                if (el && el.checked) count++;
+            }
+            updateMatiasShutdownStatus(count);
+            if (count === 4) {
+                showToast('🌙 ¡Jornada cerrada! Mente lista para descansar y dormir.');
+            }
+        }
+
+        function updateMatiasShutdownStatus(count) {
+            const status = document.getElementById("matias-shutdown-status");
+            if (status) {
+                status.innerText = `Progreso: ${count}/4 pasos completados hoy`;
+                status.style.color = count === 4 ? '#10b981' : '#60a5fa';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => { initMatiasShutdown(); });
+</script>
 </body>
 </html>

@@ -83,7 +83,7 @@ function addKanbanTask(column) {
     if (column === "doing") {
         const currentDoing = kanbanTaskList.filter(t => t.col === "doing").length;
         if (currentDoing >= 2) {
-            alert("⚠️ ¡Límite WIP Alcanzado! Solo puedes tener un máximo de 2 tareas activas en 'En Ejecución'. Termina o mueve una tarea antes de comenzar otra.");
+            alert("⚠️ ¡Límite de Foco Alcanzado (WIP = 2)!\n\n• ¿Qué es WIP?: Work In Progress (Trabajo en Proceso / Tareas en Curso).\n• Regla Metodológica: Para no saturar tu corteza prefrontal, el sistema limita estrictamente a 2 las tareas abiertas simultáneamente.\n\nTermina una tarea activa o devuélvela a pendientes antes de abrir un nuevo frente.");
             return;
         }
     }
@@ -104,7 +104,7 @@ function moveKanbanTaskItem(taskId, targetCol) {
     if (targetCol === "doing") {
         const currentDoing = kanbanTaskList.filter(t => t.col === "doing" && t.id !== taskId).length;
         if (currentDoing >= 2) {
-            alert("⚠️ ¡Límite Máximo 2 Tareas a la Vez Alcanzado! Tienes 2 tareas activas en curso. Mueve o termina una antes de ingresar otra a 'En Ejecución'.");
+            alert("⚠️ ¡Límite de Foco Alcanzado (WIP = 2)!\n\n• ¿Qué es WIP?: Work In Progress (Trabajo en Proceso / Tareas en Curso).\n• Regla Metodológica: Tienes 2 frentes abiertos en tus manos. Termina o pausa uno antes de mover otra tarea a 'En Foco / En Ejecución'.");
             return;
         }
     }

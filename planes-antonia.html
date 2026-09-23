@@ -580,6 +580,12 @@
             <button class="tab-btn" onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
+            <button class="tab-btn" onclick="switchTab('tab-kanban')">
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2 • En Foco)
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-batching')" style="border: 1px solid rgba(245, 158, 11, 0.35); background: rgba(245, 158, 11, 0.06);">
+                <i class="fa-solid fa-layer-group" style="color: #f59e0b;"></i> Batching por Lotes
+            </button>
             <button class="tab-btn" onclick="switchTab('tab-imprimibles')" style="border: 1px solid rgba(139, 92, 246, 0.45); background: rgba(139, 92, 246, 0.08);">
                 <i class="fa-solid fa-print" style="color: #a78bfa;"></i> 📄 Hub Imprimibles Físicos
             </button>
@@ -2201,6 +2207,46 @@ Ajusta mi Mapeador 24 Horas para proteger mis horas fijadas de Habitarte (ejerce
                     </span>
                 </div>
 
+                
+                <!-- MONITOR ACTIVO: HITO SANTIAGO ($160.000 CLP) -->
+                <div style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(10,15,12,0.95) 100%); border: 1px solid rgba(16,185,129,0.35); border-radius: 12px; padding: 1.1rem; margin-bottom: 1.3rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:0.7rem;">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span class="hero-tea-badge" style="background:rgba(16,185,129,0.15); border-color:#10b981; color:#34d399; margin:0;">
+                                <i class="fa-solid fa-bullseye"></i> META FINANCIERA PRIMARIA
+                            </span>
+                            <strong style="color:#fff; font-size:1rem; font-family:var(--font-display);">
+                                Hito Santiago: Pasajes Bus para ver a Mateo ($160.000)
+                            </strong>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span style="font-size:0.78rem; color:#aaa;">Pases Habitarte ($20.000 c/u):</span>
+                            <button onclick="changeAntoniaAlumnas(-1)" class="btn-schedule-action" style="padding:2px 10px; font-weight:800; font-size:1rem; line-height:1;">-</button>
+                            <span id="antonia-alumnas-count" style="font-family:'Space Grotesk', monospace; font-size:1.15rem; font-weight:800; color:#10b981; min-width:30px; text-align:center;">0</span>
+                            <span style="font-size:0.8rem; color:#888;">/ 8</span>
+                            <button onclick="changeAntoniaAlumnas(1)" class="btn-schedule-action" style="padding:2px 10px; font-weight:800; font-size:1rem; line-height:1;">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Barra de Progreso -->
+                    <div style="background:#1a1a1a; border-radius:20px; height:12px; overflow:hidden; border:1px solid #333; margin-bottom:0.6rem;">
+                        <div id="antonia-milestone-fill" style="background:linear-gradient(90deg, #10b981, #34d399); height:100%; width:0%; transition:width 0.4s ease; border-radius:20px;"></div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:0.8rem;">
+                        <div>
+                            <span style="color:#aaa;">Recaudado: </span>
+                            <strong id="antonia-recaudado-txt" style="color:#10b981; font-family:'Space Grotesk', monospace; font-size:0.95rem;">$0 CLP</strong>
+                            <span style="color:#666; margin:0 4px;">•</span>
+                            <span style="color:#aaa;">Brecha restante: </span>
+                            <strong id="antonia-brecha-txt" style="color:#f59e0b; font-family:'Space Grotesk', monospace;">$160.000 CLP</strong>
+                        </div>
+                        <div id="antonia-milestone-celebration" style="font-weight:700; color:#34d399; display:none;">
+                            🎉 ¡Meta alcanzada! 100% de pasajes financiados sin deuda.
+                        </div>
+                    </div>
+                </div>
+
                 <div class="kanban-grid">
                     <div class="kanban-col">
                         <div class="kanban-col-header">
@@ -2216,7 +2262,7 @@ Ajusta mi Mapeador 24 Horas para proteger mis horas fijadas de Habitarte (ejerce
 
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Foco (WIP = 2 • Trabajo en Proceso)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -2652,7 +2698,61 @@ Ajusta mi Mapeador 24 Horas para proteger mis horas fijadas de Habitarte (ejerce
                         </li>
                     </ul>
                 </div>
-            </div>
+
+                <!-- P3-04: RITUAL DE CIERRE DE JORNADA (SHUTDOWN RITUAL) -->
+                <div class="card" style="border-color: rgba(168, 85, 247, 0.35); background: linear-gradient(135deg, rgba(88, 28, 135, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%); margin-top: 1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1rem;">
+                        <div>
+                            <span class="hero-tea-badge" style="background:rgba(168,85,247,0.15); border-color:#a855f7; color:#c084fc;">
+                                <i class="fa-solid fa-moon"></i> P3-04 • Ritual de Cierre de Jornada (Shutdown Ritual)
+                            </span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:0.3rem 0 0;">
+                                Corte Neurobiológico: Desconexión de Instructora a Descanso Materno & Somático (20:30)
+                            </h4>
+                        </div>
+                        <span style="font-size:0.75rem; background:#581c87; color:#e9d5ff; padding:4px 10px; border-radius:20px; font-weight:700;">
+                            3 Minutos Diarios
+                        </span>
+                    </div>
+                    <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin-bottom:1.2rem;">
+                        Tras horas de música a alto volumen, coreografías intensas y consultas de alumnas, la corteza cerebral de Antonia queda en hiperalerta. Si no haces un corte formal, seguirás escuchando pistas y rumiando pendientes en la cama. Completa estos 4 pasos para soltar el cuerpo y entrar a un sueño reparador:
+                    </p>
+
+                    <div class="grid-2" style="gap:1rem;">
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="antonia_shut_1" onchange="toggleAntoniaShutdown(1)" style="margin-top:3px; accent-color:#a855f7; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">1. Silenciar Música y Reproductor Spotify</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Pausar todo estímulo rítmico y guardar audífonos hasta la mañana siguiente.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="antonia_shut_2" onchange="toggleAntoniaShutdown(2)" style="margin-top:3px; accent-color:#a855f7; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">2. Desactivar WhatsApp de Alumnas (Modo Noche)</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Ninguna consulta de Zumba o Habitarte se responde después de las 20:00.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="antonia_shut_3" onchange="toggleAntoniaShutdown(3)" style="margin-top:3px; accent-color:#a855f7; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">3. Repasar En Foco (WIP = 2) de Mañana</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Dejar listas las 2 únicas prioridades clave para no despertar improvisando.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="antonia_shut_4" onchange="toggleAntoniaShutdown(4)" style="margin-top:3px; accent-color:#a855f7; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">4. Transición Somática: Agua Caliente & Silencio</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Ducha o lavado de cara en silencio: dejar ir a la instructora y volver al hogar.</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div id="antonia-shutdown-status" style="font-size:0.82rem; font-weight:700; color:#c084fc; margin-top:1rem; text-align:right;">
+                        Progreso: 0/4 pasos completados hoy
+                    </div>
+                </div>
+
         </div>
 
     </div><!-- /container -->
@@ -3463,7 +3563,227 @@ Total Recaudado: $__________ | Destino Pasajes Santiago: [ ] Separado 100%
             });
         }
 
+        
+        // =========================================================================
+        // HITO SANTIAGO ($160.000 CLP) - LOGIC & LOCALSTORAGE
+        // =========================================================================
+        function initAntoniaMilestoneTracker() {
+            const saved = localStorage.getItem("antonia_santiago_alumnas_v1");
+            const count = saved ? parseInt(saved, 10) : 0;
+            renderAntoniaMilestone(count);
+        }
+
+        function changeAntoniaAlumnas(delta) {
+            const current = parseInt(localStorage.getItem("antonia_santiago_alumnas_v1") || "0", 10);
+            const next = Math.max(0, Math.min(15, current + delta));
+            localStorage.setItem("antonia_santiago_alumnas_v1", next.toString());
+            renderAntoniaMilestone(next);
+            showToast(`Alumnas registradas: ${next}/8`);
+        }
+
+        function renderAntoniaMilestone(count) {
+            const countEl = document.getElementById("antonia-alumnas-count");
+            const fillEl = document.getElementById("antonia-milestone-fill");
+            const recEl = document.getElementById("antonia-recaudado-txt");
+            const brechaEl = document.getElementById("antonia-brecha-txt");
+            const celebEl = document.getElementById("antonia-milestone-celebration");
+
+            if (!countEl) return;
+            countEl.innerText = count;
+            const recaudado = count * 20000;
+            const target = 160000;
+            const pct = Math.min(100, Math.round((recaudado / target) * 100));
+            const brecha = Math.max(0, target - recaudado);
+
+            if (fillEl) fillEl.style.width = `${pct}%`;
+            if (recEl) recEl.innerText = `$${recaudado.toLocaleString('es-CL')} CLP (${pct}%)`;
+            if (brechaEl) brechaEl.innerText = `$${brecha.toLocaleString('es-CL')} CLP`;
+
+            if (celebEl) {
+                celebEl.style.display = count >= 8 ? 'block' : 'none';
+            }
+        }
+
+        // =========================================================================
+        // P1-09 BATCHING TIMER (ANTONIA)
+        // =========================================================================
+        let antoniaTimerInterval = null;
+        let antoniaTimerSeconds = 3600;
+        let antoniaTimerRunning = false;
+
+        function setAntoniaTimerMinutes(m) {
+            clearInterval(antoniaTimerInterval);
+            antoniaTimerRunning = false;
+            antoniaTimerSeconds = m * 60;
+            const btn = document.getElementById("btn-antonia-timer-toggle");
+            const display = document.getElementById("antonia-timer-display");
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Lote';
+            const minStr = String(m).padStart(2, '0');
+            if (display) display.innerText = `${minStr}:00`;
+            showToast(`Temporizador ajustado a ${m} minutos`);
+        }
+
+        function toggleAntoniaTimer() {
+            const btn = document.getElementById("btn-antonia-timer-toggle");
+            const display = document.getElementById("antonia-timer-display");
+
+            if (!antoniaTimerRunning) {
+                antoniaTimerRunning = true;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar Lote';
+                antoniaTimerInterval = setInterval(() => {
+                    if (antoniaTimerSeconds > 0) {
+                        antoniaTimerSeconds--;
+                        const m = String(Math.floor(antoniaTimerSeconds / 60)).padStart(2, '0');
+                        const s = String(antoniaTimerSeconds % 60).padStart(2, '0');
+                        if (display) display.innerText = `${m}:${s}`;
+                    } else {
+                        clearInterval(antoniaTimerInterval);
+                        antoniaTimerRunning = false;
+                        if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Lote';
+                        showToast('🎉 ¡Lote de trabajo finalizado con éxito! Descansa tus ojos.');
+                    }
+                }, 1000);
+            } else {
+                clearInterval(antoniaTimerInterval);
+                antoniaTimerRunning = false;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Reanudar';
+            }
+        }
+
+        function resetAntoniaTimer() {
+            clearInterval(antoniaTimerInterval);
+            antoniaTimerRunning = false;
+            antoniaTimerSeconds = 3600;
+            const btn = document.getElementById("btn-antonia-timer-toggle");
+            const display = document.getElementById("antonia-timer-display");
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Lote';
+            if (display) display.innerText = "60:00";
+        }
+
+        // =========================================================================
+        // P1-09 BATCHING TASKS (ANTONIA)
+        // =========================================================================
+        const ANTONIA_BATCH_DEFAULT = {
+            lote1: [
+                { text: "Armar playlist semanal de Spotify para Zumba", checked: false },
+                { text: "Verificar transiciones de BPM y energía en las pistas", checked: false },
+                { text: "Repasar 2 coreografías nuevas frente al espejo", checked: false }
+            ],
+            lote2: [
+                { text: "Responder consultas de pases Habitarte ($20.000) por WhatsApp", checked: false },
+                { text: "Publicar 2 historias de Instagram (beneficios somáticos)", checked: false },
+                { text: "Confirmar transferencias y enviar enlaces Zoom de clase", checked: false }
+            ],
+            lote3: [
+                { text: "Confirmar arriendo y llaves de la sala de movimiento", checked: false },
+                { text: "Coordinar relevo de apoyo médico para Mateo y Roma", checked: false },
+                { text: "Cuadrar ingresos semanales y actualizar Hito Santiago", checked: false }
+            ]
+        };
+
+        function getAntoniaBatchTasks() {
+            const raw = localStorage.getItem("antonia_batch_tasks_v1");
+            if (!raw) return ANTONIA_BATCH_DEFAULT;
+            try { return JSON.parse(raw); } catch(e) { return ANTONIA_BATCH_DEFAULT; }
+        }
+
+        function saveAntoniaBatchTasks(data) {
+            localStorage.setItem("antonia_batch_tasks_v1", JSON.stringify(data));
+        }
+
+        function renderAntoniaBatchTasks() {
+            const data = getAntoniaBatchTasks();
+            ['lote1', 'lote2', 'lote3'].forEach(lot => {
+                const container = document.getElementById(`antonia-batch-tasks-${lot}`);
+                if (!container) return;
+                const tasks = data[lot] || [];
+                container.innerHTML = tasks.map((t, idx) => `
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; background:#0e0e0e; border:1px solid #252525; border-radius:6px; padding:5px 8px;">
+                        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; cursor:pointer; flex:1; text-decoration:${t.checked ? 'line-through' : 'none'}; color:${t.checked ? '#666' : '#ccc'};">
+                            <input type="checkbox" ${t.checked ? 'checked' : ''} onchange="toggleAntoniaBatchTaskCheck('${lot}', ${idx})" style="accent-color:#f59e0b;">
+                            <span>${t.text}</span>
+                        </label>
+                        <button onclick="deleteAntoniaBatchTask('${lot}', ${idx})" style="background:none; border:none; color:#666; cursor:pointer; font-size:0.75rem; padding:2px;">&times;</button>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function addAntoniaBatchTask(lot) {
+            const input = document.getElementById(`input-antonia-batch-${lot}`);
+            if (!input || !input.value.trim()) return;
+            const text = input.value.trim();
+            const data = getAntoniaBatchTasks();
+            if (!data[lot]) data[lot] = [];
+            data[lot].push({ text, checked: false });
+            saveAntoniaBatchTasks(data);
+            input.value = '';
+            renderAntoniaBatchTasks();
+            showToast('Tarea añadida al lote');
+        }
+
+        function toggleAntoniaBatchTaskCheck(lot, idx) {
+            const data = getAntoniaBatchTasks();
+            if (data[lot] && data[lot][idx]) {
+                data[lot][idx].checked = !data[lot][idx].checked;
+                saveAntoniaBatchTasks(data);
+                renderAntoniaBatchTasks();
+            }
+        }
+
+        function deleteAntoniaBatchTask(lot, idx) {
+            const data = getAntoniaBatchTasks();
+            if (data[lot]) {
+                data[lot].splice(idx, 1);
+                saveAntoniaBatchTasks(data);
+                renderAntoniaBatchTasks();
+            }
+        }
+
+        // =========================================================================
+        // P3-04 SHUTDOWN RITUAL (ANTONIA)
+        // =========================================================================
+        function initAntoniaShutdown() {
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const cb = document.getElementById(`antonia_shut_${i}`);
+                if (cb) {
+                    const checked = localStorage.getItem(`antonia_shut_${i}`) === 'true';
+                    cb.checked = checked;
+                    if (checked) count++;
+                }
+            }
+            updateAntoniaShutdownStatus(count);
+        }
+
+        function toggleAntoniaShutdown(idx) {
+            const cb = document.getElementById(`antonia_shut_${idx}`);
+            if (cb) {
+                localStorage.setItem(`antonia_shut_${idx}`, cb.checked ? 'true' : 'false');
+            }
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById(`antonia_shut_${i}`);
+                if (el && el.checked) count++;
+            }
+            updateAntoniaShutdownStatus(count);
+            if (count === 4) {
+                showToast('🌙 ¡Jornada cerrada! Mente y cuerpo libres para descansar con Mateo y Roma.');
+            }
+        }
+
+        function updateAntoniaShutdownStatus(count) {
+            const status = document.getElementById("antonia-shutdown-status");
+            if (status) {
+                status.innerText = `Progreso: ${count}/4 pasos completados hoy`;
+                status.style.color = count === 4 ? '#10b981' : '#c084fc';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            initAntoniaMilestoneTracker();
+            renderAntoniaBatchTasks();
+            initAntoniaShutdown();
             loadHabitarteNotes();
             loadImprimiblesNotes();
             initToolsChecklists();

@@ -722,7 +722,7 @@
                 <i class="fa-regular fa-clock"></i> Time Blocking 24H
             </button>
             <button class="tab-btn" onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-list-check"></i> Kanban GTD (WIP=2)
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2 • En Foco)
             </button>
             <button class="tab-btn" onclick="switchTab('tab-eisenhower')">
                 <i class="fa-solid fa-table-cells-large"></i> Matriz Eisenhower
@@ -1473,6 +1473,20 @@
                 </div>
 
                 <!-- TABLERO KANBAN CONECTADO AL MOTOR -->
+                
+                <!-- CÁPSULA DIDÁCTICA HUMANA: ¿QUÉ ES WIP? (ENFOQUE KINESIÓLOGA & MATERNIDAD) -->
+                <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 0.9rem 1.1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.3rem; font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;">
+                    <strong style="color: #fbbf24; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; margin-bottom: 0.3rem;">
+                        <i class="fa-solid fa-lightbulb"></i> ¿Qué es WIP? = Work In Progress (Trabajo en Proceso / Tareas en Curso)
+                    </strong>
+                    <p style="margin: 0 0 0.4rem 0;">
+                        <strong>WIP</strong> significa <em>Work In Progress</em> (Trabajo en Proceso simultáneo). En tu contexto de sostener 40.5 horas de kinesiología escolar, crianza de tu hijo ("Chinito"), un diplomado y la fabricación artesanal de Trafmen, saltar entre tareas te hace perder ~14 horas a la semana dando vueltas sin avanzar.
+                    </p>
+                    <p style="margin: 0; color: #fef08a;">
+                        ⚡ <strong>La Regla de Oro del Embudo:</strong> Máximo <strong>2 tareas en "En Foco"</strong>. Prohibido abrir un tercer frente hasta concluir o pausar uno de los dos activos.
+                    </p>
+                </div>
+
                 <div class="kanban-grid">
                     <div class="kanban-col">
                         <div class="kanban-col-header">
@@ -1488,7 +1502,7 @@
 
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Foco (WIP = 2 • Trabajo en Proceso)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -1959,6 +1973,163 @@
                 <div class="hero-tea-badge" style="background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.4); color: #60a5fa;">
                     <i class="fa-solid fa-bolt"></i> Soberanía Operativa Inmediata
                 </div>
+
+
+                <!-- P1-10: PROTOCOLO PASO CERO TRAFMEN (5 MINUTOS) -->
+                <div class="card-custom" style="border-color:rgba(16,185,129,0.35); background:linear-gradient(135deg, rgba(16,185,129,0.04) 0%, rgba(10,10,10,0.9) 100%); margin-bottom:1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:0.8rem;">
+                        <div>
+                            <span class="hero-tea-badge" style="background:rgba(16,185,129,0.15); border-color:#10b981; color:#34d399;">
+                                <i class="fa-solid fa-bolt"></i> P1-10 • Protocolo Paso Cero Trafmen (5 Minutos)
+                            </span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:0.3rem 0 0;">
+                                Activación Sin Culpa a las 18:00 (Regreso de Pueblo Seco)
+                            </h4>
+                        </div>
+                        <span style="font-size:0.75rem; background:#064e3b; color:#34d399; padding:4px 10px; border-radius:20px; font-weight:700;">
+                            Anti-Fatiga
+                        </span>
+                    </div>
+                    <p style="font-size:0.84rem; color:#cbd5e1; line-height:1.5; margin-bottom:1rem;">
+                        Llegas cansada de tu jornada escolar de 8 horas y atiendes a tus hijas. Prohibido autoexigirte 2 horas de taller. Tu único compromiso sagrado con Trafmen son <strong>5 minutos</strong>: cortar 3 moldes o dejar listos 2 paquetes. Si después de 5m paras, es <strong>100% de éxito</strong>.
+                    </p>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.2rem; align-items:center;">
+                        <div style="background:#141414; border:1px solid #282828; border-radius:10px; padding:1rem;">
+                            <label style="display:block; font-size:0.78rem; color:#aaa; font-weight:700; margin-bottom:0.3rem;">
+                                MICRO-ACCIÓN DE HOY EN TRAFMEN:
+                            </label>
+                            <input type="text" id="input-melissa-pasocero" placeholder="Ej: Cortar 3 telas de saquitos o rotular 2 envíos..." style="width:100%; background:#090909; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.82rem; outline:none;" oninput="updateMelissaMicroHint()">
+                            <p id="melissa-pasocero-hint" style="font-size:0.75rem; color:#10b981; margin:0.4rem 0 0;">
+                                ✨ Acción: Solo 5 minutos para mantener encendido el fuego del taller.
+                            </p>
+                        </div>
+
+                        <!-- Timer 5m Melissa -->
+                        <div style="text-align:center; background:#0d1117; border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:1.2rem;">
+                            <div id="melissa-timer-display" style="font-family:'Space Grotesk', monospace; font-size:2.8rem; font-weight:800; color:#10b981; letter-spacing:2px;">
+                                05:00
+                            </div>
+                            <div style="display:flex; justify-content:center; gap:8px; margin-top:0.5rem;">
+                                <button id="btn-melissa-timer-toggle" onclick="toggleMelissaTimer5m()" class="btn-card-action" style="background:#10b981; color:#000; font-weight:800; padding:6px 18px; font-size:0.85rem;">
+                                    <i class="fa-solid fa-play"></i> Iniciar 5m
+                                </button>
+                                <button onclick="resetMelissaTimer5m()" class="btn-schedule-action" style="padding:6px 12px;">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a id="btn-wsp-melissa-pasocero" href="https://wa.me/56975590132?text=¡Hola%20Diego!%20Acabo%20de%20cumplir%20mi%20Paso%20Cero%20Trafmen%20de%205%20minutos.%20¡Mantuve%20el%20fuego%20encendido!" target="_blank" class="btn-card-action" style="display:flex; justify-content:center; align-items:center; gap:8px; background:rgba(37,211,102,0.15); border:1px solid #25D366; color:#25D366; font-weight:800; width:100%; text-align:center; padding:9px; margin-top:1rem;">
+                        <i class="fa-brands fa-whatsapp" style="font-size:1.1rem;"></i> Avisarle a Diego: "Cumplí mi Paso Cero Trafmen"
+                    </a>
+                </div>
+
+                <!-- P1-09: BATCHING POR LOTES DE TRAFMEN -->
+                <div class="card-custom" style="border-color:rgba(245,158,11,0.35); margin-bottom:1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.8rem; flex-wrap:wrap; gap:8px;">
+                        <div>
+                            <span class="hero-tea-badge" style="background:rgba(245,158,11,0.15); border-color:#f59e0b; color:#fbbf24;">
+                                <i class="fa-solid fa-layer-group"></i> P1-09 • Procesamiento por Lotes
+                            </span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:0.3rem 0 0;">
+                                Los 3 Lotes de Producción & Envío en Trafmen
+                            </h4>
+                        </div>
+                    </div>
+                    <p style="font-size:0.82rem; color:#aaa; margin-bottom:1rem;">
+                        Prohibido embalar o despachar paquetes en días dispersos. Todo se agrupa en 3 ventanas lógicas:
+                    </p>
+
+                    <div class="grid-3">
+                        <!-- Lote 1: Confección -->
+                        <div style="background:#141414; border:1px solid #282828; border-top:3px solid #10b981; border-radius:8px; padding:1rem; display:flex; flex-direction:column;">
+                            <strong style="color:#fff; font-size:0.9rem; display:flex; align-items:center; gap:6px;">
+                                🧵 Lote 1 • Confección & Corte
+                            </strong>
+                            <span style="font-size:0.75rem; color:#10b981; font-weight:700; margin:2px 0 8px;">Sábados 10:00 a 11:30</span>
+                            <p style="font-size:0.78rem; color:#aaa; margin-bottom:0.8rem;">Corte en serie de saquitos, relleno y costuras agrupadas.</p>
+                            <div id="melissa-batch-tasks-lote1" style="display:flex; flex-direction:column; gap:5px; margin-bottom:8px; flex:1;"></div>
+                            <div style="display:flex; gap:6px; margin-top:auto;">
+                                <input type="text" id="input-melissa-batch-lote1" placeholder="+ Tarea confección..." style="flex:1; background:#090909; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addMelissaBatchTask('lote1')">
+                                <button onclick="addMelissaBatchTask('lote1')" class="btn-card-action" style="background:#10b981; color:#000; font-weight:800; padding:0 8px;">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Lote 2: Envíos -->
+                        <div style="background:#141414; border:1px solid #282828; border-top:3px solid #f59e0b; border-radius:8px; padding:1rem; display:flex; flex-direction:column;">
+                            <strong style="color:#fff; font-size:0.9rem; display:flex; align-items:center; gap:6px;">
+                                📦 Lote 2 • Empaque & Starken
+                            </strong>
+                            <span style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin:2px 0 8px;">Jueves 17:30 a 18:15</span>
+                            <p style="font-size:0.78rem; color:#aaa; margin-bottom:0.8rem;">Rotulación de sobres, facturas y entrega conjunta en agencia.</p>
+                            <div id="melissa-batch-tasks-lote2" style="display:flex; flex-direction:column; gap:5px; margin-bottom:8px; flex:1;"></div>
+                            <div style="display:flex; gap:6px; margin-top:auto;">
+                                <input type="text" id="input-melissa-batch-lote2" placeholder="+ Tarea envíos..." style="flex:1; background:#090909; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addMelissaBatchTask('lote2')">
+                                <button onclick="addMelissaBatchTask('lote2')" class="btn-card-action" style="background:#f59e0b; color:#000; font-weight:800; padding:0 8px;">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Lote 3: Insumos -->
+                        <div style="background:#141414; border:1px solid #282828; border-top:3px solid #3b82f6; border-radius:8px; padding:1rem; display:flex; flex-direction:column;">
+                            <strong style="color:#fff; font-size:0.9rem; display:flex; align-items:center; gap:6px;">
+                                🧾 Lote 3 • Telas & Insumos
+                            </strong>
+                            <span style="font-size:0.75rem; color:#60a5fa; font-weight:700; margin:2px 0 8px;">Quincenal</span>
+                            <p style="font-size:0.78rem; color:#aaa; margin-bottom:0.8rem;">Pedidos por mayor para stock y compras de madera/lienzillo.</p>
+                            <div id="melissa-batch-tasks-lote3" style="display:flex; flex-direction:column; gap:5px; margin-bottom:8px; flex:1;"></div>
+                            <div style="display:flex; gap:6px; margin-top:auto;">
+                                <input type="text" id="input-melissa-batch-lote3" placeholder="+ Tarea insumos..." style="flex:1; background:#090909; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addMelissaBatchTask('lote3')">
+                                <button onclick="addMelissaBatchTask('lote3')" class="btn-card-action" style="background:#3b82f6; color:#000; font-weight:800; padding:0 8px;">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- P3-01: CÍRCULO DORADO INTERACTIVO (TRAFMEN) -->
+                <div class="card-custom" style="border-color:rgba(96,165,250,0.35); background:linear-gradient(135deg, rgba(59,130,246,0.04) 0%, rgba(10,10,10,0.9) 100%);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:8px;">
+                        <div>
+                            <span class="hero-tea-badge" style="background:rgba(96,165,250,0.15); border-color:#60a5fa; color:#93c5fd;">
+                                <i class="fa-solid fa-bullseye"></i> P3-01 • Círculo Dorado Interactivo (Simon Sinek)
+                            </span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:0.3rem 0 0;">
+                                El "Por Qué" Profundo de Trafmen: Defender tus Precios sin Vergüenza
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.2rem;">
+                        <!-- POR QUÉ -->
+                        <div style="background:#141414; border-left:4px solid #ef4444; border-radius:8px; padding:1.1rem;">
+                            <span style="font-size:0.72rem; text-transform:uppercase; color:#f87171; font-weight:800; letter-spacing:0.5px;">1. POR QUÉ (PROPÓSITO CENTRAL):</span>
+                            <p style="font-size:0.84rem; color:#fff; font-weight:700; margin:0.4rem 0;">
+                                "Crear infancias tranquilas, autorreguladas y libres de la esclavitud de las pantallas a través del movimiento libre."
+                            </p>
+                            <span style="font-size:0.76rem; color:#aaa;">No vendes juguetes de madera: entregas calma somática para el hogar.</span>
+                        </div>
+
+                        <!-- CÓMO -->
+                        <div style="background:#141414; border-left:4px solid #f59e0b; border-radius:8px; padding:1.1rem;">
+                            <span style="font-size:0.72rem; text-transform:uppercase; color:#fbbf24; font-weight:800; letter-spacing:0.5px;">2. CÓMO (MÉTODO CLÍNICO KINÉSICO):</span>
+                            <p style="font-size:0.84rem; color:#fff; font-weight:700; margin:0.4rem 0;">
+                                "Juego libre estructurado con criterio neuropsicomotor y materiales nobles."
+                            </p>
+                            <span style="font-size:0.76rem; color:#aaa;">Respaldado por tu título de Kinesióloga y Diplomado Escolar.</span>
+                        </div>
+
+                        <!-- QUÉ -->
+                        <div style="background:#141414; border-left:4px solid #10b981; border-radius:8px; padding:1.1rem;">
+                            <span style="font-size:0.72rem; text-transform:uppercase; color:#34d399; font-weight:800; letter-spacing:0.5px;">3. QUÉ (PRODUCTOS & CICLOS):</span>
+                            <p style="font-size:0.84rem; color:#fff; font-weight:700; margin:0.4rem 0;">
+                                "Saquitos sensoriales, juguetes de madera noble y ciclos psicomotores grupales."
+                            </p>
+                            <span style="font-size:0.76rem; color:#aaa;">Pases de 4 sesiones mensuales prepagadas a valor profesional.</span>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0.4rem 0 0.3rem 0;">
                     Plan de Vuelo 24 Horas & Guardianes de Foco • Melissa Henríquez
                 </h2>
@@ -2015,7 +2186,61 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+
+                <!-- P3-04: RITUAL DE CIERRE DE JORNADA (SHUTDOWN RITUAL) -->
+                <div class="card-custom" style="border-color: rgba(96, 165, 250, 0.35); background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%); margin-top: 1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1rem;">
+                        <div>
+                            <span class="hero-tea-badge" style="background:rgba(96,165,250,0.15); border-color:#60a5fa; color:#93c5fd;">
+                                <i class="fa-solid fa-moon"></i> P3-04 • Ritual de Cierre de Jornada (Shutdown Ritual)
+                            </span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:0.3rem 0 0;">
+                                Corte Neurobiológico: Desconexión de Pueblo Seco & Presencia con Chinito (18:00)
+                            </h4>
+                        </div>
+                        <span style="font-size:0.75rem; background:#1e3a8a; color:#93c5fd; padding:4px 10px; border-radius:20px; font-weight:700;">
+                            3 Minutos Diarios
+                        </span>
+                    </div>
+                    <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin-bottom:1.2rem;">
+                        La corteza prefrontal sigue rumiando pendientes del colegio si no ejecutas un cierre formal. Al sonar las 17:30 en el colegio o al llegar a casa a las 18:00, completa estos 4 pasos para entrar a tu hogar en modo mamá presente y mente despejada:
+                    </p>
+
+                    <div class="grid-2" style="gap:1rem;">
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="melissa_shut_1" onchange="toggleMelissaShutdown(1)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">1. Cerrar Casilla y WhatsApp Escolar</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Ningún apoderado o colega tiene urgencias médicas después de las 17:30.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="melissa_shut_2" onchange="toggleMelissaShutdown(2)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">2. Vaciar Bandeja de Entrada a la Libreta</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Anotar en 2 líneas cualquier pendiente que te ronde en la cabeza para mañana.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="melissa_shut_3" onchange="toggleMelissaShutdown(3)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">3. Repasar En Foco (WIP = 2) de Mañana</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Definir las 2 únicas prioridades de mañana para no despertar improvisando.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="melissa_shut_4" onchange="toggleMelissaShutdown(4)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">4. Declarar: "Jornada Cerrada" & Vaso con Agua</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Transición somática: de kinesióloga a Melissa mamá & artesana.</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div id="melissa-shutdown-status" style="font-size:0.82rem; font-weight:700; color:#60a5fa; margin-top:1rem; text-align:right;">
+                        Progreso: 0/4 pasos completados hoy
+                    </div>
+                </div>
+
         </div>
 
     </div>
@@ -2524,8 +2749,197 @@
             }
         }
 
+
+        // =========================================================================
+        // P1-10: PROTOCOLO PASO CERO TRAFMEN (5 MINUTOS) & CRONÓMETRO
+        // =========================================================================
+        let melissaTimerInterval = null;
+        let melissaTimerSeconds = 300;
+        let melissaTimerRunning = false;
+
+        function updateMelissaMicroHint() {
+            const input = document.getElementById("input-melissa-pasocero");
+            const hint = document.getElementById("melissa-pasocero-hint");
+            const wspBtn = document.getElementById("btn-wsp-melissa-pasocero");
+            const text = input ? input.value.trim() : "";
+
+            if (text) {
+                if (hint) hint.innerHTML = `✨ <strong>Acción enfocada:</strong> "${text}" • ¡Solo 5 minutos cronometrados!`;
+                if (wspBtn) {
+                    const encoded = encodeURIComponent(`¡Hola Diego! Acabo de cumplir mi Paso Cero Trafmen de 5 minutos: "${text}". ¡Mantuve el fuego encendido sin culpa!`);
+                    wspBtn.href = `https://wa.me/56975590132?text=${encoded}`;
+                }
+            } else {
+                if (hint) hint.innerText = "✨ Acción: Solo 5 minutos para mantener encendido el fuego del taller.";
+                if (wspBtn) {
+                    wspBtn.href = "https://wa.me/56975590132?text=¡Hola%20Diego!%20Acabo%20de%20cumplir%20mi%20Paso%20Cero%20Trafmen%20de%205%20minutos.%20¡Mantuve%20el%20fuego%20encendido!";
+                }
+            }
+        }
+
+        function toggleMelissaTimer5m() {
+            const btn = document.getElementById("btn-melissa-timer-toggle");
+            const display = document.getElementById("melissa-timer-display");
+
+            if (!melissaTimerRunning) {
+                melissaTimerRunning = true;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar';
+                melissaTimerInterval = setInterval(() => {
+                    if (melissaTimerSeconds > 0) {
+                        melissaTimerSeconds--;
+                        const m = String(Math.floor(melissaTimerSeconds / 60)).padStart(2, '0');
+                        const s = String(melissaTimerSeconds % 60).padStart(2, '0');
+                        if (display) display.innerText = `${m}:${s}`;
+                    } else {
+                        clearInterval(melissaTimerInterval);
+                        melissaTimerRunning = false;
+                        if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar 5m';
+                        showToast('🎉 ¡5 Minutos Cumplidos! Paso Cero completado con éxito.');
+                        if (display) display.innerText = "05:00";
+                        melissaTimerSeconds = 300;
+                    }
+                }, 1000);
+            } else {
+                clearInterval(melissaTimerInterval);
+                melissaTimerRunning = false;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Reanudar';
+            }
+        }
+
+        function resetMelissaTimer5m() {
+            clearInterval(melissaTimerInterval);
+            melissaTimerRunning = false;
+            melissaTimerSeconds = 300;
+            const btn = document.getElementById("btn-melissa-timer-toggle");
+            const display = document.getElementById("melissa-timer-display");
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar 5m';
+            if (display) display.innerText = "05:00";
+        }
+
+        // =========================================================================
+        // P1-09: BATCHING POR LOTES DE TRAFMEN (LOCALSTORAGE)
+        // =========================================================================
+        const MELISSA_BATCH_DEFAULT = {
+            lote1: [
+                { text: "Cortar telas de saquitos sensoriales (10 unidades)", checked: false },
+                { text: "Costura recta saquitos con máquina", checked: false },
+                { text: "Rellenar con lavanda y semillas limpias", checked: false }
+            ],
+            lote2: [
+                { text: "Generar etiquetas de envío Starken en la web", checked: false },
+                { text: "Embalar y rotular cajas con sello Trafmen", checked: false },
+                { text: "Despacho conjunto en sucursal", checked: false }
+            ],
+            lote3: [
+                { text: "Revisar stock de lienzillo crudo y semillas", checked: false },
+                { text: "Cotizar corte de madera en barraca", checked: false },
+                { text: "Comprar hilos reforzados y empaques compostables", checked: false }
+            ]
+        };
+
+        function getMelissaBatchTasks() {
+            const raw = localStorage.getItem("melissa_batch_tasks_v1");
+            if (!raw) return MELISSA_BATCH_DEFAULT;
+            try { return JSON.parse(raw); } catch(e) { return MELISSA_BATCH_DEFAULT; }
+        }
+
+        function saveMelissaBatchTasks(data) {
+            localStorage.setItem("melissa_batch_tasks_v1", JSON.stringify(data));
+        }
+
+        function renderMelissaBatchTasks() {
+            const data = getMelissaBatchTasks();
+            ['lote1', 'lote2', 'lote3'].forEach(lot => {
+                const container = document.getElementById(`melissa-batch-tasks-${lot}`);
+                if (!container) return;
+                const tasks = data[lot] || [];
+                container.innerHTML = tasks.map((t, idx) => `
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; background:#0a0a0a; border:1px solid #222; border-radius:6px; padding:5px 8px;">
+                        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; cursor:pointer; flex:1; text-decoration:${t.checked ? 'line-through' : 'none'}; color:${t.checked ? '#666' : '#ccc'};">
+                            <input type="checkbox" ${t.checked ? 'checked' : ''} onchange="toggleMelissaBatchTaskCheck('${lot}', ${idx})" style="accent-color:#10b981;">
+                            <span>${t.text}</span>
+                        </label>
+                        <button onclick="deleteMelissaBatchTask('${lot}', ${idx})" style="background:none; border:none; color:#666; cursor:pointer; font-size:0.75rem; padding:2px;">&times;</button>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function addMelissaBatchTask(lot) {
+            const input = document.getElementById(`input-melissa-batch-${lot}`);
+            if (!input || !input.value.trim()) return;
+            const text = input.value.trim();
+            const data = getMelissaBatchTasks();
+            if (!data[lot]) data[lot] = [];
+            data[lot].push({ text, checked: false });
+            saveMelissaBatchTasks(data);
+            input.value = '';
+            renderMelissaBatchTasks();
+            showToast('Tarea añadida al lote');
+        }
+
+        function toggleMelissaBatchTaskCheck(lot, idx) {
+            const data = getMelissaBatchTasks();
+            if (data[lot] && data[lot][idx]) {
+                data[lot][idx].checked = !data[lot][idx].checked;
+                saveMelissaBatchTasks(data);
+                renderMelissaBatchTasks();
+            }
+        }
+
+        function deleteMelissaBatchTask(lot, idx) {
+            const data = getMelissaBatchTasks();
+            if (data[lot]) {
+                data[lot].splice(idx, 1);
+                saveMelissaBatchTasks(data);
+                renderMelissaBatchTasks();
+            }
+        }
+
+        // =========================================================================
+        // P3-04: RITUAL DE CIERRE DE JORNADA (LOCALSTORAGE)
+        // =========================================================================
+        function initMelissaShutdown() {
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const cb = document.getElementById(`melissa_shut_${i}`);
+                if (cb) {
+                    const checked = localStorage.getItem(`melissa_shut_${i}`) === 'true';
+                    cb.checked = checked;
+                    if (checked) count++;
+                }
+            }
+            updateMelissaShutdownStatus(count);
+        }
+
+        function toggleMelissaShutdown(idx) {
+            const cb = document.getElementById(`melissa_shut_${idx}`);
+            if (cb) {
+                localStorage.setItem(`melissa_shut_${idx}`, cb.checked ? 'true' : 'false');
+            }
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById(`melissa_shut_${i}`);
+                if (el && el.checked) count++;
+            }
+            updateMelissaShutdownStatus(count);
+            if (count === 4) {
+                showToast('🌙 ¡Jornada cerrada! Mente libre para descansar y disfrutar a Chinito.');
+            }
+        }
+
+        function updateMelissaShutdownStatus(count) {
+            const status = document.getElementById("melissa-shutdown-status");
+            if (status) {
+                status.innerText = `Progreso: ${count}/4 pasos completados hoy`;
+                status.style.color = count === 4 ? '#10b981' : '#60a5fa';
+            }
+        }
+
         // INICIALIZADOR GENERAL
         document.addEventListener("DOMContentLoaded", () => {
+            renderMelissaBatchTasks();
+            initMelissaShutdown();
             const curDateEl = document.getElementById("inv-current-date");
             if (curDateEl) curDateEl.innerText = new Date().toLocaleDateString("es-CL");
             calculate503020();

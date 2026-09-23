@@ -351,8 +351,11 @@
             <button class="tab-btn" onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
-            <button class="tab-btn" onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
+                        <button class="tab-btn" onclick="switchTab('tab-kanban')">
+                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2 • En Foco)
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-batching')" style="border: 1px solid rgba(245, 158, 11, 0.35); background: rgba(245, 158, 11, 0.06);">
+                <i class="fa-solid fa-layer-group" style="color: #f59e0b;"></i> Batching por Lotes
             </button>
             <button class="tab-btn" onclick="switchTab('tab-herramientas')">
                 <i class="fa-solid fa-toolbox"></i> Herramientas
@@ -2126,6 +2129,20 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                     Rocío, este tablero es tu escudo contra la parálisis. La columna <strong>"En Ejecución"</strong> tiene un límite estricto de <strong>máximo 2 tareas en simultáneo</strong>.
                 </p>
 
+                
+                <!-- CÁPSULA DIDÁCTICA HUMANA: ¿QUÉ ES WIP? -->
+                <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 0.9rem 1.1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.3rem; font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;">
+                    <strong style="color: #fbbf24; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; margin-bottom: 0.3rem;">
+                        <i class="fa-solid fa-lightbulb"></i> ¿Qué es WIP? = Work In Progress (Trabajo en Proceso / Tareas en Curso)
+                    </strong>
+                    <p style="margin: 0 0 0.4rem 0;">
+                        <strong>WIP</strong> es la sigla técnica de <em>Work In Progress</em> (Trabajo en Proceso). Representa el <strong>número máximo de frentes abiertos simultáneamente</strong>. En tu perfil neurodivergente (TEA), cambiar de contexto entre la Universidad Santo Tomás, Puya Masajes y Voz Caleidoscopio genera una sobrecarga cognitiva severa y fatiga por rumiación.
+                    </p>
+                    <p style="margin: 0; color: #fef08a;">
+                        ⚡ <strong>La Regla de Oro del Embudo:</strong> Máximo <strong>2 tareas en "En Foco"</strong>. El sistema te impide abrir un tercer frente hasta concluir o pausar uno de los dos activos, protegiendo tu corteza prefrontal del agotamiento sensorial.
+                    </p>
+                </div>
+
                 <div class="kanban-grid">
                     <div class="kanban-col">
                         <div class="kanban-col-header">
@@ -2141,7 +2158,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
 
                     <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Ejecución (WIP = 2)</div>
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Foco (WIP = 2 • Trabajo en Proceso)</div>
                             <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -2629,7 +2646,63 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                         <li>🚫 Desplazamientos logísticos caóticos sin zonificar cuadrantes.</li><li>🚫 Vender masajes por hora suelta en lugar de paquetes de 1 mes.</li><li>🚫 Leer textos densos en pantallas pequeñas de celular.</li><li>🚫 Ignorar pausas de stimming en días de alta demanda sensorial.</li><li>🚫 Acostarse sin vaciado mental análogo.</li>
                     </ul>
                 </div>
-            </div>
+
+                </div>
+
+                <!-- P3-04: RITUAL DE CIERRE DE JORNADA (ROCIO) -->
+                <div class="card" style="border-color: rgba(96, 165, 250, 0.35); background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%); margin-top: 1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1rem;">
+                        <div>
+                            <span class="hero-tea-badge" style="background:rgba(96,165,250,0.15); border-color:#60a5fa; color:#93c5fd;">
+                                <i class="fa-solid fa-moon"></i> P3-04 • Ritual de Cierre de Jornada (Shutdown Ritual TEA)
+                            </span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:0.3rem 0 0;">
+                                Corte Neurobiológico: Desconexión Académica & Regulación Sensorial (20:30)
+                            </h4>
+                        </div>
+                        <span style="font-size:0.75rem; background:#1e3a8a; color:#93c5fd; padding:4px 10px; border-radius:20px; font-weight:700;">
+                            3 Minutos Diarios
+                        </span>
+                    </div>
+                    <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin-bottom:1.2rem;">
+                        El cerebro neurodivergente no descansa si no tiene una señal clara de término. Al llegar las 20:30, completa estos 4 pasos de cierre somático y mental:
+                    </p>
+
+                    <div class="grid-2" style="gap:1rem;">
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="rocio_shut_1" onchange="toggleRocioShutdown(1)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">1. Cerrar Casilla UST y Apagar Aula Virtual</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Ningún alumno ni correo institucional requiere respuesta nocturna.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="rocio_shut_2" onchange="toggleRocioShutdown(2)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">2. Vaciar Pendientes al Cuaderno Analógico</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Escribir 2 líneas con lo que ronda en la mente para no rumiar en cama.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="rocio_shut_3" onchange="toggleRocioShutdown(3)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">3. Repasar En Foco (WIP = 2) de Mañana</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Dejar fijadas las 2 únicas prioridades clave del día siguiente.</span>
+                            </div>
+                        </label>
+                        <label class="tool-check-item" style="cursor:pointer; display:flex; align-items:flex-start; gap:10px; background:#141414; padding:0.9rem; border-radius:8px; border:1px solid #282828;">
+                            <input type="checkbox" id="rocio_shut_4" onchange="toggleRocioShutdown(4)" style="margin-top:3px; accent-color:#60a5fa; width:17px; height:17px;">
+                            <div>
+                                <strong style="color:#fff; font-size:0.86rem; display:block;">4. Regulación Sensorial: Nieve & Luces Cálidas</strong>
+                                <span style="color:#aaa; font-size:0.78rem;">Acariciar a Nieve, atenuar luces y desconectar pantallas.</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div id="rocio-shutdown-status" style="font-size:0.82rem; font-weight:700; color:#60a5fa; margin-top:1rem; text-align:right;">
+                        Progreso: 0/4 pasos completados hoy
+                    </div>
+                </div>
+
         </div>
 
     </div><!-- /container -->
@@ -3598,7 +3671,188 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
         resGanancia.innerText = '$' + ganancia + ' CLP';
     };
 
-    document.addEventListener("DOMContentLoaded", () => {
+    
+        // =========================================================================
+        // P1-09 BATCHING (ROCIO)
+        // =========================================================================
+        let rocioTimerInterval = null;
+        let rocioTimerSeconds = 2700;
+        let rocioTimerRunning = false;
+
+        function setRocioTimerMinutes(m) {
+            clearInterval(rocioTimerInterval);
+            rocioTimerRunning = false;
+            rocioTimerSeconds = m * 60;
+            const btn = document.getElementById("btn-rocio-timer-toggle");
+            const display = document.getElementById("rocio-timer-display");
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Lote';
+            const minStr = String(m).padStart(2, '0');
+            if (display) display.innerText = `${minStr}:00`;
+            showToast(`Temporizador ajustado a ${m} minutos`);
+        }
+
+        function toggleRocioTimer() {
+            const btn = document.getElementById("btn-rocio-timer-toggle");
+            const display = document.getElementById("rocio-timer-display");
+
+            if (!rocioTimerRunning) {
+                rocioTimerRunning = true;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar Lote';
+                rocioTimerInterval = setInterval(() => {
+                    if (rocioTimerSeconds > 0) {
+                        rocioTimerSeconds--;
+                        const m = String(Math.floor(rocioTimerSeconds / 60)).padStart(2, '0');
+                        const s = String(rocioTimerSeconds % 60).padStart(2, '0');
+                        if (display) display.innerText = `${m}:${s}`;
+                    } else {
+                        clearInterval(rocioTimerInterval);
+                        rocioTimerRunning = false;
+                        if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Lote';
+                        showToast('🎉 ¡Lote finalizado con éxito! Haz una pausa sensorial.');
+                    }
+                }, 1000);
+            } else {
+                clearInterval(rocioTimerInterval);
+                rocioTimerRunning = false;
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Reanudar';
+            }
+        }
+
+        function resetRocioTimer() {
+            clearInterval(rocioTimerInterval);
+            rocioTimerRunning = false;
+            rocioTimerSeconds = 2700;
+            const btn = document.getElementById("btn-rocio-timer-toggle");
+            const display = document.getElementById("rocio-timer-display");
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Lote';
+            if (display) display.innerText = "45:00";
+        }
+
+        const ROCIO_BATCH_DEFAULT = {
+            lote1: [
+                { text: "Corregir rúbricas de evaluación UST", checked: false },
+                { text: "Subir notas a plataforma institucional", checked: false },
+                { text: "Responder correos de alumnos agrupados", checked: false }
+            ],
+            lote2: [
+                { text: "Lavar y aromatizar toallas de masaje", checked: false },
+                { text: "Reponer aceites y mezclas de masaje", checked: false },
+                { text: "Confirmar citas por WhatsApp en un solo bloque", checked: false }
+            ],
+            lote3: [
+                { text: "Seleccionar y ordenar partituras/pistas vocales", checked: false },
+                { text: "Planificar secuencias de estimulación vocal", checked: false },
+                { text: "Registrar avances de alumnos de voz", checked: false }
+            ],
+            lote4: [
+                { text: "Compra semanal de víveres e insumos", checked: false },
+                { text: "Paseo de descompresión con Nieve", checked: false },
+                { text: "Ordenar espacio físico del estudio", checked: false }
+            ]
+        };
+
+        function getRocioBatchTasks() {
+            const raw = localStorage.getItem("rocio_batch_tasks_v1");
+            if (!raw) return ROCIO_BATCH_DEFAULT;
+            try { return JSON.parse(raw); } catch(e) { return ROCIO_BATCH_DEFAULT; }
+        }
+
+        function saveRocioBatchTasks(data) {
+            localStorage.setItem("rocio_batch_tasks_v1", JSON.stringify(data));
+        }
+
+        function renderRocioBatchTasks() {
+            const data = getRocioBatchTasks();
+            ['lote1', 'lote2', 'lote3', 'lote4'].forEach(lot => {
+                const container = document.getElementById(`rocio-batch-tasks-${lot}`);
+                if (!container) return;
+                const tasks = data[lot] || [];
+                container.innerHTML = tasks.map((t, idx) => `
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; background:#0e0e0e; border:1px solid #252525; border-radius:6px; padding:5px 8px;">
+                        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; cursor:pointer; flex:1; text-decoration:${t.checked ? 'line-through' : 'none'}; color:${t.checked ? '#666' : '#ccc'};">
+                            <input type="checkbox" ${t.checked ? 'checked' : ''} onchange="toggleRocioBatchTaskCheck('${lot}', ${idx})" style="accent-color:#f59e0b;">
+                            <span>${t.text}</span>
+                        </label>
+                        <button onclick="deleteRocioBatchTask('${lot}', ${idx})" style="background:none; border:none; color:#666; cursor:pointer; font-size:0.75rem; padding:2px;">&times;</button>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function addRocioBatchTask(lot) {
+            const input = document.getElementById(`input-rocio-batch-${lot}`);
+            if (!input || !input.value.trim()) return;
+            const text = input.value.trim();
+            const data = getRocioBatchTasks();
+            if (!data[lot]) data[lot] = [];
+            data[lot].push({ text, checked: false });
+            saveRocioBatchTasks(data);
+            input.value = '';
+            renderRocioBatchTasks();
+            showToast('Tarea añadida al lote');
+        }
+
+        function toggleRocioBatchTaskCheck(lot, idx) {
+            const data = getRocioBatchTasks();
+            if (data[lot] && data[lot][idx]) {
+                data[lot][idx].checked = !data[lot][idx].checked;
+                saveRocioBatchTasks(data);
+                renderRocioBatchTasks();
+            }
+        }
+
+        function deleteRocioBatchTask(lot, idx) {
+            const data = getRocioBatchTasks();
+            if (data[lot]) {
+                data[lot].splice(idx, 1);
+                saveRocioBatchTasks(data);
+                renderRocioBatchTasks();
+            }
+        }
+
+        // =========================================================================
+        // P3-04 SHUTDOWN RITUAL (ROCIO)
+        // =========================================================================
+        function initRocioShutdown() {
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const cb = document.getElementById(`rocio_shut_${i}`);
+                if (cb) {
+                    const checked = localStorage.getItem(`rocio_shut_${i}`) === 'true';
+                    cb.checked = checked;
+                    if (checked) count++;
+                }
+            }
+            updateRocioShutdownStatus(count);
+        }
+
+        function toggleRocioShutdown(idx) {
+            const cb = document.getElementById(`rocio_shut_${idx}`);
+            if (cb) {
+                localStorage.setItem(`rocio_shut_${idx}`, cb.checked ? 'true' : 'false');
+            }
+            let count = 0;
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById(`rocio_shut_${i}`);
+                if (el && el.checked) count++;
+            }
+            updateRocioShutdownStatus(count);
+            if (count === 4) {
+                showToast('🌙 ¡Jornada cerrada! Mente en calma y descanso regulado.');
+            }
+        }
+
+        function updateRocioShutdownStatus(count) {
+            const status = document.getElementById("rocio-shutdown-status");
+            if (status) {
+                status.innerText = `Progreso: ${count}/4 pasos completados hoy`;
+                status.style.color = count === 4 ? '#10b981' : '#60a5fa';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderRocioBatchTasks();
+            initRocioShutdown();
         if (typeof window.calcularRoiPiedras === 'function') {
             window.calcularRoiPiedras();
         }
