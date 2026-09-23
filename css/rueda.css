@@ -1,0 +1,1019 @@
+/* ==========================================================================
+   RUEDA DE LA VIDA (M03) • CSS MAESTRO & MOBILE-FIRST PRO
+   SSOT: 00_Sondeo_Maestro / Administración Humana
+   ========================================================================== */
+
+:root {
+    --rd-bg: #0b0d14;
+    --rd-surface: #121622;
+    --rd-card: #161b2a;
+    --rd-card-hover: #1c2336;
+    --rd-border: rgba(255, 255, 255, 0.08);
+    --rd-border-subtle: rgba(255, 255, 255, 0.04);
+    --rd-border-glow: rgba(45, 212, 191, 0.35);
+
+    --rd-teal: #0d9488;
+    --rd-teal-light: #2dd4bf;
+    --rd-teal-glow: rgba(45, 212, 191, 0.2);
+
+    --rd-coral: #e11d48;
+    --rd-coral-light: #fb7185;
+    --rd-coral-glow: rgba(251, 113, 133, 0.2);
+
+    --rd-amber: #d97706;
+    --rd-amber-light: #fbbf24;
+    --rd-amber-glow: rgba(251, 191, 36, 0.2);
+
+    --rd-indigo: #4f46e5;
+    --rd-indigo-light: #818cf8;
+
+    --rd-text-primary: #f8fafc;
+    --rd-text-secondary: #94a3b8;
+    --rd-text-muted: #64748b;
+
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+}
+
+/* Reset y Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.rd-body {
+    background-color: var(--rd-bg);
+    color: var(--rd-text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Header Standalone */
+.rd-header {
+    background: rgba(18, 22, 34, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rd-border);
+    padding: 12px 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.rd-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.rd-logo-badge {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--rd-teal) 0%, var(--rd-teal-light) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 14px var(--rd-teal-glow);
+    flex-shrink: 0;
+}
+
+.rd-title-group h1 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+
+.rd-title-group .rd-subtitle {
+    font-size: 0.75rem;
+    color: var(--rd-text-secondary);
+    display: block;
+}
+
+.rd-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Botones Genéricos Pro */
+.rd-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--rd-border);
+    background: var(--rd-card);
+    color: var(--rd-text-primary);
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.rd-btn:hover {
+    background: var(--rd-card-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.rd-btn:active {
+    transform: translateY(0);
+}
+
+.rd-btn-primary {
+    background: linear-gradient(135deg, var(--rd-teal) 0%, #14b8a6 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 10px var(--rd-teal-glow);
+}
+
+.rd-btn-primary:hover {
+    background: linear-gradient(135deg, #0f766e 0%, var(--rd-teal) 100%);
+    box-shadow: 0 4px 14px var(--rd-teal-glow);
+}
+
+.rd-btn-whatsapp {
+    background: #25d366;
+    color: #0b2915;
+    font-weight: 700;
+    border: none;
+}
+
+.rd-btn-whatsapp:hover {
+    background: #22c55e;
+    color: #061e0e;
+}
+
+/* Layout Principal */
+.rd-main {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1.75rem;
+    align-items: start;
+}
+
+/* Mobile Segmented Control (Tabs) */
+.rd-mobile-tabs {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--rd-surface);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-md);
+    padding: 4px;
+    gap: 4px;
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 65px;
+    z-index: 850;
+    backdrop-filter: blur(10px);
+}
+
+.rd-tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 4px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--rd-text-secondary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.rd-tab-btn i {
+    font-size: 1rem;
+}
+
+.rd-tab-btn.active {
+    background: var(--rd-card-hover);
+    color: var(--rd-teal-light);
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Columna Izquierda: Radar y Métricas */
+.rd-visual-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: 76px;
+}
+
+.rd-wheel-card {
+    background: var(--rd-surface);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.rd-wheel-card-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.rd-wheel-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rd-wheel-presets {
+    display: flex;
+    gap: 6px;
+}
+
+.rd-preset-pill {
+    font-size: 0.7rem;
+    padding: 4px 9px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--rd-border);
+    color: var(--rd-text-secondary);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.rd-preset-pill:hover {
+    background: rgba(45, 212, 191, 0.15);
+    border-color: var(--rd-teal-light);
+    color: var(--rd-teal-light);
+}
+
+/* SVG Wheel Container */
+.rd-svg-container {
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: none; /* Crucial for smooth touch dragging on mobile */
+}
+
+.rd-svg-container svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* Elementos SVG */
+.rd-grid-circle {
+    fill: none;
+    stroke: rgba(148, 163, 184, 0.09);
+    stroke-width: 0.8;
+}
+
+.rd-grid-circle-bold {
+    fill: none;
+    stroke: rgba(45, 212, 191, 0.3);
+    stroke-width: 1.4;
+    stroke-dasharray: 4 3;
+}
+
+.rd-grid-circle-max {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 1.5;
+}
+
+.rd-axis-line {
+    stroke: rgba(148, 163, 184, 0.18);
+    stroke-width: 1;
+    stroke-dasharray: 3 3;
+}
+
+.rd-polygon-area {
+    fill: rgba(13, 148, 136, 0.35);
+    stroke: var(--rd-teal-light);
+    stroke-width: 2.8;
+    filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.4));
+    transition: points 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.rd-vertex-hitbox {
+    fill: transparent;
+    cursor: grab;
+}
+
+.rd-vertex-hitbox:active {
+    cursor: grabbing;
+}
+
+.rd-vertex-point {
+    fill: #fff;
+    stroke: var(--rd-teal-light);
+    stroke-width: 2.5;
+    r: 6;
+    pointer-events: none;
+    transition: r 0.2s ease, fill 0.2s ease;
+}
+
+.rd-vertex-hitbox:hover + .rd-vertex-point,
+.rd-vertex-hitbox:active + .rd-vertex-point {
+    r: 9;
+    fill: var(--rd-teal-light);
+}
+
+.rd-axis-label {
+    fill: var(--rd-text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    text-anchor: middle;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: fill 0.2s ease;
+    user-select: none;
+}
+
+.rd-axis-label:hover {
+    fill: var(--rd-teal-light);
+}
+
+.rd-axis-label.alert {
+    fill: var(--rd-coral-light);
+    font-weight: 700;
+}
+
+.rd-axis-score-tag {
+    fill: #fff;
+    font-size: 9.5px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-anchor: middle;
+}
+
+/* Barra de Resumen de Métricas */
+.rd-metrics-bar {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.rd-metric-card {
+    background: var(--rd-card);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.rd-metric-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--rd-text-muted);
+    letter-spacing: 0.5px;
+}
+
+.rd-metric-val {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 2px;
+}
+
+.rd-metric-val.teal { color: var(--rd-teal-light); }
+.rd-metric-val.coral { color: var(--rd-coral-light); }
+.rd-metric-val.amber { color: var(--rd-amber-light); }
+
+.rd-metric-sub {
+    font-size: 0.68rem;
+    color: var(--rd-text-secondary);
+    margin-top: 2px;
+}
+
+/* Tarjeta de Prescripción Clínica */
+.rd-prescription-card {
+    background: var(--rd-surface);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.rd-prescription-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--rd-teal-light), var(--rd-indigo-light));
+}
+
+.rd-prescription-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rd-prescription-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rd-prescription-body {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--rd-text-secondary);
+}
+
+.rd-prescription-body strong {
+    color: #fff;
+}
+
+.rd-prescription-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: rgba(45, 212, 191, 0.12);
+    color: var(--rd-teal-light);
+    border: 1px solid rgba(45, 212, 191, 0.25);
+    margin-top: 4px;
+}
+
+/* Columna Derecha: Tarjetas de Dimensiones */
+.rd-dimensions-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.rd-col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.rd-col-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rd-col-subtitle {
+    font-size: 0.75rem;
+    color: var(--rd-text-secondary);
+}
+
+/* Card Individual de Dimensión */
+.rd-dim-card {
+    background: var(--rd-surface);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-md);
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: all 0.25s ease;
+    position: relative;
+    border-left: 4px solid var(--rd-teal);
+}
+
+.rd-dim-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--rd-card);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.rd-dim-card.alert {
+    border-left-color: var(--rd-coral);
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.04) 0%, var(--rd-surface) 100%);
+}
+
+.rd-dim-card.warning {
+    border-left-color: var(--rd-amber);
+}
+
+.rd-dim-card.solid {
+    border-left-color: var(--rd-teal-light);
+}
+
+.rd-dim-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.rd-dim-info {
+    flex: 1;
+}
+
+.rd-dim-name {
+    font-family: var(--font-heading);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rd-dim-icon {
+    font-size: 1.15rem;
+}
+
+.rd-dim-guide {
+    font-size: 0.74rem;
+    color: var(--rd-text-secondary);
+    line-height: 1.4;
+    margin-top: 3px;
+    display: block;
+}
+
+.rd-dim-score-badge {
+    min-width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--rd-card);
+    border: 1px solid var(--rd-border);
+    flex-shrink: 0;
+}
+
+.rd-dim-score-badge .score-number {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--rd-teal-light);
+    line-height: 1;
+}
+
+.rd-dim-card.alert .rd-dim-score-badge .score-number {
+    color: var(--rd-coral-light);
+}
+
+.rd-dim-card.warning .rd-dim-score-badge .score-number {
+    color: var(--rd-amber-light);
+}
+
+.rd-dim-score-badge .score-max {
+    font-size: 0.58rem;
+    color: var(--rd-text-muted);
+}
+
+/* Selector de Puntaje: 1-10 Pills Touch Ergonomics */
+.rd-score-selector-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.rd-score-pills {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 4px;
+}
+
+.rd-score-pill-btn {
+    padding: 7px 0;
+    border-radius: 6px;
+    border: 1px solid var(--rd-border);
+    background: var(--rd-card);
+    color: var(--rd-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+.rd-score-pill-btn:hover {
+    background: var(--rd-card-hover);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.rd-score-pill-btn.active {
+    background: var(--rd-teal);
+    color: #fff;
+    border-color: var(--rd-teal-light);
+    box-shadow: 0 2px 8px var(--rd-teal-glow);
+}
+
+.rd-dim-card.alert .rd-score-pill-btn.active {
+    background: var(--rd-coral);
+    border-color: var(--rd-coral-light);
+    box-shadow: 0 2px 8px var(--rd-coral-glow);
+}
+
+.rd-dim-card.warning .rd-score-pill-btn.active {
+    background: var(--rd-amber);
+    border-color: var(--rd-amber-light);
+    box-shadow: 0 2px 8px var(--rd-amber-glow);
+}
+
+/* Campos de Texto: Dolor y Microacción */
+.rd-inputs-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.rd-input-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rd-input-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--rd-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.rd-input-label i {
+    color: var(--rd-teal-light);
+}
+
+.rd-dim-card.alert .rd-input-label i {
+    color: var(--rd-coral-light);
+}
+
+.rd-text-input {
+    width: 100%;
+    background: rgba(11, 13, 20, 0.6);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: #fff;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.rd-text-input:focus {
+    border-color: var(--rd-teal-light);
+    background: rgba(11, 13, 20, 0.9);
+    box-shadow: 0 0 0 2px var(--rd-teal-glow);
+}
+
+.rd-text-input::placeholder {
+    color: var(--rd-text-muted);
+    font-style: italic;
+    font-size: 0.78rem;
+}
+
+/* Panel de Snapshots / Historial */
+.rd-history-panel {
+    background: var(--rd-surface);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 0.5rem;
+}
+
+.rd-history-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.rd-history-input {
+    flex: 1;
+    min-width: 150px;
+    background: var(--rd-card);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    color: #fff;
+}
+
+.rd-history-select {
+    flex: 1;
+    min-width: 160px;
+    background: var(--rd-card);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    color: #fff;
+}
+
+/* Modal Genérico */
+.rd-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.rd-modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.rd-modal {
+    background: var(--rd-surface);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--radius-lg);
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transform: scale(0.95);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.rd-modal-overlay.open .rd-modal {
+    transform: scale(1);
+}
+
+.rd-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--rd-border);
+    padding-bottom: 10px;
+}
+
+.rd-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.rd-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--rd-text-muted);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rd-modal-close:hover {
+    color: #fff;
+}
+
+/* Toast de Notificaciones */
+.rd-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--rd-surface);
+    border: 1px solid var(--rd-teal-light);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1100;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rd-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE-FIRST BREAKPOINTS)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .rd-main {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.25rem;
+    }
+
+    .rd-visual-col {
+        position: static;
+    }
+
+    .rd-mobile-tabs {
+        display: grid;
+    }
+
+    /* Tab-based visibility toggles on mobile */
+    .rd-section-hidden {
+        display: none !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .rd-header {
+        padding: 10px 12px;
+    }
+
+    .rd-logo-badge {
+        width: 32px;
+        height: 32px;
+        font-size: 1.05rem;
+    }
+
+    .rd-title-group h1 {
+        font-size: 0.95rem;
+    }
+
+    .rd-header-actions .rd-btn span {
+        display: none;
+    }
+
+    .rd-header-actions .rd-btn {
+        padding: 8px 10px;
+    }
+
+    .rd-score-pills {
+        gap: 2px;
+    }
+
+    .rd-score-pill-btn {
+        padding: 8px 0;
+        font-size: 0.72rem;
+    }
+
+    .rd-metrics-bar {
+        gap: 6px;
+    }
+
+    .rd-metric-val {
+        font-size: 1.15rem;
+    }
+
+    .rd-svg-container {
+        max-width: 320px;
+    }
+
+    .rd-wheel-card {
+        padding: 1rem 0.75rem;
+    }
+}
+
+/* ==========================================================================
+   ESTILOS DE IMPRESIÓN (A4 / CARTA HOJA ÚNICA)
+   ========================================================================== */
+@media print {
+    body.rd-body {
+        background: #fff !important;
+        color: #0f172a !important;
+    }
+
+    .rd-header,
+    .rd-mobile-tabs,
+    .rd-wheel-presets,
+    .rd-score-pills,
+    .rd-history-panel,
+    .rd-header-actions,
+    .no-print {
+        display: none !important;
+    }
+
+    .rd-main {
+        display: block !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .rd-wheel-card {
+        background: #fff !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+
+    .rd-dim-card {
+        background: #fff !important;
+        border: 1px solid #cbd5e1 !important;
+        page-break-inside: avoid;
+        color: #000 !important;
+        box-shadow: none !important;
+        margin-bottom: 8px;
+    }
+
+    .rd-polygon-area {
+        fill: rgba(13, 148, 136, 0.15) !important;
+        stroke: #0d9488 !important;
+    }
+
+    .rd-text-input {
+        background: #f8fafc !important;
+        color: #000 !important;
+        border: 1px solid #94a3b8 !important;
+    }
+
+    .rd-dim-name,
+    .rd-wheel-title,
+    .rd-metric-val,
+    .rd-col-title {
+        color: #0f172a !important;
+    }
+}

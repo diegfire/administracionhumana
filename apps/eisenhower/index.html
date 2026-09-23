@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Matriz de Eisenhower • Brújula de Prioridades | Administración Humana</title>
+    
+    <!-- Fuentes y Tipografía Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS MAESTRO EISENHOWER (ÚNICA FUENTE DE LA VERDAD - SSOT) -->
+    <link rel="stylesheet" href="../../css/eisenhower.css">
+
+    <style>
+        :root {
+            --bg-base: #09090b;
+            --bg-surface: #121217;
+            --border-color: #27272a;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --primary-accent: #f59e0b;
+            --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER SUPERIOR STANDALONE */
+        .eisen-app-header {
+            background: rgba(18, 18, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 950;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1.1rem;
+            font-weight: 900;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .header-title-block h1 {
+            font-family: var(--font-display);
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.15;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-title-block p {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: #e4e4e7;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: #3f3f46;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .eisen-standalone-main {
+            flex: 1;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 5rem 1.25rem;
+        }
+
+        /* INFOGRAFÍA DIDÁCTICA */
+        .eisen-infographic-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.06) 0%, rgba(18, 18, 23, 0.8) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .eisen-infographic-info h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .eisen-infographic-info p {
+            font-size: 0.78rem;
+            color: #a1a1aa;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 640px) {
+            .eisen-app-header {
+                padding: 10px 1rem;
+            }
+            .header-title-block p {
+                display: none;
+            }
+            .eisen-standalone-main {
+                padding: 1rem 0.85rem 5.5rem 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER SUPERIOR STANDALONE -->
+    <header class="eisen-app-header no-print">
+        <a href="../../suite.html" class="header-brand" title="Volver a la Suite Digital">
+            <div class="header-logo-icon">
+                <i class="fa-solid fa-table-cells-large"></i>
+            </div>
+            <div class="header-title-block">
+                <h1>Matriz de Eisenhower <span style="font-size:0.65rem; background:rgba(245,158,11,0.15); color:#f59e0b; padding:2px 6px; border-radius:4px; border:1px solid rgba(245,158,11,0.3);">SSOT v2</span></h1>
+                <p>La Cura para la Urgentitis Crónica • Método AICC</p>
+            </div>
+        </a>
+
+        <div class="header-actions">
+            <a href="../../suite.html" class="header-btn" title="Suite Digital">
+                <i class="fa-solid fa-layer-group"></i> <span>Suite</span>
+            </a>
+            <a href="../gtd/index.html" class="header-btn" title="Ir a Tablero GTD">
+                <i class="fa-solid fa-bolt"></i> <span>GTD</span>
+            </a>
+            <a href="../../../../../index.html" class="header-btn" title="Diego Control Center">
+                <i class="fa-solid fa-house"></i> <span>Control Center</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- CUERPO PRINCIPAL DE LA HERRAMIENTA -->
+    <main class="eisen-standalone-main">
+        
+        <!-- BANNER DE ORIENTACIÓN METODOLÓGICA (HERRAMIENTAS FULL PÁG 75) -->
+        <div class="eisen-infographic-card no-print">
+            <div class="eisen-infographic-info">
+                <h4><i class="fa-solid fa-compass" style="color:#f59e0b;"></i> Dwight D. Eisenhower • Regla de Oro del Tiempo</h4>
+                <p><em>«Lo que es importante rara vez es urgente, y lo que es urgente rara vez es importante.»</em> Blinda tus Bloques de Oro antes de mediodía.</p>
+            </div>
+            <button class="header-btn" onclick="window.eisenSetView('dashboard')" style="background:rgba(245,158,11,0.15); border-color:#f59e0b; color:#fbbf24;">
+                <i class="fa-solid fa-chart-pie"></i> 📊 Hoja de Estado
+            </button>
+        </div>
+
+        <div class="eisen-workbench-container">
+            
+            <!-- SELECTOR SEGMENTADO DE VISTAS (MOBILE-FIRST) -->
+            <div class="eisen-tabs-bar no-print">
+                <button class="eisen-tab-btn active" data-view="all">
+                    <span>🌟 Todos (2x2)</span>
+                    <span class="eisen-tab-badge" id="count-eisen-all">0</span>
+                </button>
+                <button class="eisen-tab-btn tab-q1" data-view="q1">
+                    <span>🔥 Q1: Crisis</span>
+                    <span class="eisen-tab-badge" id="count-eisen-q1">0</span>
+                </button>
+                <button class="eisen-tab-btn tab-q2" data-view="q2">
+                    <span>🌟 Q2: Bloques de Oro</span>
+                    <span class="eisen-tab-badge" id="count-eisen-q2">0</span>
+                </button>
+                <button class="eisen-tab-btn tab-q3" data-view="q3">
+                    <span>⏳ Q3: Delegar</span>
+                    <span class="eisen-tab-badge" id="count-eisen-q3">0</span>
+                </button>
+                <button class="eisen-tab-btn tab-q4" data-view="q4">
+                    <span>🗑️ Q4: Fugas</span>
+                    <span class="eisen-tab-badge" id="count-eisen-q4">0</span>
+                </button>
+                <button class="eisen-tab-btn tab-dash" data-view="dashboard">
+                    <span>📊 Mini Dashboard</span>
+                </button>
+            </div>
+
+            <!-- BARRA DE DIAGNÓSTICO ANTI-URGENTITIS EN TIEMPO REAL -->
+            <div id="eisen-diagnostic-bar" class="eisen-mental-load-bar no-print"></div>
+
+            <!-- BARRA DE ENTRADA INTELIGENTE -->
+            <div class="eisen-input-card no-print">
+                <div class="eisen-input-row">
+                    <input type="text" id="eisen-quick-input" class="eisen-input-field" placeholder="¿Qué compromiso o pendiente tienes en mente?..." onkeydown="if(event.key==='Enter') window.eisenAddTask()">
+                    <select id="eisen-quadrant-select" class="eisen-quadrant-select">
+                        <option value="q1">🔥 Q1: Crisis (Hacer YA)</option>
+                        <option value="q2" selected>🌟 Q2: Bloque de Oro (Programar)</option>
+                        <option value="q3">⏳ Q3: Interrupción (Delegar)</option>
+                        <option value="q4">🗑️ Q4: Fuga (Eliminar)</option>
+                    </select>
+                    <button class="btn-eisen-submit" onclick="window.eisenAddTask()"><i class="fa-solid fa-plus"></i> Clasificar</button>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR DINÁMICO DE CUADRANTES O DASHBOARD -->
+            <div id="eisen-active-container"></div>
+
+        </div>
+
+    </main>
+
+    <!-- MOTOR MAESTRO EISENHOWER (ÚNICA FUENTE DE LA VERDAD - SSOT) -->
+    <script src="../../js/eisenhower-engine.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initEisenhowerEngine({
+                storageKey: "ah_client_eisenhower" // Clave central compartida entre Standalone y Plan de Vuelo
+            });
+        });
+    </script>
+</body>
+</html>

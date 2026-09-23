@@ -15,6 +15,11 @@
     let savedCalendars = [];
     let activeCalendarId = "";
 
+    // Mobile-First Day Selector & Touch State
+    let activeScheduleDayFilter = "all"; // 'all' or 0..6 (Lun=0 ... Dom=6)
+    let isTouchPainting = false;
+    const DAY_NAMES = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+
     function normalizeCategory(cat) {
         if (!cat) return null;
         const rawName = cat.name || cat.nombre || cat.label || cat.title || "";
@@ -58,11 +63,34 @@
         // 4. Renderizar UI completa
         renderCalendarDropdown();
         renderScheduleBrushChips();
+        renderDayTabs();
         renderScheduleGrid();
         renderScheduleStatistics();
         populateScheduleRangeModal();
 
         window.addEventListener("mouseup", () => { isScheduleMouseDown = false; });
+
+        // Eventos táctiles para dispositivos móviles (deslizar el dedo para pintar)
+        document.addEventListener("touchmove", (e) => {
+            if (!isTouchPainting || !e.touches || !e.touches[0]) return;
+            const touch = e.touches[0];
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (el) {
+                const cell = el.closest(".schedule-cell");
+                if (cell && cell.id && cell.id.startsWith("cell-")) {
+                    const parts = cell.id.replace("cell-", "").split("-");
+                    if (parts.length === 2) {
+                        const d = parseInt(parts[0], 10);
+                        const h = parseInt(parts[1], 10);
+                        paintScheduleCell(d, h);
+                    }
+                }
+            }
+        }, { passive: true });
+
+        document.addEventListener("touchend", () => {
+            isTouchPainting = false;
+        });
     }
 
     function initSavedCalendars(config) {
@@ -608,9 +636,72 @@
         renderScheduleBrushChips();
     }
 
+    function renderDayTabs() {
+        let container = document.getElementById("schedule-day-tabs-container");
+        if (!container) {
+            const tableWrap = document.querySelector(".schedule-scroll-wrapper");
+            if (tableWrap && tableWrap.parentNode) {
+                container = document.createElement("div");
+                container.id = "schedule-day-tabs-container";
+                container.className = "schedule-day-tabs no-print";
+                tableWrap.parentNode.insertBefore(container, tableWrap);
+            }
+        }
+        if (!container) return;
+
+        let html = `
+            <button class="schedule-day-btn ${activeScheduleDayFilter === 'all' ? 'active' : ''}" onclick="window.setScheduleDayFilter('all')">
+                <i class="fa-solid fa-calendar-week"></i> Toda la Semana
+            </button>
+        `;
+        DAY_NAMES.forEach((day, idx) => {
+            html += `
+                <button class="schedule-day-btn ${activeScheduleDayFilter === idx ? 'active' : ''}" onclick="window.setScheduleDayFilter(${idx})">
+                    ${day}
+                </button>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function setScheduleDayFilter(dayIdx) {
+        activeScheduleDayFilter = dayIdx;
+        renderDayTabs();
+        renderScheduleGrid();
+    }
+
     function renderScheduleGrid() {
         const tbody = document.getElementById("schedule-body");
         if (!tbody) return;
+
+        const table = tbody.closest("table");
+        if (table) {
+            if (activeScheduleDayFilter !== "all") {
+                table.classList.add("single-day-mode");
+            } else {
+                table.classList.remove("single-day-mode");
+            }
+
+            const thead = table.querySelector("thead");
+            if (thead) {
+                if (activeScheduleDayFilter === "all") {
+                    thead.innerHTML = `
+                        <tr>
+                            <th style="width: 70px;">Hora</th>
+                            <th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th><th>Sábado</th><th>Domingo</th>
+                        </tr>
+                    `;
+                } else {
+                    const dayName = DAY_NAMES[activeScheduleDayFilter];
+                    thead.innerHTML = `
+                        <tr>
+                            <th style="width: 75px;">Hora</th>
+                            <th>${dayName} (Vista Móvil 24H)</th>
+                        </tr>
+                    `;
+                }
+            }
+        }
 
         let html = "";
         for (let h = 0; h < 24; h++) {
@@ -618,18 +709,23 @@
             html += `<tr>`;
             html += `<td class="hour-header-col">${hourLabel}</td>`;
 
-            for (let d = 0; d < 7; d++) {
+            const daysToRender = activeScheduleDayFilter === "all" ? [0, 1, 2, 3, 4, 5, 6] : [activeScheduleDayFilter];
+
+            for (const d of daysToRender) {
                 const key = `${d}-${h}`;
                 const catId = scheduleData[key] || "libre";
                 const isBlank = (!catId || catId === "libre" || catId === "blanco" || catId === "vacio");
                 const cat = scheduleCategories.find(c => c.id === catId);
+
+                const displayText = cat ? (activeScheduleDayFilter !== "all" ? `${cat.name} (${cat.tag})` : (cat.tag || cat.name.substring(0, 5))) : "";
 
                 if (isBlank || !cat) {
                     html += `
                         <td id="cell-${key}" 
                             class="schedule-cell cell-empty"
                             onmousedown="handleScheduleMouseDown(${d}, ${h})" 
-                            onmouseenter="handleScheduleMouseEnter(${d}, ${h})">
+                            onmouseenter="handleScheduleMouseEnter(${d}, ${h})"
+                            ontouchstart="handleScheduleTouchStart(event, ${d}, ${h})">
                             <div class="cell-content-box cell-blank"></div>
                         </td>
                     `;
@@ -639,9 +735,10 @@
                             class="schedule-cell"
                             onmousedown="handleScheduleMouseDown(${d}, ${h})" 
                             onmouseenter="handleScheduleMouseEnter(${d}, ${h})"
+                            ontouchstart="handleScheduleTouchStart(event, ${d}, ${h})"
                             style="background-color: ${cat.color}22;">
                             <div class="cell-content-box" style="background-color: ${cat.color};">
-                                ${cat.tag || cat.name.substring(0, 5)}
+                                ${displayText}
                             </div>
                         </td>
                     `;
@@ -661,6 +758,11 @@
         if (isScheduleMouseDown) {
             paintScheduleCell(d, h);
         }
+    }
+
+    function handleScheduleTouchStart(e, d, h) {
+        isTouchPainting = true;
+        paintScheduleCell(d, h);
     }
 
     function paintScheduleCell(d, h) {
@@ -730,10 +832,56 @@
 
     // Category Manager Modal
     function openCategoryManagerModal() {
+        let modal = document.getElementById("modal-category-manager") || document.getElementById("categories-manager-modal");
+        if (!modal) {
+            modal = document.createElement("div");
+            modal.id = "modal-category-manager";
+            modal.className = "modal-overlay";
+            modal.innerHTML = `
+                <div class="modal-box" style="max-width: 520px; width:100%; background:#0d0d0d; border:1px solid var(--border, #262626); border-radius:14px; padding:1.5rem; max-height:90vh; overflow-y:auto;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <span style="font-weight:800; font-size:1.1rem; color:#fff; display:flex; align-items:center; gap:8px;">
+                            <i class="fa-solid fa-palette" style="color:#10b981;"></i> Gestionar Categorías & Colores
+                        </span>
+                        <button type="button" onclick="closeCategoryManagerModal()" style="background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;">&times;</button>
+                    </div>
+                    <p style="font-size:0.8rem; color:#aaa; margin-bottom:1.2rem;">
+                        Personaliza tus áreas de vida, cambia colores, nombres o crea nuevas categorías de 168h.
+                    </p>
+                    
+                    <div id="category-list-editor" style="display:flex; flex-direction:column; gap:6px; margin-bottom:1.5rem;"></div>
+
+                    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:12px; border-radius:10px; margin-bottom:1.5rem;">
+                        <span style="display:block; font-size:0.75rem; font-weight:800; color:#10b981; margin-bottom:8px; text-transform:uppercase;">
+                            + Crear Nueva Categoría
+                        </span>
+                        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                            <input type="color" id="new-cat-color" value="#10b981" style="width:36px; height:36px; border:none; border-radius:6px; background:none; cursor:pointer;">
+                            <input type="text" id="new-cat-name" placeholder="Ej: Lectura & Estudio" style="flex:1; min-width:140px; background:#18181b; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.82rem;">
+                            <input type="text" id="new-cat-tag" placeholder="TAG" maxlength="8" style="width:70px; background:#18181b; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.82rem; text-transform:uppercase;">
+                            <button type="button" class="btn-schedule-action" onclick="addNewCategoryFromModal()" style="background:#10b981; color:#000; border-color:#10b981; font-weight:800;">
+                                + Agregar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                        <button type="button" class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color:#ef4444; border-color:rgba(239,68,68,0.3); font-size:0.75rem;">
+                            Restablecer Predeterminadas
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="closeCategoryManagerModal()" style="background:#ffffff; color:#000; font-weight:800;">
+                            Listo / Guardar
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
         const editor = document.getElementById("category-list-editor") || document.getElementById("category-manager-list");
         if (editor) {
             editor.innerHTML = scheduleCategories.map((cat, idx) => `
-                <div class="category-item-row" id="cat-row-${idx}" style="display:flex; align-items:center; gap:8px; background:#141414; border:1px solid #282828; padding:6px 10px; border-radius:6px;">
+                <div class="category-item-row" id="cat-row-${idx}" style="display:flex; align-items:center; gap:8px; background:#141414; border:1px solid #282828; padding:6px 10px; border-radius:8px;">
                     <div class="color-picker-wrapper" style="background-color: ${cat.color}; width:28px; height:28px; border-radius:50%; overflow:hidden; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.2);">
                         <input type="color" class="color-picker-input" value="${cat.color}" onchange="updateCatColorValue(${idx}, this.value)" style="opacity:0; width:100%; height:100%; cursor:pointer;">
                     </div>
@@ -744,14 +892,16 @@
             `).join("");
         }
 
-        const modal = document.getElementById("modal-category-manager") || document.getElementById("categories-manager-modal");
-        if (modal) modal.classList.add("active");
+        modal.style.display = "flex";
     }
 
     function closeCategoryManagerModal() {
         saveCategoriesFromModal();
         const modal = document.getElementById("modal-category-manager") || document.getElementById("categories-manager-modal");
-        if (modal) modal.classList.remove("active");
+        if (modal) modal.style.display = "none";
+        renderScheduleBrushChips();
+        renderScheduleGrid();
+        renderScheduleStatistics();
     }
 
     function saveSingleCategoryEdit(idx) {
@@ -824,17 +974,18 @@
     }
 
     function resetCategoriesDefault() {
-        if (confirm("¿Restablecer las categorías originales predeterminadas?")) {
+        if (confirm("¿Restablecer las categorías a los valores predeterminados? Se perderán las personalizadas.")) {
             scheduleCategories = JSON.parse(JSON.stringify(defaultScheduleCategories));
+            activeScheduleBrushId = scheduleCategories[0].id;
             saveScheduleCategories();
             openCategoryManagerModal();
-            showScheduleToast("Categorías restablecidas.");
+            showScheduleToast("Categorías restablecidas con éxito.");
         }
     }
 
     function resetScheduleToDefault() {
-        if (confirm("¿Deseas restablecer este horario semanal a la plantilla sugerida?")) {
-            scheduleData = generateInitialSchedule();
+        if (confirm("¿Estás seguro de que deseas restablecer el horario a los valores iniciales?")) {
+            initSavedCalendars({ storageKey: scheduleStoragePrefix, defaultCategories: defaultScheduleCategories });
             saveScheduleData();
             renderScheduleGrid();
             showScheduleToast("Horario restablecido a la plantilla base.");
@@ -861,14 +1012,69 @@
     }
 
     function openRangeFillModal() {
+        let modal = document.getElementById("modal-range-fill") || document.getElementById("range-fill-modal");
+        if (!modal) {
+            modal = document.createElement("div");
+            modal.id = "modal-range-fill";
+            modal.className = "modal-overlay";
+            modal.innerHTML = `
+                <div class="modal-box" style="max-width: 480px; width:100%; background:#0d0d0d; border:1px solid var(--border, #262626); border-radius:14px; padding:1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <span style="font-weight:800; font-size:1.1rem; color:#fff; display:flex; align-items:center; gap:8px;">
+                            <i class="fa-solid fa-bolt" style="color:#38bdf8;"></i> Llenar Rango Horario
+                        </span>
+                        <button type="button" onclick="closeRangeFillModal()" style="background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;">&times;</button>
+                    </div>
+                    <p style="font-size:0.8rem; color:#aaa; margin-bottom:1.2rem;">
+                        Pinta un bloque continuo de horas en los días seleccionados con un solo clic.
+                    </p>
+
+                    <div style="margin-bottom:1rem;">
+                        <label style="display:block; font-size:0.75rem; font-weight:700; color:#ddd; margin-bottom:6px;">Categoría:</label>
+                        <select id="range-fill-category" class="schedule-calendar-select" style="width:100%; min-width:unset;"></select>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:1.2rem;">
+                        <div>
+                            <label style="display:block; font-size:0.75rem; font-weight:700; color:#ddd; margin-bottom:6px;">Desde:</label>
+                            <select id="range-fill-start" class="schedule-calendar-select" style="width:100%; min-width:unset;"></select>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.75rem; font-weight:700; color:#ddd; margin-bottom:6px;">Hasta:</label>
+                            <select id="range-fill-end" class="schedule-calendar-select" style="width:100%; min-width:unset;"></select>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:1.4rem;">
+                        <label style="display:block; font-size:0.75rem; font-weight:700; color:#ddd; margin-bottom:8px;">Días a aplicar:</label>
+                        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                            ${["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((d, i) => `
+                                <label style="display:flex; align-items:center; gap:4px; font-size:0.75rem; background:rgba(255,255,255,0.04); border:1px solid #333; padding:5px 8px; border-radius:6px; cursor:pointer;">
+                                    <input type="checkbox" name="range-day" value="${i}" ${i < 5 ? 'checked' : ''} style="accent-color:#10b981;">
+                                    <span>${d}</span>
+                                </label>
+                            `).join("")}
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:flex-end; gap:8px;">
+                        <button type="button" class="btn-schedule-action" onclick="closeRangeFillModal()">Cancelar</button>
+                        <button type="button" class="btn-schedule-action" onclick="applyRangeFill()" style="background:#10b981; color:#000; border-color:#10b981; font-weight:800;">
+                            Aplicar Relleno
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
         populateScheduleRangeModal();
-        const modal = document.getElementById("modal-range-fill") || document.getElementById("range-fill-modal");
-        if (modal) modal.classList.add("active");
+        modal.style.display = "flex";
     }
 
     function closeRangeFillModal() {
         const modal = document.getElementById("modal-range-fill") || document.getElementById("range-fill-modal");
-        if (modal) modal.classList.remove("active");
+        if (modal) modal.style.display = "none";
     }
 
     function applyRangeFill() {
@@ -948,6 +1154,88 @@
         }, 2800);
     }
 
+    function applySchedulePreset(type) {
+        const catSueno = scheduleCategories.find(c => c.id.includes("sueno") || c.name.toLowerCase().includes("sueño")) || scheduleCategories[2] || scheduleCategories[0];
+        const catTrabajo = scheduleCategories.find(c => c.id.includes("trab") || c.name.toLowerCase().includes("trabajo") || c.name.toLowerCase().includes("foco")) || scheduleCategories[0];
+        const catDescanso = scheduleCategories.find(c => c.id.includes("descanso") || c.name.toLowerCase().includes("ocio") || c.name.toLowerCase().includes("libre")) || scheduleCategories[1] || scheduleCategories[0];
+
+        if (type === "sueno_rutinario") {
+            for (let d = 0; d < 7; d++) {
+                [23, 0, 1, 2, 3, 4, 5, 6, 7].forEach(h => {
+                    scheduleData[`${d}-${h}`] = catSueno.id;
+                });
+            }
+            saveScheduleData();
+            showScheduleToast("😴 ¡Bloque de Sueño 23:00 - 07:00 aplicado a toda la semana!");
+        } else if (type === "oficina_estandar") {
+            for (let d = 0; d < 5; d++) {
+                for (let h = 9; h <= 18; h++) {
+                    if (h === 13 || h === 14) {
+                        scheduleData[`${d}-${h}`] = catDescanso.id;
+                    } else {
+                        scheduleData[`${d}-${h}`] = catTrabajo.id;
+                    }
+                }
+            }
+            saveScheduleData();
+            showScheduleToast("💼 ¡Jornada Laboral 09:00 - 18:00 (con almuerzo) aplicada!");
+        } else if (type === "limpiar_todo") {
+            if (confirm("¿Estás seguro de que deseas limpiar todo el horario de esta semana a blanco?")) {
+                scheduleData = {};
+                saveScheduleData();
+                showScheduleToast("🧹 Horario restablecido a blanco.");
+            }
+        }
+    }
+
+    function copyScheduleWhatsApp() {
+        const counts = {};
+        scheduleCategories.forEach(c => counts[c.id] = 0);
+        let assignedHours = 0;
+
+        for (let d = 0; d < 7; d++) {
+            for (let h = 0; h < 24; h++) {
+                const key = `${d}-${h}`;
+                const catId = scheduleData[key];
+                const isBlank = (!catId || catId === "libre" || catId === "blanco" || catId === "vacio");
+                if (!isBlank && counts[catId] !== undefined) {
+                    counts[catId]++;
+                    assignedHours++;
+                }
+            }
+        }
+        const freeHours = 168 - assignedHours;
+        const activeCal = savedCalendars.find(c => c.id === activeCalendarId);
+        const calName = activeCal ? activeCal.name : "Semana Base";
+
+        let text = `⏰ *AUDITORÍA Y MAPEO HORARIO 168H* 🗓️\n`;
+        text += `👤 *Semana:* ${calName}\n`;
+        text += `✨ *Metodología:* AICC • Administración Humana\n\n`;
+        text += `📊 *Desglose de Horas Semanales (Total 168h):*\n`;
+
+        scheduleCategories.forEach(cat => {
+            const h = counts[cat.id] || 0;
+            if (h > 0) {
+                const pct = ((h / 168) * 100).toFixed(1);
+                text += `• ${cat.name}: *${h}h* (${pct}%)\n`;
+            }
+        });
+
+        text += `• ⚪ Espacio Libre / No Asignado: *${freeHours}h* (${((freeHours / 168) * 100).toFixed(1)}%)\n\n`;
+        text += `🎯 *Total Asignado:* ${assignedHours}h de 168h (${((assignedHours / 168) * 100).toFixed(1)}% de soberanía operativa)\n`;
+        text += `🚀 *Administración Humana • Diego González Yáñez*`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+                showScheduleToast("📋 ¡Resumen 168H copiado para enviar por WhatsApp!");
+            }).catch(() => {
+                prompt("Copia tu resumen 168H:", text);
+            });
+        } else {
+            prompt("Copia tu resumen 168H:", text);
+        }
+    }
+
     // EXPORTAR AL OBJETO GLOBAL WINDOW
     window.initScheduleEngine = initScheduleEngine;
     window.handleCalendarSelectChange = handleCalendarSelectChange;
@@ -964,9 +1252,12 @@
     window.saveScheduleCategories = saveScheduleCategories;
     window.selectScheduleBrush = selectScheduleBrush;
     window.renderScheduleBrushChips = renderScheduleBrushChips;
+    window.renderDayTabs = renderDayTabs;
+    window.setScheduleDayFilter = setScheduleDayFilter;
     window.renderScheduleGrid = renderScheduleGrid;
     window.handleScheduleMouseDown = handleScheduleMouseDown;
     window.handleScheduleMouseEnter = handleScheduleMouseEnter;
+    window.handleScheduleTouchStart = handleScheduleTouchStart;
     window.paintScheduleCell = paintScheduleCell;
     window.renderScheduleStatistics = renderScheduleStatistics;
     window.openCategoryManagerModal = openCategoryManagerModal;
@@ -982,6 +1273,8 @@
     window.openRangeFillModal = openRangeFillModal;
     window.closeRangeFillModal = closeRangeFillModal;
     window.applyRangeFill = applyRangeFill;
+    window.applySchedulePreset = applySchedulePreset;
+    window.copyScheduleWhatsApp = copyScheduleWhatsApp;
     window.exportSchedulePNG = exportSchedulePNG;
     window.showScheduleToast = showScheduleToast;
 

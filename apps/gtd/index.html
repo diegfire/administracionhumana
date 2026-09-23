@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>AICC GTD Pro Humanizado • Administración Humana</title>
+    
+    <!-- Fuentes y Tipografía Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS MAESTRO GTD (ÚNICA FUENTE DE LA VERDAD - SSOT) -->
+    <link rel="stylesheet" href="../../css/kanban-gtd.css">
+
+    <style>
+        :root {
+            --bg-base: #09090b;
+            --bg-surface: #121217;
+            --border-color: #27272a;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --primary-accent: #38bdf8;
+            --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER SUPERIOR STANDALONE */
+        .gtd-app-header {
+            background: rgba(18, 18, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 950;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1.1rem;
+            font-weight: 900;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .header-title-block h1 {
+            font-family: var(--font-display);
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.15;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-title-block p {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: #e4e4e7;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: #3f3f46;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .gtd-standalone-main {
+            flex: 1;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 5rem 1.25rem;
+        }
+
+        @media (max-width: 640px) {
+            .gtd-app-header {
+                padding: 10px 1rem;
+            }
+            .header-title-block p {
+                display: none;
+            }
+            .gtd-standalone-main {
+                padding: 1rem 0.85rem 5.5rem 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER SUPERIOR STANDALONE -->
+    <header class="gtd-app-header no-print">
+        <a href="../../suite.html" class="header-brand" title="Volver a la Suite Digital">
+            <div class="header-logo-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="header-title-block">
+                <h1>GTD Pro Humanizado <span style="font-size:0.65rem; background:rgba(56,189,248,0.15); color:#38bdf8; padding:2px 6px; border-radius:4px; border:1px solid rgba(56,189,248,0.3);">SSOT v3</span></h1>
+                <p>Administración Humana • Método AICC</p>
+            </div>
+        </a>
+
+        <div class="header-actions">
+            <a href="../../suite.html" class="header-btn" title="Suite Digital">
+                <i class="fa-solid fa-layer-group"></i> <span>Suite</span>
+            </a>
+            <a href="../../sondeo.html" class="header-btn" title="Sondeo Maestro">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Sondeo</span>
+            </a>
+            <a href="../../../../../index.html" class="header-btn" title="Diego Control Center">
+                <i class="fa-solid fa-house"></i> <span>Control Center</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- CUERPO PRINCIPAL DE LA HERRAMIENTA -->
+    <main class="gtd-standalone-main">
+        
+        <!-- BANNER DE ORIENTACIÓN METODOLÓGICA (HERRAMIENTAS FULL PÁG 38) -->
+        <div class="gtd-infographic-card no-print">
+            <div class="gtd-infographic-info">
+                <h4><i class="fa-solid fa-brain" style="color:#38bdf8;"></i> La Cura para el Ruido Mental Persistente</h4>
+                <p>1. <strong>Capturar</strong> (Vaciar RAM) ➔ 2. <strong>Aclarar</strong> (Regla 2 Min / Proyectos) ➔ 3. <strong>Organizar</strong> (Contextos @) ➔ 4. <strong>Foco Activo</strong> (Límite Monotarea WIP=2).</p>
+            </div>
+            <button class="btn-open-infographic" onclick="window.gtdOpenClarifyWizard()">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> ⚡ Aclarar Inbox
+            </button>
+        </div>
+
+        <!-- WORKBENCH GTD UNIFICADO -->
+        <div class="gtd-workbench-container">
+            <!-- SIDEBAR DE PASOS DEL FLUJO GTD -->
+            <div class="gtd-flow-sidebar">
+                <div class="gtd-flow-sidebar-header">Pasos del Flujo GTD</div>
+                <button class="gtd-tab-btn active" data-tab="inbox"><span>📥 1. Inbox (Vaciado)</span><span class="badge" id="gtd-badge-inbox">0</span></button>
+                <button class="gtd-tab-btn" data-tab="foco"><span>🎯 2. En Foco (WIP 2)</span><span class="badge" id="gtd-badge-foco">0/2</span></button>
+                <button class="gtd-tab-btn" data-tab="proximas"><span>⚡ 3. Próximas (@)</span><span class="badge" id="gtd-badge-proximas">0</span></button>
+                <button class="gtd-tab-btn" data-tab="proyectos"><span>🚀 4. Proyectos</span><span class="badge" id="gtd-badge-proyectos">0</span></button>
+                <button class="gtd-tab-btn" data-tab="espera"><span>⏳ 5. En Espera</span><span class="badge" id="gtd-badge-espera">0</span></button>
+                <button class="gtd-tab-btn" data-tab="incubadora"><span>💡 6. Algún Día / Quizás</span><span class="badge" id="gtd-badge-incubadora">0</span></button>
+                <button class="gtd-tab-btn" data-tab="descartes"><span>🗑️ 7. Cubo de Basura</span><span class="badge" id="gtd-badge-descartes">0</span></button>
+                <button class="gtd-tab-btn" data-tab="archivo"><span>📁 8. Archivo Referencia</span><span class="badge" id="gtd-badge-archivo">0</span></button>
+                <button class="gtd-tab-btn" data-tab="victorias"><span>🏆 9. Victorias</span><span class="badge" id="gtd-badge-victorias">0</span></button>
+                <button class="gtd-tab-btn" data-tab="dashboard"><span>📊 Hoja de Estado & KPI</span><span class="badge" id="gtd-badge-dashboard">📊</span></button>
+            </div>
+
+            <!-- PANEL PRINCIPAL -->
+            <div class="gtd-main-panel">
+                <!-- BARRA DE ENTRADA INTELIGENTE -->
+                <div class="gtd-smart-input-box">
+                    <div class="gtd-input-row">
+                        <input type="text" id="gtd-quick-input" class="gtd-input-field" placeholder="¿Qué te ronda la cabeza? Escribe sin filtro para vaciar tu RAM..." onkeydown="if(event.key==='Enter') window.gtdAddFromInput()">
+                        <select id="gtd-priority-select" class="gtd-priority-select">
+                            <option value="1">🔥 P1: Urgente (Crisis/Hacer YA)</option>
+                            <option value="2" selected>🌟 P2: Importante (Bloque de Oro)</option>
+                            <option value="3">⏳ P3: Delegable (En Espera)</option>
+                            <option value="4">🗑️ P4: Eliminable (Fuga/Descarte)</option>
+                        </select>
+                        <button class="btn-gtd-submit" onclick="window.gtdAddFromInput()"><i class="fa-solid fa-plus"></i> Capturar en Inbox</button>
+                    </div>
+                </div>
+
+                <!-- CONTENEDOR DINÁMICO DE TARJETAS GTD -->
+                <div id="gtd-active-container" class="gtd-content-container" style="min-height: 240px;"></div>
+            </div>
+        </div>
+
+        <!-- DOCK DE NAVEGACIÓN MÓVIL GTD (PULGAR Y MÓVIL) -->
+        <div class="gtd-bottom-nav">
+            <button class="gtd-bottom-nav-item active" data-tab="inbox"><i class="fa-solid fa-inbox"></i><span>Inbox</span></button>
+            <button class="gtd-bottom-nav-item" data-tab="foco"><i class="fa-solid fa-bullseye"></i><span>Foco (2)</span></button>
+            <button class="gtd-bottom-nav-item" data-tab="proximas"><i class="fa-solid fa-bolt"></i><span>Próximas</span></button>
+            <button class="gtd-bottom-nav-item" data-tab="espera"><i class="fa-solid fa-hourglass-half"></i><span>Espera</span></button>
+            <button class="gtd-bottom-nav-item" data-tab="dashboard"><i class="fa-solid fa-chart-pie"></i><span>Estado</span></button>
+        </div>
+
+    </main>
+
+    <!-- MOTOR MAESTRO GTD (ÚNICA FUENTE DE LA VERDAD - SSOT) -->
+    <script src="../../js/gtd-engine.js"></script>
+    <script>
+        // Inicializar motor compartiendo la MISMA base de datos de localStorage
+        document.addEventListener("DOMContentLoaded", () => {
+            initGtdEngine({
+                storageKey: "ah_client_gtd" // Clave central compartida entre Standalone y Plan de Vuelo
+            });
+        });
+    </script>
+</body>
+</html>

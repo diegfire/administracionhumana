@@ -1,0 +1,745 @@
+/* ==========================================================================
+   CÍRCULO DORADO (M08) • CSS MAESTRO & MOBILE-FIRST PRO
+   SSOT: 00_Sondeo_Maestro / Administración Humana
+   ========================================================================== */
+
+:root {
+    --cd-bg: #0b0d14;
+    --cd-surface: #121622;
+    --cd-card: #161b2a;
+    --cd-card-hover: #1c2336;
+    --cd-border: rgba(255, 255, 255, 0.08);
+    --cd-border-subtle: rgba(255, 255, 255, 0.04);
+
+    --cd-gold: #f59e0b;
+    --cd-gold-light: #fbbf24;
+    --cd-gold-glow: rgba(245, 158, 11, 0.3);
+
+    --cd-teal: #0d9488;
+    --cd-teal-light: #2dd4bf;
+    --cd-teal-glow: rgba(45, 212, 191, 0.25);
+
+    --cd-indigo: #4f46e5;
+    --cd-indigo-light: #818cf8;
+    --cd-indigo-glow: rgba(129, 140, 248, 0.25);
+
+    --cd-coral: #e11d48;
+    --cd-coral-light: #fb7185;
+
+    --cd-text-primary: #f8fafc;
+    --cd-text-secondary: #94a3b8;
+    --cd-text-muted: #64748b;
+
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.cd-body {
+    background-color: var(--cd-bg);
+    color: var(--cd-text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Header Standalone */
+.cd-header {
+    background: rgba(18, 22, 34, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cd-border);
+    padding: 12px 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.cd-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.cd-logo-badge {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--cd-gold) 0%, var(--cd-gold-light) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 14px var(--cd-gold-glow);
+    flex-shrink: 0;
+}
+
+.cd-title-group h1 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+
+.cd-title-group .cd-subtitle {
+    font-size: 0.75rem;
+    color: var(--cd-text-secondary);
+    display: block;
+}
+
+.cd-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Botones Pro */
+.cd-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--cd-border);
+    background: var(--cd-card);
+    color: var(--cd-text-primary);
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.cd-btn:hover {
+    background: var(--cd-card-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.cd-btn:active {
+    transform: translateY(0);
+}
+
+.cd-btn-primary {
+    background: linear-gradient(135deg, var(--cd-gold) 0%, #d97706 100%);
+    color: #0b0d14;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 2px 10px var(--cd-gold-glow);
+}
+
+.cd-btn-primary:hover {
+    background: linear-gradient(135deg, var(--cd-gold-light) 0%, var(--cd-gold) 100%);
+}
+
+.cd-btn-whatsapp {
+    background: #25d366;
+    color: #0b2915;
+    font-weight: 700;
+    border: none;
+}
+
+.cd-btn-whatsapp:hover {
+    background: #22c55e;
+    color: #061e0e;
+}
+
+/* Layout Principal */
+.cd-main {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 1.75rem;
+    align-items: start;
+}
+
+/* Mobile Tabs */
+.cd-mobile-tabs {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--cd-surface);
+    border: 1px solid var(--cd-border);
+    border-radius: var(--radius-md);
+    padding: 4px;
+    gap: 4px;
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 65px;
+    z-index: 850;
+    backdrop-filter: blur(10px);
+}
+
+.cd-tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 4px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--cd-text-secondary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cd-tab-btn i {
+    font-size: 1rem;
+}
+
+.cd-tab-btn.active {
+    background: var(--cd-card-hover);
+    color: var(--cd-gold-light);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Columna Izquierda: Gráfico Concéntrico & Tarjetas de Redacción */
+.cd-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Card del SVG Concéntrico */
+.cd-visual-card {
+    background: var(--cd-surface);
+    border: 1px solid var(--cd-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cd-visual-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cd-visual-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cd-presets-bar {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.cd-preset-btn {
+    font-size: 0.7rem;
+    padding: 4px 9px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--cd-border);
+    color: var(--cd-text-secondary);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.cd-preset-btn:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: var(--cd-gold-light);
+    color: var(--cd-gold-light);
+}
+
+/* SVG Círculos Concéntricos */
+.cd-svg-container {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cd-svg-container svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.cd-ring {
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.cd-ring:hover {
+    filter: brightness(1.2);
+}
+
+.cd-ring-why {
+    fill: rgba(245, 158, 11, 0.25);
+    stroke: var(--cd-gold-light);
+    stroke-width: 2.5;
+}
+
+.cd-ring-how {
+    fill: rgba(13, 148, 136, 0.20);
+    stroke: var(--cd-teal-light);
+    stroke-width: 2;
+}
+
+.cd-ring-what {
+    fill: rgba(79, 70, 229, 0.15);
+    stroke: var(--cd-indigo-light);
+    stroke-width: 1.5;
+}
+
+.cd-ring-text {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    text-anchor: middle;
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Tarjetas de los 3 Círculos (Porqué, Cómo, Qué) */
+.cd-circles-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cd-input-card {
+    background: var(--cd-surface);
+    border: 1px solid var(--cd-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-left: 4px solid var(--cd-gold);
+    transition: all 0.2s ease;
+}
+
+.cd-input-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--cd-card);
+}
+
+.cd-input-card.why {
+    border-left-color: var(--cd-gold);
+}
+
+.cd-input-card.how {
+    border-left-color: var(--cd-teal-light);
+}
+
+.cd-input-card.what {
+    border-left-color: var(--cd-indigo-light);
+}
+
+.cd-input-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.cd-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.cd-card-badge .num-pill {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.cd-input-card.why .num-pill { background: var(--cd-gold); color: #000; }
+.cd-input-card.how .num-pill { background: var(--cd-teal-light); color: #000; }
+.cd-input-card.what .num-pill { background: var(--cd-indigo-light); color: #000; }
+
+.cd-card-guide {
+    font-size: 0.75rem;
+    color: var(--cd-text-secondary);
+    line-height: 1.45;
+}
+
+.cd-textarea {
+    width: 100%;
+    background: rgba(11, 13, 20, 0.6);
+    border: 1px solid var(--cd-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: #fff;
+    outline: none;
+    resize: vertical;
+    min-height: 68px;
+    transition: all 0.2s ease;
+}
+
+.cd-textarea:focus {
+    border-color: var(--cd-gold-light);
+    box-shadow: 0 0 0 2px var(--cd-gold-glow);
+}
+
+.cd-input-card.how .cd-textarea:focus {
+    border-color: var(--cd-teal-light);
+    box-shadow: 0 0 0 2px var(--cd-teal-glow);
+}
+
+.cd-input-card.what .cd-textarea:focus {
+    border-color: var(--cd-indigo-light);
+    box-shadow: 0 0 0 2px var(--cd-indigo-glow);
+}
+
+.cd-example-box {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 2px solid var(--cd-text-muted);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    color: var(--cd-text-muted);
+    line-height: 1.4;
+}
+
+/* Columna Derecha: Pitches Generados & Prescripción */
+.cd-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: 76px;
+}
+
+/* Card del Pitch Resultante */
+.cd-pitch-card {
+    background: var(--cd-surface);
+    border: 1px solid var(--cd-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cd-pitch-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cd-pitch-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Selector de Modo de Pitch (Inside-Out, Elevator, Redes) */
+.cd-pitch-mode-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--cd-card);
+    border: 1px solid var(--cd-border);
+    border-radius: var(--radius-sm);
+    padding: 3px;
+}
+
+.cd-mode-btn {
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: var(--cd-text-secondary);
+    font-size: 0.74rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cd-mode-btn.active {
+    background: var(--cd-card-hover);
+    color: var(--cd-gold-light);
+}
+
+/* Caja de Texto del Pitch */
+.cd-pitch-box {
+    background: rgba(11, 13, 20, 0.8);
+    border: 1px solid var(--cd-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    position: relative;
+}
+
+.cd-pitch-text {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: #fff;
+    font-weight: 500;
+}
+
+.cd-pitch-text strong.why { color: var(--cd-gold-light); }
+.cd-pitch-text strong.how { color: var(--cd-teal-light); }
+.cd-pitch-text strong.what { color: var(--cd-indigo-light); }
+
+.cd-pitch-placeholder {
+    color: var(--cd-text-muted);
+    font-style: italic;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.cd-pitch-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Prescripción y Coherencia Clínica */
+.cd-diagnosis-card {
+    background: var(--cd-surface);
+    border: 1px solid var(--cd-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cd-diagnosis-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--cd-gold-light), var(--cd-teal-light));
+}
+
+.cd-diagnosis-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cd-diagnosis-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cd-diagnosis-body {
+    font-size: 0.84rem;
+    color: var(--cd-text-secondary);
+    line-height: 1.55;
+}
+
+/* Toast */
+.cd-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--cd-surface);
+    border: 1px solid var(--cd-gold-light);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1100;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cd-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE BREAKPOINTS)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .cd-main {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.25rem;
+    }
+
+    .cd-right-col {
+        position: static;
+    }
+
+    .cd-mobile-tabs {
+        display: grid;
+    }
+
+    .cd-section-hidden {
+        display: none !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .cd-header {
+        padding: 10px 12px;
+    }
+
+    .cd-logo-badge {
+        width: 32px;
+        height: 32px;
+        font-size: 1.05rem;
+    }
+
+    .cd-title-group h1 {
+        font-size: 0.95rem;
+    }
+
+    .cd-header-actions .cd-btn span {
+        display: none;
+    }
+
+    .cd-header-actions .cd-btn {
+        padding: 8px 10px;
+    }
+
+    .cd-pitch-box {
+        padding: 1rem;
+    }
+
+    .cd-pitch-text {
+        font-size: 1.05rem;
+    }
+
+    .cd-visual-card, .cd-pitch-card {
+        padding: 1rem;
+    }
+}
+
+/* ==========================================================================
+   ESTILOS DE IMPRESIÓN (A4 / CARTA)
+   ========================================================================== */
+@media print {
+    body.cd-body {
+        background: #fff !important;
+        color: #0f172a !important;
+    }
+
+    .cd-header,
+    .cd-mobile-tabs,
+    .cd-presets-bar,
+    .cd-pitch-mode-tabs,
+    .cd-header-actions,
+    .cd-pitch-actions,
+    .no-print {
+        display: none !important;
+    }
+
+    .cd-main {
+        display: block !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .cd-visual-card,
+    .cd-input-card,
+    .cd-pitch-card,
+    .cd-diagnosis-card {
+        background: #fff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 1rem;
+        color: #000 !important;
+    }
+
+    .cd-pitch-box {
+        background: #f8fafc !important;
+        border: 1px solid #94a3b8 !important;
+        color: #000 !important;
+    }
+
+    .cd-pitch-text {
+        color: #0f172a !important;
+    }
+
+    .cd-textarea {
+        background: #f8fafc !important;
+        color: #000 !important;
+        border: 1px solid #94a3b8 !important;
+    }
+}

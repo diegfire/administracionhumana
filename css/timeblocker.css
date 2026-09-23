@@ -1,0 +1,375 @@
+/* ========================================================= */
+/* AICC TIME BLOCKER PRO • ESTILOS CENTRALIZADOS (SSOT)      */
+/* Metodología: Administración Humana | Diego González Y.    */
+/* ========================================================= */
+
+:root {
+    --tb-bg: #09090b;
+    --tb-surface: #121217;
+    --tb-surface-2: #18181f;
+    --tb-border: #27272a;
+    --tb-border-hover: #3f3f46;
+    --tb-foco: #0d9488;
+    --tb-foco-glow: rgba(13, 148, 136, 0.35);
+    --tb-recup: #f43f5e;
+    --tb-recup-glow: rgba(244, 63, 94, 0.35);
+    --tb-admin: #f59e0b;
+    --tb-admin-glow: rgba(245, 158, 11, 0.35);
+    --tb-pers: #6366f1;
+    --tb-pers-glow: rgba(99, 102, 241, 0.35);
+    --tb-text: #f4f4f5;
+    --tb-muted: #a1a1aa;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ========================================================= */
+/* CONTROLES DE PINCELES Y ACCIONES                          */
+/* ========================================================= */
+.tb-brush-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: var(--tb-surface);
+    border: 1px solid var(--tb-border);
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 1.2rem;
+}
+
+.tb-brushes-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tb-brush-btn {
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.tb-brush-btn.b-foco { background: rgba(13, 148, 136, 0.2); border-color: rgba(13, 148, 136, 0.4); color: #2dd4bf; }
+.tb-brush-btn.b-recup { background: rgba(244, 63, 94, 0.2); border-color: rgba(244, 63, 94, 0.4); color: #fb7185; }
+.tb-brush-btn.b-admin { background: rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24; }
+.tb-brush-btn.b-pers { background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.4); color: #a5b4fc; }
+.tb-brush-btn.b-vacio { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.15); color: #94a3b8; }
+
+.tb-brush-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.tb-brush-btn.active {
+    border-color: #ffffff !important;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+    transform: scale(1.05);
+}
+.tb-brush-btn.b-foco.active { background: var(--tb-foco) !important; color: #fff; }
+.tb-brush-btn.b-recup.active { background: var(--tb-recup) !important; color: #fff; }
+.tb-brush-btn.b-admin.active { background: var(--tb-admin) !important; color: #000; }
+.tb-brush-btn.b-pers.active { background: var(--tb-pers) !important; color: #fff; }
+.tb-brush-btn.b-vacio.active { background: #475569 !important; color: #fff; }
+
+/* ========================================================= */
+/* BARRA SEGMENTADA DE DÍAS (MOBILE-FIRST)                    */
+/* ========================================================= */
+.tb-day-tabs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 4px 2px 10px 2px;
+    margin-bottom: 0.8rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+.tb-day-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tb-day-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    color: #94a3b8;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.tb-day-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+.tb-day-btn.active {
+    background: #0d9488;
+    color: #ffffff;
+    border-color: #0d9488;
+    box-shadow: 0 0 12px rgba(13, 148, 136, 0.4);
+}
+
+/* ========================================================= */
+/* LAYOUT PRINCIPAL: GRILLA + PANEL ANALÍTICO                */
+/* ========================================================= */
+.tb-main-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+@media (max-width: 1080px) {
+    .tb-main-grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================================= */
+/* TABLA Y GRILLA HORARIA DE 30 MINUTOS                      */
+/* ========================================================= */
+.tb-grid-wrapper {
+    overflow-x: auto;
+    background: var(--tb-surface);
+    border: 1px solid var(--tb-border);
+    border-radius: 12px;
+    padding: 1rem;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+}
+
+.tb-grid-table {
+    display: grid;
+    grid-template-columns: 65px repeat(7, 1fr);
+    gap: 2px;
+    min-width: 720px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.tb-grid-table.single-day-mode {
+    min-width: 100% !important;
+    grid-template-columns: 75px 1fr !important;
+}
+.tb-grid-table.single-day-mode .tb-cell {
+    height: 38px !important;
+    font-size: 0.8rem !important;
+}
+
+.tb-header-cell {
+    text-align: center;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #ffffff;
+    padding: 8px 0;
+    border-bottom: 2px solid var(--tb-border);
+    text-transform: uppercase;
+    font-family: var(--font-heading);
+}
+
+.tb-time-label {
+    font-size: 0.72rem;
+    color: var(--tb-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(18, 18, 23, 0.95);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    border-radius: 3px;
+}
+
+.tb-cell {
+    height: 30px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    cursor: crosshair;
+    transition: background-color 0.1s ease, border-color 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ffffff;
+    touch-action: manipulation;
+}
+
+.tb-cell:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Colores de celdas según arquetipo */
+.tb-cell.cell-foco {
+    background: rgba(13, 148, 136, 0.85) !important;
+    border-color: #2dd4bf !important;
+}
+.tb-cell.cell-recuperacion {
+    background: rgba(244, 63, 94, 0.85) !important;
+    border-color: #fb7185 !important;
+}
+.tb-cell.cell-admin {
+    background: rgba(245, 158, 11, 0.85) !important;
+    border-color: #fbbf24 !important;
+    color: #000 !important;
+}
+.tb-cell.cell-personal {
+    background: rgba(99, 102, 241, 0.85) !important;
+    border-color: #a5b4fc !important;
+}
+
+/* ========================================================= */
+/* PANEL LATERAL: ANALÍTICA Y PRESCRIPCIÓN CLÍNICA           */
+/* ========================================================= */
+.tb-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.tb-card {
+    background: var(--tb-surface);
+    border: 1px solid var(--tb-border);
+    border-radius: 12px;
+    padding: 1.2rem;
+}
+
+.tb-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+.tb-donut-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem 0 1.2rem 0;
+}
+
+.tb-stat-bar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tb-bar-row {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--tb-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tb-bar-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.tb-progress-track {
+    height: 6px;
+    background: #000000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.tb-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.tb-advice-card {
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(18, 18, 23, 0.8) 100%);
+    border: 1px solid rgba(13, 148, 136, 0.25);
+    border-radius: 12px;
+    padding: 1.2rem;
+}
+
+.tb-advice-card h4 {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tb-advice-content {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #d4d4d8;
+}
+
+/* ========================================================= */
+/* FORMATO PARA IMPRESIÓN FÍSICA (A4 / CARTA)                */
+/* ========================================================= */
+@media print {
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+    }
+    .no-print,
+    .tb-brush-strip,
+    .tb-day-tabs,
+    .app-header {
+        display: none !important;
+    }
+    .tb-main-grid-layout {
+        display: block !important;
+    }
+    .tb-grid-wrapper {
+        border: 1px solid #000 !important;
+        background: #fff !important;
+        padding: 0 !important;
+    }
+    .tb-grid-table {
+        min-width: 100% !important;
+        font-size: 7pt !important;
+    }
+    .tb-header-cell {
+        color: #000 !important;
+        border-color: #000 !important;
+    }
+    .tb-time-label {
+        background: #f1f5f9 !important;
+        color: #000 !important;
+    }
+    .tb-cell {
+        border-color: #cbd5e1 !important;
+        height: 20px !important;
+    }
+}

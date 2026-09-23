@@ -1,152 +1,761 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suite Digital AICC - Administración Humana</title>
-    <link rel="stylesheet" href="global.css">
+    <title>Suite Digital AICC • Administración Humana</title>
+    
+    <!-- Fuentes y Tipografía Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Iconos: FontAwesome Pro & Lucide -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="aicc-share.js"></script>
+
     <style>
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 2rem;
-            margin-top: 2rem;
+        :root {
+            --bg-base: #06090f;
+            --bg-surface: #0c121e;
+            --bg-card: rgba(16, 24, 39, 0.75);
+            --bg-card-hover: rgba(22, 33, 54, 0.9);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-bright: rgba(255, 255, 255, 0.18);
+            
+            --text-main: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'Outfit', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --cyan: #06b6d4;
+            --cyan-light: #38bdf8;
+            --cyan-glow: rgba(56, 189, 248, 0.25);
+            
+            --teal: #0d9488;
+            --teal-light: #2dd4bf;
+            --teal-glow: rgba(45, 212, 191, 0.25);
+
+            --purple: #8b5cf6;
+            --purple-light: #a78bfa;
+            --purple-glow: rgba(139, 92, 246, 0.25);
+
+            --emerald: #10b981;
+            --emerald-light: #34d399;
+            --emerald-glow: rgba(16, 185, 129, 0.25);
+
+            --amber: #f59e0b;
+            --amber-light: #fbbf24;
+            --amber-glow: rgba(245, 158, 11, 0.25);
+
+            --coral: #f43f5e;
+            --coral-light: #fb7185;
+            --coral-glow: rgba(244, 63, 94, 0.25);
+
+            --radius-xl: 20px;
+            --radius-lg: 14px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
         }
 
-        @media (max-width: 1024px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .welcome-card {
-            background: linear-gradient(135deg, rgba(13, 148, 136, 0.15) 0%, rgba(30, 41, 59, 0.6) 100%);
-            border: 1px solid rgba(13, 148, 136, 0.25);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
+        body {
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(circle at 10% 8%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 15%, rgba(139, 92, 246, 0.07) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #06090f; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+        /* Header Superior Fijo */
+        header.suite-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 12, 20, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.85rem 2rem;
             display: flex;
             align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            justify-content: space-between;
+            gap: 1.5rem;
         }
 
-        @media (max-width: 640px) {
-            .welcome-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
-            }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .welcome-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--teal), var(--teal-light));
-            border-radius: var(--border-radius-lg);
+        .header-logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--bg-color);
-            box-shadow: 0 8px 30px var(--teal-glow);
+            color: #000000;
+            font-size: 1.25rem;
+            font-weight: 900;
+            box-shadow: 0 4px 18px var(--cyan-glow);
         }
 
-        .welcome-text h2 {
-            font-size: 1.8rem;
+        .header-title-block h1 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-title-block p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Nav y Controles */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 340px;
+            width: 100%;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.5rem 2.2rem 0.5rem 2.3rem;
+            color: #fff;
+            font-family: var(--font-main);
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--cyan-light);
+            box-shadow: 0 0 12px var(--cyan-glow);
+        }
+
+        .search-kbd {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .nav-links-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+            padding: 6px 14px;
+            border-radius: 9px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.18s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .nav-link-btn.btn-home {
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.35);
+            color: #38bdf8;
             font-weight: 700;
+        }
+
+        .nav-link-btn.btn-home:hover {
+            background: rgba(56, 189, 248, 0.22);
+            color: #fff;
+            box-shadow: 0 0 14px var(--cyan-glow);
+        }
+
+        /* Selector de Modo de Navegación Principal */
+        .suite-main-tabs {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+            background: rgba(12, 18, 30, 0.85);
+            border: 1px solid var(--border);
+            padding: 6px;
+            border-radius: 14px;
+            width: fit-content;
+            max-width: 100%;
+            overflow-x: auto;
+            backdrop-filter: blur(12px);
+        }
+
+        .suite-tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: var(--font-main);
+        }
+
+        .suite-tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .suite-tab-btn.active {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(56, 189, 248, 0.28));
+            color: #38bdf8;
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 0 15px var(--cyan-glow);
+        }
+
+        /* Estilos del Explorador de Archivos en Suite */
+        .file-explorer-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 1.75rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .explorer-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .explorer-title-area h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .explorer-title-area p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .explorer-stats-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .explorer-stat-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        .explorer-stat-pill strong {
+            color: #fff;
+        }
+
+        .explorer-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .explorer-search-wrapper {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .explorer-search-wrapper i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .explorer-search-input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.6rem 1rem 0.6rem 2.4rem;
+            color: #fff;
+            font-size: 0.88rem;
+            font-family: var(--font-main);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .explorer-search-input:focus {
+            border-color: var(--cyan-light);
+            box-shadow: 0 0 12px var(--cyan-glow);
+        }
+
+        .explorer-category-pills {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            max-width: 100%;
+            padding-bottom: 4px;
+        }
+
+        .exp-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s;
+        }
+
+        .exp-pill:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .exp-pill.active {
+            background: var(--cyan);
+            color: #000;
+            border-color: var(--cyan);
+            font-weight: 700;
+        }
+
+        .explorer-table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(8, 12, 20, 0.6);
+            max-height: 550px;
+            overflow-y: auto;
+        }
+
+        .explorer-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.86rem;
+        }
+
+        .explorer-table thead th {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 10px 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.6px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        .explorer-table tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: background 0.15s;
+        }
+
+        .explorer-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .explorer-table td {
+            padding: 10px 14px;
+            vertical-align: middle;
+        }
+
+        .exp-btn-visor {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: #38bdf8;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.15s;
+        }
+
+        .exp-btn-visor:hover {
+            background: #38bdf8;
+            color: #000;
+        }
+
+        .exp-btn-link {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.15s;
+        }
+
+        .exp-btn-link:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        /* Contenedor Principal */
+        main.suite-main {
+            max-width: 1360px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 6rem 1.5rem;
+            flex: 1;
+        }
+
+        /* Banner Hero de la Suite */
+        .suite-hero-card {
+            background: linear-gradient(135deg, rgba(8, 25, 45, 0.85) 0%, rgba(12, 18, 30, 0.95) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: var(--radius-xl);
+            padding: 2rem 2.2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .suite-hero-card::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            bottom: -60px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-text-area {
+            max-width: 760px;
+        }
+
+        .hero-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: #38bdf8;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-mono);
+        }
+
+        .hero-text-area h2 {
+            font-family: var(--font-display);
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
             margin-bottom: 0.5rem;
         }
 
-        .welcome-text p {
+        .hero-text-area p {
             color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 0.94rem;
+            line-height: 1.6;
         }
 
+        .hero-quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 220px;
+        }
+
+        .btn-action-hero {
+            background: linear-gradient(135deg, #0284c7, #38bdf8);
+            color: #000;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.88rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px var(--cyan-glow);
+            transition: all 0.2s ease;
+        }
+
+        .btn-action-hero:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+            color: #000;
+        }
+
+        .btn-secondary-hero {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-bright);
+            color: #fff;
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.84rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary-hero:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        /* Dashboard Grid: Estado Vital 8D & Prescripción */
+        .vital-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .glass-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-title-group h3 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-title-group p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .panel-badge {
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+        }
+
+        /* Stats summary en dos cajas */
         .stats-summary {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .stat-box {
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid var(--panel-border);
-            border-radius: var(--border-radius-md);
-            padding: 1.2rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
             text-align: center;
-            transition: var(--transition-smooth);
+            transition: all 0.2s ease;
         }
 
         .stat-box:hover {
-            transform: translateY(-2px);
             border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
         }
 
         .stat-num {
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.2;
+            font-family: var(--font-heading);
+            font-size: 2.1rem;
+            font-weight: 800;
+            line-height: 1.1;
         }
 
-        .stat-num.teal { color: var(--teal-light); }
-        .stat-num.coral { color: var(--coral-light); }
+        .stat-num.teal { color: var(--teal-light); text-shadow: 0 0 15px var(--teal-glow); }
+        .stat-num.coral { color: var(--coral-light); text-shadow: 0 0 15px var(--coral-glow); }
 
         .stat-lbl {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 6px;
+            letter-spacing: 0.8px;
+            margin-top: 4px;
         }
 
+        /* Barras de dimensión */
         .dimension-bar-container {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
+            flex: 1;
         }
 
         .dimension-row {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            background: rgba(15, 23, 42, 0.2);
-            padding: 10px;
-            border-radius: var(--border-radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            transition: var(--transition-smooth);
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            transition: all 0.2s ease;
         }
 
         .dimension-row:hover {
-            background: rgba(15, 23, 42, 0.45);
+            background: rgba(15, 23, 42, 0.75);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .dimension-info-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.88rem;
-            font-weight: 500;
-        }
-
-        .dimension-name {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dimension-score {
-            font-weight: 700;
+            font-size: 0.84rem;
+            font-weight: 600;
+            margin-bottom: 5px;
         }
 
         .dimension-score.critical { color: var(--coral-light); }
         .dimension-score.good { color: var(--teal-light); }
 
         .bar-outer {
-            height: 6px;
+            height: 5px;
             background: rgba(255, 255, 255, 0.08);
             border-radius: 3px;
             overflow: hidden;
@@ -156,241 +765,612 @@
         .bar-inner {
             height: 100%;
             border-radius: 3px;
-            transition: width 0.8s cubic-bezier(0.1, 0.8, 0.25, 1);
+            transition: width 0.6s cubic-bezier(0.1, 0.8, 0.25, 1);
         }
 
         .bar-inner.critical {
-            background: linear-gradient(to right, var(--coral-dark), var(--coral-light));
+            background: linear-gradient(to right, #e11d48, #fb7185);
             box-shadow: 0 0 8px var(--coral-glow);
         }
 
         .bar-inner.good {
-            background: linear-gradient(to right, var(--teal-dark), var(--teal-light));
+            background: linear-gradient(to right, #0d9488, #2dd4bf);
             box-shadow: 0 0 8px var(--teal-glow);
         }
 
         .dimension-pain-text {
-            font-size: 0.76rem;
-            color: var(--text-secondary);
+            font-size: 0.73rem;
+            color: var(--text-muted);
+            margin-top: 4px;
             font-style: italic;
-            margin-top: 2px;
-            display: flex;
-            gap: 4px;
         }
 
+        /* Lista de Recomendaciones */
         .recommendation-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .badge-alert {
+            background: rgba(244, 63, 94, 0.12);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            color: #fb7185;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-info {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .rec-card {
-            background: rgba(15, 23, 42, 0.3);
-            border: 1px solid var(--panel-border);
-            border-radius: var(--border-radius-md);
-            padding: 1.25rem;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
             display: flex;
-            gap: 1rem;
+            gap: 12px;
             align-items: flex-start;
-            transition: var(--transition-smooth);
+            transition: all 0.2s ease;
         }
 
         .rec-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(15, 23, 42, 0.5);
+            border-color: rgba(255, 255, 255, 0.18);
+            background: rgba(20, 30, 50, 0.7);
             transform: translateY(-2px);
         }
 
         .rec-card.critical {
             border-left: 4px solid var(--coral);
-            background: linear-gradient(to right, rgba(244, 63, 94, 0.04), rgba(30, 41, 59, 0.3));
+            background: linear-gradient(to right, rgba(244, 63, 94, 0.08), rgba(15, 23, 42, 0.5));
         }
 
         .rec-icon {
-            font-size: 1.5rem;
-            line-height: 1;
+            font-size: 1.4rem;
             padding: 8px;
-            border-radius: var(--border-radius-sm);
+            border-radius: var(--radius-sm);
             background: rgba(255, 255, 255, 0.05);
-        }
-
-        .rec-card.critical .rec-icon {
-            background: rgba(244, 63, 94, 0.1);
-            color: var(--coral-light);
+            flex-shrink: 0;
         }
 
         .rec-content {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+            min-width: 0;
         }
 
         .rec-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: white;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: #ffffff;
+            margin-bottom: 2px;
+            display: block;
         }
 
         .rec-desc {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             line-height: 1.4;
+            display: block;
         }
 
         .rec-action {
             margin-top: 8px;
-            font-size: 0.8rem;
-            color: var(--teal-light);
+            font-size: 0.78rem;
+            color: var(--cyan-light);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            transition: var(--transition-smooth);
+            transition: color 0.15s ease;
         }
 
         .rec-action:hover {
-            color: white;
-            text-shadow: 0 0 8px var(--teal-light);
+            color: #ffffff;
+            text-decoration: underline;
         }
 
-        /* Grid de Aplicaciones */
-        .apps-title {
-            margin: 3rem 0 1.5rem 0;
-            font-size: 1.4rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            border-bottom: 1px solid var(--panel-border);
-            padding-bottom: 0.8rem;
+        /* Sección del Arsenal de Aplicaciones */
+        .section-header-bar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
         }
 
+        .section-title h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Filtro por Categorías */
+        .category-filter-pills {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .filter-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .filter-pill:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .filter-pill.active {
+            background: rgba(56, 189, 248, 0.18);
+            border-color: rgba(56, 189, 248, 0.5);
+            color: #38bdf8;
+        }
+
+        /* Grilla de Micro-Apps */
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.25rem;
         }
 
-        .app-card {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: var(--border-radius-md);
-            padding: 1.8rem;
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.35rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            transition: var(--transition-bounce);
-            text-decoration: none;
-            color: var(--text-primary);
-            box-shadow: var(--shadow);
+            gap: 0.85rem;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
         }
 
-        .app-card::before {
+        .tool-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--teal-glow), transparent 60%);
-            opacity: 0;
-            transition: var(--transition-smooth);
-            z-index: 0;
+            right: 0;
+            height: 3px;
+            background: var(--tool-accent, #38bdf8);
+            opacity: 0.75;
+            transition: all 0.25s ease;
         }
 
-        .app-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(13, 148, 136, 0.35);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: var(--bg-card-hover);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px var(--tool-glow, rgba(56,189,248,0.15));
         }
 
-        .app-card:hover::before {
+        .tool-card:hover::before {
+            height: 4px;
             opacity: 1;
         }
 
-        .app-card-icon {
-            font-size: 2.2rem;
-            z-index: 1;
+        .tool-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
         }
 
-        .app-card-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            z-index: 1;
-            color: white;
-        }
-
-        .app-card-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-            z-index: 1;
-        }
-
-        .app-card-btn {
-            font-size: 0.85rem;
-            color: var(--teal-light);
-            font-weight: 600;
+        .tool-icon-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 4px;
-            margin-top: auto;
-            z-index: 1;
-            transition: var(--transition-smooth);
+            justify-content: center;
+            font-size: 1.4rem;
+            background: var(--icon-bg, rgba(255, 255, 255, 0.06));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
         }
 
-        .app-card:hover .app-card-btn {
-            color: white;
-            text-shadow: 0 0 5px var(--teal-light);
+        .tool-badge {
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--tool-accent, #94a3b8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-transform: uppercase;
+        }
+
+        .tool-info h4 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .tool-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        .tool-actions-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-launch-tool {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-bright);
+            color: #fff;
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-launch-tool:hover {
+            background: var(--tool-accent, #38bdf8);
+            color: #000;
+            border-color: var(--tool-accent, #38bdf8);
+        }
+
+        .btn-preview-tool {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-preview-tool:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Live In-App Preview Modal */
+        .preview-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .preview-modal-overlay.active {
+            display: flex;
+        }
+
+        .preview-modal-window {
+            background: #090d16;
+            border: 1px solid var(--border-bright);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 1300px;
+            height: 92vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.15);
+            overflow: hidden;
+            animation: zoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.96); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .preview-modal-header {
+            padding: 10px 16px;
+            background: #0d1322;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .preview-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .preview-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .preview-url-badge {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 320px;
+        }
+
+        .preview-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-view-mode {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-view-mode:hover, .btn-view-mode.active {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+        }
+
+        .btn-modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: color 0.15s;
+        }
+
+        .btn-modal-close:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .preview-iframe-wrapper {
+            flex: 1;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #09090b;
+            transition: width 0.25s ease;
+        }
+
+        .preview-iframe.mobile-view {
+            width: 390px;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Footer */
+        footer.suite-footer {
+            border-top: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            background: rgba(8, 12, 20, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        footer.suite-footer a {
+            color: var(--cyan-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer.suite-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1024px) {
+            .vital-grid { grid-template-columns: 1fr; }
+            .header-controls { max-width: 100%; }
+            .suite-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-quick-actions { width: 100%; flex-direction: row; }
+        }
+
+        @media (max-width: 640px) {
+            header.suite-header { padding: 0.75rem 1rem; flex-wrap: wrap; }
+            .header-title-block p { display: none; }
+            .search-box { max-width: 100%; order: 3; }
+            .hero-quick-actions { flex-direction: column; }
+            main.suite-main { padding: 1.25rem 0.85rem 5rem 0.85rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="Suite_Digital_AICC.html" class="logo-container">
-            <div class="logo-mark">AH</div>
-            <div class="logo-text">
-                <h1>ADMINISTRACIÓN HUMANA</h1>
-                <p>Método de Claridad y Orden</p>
+    <!-- Header Superior Fijo -->
+    <header class="suite-header no-print">
+        <a href="suite.html" class="header-brand" title="Suite Digital Canónica AICC">
+            <div class="header-logo-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="header-title-block">
+                <h1>Suite Digital AICC <span style="font-size:0.68rem; background:rgba(56,189,248,0.18); color:#38bdf8; padding:2px 7px; border-radius:5px; border:1px solid rgba(56,189,248,0.3);">SSOT v3</span></h1>
+                <p>Administración Humana • Método de Claridad y Orden</p>
             </div>
         </a>
-        <div class="nav-suite">
-            <a href="suite.html" class="nav-link active">⚡ Suite Digital</a>
-            <a href="sondeo.html" class="nav-link" style="color: var(--teal-light); font-weight: 700;">🔮 Sondeo Maestro</a>
-            <a href="generador-horarios.html" class="nav-link">⏰ Generador Horarios 24H</a>
-            <a href="visualizador.html" class="nav-link">🧭 Planes de Vuelo</a>
-            <a href="portal_cliente.html" class="nav-link" style="border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; padding: 4px 12px; font-weight: 700; color: #fff;">🔑 Portal Cliente</a>
+
+        <div class="header-controls">
+            <!-- Buscador Rápido -->
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="suiteSearch" class="search-input" placeholder="Buscar herramienta o módulo (/)..." autocomplete="off">
+                <kbd class="search-kbd">/</kbd>
+            </div>
+
+            <!-- Accesos Clave & Navegación de Ecosistema -->
+            <nav class="nav-links-row">
+                <a href="../../../index.html" class="nav-link-btn btn-home" title="Ir al Diego Control Center (Portada Maestro)">
+                    <i class="fa-solid fa-house"></i> <span>Control Center</span>
+                </a>
+                <a href="../../CATALOGO_ARCHIVOS.html" class="nav-link-btn" title="Catálogo de Archivos de Administración Humana (1,016)">
+                    <i class="fa-solid fa-folder-open" style="color:var(--cyan-light);"></i> <span>Catálogo AH</span>
+                </a>
+                <a href="../../../dondiegovaporyextraccion/CATALOGO_ARCHIVOS.html" class="nav-link-btn" title="Catálogo Don Diego Vapor">
+                    <i class="fa-solid fa-wind" style="color:var(--amber-light);"></i> <span>Don Diego</span>
+                </a>
+                <a href="../../../risalfajores/CATALOGO_ARCHIVOS.html" class="nav-link-btn" title="Catálogo Risalfajores">
+                    <i class="fa-solid fa-cookie-bite" style="color:var(--coral-light);"></i> <span>Risalfajores</span>
+                </a>
+                <a href="panel_admin.html" class="nav-link-btn" title="Consola Admin • Diagnósticos & Clientes">
+                    <i class="fa-solid fa-lock" style="color:var(--purple-light);"></i> <span>Admin</span>
+                </a>
+            </nav>
         </div>
     </header>
 
-    <main class="app-container animate-fade-in">
-        
-        <!-- Welcome Card -->
-        <div class="welcome-card">
-            <div class="welcome-logo">AH</div>
-            <div class="welcome-text">
-                <h2>¡Hola, Diego!</h2>
-                <p>Bienvenido al Panel de Control de <strong>Administración Humana</strong>. Aquí puedes monitorear tu balance mensual de satisfacción, capturar tus dolores diarios y acceder a cada una de tus herramientas de gestión adaptadas.</p>
+    <!-- Main Container -->
+    <main class="suite-main">
+
+        <!-- Hero Card de Bienvenida -->
+        <section class="suite-hero-card">
+            <div class="hero-text-area">
+                <div class="hero-badge-pill">
+                    <i class="fa-solid fa-circle-check"></i> Arsenal Metodológico Centralizado
+                </div>
+                <h2>Bienvenido a la Suite Digital Canónica</h2>
+                <p>
+                    Aquí tienes el ecosistema integral de <strong>Administración Humana</strong> para monitorear tu balance mensual de satisfacción, capturar tus dolores vitales y navegar o previsualizar cualquiera de tus <strong>7 micro-aplicaciones canónicas</strong> en un solo lugar.
+                </p>
             </div>
+
+            <div class="hero-quick-actions">
+                <a href="sondeo.html" class="btn-action-hero">
+                    <i class="fa-solid fa-play"></i> Iniciar Sondeo 360°
+                </a>
+                <a href="apps/gtd/index.html" class="btn-secondary-hero" onclick="event.preventDefault(); openAppPreview('apps/gtd/index.html', 'GTD Pro (Kanban)')">
+                    <i class="fa-solid fa-bolt" style="color:#38bdf8;"></i> Probar GTD en Vivo
+                </a>
+            </div>
+        </section>
+
+        <!-- Selector de Modo de Navegación Maestro -->
+        <div class="suite-main-tabs" id="suiteMainTabs">
+            <button type="button" class="suite-tab-btn active" data-tab="apps" onclick="switchSuiteTab('apps')">
+                <i class="fa-solid fa-layer-group"></i> <span>Arsenal de Micro-Apps (12)</span>
+            </button>
+            <button type="button" class="suite-tab-btn" data-tab="explorer" onclick="switchSuiteTab('explorer')">
+                <i class="fa-solid fa-folder-tree"></i> <span>Explorador de Archivos & Recursos AH (1,016)</span>
+            </button>
+            <button type="button" class="suite-tab-btn" data-tab="vital" onclick="switchSuiteTab('vital')">
+                <i class="fa-solid fa-heart-pulse"></i> <span>Diagnóstico Vital 8D & Prescripciones</span>
+            </button>
         </div>
 
-        <!-- Dashboard Grid -->
-        <div class="dashboard-grid">
+        <!-- TAB 1: ARSENAL DE APLICACIONES & ESTADO RESUMIDO -->
+        <div id="viewApps">
+
+        <!-- Dashboard Grid: Estado Vital & Prescripciones -->
+        <section class="vital-grid">
             
-            <!-- Left Panel: Diagnóstico -->
+            <!-- Panel Izquierdo: Estado Vital 8D -->
             <div class="glass-panel">
-                <div class="panel-title">
-                    ESTADO VITAL ACTUAL
-                    <span>Rueda de la Vida</span>
+                <div class="panel-header-row">
+                    <div class="panel-title-group">
+                        <h3><i class="fa-solid fa-chart-pie" style="color:var(--teal-light);"></i> Estado Vital Actual</h3>
+                        <p>Rueda de la Vida • 8 Dimensiones Sistémicas</p>
+                    </div>
+                    <span class="panel-badge" id="badgeVitalState">Cargando...</span>
                 </div>
-                
+
                 <div class="stats-summary">
                     <div class="stat-box">
                         <div id="avgScore" class="stat-num teal">--</div>
@@ -398,129 +1378,472 @@
                     </div>
                     <div class="stat-box">
                         <div id="critAreas" class="stat-num coral">--</div>
-                        <div class="stat-lbl">Áreas Críticas</div>
+                        <div class="stat-lbl">Áreas Críticas (&le; 5)</div>
                     </div>
                 </div>
 
                 <div class="dimension-bar-container" id="dimensionBars">
-                    <!-- Progress bars loaded from JS -->
+                    <!-- Barras inyectadas por JS -->
+                </div>
+
+                <div style="margin-top: 1.2rem; display: flex; gap: 8px;">
+                    <a href="apps/rueda/index.html" class="btn-launch-tool" style="width: 100%;">
+                        <i class="fa-solid fa-sliders"></i> Ajustar Calificaciones en Rueda (M03)
+                    </a>
                 </div>
             </div>
 
-            <!-- Right Panel: Prescripciones -->
+            <!-- Panel Derecho: Prescripción de Microdosis -->
             <div class="glass-panel">
-                <div class="panel-title">
-                    PRESCRIPCIÓN DE MICRODOSIS
-                    <span>Recomendación Inteligente</span>
+                <div class="panel-header-row">
+                    <div class="panel-title-group">
+                        <h3><i class="fa-solid fa-stethoscope" style="color:var(--coral-light);"></i> Prescripción de Microacciones</h3>
+                        <p>Recomendaciones Clínicas adaptadas a tus dolores registrados</p>
+                    </div>
+                    <span class="panel-badge">AICC Engine</span>
                 </div>
-                
+
                 <div class="recommendation-list" id="recommendationList">
-                    <!-- Recommendations loaded from JS -->
+                    <!-- Recomendaciones inyectadas por JS -->
                 </div>
             </div>
 
-        </div>
+        </section>
 
-        <!-- Quick Access to Apps -->
-        <div class="apps-title">
-            HERRAMIENTAS DE AUTOGESTIÓN Y SONDEO
-            <span style="font-size: 0.85rem; color: var(--text-secondary);">Selecciona una aplicación</span>
-        </div>
-        
-        <div class="apps-grid">
-
-            <!-- Card Destacada: Sondeo Maestro -->
-            <a href="00_Sondeo_Maestro/sondeo.html" class="app-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, rgba(13, 148, 136, 0.25) 0%, rgba(30, 41, 59, 0.8) 100%); border: 1px solid rgba(45, 212, 191, 0.4);">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div class="app-card-icon" style="font-size: 2.5rem;">🔮</div>
-                    <span style="background: var(--teal); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Portal Principal de Onboarding</span>
+        <!-- Sección del Arsenal de Herramientas -->
+        <section class="tools-section">
+            <div class="section-header-bar">
+                <div class="section-title">
+                    <h3><i class="fa-solid fa-boxes-stacked" style="color:var(--cyan-light);"></i> Arsenal de Herramientas & Aplicaciones</h3>
+                    <p>Accede de inmediato a cualquier micro-app o examínala en el visor integrado en vivo</p>
                 </div>
-                <h4 class="app-card-title" style="font-size: 1.4rem; color: var(--teal-light);">Sondeo Maestro AICC 360° (Portal Diagnóstico Guiado)</h4>
-                <p class="app-card-desc" style="font-size: 0.95rem; line-height: 1.5;">
-                    El portal de entrada único para nuevos clientes. Combina en 5 pasos interactivos: Rueda de la Vida, Test de Fricción Operativa (10 síntomas), Matriz Eisenhower, Auditoría de Tiempo/Dinero y la Ficha 360° lista para enviar a tu WhatsApp por audios y código JSON.
-                </p>
-                <span class="app-card-btn" style="color: var(--teal-light); font-weight: 700; font-size: 1rem;">Iniciar Portal de Sondeo Guiado &rarr;</span>
-            </a>
-            
-            <a href="01_Rueda_de_la_Vida/index.html" class="app-card">
-                <div class="app-card-icon">🎯</div>
-                <h4 class="app-card-title">Rueda de la Vida</h4>
-                <p class="app-card-desc">Evalúa el equilibrio sistémico en 8 dimensiones clave, registra tus dolores y planifica microacciones de 24 horas.</p>
-                <span class="app-card-btn">Iniciar Diagnóstico &rarr;</span>
-            </a>
 
-            <a href="02_Matriz_Eisenhower/index.html" class="app-card">
-                <div class="app-card-icon">📐</div>
-                <h4 class="app-card-title">Matriz de Eisenhower</h4>
-                <p class="app-card-desc">Clasifica y prioriza tus tareas según su nivel de urgencia e importancia. Delega, planifica o elimina lo innecesario.</p>
-                <span class="app-card-btn">Priorizar Tareas &rarr;</span>
-            </a>
+                <!-- Filtros por categoría -->
+                <div class="category-filter-pills" id="categoryFilters">
+                    <button type="button" class="filter-pill active" data-category="all">Todas (12)</button>
+                    <button type="button" class="filter-pill" data-category="canonical">⚡ 7 Canónicas (SSOT)</button>
+                    <button type="button" class="filter-pill" data-category="diagnostic">🔮 Diagnóstico</button>
+                    <button type="button" class="filter-pill" data-category="clients">🧭 Clientes & Planes</button>
+                    <button type="button" class="filter-pill" data-category="admin">🛠️ Admin & I+D</button>
+                </div>
+            </div>
 
-            <a href="10_Generador_Horarios/index.html" class="app-card" style="border-color: rgba(255,255,255,0.25);">
-                <div class="app-card-icon">⏰</div>
-                <h4 class="app-card-title">Generador de Horarios & Sondeo</h4>
-                <p class="app-card-desc">Estructura tu semana en 1 clic con arquetipos inteligentes (Emprendedor, Profesional, TEA/TDAH, Estudiante) y diagnostica tus fugas de tiempo y soberanía temporal.</p>
-                <span class="app-card-btn">Generar Horario &rarr;</span>
-            </a>
+            <div class="apps-grid" id="appsGrid">
 
-            <a href="03_Time_Blocker/index.html" class="app-card">
-                <div class="app-card-icon">⏱️</div>
-                <h4 class="app-card-title">Time Blocker Web</h4>
-                <p class="app-card-desc">Divide tu semana en bloques visuales de Foco, Recuperación y Administración para proteger tu tiempo y energía.</p>
-                <span class="app-card-btn">Bloquear Tiempo &rarr;</span>
-            </a>
+                <!-- 1. Sondeo Maestro 360° -->
+                <div class="tool-card" data-category="diagnostic" style="--tool-accent: #0d9488; --tool-glow: var(--teal-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(13, 148, 136, 0.15); color: #2dd4bf;">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #2dd4bf; border-color: rgba(45, 212, 191, 0.3);">Onboarding 360°</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Sondeo Maestro 360°</h4>
+                        <p>Wizard guiado de 5 fases: Rueda vital, 10 síntomas de fricción operativa, matriz urgente/importante y resumen en audio/JSON.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="sondeo.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('sondeo.html', 'Sondeo Maestro 360°')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
 
-            <a href="04_Tablero_GTD/index.html" class="app-card">
-                <div class="app-card-icon">📋</div>
-                <h4 class="app-card-title">Tablero GTD Kanban</h4>
-                <p class="app-card-desc">Libera la RAM mental vaciando pendientes en el Inbox y gestiona el flujo de trabajo controlando el número de tareas a la vez.</p>
-                <span class="app-card-btn">Procesar Tareas &rarr;</span>
-            </a>
+                <!-- 2. GTD Pro Kanban -->
+                <div class="tool-card" data-category="canonical" style="--tool-accent: #0284c7; --tool-glow: var(--cyan-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(2, 132, 199, 0.15); color: #38bdf8;">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">M07 • Canónica</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>GTD Pro Humanizado</h4>
+                        <p>Vacía tu RAM mental, aplica la regla de 2 min, clasifica @contextos y asegura el foco con límite monotarea WIP=2.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="apps/gtd/index.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('apps/gtd/index.html', 'M07: GTD Pro Humanizado')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
 
-            <a href="05_Presupuesto_50_30_20/index.html" class="app-card">
-                <div class="app-card-icon">📊</div>
-                <h4 class="app-card-title">Calculadora 50/30/20</h4>
-                <p class="app-card-desc">Monitorea tus ingresos y egresos según la regla de salud financiera, asegurando tu paz y capacidad de ahorro.</p>
-                <span class="app-card-btn">Ver Presupuesto &rarr;</span>
-            </a>
+                <!-- 3. Matriz de Eisenhower -->
+                <div class="tool-card" data-category="canonical" style="--tool-accent: #f59e0b; --tool-glow: var(--amber-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">
+                            <i class="fa-solid fa-table-cells-large"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #fbbf24; border-color: rgba(245, 158, 11, 0.3);">M11 • Canónica</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Matriz de Eisenhower</h4>
+                        <p>Clasificación 2x2 urgente/importante. Detecta el modo bombero reactivo y blinda Bloques de Oro en Q2 antes de mediodía.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="apps/eisenhower/index.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('apps/eisenhower/index.html', 'M11: Matriz de Eisenhower')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
 
-            <a href="06_Creador_Contenido/index.html" class="app-card">
-                <div class="app-card-icon">✍️</div>
-                <h4 class="app-card-title">Creador de Contenido</h4>
-                <p class="app-card-desc">Genera copys, guiones de reels y carruseles semanales basados en los dolores y herramientas de tu base de datos.</p>
-                <span class="app-card-btn">Crear Contenido &rarr;</span>
-            </a>
+                <!-- 4. Mapeador de Horarios 24H -->
+                <div class="tool-card" data-category="canonical" style="--tool-accent: #10b981; --tool-glow: var(--emerald-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #34d399; border-color: rgba(16, 185, 129, 0.3);">M10 • Canónica</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Mapeador 24H por Cajitas</h4>
+                        <p>Auditoría de 168h semanales. Pinta tu rutina con categorías editables dinámicas, aplica presets y exporta en PNG.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="apps/horarios/index.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('apps/horarios/index.html', 'M10: Mapeador 24H por Cajitas')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
 
-            <a href="07_Inventario_Resultados/index.html" class="app-card">
-                <div class="app-card-icon">🏅</div>
-                <h4 class="app-card-title">Auditoría de Resultados</h4>
-                <p class="app-card-desc">Audita si tu tiempo invertido generó impacto o valor real, calculando el Retorno sobre el Esfuerzo (ROE) para salir de la falacia de estar ocupado.</p>
-                <span class="app-card-btn">Auditar Impacto &rarr;</span>
-            </a>
+                <!-- 5. Time Blocker Semanal -->
+                <div class="tool-card" data-category="canonical" style="--tool-accent: #0d9488; --tool-glow: var(--teal-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(13, 148, 136, 0.15); color: #2dd4bf;">
+                            <i class="fa-solid fa-stopwatch-20"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #2dd4bf; border-color: rgba(45, 212, 191, 0.3);">PAC • Canónica</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Time Blocker Semanal (30m)</h4>
+                        <p>Bloqueo táctico en slots de media hora: Foco Profundo, Recuperación, Gestión Admin y Vida Personal con donut de carga.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="apps/timeblocker/index.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('apps/timeblocker/index.html', 'PAC/TB: Time Blocker Semanal')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
 
-            <a href="08_Circulo_Dorado/index.html" class="app-card">
-                <div class="app-card-icon">🟡</div>
-                <h4 class="app-card-title">Círculo Dorado de Propósito</h4>
-                <p class="app-card-desc">Encuentra tu motor de diferenciación y propósito (el QUÉ, CÓMO y PORQUÉ) para redactar pitches de valor que conecten emocionalmente y no compitan por precio.</p>
-                <span class="app-card-btn">Encontrar Propósito &rarr;</span>
-            </a>
+                <!-- 6. Rueda de la Vida -->
+                <div class="tool-card" data-category="canonical" style="--tool-accent: #14b8a6; --tool-glow: var(--teal-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(20, 184, 166, 0.15); color: #5eead4;">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #5eead4; border-color: rgba(94, 234, 212, 0.3);">M03 • Canónica</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Rueda de la Vida (8 Áreas)</h4>
+                        <p>Radar SVG interactivo touch/drag. Calcula dispersión de rodaje vital, historiales mensuales y prescripción clínica AICC.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="apps/rueda/index.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('apps/rueda/index.html', 'M03: Rueda de la Vida')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
 
-            <a href="09_Kanban_Minimalista/index.html" class="app-card">
-                <div class="app-card-icon">🤖</div>
-                <h4 class="app-card-title">Bandeja de Entrada & Kanban IA</h4>
-                <p class="app-card-desc">Libera la RAM mental capturando pendientes de forma manual o subiendo una captura de pantalla/foto de tu cuaderno para que la IA extraiga e inserte las tareas automáticamente.</p>
-                <span class="app-card-btn">Gestionar Tablero &rarr;</span>
-            </a>
+                <!-- 7. Presupuesto 50/30/20 -->
+                <div class="tool-card" data-category="canonical" style="--tool-accent: #06b6d4; --tool-glow: var(--cyan-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(6, 182, 212, 0.15); color: #67e8f9;">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #67e8f9; border-color: rgba(6, 182, 212, 0.3);">M05 • Canónica</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Presupuesto 50/30/20</h4>
+                        <p>Control de fugas financieras: Necesidades 50%, Deseos 30%, Ahorro 20%. Bitácora de gastos, desviaciones y perfil Diego.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="apps/presupuesto/index.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('apps/presupuesto/index.html', 'M05: Presupuesto 50/30/20')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
 
+                <!-- 8. Círculo Dorado -->
+                <div class="tool-card" data-category="canonical" style="--tool-accent: #f59e0b; --tool-glow: var(--amber-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #fbbf24; border-color: rgba(245, 158, 11, 0.3);">M08 • Canónica</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Círculo Dorado (Simon Sinek)</h4>
+                        <p>Alineación concéntrica Por Qué ➔ Cómo ➔ Qué. Generador de pitch comercial y arquetipos Don Diego, Risalfajores y AH.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="apps/circulo_dorado/index.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('apps/circulo_dorado/index.html', 'M08: Círculo Dorado de Propósito')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 9. Visualizador Maestro de Planes de Vuelo -->
+                <div class="tool-card" data-category="clients" style="--tool-accent: #8b5cf6; --tool-glow: var(--purple-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(139, 92, 246, 0.15); color: #c4b5fd;">
+                            <i class="fa-solid fa-plane-departure"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #c4b5fd; border-color: rgba(139, 92, 246, 0.3);">Hub Clientes</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Visualizador de Planes de Vuelo</h4>
+                        <p>Navega los planes y cockpits interactivos de clientes activos: Alejandra, Melissa, Antonia, Carlos, Rocío y Diego.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="visualizador.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('visualizador.html', 'Visualizador Maestro de Planes de Vuelo')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 10. Mi Plan de Vuelo 2.0 (Diego) -->
+                <div class="tool-card" data-category="clients" style="--tool-accent: #a855f7; --tool-glow: var(--purple-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(168, 85, 247, 0.15); color: #d8b4fe;">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #d8b4fe; border-color: rgba(168, 85, 247, 0.3);">Diego Cockpit</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Mi Plan de Vuelo 2.0 (Diego)</h4>
+                        <p>El cockpit personal en vivo de Diego: diagnóstico individual, rutina 24H, GTD y módulos de acompañamiento activos.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Diego%20Gonzalez/Plan%20de%20Vuelo%202.0%20-%20Diego.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Diego Gonzalez/Plan de Vuelo 2.0 - Diego.html', 'Mi Plan de Vuelo 2.0 (Diego)')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 11. Laboratorio de Módulos (Cocina I+D) -->
+                <div class="tool-card" data-category="admin" style="--tool-accent: #38bdf8; --tool-glow: var(--cyan-glow);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">
+                            <i class="fa-solid fa-flask-conical"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">I+D • Cocina</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Laboratorio de Módulos (60 Módulos)</h4>
+                        <p>Banco de pruebas interactivo: 60 módulos clínicos, dossiers, 16 micro-apps y generador de snippets 1-clic para planes.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/LABORATORIO_MODULOS.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/LABORATORIO_MODULOS.html', 'Laboratorio de Módulos (I+D)')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 12. Consola Admin Sondeo & Leads -->
+                <div class="tool-card" data-category="admin" style="--tool-accent: #64748b; --tool-glow: rgba(100, 116, 139, 0.2);">
+                    <div class="tool-card-header">
+                        <div class="tool-icon-wrap" style="background: rgba(100, 116, 139, 0.15); color: #cbd5e1;">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <span class="tool-badge" style="color: #cbd5e1; border-color: rgba(100, 116, 139, 0.3);">Admin Sondeo</span>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Consola Admin • Sondeo & Clientes</h4>
+                        <p>Auditoría de diagnósticos entrantes, revisión de fichas 360°, importador de WhatsApp y asignación de planes.</p>
+                    </div>
+                    <div class="tool-actions-bar">
+                        <a href="panel_admin.html" class="btn-launch-tool">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+                        </a>
+                        <button type="button" class="btn-preview-tool" onclick="openAppPreview('panel_admin.html', 'Consola Admin • Diagnósticos')">
+                            <i class="fa-solid fa-eye"></i> Visor
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        </div>
+        <!-- FIN TAB 1 -->
+
+        <!-- TAB 2: EXPLORADOR DE ARCHIVOS Y RECURSOS AH -->
+        <div id="viewExplorer" style="display: none;">
+            <section class="file-explorer-container">
+                <div class="explorer-header-bar">
+                    <div class="explorer-title-area">
+                        <h3><i class="fa-solid fa-folder-tree" style="color:var(--cyan-light);"></i> Explorador de Archivos & Recursos AH</h3>
+                        <p>Navega e inspecciona los 1,016 archivos documentales, herramientas y bases de datos en un solo lugar con visor integrado.</p>
+                    </div>
+                    <div class="explorer-stats-row">
+                        <span class="explorer-stat-pill">Total: <strong id="expStatTotal">1,016</strong></span>
+                        <span class="explorer-stat-pill">HTML: <strong id="expStatHtml" style="color:#4ade80;">143</strong></span>
+                        <span class="explorer-stat-pill">JSON: <strong id="expStatJson" style="color:#facc15;">12</strong></span>
+                        <span class="explorer-stat-pill">MD: <strong id="expStatMd" style="color:#38bdf8;">94</strong></span>
+                        <span class="explorer-stat-pill">Media: <strong id="expStatMedia" style="color:#c084fc;">410</strong></span>
+                    </div>
+                </div>
+
+                <!-- Filtros del Explorador -->
+                <div class="explorer-filter-bar">
+                    <div class="explorer-search-wrapper">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" id="expSearchInput" class="explorer-search-input" placeholder="Filtrar por nombre, título o ruta de archivo..." oninput="renderExplorerFiles()">
+                    </div>
+
+                    <div class="explorer-category-pills" id="expCategoryPills">
+                        <button type="button" class="exp-pill active" data-cat="all" onclick="filterExpCategory('all')">Todos</button>
+                        <button type="button" class="exp-pill" data-cat="html" onclick="filterExpCategory('html')">🖥️ HTML</button>
+                        <button type="button" class="exp-pill" data-cat="json" onclick="filterExpCategory('json')">📊 JSON</button>
+                        <button type="button" class="exp-pill" data-cat="md" onclick="filterExpCategory('md')">📝 Markdown</button>
+                        <button type="button" class="exp-pill" data-cat="media" onclick="filterExpCategory('media')">🎨 Media</button>
+                        <button type="button" class="exp-pill" data-cat="spreadsheets" onclick="filterExpCategory('spreadsheets')">📑 Planillas</button>
+                        <button type="button" class="exp-pill" data-cat="docs" onclick="filterExpCategory('docs')">📁 Docs</button>
+                        <button type="button" class="exp-pill" data-cat="code" onclick="filterExpCategory('code')">⚙️ Código</button>
+                    </div>
+
+                    <select id="expFolderSelect" class="explorer-search-input" style="width: auto; max-width: 250px; cursor: pointer;" onchange="renderExplorerFiles()">
+                        <option value="all">📂 Todas las carpetas / módulos</option>
+                        <option value="01_ESTRATEGIA_Y_NEGOCIO">01_ESTRATEGIA_Y_NEGOCIO</option>
+                        <option value="02_METODOLOGIA_Y_HERRAMIENTAS">02_METODOLOGIA_Y_HERRAMIENTAS</option>
+                        <option value="03_PRODUCTOS_Y_APLICACIONES">03_PRODUCTOS_Y_APLICACIONES</option>
+                        <option value="04_MARKETING_Y_CONTENIDO">04_MARKETING_Y_CONTENIDO</option>
+                        <option value="05_CLIENTES_Y_OPERACIONES">05_CLIENTES_Y_OPERACIONES</option>
+                        <option value="06_ADMINISTRACION_INTERNA">06_ADMINISTRACION_INTERNA</option>
+                        <option value="07_IMPRIMIBLES">07_IMPRIMIBLES</option>
+                    </select>
+                </div>
+
+                <!-- Tabla de Archivos del Explorador -->
+                <div class="explorer-table-wrap">
+                    <table class="explorer-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 48%;">Archivo / Recurso</th>
+                                <th style="width: 22%;">Módulo</th>
+                                <th style="width: 12%;">Tamaño</th>
+                                <th style="width: 18%; text-align: right;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="explorerTableBody">
+                            <tr>
+                                <td colspan="4" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                                    <i class="fa-solid fa-spinner fa-spin"></i> Cargando catálogo de 1,016 archivos...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="expEmptyState" style="display: none; padding: 2.5rem; text-align: center; color: var(--text-muted);">
+                    No se encontraron archivos con los criterios de búsqueda.
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 3: DIAGNÓSTICO VITAL 8D EN FOCO -->
+        <div id="viewVital" style="display: none;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: #fff; font-weight: 800;">
+                            <i class="fa-solid fa-heart-pulse" style="color: var(--teal-light);"></i> Auditoría Vital 8D & Prescripciones Clínicas
+                        </h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Monitoreo en tiempo real de satisfacción y microdosis de acción para eliminar fricción operativa.
+                        </p>
+                    </div>
+                    <a href="apps/rueda/index.html" class="btn-action-hero" style="font-size: 0.82rem; padding: 8px 16px;">
+                        <i class="fa-solid fa-sliders"></i> Calibrar en Rueda de la Vida (M03)
+                    </a>
+                </div>
+                <div id="vitalFocusContainer"></div>
+            </div>
         </div>
 
     </main>
 
-    <footer>
-        <p>&copy; 2026 Administración Humana. Metodología de Diagnóstico por Dolor y Planificación Personal. Todos los derechos reservados.</p>
+    <!-- LIVE IN-APP PREVIEW MODAL -->
+    <div class="preview-modal-overlay" id="appPreviewModal">
+        <div class="preview-modal-window">
+            <div class="preview-modal-header">
+                <div class="preview-header-left">
+                    <span style="font-size: 1.1rem; color: #38bdf8;"><i class="fa-solid fa-laptop-code"></i></span>
+                    <span class="preview-title" id="previewTitle">Visor de Aplicación</span>
+                    <span class="preview-url-badge" id="previewUrlBadge">about:blank</span>
+                </div>
+
+                <div class="preview-header-controls">
+                    <div id="viewportControlsSuite" style="display: flex; gap: 6px; align-items: center;">
+                        <button type="button" class="btn-view-mode active" id="btnModeDesktop" onclick="setPreviewViewport('desktop')">
+                            <i class="fa-solid fa-desktop"></i> Desktop
+                        </button>
+                        <button type="button" class="btn-view-mode" id="btnModeMobile" onclick="setPreviewViewport('mobile')">
+                            <i class="fa-solid fa-mobile-screen"></i> Móvil
+                        </button>
+                    </div>
+                    <button type="button" class="btn-view-mode" onclick="reloadPreview()" title="Recargar">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                    <a href="#" id="previewExternalLink" target="_blank" class="btn-view-mode" title="Abrir en pestaña nueva">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Nueva Pestaña
+                    </a>
+                    <button type="button" class="btn-modal-close" onclick="closeAppPreview()" title="Cerrar (Esc)">&times;</button>
+                </div>
+            </div>
+
+            <div class="preview-iframe-wrapper">
+                <iframe id="previewIframe" class="preview-iframe" src="about:blank"></iframe>
+                <div id="previewDocViewer" class="preview-text-content preview-markdown-content" style="display: none; width: 100%; height: 100%; overflow-y: auto; padding: 2.5rem; background: #06090f;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="suite-footer no-print">
+        <div>
+            <strong>Administración Humana</strong> &bull; Suite Digital Canónica SSOT v3
+        </div>
+        <div>
+            Conectado a <a href="../../../index.html">Diego Control Center</a> &bull; WhatsApp: <code>+56975590132</code>
+        </div>
     </footer>
 
     <script>
+        // Inicializar Lucide Icons
+        if (window.lucide) { lucide.createIcons(); }
+
         // Dimensiones del método (Valores por defecto si no hay localStorage)
         const defaultDimensions = [
             { name: "Salud y Bienestar", icon: "❤️", score: 6, pain: "Sin registrar", action: "Revisar hábitos de salud" },
@@ -533,118 +1856,545 @@
             { name: "Mental / Espiritual", icon: "🧘", score: 6, pain: "Sin registrar", action: "Hacer captura mental GTD" }
         ];
 
-        // Mapeo de recomendación por dimensión
+        // Mapeo de recomendación por dimensión hacia las apps canónicas
         const toolMap = {
-            0: { toolName: "Time Blocker / Rueda", link: "03_Time_Blocker/index.html", text: "Registra bloques de descanso y deporte para recuperar vitalidad." },
-            1: { toolName: "Calculadora 50/30/20", link: "05_Presupuesto_50_30_20/index.html", text: "Abre la calculadora financiera y haz un diagnóstico rápido de tus gastos reales." },
-            2: { toolName: "Auditoría de Resultados", link: "07_Inventario_Resultados/index.html", text: "Audita tus horas de trabajo vs. el impacto financiero real generado (ROE) para identificar fugas." },
-            3: { toolName: "Time Blocker", link: "03_Time_Blocker/index.html", text: "Diseña bloques de tiempo de calidad con tu entorno y apaga el teléfono." },
-            4: { toolName: "Tablero GTD Kanban", link: "04_Tablero_GTD/index.html", text: "Usa el Inbox GTD para organizar las lecturas o proyectos que quieres implementar." },
-            5: { toolName: "Time Blocker", link: "03_Time_Blocker/index.html", text: "Reserva bloques de ocio innegociables en tu semana. Descansar no da culpa, recarga tu energía." },
-            6: { toolName: "Matriz de Eisenhower", link: "02_Matriz_Eisenhower/index.html", text: "Prioriza un ordenamiento de 5S en tu espacio de trabajo para liberar tu enfoque." },
-            7: { toolName: "Tablero GTD Kanban", link: "04_Tablero_GTD/index.html", text: "Vacíe la RAM mental inmediatamente con una sesión de captura GTD antes de dormir." }
+            0: { toolName: "Time Blocker Semanal", link: "apps/timeblocker/index.html", text: "Registra bloques innegociables de descanso, deporte y nutrición para recuperar tu vitalidad." },
+            1: { toolName: "Presupuesto 50/30/20", link: "apps/presupuesto/index.html", text: "Abre la calculadora financiera y haz un diagnóstico rápido de tus gastos fijos y fugas." },
+            2: { toolName: "GTD Pro & Horarios 24H", link: "apps/gtd/index.html", text: "Audita tus horas de trabajo vs. impacto real. Blinda tus Bloques de Oro matutinos." },
+            3: { toolName: "Time Blocker Semanal", link: "apps/timeblocker/index.html", text: "Diseña bloques de presencia plena con tu familia y desactiva las notificaciones de trabajo." },
+            4: { toolName: "Tablero GTD Pro", link: "apps/gtd/index.html", text: "Usa el Inbox GTD para procesar lecturas y proyectos sin saturar tu memoria de trabajo." },
+            5: { toolName: "Mapeador 24H", link: "apps/horarios/index.html", text: "Reserva bloques de ocio en tu agenda de 168h. Descansar no genera culpa, previene el burnout." },
+            6: { toolName: "Matriz de Eisenhower", link: "apps/eisenhower/index.html", text: "Prioriza una limpieza física 5S en tu espacio de trabajo para liberar tu foco mental." },
+            7: { toolName: "Tablero GTD Pro", link: "apps/gtd/index.html", text: "Vacía la RAM mental inmediatamente con una sesión de captura GTD antes de dormir." }
         };
 
         function loadDashboardData() {
             let data = localStorage.getItem("aicc_rueda_dimensions");
             let dimensions = data ? JSON.parse(data) : defaultDimensions;
 
-            // Calcular promedio e identificadores
+            // Calcular promedio y áreas críticas
             const scores = dimensions.map(d => d.score);
             const avg = (scores.reduce((a, b) => a + b, 0) / dimensions.length).toFixed(1);
             const criticals = dimensions.filter(d => d.score <= 5).length;
 
-            document.getElementById("avgScore").innerText = avg;
-            document.getElementById("critAreas").innerText = criticals;
+            const avgEl = document.getElementById("avgScore");
+            const critEl = document.getElementById("critAreas");
+            const badgeEl = document.getElementById("badgeVitalState");
+
+            if (avgEl) avgEl.innerText = avg;
+            if (critEl) critEl.innerText = criticals;
+            if (badgeEl) {
+                badgeEl.innerText = criticals > 0 ? `${criticals} en Alerta` : 'Equilibrio Óptimo';
+                badgeEl.style.color = criticals > 0 ? '#fb7185' : '#34d399';
+                badgeEl.style.borderColor = criticals > 0 ? 'rgba(244, 63, 94, 0.3)' : 'rgba(16, 185, 129, 0.3)';
+            }
 
             // Renderizar barras en panel izquierdo
             const barsContainer = document.getElementById("dimensionBars");
-            barsContainer.innerHTML = "";
-            
-            dimensions.forEach((dim, idx) => {
-                const isCritical = dim.score <= 5;
-                const percent = dim.score * 10;
-                
-                const row = document.createElement("div");
-                row.className = "dimension-row";
-                row.innerHTML = `
-                    <div class="dimension-info-row">
-                        <span class="dimension-name">${dim.icon} ${dim.name}</span>
-                        <span class="dimension-score ${isCritical ? 'critical' : 'good'}">${dim.score}/10</span>
-                    </div>
-                    <div class="bar-outer">
-                        <div class="bar-inner ${isCritical ? 'critical' : 'good'}" style="width: ${percent}%"></div>
-                    </div>
-                    ${dim.pain && dim.pain !== "Sin registrar" ? `
-                        <div class="dimension-pain-text">
-                            <span>⚡ Dolor:</span> "${dim.pain}"
+            if (barsContainer) {
+                barsContainer.innerHTML = "";
+                dimensions.forEach((dim) => {
+                    const isCritical = dim.score <= 5;
+                    const percent = Math.min(100, Math.max(0, dim.score * 10));
+                    
+                    const row = document.createElement("div");
+                    row.className = "dimension-row";
+                    row.innerHTML = `
+                        <div class="dimension-info-row">
+                            <span class="dimension-name">${dim.icon} ${dim.name}</span>
+                            <span class="dimension-score ${isCritical ? 'critical' : 'good'}">${dim.score}/10</span>
                         </div>
-                    ` : ''}
-                `;
-                barsContainer.appendChild(row);
-            });
+                        <div class="bar-outer">
+                            <div class="bar-inner ${isCritical ? 'critical' : 'good'}" style="width: ${percent}%"></div>
+                        </div>
+                        ${dim.pain && dim.pain !== "Sin registrar" ? `
+                            <div class="dimension-pain-text">
+                                <span>⚡ Dolor:</span> "${dim.pain}"
+                            </div>
+                        ` : ''}
+                    `;
+                    barsContainer.appendChild(row);
+                });
+            }
 
             // Generar recomendaciones dinámicas en panel derecho
             const recContainer = document.getElementById("recommendationList");
-            recContainer.innerHTML = "";
+            if (recContainer) {
+                recContainer.innerHTML = "";
 
-            // Filtrar áreas críticas
-            const criticalDims = dimensions
-                .map((d, i) => ({ ...d, index: i }))
-                .filter(d => d.score <= 5)
-                .sort((a, b) => a.score - b.score); // Primero las más graves
+                const criticalDims = dimensions
+                    .map((d, i) => ({ ...d, index: i }))
+                    .filter(d => d.score <= 5)
+                    .sort((a, b) => a.score - b.score);
 
-            if (criticalDims.length > 0) {
-                // Agregar encabezado de alerta
-                const alertBanner = document.createElement("div");
-                alertBanner.className = "badge-alert";
-                alertBanner.innerHTML = `⚠️ Tienes ${criticalDims.length} áreas en nivel crítico (&le; 5). A continuación tu prescripción de microacciones prioritarias:`;
-                recContainer.appendChild(alertBanner);
+                if (criticalDims.length > 0) {
+                    const alertBanner = document.createElement("div");
+                    alertBanner.className = "badge-alert";
+                    alertBanner.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Tienes ${criticalDims.length} áreas en nivel crítico (&le; 5). Tu prescripción prioritaria:`;
+                    recContainer.appendChild(alertBanner);
 
-                criticalDims.forEach(dim => {
-                    const toolInfo = toolMap[dim.index];
+                    criticalDims.forEach(dim => {
+                        const toolInfo = toolMap[dim.index] || { toolName: "Sondeo 360°", link: "sondeo.html", text: "Profundiza en tu diagnóstico de fricción operativa." };
+                        const recCard = document.createElement("div");
+                        recCard.className = "rec-card critical";
+                        recCard.innerHTML = `
+                            <div class="rec-icon">${dim.icon}</div>
+                            <div class="rec-content">
+                                <span class="rec-title">${dim.name} (Nivel ${dim.score}/10)</span>
+                                ${dim.pain && dim.pain !== "Sin registrar" ? `<span class="rec-desc"><strong>Dolor:</strong> "${dim.pain}"</span>` : ''}
+                                <span class="rec-desc" style="margin-top: 4px; color: var(--text-main);">
+                                    <strong>Prescripción:</strong> ${toolInfo.text}
+                                </span>
+                                <div style="display:flex; gap:10px; margin-top:8px;">
+                                    <a href="${toolInfo.link}" class="rec-action">
+                                        Abrir ${toolInfo.toolName} &rarr;
+                                    </a>
+                                    <button type="button" class="btn-preview-tool" style="padding:2px 8px; font-size:0.72rem;" onclick="openAppPreview('${toolInfo.link}', '${toolInfo.toolName}')">
+                                        <i class="fa-solid fa-eye"></i> Previsualizar
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        recContainer.appendChild(recCard);
+                    });
+                } else {
+                    const peaceBanner = document.createElement("div");
+                    peaceBanner.className = "badge-info";
+                    peaceBanner.innerHTML = `<i class="fa-solid fa-check-circle"></i> ¡Excelente balance! No tienes dimensiones críticas actualmente.`;
+                    recContainer.appendChild(peaceBanner);
+
                     const recCard = document.createElement("div");
-                    recCard.className = "rec-card critical";
+                    recCard.className = "rec-card";
                     recCard.innerHTML = `
-                        <div class="rec-icon">${dim.icon}</div>
+                        <div class="rec-icon">🧘</div>
                         <div class="rec-content">
-                            <span class="rec-title">${dim.name} (Nivel ${dim.score}/10)</span>
-                            <span class="rec-desc"><strong>Dolor:</strong> "${dim.pain}"</span>
-                            <span class="rec-desc" style="margin-top: 4px; color: var(--text-primary)">
-                                <strong>Prescripción:</strong> ${toolInfo.text}
-                            </span>
-                            <a href="${toolInfo.link}" class="rec-action">
-                                Abrir herramienta: ${toolInfo.toolName} &rarr;
+                            <span class="rec-title">Mantenimiento y Blindaje Semanal</span>
+                            <span class="rec-desc">Tu promedio vital es de ${avg}/10. Es el momento perfecto para revisar tus Bloques de Oro en el Time Blocker y auditar pendientes en GTD.</span>
+                            <a href="apps/timeblocker/index.html" class="rec-action">
+                                Planificar en Time Blocker &rarr;
                             </a>
                         </div>
                     `;
                     recContainer.appendChild(recCard);
-                });
-            } else {
-                // Estado de paz
-                const peaceBanner = document.createElement("div");
-                peaceBanner.className = "badge-info";
-                peaceBanner.innerHTML = `✨ ¡Excelente! No tienes áreas críticas actualmente. Sigue manteniendo tu balance vital.`;
-                recContainer.appendChild(peaceBanner);
-
-                // Agregar recomendación general
-                const recCard = document.createElement("div");
-                recCard.className = "rec-card";
-                recCard.innerHTML = `
-                    <div class="rec-icon">🧘</div>
-                    <div class="rec-content">
-                        <span class="rec-title">Mantenimiento y Auditoría Semanal</span>
-                        <span class="rec-desc">Tu promedio vital es de ${avg}/10. Es un excelente momento para realizar tu planificación de bloques de tiempo y auditar tus tareas.</span>
-                        <a href="03_Time_Blocker/index.html" class="rec-action">
-                            Planificar semana &rarr;
-                        </a>
-                    </div>
-                `;
-                recContainer.appendChild(recCard);
+                }
             }
         }
 
-        document.addEventListener("DOMContentLoaded", loadDashboardData);
+        // Búsqueda y Filtrado en Vivo de Herramientas
+        const suiteSearch = document.getElementById("suiteSearch");
+        const categoryFilters = document.getElementById("categoryFilters");
+        const appsGrid = document.getElementById("appsGrid");
+
+        let activeCategory = "all";
+
+        function applyFilters() {
+            const query = suiteSearch ? suiteSearch.value.toLowerCase().trim() : "";
+            const cards = document.querySelectorAll(".tool-card");
+
+            cards.forEach(card => {
+                const cardCat = card.dataset.category || "all";
+                const title = card.querySelector("h4").textContent.toLowerCase();
+                const desc = card.querySelector("p").textContent.toLowerCase();
+                const badge = card.querySelector(".tool-badge").textContent.toLowerCase();
+
+                const matchesCategory = (activeCategory === "all") || (cardCat === activeCategory);
+                const matchesQuery = !query || title.includes(query) || desc.includes(query) || badge.includes(query);
+
+                if (matchesCategory && matchesQuery) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        if (suiteSearch) {
+            suiteSearch.addEventListener("input", applyFilters);
+        }
+
+        if (categoryFilters) {
+            categoryFilters.addEventListener("click", (e) => {
+                const pill = e.target.closest(".filter-pill");
+                if (!pill) return;
+
+                document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+                pill.classList.add("active");
+                activeCategory = pill.dataset.category;
+                applyFilters();
+            });
+        }
+
+        // Atajo '/' para enfocar buscador
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "/" && document.activeElement !== suiteSearch) {
+                e.preventDefault();
+                if (suiteSearch) {
+                    suiteSearch.focus();
+                    suiteSearch.select();
+                }
+            }
+            if (e.key === "Escape") {
+                if (document.getElementById("appPreviewModal").classList.contains("active")) {
+                    closeAppPreview();
+                } else if (suiteSearch) {
+                    suiteSearch.blur();
+                }
+            }
+        });
+
+        // Navegación por Pestañas Principales (Apps / Explorador / Vital)
+        let activeSuiteTab = 'apps';
+        let ahCatalogData = null;
+        let activeExpCat = 'all';
+
+        function switchSuiteTab(tabId) {
+            activeSuiteTab = tabId;
+            document.querySelectorAll('.suite-tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tabId);
+            });
+
+            const viewApps = document.getElementById('viewApps');
+            const viewExplorer = document.getElementById('viewExplorer');
+            const viewVital = document.getElementById('viewVital');
+
+            if (tabId === 'apps') {
+                if (viewApps) viewApps.style.display = 'block';
+                if (viewExplorer) viewExplorer.style.display = 'none';
+                if (viewVital) viewVital.style.display = 'none';
+            } else if (tabId === 'explorer') {
+                if (viewApps) viewApps.style.display = 'none';
+                if (viewExplorer) viewExplorer.style.display = 'block';
+                if (viewVital) viewVital.style.display = 'none';
+                if (!ahCatalogData) {
+                    loadAhCatalog();
+                }
+            } else if (tabId === 'vital') {
+                if (viewApps) viewApps.style.display = 'none';
+                if (viewExplorer) viewExplorer.style.display = 'none';
+                if (viewVital) viewVital.style.display = 'block';
+                renderVitalFocusView();
+            }
+        }
+
+        async function loadAhCatalog() {
+            try {
+                const res = await fetch('../../catalogo_archivos.json');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                ahCatalogData = await res.json();
+                
+                if (ahCatalogData.stats) {
+                    const stats = ahCatalogData.stats;
+                    const totEl = document.getElementById('expStatTotal');
+                    const htmEl = document.getElementById('expStatHtml');
+                    const jsnEl = document.getElementById('expStatJson');
+                    const mdEl = document.getElementById('expStatMd');
+                    const medEl = document.getElementById('expStatMedia');
+                    if (totEl) totEl.textContent = stats.total_files.toLocaleString();
+                    if (htmEl) htmEl.textContent = (stats.categories.html || 0);
+                    if (jsnEl) jsnEl.textContent = (stats.categories.json || 0);
+                    if (mdEl) mdEl.textContent = (stats.categories.md || 0);
+                    if (medEl) medEl.textContent = (stats.categories.media || 0);
+                }
+                renderExplorerFiles();
+            } catch (err) {
+                console.warn('Error al cargar catalogo_archivos.json:', err);
+                const tbody = document.getElementById('explorerTableBody');
+                if (tbody) {
+                    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:2rem; color:#fb7185;">No se pudo cargar catalogo_archivos.json (${err.message}). Puedes abrir el <a href="../../CATALOGO_ARCHIVOS.html" style="color:#38bdf8; font-weight:bold;">Catálogo Maestro Completo aquí</a>.</td></tr>`;
+                }
+            }
+        }
+
+        const EXP_ICONS = {
+            'html': '🖥️',
+            'json': '📊',
+            'md': '📝',
+            'media': '🎨',
+            'spreadsheets': '📑',
+            'docs': '📁',
+            'code': '⚙️',
+            'other': '📦'
+        };
+
+        function filterExpCategory(cat) {
+            activeExpCat = cat;
+            document.querySelectorAll('#expCategoryPills .exp-pill').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.cat === cat);
+            });
+            renderExplorerFiles();
+        }
+
+        function renderExplorerFiles() {
+            if (!ahCatalogData || !ahCatalogData.files) return;
+            const searchInput = document.getElementById('expSearchInput');
+            const folderSelect = document.getElementById('expFolderSelect');
+            const tbody = document.getElementById('explorerTableBody');
+            const emptyEl = document.getElementById('expEmptyState');
+
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            const folder = folderSelect ? folderSelect.value : 'all';
+
+            let filtered = ahCatalogData.files.filter(f => {
+                if (activeExpCat !== 'all' && f.category !== activeExpCat) return false;
+                if (folder !== 'all' && f.folder !== folder) return false;
+                if (query) {
+                    const matchName = f.name.toLowerCase().includes(query);
+                    const matchTitle = f.title.toLowerCase().includes(query);
+                    const matchRel = f.rel_path.toLowerCase().includes(query);
+                    if (!matchName && !matchTitle && !matchRel) return false;
+                }
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                if (emptyEl) emptyEl.style.display = 'block';
+                return;
+            }
+
+            if (emptyEl) emptyEl.style.display = 'none';
+
+            const renderSet = filtered.slice(0, 250);
+
+            tbody.innerHTML = renderSet.map(f => {
+                const icon = EXP_ICONS[f.category] || '📄';
+                const isHtml = f.category === 'html';
+                const isMd = f.category === 'md';
+                const isJson = f.category === 'json';
+                const isMedia = f.category === 'media';
+                const isCode = f.category === 'code';
+                const isPreviewable = isHtml || isMd || isJson || isMedia || isCode;
+
+                const targetUrl = f.web_url.startsWith('/') ? f.web_url : '../../' + f.rel_path;
+
+                const visorBtn = isPreviewable
+                    ? `<button type="button" class="exp-btn-visor" onclick="openAppPreview('${targetUrl}', '${escapeAttr(f.title)}', '${f.category}', '${escapeAttr(f.rel_path)}', '${f.size_fmt}')"><i class="fa-solid fa-eye"></i> Visor</button>`
+                    : '';
+
+                return `
+                    <tr>
+                        <td>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <span style="font-size:1.15rem; width:26px; text-align:center;">${icon}</span>
+                                <div style="min-width:0;">
+                                    <div style="font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:440px;" title="${escapeHtml(f.title)}">${escapeHtml(f.title)}</div>
+                                    <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); word-break:break-all;">${escapeHtml(f.rel_path)}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="folder-badge" style="font-size:0.72rem; padding:2px 8px; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:4px;">${escapeHtml(f.folder)}</span>
+                        </td>
+                        <td>
+                            <span style="font-family:var(--font-mono); font-size:0.76rem; color:var(--text-secondary);">${f.size_fmt}</span>
+                        </td>
+                        <td style="text-align:right;">
+                            <div style="display:inline-flex; gap:6px; align-items:center;">
+                                ${visorBtn}
+                                <a href="${targetUrl}" target="_blank" class="exp-btn-link" title="Abrir en pestaña nueva"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                <button type="button" class="exp-btn-link" onclick="copyToClipboard('${escapeAttr(f.rel_path)}')" title="Copiar ruta"><i class="fa-solid fa-copy"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            if (filtered.length > 250) {
+                tbody.innerHTML += `
+                    <tr>
+                        <td colspan="4" style="text-align:center; padding:12px; color:var(--text-muted); font-size:0.8rem; background:rgba(255,255,255,0.02);">
+                            Mostrando los primeros 250 archivos de ${filtered.length}. Usa el buscador para filtrar con mayor precisión.
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function renderVitalFocusView() {
+            const container = document.getElementById('vitalFocusContainer');
+            if (!container) return;
+            let data = localStorage.getItem("aicc_rueda_dimensions");
+            let dimensions = data ? JSON.parse(data) : defaultDimensions;
+
+            container.innerHTML = `
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    ${dimensions.map((d, i) => {
+                        const isCrit = d.score <= 5;
+                        const tool = toolMap[i] || { toolName: "Sondeo", link: "sondeo.html", text: "Diagnosticar" };
+                        return `
+                            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid ${isCrit ? 'rgba(244,63,94,0.3)' : 'var(--border)'}; border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+                                <div>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                        <span style="font-weight:700; color:#fff; font-size:0.95rem;">${d.icon} ${d.name}</span>
+                                        <span style="font-family:var(--font-mono); font-weight:800; font-size:0.85rem; color:${isCrit ? '#fb7185' : '#34d399'};">${d.score}/10</span>
+                                    </div>
+                                    <div style="height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; margin-bottom:10px;">
+                                        <div style="width:${d.score * 10}%; height:100%; background:${isCrit ? 'linear-gradient(90deg, #f43f5e, #fb7185)' : 'linear-gradient(90deg, #0d9488, #2dd4bf)'};"></div>
+                                    </div>
+                                    ${d.pain && d.pain !== 'Sin registrar' ? `<p style="font-size:0.78rem; color:#fb7185; margin-bottom:8px;"><strong>Dolor:</strong> "${escapeHtml(d.pain)}"</p>` : ''}
+                                    <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">${tool.text}</p>
+                                </div>
+                                <div style="display:flex; gap:8px; margin-top:12px;">
+                                    <button type="button" class="btn-preview-tool" style="flex:1; padding:6px 10px; font-size:0.75rem;" onclick="openAppPreview('${tool.link}', '${tool.toolName}')">
+                                        <i class="fa-solid fa-eye"></i> Previsualizar
+                                    </button>
+                                    <a href="${tool.link}" class="btn-launch-tool" style="padding:6px 10px; font-size:0.75rem;">
+                                        Abrir &rarr;
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        // Visor Integrado Universal (Live In-App Previewer)
+        function openAppPreview(url, title, category, path, size) {
+            const modal = document.getElementById("appPreviewModal");
+            const iframe = document.getElementById("previewIframe");
+            const docViewer = document.getElementById("previewDocViewer");
+            const titleEl = document.getElementById("previewTitle");
+            const urlBadge = document.getElementById("previewUrlBadge");
+            const extLink = document.getElementById("previewExternalLink");
+            const viewportControls = document.getElementById("viewportControlsSuite");
+
+            titleEl.textContent = title || "Aplicación";
+            urlBadge.textContent = path || url;
+            extLink.href = url;
+
+            const isMd = url.endsWith('.md') || url.endsWith('.markdown') || category === 'md';
+            const isJson = url.endsWith('.json') || category === 'json';
+            const isImage = /\.(png|jpe?g|svg|webp|gif)$/i.test(url) || category === 'media';
+            const isCode = /\.(py|js|css)$/i.test(url) || category === 'code';
+
+            if (isMd) {
+                if (viewportControls) viewportControls.style.display = 'none';
+                iframe.style.display = 'none';
+                iframe.src = 'about:blank';
+                docViewer.style.display = 'block';
+                docViewer.innerHTML = `<div style="color:var(--text-muted); padding:2rem;"><i class="fa-solid fa-spinner fa-spin"></i> Cargando documento markdown...</div>`;
+                fetch(url)
+                    .then(res => res.text())
+                    .then(text => {
+                        if (window.marked) {
+                            docViewer.innerHTML = marked.parse(text);
+                        } else {
+                            docViewer.innerHTML = `<pre><code>${escapeHtml(text)}</code></pre>`;
+                        }
+                    })
+                    .catch(err => {
+                        docViewer.innerHTML = `<div style="color:#fb7185; padding:2rem;">Error al cargar archivo: ${err.message}</div>`;
+                    });
+            } else if (isJson) {
+                if (viewportControls) viewportControls.style.display = 'none';
+                iframe.style.display = 'none';
+                iframe.src = 'about:blank';
+                docViewer.style.display = 'block';
+                docViewer.innerHTML = `<div style="color:var(--text-muted); padding:2rem;"><i class="fa-solid fa-spinner fa-spin"></i> Cargando JSON...</div>`;
+                fetch(url)
+                    .then(res => res.json())
+                    .then(obj => {
+                        docViewer.innerHTML = `<pre style="background:#0f172a; padding:1.5rem; border-radius:8px; border:1px solid var(--border); overflow-x:auto; font-family:var(--font-mono); font-size:0.85rem; color:#facc15;"><code>${escapeHtml(JSON.stringify(obj, null, 2))}</code></pre>`;
+                    })
+                    .catch(err => {
+                        docViewer.innerHTML = `<div style="color:#fb7185; padding:2rem;">Error al procesar JSON: ${err.message}</div>`;
+                    });
+            } else if (isImage) {
+                if (viewportControls) viewportControls.style.display = 'none';
+                iframe.style.display = 'none';
+                iframe.src = 'about:blank';
+                docViewer.style.display = 'block';
+                docViewer.innerHTML = `<div style="padding:2rem; text-align:center;"><img src="${url}" class="preview-image-view" alt="${escapeHtml(title)}" style="max-width:90%; max-height:80vh; object-fit:contain; border-radius:8px;"><div style="margin-top:1rem; color:var(--text-muted); font-size:0.8rem; font-family:var(--font-mono);">${escapeHtml(path || url)} ${size ? '(' + size + ')' : ''}</div></div>`;
+            } else if (isCode) {
+                if (viewportControls) viewportControls.style.display = 'none';
+                iframe.style.display = 'none';
+                iframe.src = 'about:blank';
+                docViewer.style.display = 'block';
+                docViewer.innerHTML = `<div style="color:var(--text-muted); padding:2rem;"><i class="fa-solid fa-spinner fa-spin"></i> Cargando código...</div>`;
+                fetch(url)
+                    .then(res => res.text())
+                    .then(text => {
+                        docViewer.innerHTML = `<pre style="background:#0f172a; padding:1.5rem; border-radius:8px; border:1px solid var(--border); overflow-x:auto; font-family:var(--font-mono); font-size:0.85rem; color:#e2e8f0;"><code>${escapeHtml(text)}</code></pre>`;
+                    })
+                    .catch(err => {
+                        docViewer.innerHTML = `<div style="color:#fb7185; padding:2rem;">Error al cargar código: ${err.message}</div>`;
+                    });
+            } else {
+                if (viewportControls) viewportControls.style.display = 'flex';
+                docViewer.style.display = 'none';
+                docViewer.innerHTML = '';
+                iframe.style.display = 'block';
+                iframe.src = url;
+            }
+
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeAppPreview() {
+            const modal = document.getElementById("appPreviewModal");
+            const iframe = document.getElementById("previewIframe");
+            const docViewer = document.getElementById("previewDocViewer");
+            modal.classList.remove("active");
+            iframe.src = "about:blank";
+            if (docViewer) docViewer.innerHTML = "";
+            document.body.style.overflow = "";
+        }
+
+        function setPreviewViewport(mode) {
+            const iframe = document.getElementById("previewIframe");
+            const btnDesk = document.getElementById("btnModeDesktop");
+            const btnMob = document.getElementById("btnModeMobile");
+
+            if (mode === "mobile") {
+                iframe.classList.add("mobile-view");
+                btnMob.classList.add("active");
+                btnDesk.classList.remove("active");
+            } else {
+                iframe.classList.remove("mobile-view");
+                btnDesk.classList.add("active");
+                btnMob.classList.remove("active");
+            }
+        }
+
+        function reloadPreview() {
+            const iframe = document.getElementById("previewIframe");
+            if (iframe && iframe.src && iframe.src !== 'about:blank') {
+                const current = iframe.src;
+                iframe.src = "about:blank";
+                setTimeout(() => { iframe.src = current; }, 50);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✓ Ruta copiada al portapapeles: ' + text);
+            }).catch(err => {
+                console.error('Error al copiar:', err);
+            });
+        }
+
+        function escapeHtml(str) {
+            return (str || '').replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        function escapeAttr(str) {
+            return (str || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        // Cerrar modal al hacer clic en el backdrop
+        document.getElementById("appPreviewModal").addEventListener("click", (e) => {
+            if (e.target.id === "appPreviewModal") {
+                closeAppPreview();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadDashboardData();
+        });
     </script>
 </body>
 </html>
