@@ -679,7 +679,7 @@ function resetZumbaFilters() {
 
 // MODAL ADD / EDIT SONG
 function openAddSongModal() {
-    const modal = document.getElementById('modal-zumba-song-editor');
+    const modal = document.getElementById('modal-zumba-song-editor') || document.getElementById('modal-zumba-song');
     const titleElem = document.getElementById('zumba-modal-title');
     const songIdInput = document.getElementById('song-edit-id');
 
@@ -688,16 +688,18 @@ function openAddSongModal() {
     if (titleElem) titleElem.innerHTML = '<span>➕ Agregar Nueva Canción a la Biblioteca</span>';
     if (songIdInput) songIdInput.value = '';
 
-    document.getElementById('song-edit-title').value = '';
-    document.getElementById('song-edit-artist').value = '';
-    document.getElementById('song-edit-rhythm').value = 'merengue';
-    document.getElementById('song-edit-duration').value = '3:30';
-    document.getElementById('song-edit-bpm').value = '130';
-    document.getElementById('song-edit-intensity').value = '3';
-    document.getElementById('song-edit-status').value = 'mastered';
-    document.getElementById('song-edit-audio-source').value = 'hq_paypal';
-    document.getElementById('song-edit-url').value = '';
-    document.getElementById('song-edit-notes').value = '';
+    const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+    setVal('song-edit-title', '');
+    setVal('song-edit-artist', '');
+    setVal('song-edit-rhythm', 'merengue');
+    setVal('song-edit-duration', '3:30');
+    setVal('song-edit-bpm', '130');
+    setVal('song-edit-intensity', '3');
+    setVal('song-edit-status', 'mastered');
+    setVal('song-edit-audio-source', 'hq_paypal');
+    setVal('song-edit-audio', 'hq_paypal');
+    setVal('song-edit-url', '');
+    setVal('song-edit-notes', '');
 
     modal.classList.add('active');
 }
@@ -706,7 +708,7 @@ function openEditSongModal(songId) {
     const song = zumbaSongs.find(s => s.id === songId);
     if (!song) return;
 
-    const modal = document.getElementById('modal-zumba-song-editor');
+    const modal = document.getElementById('modal-zumba-song-editor') || document.getElementById('modal-zumba-song');
     const titleElem = document.getElementById('zumba-modal-title');
     const songIdInput = document.getElementById('song-edit-id');
 
@@ -715,22 +717,24 @@ function openEditSongModal(songId) {
     if (titleElem) titleElem.innerHTML = `<span>✏️ Editar Canción: ${song.title}</span>`;
     if (songIdInput) songIdInput.value = song.id;
 
-    document.getElementById('song-edit-title').value = song.title || '';
-    document.getElementById('song-edit-artist').value = song.artist || '';
-    document.getElementById('song-edit-rhythm').value = song.rhythm || 'merengue';
-    document.getElementById('song-edit-duration').value = song.duration || '3:30';
-    document.getElementById('song-edit-bpm').value = song.bpm || '';
-    document.getElementById('song-edit-intensity').value = song.intensity || 3;
-    document.getElementById('song-edit-status').value = song.status || 'mastered';
-    document.getElementById('song-edit-audio-source').value = song.audioSource || 'hq_paypal';
-    document.getElementById('song-edit-url').value = song.audioUrl || '';
-    document.getElementById('song-edit-notes').value = song.notes || '';
+    const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+    setVal('song-edit-title', song.title || '');
+    setVal('song-edit-artist', song.artist || '');
+    setVal('song-edit-rhythm', song.rhythm || 'merengue');
+    setVal('song-edit-duration', song.duration || '3:30');
+    setVal('song-edit-bpm', song.bpm || '');
+    setVal('song-edit-intensity', song.intensity || 3);
+    setVal('song-edit-status', song.status || 'mastered');
+    setVal('song-edit-audio-source', song.audioSource || 'hq_paypal');
+    setVal('song-edit-audio', song.audioSource || 'hq_paypal');
+    setVal('song-edit-url', song.audioUrl || '');
+    setVal('song-edit-notes', song.notes || '');
 
     modal.classList.add('active');
 }
 
 function closeZumbaSongModal() {
-    const modal = document.getElementById('modal-zumba-song-editor');
+    const modal = document.getElementById('modal-zumba-song-editor') || document.getElementById('modal-zumba-song');
     if (modal) modal.classList.remove('active');
 }
 
