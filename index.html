@@ -3337,54 +3337,36 @@
     }
 
     /* ── HERO VISUAL SHOWCASE & TESTIMONIAL BADGES ── */
-    .hero-showcase-container {
-      margin: 44px auto 0;
-      max-width: 960px;
-      position: relative;
-    }
-    .hero-device-frame {
-      background: #0c0c10;
+    .hero-quick-diagnostic {
+      margin: 36px auto 0;
+      max-width: 920px;
+      background: rgba(13, 13, 18, 0.95);
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(16, 185, 129, 0.12);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 26px 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(56, 189, 248, 0.08);
+      text-align: left;
     }
-    .hero-device-frame:hover {
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 50px rgba(16, 185, 129, 0.2);
-    }
-    .hero-device-topbar {
+    .hero-diag-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.22s ease;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      background: #14141a;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.75rem;
+      flex-direction: column;
     }
-    .hero-device-dots {
-      display: flex;
-      gap: 6px;
+    .hero-diag-btn:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
     }
-    .hero-device-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .hero-device-pill {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 3px 12px;
-      border-radius: 20px;
-      color: #94a3b8;
-      font-family: monospace;
-      font-size: 0.72rem;
-    }
-    .hero-device-img {
-      width: 100%;
-      height: auto;
-      display: block;
+    .hero-diag-btn.active {
+      background: rgba(56, 189, 248, 0.1) !important;
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
     }
     .hero-proof-grid {
       display: grid;
@@ -3667,24 +3649,77 @@
       <span>🤝 <b>Acompañamiento 1 a 1 Directo</b></span>
     </p>
 
-    <!-- SHOWCASE VISUAL DEL SOFTWARE EN EL HERO -->
-    <div class="hero-showcase-container">
-      <div class="hero-device-frame">
-        <div class="hero-device-topbar">
-          <div class="hero-device-dots">
-            <span class="hero-device-dot" style="background:#ef4444;"></span>
-            <span class="hero-device-dot" style="background:#f59e0b;"></span>
-            <span class="hero-device-dot" style="background:#10b981;"></span>
+    <!-- MICRO-POSICIONAMIENTO DE CONVERGENCIA EN EL HERO -->
+    <div style="margin: 24px auto 0; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; font-size: 0.78rem; color: #94a3b8;">
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
+        ✕ Cero reportes fríos
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
+        ✕ Cero humo de coaching
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
+        ✕ Cero apps complicadas
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); color:#34d399; font-weight:700; padding:5px 12px; border-radius:30px;">
+        ⚖️ Justo al Centro: Tu Sistema Operativo a Medida
+      </span>
+    </div>
+
+    <!-- WIDGET DE AUTO-DIAGNÓSTICO TÁCTIL EXPRESS (HERO) -->
+    <div class="hero-quick-diagnostic">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.25rem;">⚡</span>
+          <span style="font-size: 0.76rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em;">
+            AUTO-DIAGNÓSTICO EXPRESS EN 1 CLIC
+          </span>
+        </div>
+        <span style="font-size: 0.74rem; color: #94a3b8; font-family: monospace;">Toca tu caso para medir tu fuga semanal ➔</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;" id="hero-diagnostic-buttons">
+        <button type="button" class="hero-diag-btn active" onclick="selectHeroDiag(this, 'tiempo')">
+          <div style="font-size: 1.4rem; margin-bottom: 6px;">⏳</div>
+          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Fuga de Tiempo</div>
+          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Se me va el día apagando urgencias ajenas y no me queda tiempo para mí.»</div>
+        </button>
+
+        <button type="button" class="hero-diag-btn" onclick="selectHeroDiag(this, 'foco')">
+          <div style="font-size: 1.4rem; margin-bottom: 6px;">🧠</div>
+          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Parálisis Multitarea</div>
+          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Tengo 20 frentes abiertos en la cabeza, salto de chat en chat y no cierro nada.»</div>
+        </button>
+
+        <button type="button" class="hero-diag-btn" onclick="selectHeroDiag(this, 'desconexion')">
+          <div style="font-size: 1.4rem; margin-bottom: 6px;">🌙</div>
+          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Resaca Laboral</div>
+          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Cierro la pantalla pero mi cabeza sigue trabajando en la cena y en la cama.»</div>
+        </button>
+      </div>
+
+      <!-- RESULTADO DINÁMICO DEL HERO DIAGNÓSTICO -->
+      <div id="hero-diag-result" style="margin-top: 16px; background: rgba(0,0,0,0.6); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+        <div style="max-width: 560px;">
+          <div style="font-size: 0.74rem; font-weight: 800; color: #f59e0b; text-transform: uppercase; margin-bottom: 4px;" id="hero-diag-badge">
+            🚨 FUGA ESTIMADA: 15 A 20 HORAS / SEMANA
           </div>
-          <div class="hero-device-pill">
-            <span>🔒</span> administracionhumana.com/plan-de-vuelo-2.0
+          <div style="font-size: 0.88rem; color: #ffffff; font-weight: 700; margin-bottom: 4px;" id="hero-diag-title">
+            Tu mayor fuga es la dispersión por urgencias ajenas no filtradas.
           </div>
-          <div style="font-size:0.7rem; color:#10b981; font-weight:800; display:flex; align-items:center; gap:5px;">
-            <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10b981;"></span> TU SISTEMA PRIVADO EN VIVO
+          <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.45;" id="hero-diag-desc">
+            En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Mapeador 24H</i> para blindar tus <b>Bloques de Oro</b> personales antes de que el mundo te los robe.
           </div>
         </div>
-        <img src="assets/img/plan_vuelo/servicio_entregable_preview.png" alt="Plan de Vuelo 2.0 en Celular, Desktop y Cuadernillo Físico" class="hero-device-img" />
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20mayor%20fuga%20es%20el%20Tiempo%20(apagafuegos)." id="hero-diag-wsp" target="_blank" class="btn-whatsapp-pulse" style="font-size: 0.82rem; padding: 10px 18px; text-decoration: none; border-radius: 50px;">
+            💬 Conversar con Diego →
+          </a>
+          <button type="button" onclick="document.getElementById('el-problema-real').scrollIntoView({behavior:'smooth', block:'start'});" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 16px; border-radius: 50px; cursor: pointer;">
+            Conocer la Solución ↓
+          </button>
+        </div>
       </div>
+    </div>
 
       <!-- PRUEBA SOCIAL INMEDIATA (ANCLAJE HUMANO) -->
       <div class="hero-proof-grid">
@@ -3719,6 +3754,48 @@
     </div>
   </div>
 </section>
+
+  <!-- SECCIÓN 02: EL PROBLEMA REAL (ESPEJO Y ALIVIO INMEDIATO) -->
+  <section class="problem" id="el-problema-real">
+    <div class="container">
+      <div class="problem-grid">
+        <div>
+          <span class="section-tag">El problema real</span>
+          <h2 class="section-title">No te falta disciplina.<br />Te falta la herramienta correcta.</h2>
+          <div class="divider"></div>
+          <ul class="problem-list">
+            <li>
+              <span class="icon">🌀</span>
+              <span>Sientes que trabajas todo el día pero no avanzas nada concreto.</span>
+            </li>
+            <li>
+              <span class="icon">🧠</span>
+              <span>Tu cabeza tiene 50 pestañas abiertas y no puedes cerrar ninguna.</span>
+            </li>
+            <li>
+              <span class="icon">🔥</span>
+              <span>Pasas el tiempo apagando incendios y no construyendo lo que importa.</span>
+            </li>
+            <li>
+              <span class="icon">😔</span>
+              <span>Terminas el día agotado y con la sensación de que nada avanzó.</span>
+            </li>
+            <li>
+              <span class="icon">🎯</span>
+              <span>Tienes metas, pero no sabes cómo traducirlas en pasos reales y sostenibles.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="problem-right">
+          <blockquote>
+            "El problema no eres tú. Es que nadie te enseñó a gestionar tu vida como lo que es: el proyecto más importante que tendrás."
+          </blockquote>
+          <cite>— Administración Humana</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="market-quadrant-section" id="cuadrante-mercado">
   <div class="container">
     <div style="text-align:center; max-width:860px; margin:0 auto 48px auto;">
@@ -3945,45 +4022,6 @@
       </div>
     </div>
 
-  </div>
-</section>
-  <section class="problem">
-  <div class="container">
-    <div class="problem-grid">
-      <div>
-        <span class="section-tag">El problema real</span>
-        <h2 class="section-title">No te falta disciplina.<br />Te falta la herramienta correcta.</h2>
-        <div class="divider"></div>
-        <ul class="problem-list">
-          <li>
-            <span class="icon">🌀</span>
-            <span>Sientes que trabajas todo el día pero no avanzas nada concreto.</span>
-          </li>
-          <li>
-            <span class="icon">🧠</span>
-            <span>Tu cabeza tiene 50 pestañas abiertas y no puedes cerrar ninguna.</span>
-          </li>
-          <li>
-            <span class="icon">🔥</span>
-            <span>Pasas el tiempo apagando incendios y no construyendo lo que importa.</span>
-          </li>
-          <li>
-            <span class="icon">😔</span>
-            <span>Terminas el día agotado y con la sensación de que nada avanzó.</span>
-          </li>
-          <li>
-            <span class="icon">🎯</span>
-            <span>Tienes metas, pero no sabes cómo traducirlas en pasos reales y sostenibles.</span>
-          </li>
-        </ul>
-      </div>
-      <div class="problem-right">
-        <blockquote>
-          "El problema no eres tú. Es que nadie te enseñó a gestionar tu vida como lo que es: el proyecto más importante que tendrás."
-        </blockquote>
-        <cite>— Administración Humana</cite>
-      </div>
-    </div>
   </div>
 </section>
   <section class="differentiation-section" id="diferenciacion-psicologia" style="background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 80px 0;">
@@ -7262,6 +7300,46 @@ Quiero coordinar mi Sesión de Despegue ($35.000 CLP).`;
       if (btnSim) btnSim.classList.remove('active');
       if (viewSim) viewSim.style.display = 'none';
       if (viewImg) viewImg.style.display = 'block';
+    }
+  };
+
+  // ── SELECCIÓN DEL AUTO-DIAGNÓSTICO EN EL HERO ──
+  window.selectHeroDiag = function(btn, type) {
+    const parent = document.getElementById('hero-diagnostic-buttons');
+    if (parent) {
+      parent.querySelectorAll('.hero-diag-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        b.style.background = 'rgba(255, 255, 255, 0.03)';
+      });
+    }
+    btn.classList.add('active');
+    btn.style.borderColor = '#38bdf8';
+    btn.style.background = 'rgba(56, 189, 248, 0.1)';
+
+    const badge = document.getElementById('hero-diag-badge');
+    const title = document.getElementById('hero-diag-title');
+    const desc = document.getElementById('hero-diag-desc');
+    const wsp = document.getElementById('hero-diag-wsp');
+
+    if (type === 'tiempo') {
+      badge.innerText = '🚨 FUGA ESTIMADA: 15 A 20 HORAS / SEMANA';
+      badge.style.color = '#f59e0b';
+      title.innerText = 'Tu mayor fuga es la dispersión por urgencias ajenas no filtradas.';
+      desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Mapeador 24H</i> para blindar tus <b>Bloques de Oro</b> personales antes de que el mundo te los robe.';
+      if (wsp) wsp.href = 'https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20mayor%20fuga%20es%20el%20Tiempo%20(apagafuegos).';
+    } else if (type === 'foco') {
+      badge.innerText = '⚡ PARÁLISIS POR SOBRECARGA: 20 FRENTES ABIERTOS';
+      badge.style.color = '#38bdf8';
+      title.innerText = 'Tu corteza prefrontal está colapsada por el cambio continuo de tareas (Task Switching).';
+      desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Tablero Kanban WIP 2</i>: el software bloquea físicamente abrir un tercer frente hasta cerrar o pausar los dos activos.';
+      if (wsp) wsp.href = 'https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20mayor%20fuga%20es%20la%20Par%C3%A1lisis%20por%20Multitarea.';
+    } else if (type === 'desconexion') {
+      badge.innerText = '🌙 RESACA LABORAL & RUMIACIÓN: SUEÑO NO REPARADOR';
+      badge.style.color = '#c084fc';
+      title.innerText = 'Te paras del escritorio pero tu mente sigue trabajando en la cena y en la almohada.';
+      desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Cierre Consciente (Shutdown)</i>: un ritual táctil de 2 minutos para vaciar tu memoria de trabajo y declarar formalmente el fin del día.';
+      if (wsp) wsp.href = 'https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20problema%20es%20la%20Resaca%20Laboral%20(no%20puedo%20desconectar).';
     }
   };
 
