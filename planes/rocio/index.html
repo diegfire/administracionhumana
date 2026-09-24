@@ -1714,6 +1714,8 @@ Por favor genera:
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
         <!-- TAB CONTENT: GUIONES ASÍNCRONOS WHATSAPP (MOD-14) -->
         <div id="tab-guiones-wsp" class="tab-content">
@@ -3033,18 +3035,37 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                 }
             }
         ];
+        window.ROCIO_KANBAN_DEFAULT = {
+            doing: [
+                {"id": "r1", "col": "doing", "text": "UST: Coordinar materiales y jornada de pintura de lienzos", "tag": "UST"},
+                {"id": "r2", "col": "doing", "text": "UST: Averiguar y cotizar partituras con Benjamín", "tag": "UST"}
+            ],
+            todo: [
+                {"id": "r3", "col": "todo", "text": "Entregar a Diego modelos de parlante y micrófono", "tag": "Canto"},
+                {"id": "r4", "col": "todo", "text": "Diseñar flujo de creaciones musicales en estudio de grabación", "tag": "Canto"},
+                {"id": "r5", "col": "todo", "text": "Cotizar curso presencial de piedras calientes (Concepción)", "tag": "Puya"},
+                {"id": "r6", "col": "todo", "text": "Comprar maletín térmico seco y set piedras basálticas", "tag": "Puya"},
+                {"id": "r7", "col": "todo", "text": "Configurar WhatsApp Business para Puya Masajes", "tag": "Puya"},
+                {"id": "r8", "col": "todo", "text": "Contactar a Vicente para audio de práctica", "tag": "Canto"},
+                {"id": "r9", "col": "todo", "text": "Fijar reunión de coordinación con Charli (duetos 2x1)", "tag": "Puya"},
+                {"id": "r10", "col": "todo", "text": "Diseñar propuesta Plan Terapéutico 1 Mes (4 sesiones)", "tag": "Puya"}
+            ],
+            done: [
+                {"id": "r11", "col": "done", "text": "Delegar formalmente paseo diario de Nieve a papá", "tag": "Hogar"}
+            ]
+        };
         window.CLIENT_KANBAN_DEFAULT = [
-            {"id": "r1", "text": "UST: Coordinar materiales y jornada de pintura de lienzos", "tag": "UST"},
-            {"id": "r2", "text": "UST: Averiguar y cotizar partituras con Benjamín", "tag": "UST"},
-            {"id": "r3", "text": "Entregar a Diego modelos de parlante y micrófono", "tag": "Canto"},
-            {"id": "r4", "text": "Diseñar flujo de creaciones musicales en estudio de grabación", "tag": "Canto"},
-            {"id": "r5", "text": "Cotizar curso presencial de piedras calientes (Concepción)", "tag": "Puya"},
-            {"id": "r6", "text": "Comprar maletín térmico seco y set piedras basálticas", "tag": "Puya"},
-            {"id": "r7", "text": "Configurar WhatsApp Business para Puya Masajes", "tag": "Puya"},
-            {"id": "r8", "text": "Contactar a Vicente para audio de práctica", "tag": "Canto"},
-            {"id": "r9", "text": "Fijar reunión de coordinación con Charli (duetos 2x1)", "tag": "Puya"},
-            {"id": "r10", "text": "Diseñar propuesta Plan Terapéutico 1 Mes (4 sesiones)", "tag": "Puya"},
-            {"id": "r11", "text": "Delegar formalmente paseo diario de Nieve a papá", "tag": "Hogar"}
+            {"id": "r1", "col": "doing", "text": "UST: Coordinar materiales y jornada de pintura de lienzos", "tag": "UST"},
+            {"id": "r2", "col": "doing", "text": "UST: Averiguar y cotizar partituras con Benjamín", "tag": "UST"},
+            {"id": "r3", "col": "todo", "text": "Entregar a Diego modelos de parlante y micrófono", "tag": "Canto"},
+            {"id": "r4", "col": "todo", "text": "Diseñar flujo de creaciones musicales en estudio de grabación", "tag": "Canto"},
+            {"id": "r5", "col": "todo", "text": "Cotizar curso presencial de piedras calientes (Concepción)", "tag": "Puya"},
+            {"id": "r6", "col": "todo", "text": "Comprar maletín térmico seco y set piedras basálticas", "tag": "Puya"},
+            {"id": "r7", "col": "todo", "text": "Configurar WhatsApp Business para Puya Masajes", "tag": "Puya"},
+            {"id": "r8", "col": "todo", "text": "Contactar a Vicente para audio de práctica", "tag": "Canto"},
+            {"id": "r9", "col": "todo", "text": "Fijar reunión de coordinación con Charli (duetos 2x1)", "tag": "Puya"},
+            {"id": "r10", "col": "todo", "text": "Diseñar propuesta Plan Terapéutico 1 Mes (4 sesiones)", "tag": "Puya"},
+            {"id": "r11", "col": "done", "text": "Delegar formalmente paseo diario de Nieve a papá", "tag": "Hogar"}
         ];
 
         // =========================================================

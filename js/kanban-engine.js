@@ -13,11 +13,18 @@ function initKanbanEngine(config) {
         { id: "k1", col: "todo", text: "Definir 3 prioridades del día", tag: "Foco" },
         { id: "k2", col: "doing", text: "1. Ejecutar tarea principal de 25 min", tag: "En Foco" },
         { id: "k3", col: "done", text: "Vaciado mental matutino", tag: "Victoria" }
-    ]));
+    ])).map((t, idx) => ({ ...t, col: t.col || (idx < 2 ? "doing" : "todo") }));
 
     const saved = localStorage.getItem(`${kanbanStorageKey}_tasks_v2`);
     if (saved) {
-        try { kanbanTaskList = JSON.parse(saved); } catch(e) { kanbanTaskList = JSON.parse(JSON.stringify(defaultKanbanTaskList)); }
+        try {
+            const parsed = JSON.parse(saved);
+            kanbanTaskList = (Array.isArray(parsed) && parsed.length > 0)
+                ? parsed.map((t, idx) => ({ ...t, col: t.col || (idx < 2 ? "doing" : "todo") }))
+                : JSON.parse(JSON.stringify(defaultKanbanTaskList));
+        } catch(e) {
+            kanbanTaskList = JSON.parse(JSON.stringify(defaultKanbanTaskList));
+        }
     } else {
         kanbanTaskList = JSON.parse(JSON.stringify(defaultKanbanTaskList));
     }
@@ -151,7 +158,10 @@ document.addEventListener("DOMContentLoaded", () => {
             window.ROCIO_KANBAN_DEFAULT.done.forEach(t => defaultTasks.push({ id: t.id, col: "done", text: t.text, tag: t.tag }));
         }
     } else if (window.CLIENT_KANBAN_DEFAULT) {
-        defaultTasks = window.CLIENT_KANBAN_DEFAULT;
+        defaultTasks = window.CLIENT_KANBAN_DEFAULT.map((t, idx) => ({
+            ...t,
+            col: t.col || (idx < 2 ? "doing" : "todo")
+        }));
     }
 
     initKanbanEngine({
