@@ -2717,6 +2717,121 @@
       border-color: #38bdf8;
     }
 
+  
+    /* ── SHOWCASE DEL PLAN DE VUELO & PRODUCTO REAL ── */
+    .plan-showcase-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      margin-top: 32px;
+    }
+    .plan-showcase-item {
+      background: #0b0b0e;
+      border: 1px solid #24242a;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 32px;
+      align-items: center;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .plan-showcase-item:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.85);
+    }
+    .plan-showcase-item.reverse {
+      grid-template-columns: 1fr 1.15fr;
+    }
+    .plan-showcase-img-wrap {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+      background: #000;
+    }
+    .plan-showcase-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .plan-showcase-item:hover .plan-showcase-img {
+      transform: scale(1.02);
+    }
+    .plan-showcase-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .plan-showcase-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .plan-showcase-desc {
+      font-size: 0.88rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .plan-showcase-benefit {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid #10b981;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      color: #34d399;
+      font-weight: 600;
+    }
+    .btn-whatsapp-pulse {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff !important;
+      font-weight: 800;
+      font-size: 0.94rem;
+      padding: 14px 26px;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.45);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+    .btn-whatsapp-pulse:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.7);
+      background: linear-gradient(135deg, #059669, #047857);
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.35); }
+      50% { box-shadow: 0 0 32px rgba(16, 185, 129, 0.6); }
+    }
+
+    @media (max-width: 900px) {
+      .plan-showcase-item, .plan-showcase-item.reverse {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3421,1494 +3536,417 @@
 <!-- VISTA 2: MINI-SONDEOS FUNCIONALES & SIMULADORES -->
 <div id="view-sondeos" class="platform-view">
   
-<!-- MÓDULO INTERACTIVO DE MINI-SONDEOS FUNCIONALES (CAPTACIÓN ACTIVA) -->
-<div class="container" style="padding-top: 40px; margin-bottom: 20px;">
-  <div style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
-    <span style="background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 4px 14px; border-radius: 50px; text-transform: uppercase;">
-      ⚡ Diagnóstico Operativo en 60 Segundos
-    </span>
-    <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: #fff; margin-top: 12px;">
-      Elige tu Cuello de Botella Principal
-    </h2>
-    <p style="font-size: 0.92rem; color: #a1a1aa; margin-top: 8px;">
-      Toca una opción en cada área para estimar tu fuga semanal y generar tu <b>Pre-Diagnóstico Personalizado</b> para conversar directamente con Diego:
-    </p>
-  </div>
-
-  <div class="mini-sondeo-grid">
-    <!-- Test 1: Fugas de Tiempo -->
-    <div class="mini-sondeo-card">
-      <div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-size:1.6rem;">⏳</span>
-          <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área: Tiempo</span>
-        </div>
-        <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">1. Fugas & Apagafuegos</h4>
-        <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuánto tiempo se te va atendiendo urgencias ajenas e interrupciones?</p>
-      </div>
-      <div>
-        <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="0.5" data-label="Bajo: 1-2 interrupciones" onclick="selectMiniSondeoOption(this)">
-          <span>Bajo: 1-2 interrupciones diarias</span>
-          <span style="color:#10b981; font-weight:800;">~0.5h</span>
-        </button>
-        <button class="mini-sondeo-opt-btn active" data-group="tiempo" data-val="2.5" data-label="Medio: 3-5 urgencias ajenas" onclick="selectMiniSondeoOption(this)">
-          <span>Medio: 3-5 urgencias ajenas diarias</span>
-          <span style="color:#f59e0b; font-weight:800;">~2.5h</span>
-        </button>
-        <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="4.5" data-label="Crítico: Apago fuegos todo el día" onclick="selectMiniSondeoOption(this)">
-          <span>Crítico: Apago fuegos todo el día</span>
-          <span style="color:#ef4444; font-weight:800;">~4.5h</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Test 2: Multitarea y Foco -->
-    <div class="mini-sondeo-card">
-      <div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-size:1.6rem;">🌪️</span>
-          <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área: Foco</span>
-        </div>
-        <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">2. Multitarea & Dispersión</h4>
-        <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuántos proyectos o frentes abiertos tienes sin terminar?</p>
-      </div>
-      <div>
-        <button class="mini-sondeo-opt-btn" data-group="foco" data-val="0" data-label="Bajo: 1-2 frentes claros" onclick="selectMiniSondeoOption(this)">
-          <span>Bajo: 1-2 frentes con tracción</span>
-          <span style="color:#10b981; font-weight:800;">Orden</span>
-        </button>
-        <button class="mini-sondeo-opt-btn active" data-group="foco" data-val="1.5" data-label="Medio: 4-6 frentes a la vez" onclick="selectMiniSondeoOption(this)">
-          <span>Medio: 4-6 frentes a la vez</span>
-          <span style="color:#f59e0b; font-weight:800;">Dispersión</span>
-        </button>
-        <button class="mini-sondeo-opt-btn" data-group="foco" data-val="3.0" data-label="Crítico: Caos de pestañas y notas" onclick="selectMiniSondeoOption(this)">
-          <span>Crítico: Caos de notas y pendientes</span>
-          <span style="color:#ef4444; font-weight:800;">Saturación</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Test 3: Tarifas & Finanzas -->
-    <div class="mini-sondeo-card">
-      <div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-size:1.6rem;">💸</span>
-          <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área: Finanzas</span>
-        </div>
-        <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">3. Tarifas & Desgaste</h4>
-        <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Sientes que lo que ganas compensa el esfuerzo y las horas que pones?</p>
-      </div>
-      <div>
-        <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="0" data-label="Equilibrado: Cobro bien por mi hora" onclick="selectMiniSondeoOption(this)">
-          <span>Equilibrado: Margen saludable</span>
-          <span style="color:#10b981; font-weight:800;">Sostenible</span>
-        </button>
-        <button class="mini-sondeo-opt-btn active" data-group="finanzas" data-val="1.5" data-label="Desgaste: Trabajo mucho y no rinde" onclick="selectMiniSondeoOption(this)">
-          <span>Desgaste: Trabajo mucho y no rinde</span>
-          <span style="color:#f59e0b; font-weight:800;">Fricción</span>
-        </button>
-        <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="3.0" data-label="Crítico: Regalo horas extras" onclick="selectMiniSondeoOption(this)">
-          <span>Peligro: Regalo horas por cobrar suelto</span>
-          <span style="color:#ef4444; font-weight:800;">Erosión</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Test 4: Sobrecarga Mental -->
-    <div class="mini-sondeo-card">
-      <div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-size:1.6rem;">🧠</span>
-          <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área: Energía</span>
-        </div>
-        <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">4. Cierre de Jornada</h4>
-        <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cómo termina tu cabeza al terminar de trabajar o al irte a dormir?</p>
-      </div>
-      <div>
-        <button class="mini-sondeo-opt-btn" data-group="energia" data-val="0" data-label="Tranquilo: Desconecto sin culpa" onclick="selectMiniSondeoOption(this)">
-          <span>Tranquilo: Desconecto sin culpa</span>
-          <span style="color:#10b981; font-weight:800;">Descanso</span>
-        </button>
-        <button class="mini-sondeo-opt-btn active" data-group="energia" data-val="1.5" data-label="Resaca: Repaso pendientes mentalmente" onclick="selectMiniSondeoOption(this)">
-          <span>Resaca: Repaso pendientes de noche</span>
-          <span style="color:#f59e0b; font-weight:800;">Sobrecarga</span>
-        </button>
-        <button class="mini-sondeo-opt-btn" data-group="energia" data-val="3.0" data-label="Burnout: Angustia e insomnio" onclick="selectMiniSondeoOption(this)">
-          <span>Burnout: Insomnio o culpa por parar</span>
-          <span style="color:#ef4444; font-weight:800;">Alerta</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TARJETA DINÁMICA DE PRE-DIAGNÓSTICO -->
-  <div style="margin-top: 30px; background: #0c0c0f; border: 1px solid #333; border-radius: var(--radius-lg); padding: 28px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;" id="mini-sondeo-result-box">
-    <div>
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-        <span id="badge-urgencia" style="background:#f59e0b; color:#000; font-size:0.75rem; font-weight:800; padding:3px 10px; border-radius:50px; text-transform:uppercase;">
-          ⚠️ Nivel de Alerta: Moderado
-        </span>
-        <span style="font-size:0.82rem; color:#aaa;" id="text-fuga-estimada">Fuga estimada: <b>7.0 horas / semana</b></span>
-      </div>
-      <h3 style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800; color:#fff;" id="text-diagnostico-titulo">
-        Tu sistema está perdiendo energía en urgencias ajenas y dispersión
-      </h3>
-      <p style="font-size:0.86rem; color:#a1a1aa; margin-top:6px;" id="text-modulos-sugeridos">
-        Módulos recomendados para tu caso: <b>MOD-06 (Mapeador 24H)</b>, <b>MOD-03 (Límite WIP 2 Tareas)</b> y <b>MOD-08 (Finanzas 50/30/20)</b>.
+  <div class="container" style="padding-top: 40px; padding-bottom: 60px;">
+    <!-- CABECERA DE ALTO IMPACTO Y CONVERSIÓN -->
+    <div style="text-align: center; max-width: 780px; margin: 0 auto 32px;">
+      <span style="background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.06em;">
+        ⚡ Diagnóstico Operativo en 30 Segundos • Vía WhatsApp
+      </span>
+      <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 800; color: #fff; margin-top: 14px; line-height: 1.25;">
+        Identifica tu Fuga Principal y Conversa tu Diagnóstico con Diego
+      </h2>
+      <p style="font-size: 0.92rem; color: #a1a1aa; margin-top: 10px; line-height: 1.55;">
+        Toca cómo vives hoy cada una de las 4 áreas prácticas. El sistema calculará en tiempo real tu fuga estimada de horas y te generará un mensaje listo para enviar en 1 clic a Diego:
       </p>
-    </div>
-    <div style="text-align: right; min-width: 250px;">
-      <a id="btn-whatsapp-mini-sondeo" href="#" target="_blank" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; border:none; box-shadow:0 0 20px rgba(16,185,129,0.4); font-weight:800; font-size:0.9rem; padding:12px 22px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; border-radius:50px;">
-        <span>📲</span> Enviar Pre-Diagnóstico a Diego
-      </a>
-      <div style="font-size:0.72rem; color:#777; margin-top:6px;">Respuesta directa por WhatsApp sin compromiso</div>
-    </div>
-  </div>
-</div>
 
-  <section class="simulator-section" id="simulador-impacto" style="padding: 40px 0 60px; background: radial-gradient(circle at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 70%);">
-  <div class="container">
-    <div class="sim-container">
-      <div class="sim-header">
+      <!-- CAMPO OPCIONAL DE NOMBRE / PROFESIÓN PARA CERO FRICCIÓN -->
+      <div style="margin-top: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); border-radius: 50px; padding: 6px 18px; display: inline-flex; align-items: center; gap: 10px; max-width: 440px; width: 100%;">
+        <span style="font-size: 1.1rem;">👤</span>
+        <input 
+          type="text" 
+          id="mini-sondeo-user-name" 
+          placeholder="Tu Nombre o Profesión (Opcional, ej: Rocío - Terapeuta)" 
+          oninput="window.updateMiniSondeoResults()" 
+          style="background: transparent; border: none; outline: none; color: #ffffff; font-size: 0.85rem; width: 100%; font-family: var(--font-sans);"
+        />
+      </div>
+    </div>
+
+    <!-- GRILLA DE LAS 4 ÁREAS PRÁCTICAS -->
+    <div class="mini-sondeo-grid">
+      <!-- Test 1: Fugas de Tiempo -->
+      <div class="mini-sondeo-card">
         <div>
-          <span style="background:rgba(56,189,248,0.15); border:1px solid #38bdf8; color:#38bdf8; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px; text-transform:uppercase;">
-            ⚡ Calculadora de Fugas en Vivo • En Simple
-          </span>
-          <h2 style="font-family:var(--font-heading); font-size:clamp(1.4rem, 3vw, 1.85rem); font-weight:800; color:#fff; margin-top:8px;">
-            ¿Cuántas horas al día se te van sin darte cuenta?
-          </h2>
-          <p style="font-size:0.9rem; color:#a1a1aa; margin-top:6px; max-width:720px; line-height:1.5;">
-            El desorden, la multitarea y apagar fuegos ajenos te roban horas reales de vida todos los días. <b>Toca las situaciones que te pasan a ti</b> para sumar tu fuga diaria y ver qué herramienta simple la detiene:
-          </p>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:0.72rem; color:#888; text-transform:uppercase; font-weight:800; margin-bottom:4px;">Tu fuga calculada:</div>
-          <span id="sim-hours-badge" style="background:#ffffff; color:#000000; font-family:var(--font-heading); font-size:1.2rem; font-weight:800; padding:8px 20px; border-radius:50px; box-shadow:0 0 20px rgba(255,255,255,0.3); display:inline-block;">
-            4.0h / día perdidas
-          </span>
-        </div>
-      </div>
-
-      <!-- 5 EJEMPLOS PRÁCTICOS PARA IR SUMANDO -->
-      <div class="leak-grid" id="leak-cards-container">
-        
-        <!-- EJEMPLO 1: APAGAFUEGOS -->
-        <div class="leak-card active" data-hours="1.5" data-tool="Mapeador 24H" data-benefit="Blindar Bloques de Oro propios" onclick="window.toggleLeak(this)">
-          <div>
-            <div class="leak-top">
-              <div class="leak-checkbox">✓</div>
-              <div class="leak-title-wrap">
-                <div class="leak-title">🚨 1. Apagar incendios ajenos y mensajes sorpresa</div>
-                <span class="leak-hours-tag">~1.5 h / día</span>
-              </div>
-            </div>
-            <p class="leak-desc">
-              Saltas de un WhatsApp a una llamada o favor urgente, dejando botado lo tuyo para resolver lo que otros te tiran encima.
-            </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:1.6rem;">⏳</span>
+            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 1: Tiempo</span>
           </div>
-          <div class="leak-solution">
-            <span>🛡️</span>
-            <div><strong>Solución: Mapeador 24H</strong> • Blindamos tus Bloques de Oro para trabajar sin interrupciones.</div>
-          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Fugas & Apagafuegos</h4>
+          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuánto tiempo se te va resolviendo urgencias ajenas e interrupciones?</p>
         </div>
-
-        <!-- EJEMPLO 2: MULTITAREA -->
-        <div class="leak-card active" data-hours="1.5" data-tool="Tablero de Foco" data-benefit="Terminar lo que empiezas cada día" onclick="window.toggleLeak(this)">
-          <div>
-            <div class="leak-top">
-              <div class="leak-checkbox">✓</div>
-              <div class="leak-title-wrap">
-                <div class="leak-title">🤹 2. Multitarea y dispersión con 15 pestañas abiertas</div>
-                <span class="leak-hours-tag">~1.5 h / día</span>
-              </div>
-            </div>
-            <p class="leak-desc">
-              Empiezas 4 cosas a la vez, pasas de un pendiente a otro y al final del día la cabeza te arde pero sientes que no cerraste nada.
-            </p>
-          </div>
-          <div class="leak-solution">
-            <span>🎯</span>
-            <div><strong>Solución: Tablero de Foco</strong> • Máximo 2 tareas visibles para no colapsar tu mente.</div>
-          </div>
-        </div>
-
-        <!-- EJEMPLO 3: BUSCAR COSAS PERDIDAS -->
-        <div class="leak-card active" data-hours="1.0" data-tool="Limpieza 5S Digital" data-benefit="Cero estrés buscando archivos" onclick="window.toggleLeak(this)">
-          <div>
-            <div class="leak-top">
-              <div class="leak-checkbox">✓</div>
-              <div class="leak-title-wrap">
-                <div class="leak-title">🔍 3. Buscar archivos, notas y desorden en el computador</div>
-                <span class="leak-hours-tag">~1.0 h / día</span>
-              </div>
-            </div>
-            <p class="leak-desc">
-              No encuentras un documento, buscas contraseñas, pides cosas dos veces o tu escritorio de computador te da angustia.
-            </p>
-          </div>
-          <div class="leak-solution">
-            <span>🧹</span>
-            <div><strong>Solución: Limpieza 5S Digital</strong> • Un solo lugar claro para cada cosa.</div>
-          </div>
-        </div>
-
-        <!-- EJEMPLO 4: SOBREPENSAR / REDACTAR -->
-        <div class="leak-card" data-hours="1.0" data-tool="Vaciado Mental con IA" data-benefit="Ahorrar horas redactando textos" onclick="window.toggleLeak(this)">
-          <div>
-            <div class="leak-top">
-              <div class="leak-checkbox"></div>
-              <div class="leak-title-wrap">
-                <div class="leak-title">📝 4. Quedarte pegado sobrepensando o redactando</div>
-                <span class="leak-hours-tag">~1.0 h / día</span>
-              </div>
-            </div>
-            <p class="leak-desc">
-              Te bloqueas frente a la hoja en blanco, le das 20 vueltas a una propuesta o pierdes 45 minutos redactando un mensaje difícil.
-            </p>
-          </div>
-          <div class="leak-solution">
-            <span>🤖</span>
-            <div><strong>Solución: Vaciado Mental IA</strong> • Hablas por voz y te lo devuelve ordenado en 2 min.</div>
-          </div>
-        </div>
-
-        <!-- EJEMPLO 5: BATERÍA EN CERO Y CULPA NOCTURNA -->
-        <div class="leak-card" data-hours="1.5" data-tool="Pausas Conscientes y Cierre Diario" data-benefit="Dormir en paz y sin culpa" onclick="window.toggleLeak(this)">
-          <div>
-            <div class="leak-top">
-              <div class="leak-checkbox"></div>
-              <div class="leak-title-wrap">
-                <div class="leak-title">🔋 5. Batería mental en cero a media tarde y culpa nocturna</div>
-                <span class="leak-hours-tag">~1.5 h / día</span>
-              </div>
-            </div>
-            <p class="leak-desc">
-              A las 4 de la tarde no das más pero te exiges seguir rindiendo; en la noche te vas a la cama rumiando lo que no hiciste.
-            </p>
-          </div>
-          <div class="leak-solution">
-            <span>🌿</span>
-            <div><strong>Solución: Cierre Diario</strong> • Checklist de 2 minutos para apagar el día en paz.</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- PANEL DE RESULTADOS CALCULADOS (IMPACTO REAL) -->
-      <div class="sim-metrics-grid">
-        <div class="sim-metric-card">
-          <div class="sim-metric-val" id="sim-horas-dia" style="color:#f87171;">4.0h</div>
-          <div class="sim-metric-lbl">Fuga Diaria Estimada</div>
-          <div style="font-size:0.75rem; color:#fca5a5; font-weight:600; margin-top:4px;" id="sim-horas-sem">≈ 20h a la semana</div>
-        </div>
-        <div class="sim-metric-card">
-          <div class="sim-metric-val" id="sim-liberadas-mes" style="color:#38bdf8;">+80h</div>
-          <div class="sim-metric-lbl">Horas que Puedes Recuperar al Mes</div>
-          <div style="font-size:0.75rem; color:#38bdf8; font-weight:600; margin-top:4px;" id="sim-dias-equivalentes">≈ 3.3 días completos de vida</div>
-        </div>
-        <div class="sim-metric-card">
-          <div class="sim-metric-val" id="sim-dias-ano" style="color:#10b981;">≈ 40 días</div>
-          <div class="sim-metric-lbl">Tiempo de Vida al Año</div>
-          <div style="font-size:0.75rem; color:#10b981; font-weight:600; margin-top:4px;" id="sim-conciencia-msg">¡Más de 1 mes al año regalado al caos!</div>
-        </div>
-      </div>
-
-      <!-- HERRAMIENTAS ACTIVADAS EN VIVO -->
-      <div style="background:#0d0d12; border:1px solid #26262e; border-radius:12px; padding:18px 20px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-          <div style="font-size:0.8rem; font-weight:800; color:#cbd5e1; text-transform:uppercase;">
-            🛠️ Herramientas de tu Plan de Vuelo que detienen estas fugas:
-          </div>
-          <span style="font-size:0.74rem; color:#10b981; font-weight:700;">
-            ✓ Co-creadas 1 a 1 contigo en sesión
-          </span>
-        </div>
-        <div id="sim-modulos-list" style="display:flex; gap:10px; flex-wrap:wrap;">
-          <!-- Se llenan dinámicamente -->
-        </div>
-      </div>
-
-      <!-- CTA DIRECTO -->
-      <div style="text-align:center; margin-top:26px;">
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20c%C3%A1lculo%20en%20la%20p%C3%A1gina%20y%20estoy%20perdiendo%20horas%20al%20d%C3%ADa.%20Quiero%20coordinar%20mi%20Sesi%C3%B3n%20de%20Despegue." target="_blank" class="btn-primary" style="background:#38bdf8; color:#000; font-weight:800; padding:14px 34px; font-size:0.95rem; border-radius:50px; text-decoration:none; display:inline-flex; align-items:center; gap:10px; box-shadow:0 0 25px rgba(56,189,248,0.4); transition:all 0.2s;">
-          <span>⚡</span> Quiero recuperar mis horas con mi Plan de Vuelo →
-        </a>
-        <div style="margin-top:10px; font-size:0.8rem; color:#888;">
-          Sesión de Despegue 1 a 1 ($35.000 CLP) • 100% deducible si continúas tu proceso
-        </div>
-      </div>
-
-</section>
-</div>
-
-
-<!-- VISTA 3: CATÁLOGO DE SOLUCIONES & MÓDULOS -->
-<div id="view-modulos" class="platform-view">
-  <section class="compare-section" id="comparativa">
-  <div class="container">
-    <div style="text-align:center; max-width:760px; margin:0 auto 32px auto;">
-      <span class="section-tag">Transformación Operativa en 1 Vistazo</span>
-      <h2 class="section-title">El Antes vs. El Después: Devolver Horas Reales</h2>
-      <p class="section-sub" style="margin-top:8px;">
-        No te vendo recetas mágicas ni plantillas genéricas. Co-creo y te entrego software interactivo, metodología visual y herramientas tangibles diseñadas a tu medida para blindar tu tiempo y tu energía.
-      </p>
-    </div>
-    
-    <div class="bento-grid">
-      <!-- CARD ANTES (EL CAOS OPERATIVO) -->
-      <div class="bento-card bad">
         <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); color:#f87171; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px; text-transform:uppercase;">
-              🚨 ANTES: El Caos Habitual
-            </span>
-            <span style="color:#ef4444; font-weight:800; font-size:0.85rem;">~21h / sem perdidas</span>
-          </div>
-          <h3 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin-bottom:8px;">
-            Sobrecarga, Culpa & Fuga de Energía
-          </h3>
-          <p style="font-size:0.85rem; color:#a1a1aa; line-height:1.5; margin-bottom:16px;">
-            50 pestañas abiertas, sensación constante de ir tarde a todo, cobro por hora suelta y mente que no apaga de noche.
-          </p>
-
-          <!-- MINI MOCKUP VISUAL ANTES -->
-          <div style="background:#141414; border:1px dashed #ef4444; border-radius:8px; padding:12px; margin-bottom:14px;">
-            <div style="font-size:0.74rem; color:#ef4444; font-weight:700; margin-bottom:6px;">💥 Día fragmentado sin límites claros:</div>
-            <div class="mini-mapper-grid" style="border-color:#331111;">
-              <div class="mini-hour-box box-chaos" title="Apagafuegos">🔥</div>
-              <div class="mini-hour-box box-chaos" title="Interrupción">⚠️</div>
-              <div class="mini-hour-box box-work">💼</div>
-              <div class="mini-hour-box box-chaos" title="Dudas / Procrastinación">🌀</div>
-              <div class="mini-hour-box box-work">💼</div>
-              <div class="mini-hour-box box-chaos" title="Urgencia doméstica">🤯</div>
-              <div class="mini-hour-box box-chaos" title="Multitarea dispersa">🤹</div>
-              <div class="mini-hour-box box-work">💼</div>
-              <div class="mini-hour-box box-chaos" title="Culpa nocturna">🛌</div>
-              <div class="mini-hour-box box-chaos" title="Insomnio">🌙</div>
-              <div class="mini-hour-box box-sleep">💤</div>
-              <div class="mini-hour-box box-sleep">💤</div>
-            </div>
-            <div style="font-size:0.7rem; color:#888; text-align:center;">Multiples cambios de contexto = Fatiga y parálisis</div>
-          </div>
+          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="0.5" data-label="Bajo: 1-2 interrupciones" onclick="selectMiniSondeoOption(this)">
+            <span>Bajo: 1-2 interrupciones al día</span>
+            <span style="color:#10b981; font-weight:800;">~0.5h/d</span>
+          </button>
+          <button class="mini-sondeo-opt-btn active" data-group="tiempo" data-val="2.5" data-label="Medio: 3-5 urgencias ajenas" onclick="selectMiniSondeoOption(this)">
+            <span>Medio: 3-5 urgencias ajenas</span>
+            <span style="color:#f59e0b; font-weight:800;">~2.5h/d</span>
+          </button>
+          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="4.5" data-label="Crítico: Apago fuegos todo el día" onclick="selectMiniSondeoOption(this)">
+            <span>Crítico: Apago fuegos todo el día</span>
+            <span style="color:#ef4444; font-weight:800;">~4.5h/d</span>
+          </button>
         </div>
-
-        <ul style="list-style:none; font-size:0.84rem; color:#d1d5db; display:flex; flex-direction:column; gap:8px;">
-          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#ef4444;">✕</span> Listas infinitas de 30 pendientes sin priorizar</li>
-          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#ef4444;">✕</span> Cobro por hora suelta que te obliga a trabajar sin parar</li>
-          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#ef4444;">✕</span> Apps complejas que se abandonan en 3 días</li>
-        </ul>
       </div>
 
-      <!-- CARD DESPUÉS (SOBERANÍA OPERATIVA CON ADMINISTRACIÓN HUMANA) -->
-      <div class="bento-card good">
+      <!-- Test 2: Multitarea y Foco -->
+      <div class="mini-sondeo-card">
         <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); color:#34d399; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px; text-transform:uppercase;">
-              ✨ DESPUÉS: Con Administración Humana
-            </span>
-            <span style="color:#10b981; font-weight:800; font-size:0.85rem;">+18h / sem recuperadas</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:1.6rem;">🌪️</span>
+            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 2: Foco</span>
           </div>
-          <h3 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin-bottom:8px;">
-            Claridad, Bloques de Oro & Paz Mental
-          </h3>
-          <p style="font-size:0.85rem; color:#a1a1aa; line-height:1.5; margin-bottom:16px;">
-            Horario 24H blindado con editor en vivo, Kanban con límite estricto Máximo 2 Tareas y Hub de imprimibles de 1 hoja.
-          </p>
-
-          <!-- MINI MOCKUP VISUAL DESPUÉS (INTERACTIVO) -->
-          <div style="background:#141414; border:1px solid rgba(16,185,129,0.4); border-radius:8px; padding:12px; margin-bottom:14px;">
-            <div style="font-size:0.74rem; color:#10b981; font-weight:700; margin-bottom:6px; display:flex; justify-content:space-between;">
-              <span>🛡️ Mapeador 24H Equilibrado:</span>
-              <span style="color:#38bdf8;">Pasa el mouse / toca las cajitas</span>
-            </div>
-            <div class="mini-mapper-grid">
-              <div class="mini-hour-box box-sleep" title="Sueño Reparador (00:00 - 08:00)">💤</div>
-              <div class="mini-hour-box box-sleep" title="Sueño Reparador">💤</div>
-              <div class="mini-hour-box box-gold" title="Bloque de Oro Personal (08:00)">👑</div>
-              <div class="mini-hour-box box-work" title="Trabajo Profundo (Máximo 2 Tareas)">🎯</div>
-              <div class="mini-hour-box box-work" title="Trabajo Profundo">🎯</div>
-              <div class="mini-hour-box box-free" title="Pausa Sensorial / Almuerzo">☕</div>
-              <div class="mini-hour-box box-work" title="Clientes / Sesiones">💼</div>
-              <div class="mini-hour-box box-work" title="Cierre del día">✅</div>
-              <div class="mini-hour-box box-free" title="Tiempo Libre & Familia">🏡</div>
-              <div class="mini-hour-box box-free" title="Desconexión total">🌿</div>
-              <div class="mini-hour-box box-sleep" title="Rutina de noche">🌙</div>
-              <div class="mini-hour-box box-sleep" title="Sueño">💤</div>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.68rem; color:#a1a1aa; margin-top:4px;">
-              <span>👑 Oro</span>
-              <span>🎯 Trabajo</span>
-              <span>☕ Pausa</span>
-              <span>🏡 Familia</span>
-              <span>💤 Sueño</span>
-            </div>
-          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Foco & Multitarea</h4>
+          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuántos pendientes tienes abiertos en simultáneo en tu cabeza?</p>
         </div>
+        <div>
+          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="0" data-label="Bajo: 1-2 frentes con tracción" onclick="selectMiniSondeoOption(this)">
+            <span>Orden: 1-2 frentes con tracción</span>
+            <span style="color:#10b981; font-weight:800;">En Foco</span>
+          </button>
+          <button class="mini-sondeo-opt-btn active" data-group="foco" data-val="1.5" data-label="Medio: 4-6 frentes a la vez" onclick="selectMiniSondeoOption(this)">
+            <span>Dispersión: 4-6 frentes a la vez</span>
+            <span style="color:#f59e0b; font-weight:800;">Disperso</span>
+          </button>
+          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="3.0" data-label="Crítico: Caos de notas y pendientes" onclick="selectMiniSondeoOption(this)">
+            <span>Saturación: 15 pestañas y pendientes</span>
+            <span style="color:#ef4444; font-weight:800;">Parálisis</span>
+          </button>
+        </div>
+      </div>
 
-        <ul style="list-style:none; font-size:0.84rem; color:#e5e7eb; display:flex; flex-direction:column; gap:8px;">
-          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981;">✓</span> <strong>Límite estricto Máximo 2 Tareas:</strong> Solo 2 tareas activas para blindar tu foco</li>
-          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981;">✓</span> <strong>Tarifas Paquetizadas:</strong> Rompe el techo de venderte por hora suelta</li>
-          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981;">✓</span> <strong>Hub de Imprimibles 1 Hoja:</strong> Cero saturación digital ni fatiga visual</li>
-        </ul>
+      <!-- Test 3: Tarifas & Finanzas -->
+      <div class="mini-sondeo-card">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:1.6rem;">💸</span>
+            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 3: Finanzas</span>
+          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Tarifas & Rentabilidad</h4>
+          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Sientes que lo que ganas compensa el esfuerzo y las horas que pones?</p>
+        </div>
+        <div>
+          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="0" data-label="Sostenible: Margen saludable" onclick="selectMiniSondeoOption(this)">
+            <span>Equilibrado: Margen saludable</span>
+            <span style="color:#10b981; font-weight:800;">Sostenible</span>
+          </button>
+          <button class="mini-sondeo-opt-btn active" data-group="finanzas" data-val="1.5" data-label="Desgaste: Trabajo mucho y no rinde" onclick="selectMiniSondeoOption(this)">
+            <span>Desgaste: Trabajo mucho y no rinde</span>
+            <span style="color:#f59e0b; font-weight:800;">Por Hora</span>
+          </button>
+          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="3.0" data-label="Peligro: Regalo horas extras" onclick="selectMiniSondeoOption(this)">
+            <span>Peligro: Regalo horas y cobro bajo</span>
+            <span style="color:#ef4444; font-weight:800;">Erosión</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Test 4: Sobrecarga Mental -->
+      <div class="mini-sondeo-card">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:1.6rem;">🧠</span>
+            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 4: Energía</span>
+          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Cierre & Desconexión</h4>
+          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cómo termina tu cabeza al terminar de trabajar o al irte a dormir?</p>
+        </div>
+        <div>
+          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="0" data-label="Tranquilo: Desconecto sin culpa" onclick="selectMiniSondeoOption(this)">
+            <span>Tranquilo: Desconecto sin culpa</span>
+            <span style="color:#10b981; font-weight:800;">Descanso</span>
+          </button>
+          <button class="mini-sondeo-opt-btn active" data-group="energia" data-val="1.5" data-label="Resaca: Repaso pendientes de noche" onclick="selectMiniSondeoOption(this)">
+            <span>Resaca: Repaso pendientes de noche</span>
+            <span style="color:#f59e0b; font-weight:800;">Sobrecarga</span>
+          </button>
+          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="3.0" data-label="Burnout: Insomnio o culpa por parar" onclick="selectMiniSondeoOption(this)">
+            <span>Burnout: Batería en 0% e insomnio</span>
+            <span style="color:#ef4444; font-weight:800;">Alerta</span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-  <section class="modules-catalog" id="modulos">
-  <div class="container">
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom: 36px;">
+
+    <!-- TARJETA DINÁMICA DE PRE-DIAGNÓSTICO CON BOTÓN WHATSAPP -->
+    <div style="margin-top: 32px; background: #0c0c0f; border: 1px solid #333; border-radius: var(--radius-lg); padding: 30px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;" id="mini-sondeo-result-box">
       <div>
-        <span class="section-tag" style="background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3); color:#38bdf8; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:20px; text-transform:uppercase;">
-          🧩 Co-Creación Mano a Mano • Más de 60 Módulos
-        </span>
-        <h2 class="section-title" style="margin-top:10px;">No estás solo: co-creamos tu Plan de Vuelo juntos</h2>
-        <p class="section-sub" style="margin-bottom:0; max-width:760px;">
-          No te paso una carpeta de archivos para que te las arregles solo. En cada sesión nos sentamos juntos: escucho tu día a día, encontramos dónde se te escapa la energía y activamos en tu Plan de Vuelo las herramientas exactas que te devuelven el control. De ahí en adelante, seguimos puliendo y construyendo juntos semana a semana.
-        </p>
-      </div>
-      <a href="dossier.html" class="btn-primary" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); border:none; box-shadow:0 0 16px rgba(59,130,246,0.4); font-size:0.86rem; padding: 12px 24px;">
-        ✨ Ver Casos de Éxito en el Dossier ↗
-      </a>
-    </div>
-
-    <!-- 6 FLAGSHIP MODULES GRID (HIGH-END PROBLEM / CO-CREATION / REAL LIFE IMPACT) -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:22px;">
-      
-      <!-- 1. MAPEADOR 24H -->
-      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:var(--radius-lg); padding:28px 24px; display:flex; flex-direction:column; justify-content:space-between; position:relative; border-top:3px solid #38bdf8; transition:transform 0.2s, border-color 0.2s;">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <span style="font-size:1.6rem; background:rgba(56,189,248,0.12); width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(56,189,248,0.3);">🕒</span>
-            <span style="font-size:0.72rem; color:#38bdf8; font-weight:800; text-transform:uppercase; font-family:var(--font-mono);">MOD-06 • Tiempo Real</span>
-          </div>
-          <h3 style="font-family:var(--font-heading); font-size:1.18rem; font-weight:800; color:#fff; margin-bottom:12px;">
-            Mapeador de Horarios 24H (Cajitas de Colores)
-          </h3>
-          <div style="background:rgba(239,68,68,0.06); border-left:2px solid #ef4444; padding:8px 12px; border-radius:4px; font-size:0.78rem; color:#fca5a5; margin-bottom:10px;">
-            <b>🚨 En tu vida diaria:</b> Vives corriendo de 8:00 a 21:00 apagando incendios ajenos, sientes que el día no te alcanza y te vas a dormir con culpa porque no te quedó tiempo para ti ni para tu familia.
-          </div>
-          <div style="background:#141414; border:1px solid #262626; padding:10px 12px; border-radius:6px; font-size:0.8rem; color:#d4d4d8; margin-bottom:12px; line-height:1.45;">
-            <b>🛠️ Co-creación con Diego:</b> Mapeamos juntos tu semana real, descubrimos dónde se te están fugando 15 a 20 horas invisibles y blindamos tus Bloques de Oro para trabajar con foco y descansar sin remordimiento.
-          </div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
+          <span id="badge-urgencia" style="background:#f59e0b; color:#000; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:50px; text-transform:uppercase;">
+            ⚠️ Nivel de Alerta: Moderado
+          </span>
+          <span style="font-size:0.86rem; color:#d4d4d8;" id="text-fuga-estimada">Fuga estimada: <b>7.0 horas / semana</b> (~28 h/mes)</span>
         </div>
-        <div style="border-top:1px solid #1f1f1f; padding-top:12px; font-size:0.8rem; color:#10b981; font-weight:700; display:flex; align-items:center; gap:6px;">
-          <span>✦ Impacto real:</span> Recuperas tus tardes libres y vuelves a dormir con la certeza de que tu semana está protegida y bajo control.
-        </div>
-      </div>
-
-      <!-- 2. TABLERO DE FOCO -->
-      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:var(--radius-lg); padding:28px 24px; display:flex; flex-direction:column; justify-content:space-between; position:relative; border-top:3px solid #10b981; transition:transform 0.2s, border-color 0.2s;">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <span style="font-size:1.6rem; background:rgba(16,185,129,0.12); width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(16,185,129,0.3);">📋</span>
-            <span style="font-size:0.72rem; color:#10b981; font-weight:800; text-transform:uppercase; font-family:var(--font-mono);">MOD-07 • Foco Diario</span>
-          </div>
-          <h3 style="font-family:var(--font-heading); font-size:1.18rem; font-weight:800; color:#fff; margin-bottom:12px;">
-            Tablero de Foco (Máximo 2 Tareas a la Vez)
-          </h3>
-          <div style="background:rgba(239,68,68,0.06); border-left:2px solid #ef4444; padding:8px 12px; border-radius:4px; font-size:0.78rem; color:#fca5a5; margin-bottom:10px;">
-            <b>🚨 En tu vida diaria:</b> Tienes 15 frentes abiertos, saltas de un WhatsApp a un correo y de ahí a un pendiente. Al final del día la cabeza te arde pero sientes que no terminaste nada concreto.
-          </div>
-          <div style="background:#141414; border:1px solid #262626; padding:10px 12px; border-radius:6px; font-size:0.8rem; color:#d4d4d8; margin-bottom:12px; line-height:1.45;">
-            <b>🛠️ Co-creación con Diego:</b> Instalamos en tu teléfono la regla de oro: máximo 2 tareas en foco simultáneo. Todo lo demás queda a salvo en espera para que tu cerebro no colapse de sobrecarga.
-          </div>
-        </div>
-        <div style="border-top:1px solid #1f1f1f; padding-top:12px; font-size:0.8rem; color:#10b981; font-weight:700; display:flex; align-items:center; gap:6px;">
-          <span>✦ Impacto real:</span> Se acaba la parálisis por sobrecarga. Terminas lo que empiezas cada día y apagas el computador en paz.
-        </div>
-      </div>
-
-      <!-- 3. FINANZAS 50/30/20 & PAQUETIZACIÓN -->
-      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:var(--radius-lg); padding:28px 24px; display:flex; flex-direction:column; justify-content:space-between; position:relative; border-top:3px solid #f59e0b; transition:transform 0.2s, border-color 0.2s;">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <span style="font-size:1.6rem; background:rgba(245,158,11,0.12); width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(245,158,11,0.3);">💰</span>
-            <span style="font-size:0.72rem; color:#f59e0b; font-weight:800; text-transform:uppercase; font-family:var(--font-mono);">MOD-12 • Finanzas Claras</span>
-          </div>
-          <h3 style="font-family:var(--font-heading); font-size:1.18rem; font-weight:800; color:#fff; margin-bottom:12px;">
-            GPS Financiero 50/30/20 & Paquetización
-          </h3>
-          <div style="background:rgba(239,68,68,0.06); border-left:2px solid #ef4444; padding:8px 12px; border-radius:4px; font-size:0.78rem; color:#fca5a5; margin-bottom:10px;">
-            <b>🚨 En tu vida diaria:</b> Cobras por hora suelta, a fin de mes no sabes adónde se fue el dinero y sientes angustia al mirar la cuenta del banco o culpa si compras algo para disfrutar.
-          </div>
-          <div style="background:#141414; border:1px solid #262626; padding:10px 12px; border-radius:6px; font-size:0.8rem; color:#d4d4d8; margin-bottom:12px; line-height:1.45;">
-            <b>🛠️ Co-creación con Diego:</b> Armamos juntos tu mapa de 3 sobres claros (50% gastos básicos, 30% disfrute sin culpa, 20% colchón de paz) y empaquetamos tus servicios para que dejes de regalar tu tiempo.
-          </div>
-        </div>
-        <div style="border-top:1px solid #1f1f1f; padding-top:12px; font-size:0.8rem; color:#10b981; font-weight:700; display:flex; align-items:center; gap:6px;">
-          <span>✦ Impacto real:</span> Ingresos predecibles, disfrutas de tus gustos sin remordimiento y construyes un fondo de seguridad que te deja respirar.
-        </div>
-      </div>
-
-      <!-- 4. GESTIÓN DE ENERGÍA Y PAUSAS CONSCIENTES -->
-      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:var(--radius-lg); padding:28px 24px; display:flex; flex-direction:column; justify-content:space-between; position:relative; border-top:3px solid #ec4899; transition:transform 0.2s, border-color 0.2s;">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <span style="font-size:1.6rem; background:rgba(236,72,153,0.12); width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(236,72,153,0.3);">🧠</span>
-            <span style="font-size:0.72rem; color:#ec4899; font-weight:800; text-transform:uppercase; font-family:var(--font-mono);">MOD-18 • Ritmos Humanos</span>
-          </div>
-          <h3 style="font-family:var(--font-heading); font-size:1.18rem; font-weight:800; color:#fff; margin-bottom:12px;">
-            Gestión de Energía & Pausas Conscientes
-          </h3>
-          <div style="background:rgba(239,68,68,0.06); border-left:2px solid #ef4444; padding:8px 12px; border-radius:4px; font-size:0.78rem; color:#fca5a5; margin-bottom:10px;">
-            <b>🚨 En tu vida diaria:</b> A las 4 de la tarde tu batería mental está en 0%. Te exiges rendir como máquina cuando el cuerpo te pide una pausa, terminando con fatiga extrema y agotamiento crónico.
-          </div>
-          <div style="background:#141414; border:1px solid #262626; padding:10px 12px; border-radius:6px; font-size:0.8rem; color:#d4d4d8; margin-bottom:12px; line-height:1.45;">
-            <b>🛠️ Co-creación con Diego:</b> Diseñamos pausas conscientes y protocolos amables que respetan tus ritmos biológicos, con descansos sensoriales reales fuera de las pantallas.
-          </div>
-        </div>
-        <div style="border-top:1px solid #1f1f1f; padding-top:12px; font-size:0.8rem; color:#10b981; font-weight:700; display:flex; align-items:center; gap:6px;">
-          <span>✦ Impacto real:</span> Llegas a la noche con energía para compartir con quienes quieres, sin sentirte un trapo exhausto.
-        </div>
-      </div>
-
-      <!-- 5. DELIMITACIÓN DE ROLES & MULTIPOTENCIALIDAD -->
-      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:var(--radius-lg); padding:28px 24px; display:flex; flex-direction:column; justify-content:space-between; position:relative; border-top:3px solid #a855f7; transition:transform 0.2s, border-color 0.2s;">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <span style="font-size:1.6rem; background:rgba(168,85,247,0.12); width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(168,85,247,0.3);">🤹</span>
-            <span style="font-size:0.72rem; color:#a855f7; font-weight:800; text-transform:uppercase; font-family:var(--font-mono);">MOD-05 • Sombreros Limpios</span>
-          </div>
-          <h3 style="font-family:var(--font-heading); font-size:1.18rem; font-weight:800; color:#fff; margin-bottom:12px;">
-            Delimitación de Roles (Cero Culpa Cruzada)
-          </h3>
-          <div style="background:rgba(239,68,68,0.06); border-left:2px solid #ef4444; padding:8px 12px; border-radius:4px; font-size:0.78rem; color:#fca5a5; margin-bottom:10px;">
-            <b>🚨 En tu vida diaria:</b> Estás trabajando y piensas en lo que falta en la casa; estás con tu familia o descansando y te angustias pensando en un cliente. Sientes que estás a medias en todas partes.
-          </div>
-          <div style="background:#141414; border:1px solid #262626; padding:10px 12px; border-radius:6px; font-size:0.8rem; color:#d4d4d8; margin-bottom:12px; line-height:1.45;">
-            <b>🛠️ Co-creación con Diego:</b> Definimos límites limpios y acuerdos por horario para cada uno de tus roles (trabajo, hogar, proyectos personales). Cuando atiendes uno, los demás quedan protegidos y en calma.
-          </div>
-        </div>
-        <div style="border-top:1px solid #1f1f1f; padding-top:12px; font-size:0.8rem; color:#10b981; font-weight:700; display:flex; align-items:center; gap:6px;">
-          <span>✦ Impacto real:</span> Presencia total. Cuando trabajas produces al 100%, y cuando descansas estás verdaderamente conectado con los tuyos.
-        </div>
-      </div>
-
-      <!-- 6. ASISTENCIA IA & VACIADO MENTAL -->
-      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:var(--radius-lg); padding:28px 24px; display:flex; flex-direction:column; justify-content:space-between; position:relative; border-top:3px solid #38bdf8; transition:transform 0.2s, border-color 0.2s;">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <span style="font-size:1.6rem; background:rgba(56,189,248,0.12); width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(56,189,248,0.3);">🤖</span>
-            <span style="font-size:0.72rem; color:#38bdf8; font-weight:800; text-transform:uppercase; font-family:var(--font-mono);">MOD-27 • Desahogo Rápido</span>
-          </div>
-          <h3 style="font-family:var(--font-heading); font-size:1.18rem; font-weight:800; color:#fff; margin-bottom:12px;">
-            Playbook de Asistencia IA & Vaciado Mental
-          </h3>
-          <div style="background:rgba(239,68,68,0.06); border-left:2px solid #ef4444; padding:8px 12px; border-radius:4px; font-size:0.78rem; color:#fca5a5; margin-bottom:10px;">
-            <b>🚨 En tu vida diaria:</b> Tienes ideas excelentes pero te bloqueas frente a la hoja en blanco, o pierdes horas redactando propuestas, correos o tareas operativas repetitivas.
-          </div>
-          <div style="background:#141414; border:1px solid #262626; padding:10px 12px; border-radius:6px; font-size:0.8rem; color:#d4d4d8; margin-bottom:12px; line-height:1.45;">
-            <b>🛠️ Co-creación con Diego:</b> Te configuro un kit de prompts guiados para que le hables a la IA por notas de voz y te devuelva tus ideas ordenadas y redactadas en 2 minutos.
-          </div>
-        </div>
-        <div style="border-top:1px solid #1f1f1f; padding-top:12px; font-size:0.8rem; color:#10b981; font-weight:700; display:flex; align-items:center; gap:6px;">
-          <span>✦ Impacto real:</span> Ahorras más de 5 horas a la semana y dejas de desgastarte sobrepensando cada mensaje.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- SHOWCASE: MUESTRA DE HERRAMIENTAS EMBLEMÁTICAS POR ÁREAS DE LA VIDA (HUMANIZADAS) -->
-    <div style="margin-top:40px; background:#0b0b0e; border:1px solid #22222a; border-radius:var(--radius-lg); padding:32px 28px;">
-      <div style="text-align:center; max-width:760px; margin:0 auto 28px auto;">
-        <span style="font-family:var(--font-heading); font-size:0.75rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.1em;">
-          ✦ Compendio de Más de 60 Módulos • Acompañamiento a Escala Humana
-        </span>
-        <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; margin-top:6px;">
-          Cómo te ayuda este arsenal en las 4 áreas prácticas de tu vida
+        <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#fff;" id="text-diagnostico-titulo">
+          Tu sistema está perdiendo horas valiosas en urgencias ajenas y dispersión
         </h3>
-        <p style="font-size:0.88rem; color:#94a3b8; margin-top:6px;">
-          No tienes que estudiar ni aprenderte estas herramientas por tu cuenta. En nuestra Sesión de Despegue, escucho tu realidad y activamos juntos el módulo exacto que destraba tu cuello de botella más urgente hoy:
+        <p style="font-size:0.88rem; color:#a1a1aa; margin-top:8px; line-height:1.5;" id="text-modulos-sugeridos">
+          Módulos recomendados para tu caso: <b>MOD-06 (Mapeador 24H)</b> y <b>MOD-07 (Tablero WIP 2 Tareas)</b>.
         </p>
       </div>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
-        
-        <!-- ÁREA 1: TIEMPO Y FOCO -->
-        <div style="background:#121217; border:1px solid #272730; border-radius:14px; padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div style="font-size:0.82rem; font-weight:800; color:#38bdf8; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
-              <span style="font-size:1.1rem;">🕒</span> 1. Tiempo, Foco & Desconexión
-            </div>
-            <p style="font-size:0.78rem; color:#94a3b8; margin-bottom:12px;">Toca las situaciones que te pasan hoy:</p>
-            <div class="area-chips-grid">
-              <div class="area-chip" data-area="tiempo" data-id="apagafuegos" data-mod="M11" data-label="Urgencias ajenas" data-tool="Filtro de Urgencias" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Mis días se van apagando urgencias ajenas y no avanzo en lo mío.</div>
-                  <div class="area-chip-tool" style="color:#38bdf8;"><span>🛡️ M11:</span> Filtro de Urgencias (Decir «hoy no»)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="tiempo" data-id="sin_mapa_168h" data-mod="M06" data-label="Sin mapa 168h" data-tool="Mapeador 24H" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">No sé en qué se me van las horas y termino agotado sin saber qué hice.</div>
-                  <div class="area-chip-tool" style="color:#38bdf8;"><span>🕒 M06:</span> Mapeador 24H (Bloques de Oro)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="tiempo" data-id="multitarea_paralisis" data-mod="M18" data-label="Multitarea y dispersión" data-tool="Tablero Foco (WIP 2)" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Tengo 30 pestañas abiertas y salto de una a otra sin cerrar ninguna.</div>
-                  <div class="area-chip-tool" style="color:#38bdf8;"><span>🎯 M18:</span> Kanban Foco (Máximo 2 Tareas)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="tiempo" data-id="fatiga_foco" data-mod="M16" data-label="Dificultad foco sostenido" data-tool="Pomodoro Adaptado" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Me cuesta concentrarme más de 15 minutos seguidos sin mirar el celular.</div>
-                  <div class="area-chip-tool" style="color:#38bdf8;"><span>⏱️ M16:</span> Pomodoro Adaptado (Pausas Reales)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ÁREA 2: DESORDEN OPERATIVO -->
-        <div style="background:#121217; border:1px solid #272730; border-radius:14px; padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div style="font-size:0.82rem; font-weight:800; color:#10b981; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
-              <span style="font-size:1.1rem;">🧹</span> 2. Desorden Operativo & Caos Mental
-            </div>
-            <p style="font-size:0.78rem; color:#94a3b8; margin-bottom:12px;">Toca las situaciones que te pasan hoy:</p>
-            <div class="area-chips-grid">
-              <div class="area-chip" data-area="desorden" data-id="escritorio_caos" data-mod="M24" data-label="Desorden PC/Escritorio" data-tool="Limpieza 5S" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Mi escritorio físico o computador está lleno de cosas que me dan angustia.</div>
-                  <div class="area-chip-tool" style="color:#10b981;"><span>🧹 M24:</span> Limpieza 5S (Un lugar para cada cosa)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="desorden" data-id="causa_repetida" data-mod="M22" data-label="Traba recurrente" data-tool="Ishikawa Causa Raíz" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">El mismo problema operativo o cuello de botella se me repite cada semana.</div>
-                  <div class="area-chip-tool" style="color:#10b981;"><span>🐟 M22:</span> Ishikawa (Atacar causa, no culpa)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="desorden" data-id="proyectos_gigantes" data-mod="M23" data-label="Ideas sin aterrizar" data-tool="Aterrizaje Visual" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Tengo ideas gigantescas en la cabeza pero me abrumo y no sé cómo empezar.</div>
-                  <div class="area-chip-tool" style="color:#10b981;"><span>🗺️ M23:</span> Aterrizaje Visual (Mapa de 1 página)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="desorden" data-id="paralisis_analisis" data-mod="M26" data-label="Sobrepensar lanzamiento" data-tool="Prueba Ágil 24H" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Paso semanas sobrepensando un proyecto sin atreverme a sacarlo a la luz.</div>
-                  <div class="area-chip-tool" style="color:#10b981;"><span>⚡ M26:</span> Prueba Ágil 24H (Validar sin riesgo)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ÁREA 3: DECISIONES Y METAS -->
-        <div style="background:#121217; border:1px solid #272730; border-radius:14px; padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div style="font-size:0.82rem; font-weight:800; color:#f59e0b; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
-              <span style="font-size:1.1rem;">🧭</span> 3. Decisiones, Metas & Futuro
-            </div>
-            <p style="font-size:0.78rem; color:#94a3b8; margin-bottom:12px;">Toca las situaciones que te pasan hoy:</p>
-            <div class="area-chips-grid">
-              <div class="area-chip" data-area="decisiones" data-id="duda_cobro" data-mod="M04" data-label="Duda de valor/cobro" data-tool="FODA & CAME" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Sé lo que hago pero me cuesta cobrar lo que vale o dudo de mis talentos.</div>
-                  <div class="area-chip-tool" style="color:#f59e0b;"><span>💪 M04:</span> FODA & CAME (Superpoderes y Escudo)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="decisiones" data-id="sin_plan_b" data-mod="M08" data-label="Sin plan de contingencia" data-tool="Radar Contingencias" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Si un mes bajan las ventas o hay un imprevisto, no tengo un Plan B claro.</div>
-                  <div class="area-chip-tool" style="color:#f59e0b;"><span>🧭 M08:</span> Radar Contingencias (Plan de Paz)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="decisiones" data-id="comparacion_ajena" data-mod="M09" data-label="Comparación y parálisis" data-tool="Tu Diferencial" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Me comparo constantemente con otros y siento que voy tarde en la vida.</div>
-                  <div class="area-chip-tool" style="color:#f59e0b;"><span>🌊 M09:</span> Tu Diferencial (Apagar el ruido ajeno)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="decisiones" data-id="desconexion_sentido" data-mod="M02" data-label="Pérdida de propósito" data-tool="Círculo Dorado" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">La rutina y el estrés me hicieron olvidar por qué comencé este camino.</div>
-                  <div class="area-chip-tool" style="color:#f59e0b;"><span>🎯 M02:</span> Círculo Dorado (Reconectar tu Para Qué)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ÁREA 4: EQUIPOS Y RELACIONES -->
-        <div style="background:#121217; border:1px solid #272730; border-radius:14px; padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div style="font-size:0.82rem; font-weight:800; color:#ec4899; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
-              <span style="font-size:1.1rem;">👥</span> 4. Equipos, Acuerdos & Vínculos
-            </div>
-            <p style="font-size:0.78rem; color:#94a3b8; margin-bottom:12px;">Toca las situaciones que te pasan hoy:</p>
-            <div class="area-chips-grid">
-              <div class="area-chip" data-area="equipos" data-id="trabajo_invade_hogar" data-mod="M05" data-label="Trabajo invade el hogar" data-tool="Sombreros Limpios" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">El trabajo invadió mi casa: respondo mensajes cenando o el fin de semana.</div>
-                  <div class="area-chip-tool" style="color:#ec4899;"><span>🤹 M05:</span> Sombreros Limpios (Proteger el hogar)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="equipos" data-id="roles_difusos" data-mod="M35" data-label="Quién responde por qué" data-tool="Matriz RACI" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">En mi equipo o con mi socio/pareja no está claro quién responde por qué.</div>
-                  <div class="area-chip-tool" style="color:#ec4899;"><span>👥 M35:</span> Matriz RACI (Rayar la cancha por escrito)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="equipos" data-id="evitar_conflictos" data-mod="M33" data-label="Límites sin conflicto" data-tool="Feedback SBI" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Me cuesta decir lo que me molesta o poner límites por no generar conflictos.</div>
-                  <div class="area-chip-tool" style="color:#ec4899;"><span>💬 M33:</span> Feedback SBI (Decir las cosas sin pelear)</div>
-                </div>
-              </div>
-              <div class="area-chip" data-area="equipos" data-id="equipo_dependiente" data-mod="M37" data-label="Sobrecarga en ti mismo" data-tool="Modelo GROW" onclick="window.toggleAreaChip(this)">
-                <div class="area-chip-check"></div>
-                <div class="area-chip-content">
-                  <div class="area-chip-title">Tengo que estar encima de todo porque si no lo hago yo, nadie lo hace.</div>
-                  <div class="area-chip-tool" style="color:#ec4899;"><span>🌱 M37:</span> Modelo GROW (Autonomía real en otros)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- BANNER PIE DE SECCIÓN (MÁS DE 60 MÓDULOS) -->
-    <div style="background:linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(20,20,20,0.8) 100%); border:1px solid #262626; border-radius:var(--radius-lg); padding:28px 32px; margin-top:32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
-      <div>
-        <h4 style="color:#fff; font-family:var(--font-heading); font-size:1.15rem; font-weight:800; margin-bottom:4px;">
-          ¿Tu situación requiere una intervención diferente?
-        </h4>
-        <p style="color:#888; font-size:0.86rem; margin:0; max-width:620px;">
-          Cuento con <b>más de 60 módulos especializados</b>. En tu Sondeo Express detectamos exactamente cuál de estas herramientas destraba tu momento actual para co-crear tu solución en sesión 1 a 1.
-        </p>
-      </div>
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a href="sondeo.html" class="btn-primary" style="background:#fff; color:#000; font-weight:800; padding:12px 24px; border-radius:50px; font-size:0.86rem; text-decoration:none;">
-          ⚡ Hacer Sondeo Express (90s) →
+      <div style="text-align: right; min-width: 290px;">
+        <a id="btn-whatsapp-mini-sondeo" href="#" target="_blank" class="btn-whatsapp-pulse">
+          <span>📲</span> Enviar mi Sondeo a Diego por WhatsApp (1 Clic)
         </a>
+        <div style="font-size:0.74rem; color:#888; margin-top:8px; text-align:center;">
+          ✓ Se abre tu WhatsApp con los resultados listos para enviar
+        </div>
       </div>
     </div>
-  </div>
-</section>
-  <section class="sgp-cases-section" id="sgp-casos" style="background: radial-gradient(circle at 50% 0%, rgba(56,189,248,0.06) 0%, #060606 80%); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 85px 0;">
-  <div class="container">
-    <div style="text-align:center; max-width:820px; margin:0 auto 36px auto;">
-      <span class="section-tag" style="background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3); color:#38bdf8; font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px; text-transform:uppercase;">
-        ⚡ Arquitectura de Sistemas Operativos
-      </span>
-      <h2 class="section-title" style="margin-top:10px;">
-        Sistemas de Gestión Personalizados:<br />
-        <span style="color:#38bdf8;">Un Mismo Módulo, Realidades Distintas</span>
-      </h2>
-      <p class="section-sub" style="margin-top:8px; max-width:760px; margin-left:auto; margin-right:auto;">
-        No creo en plantillas genéricas de productividad. Cuento con una <b>biblioteca de más de 60 herramientas de administración aplicada</b>, y co-creo contigo lo que vamos agregando modularmente: una parametrización 100% calibrada a tu contexto para dejar de correr en círculos. 
+
+    <!-- ACCESO ALTERNATIVO AL SONDEO 360 COMPLETO -->
+    <div style="text-align: center; margin-top: 36px; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.12);">
+      <p style="font-size: 0.88rem; color: #a1a1aa; margin-bottom: 10px;">
+        ¿Prefieres un análisis exhaustivo con opción de grabar una <b>nota de voz diagnóstica de hasta 5 minutos</b>?
       </p>
-      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.04); border:1px solid #262626; border-radius:50px; padding:6px 16px; font-size:0.78rem; color:#a1a1aa;">
-        <span>🔍 Haz clic abajo para ver cómo se adapta el <b>Módulo Mapeador 24H</b> según quién lo opera:</span>
-      </div>
+      <a href="sondeo.html" class="btn-secondary" style="font-size: 0.84rem; padding: 8px 20px; border-radius: 50px;">
+        ⚡ Ir al Sondeo 360° Completo (90s + Nota de Voz) →
+      </a>
     </div>
 
-    <!-- SELECTOR DE CASOS INTERACTIVO (TABS) -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; max-width:1040px; margin:0 auto 28px auto;">
-      <!-- TAB 1: FREELANCER -->
-      <button onclick="window.switchSgpCase('freelancer')" id="sgp-tab-freelancer" class="sgp-tab-btn active-tab" style="background:#141414; border:1px solid #38bdf8; border-radius:14px; padding:16px; text-align:left; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:14px; box-shadow:0 0 20px rgba(56,189,248,0.15);">
-        <span style="font-size:1.8rem; background:rgba(56,189,248,0.12); width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(56,189,248,0.3); flex-shrink:0;">👤</span>
-        <div>
-          <div style="font-family:var(--font-heading); font-size:0.95rem; font-weight:800; color:#fff;">Caso 1: Profesional / Freelancer</div>
-          <div style="font-size:0.75rem; color:#38bdf8; font-weight:600;">Venta por hora &amp; Fuga de tiempo</div>
-        </div>
-      </button>
-
-      <!-- TAB 2: NEURODIVERGENCIA -->
-      <button onclick="window.switchSgpCase('sensorial')" id="sgp-tab-sensorial" class="sgp-tab-btn" style="background:#0d0d0d; border:1px solid #262626; border-radius:14px; padding:16px; text-align:left; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:14px;">
-        <span style="font-size:1.8rem; background:rgba(236,72,153,0.12); width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(236,72,153,0.3); flex-shrink:0;">🌿</span>
-        <div>
-          <div style="font-family:var(--font-heading); font-size:0.95rem; font-weight:800; color:#fff;">Caso 2: Alta Sensibilidad &amp; TEA</div>
-          <div style="font-size:0.75rem; color:#888; font-weight:600;">Sobrecarga sensorial &amp; Fatiga digital</div>
-        </div>
-      </button>
-
-      <!-- TAB 3: PYME / NEGOCIO -->
-      <button onclick="window.switchSgpCase('negocio')" id="sgp-tab-negocio" class="sgp-tab-btn" style="background:#0d0d0d; border:1px solid #262626; border-radius:14px; padding:16px; text-align:left; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:14px;">
-        <span style="font-size:1.8rem; background:rgba(16,185,129,0.12); width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(16,185,129,0.3); flex-shrink:0;">🏢</span>
-        <div>
-          <div style="font-family:var(--font-heading); font-size:0.95rem; font-weight:800; color:#fff;">Caso 3: Pequeño Negocio (2 a 5 pers.)</div>
-          <div style="font-size:0.75rem; color:#888; font-weight:600;">Dueño apagafuegos &amp; Delegación</div>
-        </div>
-      </button>
-    </div>
-
-    <!-- CONTENEDOR DINÁMICO DEL CASO ACTIVO -->
-    <div id="sgp-case-content" style="max-width:1040px; margin:0 auto; background:#0c0c0c; border:1px solid #262626; border-radius:var(--radius-lg); padding:32px 28px; position:relative; overflow:hidden;">
-      <!-- RENDERED BY JS -->
-    </div>
-
-    <!-- MANIFIESTO DE LEGITIMIDAD ADMINISTRATIVA -->
-    <div style="background:linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(16,185,129,0.04) 100%); border:1px solid #262626; border-left:4px solid #10b981; border-radius:14px; padding:22px 28px; margin:32px auto 0 auto; max-width:1040px; display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
-      <div style="font-size:2rem; background:rgba(16,185,129,0.1); width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(16,185,129,0.3); flex-shrink:0;">
-        🧭
-      </div>
-      <div style="flex:1; min-width:280px;">
-        <div style="font-size:0.75rem; font-weight:800; color:#10b981; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">
-          Frontera Profesional y Rigor Operativo
-        </div>
-        <h4 style="font-family:var(--font-heading); color:#fff; font-size:1.12rem; font-weight:800; margin-bottom:6px;">
-          Trabajo desde las Ciencias de la Administración: Cero recetas médicas, cero pacientes.
-        </h4>
-        <p style="font-size:0.86rem; color:#a1a1aa; line-height:1.55; margin:0;">
-          No soy psicólogo ni terapeuta. Mi ámbito son los <b>recursos, procesos, tiempos y flujos de trabajo</b>. Tu día a día o tu negocio es el proyecto más importante que tienes: lo intervengo contigo mediante ingeniería de hábitos, herramientas de gestión y soporte tangible para que avances sin quemarte.
-        </p>
-      </div>
-    </div>
   </div>
-</section>
 
-<script>
-  // LÓGICA INTERACTIVA DE CASOS SGP
-  const SGP_CASES = {
-    freelancer: {
-      tag: "CASO 1 • PROFESIONAL INDEPENDIENTE / FREELANCER",
-      tagColor: "#38bdf8",
-      borderColor: "#38bdf8",
-      icon: "👤",
-      title: "De la Venta de Horas y la Dispersión Nocturna al Bloque de Oro Blindado",
-      problema: "Trabaja 11 a 13 horas diarias respondiendo WhatsApps, correos y urgencias. Cobra por hora suelta, siente que el dinero no rinde y termina trabajando de noche con la cabeza saturada.",
-      moduloNombre: "MOD-06: Mapeador 24H (Cajitas de Colores) + MOD-03: Límite WIP (2 Tareas)",
-      parametrizacion: "Se instala <b>1 Bloque de Oro Matutino (90 min innegociables)</b> para la tarea de mayor impacto antes de abrir mensajes. Se delimita la jornada a las 18:30 y se empaquetan sus servicios en tarifas mensuales en vez de cobro por hora.",
-      entregable: "📱 <b>Portal Web Móvil en la palma de la mano</b> (1 sola pantalla interactiva en el celular para consultar en 5 segundos sin abrir Notion ni hojas densas).",
-      mockupVisual: `
-        <div style="background:#141414; border:1px solid #333; border-radius:8px; padding:12px; margin:10px 0;">
-          <div style="font-size:0.72rem; color:#38bdf8; font-weight:800; margin-bottom:6px; text-transform:uppercase;">📅 Estructura de Horario Parametrizada:</div>
-          <div style="display:grid; grid-template-columns:repeat(12, 1fr); gap:3px;">
-            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Sueño">💤</div>
-            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Sueño">💤</div>
-            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Sueño">💤</div>
-            <div style="background:#f59e0b; height:24px; border-radius:3px; font-size:0.6rem; color:#000; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Bloque de Oro">👑</div>
-            <div style="background:#f59e0b; height:24px; border-radius:3px; font-size:0.6rem; color:#000; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Bloque de Oro">👑</div>
-            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Clientes">💼</div>
-            <div style="background:#8b5cf6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Almuerzo">☕</div>
-            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Operaciones">💼</div>
-            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Cierre">✅</div>
-            <div style="background:#8b5cf6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Libre">🏡</div>
-            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Desconexión">🌙</div>
-            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Sueño">💤</div>
-          </div>
-          <div style="font-size:0.68rem; color:#888; text-align:center; margin-top:4px;">Bloque de Oro (👑) blindado a primera hora = Jornada terminada a las 18:30</div>
-        </div>
-      `,
-      metricas: [
-        { val: "+18h", lbl: "Horas semanales recuperadas", col: "#38bdf8" },
-        { val: "-80%", lbl: "Reducción de trabajo nocturno", col: "#10b981" },
-        { val: "+45%", lbl: "Ingreso mensual por paquetización", col: "#f59e0b" }
-      ],
-      cita: "«Pasé de sentir que corría todo el día sin avanzar a cerrar el computador a las 6:30 PM sabiendo exactamente qué logré.»"
-    },
-    sensorial: {
-      tag: "CASO 2 • NEURODIVERGENCIA & ALTA SENSIBILIDAD (TEA / TDAH)",
-      tagColor: "#ec4899",
-      borderColor: "#ec4899",
-      icon: "🌿",
-      title: "De la Saturación por Pantallas a la Regulación Sensorial en Papel Físico",
-      problema: "Agotamiento sensorial agudo a las 16:00. Las aplicaciones digitales complejas (Notion, Trello) le generan rechazo y ansiedad. Rumiación mental e insomnio por no saber cómo cerrar el día.",
-      moduloNombre: "MOD-18: Gestión de Energía & Ritmos + MOD-24: Hub de Imprimibles de 1 Hoja",
-      parametrizacion: "Se programan <b>2 pausas innegociables de 15 min de regulación sensorial</b> en el día. Se erradican las apps digitales para la gestión cotidiana y se reemplazan por un <b>Hub Único de Imprimibles físicos de 1 hoja Carta</b> para tener en la pared o escritorio.",
-      entregable: "📄 <b>Hub Maestro de Imprimibles Físicos</b> (Hojas limpias en blanco y negro sin pantallas, con vaciado nocturno analógico 10 min antes de dormir).",
-      mockupVisual: `
-        <div style="background:#141414; border:1px solid #333; border-radius:8px; padding:12px; margin:10px 0;">
-          <div style="font-size:0.72rem; color:#ec4899; font-weight:800; margin-bottom:6px; text-transform:uppercase;">🌿 Protocolo de Recarga Sensorial Parametrizado:</div>
-          <div style="display:grid; grid-template-columns:repeat(12, 1fr); gap:3px;">
-            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;">💤</div>
-            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;">💤</div>
-            <div style="background:#ec4899; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Ritual Inicio">🧘</div>
-            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Foco">🎯</div>
-            <div style="background:#ec4899; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Pausa Sensorial">🌿</div>
-            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Atención">💆</div>
-            <div style="background:#8b5cf6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Almuerzo">☕</div>
-            <div style="background:#ec4899; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Pausa Sensorial">🌿</div>
-            <div style="background:#10b981; height:24px; border-radius:3px; font-size:0.6rem; color:#000; display:flex; align-items:center; justify-content:center;" title="Estudio">📚</div>
-            <div style="background:#8b5cf6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;" title="Hogar">🏡</div>
-            <div style="background:#f59e0b; height:24px; border-radius:3px; font-size:0.6rem; color:#000; font-weight:800; display:flex; align-items:center; justify-content:center;" title="Vaciado Papel">📝</div>
-            <div style="background:#3b82f6; height:24px; border-radius:3px; font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center;">💤</div>
-          </div>
-          <div style="font-size:0.68rem; color:#888; text-align:center; margin-top:4px;">Pausas sensoriales (🌿) + Vaciado nocturno en libreta de papel (📝) = Cero fatiga visual</div>
-        </div>
-      `,
-      metricas: [
-        { val: "0%", lbl: "Fatiga visual por apps digitales", col: "#ec4899" },
-        { val: "100%", lbl: "Sostenibilidad sin crisis sensoriales", col: "#10b981" },
-        { val: "+4x", lbl: "Valorización de clases y servicios", col: "#f59e0b" }
-      ],
-      cita: "«Tener mis planillas impresas en una sola hoja en la pared me quitó el terror a las aplicaciones. Por fin un sistema que respeta mi condición.»"
-    },
-    negocio: {
-      tag: "CASO 3 • PEQUEÑO NEGOCIO / MICROEMPRESA (2 A 5 PERSONAS)",
-      tagColor: "#10b981",
-      borderColor: "#10b981",
-      icon: "🏢",
-      title: "Del Fundador Cuello de Botella a la Estandarización de Operaciones",
-      problema: "El dueño pasa el día apagando incendios operativos y contestando consultas del equipo. No le queda tiempo para cotizar clientes nuevos ni ordenar las finanzas de la empresa.",
-      moduloNombre: "MOD-09: Kanban de Flujo de Operaciones + MOD-15: Fichas SOP de Traspaso",
-      parametrizacion: "Se construye un <b>Tablero Kanban Operativo de 3 etapas</b> (Recibido ➔ En Ejecución ➔ Entregado con Control de Calidad) y se estandariza el protocolo de entrega para que los colaboradores no dependan de la validación del dueño.",
-      entregable: "📋 <b>Tablero Operativo Compartido + Manual Vivo de Procesos</b> (Protocolos de un solo vistazo para que el negocio funcione sin que el fundador tenga que estar presente).",
-      mockupVisual: `
-        <div style="background:#141414; border:1px solid #333; border-radius:8px; padding:12px; margin:10px 0;">
-          <div style="font-size:0.72rem; color:#10b981; font-weight:800; margin-bottom:6px; text-transform:uppercase;">🏢 Flujo Operativo Estandarizado (Kanban 3 Etapas):</div>
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
-            <div style="background:#1e1e1e; border:1px solid #333; border-radius:6px; padding:8px;">
-              <div style="font-size:0.68rem; color:#888; font-weight:800;">1. ENTRANTE</div>
-              <div style="background:#262626; padding:4px 6px; border-radius:4px; font-size:0.65rem; color:#fff; margin-top:4px;">Cotización #104</div>
-            </div>
-            <div style="background:#1e1e1e; border:1px solid #10b981; border-radius:6px; padding:8px;">
-              <div style="font-size:0.68rem; color:#10b981; font-weight:800;">2. EN CURSO (SOP)</div>
-              <div style="background:#262626; padding:4px 6px; border-radius:4px; font-size:0.65rem; color:#fff; margin-top:4px;">Servicio Terreno B</div>
-            </div>
-            <div style="background:#1e1e1e; border:1px solid #333; border-radius:6px; padding:8px;">
-              <div style="font-size:0.68rem; color:#888; font-weight:800;">3. ENTREGADO</div>
-              <div style="background:#262626; padding:4px 6px; border-radius:4px; font-size:0.65rem; color:#10b981; margin-top:4px;">Facturado OK ✓</div>
-            </div>
-          </div>
-          <div style="font-size:0.68rem; color:#888; text-align:center; margin-top:4px;">Procesos claros = El equipo ejecuta sin llamar al dueño un domingo</div>
-        </div>
-      `,
-      metricas: [
-        { val: "+60%", lbl: "Velocidad de entrega de cotizaciones", col: "#10b981" },
-        { val: "10h", lbl: "Semanales liberadas para el fundador", col: "#38bdf8" },
-        { val: "Cero", lbl: "Errores de entrega en terreno", col: "#f59e0b" }
-      ],
-      cita: "«Logramos que el taller opere con un estándar claro. Pude tomarme un fin de semana completo sin que el negocio colapsara.»"
-    }
-  };
-
-  window.switchSgpCase = function(caseKey) {
-    const data = SGP_CASES[caseKey];
-    if (!data) return;
-
-    // Actualizar botones de tabs
-    document.querySelectorAll('.sgp-tab-btn').forEach(btn => {
-      btn.style.borderColor = '#262626';
-      btn.style.background = '#0d0d0d';
-      btn.style.boxShadow = 'none';
-      const labelDiv = btn.querySelector('div div:last-child');
-      if (labelDiv) labelDiv.style.color = '#888';
-    });
-
-    const activeBtn = document.getElementById('sgp-tab-' + caseKey);
-    if (activeBtn) {
-      activeBtn.style.borderColor = data.borderColor;
-      activeBtn.style.background = '#141414';
-      activeBtn.style.boxShadow = '0 0 20px ' + data.borderColor + '25';
-      const labelDiv = activeBtn.querySelector('div div:last-child');
-      if (labelDiv) labelDiv.style.color = data.tagColor;
-    }
-
-    // Renderizar panel de contenido
-    const container = document.getElementById('sgp-case-content');
-    if (!container) return;
-    container.style.borderTop = '3px solid ' + data.borderColor;
-    container.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px; border-bottom:1px solid #1f1f1f; padding-bottom:14px;">
-        <span style="background:${data.tagColor}15; border:1px solid ${data.tagColor}40; color:${data.tagColor}; font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px; text-transform:uppercase;">
-          ${data.tag}
-        </span>
-        <span style="font-size:0.75rem; color:#888; font-family:var(--font-mono);">
-          🧩 Módulo Aplicado: <strong style="color:#fff;">${data.moduloNombre}</strong>
-        </span>
-      </div>
-
-      <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; margin-bottom:20px; line-height:1.3;">
-        ${data.title}
-      </h3>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; margin-bottom:24px;">
-        <!-- COLUMNA 1: DIAGNÓSTICO & DOLOR -->
-        <div style="background:#111; border:1px solid #222; border-radius:12px; padding:20px;">
-          <div style="font-size:0.75rem; font-weight:800; color:#f87171; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
-            <span>🚨</span> Situación de Entrada (El Caos Real):
-          </div>
-          <p style="font-size:0.86rem; color:#d4d4d8; line-height:1.55; margin-bottom:14px;">
-            ${data.problema}
-          </p>
-          <div style="font-size:0.75rem; font-weight:800; color:#10b981; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
-            <span>🛠️</span> La Parametrización a su Medida:
-          </div>
-          <p style="font-size:0.84rem; color:#a1a1aa; line-height:1.5;">
-            ${data.parametrizacion}
-          </p>
-        </div>
-
-        <!-- COLUMNA 2: ENTREGABLE & MOCKUP VISUAL -->
-        <div style="background:#111; border:1px solid #222; border-radius:12px; padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div style="font-size:0.75rem; font-weight:800; color:#38bdf8; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
-              <span>📦</span> Formato del Activo en la Palma de su Mano:
-            </div>
-            <div style="font-size:0.85rem; color:#fff; line-height:1.5; margin-bottom:10px;">
-              ${data.entregable}
-            </div>
-            ${data.mockupVisual}
-          </div>
-        </div>
-      </div>
-
-      <!-- MÉTRICAS DE IMPACTO CUANTIFICABLE -->
-      <div style="background:#090909; border:1px solid #1f1f1f; border-radius:12px; padding:18px 20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; align-items:center;">
-        ${data.metricas.map(m => `
-          <div style="text-align:center;">
-            <div style="font-family:var(--font-heading); font-size:1.8rem; font-weight:800; color:${m.col}; line-height:1.1;">${m.val}</div>
-            <div style="font-size:0.74rem; color:#888; text-transform:uppercase; font-weight:700; margin-top:2px;">${m.lbl}</div>
-          </div>
-        `).join('')}
-      </div>
-
-      <!-- CITA REAL -->
-      <div style="margin-top:16px; text-align:center; font-size:0.84rem; color:#888; font-style:italic;">
-        ${data.cita}
-      </div>
-    `;
-  };
-
-  // Inicializar caso por defecto al cargar DOM
-  document.addEventListener('DOMContentLoaded', function() {
-    if (window.switchSgpCase) {
-      window.switchSgpCase('freelancer');
-    }
-  });
-  // Fallback directo por si ya se cargó el DOM
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(function() {
-      if (window.switchSgpCase) window.switchSgpCase('freelancer');
-    }, 100);
-  }
-</script>
-  <section class="caminos" id="caminos">
-  <div class="container">
-    <div style="text-align: center; max-width: 820px; margin: 0 auto 40px;">
-      <span class="section-tag" style="background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.35); color:#22d3ee; font-size:0.75rem; font-weight:800; padding:5px 14px; border-radius:20px; text-transform:uppercase; letter-spacing:0.08em;">
-        💧 Metodología Propietaria • Administración Humana
-      </span>
-      <h2 class="section-title" style="margin-top:14px; font-size: clamp(2rem, 4vw, 2.9rem);">
-        Estructura Líquida: Orden que se adapta a ti, no tú al orden
-      </h2>
-      <p class="section-sub" style="margin: 0 auto; color:#a1a1aa; font-size: 1.05rem;">
-        El método de acompañamiento y co-diseño favorito de creativos, independientes y personas al borde del burnout. No te encierro en moldes corporativos fríos: como el agua, el sistema toma la forma exacta de tu vida, tus ritmos biológicos y tu nivel de energía real.
-      </p>
-    </div>
-
-    <!-- BANNER DUAL: EL CONCEPTO Y LA EXPERIENCIA DE LA SESIÓN -->
-    <div class="liquid-concept-banner">
-      <!-- Lado 1: La Física de la Estructura Líquida -->
-      <div class="liquid-card concept">
-        <div class="liquid-glow-bar glow-cyan"></div>
-        <div class="liquid-card-header">
-          <div class="liquid-icon-badge icon-cyan">🌊</div>
-          <span class="liquid-badge badge-cyan">Viscosidad Adaptable</span>
-        </div>
-        <h3>¿Por qué "Estructura Líquida"?</h3>
-        <p>
-          Los métodos corporativos tradicionales fracasan porque son jaulas rígidas: exigen que rindas al 100% todos los días. Si te enfermas, surge un imprevisto familiar o tu batería sensorial baja al 20%, el sistema colapsa y te invade la culpa.
-        </p>
-        <p style="color:#e5e7eb; font-weight:600; line-height:1.55;">
-          La <strong>Estructura Líquida</strong> te da tracción cuando tienes energía alta y se amolda con compasión cuando estás al 30%, protegiendo lo esencial sin que el orden se convierta en una carga.
-        </p>
-        
-        <div class="liquid-vs-box">
-          <div class="vs-row bad">
-            <span class="vs-icon">✕</span>
-            <div>
-              <strong style="color:#f87171;">Estructura Rígida:</strong>
-              <span>Reglas fijas ➔ Juicio moral ➔ Colapso ante imprevistos ➔ Abandono en 3 días.</span>
-            </div>
-          </div>
-          <div class="vs-row good">
-            <span class="vs-icon">✓</span>
-            <div>
-              <strong style="color:#22d3ee;">Estructura Líquida:</strong>
-              <span>Diques de contención ➔ Flexibilidad real ➔ Calma y sostenibilidad anual.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Lado 2: La Sesión Insignia 1 a 1 -->
-      <div class="liquid-card session">
-        <div class="liquid-glow-bar glow-blue"></div>
-        <div class="liquid-card-header">
-          <div class="liquid-icon-badge icon-blue">🎙️</div>
-          <span class="liquid-badge badge-blue">La Sesión Insignia 1 a 1</span>
-        </div>
-        <h3>De 2 a 3 Horas de Co-Diseño Profundo</h3>
-        <p>
-          No es una clase teórica ni una charla motivacional. Es un taller de ingeniería operativa donde nos sentamos juntos a ordenar el caos de tu vida y construir tus activos en vivo.
-        </p>
-
-        <div class="session-features-list">
-          <div class="session-feat-item">
-            <span class="feat-bullet">1</span>
-            <div>
-              <strong>Diagnóstico & Escucha Activa sin Juicios</strong>
-              <small>120 a 180 min para vaciar pendientes y mapear fugas reales de energía.</small>
-            </div>
-          </div>
-          <div class="session-feat-item">
-            <span class="feat-bullet">2</span>
-            <div>
-              <strong>Selección Quirúrgica de Herramientas</strong>
-              <small>Activamos solo 3 a 5 diques de mi catálogo de +60 módulos a tu medida.</small>
-            </div>
-          </div>
-          <div class="session-feat-item">
-            <span class="feat-bullet">3</span>
-            <div>
-              <strong>Entrega de tu Plan de Vuelo 2.0 Privado en Mano</strong>
-              <small>Software interactivo en tu celular, Mapeador 24H y Hub de Imprimibles de 1 hoja.</small>
-            </div>
-          </div>
-          <div class="session-feat-item">
-            <span class="feat-bullet">4</span>
-            <div>
-              <strong>Checklist Clave para tus Primeras 48 Horas</strong>
-              <small>Pasos claros, viables y sin dispersión para empezar a operar con alivio.</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LAS 4 FASES DEL VIAJE EN ESTRUCTURA LÍQUIDA -->
-    <div style="margin-top: 36px; margin-bottom: 24px; text-align: center;">
-      <span style="font-family:var(--font-heading); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: #38bdf8; letter-spacing: 0.1em;">
-        ✦ El Recorrido Paso a Paso
-      </span>
-      <h3 style="font-family:var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #fff; margin-top: 6px;">
-        Cómo co-creamos tu sistema en 4 movimientos
-      </h3>
-    </div>
-
-    <div class="liquid-process-grid">
-      <!-- FASE 1 -->
-      <div class="proc-step-card">
-        <div class="proc-step-num">01</div>
-        <div class="proc-icon-wrap icon-cyan">🎙️</div>
-        <h4>Sintonía & Descarga</h4>
-        <p>Conversación profunda de 2 a 3 horas para vaciar las 50 pestañas abiertas en tu cabeza y mapear tu realidad cotidiana real.</p>
-        <span class="proc-tag">Sesión 1 a 1 sin prisa</span>
-      </div>
-
-      <!-- FASE 2 -->
-      <div class="proc-step-card">
-        <div class="proc-step-num">02</div>
-        <div class="proc-icon-wrap icon-blue">🧩</div>
-        <h4>Filtrado & Co-Diseño</h4>
-        <p>De más de 60 herramientas de administración aplicada, seleccionamos con precisión quirúrgica los diques exactos para tu fricción.</p>
-        <span class="proc-tag">Cero sobrecarga</span>
-      </div>
-
-      <!-- FASE 3 -->
-      <div class="proc-step-card">
-        <div class="proc-step-num">03</div>
-        <div class="proc-icon-wrap icon-sky">🛫</div>
-        <h4>Instalación de tu Plan de Vuelo</h4>
-        <p>Configuramos tu aplicación privada en tu celular y computador con tu Mapeador 24H y tu Hub de Imprimibles físicos de 1 hoja.</p>
-        <span class="proc-tag">Software privado listo</span>
-      </div>
-
-      <!-- FASE 4 -->
-      <div class="proc-step-card">
-        <div class="proc-step-num">04</div>
-        <div class="proc-icon-wrap icon-emerald">🌱</div>
-        <h4>Ajustes & Autonomía</h4>
-        <p>Verificamos en vivo tu checklist de acción y calibramos los módulos a tu propio ritmo para garantizar que perdure en el tiempo.</p>
-        <span class="proc-tag">Sostenible sin culpa</span>
-      </div>
-    </div>
-
-    <!-- CINTILLO DE ACTIVOS ENTREGADOS -->
-    <div class="liquid-assets-strip">
-      <span class="strip-label">📦 Todo lo que te llevas listo:</span>
-      <div class="strip-tags">
-        <span class="strip-tag">🛫 Plan de Vuelo 2.0 Privado</span>
-        <span class="strip-tag">🕒 Mapeador 24H parametrizado</span>
-        <span class="strip-tag">📑 Hub de Imprimibles 1 Hoja</span>
-        <span class="strip-tag">🎯 Tablero de Foco Máx 2 Tareas</span>
-        <span class="strip-tag">💬 Co-creación directa con Diego</span>
-      </div>
-    </div>
-  </div>
-</section>
-  <section class="entregables" id="entregables" style="background: var(--color-surface); padding: 70px 0;">
-  <div class="container">
-    <div style="background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(0,0,0,0.8)); border: 1px solid var(--color-border-bright); border-radius: var(--radius-lg); padding: 40px 36px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.35); color:#60a5fa; padding:4px 14px; border-radius:50px; font-size:0.75rem; font-weight:800; text-transform:uppercase; margin-bottom:14px;">
-        🚀 Ecosistema Híbrido AH • Digital Ligero + Papel Físico
-      </div>
-      <h2 class="section-title" style="margin-bottom: 12px; font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
-        Tu Plan de Vuelo en el Celular + Tu Cuaderno de Operaciones en Papel
-      </h2>
-      <p style="font-size: 0.98rem; color: var(--color-text-light); max-width: 740px; margin: 0 auto 28px; line-height: 1.65;">
-        La tecnología ligera vive en tu teléfono para consultas rápidas y registro diario; las anclas de sostén viven impresas en tu escritorio en hojas exactas de 1 página para proteger tu foco sin fatiga de pantallas.
-      </p>
-      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-        <a href="planes-demo.html" class="btn-primary" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); border:none; box-shadow: 0 0 20px rgba(59,130,246,0.35); font-weight:800;">
-          ✨ Explorar Plan de Vuelo en Vivo (5 Casos Reales) ↗
-        </a>
-        <a href="planes-demo.html#caso_b" class="btn-secondary" style="border-color: rgba(255,255,255,0.25);">
-          🚀 Ver Caso de Muestra: Camila (Sensorial) →
-        </a>
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20el%20Plan%20de%20Vuelo%20de%20muestra%20y%20quiero%20coordinar%20mi%20sesi%C3%B3n." target="_blank" class="btn-secondary" style="border-color: rgba(16,185,129,0.4); color:#10b981;">
-          💬 Hablar con Diego por WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-  <section class="pricing-section" id="inversion" style="background: radial-gradient(circle at 50% 10%, rgba(56,189,248,0.06) 0%, #080808 90%); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 85px 0;">
-  <div class="container">
-    <div style="text-align: center; max-width: 820px; margin: 0 auto 48px;">
-      <span class="section-tag" style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.35); color:#34d399; font-size:0.75rem; font-weight:800; padding:5px 14px; border-radius:20px; text-transform:uppercase; letter-spacing:0.08em;">
-        💰 Transparencia Total • Tu Inversión en Paz Mental
-      </span>
-      <h2 class="section-title" style="margin-top:14px; font-size: clamp(2rem, 4vw, 2.9rem);">
-        ¿Cuánto Cuesta tu Proceso?
-      </h2>
-      <p class="section-sub" style="margin: 0 auto; color:#a1a1aa; font-size: 1.05rem;">
-        Cero sorpresas ni compromisos a ciegas. Un camino escalonado y accesible, donde cada peso invertido se traduce en alivio operativo inmediato.
-      </p>
-    </div>
-
-    <!-- RADIOGRAFÍA DE DESPEGUE EN VIVO (DIAGNÓSTICO AUTOMÁTICO DE LA LANDING) -->
-    <div class="diagnostico-live-box" id="diagnostico-live-box" style="max-width:1080px; margin:0 auto 40px auto;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:1.6rem; background:rgba(56,189,248,0.15); width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(56,189,248,0.35);">📊</span>
-          <div>
-            <span style="font-family:var(--font-heading); font-size:0.75rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.08em; display:block;">
-              ✦ Tu Sondeo en Tiempo Real • Diagnóstico Preliminar
-            </span>
-            <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#fff; margin:0;">
-              Tu Radiografía de Despegue
-            </h3>
-          </div>
-        </div>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></span>
-          <span style="font-size:0.78rem; color:#a1a1aa; font-weight:600;">Actualizado en vivo</span>
-        </div>
-      </div>
-
-      <p style="font-size:0.86rem; color:#cbd5e1; line-height:1.5; margin-bottom:16px;">
-        Con base en las fugas y situaciones que tocaste arriba, este es el resumen de tu cuello de botella actual y el plan recomendado para tu primera sesión:
-      </p>
-
-      <div class="diagnostico-metrics-row">
-        <div class="diagnostico-metric-item">
-          <div class="diagnostico-metric-val" id="diag-metric-fuga" style="color:#f87171;">4.0h/día</div>
-          <div class="diagnostico-metric-lbl">Fuga de Tiempo Estimada</div>
-          <div style="font-size:0.74rem; color:#94a3b8; margin-top:4px;" id="diag-sub-fuga">≈ 20h/semana (~80h al mes)</div>
-        </div>
-        <div class="diagnostico-metric-item">
-          <div class="diagnostico-metric-val" id="diag-metric-dolores" style="color:#f59e0b;">3 cuellos</div>
-          <div class="diagnostico-metric-lbl">Puntos de Dolor Detectados</div>
-          <div style="font-size:0.74rem; color:#94a3b8; margin-top:4px;" id="diag-sub-dolores">Apagafuegos, Multitarea, Archivos</div>
-        </div>
-        <div class="diagnostico-metric-item">
-          <div class="diagnostico-metric-val" id="diag-metric-modulos" style="color:#38bdf8;">M06, M11</div>
-          <div class="diagnostico-metric-lbl">Módulos Prioritarios Sugeridos</div>
-          <div style="font-size:0.74rem; color:#94a3b8; margin-top:4px;">Listos para activar en tu sesión</div>
-        </div>
-      </div>
-
-      <!-- Resumen de Módulos Sugeridos con Badges -->
-      <div style="background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px 18px; margin-bottom:20px;">
-        <div style="font-size:0.76rem; font-weight:800; color:#a1a1aa; text-transform:uppercase; margin-bottom:8px;">
-          🛠️ Diques de contención recomendados para tu caso:
-        </div>
-        <div id="diag-badges-container" style="display:flex; gap:8px; flex-wrap:wrap;">
-          <!-- Badges dinámicos -->
-        </div>
-      </div>
-
-      <!-- CTA WhatsApp Dinámico con Diagnóstico -->
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-        <div>
-          <div style="font-size:0.88rem; font-weight:700; color:#fff; margin-bottom:2px;">
-            ¿Listo para destrabar esto mano a mano con Diego?
-          </div>
-          <div style="font-size:0.78rem; color:#94a3b8;">
-            Tu diagnóstico se envía directamente por WhatsApp en el formato estructurado.
-          </div>
-        </div>
-        <a id="btn-whatsapp-diag" href="https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20sondeo%20en%20tu%20web%20y%20quiero%20coordinar%20mi%20Sesi%C3%B3n%20de%20Despegue." target="_blank" class="btn-whatsapp-diag">
-          <span>💬</span> Enviar Mi Diagnóstico y Coordinar Sesión de Despegue ($35.000) →
-        </a>
-      </div>
-    </div>
-
-    <!-- GRID DE 3 NIVELES DE PRECIO -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(310px, 1fr)); gap:24px; align-items:stretch; max-width:1080px; margin:0 auto;">
-      
-      <!-- TIER 1: SESIÓN DE DESPEGUE -->
-      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:var(--radius-lg); padding:32px 26px; display:flex; flex-direction:column; justify-content:space-between; position:relative;">
-        <div>
-          <span style="font-size:0.72rem; font-weight:800; color:#38bdf8; text-transform:uppercase; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); padding:4px 10px; border-radius:20px; display:inline-block; margin-bottom:14px;">
-            Paso 1 • Diagnóstico & Despegue
-          </span>
-          <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; margin-bottom:8px;">
-            Sesión de Despegue 1 a 1
-          </h3>
-          <p style="font-size:0.86rem; color:#a1a1aa; line-height:1.5; margin-bottom:18px;">
-            Para destrabar tu cuello de botella urgente, escuchar tu contexto a fondo y llevarte tu Plan de Vuelo funcionando en 24 horas.
-          </p>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:18px; border-bottom:1px solid #1f1f1f; padding-bottom:14px;">
-            <span style="font-family:var(--font-heading); font-size:2.4rem; font-weight:800; color:#fff;">$35.000</span>
-            <span style="font-size:0.85rem; color:#888;">CLP / única vez</span>
-          </div>
-          <ul style="list-style:none; font-size:0.84rem; color:#d4d4d8; display:flex; flex-direction:column; gap:10px; margin-bottom:24px;">
-            <li style="display:flex; gap:8px;"><span>✓</span> <span><b>90 min de escucha activa profunda 1 a 1</b> con Diego (online o presencial).</span></li>
-            <li style="display:flex; gap:8px;"><span>✓</span> <span>Mapeo claro de tu contexto real, fugas de energía y tiempo.</span></li>
-            <li style="display:flex; gap:8px;"><span>✓</span> <span>Entrega de tu <b>Plan de Vuelo con al menos 1 módulo clave activado</b> (ej. Mapeador 24H o Tablero de Foco) funcionando en 24h.</span></li>
-            <li style="display:flex; gap:8px;"><span style="color:#10b981;">✦</span> <span style="color:#10b981;"><b>100% deducible</b> si decides continuar desarrollando tu Plan de Vuelo semana a semana.</span></li>
-          </ul>
-        </div>
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20de%20Despegue%20($35.000%20CLP)." target="_blank" class="btn-secondary" style="width:100%; text-align:center; padding:12px; font-weight:700; border-color:#38bdf8; color:#38bdf8; border-radius:50px; text-decoration:none; display:block;">
-          Agendar Sesión de Despegue ($35.000) →
-        </a>
-      </div>
-
-      <!-- TIER 2: PLAN DE VUELO INTEGRAL (DESTACADO / CORE) -->
-      <div style="background:linear-gradient(145deg, rgba(16,185,129,0.06), rgba(6,182,212,0.06)); border:2px solid #10b981; border-radius:var(--radius-lg); padding:36px 28px; display:flex; flex-direction:column; justify-content:space-between; position:relative; box-shadow:0 0 35px rgba(16,185,129,0.15); transform:scale(1.02);">
-        <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#10b981; color:#000; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; padding:3px 14px; border-radius:20px; font-family:var(--font-heading); box-shadow:0 0 15px rgba(16,185,129,0.5);">
-          OFERTA INSIGNIA • RECOMENDADO
-        </div>
-        <div>
-          <span style="font-size:0.72rem; font-weight:800; color:#10b981; text-transform:uppercase; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); padding:4px 10px; border-radius:20px; display:inline-block; margin-bottom:14px; margin-top:6px;">
-            Acompañamiento 4 Semanas • Core
-          </span>
-          <h3 style="font-family:var(--font-heading); font-size:1.45rem; font-weight:800; color:#fff; margin-bottom:8px;">
-            Plan de Vuelo Integral
-          </h3>
-          <p style="font-size:0.86rem; color:#d1d5db; line-height:1.5; margin-bottom:18px;">
-            La intervención integral: co-creamos, diseñamos e instalamos tu sistema operativo semana a semana para que avances con tracción real y serenidad.
-          </p>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:6px;">
-            <span style="font-family:var(--font-heading); font-size:2.6rem; font-weight:800; color:#fff;">$190.000</span>
-            <span style="font-size:0.85rem; color:#10b981; font-weight:700;">CLP total</span>
-          </div>
-          <div style="font-size:0.78rem; color:#a1a1aa; margin-bottom:18px; border-bottom:1px solid rgba(16,185,129,0.25); padding-bottom:14px;">
-            o <b>2 cuotas de $98.000 CLP</b> (o 3 de $68.000)<br>
-            <span style="color:#34d399;">(Si ya hiciste tu Sesión de Despegue, solo pagas la diferencia: $155.000 CLP)</span>
-          </div>
-          <ul style="list-style:none; font-size:0.84rem; color:#f3f4f6; display:flex; flex-direction:column; gap:10px; margin-bottom:24px;">
-            <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span><b>4 sesiones 1 a 1 de co-creación profunda</b> semana a semana con Diego.</span></li>
-            <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span><b>Desarrollo integral de tu Plan de Vuelo:</b> Tiempo, foco, finanzas y proyectos interconectados.</span></li>
-            <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span><b>Cuaderno Físico de Operaciones:</b> Checklists y fichas táctiles de 1 hoja para tu escritorio.</span></li>
-            <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span><b>Acompañamiento y soporte directo por WhatsApp</b> entre sesiones para calibrar en tiempo real.</span></li>
-            <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span>Auditoría de tus 168 horas reales y blindaje de Bloques de Oro.</span></li>
-          </ul>
-        </div>
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20me%20interesa%20iniciar%20el%20Plan%20de%20Vuelo%20Integral." target="_blank" class="btn-primary" style="width:100%; text-align:center; padding:14px; font-weight:800; background:#10b981; color:#000; border-radius:50px; text-decoration:none; display:block; box-shadow:0 0 25px rgba(16,185,129,0.35);">
-          Comenzar Mi Plan de Vuelo →
-        </a>
-      </div>
-
-      <!-- TIER 3: MANTENIMIENTO DE VUELO -->
-      <div style="background:#0d0d0d; border:1px solid #262626; border-radius:var(--radius-lg); padding:32px 26px; display:flex; flex-direction:column; justify-content:space-between; position:relative;">
-        <div>
-          <span style="font-size:0.72rem; font-weight:800; color:#f59e0b; text-transform:uppercase; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:4px 10px; border-radius:20px; display:inline-block; margin-bottom:14px;">
-            Continuidad • Exclusivo Clientes
-          </span>
-          <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; margin-bottom:8px;">
-            Mantenimiento de Vuelo
-          </h3>
-          <p style="font-size:0.86rem; color:#a1a1aa; line-height:1.5; margin-bottom:18px;">
-            Para calibrar tu sistema ante nuevos proyectos, cambios de contexto o temporadas de alta demanda sin perder el rumbo.
-          </p>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:18px; border-bottom:1px solid #1f1f1f; padding-bottom:14px;">
-            <span style="font-family:var(--font-heading); font-size:2.4rem; font-weight:800; color:#fff;">$35.000</span>
-            <span style="font-size:0.85rem; color:#888;">CLP / sesión</span>
-          </div>
-          <ul style="list-style:none; font-size:0.84rem; color:#d4d4d8; display:flex; flex-direction:column; gap:10px; margin-bottom:24px;">
-            <li style="display:flex; gap:8px;"><span>✓</span> <span>Sesión 1 a 1 de 60 min de revisión y recalibración de módulos.</span></li>
-            <li style="display:flex; gap:8px;"><span>✓</span> <span>Actualización de tu Plan de Vuelo digital y fichas de papel.</span></li>
-            <li style="display:flex; gap:8px;"><span>✓</span> <span>Ajuste de metas y resolución de nuevas fricciones operativas.</span></li>
-            <li style="display:flex; gap:8px;"><span>✓</span> <span>Frecuencia sugerida: trimestral o semestral según tu necesidad.</span></li>
-          </ul>
-        </div>
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20coordinar%20una%20Sesi%C3%B3n%20de%20Mantenimiento%20de%20Vuelo." target="_blank" class="btn-secondary" style="width:100%; text-align:center; padding:12px; font-weight:700; border-color:#f59e0b; color:#f59e0b; border-radius:50px; text-decoration:none; display:block;">
-          Coordinar Mantenimiento →
-        </a>
-      </div>
-
-    </div>
-
-    <!-- NOTA DE GARANTÍA Y CO-CREACIÓN -->
-    <div style="background:rgba(255,255,255,0.03); border:1px solid #262626; border-radius:14px; padding:20px 24px; max-width:860px; margin:36px auto 0 auto; text-align:center;">
-      <p style="font-size:0.9rem; color:#e5e7eb; line-height:1.6; margin-bottom:6px;">
-        🤝 <b>Compromiso de Co-creación en Vivo:</b> No te entrego cursos grabados de 40 horas ni plantillas frías que nunca usarás. Nos sentamos contigo a diseñar y calibrar cada herramienta según tu energía real, tu familia y tu negocio.
-      </p>
-      <span style="font-size:0.78rem; color:#888;">Facilidades de pago vía transferencia bancaria y tarjetas de crédito en cuotas.</span>
-    </div>
-  </div>
-</section>
-  <section class="faq">
-  <div class="container">
-    <span class="section-tag">Preguntas frecuentes</span>
-    <h2 class="section-title" style="text-align:center;">Lo que más me preguntan.</h2>
-    <div class="divider" style="margin: 16px auto 48px;"></div>
-    <div class="faq-list">
-      <details>
-        <summary>¿Necesito saber de administración de empresas para esto?</summary>
-        <p class="faq-answer">Para nada. Todo el trabajo está traducido a lenguaje cotidiano. Mi rol es hacer de puente entre el conocimiento técnico y tu realidad concreta. No necesitas ninguna formación previa.</p>
-      </details>
-      <details>
-        <summary>¿Es coaching, terapia o consultoría?</summary>
-        <p class="faq-answer">Se define formalmente como una <strong>Asesoría en Gestión Personal Administrativa</strong>. Es el puente de oro entre el coaching de productividad (que suele centrarse demasiado en la mentalidad sin enseñarte el "cómo" técnico) y la consultoría de procesos tradicional (que diseña sistemas corporativos complejos difíciles de usar en el día a día). Humanizamos las herramientas administrativas y las adaptamos a tu ritmo y estilo personal.</p>
-      </details>
-      <details>
-        <summary>¿Cómo funciona la sesión diagnóstico?</summary>
-        <p class="faq-answer">Dura 75 minutos, online o presencial. Mapeamos tu contexto, identificamos tu dolor principal y definimos una herramienta concreta con un plan de acción para los próximos 7 a 14 días. Sales con algo claro que aplicar.</p>
-      </details>
-      <details>
-        <summary>¿Puedo trabajar contigo si estoy en otra ciudad?</summary>
-        <p class="faq-answer">Sí, trabajo 100% online por videollamada. El proceso es igual de completo y personalizado que de forma presencial.</p>
-      </details>
-      <details>
-        <summary>¿Cuánto dura un proceso completo?</summary>
-        <p class="faq-answer">El programa base son 4 semanas con 4 sesiones. El programa integral dura 8 a 10 semanas. Todo parte con la sesión diagnóstico para entender cuál se adapta mejor a tu situación actual.</p>
-      </details>
-    </div>
-  </div>
-</section>
-  <section class="final-cta" id="contacto">
-  <div class="container">
-    <h2>¿Listo para ordenar lo que <em>realmente importa?</em></h2>
-    <p>Completa tu <b>Sondeo Express en 90 segundos</b> (con opción de nota de voz) o habla directamente con Diego para agendar tu sesión.</p>
-    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top: 24px;">
-      <a href="sondeo.html" class="btn-primary" style="background:#ffffff; color:#000000; font-weight:800; box-shadow:0 0 25px rgba(255,255,255,0.3);">⚡ Iniciar Sondeo Express (90s + Audio) →</a>
-      <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20agendar%20mi%20sesi%C3%B3n%20diagn%C3%B3stica" class="btn-secondary" style="background:rgba(255,255,255,0.05); color:white;" target="_blank">📲 Escríbeme por WhatsApp →</a>
-      <a href="https://www.instagram.com/administracionhumana/?hl=es" class="btn-secondary" style="background:rgba(255,255,255,0.05); color:white;" target="_blank" rel="noopener noreferrer">📸 Instagram: @administracionhumana →</a>
-    </div>
-    <p style="margin-top: 20px; font-size: 0.84rem; color: var(--color-text-muted);">Respondo en menos de 24 horas · Online y presencial (Concepción, Chile)</p>
-  </div>
-</section>
 </div>
+<div id="view-modulos" class="platform-view">
+  
+  <div class="container" style="padding-top: 40px; padding-bottom: 70px;">
+    
+    <!-- CABECERA EXPLICATIVA: QUÉ ES UN MÓDULO Y QUÉ ES EL PLAN DE VUELO -->
+    <div style="text-align: center; max-width: 820px; margin: 0 auto 40px;">
+      <span style="background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); color: #38bdf8; font-size: 0.76rem; font-weight: 800; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
+        ✨ El Producto Explicado en Detalle
+      </span>
+      <h2 style="font-family: var(--font-heading); font-size: clamp(1.7rem, 3.8vw, 2.35rem); font-weight: 800; color: #fff; margin-top: 14px; line-height: 1.2;">
+        No vendemos cursos grabados ni PDFs fríos: Co-creamos tu Sistema de Gestión Personalizado
+      </h2>
+      <p style="font-size: 0.95rem; color: #a1a1aa; margin-top: 12px; line-height: 1.6;">
+        Un <b>«Módulo»</b> en Administración Humana no es una clase teórica para ver solo en tu casa. Es una <b>herramienta operativa viva</b> (digital y física) diseñada con ingeniería de procesos y adaptada a tu ritmo humano. El <b>«Plan de Vuelo 2.0»</b> es el ecosistema completo donde se integran todos tus módulos bajo una misma clave personal.
+      </p>
+    </div>
 
+    <!-- LOS 3 PILARES QUE TE LLEVAS (LA TRÍADA OPERATIVA) -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 50px;">
+      <div style="background: #0d0d11; border: 1px solid #252530; border-radius: 16px; padding: 26px 22px; border-top: 3px solid #38bdf8;">
+        <span style="font-size: 2rem; display: block; margin-bottom: 12px;">💻</span>
+        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          1. Tablero Web Vivo con PIN
+        </h4>
+        <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.55;">
+          Un portal privado en tu celular y computador accesible con clave exclusiva. Sin apps complejas que se abandonan; solo herramientas visuales interactivas que responden a tu día a día.
+        </p>
+      </div>
 
-<!-- VISTA 4: PLANES DE VUELO (PORTAL CLIENTES & DEMOSTRACIÓN) -->
+      <div style="background: #0d0d11; border: 1px solid #252530; border-radius: 16px; padding: 26px 22px; border-top: 3px solid #10b981;">
+        <span style="font-size: 2rem; display: block; margin-bottom: 12px;">📄</span>
+        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          2. Hub de Imprimibles (1 Hoja)
+        </h4>
+        <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.55;">
+          Fichas táctiles y cuadernillo físico de 1 hoja por herramienta para tu escritorio. Diseñado para descansar la vista de las pantallas y sentir tracción real con lápiz y papel.
+        </p>
+      </div>
+
+      <div style="background: #0d0d11; border: 1px solid #252530; border-radius: 16px; padding: 26px 22px; border-top: 3px solid #f59e0b;">
+        <span style="font-size: 2rem; display: block; margin-bottom: 12px;">🤝</span>
+        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          3. Co-Creación 1 a 1 en Vivo
+        </h4>
+        <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.55;">
+          4 sesiones en vivo mano a mano con Diego. Escucho tu semana real, detectamos tus fugas invisibles de tiempo y energía, y calibramos juntos cada módulo para que sea sustentable en el tiempo.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE PANTALLAZOS REALES: CÓMO SE VE EL PLAN DE VUELO EN ACCIÓN -->
+    <div style="margin-top: 20px;">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 30px;">
+        <span class="section-tag" style="background: rgba(16,185,129,0.12); color: #10b981; border-color: rgba(16,185,129,0.3);">
+          📸 MUESTRA VISUAL • HERRAMIENTAS ACTIVAS
+        </span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 10px;">
+          Conoce por dentro las herramientas que ordenan a nuestros clientes
+        </h3>
+        <p style="font-size: 0.88rem; color: #a1a1aa; margin-top: 6px;">
+          Estas no son maquetas conceptuales. Son capturas reales del software que utilizan nuestros profesionales semana a semana:
+        </p>
+      </div>
+
+      <div class="plan-showcase-grid">
+        
+        <!-- PANTALLAZO 1: KANBAN BOARD -->
+        <div class="plan-showcase-item">
+          <div class="plan-showcase-img-wrap">
+            <img src="assets/img/plan_vuelo/plan_vuelo_kanban.png" alt="Tablero Kanban con Límite WIP de 2 Tareas" class="plan-showcase-img" />
+          </div>
+          <div>
+            <span class="plan-showcase-tag">MÓDULO EMBLEMÁTICO MOD-07 • BLINDAJE COGNITIVO</span>
+            <h4 class="plan-showcase-title">Tablero Kanban WIP 2: El fin definitivo de la parálisis por multitarea</h4>
+            <p class="plan-showcase-desc">
+              <b>El problema habitual:</b> Tienes 20 pendientes en la cabeza, saltas de un WhatsApp a un correo y de vuelta a un favor ajeno. Al final del día tu mente arde pero sientes que no cerraste nada.<br><br>
+              <b>La solución práctica:</b> Un tablero interactivo con regla estricta de <b>máximo 2 tareas activas en foco simultáneo</b>. Todo lo demás se protege en cola de espera.
+            </p>
+            <div class="plan-showcase-benefit">
+              ✓ <strong>Impacto real:</strong> Terminas lo que empiezas cada día y dejas de saltar entre 15 pestañas abiertas.
+            </div>
+          </div>
+        </div>
+
+        <!-- PANTALLAZO 2: HORARIOS 24H & BATCHING (REVERSE) -->
+        <div class="plan-showcase-item reverse">
+          <div>
+            <span class="plan-showcase-tag" style="color:#f59e0b; border-color:rgba(245,158,11,0.3); background:rgba(245,158,11,0.1);">MÓDULO EMBLEMÁTICO MOD-06 • SOBERANÍA DEL TIEMPO</span>
+            <h4 class="plan-showcase-title">Mapeador Horario 24H: Deja de trabajar 14 horas al día apagando incendios</h4>
+            <p class="plan-showcase-desc">
+              <b>El problema habitual:</b> Tu día es un colador de urgencias. Trabajas de 8:00 a 22:00 sin saber adónde se fue el tiempo y te vas a la cama con culpa porque no te quedó espacio para ti.<br><br>
+              <b>La solución práctica:</b> Diseñamos juntos tu semana real en cajitas visuales de colores, agrupando tareas similares (Batching) y blindando tus <b>Bloques de Oro</b> personales antes de que el mundo te los robe.
+            </p>
+            <div class="plan-showcase-benefit" style="border-color:#f59e0b; color:#fbbf24; background:rgba(245,158,11,0.08);">
+              ✓ <strong>Impacto real:</strong> Recuperas 15 a 20 horas invisibles por semana y vuelves a tener tardes libres sin culpa.
+            </div>
+          </div>
+          <div class="plan-showcase-img-wrap">
+            <img src="assets/img/plan_vuelo/plan_vuelo_horarios_24h.png" alt="Mapeador Horario 24H con Bloques de Oro" class="plan-showcase-img" />
+          </div>
+        </div>
+
+        <!-- PANTALLAZO 3: CIERRE DIARIO Y DESCONEXIÓN -->
+        <div class="plan-showcase-item">
+          <div class="plan-showcase-img-wrap">
+            <img src="assets/img/plan_vuelo/plan_vuelo_cierre_diario.png" alt="Protocolo de Cierre Consciente y Descompresión" class="plan-showcase-img" />
+          </div>
+          <div>
+            <span class="plan-showcase-tag" style="color:#a855f7; border-color:rgba(168,85,247,0.3); background:rgba(168,85,247,0.1);">MÓDULO EMBLEMÁTICO MOD-22 • HIGIENE MENTAL Y SUEÑO</span>
+            <h4 class="plan-showcase-title">Cierre Consciente (Shutdown): Apaga el día en 2 minutos y duerme sin rumiar</h4>
+            <p class="plan-showcase-desc">
+              <b>El problema habitual:</b> Te paras del escritorio pero tu cabeza sigue trabajando en la cena, con tu familia y en la almohada, repasando lo que quedó pendiente para mañana.<br><br>
+              <b>La solución práctica:</b> Un checklist táctil de 2 minutos que vacía tu memoria de trabajo, balancea lo avanzado y declara formalmente el final de la jornada.
+            </p>
+            <div class="plan-showcase-benefit" style="border-color:#a855f7; color:#c084fc; background:rgba(168,85,247,0.08);">
+              ✓ <strong>Impacto real:</strong> Presencia total con quienes quieres y sueño reparador sin angustia nocturna.
+            </div>
+          </div>
+        </div>
+
+        <!-- PANTALLAZO 4: DASHBOARD CENTRAL DEL CLIENTE -->
+        <div class="plan-showcase-item reverse">
+          <div>
+            <span class="plan-showcase-tag" style="color:#10b981; border-color:rgba(16,185,129,0.3); background:rgba(16,185,129,0.1);">LA PLATAFORMA INTEGRAL • TU CENTRO DE COMANDO</span>
+            <h4 class="plan-showcase-title">Tu Tablero de Vuelo Privado: Todo en un solo clic, sin descargas</h4>
+            <p class="plan-showcase-desc">
+              <b>El problema habitual:</b> Tienes notas en WhatsApp, archivos en Drive, un cuaderno perdido y 3 apps a medias. La dispersión de herramientas te cansa más que el propio trabajo.<br><br>
+              <b>La solución práctica:</b> Centralizamos tus métricas, acuerdos de sesión, imprimibles físicos y herramientas interactivas en una sola página web ligera con tu PIN personal.
+            </p>
+            <div class="plan-showcase-benefit">
+              ✓ <strong>Impacto real:</strong> Abres tu enlace favorito y sabes exactamente qué toca hoy y qué está protegido.
+            </div>
+          </div>
+          <div class="plan-showcase-img-wrap">
+            <img src="assets/img/plan_vuelo/plan_vuelo_dashboard.png" alt="Dashboard Central del Plan de Vuelo 2.0" class="plan-showcase-img" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EL ARSENAL DE MÁS DE 60 MÓDULOS -->
+    <div style="margin-top: 50px; background: #0c0c10; border: 1px solid #23232c; border-radius: var(--radius-lg); padding: 36px 30px; text-align: center;">
+      <span style="font-size: 0.76rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.1em;">
+        ✦ EL ARSENAL COMPLETO DE ADMINISTRACIÓN HUMANA
+      </span>
+      <h3 style="font-family: var(--font-heading); font-size: 1.55rem; font-weight: 800; color: #fff; margin-top: 10px;">
+        Más de 60 Módulos Operativos Listos para Activar
+      </h3>
+      <p style="font-size: 0.9rem; color: #a1a1aa; max-width: 760px; margin: 10px auto 24px; line-height: 1.6;">
+        Estos 4 ejemplos son solo la base. Contamos con un catálogo de más de 60 herramientas probadas en áreas como <b>Finanzas 50/30/20</b>, <b>Tarifario por Paquetes</b>, <b>Asistencia de IA por Voz</b>, <b>Blindaje Sensorial TEA</b> y <b>Matriz Eisenhower</b>. En tu proceso, Diego selecciona y adapta las 4 a 6 herramientas exactas que destraban tu cuello de botella actual.
+      </p>
+      
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="../../02_METODOLOGIA_Y_HERRAMIENTAS/LABORATORIO_MODULOS.html" target="_blank" class="btn-primary" style="background: rgba(56,189,248,0.12); border: 1px solid #38bdf8; color: #38bdf8; font-weight: 800; font-size: 0.88rem; padding: 12px 24px; border-radius: 50px; text-decoration: none;">
+          🧪 Abrir el Laboratorio Maestro de Módulos Clínicos ↗
+        </a>
+        <a href="dossier.html" target="_blank" class="btn-secondary" style="font-size: 0.88rem; padding: 12px 24px; border-radius: 50px;">
+          📄 Ver el Dossier de Casos de Éxito ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- TABLA DE PRECIOS Y ACCIÓN DIRECTA -->
+    <div style="margin-top: 50px;" id="precios">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 30px;">
+        <span class="section-tag">Inversión Transparente y Sin Letra Chica</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 8px;">
+          Empieza con la Sesión de Despegue o entra al Plan Integral
+        </h3>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto;">
+        
+        <!-- PLAN 1: SESIÓN DESPEGUE -->
+        <div style="background: #0c0c0f; border: 1px solid #2a2a30; border-radius: var(--radius-lg); padding: 32px 26px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-size: 0.72rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px;">
+              Paso 1 Recomendado
+            </span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+              Sesión de Despegue 1 a 1
+            </h4>
+            <p style="font-size: 0.85rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 16px;">
+              75 minutos mano a mano con Diego para mapear tu semana real, identificar tus fugas de tiempo y salir con tu primera herramienta práctica instalada.
+            </p>
+            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 16px; border-bottom: 1px solid #1f1f1f; padding-bottom: 14px;">
+              <span style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #fff;">$35.000</span>
+              <span style="font-size: 0.85rem; color: #888;">CLP</span>
+            </div>
+            <ul style="list-style: none; font-size: 0.84rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+              <li style="display:flex; gap:8px;"><span>✓</span> <span>Sesión individual de 75 min online o presencial.</span></li>
+              <li style="display:flex; gap:8px;"><span>✓</span> <span>Mapeo de tu cuello de botella más urgente.</span></li>
+              <li style="display:flex; gap:8px;"><span>✓</span> <span>Entrega de tu 1er módulo operativo listo para usar.</span></li>
+              <li style="display:flex; gap:8px;"><span style="color:#10b981;">★</span> <span style="color:#34d399; font-weight:700;">100% deducible si continúas al Plan Integral.</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20coordinar%20mi%20Sesi%C3%B3n%20de%20Despegue%20($35.000%20CLP)." target="_blank" class="btn-secondary" style="width: 100%; text-align: center; padding: 12px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block;">
+            Agendar Sesión de Despegue →
+          </a>
+        </div>
+
+        <!-- PLAN 2: PLAN DE VUELO INTEGRAL (DESTACADO) -->
+        <div style="background: #0f1017; border: 2px solid #10b981; border-radius: var(--radius-lg); padding: 32px 26px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 35px rgba(16,185,129,0.18);">
+          <div>
+            <span style="font-size: 0.72rem; font-weight: 800; color: #10b981; text-transform: uppercase; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px;">
+              ★ Intervención Completa • 4 Semanas
+            </span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+              Plan de Vuelo Integral
+            </h4>
+            <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 16px;">
+              La transformación definitiva: co-creamos, diseñamos e instalamos tu sistema operativo semana a semana para que recuperes tu tiempo y avances con serenidad.
+            </p>
+            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px;">
+              <span style="font-family: var(--font-heading); font-size: 2.3rem; font-weight: 800; color: #fff;">$190.000</span>
+              <span style="font-size: 0.85rem; color: #10b981; font-weight: 700;">CLP total</span>
+            </div>
+            <div style="font-size: 0.76rem; color: #94a3b8; margin-bottom: 16px; border-bottom: 1px solid rgba(16,185,129,0.25); padding-bottom: 12px;">
+              o 2 cuotas de $98.000 CLP (o 3 de $68.000)
+            </div>
+            <ul style="list-style: none; font-size: 0.84rem; color: #f3f4f6; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+              <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span><b>4 sesiones 1 a 1 en vivo</b> de co-creación profunda.</span></li>
+              <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span><b>Tu Tablero Web Interactivo</b> con acceso por PIN.</span></li>
+              <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span><b>Cuadernillo Físico de Imprimibles</b> de 1 hoja.</span></li>
+              <li style="display:flex; gap:8px;"><span style="color:#10b981;">✓</span> <span><b>Acompañamiento por WhatsApp</b> continuo entre sesiones.</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20iniciar%20mi%20Plan%20de%20Vuelo%20Integral." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 13px; font-weight: 800; background: #10b981; color: #000; border-radius: 50px; text-decoration: none; display: block; box-shadow: 0 0 20px rgba(16,185,129,0.4);">
+            Comenzar Mi Plan de Vuelo →
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
 <div id="view-planes" class="platform-view">
   <div class="container" style="padding: 50px 0 30px;">
     
@@ -5349,17 +4387,19 @@ window.updateMiniSondeoResults = function() {
   const textTitulo = document.getElementById('text-diagnostico-titulo');
   const textModulos = document.getElementById('text-modulos-sugeridos');
   const btnWa = document.getElementById('btn-whatsapp-mini-sondeo');
+  const nameInput = document.getElementById('mini-sondeo-user-name');
+  const userName = (nameInput ? nameInput.value : '').trim();
 
   let alertText = "⚠️ Nivel de Alerta: Moderado";
   let alertBg = "#f59e0b";
   let diagTitle = "Tu sistema está perdiendo horas valiosas en urgencias ajenas y dispersión";
-  let modulos = "MOD-06 (Mapeador 24H) y MOD-03 (Límite WIP 2 Tareas)";
+  let modulos = "MOD-06 (Mapeador 24H) y MOD-07 (Tablero WIP 2 Tareas)";
 
   if (totalWeeklyLoss >= 18) {
     alertText = "🚨 Nivel de Alerta: Crítico (Riesgo Alto)";
     alertBg = "#ef4444";
     diagTitle = "Saturación operativa aguda: Tu energía se está drenando antes de tocar tus metas";
-    modulos = "MOD-06 (Mapeador 24H), MOD-03 (Límite WIP), MOD-01 (Checklist Rutina) y MOD-08 (Finanzas 50/30/20)";
+    modulos = "MOD-06 (Mapeador 24H), MOD-07 (Tablero WIP), MOD-01 (Checklist Rutina) y MOD-12 (Finanzas 50/30/20)";
   } else if (totalWeeklyLoss <= 6) {
     alertText = "🟢 Nivel de Alerta: Leve / Ajuste Fino";
     alertBg = "#10b981";
@@ -5382,15 +4422,23 @@ window.updateMiniSondeoResults = function() {
   }
 
   if (btnWa) {
-    const rawMsg = `Hola Diego! Hice el Mini-Sondeo en tu web y me arrojó este pre-diagnóstico:
-• Fuga de tiempo estimada: ~${totalWeeklyLoss.toFixed(1)}h a la semana (~${totalMonthlyLoss}h/mes)
-• Tiempo: ${s.tiempo.label}
-• Foco: ${s.foco.label}
-• Finanzas: ${s.finanzas.label}
-• Cierre/Energía: ${s.energia.label}
-• Diagnóstico sugerido: ${diagTitle}
+    const greeting = userName ? `Hola Diego! Soy ${userName}.` : `Hola Diego!`;
+    const rawMsg = `${greeting} Hice el Mini-Sondeo en tu plataforma y obtuve este pre-diagnóstico:
 
-Me gustaría coordinar contigo una Sesión de Despegue ($35.000 CLP).`;
+📊 RESULTADO ESTIMADO:
+• Fuga de tiempo: ~${totalWeeklyLoss.toFixed(1)} h/semana (~${totalMonthlyLoss} h/mes)
+• Nivel de alerta: ${alertText}
+
+🔍 MIS PUNTOS CRÍTICOS:
+• ⏳ Tiempo: ${s.tiempo.label}
+• 🌪️ Foco: ${s.foco.label}
+• 💸 Tarifas: ${s.finanzas.label}
+• 🌙 Energía: ${s.energia.label}
+
+💡 HERRAMIENTAS SUGERIDAS:
+• ${modulos}
+
+Me gustaría coordinar contigo mi Sesión de Despegue ($35.000 CLP) o conversar sobre mi caso.`;
 
     btnWa.href = `https://wa.me/56975590132?text=${encodeURIComponent(rawMsg)}`;
   }
