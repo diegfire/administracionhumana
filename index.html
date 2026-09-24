@@ -4232,32 +4232,10 @@
         <a id="switch-to-pin" style="color:#ffffff; font-weight:700; text-decoration:underline; cursor:pointer;">← Volver a Ingreso por Clave / PIN</a>
       </div>
       <div class="auth-switch" style="margin-top: 10px;">
-        <a id="switch-to-reset" style="font-size:0.8rem; color:#888;">¿Olvidaste tu contraseña?</a> | <a id="switch-to-register">Regístrate gratis</a>
+        <a id="switch-to-reset" style="font-size:0.8rem; color:#888;">¿Olvidaste tu contraseña?</a>
       </div>
-    </div>
-
-    <!-- VISTA REGISTRO -->
-    <div id="auth-view-register" style="display:none;">
-      <h2 class="auth-title">Crear Cuenta</h2>
-      <p class="auth-sub">Guarda tus diagnósticos y accede a tu material personalizado</p>
-      <div class="auth-error" id="register-error"></div>
-      <form id="form-register">
-        <div class="auth-form-group">
-          <label>Nombre Completo</label>
-          <input type="text" id="register-name" class="auth-input" placeholder="Tu nombre" required />
-        </div>
-        <div class="auth-form-group">
-          <label>Correo Electrónico</label>
-          <input type="email" id="register-email" class="auth-input" placeholder="tu@correo.com" required />
-        </div>
-        <div class="auth-form-group">
-          <label>Contraseña</label>
-          <input type="password" id="register-password" class="auth-input" placeholder="Mínimo 6 caracteres" minlength="6" required />
-        </div>
-        <button type="submit" class="auth-btn-submit">Crear Mi Cuenta →</button>
-      </form>
-      <div class="auth-switch">
-        ¿Ya tienes cuenta? <a id="switch-to-login">Inicia sesión</a> | <a id="switch-register-to-pin">Usar PIN</a>
+      <div style="margin-top:14px; padding:10px 14px; background:rgba(56,189,248,0.06); border:1px dashed rgba(56,189,248,0.25); border-radius:8px; font-size:0.75rem; color:#94a3b8; text-align:center; line-height:1.45;">
+        🔒 <strong>Acceso privado y exclusivo:</strong> Las cuentas son creadas de forma 1-a-1 únicamente por Diego desde la consola de consultoría.
       </div>
     </div>
 
@@ -4284,6 +4262,131 @@
   </div>
 </div>
 
+<!-- MODAL DE GESTIÓN EXCLUSIVA DE CLIENTES Y USUARIOS (SOLO CONSULTOR DIEGO) -->
+<div class="auth-modal-overlay" id="admin-client-modal" style="display:none;" onclick="if(event.target===this) window.closeAdminClientModal();">
+  <div class="auth-card" style="max-width: 520px; position: relative;">
+    <button class="auth-close" onclick="window.closeAdminClientModal();" type="button" aria-label="Cerrar">&times;</button>
+    
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+      <span style="display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:10px; background:rgba(56,189,248,0.12); border:1px solid #38bdf8; font-size:1.35rem; color:#38bdf8;">👤</span>
+      <div>
+        <h2 id="adm-modal-title" style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; margin:0;">Alta de Cliente & Credenciales</h2>
+        <p style="font-size:0.78rem; color:#888; margin:2px 0 0;">Gestión exclusiva del consultor: crea el usuario y contraseña personal del cliente.</p>
+      </div>
+    </div>
+
+    <div id="adm-modal-alert" style="display:none; padding:10px; border-radius:8px; font-size:0.82rem; margin-bottom:14px;"></div>
+
+    <form id="form-admin-client" onsubmit="window.saveAdminClientSubmit(event); return false;">
+      <input type="hidden" id="adm-field-id" value="" />
+      
+      <div style="margin-bottom:12px;">
+        <label style="display:block; font-size:0.75rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; margin-bottom:4px;">
+          Nombre Completo del Cliente *
+        </label>
+        <input 
+          type="text" 
+          id="adm-field-name" 
+          class="auth-input" 
+          placeholder="Ej: Carolina Valenzuela" 
+          required 
+          autocomplete="off"
+          oninput="window.autoSuggestAdminCredentials()"
+          style="font-size:0.95rem; padding:10px 12px;"
+        />
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:12px;">
+        <div>
+          <label style="display:block; font-size:0.75rem; font-weight:700; color:#38bdf8; text-transform:uppercase; margin-bottom:4px;">
+            Usuario Asignado *
+          </label>
+          <input 
+            type="text" 
+            id="adm-field-user" 
+            class="auth-input" 
+            placeholder="ej: carolina" 
+            required 
+            autocomplete="off"
+            style="font-size:0.92rem; padding:10px 12px; font-family:monospace;"
+          />
+        </div>
+        <div>
+          <label style="display:block; font-size:0.75rem; font-weight:700; color:#10b981; text-transform:uppercase; margin-bottom:4px;">
+            Contraseña / PIN *
+          </label>
+          <input 
+            type="text" 
+            id="adm-field-pin" 
+            class="auth-input" 
+            placeholder="ej: caro2026" 
+            required 
+            autocomplete="off"
+            style="font-size:0.92rem; padding:10px 12px; font-family:monospace;"
+          />
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label style="display:block; font-size:0.75rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; margin-bottom:4px;">
+          Rubro / Subtítulo del Cliente
+        </label>
+        <input 
+          type="text" 
+          id="adm-field-subtitle" 
+          class="auth-input" 
+          placeholder="Ej: Arquitectura & Gestión • Enfoque Sustentable"
+          style="font-size:0.88rem; padding:10px 12px;"
+        />
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:12px;">
+        <div>
+          <label style="display:block; font-size:0.75rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; margin-bottom:4px;">
+            Estado de Acompañamiento
+          </label>
+          <select id="adm-field-status" class="auth-input" style="background:#161616; color:#fff; font-size:0.82rem; padding:10px; cursor:pointer;">
+            <option value="🟢 En Acompañamiento">🟢 En Acompañamiento</option>
+            <option value="🔵 Sesión Agendada">🔵 Sesión Agendada</option>
+            <option value="🟡 Diagnóstico / Sondeo">🟡 Diagnóstico / Sondeo</option>
+            <option value="⚪ Finalizado / Demo">⚪ Finalizado / Demo</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-size:0.75rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; margin-bottom:4px;">
+            Ruta Plan de Vuelo
+          </label>
+          <input 
+            type="text" 
+            id="adm-field-plan-url" 
+            class="auth-input" 
+            placeholder="planes-demo.html" 
+            value="planes-demo.html"
+            style="font-size:0.85rem; padding:10px 12px; font-family:monospace;"
+          />
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:0.75rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; margin-bottom:4px;">
+          Enlace a Carpeta Google Drive (Opcional)
+        </label>
+        <input 
+          type="url" 
+          id="adm-field-drive-url" 
+          class="auth-input" 
+          placeholder="https://drive.google.com/drive/folders/..." 
+          style="font-size:0.85rem; padding:10px 12px;"
+        />
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px; align-items:center;">
+        <button type="button" onclick="window.closeAdminClientModal();" class="btn-secondary" style="padding:10px 16px; border-color:#333; color:#aaa; font-weight:700; font-size:0.85rem; cursor:pointer;">Cancelar</button>
+        <button type="submit" id="btn-save-admin-client" class="auth-btn-submit" style="background:#10b981; color:#000; font-weight:800; padding:10px 22px; border:none; width:auto; font-size:0.88rem; cursor:pointer; border-radius:8px;">Guardar Cliente y Credenciales →</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script>
 /* ══════════════════════════════════════════════════════════════════
@@ -4472,6 +4575,7 @@ window.DEFAULT_ADMIN_CLIENTS = [
   {
     id: "rocio",
     name: "Rocío",
+    username: "rocio",
     subtitle: "Puya Masajes & Canto • Soberanía TEA & Bienestar",
     status: "🟢 En Acompañamiento",
     pin: "rocio2026",
@@ -4481,6 +4585,7 @@ window.DEFAULT_ADMIN_CLIENTS = [
   {
     id: "matias",
     name: "Matías González",
+    username: "matias",
     subtitle: "Ingeniería & Software • Resaca Digital & Autonomía",
     status: "🟢 En Acompañamiento",
     pin: "matias2026",
@@ -4490,6 +4595,7 @@ window.DEFAULT_ADMIN_CLIENTS = [
   {
     id: "antonia",
     name: "Antonia Jofré",
+    username: "antonia",
     subtitle: "Servicios Clínicos • Despegue Comercial & Batching",
     status: "🟢 En Acompañamiento",
     pin: "antonia2026",
@@ -4499,6 +4605,7 @@ window.DEFAULT_ADMIN_CLIENTS = [
   {
     id: "melissa",
     name: "Melissa Henríquez",
+    username: "melissa",
     subtitle: "Träfmen • Círculo Dorado & Escalabilidad",
     status: "🟢 En Acompañamiento",
     pin: "melissa2026",
@@ -4508,6 +4615,7 @@ window.DEFAULT_ADMIN_CLIENTS = [
   {
     id: "alejandra",
     name: "Alejandra Mattei",
+    username: "alejandra",
     subtitle: "Consultoría & Procesos • Proyección & Tracción",
     status: "🟢 En Acompañamiento",
     pin: "alejandra2026",
@@ -4517,6 +4625,7 @@ window.DEFAULT_ADMIN_CLIENTS = [
   {
     id: "demo",
     name: "Caso Demostrativo",
+    username: "demo",
     subtitle: "Plan de Vuelo 2.0 • Prototipo Piloto",
     status: "⚪ Demostración / Prospectos",
     pin: "demo2026",
@@ -4527,15 +4636,30 @@ window.DEFAULT_ADMIN_CLIENTS = [
 
 window.getAdminClients = function() {
   const saved = localStorage.getItem('ah_admin_clients_custom');
+  let clients = [];
   if (saved) {
     try {
       const customList = JSON.parse(saved);
-      const ids = customList.map(c => c.id);
-      const missing = window.DEFAULT_ADMIN_CLIENTS.filter(c => !ids.includes(c.id));
-      return [...customList, ...missing];
+      if (Array.isArray(customList)) {
+        const ids = customList.map(c => c.id);
+        const missing = window.DEFAULT_ADMIN_CLIENTS.filter(c => !ids.includes(c.id));
+        clients = [...customList, ...missing];
+      }
     } catch(e) {}
   }
-  return [...window.DEFAULT_ADMIN_CLIENTS];
+  if (!clients.length) {
+    clients = [...window.DEFAULT_ADMIN_CLIENTS];
+  }
+  return clients.map(c => ({
+    id: c.id,
+    name: c.name || "Cliente Sin Nombre",
+    username: c.username || c.id || (c.name ? c.name.toLowerCase().replace(/\s+/g, '') : "usuario"),
+    pin: c.pin || c.password || "2026",
+    subtitle: c.subtitle || "Cliente de Consultoría • Plan Personalizado",
+    status: c.status || "🟢 En Acompañamiento",
+    planUrl: c.planUrl || "planes-demo.html",
+    driveUrl: c.driveUrl || ""
+  }));
 };
 
 window.renderAdminClientsTable = function() {
@@ -4551,11 +4675,12 @@ window.renderAdminClientsTable = function() {
       <div class="admin-client-card" id="admin-card-${c.id}">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
           <div>
-            <div style="display:flex; align-items:center; gap:8px;">
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
               <h4 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:#fff;">${c.name}</h4>
-              <span style="font-size:0.75rem; background:rgba(255,255,255,0.06); border:1px solid #333; padding:2px 8px; border-radius:4px; color:#aaa; font-family:monospace;">PIN: ${c.pin}</span>
+              <span style="font-size:0.75rem; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); padding:2px 8px; border-radius:4px; color:#38bdf8; font-family:monospace; font-weight:700;" title="Usuario Asignado">👤 @${c.username}</span>
+              <span style="font-size:0.75rem; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); padding:2px 8px; border-radius:4px; color:#34d399; font-family:monospace; font-weight:700;" title="Contraseña / PIN">🔑 ${c.pin}</span>
             </div>
-            <p style="font-size:0.8rem; color:#888; margin-top:2px;">${c.subtitle}</p>
+            <p style="font-size:0.8rem; color:#888; margin-top:4px;">${c.subtitle}</p>
           </div>
           
           <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
@@ -4566,14 +4691,27 @@ window.renderAdminClientsTable = function() {
               <option value="⚪ Finalizado / Demo" ${savedStatus.includes('Finalizado') || savedStatus.includes('Demo') ? 'selected' : ''}>⚪ Finalizado / Demo</option>
             </select>
 
-            <button onclick="window.openClientPlanDirect('${c.pin}')" class="btn-primary" style="padding:6px 14px; font-size:0.8rem; font-weight:800; background:#38bdf8; color:#000; border:none; cursor:pointer; border-radius:6px;">
+            <button onclick="window.openEditClientAdminModal('${c.id}')" class="btn-secondary" style="padding:6px 10px; font-size:0.78rem; border-color:#38bdf8; color:#38bdf8; cursor:pointer; border-radius:6px;" title="Editar Usuario y Clave">
+              ✏️ Editar
+            </button>
+
+            <button onclick="window.copyClientWhatsAppCredentials('${c.id}')" class="btn-secondary" style="padding:6px 10px; font-size:0.78rem; border-color:#10b981; color:#34d399; cursor:pointer; border-radius:6px;" title="Copiar mensaje de WhatsApp para enviar al cliente">
+              💬 WhatsApp
+            </button>
+
+            <button onclick="window.openClientPlanDirect('${c.pin}', '${c.planUrl}')" class="btn-primary" style="padding:6px 14px; font-size:0.8rem; font-weight:800; background:#38bdf8; color:#000; border:none; cursor:pointer; border-radius:6px;">
               Abrir Plan ↗
             </button>
+
             ${c.driveUrl ? `<a href="${c.driveUrl}" target="_blank" class="btn-secondary" style="padding:6px 10px; font-size:0.8rem; border-color:#333; text-decoration:none; color:#aaa; border-radius:6px;" title="Abrir Google Drive">📁 Drive</a>` : ''}
+
+            <button onclick="window.deleteAdminClient('${c.id}')" class="btn-secondary" style="padding:6px 10px; font-size:0.78rem; border-color:#ef4444; color:#f87171; cursor:pointer; border-radius:6px;" title="Eliminar cliente">
+              🗑️
+            </button>
           </div>
         </div>
 
-        <div>
+        <div style="margin-top:12px;">
           <label style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase; display:block; margin-bottom:4px;">
             📝 Notas Privadas del Consultor (Guardado Automático):
           </label>
@@ -4635,7 +4773,14 @@ window.logoutAdminPlatform = function() {
   }
 };
 
-window.openClientPlanDirect = function(pin) {
+window.openClientPlanDirect = function(pin, directUrl) {
+  if (directUrl && directUrl !== 'planes-demo.html') {
+    if (typeof window.resolveClientPortalByPIN === 'function') {
+      window.resolveClientPortalByPIN(pin);
+    }
+    window.location.href = directUrl;
+    return;
+  }
   if (typeof window.resolveClientPortalByPIN === 'function') {
     const res = window.resolveClientPortalByPIN(pin);
     if (res.success) {
@@ -4676,28 +4821,203 @@ window.handleTabPinSubmit = function(e) {
   }
 };
 
+/* ══════════════════════════════════════════════════════════════════
+   GESTIÓN DE CLIENTES & CREDENCIALES EXCLUSIVA DEL CONSULTOR (DIEGO)
+   ══════════════════════════════════════════════════════════════════ */
 window.openAddClientAdminModal = function() {
-  const name = prompt("Nombre completo del nuevo cliente:");
-  if (!name) return;
-  const pin = prompt(`PIN asignado para ${name}:`, `${name.toLowerCase().replace(/\s+/g, '')}2026`);
-  if (!pin) return;
-  const planUrl = prompt("Ruta del Plan de Vuelo:", "planes-demo.html");
+  const modal = document.getElementById('admin-client-modal');
+  if (!modal) return;
+  document.getElementById('adm-modal-title').innerText = "Alta de Nuevo Cliente & Credenciales";
+  document.getElementById('adm-field-id').value = "";
+  document.getElementById('adm-field-name').value = "";
+  document.getElementById('adm-field-user').value = "";
+  document.getElementById('adm-field-pin').value = "";
+  document.getElementById('adm-field-subtitle').value = "";
+  document.getElementById('adm-field-status').value = "🟢 En Acompañamiento";
+  document.getElementById('adm-field-plan-url').value = "planes-demo.html";
+  document.getElementById('adm-field-drive-url').value = "";
+  const alertBox = document.getElementById('adm-modal-alert');
+  if (alertBox) alertBox.style.display = 'none';
 
-  const newClient = {
-    id: "client_" + Date.now(),
+  modal.style.display = 'flex';
+  requestAnimationFrame(() => {
+    modal.classList.add('active');
+    const nameInput = document.getElementById('adm-field-name');
+    if (nameInput) nameInput.focus();
+  });
+};
+
+window.openEditClientAdminModal = function(clientId) {
+  const clients = window.getAdminClients();
+  const c = clients.find(item => item.id === clientId);
+  if (!c) return;
+
+  const modal = document.getElementById('admin-client-modal');
+  if (!modal) return;
+  document.getElementById('adm-modal-title').innerText = `Editar: ${c.name}`;
+  document.getElementById('adm-field-id').value = c.id;
+  document.getElementById('adm-field-name').value = c.name;
+  document.getElementById('adm-field-user').value = c.username;
+  document.getElementById('adm-field-pin').value = c.pin;
+  document.getElementById('adm-field-subtitle').value = c.subtitle;
+  document.getElementById('adm-field-status').value = localStorage.getItem(`ah_admin_status_${c.id}`) || c.status;
+  document.getElementById('adm-field-plan-url').value = c.planUrl;
+  document.getElementById('adm-field-drive-url').value = c.driveUrl || "";
+  const alertBox = document.getElementById('adm-modal-alert');
+  if (alertBox) alertBox.style.display = 'none';
+
+  modal.style.display = 'flex';
+  requestAnimationFrame(() => {
+    modal.classList.add('active');
+    const userInput = document.getElementById('adm-field-user');
+    if (userInput) userInput.focus();
+  });
+};
+
+window.closeAdminClientModal = function() {
+  const modal = document.getElementById('admin-client-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+      if (!modal.classList.contains('active')) {
+        modal.style.display = 'none';
+      }
+    }, 200);
+  }
+};
+
+window.autoSuggestAdminCredentials = function() {
+  const idField = document.getElementById('adm-field-id');
+  if (idField && idField.value) return; // No auto-sobreescribir si estamos editando
+  
+  const nameInput = document.getElementById('adm-field-name');
+  const userInput = document.getElementById('adm-field-user');
+  const pinInput = document.getElementById('adm-field-pin');
+  if (!nameInput || !userInput || !pinInput) return;
+
+  const rawName = nameInput.value.trim().toLowerCase();
+  if (!rawName) return;
+
+  const cleanParts = rawName.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s]/g, "").split(/\s+/);
+  const firstWord = cleanParts[0] || "cliente";
+  
+  userInput.value = firstWord;
+  pinInput.value = `${firstWord}2026`;
+};
+
+window.saveAdminClientSubmit = function(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const id = document.getElementById('adm-field-id').value.trim();
+  const name = document.getElementById('adm-field-name').value.trim();
+  const user = document.getElementById('adm-field-user').value.trim().toLowerCase();
+  const pin = document.getElementById('adm-field-pin').value.trim().toLowerCase();
+  const subtitle = document.getElementById('adm-field-subtitle').value.trim();
+  const status = document.getElementById('adm-field-status').value;
+  const planUrl = document.getElementById('adm-field-plan-url').value.trim() || 'planes-demo.html';
+  const driveUrl = document.getElementById('adm-field-drive-url').value.trim();
+  const alertBox = document.getElementById('adm-modal-alert');
+
+  if (!name || !user || !pin) {
+    if (alertBox) {
+      alertBox.innerText = "⚠️ Por favor completa el nombre, usuario y contraseña del cliente.";
+      alertBox.style.background = "rgba(239,68,68,0.15)";
+      alertBox.style.color = "#f87171";
+      alertBox.style.border = "1px solid #ef4444";
+      alertBox.style.display = "block";
+    }
+    return false;
+  }
+
+  let clients = window.getAdminClients();
+  const clientId = id || ("client_" + Date.now());
+
+  const clientData = {
+    id: clientId,
     name: name,
-    subtitle: "Cliente Activo • Plan Personalizado",
-    status: "🟢 En Acompañamiento",
+    username: user,
     pin: pin,
-    planUrl: planUrl || "planes-demo.html",
-    driveUrl: ""
+    subtitle: subtitle || "Cliente Activo • Plan de Vuelo Personalizado",
+    status: status,
+    planUrl: planUrl,
+    driveUrl: driveUrl
   };
 
-  const existing = window.getAdminClients();
-  existing.unshift(newClient);
-  localStorage.setItem('ah_admin_clients_custom', JSON.stringify(existing));
+  const existingIdx = clients.findIndex(c => c.id === clientId);
+  if (existingIdx >= 0) {
+    clients[existingIdx] = { ...clients[existingIdx], ...clientData };
+  } else {
+    clients.unshift(clientData);
+  }
+
+  // Persistir en lista personalizada de clientes
+  localStorage.setItem('ah_admin_clients_custom', JSON.stringify(clients));
+  localStorage.setItem(`ah_admin_status_${clientId}`, status);
+
+  // Sincronizar en almacén demo para compatibilidad global
+  try {
+    const demoUsers = JSON.parse(localStorage.getItem('ah_demo_users') || '{}');
+    const emailKey = `${user}@administracionhumana.com`;
+    demoUsers[emailKey] = {
+      uid: `user_${clientId}`,
+      email: emailKey,
+      username: user,
+      password: pin,
+      validPins: [pin, '2026', 'admin2026'],
+      fullName: name,
+      role: 'client',
+      status: status,
+      driveUrl: driveUrl,
+      flightPlanUrl: planUrl,
+      notes: ''
+    };
+    localStorage.setItem('ah_demo_users', JSON.stringify(demoUsers));
+  } catch(err) {}
+
   window.renderAdminClientsTable();
-  alert(`✓ Cliente "${name}" agregado con PIN "${pin}".`);
+  window.closeAdminClientModal();
+
+  alert(`✓ Cliente guardado exitosamente:\n• Nombre: ${name}\n• Usuario: @${user}\n• Clave: ${pin}\n\nEl cliente ya puede ingresar a su Plan de Vuelo con estas credenciales.`);
+  return false;
+};
+
+window.deleteAdminClient = function(clientId) {
+  const clients = window.getAdminClients();
+  const c = clients.find(item => item.id === clientId);
+  if (!c) return;
+
+  if (confirm(`¿Estás seguro de eliminar a "${c.name}" (@${c.username}) de la lista de clientes?`)) {
+    const updated = clients.filter(item => item.id !== clientId);
+    localStorage.setItem('ah_admin_clients_custom', JSON.stringify(updated));
+    window.renderAdminClientsTable();
+  }
+};
+
+window.copyClientWhatsAppCredentials = function(clientId) {
+  const clients = window.getAdminClients();
+  const c = clients.find(item => item.id === clientId);
+  if (!c) return;
+
+  const currentHost = window.location.origin;
+  const currentPath = window.location.pathname.replace(/\/index\.html$/, '');
+  const portalUrl = `${currentHost}${currentPath}/index.html`;
+
+  const msg = `Hola ${c.name}! 👋 Te comparto tus credenciales personales para acceder a tu plataforma y Plan de Vuelo en Administración Humana:
+
+🌐 Plataforma: ${portalUrl}
+👤 Usuario: ${c.username}
+🔑 Clave: ${c.pin}
+
+Una vez dentro, haz clic en "Mi Plan de Vuelo" en la barra superior o utiliza el acceso directo para abrir tus herramientas y tablero activo.`;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(msg).then(() => {
+      alert(`✓ ¡Mensaje copiado al portapapeles!\nPuedes pegarlo directamente en el chat de WhatsApp de ${c.name}.`);
+    }).catch(() => {
+      prompt("Copia este mensaje para WhatsApp:", msg);
+    });
+  } else {
+    prompt("Copia este mensaje para WhatsApp:", msg);
+  }
 };
 </script>
 

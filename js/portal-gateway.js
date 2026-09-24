@@ -245,6 +245,50 @@ const CLIENT_ACCOUNTS = [
     }
 ];
 
+function getAllClientAccounts() {
+    let accounts = CLIENT_ACCOUNTS.map(a => ({ ...a, usernames: [...a.usernames], passwords: [...a.passwords] }));
+    try {
+        const custom = localStorage.getItem('ah_admin_clients_custom');
+        if (custom) {
+            const parsed = JSON.parse(custom);
+            if (Array.isArray(parsed)) {
+                parsed.forEach(c => {
+                    if (!c) return;
+                    const cleanUser = String(c.username || c.id || "").trim().toLowerCase();
+                    const cleanPin = String(c.pin || c.password || "").trim().toLowerCase();
+                    const cleanId = String(c.id || cleanUser).trim().toLowerCase();
+                    
+                    const existingIdx = accounts.findIndex(a => a.id === cleanId || (a.usernames && a.usernames.includes(cleanUser)));
+                    const customAccount = {
+                        id: cleanId,
+                        name: c.name || cleanUser,
+                        subtitle: c.subtitle || "Cliente de Consultoría",
+                        usernames: cleanUser ? [cleanUser, `${cleanUser}@administracionhumana.com`] : [cleanId],
+                        passwords: cleanPin ? [cleanPin] : [],
+                        url: c.planUrl || "planes-demo.html",
+                        storageKey: `ah_auth_${cleanId}`
+                    };
+
+                    if (existingIdx >= 0) {
+                        accounts[existingIdx] = {
+                            ...accounts[existingIdx],
+                            ...customAccount,
+                            usernames: Array.from(new Set([...(accounts[existingIdx].usernames || []), ...customAccount.usernames])),
+                            passwords: Array.from(new Set([...(accounts[existingIdx].passwords || []), ...customAccount.passwords]))
+                        };
+                    } else {
+                        accounts.unshift(customAccount);
+                    }
+                });
+            }
+        }
+    } catch(e) {
+        console.warn("[Portal Gateway] Error al sincronizar cuentas de cliente:", e);
+    }
+    return accounts;
+}
+window.getAllClientAccounts = getAllClientAccounts;
+
 window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
     const user = String(rawUser || "").trim().toLowerCase();
     const pass = String(rawPass || "").trim().toLowerCase();
@@ -253,16 +297,18 @@ window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
         return { success: false, message: "Por favor ingresa tu usuario y clave personal." };
     }
 
+    const accounts = getAllClientAccounts();
+
     // 1. Si se proporciona usuario, validar primero por usuario
     if (user) {
-        const account = CLIENT_ACCOUNTS.find(acc => acc.usernames.includes(user));
+        const account = accounts.find(acc => acc.usernames && acc.usernames.includes(user));
         if (!account) {
             return { 
                 success: false, 
                 message: `El usuario "${rawUser.trim()}" no fue encontrado en el sistema. Verifica que esté bien escrito o solicita tus credenciales a Diego.` 
             };
         }
-        if (!account.passwords.includes(pass)) {
+        if (!account.passwords || !account.passwords.includes(pass)) {
             return { 
                 success: false, 
                 message: `Contraseña incorrecta para el usuario "${rawUser.trim()}". Si olvidaste tu clave, solicítala a Diego por WhatsApp.` 
@@ -275,10 +321,10 @@ window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
     if (pass) {
         const masterPins = ["diego2026", "admin2026", "diego_ah_master", "diegop1990", "master2026"];
         if (masterPins.includes(pass)) {
-            const adminAcc = CLIENT_ACCOUNTS.find(acc => acc.id === "admin");
+            const adminAcc = accounts.find(acc => acc.id === "admin") || CLIENT_ACCOUNTS.find(acc => acc.id === "admin");
             return grantAccessSession(adminAcc);
         }
-        const account = CLIENT_ACCOUNTS.find(acc => acc.passwords.includes(pass));
+        const account = accounts.find(acc => acc.passwords && acc.passwords.includes(pass));
         if (account) {
             return grantAccessSession(account);
         }
@@ -291,10 +337,19 @@ window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
 };
 
 function grantAccessSession(account) {
-    localStorage.setItem(account.storageKey, "authenticated_ok");
+    if (account.storageKey) {
+        localStorage.setItem(account.storageKey, "authenticated_ok");
+    }
     localStorage.setItem(`client_authenticated_${account.id}`, "true");
     sessionStorage.setItem(`client_authenticated_${account.id}`, "true");
     localStorage.setItem("ah_client_auth_session", "authenticated_ok");
+    localStorage.setItem("ah_current_user", JSON.stringify({
+        uid: `user_${account.id}`,
+        username: account.usernames ? account.usernames[0] : account.id,
+        fullName: account.name,
+        role: account.isMaster ? 'admin' : 'client',
+        flightPlanUrl: account.url
+    }));
 
     if (account.isMaster) {
         localStorage.setItem("ah_consultor_auth", "true");
