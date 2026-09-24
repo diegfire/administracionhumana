@@ -230,7 +230,7 @@
 
     /* ── HERO ── */
     .hero {
-      padding: 100px 0 80px;
+      padding: 42px 0 32px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -241,7 +241,7 @@
       top: -120px; left: 50%;
       transform: translateX(-50%);
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-tag {
@@ -251,29 +251,30 @@
       background: rgba(255, 255, 255, 0.06);
       color: #ffffff;
       font-family: var(--font-heading);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 6px 18px;
+      padding: 5px 16px;
       border-radius: 50px;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      margin-bottom: 28px;
+      margin-bottom: 14px;
     }
     .hero-tag::before {
       content: '';
       width: 6px;
       height: 6px;
-      background-color: #ffffff;
+      background-color: #10b981;
       border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
     }
     .hero h1 {
       font-family: var(--font-heading);
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
-      line-height: 1.15;
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      line-height: 1.2;
       color: var(--color-text);
       font-weight: 800;
-      margin-bottom: 24px;
+      margin-bottom: 14px;
       max-width: 860px;
       margin-left: auto;
       margin-right: auto;
@@ -281,42 +282,42 @@
     }
     .hero h1 em {
       font-style: normal;
-      background: #ffffff;
-      color: #000000;
-      padding: 2px 12px;
-      border-radius: 6px;
+      background: linear-gradient(135deg, #ffffff 15%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-weight: 800;
-      display: inline-block;
+      display: inline;
     }
     .hero-sub {
-      font-size: 1.15rem;
+      font-size: 0.98rem;
       color: var(--color-text-light);
-      max-width: 580px;
-      margin: 0 auto 40px;
+      max-width: 660px;
+      margin: 0 auto 22px;
       font-weight: 400;
+      line-height: 1.6;
     }
     .hero-actions {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
     }
     .btn-primary {
       background: #ffffff;
       color: #000000;
-      padding: 16px 36px;
+      padding: 13px 26px;
       border-radius: 50px;
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-family: var(--font-heading);
       text-decoration: none;
       transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 0 24px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
     }
     .btn-primary:hover {
       background: #e5e5e5;
       transform: translateY(-2px);
-      box-shadow: 0 0 32px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 28px rgba(255, 255, 255, 0.3);
     }
     .btn-secondary {
       background: transparent;
@@ -3338,12 +3339,12 @@
 
     /* ── HERO VISUAL SHOWCASE & TESTIMONIAL BADGES ── */
     .hero-quick-diagnostic {
-      margin: 36px auto 0;
+      margin: 20px auto 0;
       max-width: 920px;
       background: rgba(13, 13, 18, 0.95);
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--radius-lg);
-      padding: 26px 24px;
+      padding: 22px 24px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(56, 189, 248, 0.08);
       text-align: left;
     }
@@ -3641,7 +3642,7 @@
       </button>
       <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso" class="btn-secondary" target="_blank">💬 Hablar con Diego por WhatsApp</a>
     </div>
-    <p class="hero-note" style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:16px;">
+    <p class="hero-note" style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:12px;">
       <span>📱 <b>Web App Privada en tu Celular</b></span>
       <span>•</span>
       <span>📄 <b>Cuadernillo Físico de 1 Hoja</b></span>
@@ -3650,7 +3651,7 @@
     </p>
 
     <!-- MICRO-POSICIONAMIENTO DE CONVERGENCIA EN EL HERO -->
-    <div style="margin: 24px auto 0; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; font-size: 0.78rem; color: #94a3b8;">
+    <div style="margin: 14px auto 0; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; font-size: 0.76rem; color: #94a3b8;">
       <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
         ✕ Cero reportes fríos
       </span>
