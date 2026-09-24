@@ -2762,6 +2762,304 @@
     .plan-showcase-item:hover .plan-showcase-img {
       transform: scale(1.02);
     }
+    
+    /* ── SHOWCASE SIMULATOR & COMPACT KANBAN SUITE ── */
+    .plan-showcase-preview-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+    .showcase-mode-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 6px 10px;
+    }
+    .showcase-mode-tabs {
+      display: flex;
+      gap: 6px;
+    }
+    .showcase-mode-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #a1a1aa;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .showcase-mode-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .showcase-mode-btn.active {
+      background: #1e1e28;
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .showcase-mode-btn .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+      box-shadow: 0 0 6px #10b981;
+      animation: pulseGlow 1.5s infinite;
+    }
+    .showcase-reset-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #71717a;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .showcase-reset-btn:hover {
+      color: #e4e4e7;
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .kanban-sim-box {
+      background: #09090d;
+      border: 1px solid #23232e;
+      border-radius: 14px;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      position: relative;
+    }
+    .kanban-flow-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.72rem;
+      color: #71717a;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .kanban-flow-indicator .flow-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .kanban-flow-indicator .flow-step.active-flow {
+      color: #fbbf24;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+    }
+    .kanban-flow-indicator .flow-arrow {
+      color: #3f3f46;
+      font-size: 0.8rem;
+    }
+    .kanban-sim-alert {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+      font-size: 0.76rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      line-height: 1.4;
+      animation: alertPulse 0.3s ease;
+    }
+    @keyframes alertPulse {
+      0% { transform: scale(0.97); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .kanban-sim-cols {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px) {
+      .kanban-sim-cols {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .kanban-sim-col {
+        min-height: auto !important;
+        padding: 8px 10px;
+      }
+      .kanban-flow-indicator {
+        font-size: 0.64rem;
+        padding: 5px 8px;
+        gap: 4px;
+      }
+    }
+    .kanban-sim-col {
+      background: #0f0f15;
+      border: 1px solid #1e1e27;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 190px;
+    }
+    .kanban-sim-col.focus-col {
+      border-color: rgba(245, 158, 11, 0.3);
+      background: #12100d;
+    }
+    .kanban-sim-col-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 6px;
+      margin-bottom: 2px;
+    }
+    .sim-col-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #e4e4e7;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .sim-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #272732;
+      color: #a1a1aa;
+      padding: 1px 6px;
+      border-radius: 12px;
+    }
+    .sim-badge.wip-badge {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      font-weight: 800;
+    }
+    .sim-badge.done-badge {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #34d399;
+    }
+    .sim-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      flex: 1;
+    }
+    .sim-card {
+      background: #171720;
+      border: 1px solid #282836;
+      border-radius: 8px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .sim-card:hover {
+      border-color: #3f3f52;
+      transform: translateY(-1px);
+    }
+    .sim-card.in-focus {
+      border-left: 3px solid #f59e0b;
+      background: #1a1711;
+    }
+    .sim-card.is-done {
+      border-left: 3px solid #10b981;
+      opacity: 0.9;
+    }
+    .sim-card-text {
+      font-size: 0.77rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      line-height: 1.35;
+    }
+    .sim-card.is-done .sim-card-text {
+      text-decoration: line-through;
+      color: #94a3b8;
+    }
+    .sim-card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2px;
+    }
+    .sim-card-tag {
+      font-size: 0.64rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+    .sim-card-actions {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .sim-btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e4e4e7;
+      border-radius: 5px;
+      padding: 3px 7px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.15s ease;
+    }
+    .sim-btn-action:hover {
+      background: #38bdf8;
+      color: #000;
+      border-color: #38bdf8;
+    }
+    .sim-btn-action.btn-done-action:hover {
+      background: #10b981;
+      color: #000;
+      border-color: #10b981;
+    }
+    .kanban-sim-caption {
+      font-size: 0.74rem;
+      color: #71717a;
+      line-height: 1.45;
+      text-align: center;
+      margin-top: 2px;
+    }
+    .kanban-pillars-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 14px 0 16px;
+    }
+    .pillar-mini-item {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+    .pillar-mini-item strong {
+      color: #fff;
+    }
     .plan-showcase-tag {
       font-size: 0.72rem;
       font-weight: 800;
@@ -3774,20 +4072,98 @@
 
       <div class="plan-showcase-grid">
         
-        <!-- PANTALLAZO 1: KANBAN BOARD -->
+        <!-- PANTALLAZO 1: KANBAN BOARD CON SIMULADOR INTERACTIVO Y FLUJO COMPACTO -->
         <div class="plan-showcase-item">
-          <div class="plan-showcase-img-wrap">
-            <img src="assets/img/plan_vuelo/plan_vuelo_kanban.png" alt="Tablero Kanban con Límite WIP de 2 Tareas" class="plan-showcase-img" />
+          <div class="plan-showcase-preview-container">
+            <!-- Barra de modos del showcase -->
+            <div class="showcase-mode-bar">
+              <div class="showcase-mode-tabs">
+                <button type="button" class="showcase-mode-btn active" id="btn-showcase-sim" onclick="switchKanbanShowcaseMode('sim')">
+                  <span class="live-dot"></span> ⚡ Simulador en Vivo
+                </button>
+                <button type="button" class="showcase-mode-btn" id="btn-showcase-img" onclick="switchKanbanShowcaseMode('img')">
+                  📸 Captura del Sistema
+                </button>
+              </div>
+              <button type="button" class="showcase-reset-btn" id="btn-reset-kanban-sim" onclick="resetKanbanSim()" title="Reiniciar demostración">
+                ↺ Reiniciar
+              </button>
+            </div>
+
+            <!-- Vista 1: Simulador Interactivo Compacto -->
+            <div id="kanban-showcase-sim-view" class="kanban-sim-box">
+              <div class="kanban-flow-indicator">
+                <span class="flow-step">1. Cola de Entrada</span>
+                <span class="flow-arrow">➔</span>
+                <span class="flow-step active-flow">2. Embudo Estricto (WIP 2)</span>
+                <span class="flow-arrow">➔</span>
+                <span class="flow-step">3. Hito Cumplido</span>
+              </div>
+
+              <!-- Banner de alerta dinámica al intentar violar el WIP 2 -->
+              <div id="kanban-sim-wip-alert" class="kanban-sim-alert" style="display: none;"></div>
+
+              <div class="kanban-sim-cols">
+                <!-- Columna 1: Por Empezar -->
+                <div class="kanban-sim-col">
+                  <div class="kanban-sim-col-head">
+                    <span class="sim-col-title">📥 Por Empezar</span>
+                    <span class="sim-badge" id="sim-count-todo">2</span>
+                  </div>
+                  <div class="sim-card-list" id="sim-list-todo"></div>
+                </div>
+
+                <!-- Columna 2: En Foco (WIP = 2) -->
+                <div class="kanban-sim-col focus-col" id="sim-col-focus">
+                  <div class="kanban-sim-col-head">
+                    <span class="sim-col-title" style="color: #fbbf24;">⚡ En Foco (WIP 2)</span>
+                    <span class="sim-badge wip-badge" id="sim-count-focus">2/2 Lleno</span>
+                  </div>
+                  <div class="sim-card-list" id="sim-list-focus"></div>
+                </div>
+
+                <!-- Columna 3: Hito Cumplido -->
+                <div class="kanban-sim-col">
+                  <div class="kanban-sim-col-head">
+                    <span class="sim-col-title" style="color: #34d399;">✓ Cumplido</span>
+                    <span class="sim-badge done-badge" id="sim-count-done">1</span>
+                  </div>
+                  <div class="sim-card-list" id="sim-list-done"></div>
+                </div>
+              </div>
+
+              <div class="kanban-sim-caption">
+                💡 <em>Haz clic en <strong>[ ➔ ]</strong> para mover tareas. Intenta mover una 3ra tarea al foco para ver cómo el sistema te protege.</em>
+              </div>
+            </div>
+
+            <!-- Vista 2: Captura Real de Software -->
+            <div id="kanban-showcase-img-view" class="plan-showcase-img-wrap" style="display: none;">
+              <img src="assets/img/plan_vuelo/plan_vuelo_kanban.png" alt="Tablero Kanban con Límite WIP de 2 Tareas" class="plan-showcase-img" />
+            </div>
           </div>
+
           <div>
-            <span class="plan-showcase-tag">MÓDULO EMBLEMÁTICO MOD-07 • BLINDAJE COGNITIVO</span>
+            <span class="plan-showcase-tag">MÓDULO EMBLEMÁTICO MOD-07 • BLINDAJE COGNITIVO & GTD</span>
             <h4 class="plan-showcase-title">Tablero Kanban WIP 2: El fin definitivo de la parálisis por multitarea</h4>
             <p class="plan-showcase-desc">
-              <b>El problema habitual:</b> Tienes 20 pendientes en la cabeza, saltas de un WhatsApp a un correo y de vuelta a un favor ajeno. Al final del día tu mente arde pero sientes que no cerraste nada.<br><br>
-              <b>La solución práctica:</b> Un tablero interactivo con regla estricta de <b>máximo 2 tareas activas en foco simultáneo</b>. Todo lo demás se protege en cola de espera.
+              <b>El problema habitual:</b> Tienes 20 pendientes en la cabeza, saltas de un WhatsApp a un correo y de vuelta a un favor ajeno. Al final del día tu mente arde pero sientes que no cerraste nada.
             </p>
+
+            <div class="kanban-pillars-mini">
+              <div class="pillar-mini-item">
+                <strong>1. Desahogo Mental:</strong> Vuelcas todos los pendientes en cola sin que te roben memoria de trabajo ni atención.
+              </div>
+              <div class="pillar-mini-item" style="border-color: rgba(245,158,11,0.25); background: rgba(245,158,11,0.04);">
+                <strong style="color: #fbbf24;">2. Embudo Técnico (WIP = 2):</strong> Máximo 2 tareas en ejecución a la vez. El software bloquea físicamente abrir un tercer frente hasta concluir o pausar los activos.
+              </div>
+              <div class="pillar-mini-item" style="border-color: rgba(16,185,129,0.25); background: rgba(16,185,129,0.04);">
+                <strong style="color: #34d399;">3. Cierres Concretos:</strong> Terminas lo que empiezas. Te vas a descansar con victorias visibles y cero culpa nocturna.
+              </div>
+            </div>
+
             <div class="plan-showcase-benefit">
-              ✓ <strong>Impacto real:</strong> Terminas lo que empiezas cada día y dejas de saltar entre 15 pestañas abiertas.
+              ✓ <strong>Impacto real:</strong> Pasar de tener 15 frentes abiertos a cerrar 2 o 3 victorias concretas cada día, protegiendo tu corteza prefrontal del agotamiento sensorial.
             </div>
           </div>
         </div>
@@ -5702,6 +6078,179 @@ Quiero coordinar mi Sesión de Despegue ($35.000 CLP).`;
     window.updateLeakCalculator();
   };
 
+  /* ── INTERACTIVE KANBAN SIMULATOR (SHOWCASE LANDING) ── */
+  const initialKanbanSimData = {
+    todo: [
+      { id: 'sim_1', title: 'Configurar catálogo WhatsApp Business', tag: 'PUYA MASAJES', color: 'rgba(56,189,248,0.15)', border: '#38bdf8', text: '#7dd3fc' },
+      { id: 'sim_2', title: 'Cotizar piedras volcánicas Concepción', tag: 'BIENESTAR', color: 'rgba(168,85,247,0.15)', border: '#c084fc', text: '#e9d5ff' }
+    ],
+    focus: [
+      { id: 'sim_3', title: 'UST: Coordinar materiales jornada pintura', tag: '⚡ FOCO 1/2', color: 'rgba(245,158,11,0.22)', border: '#f59e0b', text: '#fbbf24' },
+      { id: 'sim_4', title: 'Diseñar propuesta Plan 4 sesiones', tag: '⚡ FOCO 2/2', color: 'rgba(245,158,11,0.22)', border: '#f59e0b', text: '#fbbf24' }
+    ],
+    done: [
+      { id: 'sim_5', title: 'Delegar formalmente paseo de Nieve', tag: '✓ CONCLUIDO', color: 'rgba(16,185,129,0.18)', border: '#10b981', text: '#34d399' }
+    ]
+  };
+
+  let kanbanSimState = JSON.parse(JSON.stringify(initialKanbanSimData));
+
+  window.renderKanbanSim = function() {
+    const listTodo = document.getElementById('sim-list-todo');
+    const listFocus = document.getElementById('sim-list-focus');
+    const listDone = document.getElementById('sim-list-done');
+    const countTodo = document.getElementById('sim-count-todo');
+    const countFocus = document.getElementById('sim-count-focus');
+    const countDone = document.getElementById('sim-count-done');
+
+    if (!listTodo || !listFocus || !listDone) return;
+
+    // 1. Cola Por Empezar
+    if (countTodo) countTodo.innerText = `${kanbanSimState.todo.length}`;
+    if (kanbanSimState.todo.length === 0) {
+      listTodo.innerHTML = `<div style="font-size:0.75rem; color:#52525b; text-align:center; padding:18px 6px; border:1px dashed #272732; border-radius:8px;">Cola vacía</div>`;
+    } else {
+      listTodo.innerHTML = kanbanSimState.todo.map(t => `
+        <div class="sim-card">
+          <div class="sim-card-text">${t.title}</div>
+          <div class="sim-card-foot">
+            <span class="sim-card-tag" style="background:${t.color}; border:1px solid ${t.border}; color:${t.text};">${t.tag}</span>
+            <div class="sim-card-actions">
+              <button type="button" class="sim-btn-action" onclick="moveSimTask('${t.id}', 'to_focus')" title="Mover a Foco">➔</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 2. En Foco (WIP 2)
+    if (countFocus) {
+      if (kanbanSimState.focus.length >= 2) {
+        countFocus.innerText = '2/2 (Lleno)';
+        countFocus.className = 'sim-badge wip-badge';
+      } else {
+        countFocus.innerText = `${kanbanSimState.focus.length}/2 (Libre)`;
+        countFocus.className = 'sim-badge';
+        countFocus.style.color = '#38bdf8';
+        countFocus.style.borderColor = '#38bdf8';
+      }
+    }
+    if (kanbanSimState.focus.length === 0) {
+      listFocus.innerHTML = `<div style="font-size:0.75rem; color:#52525b; text-align:center; padding:18px 6px; border:1px dashed rgba(245,158,11,0.2); border-radius:8px;">Capacidad disponible (0/2)</div>`;
+    } else {
+      listFocus.innerHTML = kanbanSimState.focus.map((t, idx) => `
+        <div class="sim-card in-focus">
+          <div class="sim-card-text">${t.title}</div>
+          <div class="sim-card-foot">
+            <span class="sim-card-tag" style="background:rgba(245,158,11,0.2); border:1px solid #f59e0b; color:#fbbf24;">⚡ FOCO ${idx + 1}/2</span>
+            <div class="sim-card-actions">
+              <button type="button" class="sim-btn-action" onclick="moveSimTask('${t.id}', 'to_todo')" title="Regresar a Cola">←</button>
+              <button type="button" class="sim-btn-action btn-done-action" onclick="moveSimTask('${t.id}', 'to_done')" title="Concluir victoria">✓</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 3. Cumplido
+    if (countDone) countDone.innerText = `${kanbanSimState.done.length}`;
+    if (kanbanSimState.done.length === 0) {
+      listDone.innerHTML = `<div style="font-size:0.75rem; color:#52525b; text-align:center; padding:18px 6px; border:1px dashed #272732; border-radius:8px;">Sin cierres aún</div>`;
+    } else {
+      listDone.innerHTML = kanbanSimState.done.map(t => `
+        <div class="sim-card is-done">
+          <div class="sim-card-text">${t.title}</div>
+          <div class="sim-card-foot">
+            <span class="sim-card-tag" style="background:rgba(16,185,129,0.18); border:1px solid #10b981; color:#34d399;">✓ CERRADO</span>
+            <div class="sim-card-actions">
+              <span style="color:#10b981; font-weight:900; font-size:0.85rem;">✓</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  };
+
+  window.moveSimTask = function(taskId, action) {
+    const alertEl = document.getElementById('kanban-sim-wip-alert');
+    const colFocus = document.getElementById('sim-col-focus');
+
+    if (action === 'to_focus') {
+      if (kanbanSimState.focus.length >= 2) {
+        if (alertEl) {
+          alertEl.style.display = 'block';
+          alertEl.style.background = 'rgba(239, 68, 68, 0.14)';
+          alertEl.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+          alertEl.style.color = '#fca5a5';
+          alertEl.innerHTML = '🛑 <strong>¡Bloqueo de Multitarea Activado!</strong> La regla técnica WIP=2 te protege de colapsar la corteza prefrontal. Concluye con [✓] o devuelve con [←] una tarea activa antes de abrir un 3er frente.';
+        }
+        if (colFocus) {
+          colFocus.style.borderColor = '#ef4444';
+          setTimeout(() => {
+            colFocus.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+          }, 800);
+        }
+        return;
+      }
+      const idx = kanbanSimState.todo.findIndex(t => t.id === taskId);
+      if (idx !== -1) {
+        const item = kanbanSimState.todo.splice(idx, 1)[0];
+        kanbanSimState.focus.push(item);
+        if (alertEl) alertEl.style.display = 'none';
+      }
+    } else if (action === 'to_todo') {
+      const idx = kanbanSimState.focus.findIndex(t => t.id === taskId);
+      if (idx !== -1) {
+        const item = kanbanSimState.focus.splice(idx, 1)[0];
+        kanbanSimState.todo.push(item);
+        if (alertEl) alertEl.style.display = 'none';
+      }
+    } else if (action === 'to_done') {
+      const idx = kanbanSimState.focus.findIndex(t => t.id === taskId);
+      if (idx !== -1) {
+        const item = kanbanSimState.focus.splice(idx, 1)[0];
+        kanbanSimState.done.unshift(item);
+        if (alertEl) {
+          alertEl.style.display = 'block';
+          alertEl.style.background = 'rgba(16,185,129,0.12)';
+          alertEl.style.borderColor = 'rgba(16,185,129,0.35)';
+          alertEl.style.color = '#6ee7b7';
+          alertEl.innerHTML = '🎉 <strong>¡Victoria diaria cerrada!</strong> Has concluido una tarea y liberado un espacio en tu embudo de foco para avanzar el siguiente pendiente sin culpa.';
+          setTimeout(() => {
+            alertEl.style.display = 'none';
+          }, 4000);
+        }
+      }
+    }
+    window.renderKanbanSim();
+  };
+
+  window.resetKanbanSim = function() {
+    kanbanSimState = JSON.parse(JSON.stringify(initialKanbanSimData));
+    const alertEl = document.getElementById('kanban-sim-wip-alert');
+    if (alertEl) alertEl.style.display = 'none';
+    window.renderKanbanSim();
+  };
+
+  window.switchKanbanShowcaseMode = function(mode) {
+    const btnSim = document.getElementById('btn-showcase-sim');
+    const btnImg = document.getElementById('btn-showcase-img');
+    const viewSim = document.getElementById('kanban-showcase-sim-view');
+    const viewImg = document.getElementById('kanban-showcase-img-view');
+
+    if (mode === 'sim') {
+      if (btnSim) btnSim.classList.add('active');
+      if (btnImg) btnImg.classList.remove('active');
+      if (viewSim) viewSim.style.display = 'flex';
+      if (viewImg) viewImg.style.display = 'none';
+    } else {
+      if (btnImg) btnImg.classList.add('active');
+      if (btnSim) btnSim.classList.remove('active');
+      if (viewSim) viewSim.style.display = 'none';
+      if (viewImg) viewImg.style.display = 'block';
+    }
+  };
+
   // Run setup
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -5709,10 +6258,12 @@ Quiero coordinar mi Sesión de Despegue ($35.000 CLP).`;
       window.updateLeakCalculator();
       if (window.initPlatformTabsFromHash) window.initPlatformTabsFromHash();
       if (window.updateMiniSondeoResults) window.updateMiniSondeoResults();
+      if (window.renderKanbanSim) window.renderKanbanSim();
     });
   } else {
     setupApp();
     window.updateLeakCalculator();
+    if (window.renderKanbanSim) window.renderKanbanSim();
   }
 </script>
 
