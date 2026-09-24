@@ -2494,7 +2494,7 @@
       </a>
       <a href="sondeo.html" class="nav-cta" style="padding:8px 18px; font-size:0.82rem; background:#ffffff; color:#000000; font-weight:800; box-shadow:0 0 16px rgba(255,255,255,0.3);">⚡ Sondeo Express (90s)</a>
       <div id="nav-auth-wrapper" style="display:inline-flex; align-items:center; gap:6px;">
-        <button id="btn-nav-auth" onclick="window.openAuthModal()" class="btn-secondary" style="padding: 8px 16px; font-size: 0.82rem; cursor:pointer;">🔑 Acceso Clientes</button>
+        <button id="btn-nav-auth" onclick="window.openAuthModal()" class="btn-secondary" style="padding: 8px 16px; font-size: 0.84rem; cursor:pointer; font-weight:700; border-radius:50px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); color:#fff; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'; this.style.borderColor='#ffffff';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.borderColor='rgba(255,255,255,0.25)';">🔒 Mi Plan de Vuelo</button>
         <button id="btn-nav-logout" style="display:none; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#aaa; border-radius:50px; padding:7px 12px; font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s;" title="Cerrar sesión activa" onmouseover="this.style.color='#fff'; this.style.borderColor='#ef4444';" onmouseout="this.style.color='#aaa'; this.style.borderColor='rgba(255,255,255,0.2)';">✕ Salir</button>
       </div>
     </div>
@@ -4530,14 +4530,63 @@
   </div>
 </footer>
 
-<!-- AUTH MODAL -->
+<!-- AUTH MODAL (GATEWAY UNIFICADO DE PLANES DE VUELO & SESIÓN) -->
 <div class="auth-modal-overlay" id="auth-modal" onclick="if(event.target===this) window.closeAuthModal();">
-  <div class="auth-card">
-    <button class="auth-close" id="auth-close-btn" onclick="window.closeAuthModal();" type="button">&times;</button>
+  <div class="auth-card" style="max-width: 440px; position: relative;">
+    <button class="auth-close" id="auth-close-btn" onclick="window.closeAuthModal();" type="button" aria-label="Cerrar">&times;</button>
     
-    <!-- VISTA INICIO DE SESIÓN -->
-    <div id="auth-view-login">
-      <h2 class="auth-title">Acceso a Tu Espacio</h2>
+    <!-- VISTA PRINCIPAL: DESBLOQUEO POR PIN / CLAVE -->
+    <div id="auth-view-pin">
+      <div style="text-align: center; margin-bottom: 14px;">
+        <span style="display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); font-size:1.4rem; margin-bottom:8px;">🔒</span>
+        <h2 class="auth-title" style="font-size:1.45rem; margin-bottom:4px;">Tu Plan de Vuelo</h2>
+        <p class="auth-sub" style="margin-bottom:14px; font-size:0.84rem; color:#888;">Ingresa tu clave personal para acceder a tu plataforma y herramientas activas.</p>
+      </div>
+
+      <div class="auth-error" id="pin-login-error" style="display:none; margin-bottom:14px; text-align:left;"></div>
+
+      <form id="form-pin-login" onsubmit="window.handleLandingPinSubmit(event); return false;">
+        <div class="auth-form-group">
+          <label style="display:flex; justify-content:space-between; align-items:center;">
+            <span>Clave de Acceso / PIN</span>
+            <span style="font-size:0.72rem; color:#888; text-transform:none; font-weight:normal;">(Ej: rocio2026, matias2026)</span>
+          </label>
+          <input 
+            type="password" 
+            id="landing-portal-pin" 
+            class="auth-input" 
+            placeholder="••••••••••••" 
+            required 
+            autocomplete="current-password"
+            style="font-size:1.15rem; letter-spacing:0.12em; text-align:center; padding:12px; font-family:monospace;"
+            autofocus
+          />
+        </div>
+        
+        <button type="submit" id="btn-submit-pin" class="auth-btn-submit" style="display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; font-size:0.92rem;">
+          <span>Desbloquear Mi Plan</span> <span>→</span>
+        </button>
+      </form>
+
+      <div style="margin-top:20px; padding-top:16px; border-top:1px solid #222; text-align:center;">
+        <p style="font-size:0.78rem; color:#777; margin-bottom:10px;">
+          ¿No recuerdas tu clave o quieres activar tu Plan de Vuelo?
+        </p>
+        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20necesito%20acceder%20a%20mi%20Plan%20de%20Vuelo%20y%20consultar%20mi%20clave%20de%20acceso" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; color:#10b981; font-size:0.8rem; font-weight:700; text-decoration:none; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); padding:6px 14px; border-radius:50px; transition:all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.18)'" onmouseout="this.style.background='rgba(16,185,129,0.08)'">
+          <span>💬</span> Solicitar Clave por WhatsApp
+        </a>
+      </div>
+
+      <div class="auth-switch" style="margin-top:14px;">
+        <a id="switch-to-legacy" style="font-size:0.75rem; color:#666; text-decoration:none; cursor:pointer;" onmouseover="this.style.color='#aaa'" onmouseout="this.style.color='#666'">
+          ⚙️ Acceso administrativo por usuario / correo
+        </a>
+      </div>
+    </div>
+
+    <!-- VISTA INICIO DE SESIÓN TRADICIONAL (LEGACY / ADMIN) -->
+    <div id="auth-view-login" style="display:none;">
+      <h2 class="auth-title">Acceso Tradicional</h2>
       <p class="auth-sub">Ingresa con tus credenciales asignadas</p>
       <div class="auth-error" id="login-error"></div>
       <form id="form-login" onsubmit="window.submitDirectLogin(event); return false;">
@@ -4553,6 +4602,9 @@
       </form>
 
       <div class="auth-switch" style="margin-top: 18px;">
+        <a id="switch-to-pin" style="color:#ffffff; font-weight:700; text-decoration:underline; cursor:pointer;">← Volver a Ingreso por Clave / PIN</a>
+      </div>
+      <div class="auth-switch" style="margin-top: 10px;">
         <a id="switch-to-reset" style="font-size:0.8rem; color:#888;">¿Olvidaste tu contraseña?</a> | <a id="switch-to-register">Regístrate gratis</a>
       </div>
     </div>
@@ -4578,7 +4630,7 @@
         <button type="submit" class="auth-btn-submit">Crear Mi Cuenta →</button>
       </form>
       <div class="auth-switch">
-        ¿Ya tienes cuenta? <a id="switch-to-login">Inicia sesión</a>
+        ¿Ya tienes cuenta? <a id="switch-to-login">Inicia sesión</a> | <a id="switch-register-to-pin">Usar PIN</a>
       </div>
     </div>
 
@@ -4598,24 +4650,42 @@
         <button type="submit" class="auth-btn-submit">Enviar Enlace →</button>
       </form>
       <div class="auth-switch">
-        Volver a <a id="switch-reset-to-login">Iniciar sesión</a>
+        Volver a <a id="switch-reset-to-login">Iniciar sesión</a> | <a id="switch-reset-to-pin">Usar PIN</a>
       </div>
     </div>
 
   </div>
 </div>
 
+<script src="js/portal-gateway.js"></script>
 <script>
   // Global modal controllers
   window.openAuthModal = function() {
     const modal = document.getElementById('auth-modal');
     if (modal) {
+      // Ensure PIN view is default
+      const viewPin = document.getElementById('auth-view-pin');
+      const viewLogin = document.getElementById('auth-view-login');
+      const viewRegister = document.getElementById('auth-view-register');
+      const viewReset = document.getElementById('auth-view-reset');
+      const errorBox = document.getElementById('pin-login-error');
+      if (viewPin) viewPin.style.display = 'block';
+      if (viewLogin) viewLogin.style.display = 'none';
+      if (viewRegister) viewRegister.style.display = 'none';
+      if (viewReset) viewReset.style.display = 'none';
+      if (errorBox) errorBox.style.display = 'none';
+
       modal.style.display = 'flex';
       requestAnimationFrame(() => {
         modal.classList.add('active');
+        const pinInput = document.getElementById('landing-portal-pin');
+        if (pinInput) {
+          setTimeout(() => pinInput.focus(), 80);
+        }
       });
     }
   };
+
   window.closeAuthModal = function() {
     const modal = document.getElementById('auth-modal');
     if (modal) {
@@ -4627,6 +4697,64 @@
       }, 200);
     }
   };
+
+  window.handleLandingPinSubmit = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const pinInput = document.getElementById('landing-portal-pin');
+    const errorBox = document.getElementById('pin-login-error');
+    const submitBtn = document.getElementById('btn-submit-pin');
+    if (!pinInput) return false;
+
+    const pin = pinInput.value.trim();
+    if (!pin) {
+      if (errorBox) {
+        errorBox.innerHTML = '⚠️ Por favor escribe tu clave o PIN personal.';
+        errorBox.style.display = 'block';
+      }
+      pinInput.focus();
+      return false;
+    }
+
+    if (typeof window.resolveClientPortalByPIN !== 'function') {
+      if (errorBox) {
+        errorBox.innerHTML = '⚠️ Módulo de seguridad no disponible. Recarga la página.';
+        errorBox.style.display = 'block';
+      }
+      return false;
+    }
+
+    const result = window.resolveClientPortalByPIN(pin);
+    if (result.success) {
+      if (errorBox) errorBox.style.display = 'none';
+      if (submitBtn) {
+        submitBtn.innerHTML = `<span>✓ Bienvenido, ${result.name}</span>`;
+        submitBtn.style.background = '#10b981';
+        submitBtn.style.color = '#ffffff';
+      }
+      setTimeout(() => {
+        window.location.href = result.url;
+      }, 350);
+      return false;
+    } else {
+      if (errorBox) {
+        errorBox.innerHTML = `
+          <div style="line-height:1.45; font-size:0.83rem;">
+            ${result.message}
+            <div style="margin-top:8px;">
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estoy%20en%20la%20web%20e%20ingres%C3%A9%20mi%20clave%20pero%20no%20me%20abre%20mi%20Plan%20de%20Vuelo" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:800; text-decoration:underline;">
+                Contactar a Diego por WhatsApp (+56975590132) →
+              </a>
+            </div>
+          </div>
+        `;
+        errorBox.style.display = 'block';
+      }
+      pinInput.focus();
+      pinInput.select();
+      return false;
+    }
+  };
+
   window.fillLogin = function(user, pass) {
     const emailInput = document.getElementById('login-email');
     const passInput = document.getElementById('login-password');
@@ -4634,7 +4762,7 @@
     if (passInput) passInput.value = pass;
   };
 
-  // Direct login processor
+  // Direct login processor (legacy fallback)
   window.submitDirectLogin = async function(e) {
     if (e && e.preventDefault) e.preventDefault();
     const emailInput = document.getElementById('login-email');
@@ -4688,7 +4816,7 @@
       window.location.href = 'portal_cliente.html';
     } else {
       if (loginError) {
-        loginError.innerText = 'Usuario o contraseña incorrectos. Revisa tus datos o usa los botones de prueba.';
+        loginError.innerText = 'Usuario o contraseña incorrectos. Revisa tus datos o usa tu PIN.';
         loginError.style.display = 'block';
       }
     }
@@ -4710,10 +4838,15 @@
     const btnNavAuth = document.getElementById('btn-nav-auth');
     const btnClose = document.getElementById('auth-close-btn');
 
+    const viewPin = document.getElementById('auth-view-pin');
     const viewLogin = document.getElementById('auth-view-login');
     const viewRegister = document.getElementById('auth-view-register');
     const viewReset = document.getElementById('auth-view-reset');
 
+    const switchToLegacy = document.getElementById('switch-to-legacy');
+    const switchToPin = document.getElementById('switch-to-pin');
+    const switchRegisterToPin = document.getElementById('switch-register-to-pin');
+    const switchResetToPin = document.getElementById('switch-reset-to-pin');
     const switchToRegister = document.getElementById('switch-to-register');
     const switchToLogin = document.getElementById('switch-to-login');
     const switchToReset = document.getElementById('switch-to-reset');
@@ -4732,6 +4865,37 @@
       btnNavAuth.addEventListener('click', (e) => {
         e.preventDefault();
         window.openAuthModal();
+      });
+    }
+
+    if (switchToLegacy) {
+      switchToLegacy.addEventListener('click', () => {
+        if (viewPin) viewPin.style.display = 'none';
+        if (viewLogin) viewLogin.style.display = 'block';
+      });
+    }
+    if (switchToPin) {
+      switchToPin.addEventListener('click', () => {
+        if (viewLogin) viewLogin.style.display = 'none';
+        if (viewPin) viewPin.style.display = 'block';
+        const pinInput = document.getElementById('landing-portal-pin');
+        if (pinInput) pinInput.focus();
+      });
+    }
+    if (switchRegisterToPin) {
+      switchRegisterToPin.addEventListener('click', () => {
+        if (viewRegister) viewRegister.style.display = 'none';
+        if (viewPin) viewPin.style.display = 'block';
+        const pinInput = document.getElementById('landing-portal-pin');
+        if (pinInput) pinInput.focus();
+      });
+    }
+    if (switchResetToPin) {
+      switchResetToPin.addEventListener('click', () => {
+        if (viewReset) viewReset.style.display = 'none';
+        if (viewPin) viewPin.style.display = 'block';
+        const pinInput = document.getElementById('landing-portal-pin');
+        if (pinInput) pinInput.focus();
       });
     }
 
@@ -4756,8 +4920,8 @@
             };
           }
         } else {
-          btnNavAuth.innerHTML = '🔑 Acceso Clientes';
-          btnNavAuth.title = 'Iniciar sesión o registrarse';
+          btnNavAuth.innerHTML = '🔒 Mi Plan de Vuelo';
+          btnNavAuth.title = 'Acceso a Plan de Vuelo';
           btnNavAuth.onclick = (e) => {
             e.preventDefault();
             window.openAuthModal();

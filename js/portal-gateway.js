@@ -156,12 +156,125 @@ if (document.readyState === 'loading') {
 // Global modal UX safety: ESC key & backdrop click automatically close any open modal
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+        document.querySelectorAll('.modal-overlay.active, .auth-modal-overlay.active').forEach(m => {
+            m.classList.remove('active');
+            m.style.display = 'none';
+        });
     }
 });
 
 document.addEventListener('click', (e) => {
-    if (e.target && e.target.classList && e.target.classList.contains('modal-overlay')) {
+    if (e.target && e.target.classList && (e.target.classList.contains('modal-overlay') || e.target.classList.contains('auth-modal-overlay'))) {
         e.target.classList.remove('active');
+        e.target.style.display = 'none';
     }
 });
+
+/**
+ * CANONICAL CLIENT PORTAL RESOLVER BY PIN
+ * Usable from the Landing page, Hubs, or any portal entry point
+ */
+window.resolveClientPortalByPIN = function(rawPin) {
+    if (!rawPin) return { success: false, message: "Por favor ingresa tu clave o PIN personal." };
+    const pin = String(rawPin).trim().toLowerCase();
+
+    // Map of known active clients
+    const portalMap = {
+        "rocio2026": {
+            id: "rocio",
+            name: "Rocío",
+            url: "planes/rocio/index.html",
+            storageKey: "ah_auth_rocio"
+        },
+        "matias2026": {
+            id: "matias",
+            name: "Matías González",
+            url: "planes/matias/index.html",
+            storageKey: "ah_auth_matias"
+        },
+        "alejandra2026": {
+            id: "alejandra",
+            name: "Alejandra Mattei",
+            url: "planes/alejandra/index.html",
+            storageKey: "ah_auth_alejandra"
+        },
+        "melissa2026": {
+            id: "melissa",
+            name: "Melissa Henríquez",
+            url: "planes/melissa/index.html",
+            storageKey: "ah_auth_melissa"
+        },
+        "antonia2026": {
+            id: "antonia",
+            name: "Antonia Jofré",
+            url: "planes/antonia/index.html",
+            storageKey: "ah_auth_antonia"
+        },
+        "antojofre1995": {
+            id: "antonia",
+            name: "Antonia Jofré",
+            url: "planes/antonia/index.html",
+            storageKey: "ah_auth_antonia"
+        },
+        "antojofre23091995": {
+            id: "antonia",
+            name: "Antonia Jofré",
+            url: "planes/antonia/index.html",
+            storageKey: "ah_auth_antonia"
+        },
+        "antojofre": {
+            id: "antonia",
+            name: "Antonia Jofré",
+            url: "planes/antonia/index.html",
+            storageKey: "ah_auth_antonia"
+        },
+        "demo2026": {
+            id: "demo",
+            name: "Caso Demostrativo",
+            url: "planes-demo.html",
+            storageKey: "ah_auth_demo"
+        },
+        "invitado": {
+            id: "demo",
+            name: "Caso Demostrativo",
+            url: "planes-demo.html",
+            storageKey: "ah_auth_demo"
+        }
+    };
+
+    // Consultant / Master PINs
+    const masterPins = ["diego2026", "admin2026", "diego_ah_master", "diegop1990", "master2026"];
+    if (masterPins.includes(pin)) {
+        localStorage.setItem("ah_client_auth_session", "authenticated_ok");
+        localStorage.setItem("ah_consultor_auth", "true");
+        const isClientOps = window.location.pathname.includes("02_CLIENTES_ACTIVOS");
+        const masterUrl = isClientOps ? "Visualizador_Planes_de_Vuelo.html" : "visualizador.html";
+        return {
+            success: true,
+            isMaster: true,
+            name: "Diego González (Consultor)",
+            url: masterUrl
+        };
+    }
+
+    const client = portalMap[pin];
+    if (client) {
+        localStorage.setItem(client.storageKey, "authenticated_ok");
+        localStorage.setItem(`client_authenticated_${client.id}`, "true");
+        sessionStorage.setItem(`client_authenticated_${client.id}`, "true");
+        localStorage.setItem("ah_client_auth_session", "authenticated_ok");
+
+        return {
+            success: true,
+            id: client.id,
+            name: client.name,
+            url: client.url
+        };
+    }
+
+    return {
+        success: false,
+        message: "Clave o PIN no reconocido. Si olvidaste tu acceso o aún no tienes tu Plan de Vuelo, escríbele directo a Diego."
+    };
+};
+
