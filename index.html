@@ -2509,16 +2509,27 @@
       font-weight: 600;
     }
 
-    /* EL PUENTE CENTRAL */
+    /* EL PUENTE CENTRAL - FLAGSHIP ELEVATION */
     .central-bridge-card {
-      background: linear-gradient(135deg, rgba(20, 25, 35, 0.98), rgba(10, 15, 22, 0.99));
-      border: 2px solid rgba(56, 189, 248, 0.6);
+      background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 70%),
+                  linear-gradient(135deg, rgba(14, 18, 26, 0.98), rgba(9, 11, 16, 0.99));
+      border: 2px solid rgba(56, 189, 248, 0.5);
       border-radius: var(--radius-lg);
-      padding: 38px 32px;
-      box-shadow: 0 0 50px rgba(56, 189, 248, 0.22), inset 0 0 25px rgba(56, 189, 248, 0.06);
+      padding: 44px 34px;
+      box-shadow: 0 0 60px rgba(56, 189, 248, 0.22), inset 0 0 35px rgba(56, 189, 248, 0.05);
       position: relative;
       margin-bottom: 32px;
       text-align: center;
+      overflow: hidden;
+    }
+    .central-bridge-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #38bdf8, #818cf8, #10b981, transparent);
     }
     .bridge-header-tag {
       background: linear-gradient(90deg, #38bdf8, #818cf8);
@@ -2526,27 +2537,218 @@
       font-weight: 800;
       font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 6px 16px;
+      letter-spacing: 0.12em;
+      padding: 7px 18px;
       border-radius: 30px;
       display: inline-block;
-      margin-bottom: 14px;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+      margin-bottom: 16px;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.45);
     }
     .bridge-title {
       font-family: var(--font-heading);
-      font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .bridge-consultant-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 50px;
+      padding: 8px 20px;
+      margin: 4px auto 20px auto;
+      text-align: left;
+      max-width: 680px;
+    }
+    .consultant-avatar-icon {
+      font-size: 1.35rem;
+      background: rgba(56, 189, 248, 0.15);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #38bdf8;
+      flex-shrink: 0;
+    }
+    .consultant-badge-title {
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: #f8fafc;
+    }
+    .consultant-badge-sub {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      line-height: 1.35;
     }
     .bridge-sub {
-      font-size: 1.02rem;
+      font-size: 1.04rem;
       color: #cbd5e1;
-      max-width: 780px;
-      margin: 0 auto 28px;
-      line-height: 1.6;
+      max-width: 820px;
+      margin: 0 auto 30px;
+      line-height: 1.65;
     }
+
+    /* MATRIZ DE CONVERGENCIA (PARADOS AL CENTRO DE LAS 4 OPCIONES) */
+    .convergence-nexus {
+      background: rgba(15, 20, 28, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 22px 24px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+    .convergence-nexus-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .nexus-tag {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .nexus-center-badge {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(16, 185, 129, 0.2));
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #7dd3fc;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .convergence-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 900px) {
+      .convergence-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 580px) {
+      .convergence-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .convergence-item {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .convergence-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateY(-2px);
+    }
+    .convergence-source {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .convergence-gain {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #34d399;
+      line-height: 1.35;
+    }
+    .convergence-eliminated {
+      font-size: 0.74rem;
+      color: #ef4444;
+      line-height: 1.3;
+      text-decoration: line-through;
+      opacity: 0.85;
+    }
+
+    /* SHOWCASE VISUAL DEL SERVICIO Y ENTREGABLE REAL */
+    .bridge-deliverable-panel {
+      background: #080a0e;
+      border: 1px solid #1e2430;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 34px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      text-align: left;
+    }
+    .deliverable-browser-bar {
+      background: #11151e;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #232b3a;
+    }
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .browser-dot.red { background: #ef4444; }
+    .browser-dot.yellow { background: #f59e0b; }
+    .browser-dot.green { background: #10b981; }
+    .browser-url-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 3px 14px;
+      font-size: 0.72rem;
+      color: #94a3b8;
+      font-family: monospace;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .deliverable-preview-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .deliverable-footer-badges {
+      background: #0c0f16;
+      border-top: 1px solid #1e2430;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .deliverable-badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    .deliverable-badge-item strong {
+      color: #ffffff;
+    }
+
     .bridge-pillars-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -2554,8 +2756,8 @@
       text-align: left;
     }
     .bridge-pillar {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(56, 189, 248, 0.22);
       border-radius: 12px;
       padding: 20px;
       transition: all 0.2s;
@@ -3206,11 +3408,11 @@
 </section>
   <section class="market-quadrant-section" id="cuadrante-mercado">
   <div class="container">
-    <div style="text-align:center; max-width:820px; margin:0 auto 48px auto;">
-      <span class="section-tag">🧭 El Mapa del Mercado</span>
-      <h2 class="section-title">¿Por qué nada de lo que has probado ha funcionado?</h2>
-      <p class="section-sub" style="margin:8px auto 0; font-size:1.02rem;">
-        Cuando una persona o un líder llega al límite del colapso, el mercado le ofrece 4 caminos tradicionales que casi siempre terminan en frustración. Descubre dónde cae un profesional realmente agotado:
+    <div style="text-align:center; max-width:860px; margin:0 auto 48px auto;">
+      <span class="section-tag">🧭 MAPA COMPARATIVO DEL MERCADO</span>
+      <h2 class="section-title">¿Qué aporta Administración Humana que no encuentras en las opciones tradicionales?</h2>
+      <p class="section-sub" style="margin:8px auto 0; font-size:1.02rem; line-height: 1.6;">
+        Cuando un profesional, líder o terapeuta busca ordenar su tiempo y su negocio, el mercado suele ofrecerle 4 caminos clásicos que dejan vacíos fundamentales. Conoce dónde se sitúa cada opción y por qué estar al centro lo cambia todo:
       </p>
     </div>
 
@@ -3289,57 +3491,130 @@
 
     <!-- EL PUENTE CENTRAL: ADMINISTRACIÓN HUMANA -->
     <div class="central-bridge-card">
-      <span class="bridge-header-tag">⚡ LO QUE TE ENTREGAMOS • EL PUENTE QUE FALTABA ⚡</span>
+      <span class="bridge-header-tag">✦ EL PUNTO DE CONVERGENCIA • JUSTO AL CENTRO DEL MAPA ✦</span>
       <h3 class="bridge-title">ADMINISTRACIÓN HUMANA</h3>
+      
+      <!-- IDENTIDAD CERCANA EN PRIMERA PERSONA DE DIEGO -->
+      <div class="bridge-consultant-badge">
+        <span class="consultant-avatar-icon">🤝</span>
+        <div>
+          <div class="consultant-badge-title">Acompañamiento 1 a 1 directo con Diego Alberto González Yáñez</div>
+          <div class="consultant-badge-sub">Sin intermediarios, sin bots ni respuestas genéricas: co-diseño tu sistema a la medida de tu realidad concreta.</div>
+        </div>
+      </div>
+
       <p class="bridge-sub">
-        No eres un número para una consultora, ni un seguidor de un gurú, ni un usuario abandonado en una app. <b>Co-creamos contigo un sistema práctico en vivo</b>, para que desde la primera sesión sientas alivio y recuperes el mando de tu tiempo.
+        No eres un número para una consultora, ni un seguidor de un gurú, ni un usuario abandonado en una app. <b>Me siento contigo a co-crear un sistema práctico en vivo</b>, para que desde la primera sesión sientas alivio real, orden operativo y recuperes el mando de tu tiempo.
       </p>
 
+      <!-- MATRIZ DE CONVERGENCIA: LO QUE RESCATAMOS DE CADA MUNDO Y LO QUE ELIMINAMOS -->
+      <div class="convergence-nexus">
+        <div class="convergence-nexus-header">
+          <span class="nexus-tag">⚖️ LA VENTAJA COMPETITIVA DE SITUARSE AL CENTRO</span>
+          <span class="nexus-center-badge">🎯 El Puente Que Faltaba</span>
+        </div>
+        <div class="convergence-grid">
+          <div class="convergence-item">
+            <span class="convergence-source">🏢 De Consultoras</span>
+            <span class="convergence-gain">✓ Estrategia y rigor de procesos</span>
+            <span class="convergence-eliminated">✕ Cero reportes fríos de 80 págs</span>
+          </div>
+          <div class="convergence-item">
+            <span class="convergence-source">📣 Del Coaching</span>
+            <span class="convergence-gain">✓ Impulso y claridad de metas</span>
+            <span class="convergence-eliminated">✕ Cero humo ni culpa moral</span>
+          </div>
+          <div class="convergence-item">
+            <span class="convergence-source">💻 Del Software</span>
+            <span class="convergence-gain">✓ Agilidad en tu celular</span>
+            <span class="convergence-eliminated">✕ Cero horas configurando apps</span>
+          </div>
+          <div class="convergence-item">
+            <span class="convergence-source">🛋️ De la Terapia</span>
+            <span class="convergence-gain">✓ Cuidado del sistema nervioso</span>
+            <span class="convergence-eliminated">✕ Sumamos negocio y tiempo real</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOWCASE VISUAL DEL SERVICIO Y ENTREGABLE REAL -->
+      <div class="bridge-deliverable-panel">
+        <div class="deliverable-browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot red"></span>
+            <span class="browser-dot yellow"></span>
+            <span class="browser-dot green"></span>
+          </div>
+          <div class="browser-url-pill">
+            <span>🔒</span> administracionhumana.com/plan-de-vuelo-2.0/cliente-activo
+          </div>
+          <div style="font-size:0.7rem; color:#10b981; font-weight:700;">
+            ● SOFTWARE ACTIVO EN VIVO
+          </div>
+        </div>
+        <img src="assets/img/plan_vuelo/servicio_entregable_preview.png" alt="Plan de Vuelo 2.0 y Entregables de Administración Humana" class="deliverable-preview-img" />
+        <div class="deliverable-footer-badges">
+          <div class="deliverable-badge-item">
+            <span style="color:#38bdf8; font-size:1.1rem;">📲</span>
+            <span><strong>Tu Plan de Vuelo Privado:</strong> Web app interactiva en el celular (sin instalar nada)</span>
+          </div>
+          <div class="deliverable-badge-item">
+            <span style="color:#a855f7; font-size:1.1rem;">📄</span>
+            <span><strong>Cuadernillo Físico:</strong> 1 hoja de papel en tu escritorio para blindar tu foco</span>
+          </div>
+          <div class="deliverable-badge-item">
+            <span style="color:#10b981; font-size:1.1rem;">⚡</span>
+            <span><strong>Impacto Sesión 1:</strong> De 5 a 10 horas semanales recuperadas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOS 4 PILARES REDISEÑADOS -->
       <div class="bridge-pillars-grid">
         <!-- PILAR 1: ACOMPAÑAMIENTO 1 A 1 -->
-        <div class="bridge-pillar">
+        <div class="bridge-pillar" style="border-color: rgba(56, 189, 248, 0.35);">
           <span class="bridge-pillar-icon">🤝</span>
           <div class="bridge-pillar-title">1. Acompañamiento 1 a 1 Real</div>
           <div class="bridge-pillar-desc">
             <b>Tu copiloto en la trinchera:</b> Ni reportes fríos de 80 páginas ni discursos masivos. Diego se sienta contigo a diseñar cada solución sobre tu realidad concreta.
           </div>
-          <div style="margin-top:10px; font-size:0.75rem; color:#38bdf8; font-weight:700;">
+          <div style="margin-top:12px; font-size:0.75rem; color:#38bdf8; font-weight:700;">
             ✓ Frente a consultoras y gurús: Cercanía humana sin poses
           </div>
         </div>
 
         <!-- PILAR 2: SISTEMA EN LA PALMA DE TU MANO -->
-        <div class="bridge-pillar">
+        <div class="bridge-pillar" style="border-color: rgba(168, 85, 247, 0.35);">
           <span class="bridge-pillar-icon">📱</span>
           <div class="bridge-pillar-title">2. Tu Sistema en la Palma de tu Mano</div>
           <div class="bridge-pillar-desc">
             <b>Doble soporte práctico:</b> Tu <b>Plan de Vuelo interactivo</b> en el celular + tu <b>Cuadernillo físico</b> de 1 hoja en papel. Cero cajas vacías ni horas configurando apps.
           </div>
-          <div style="margin-top:10px; font-size:0.75rem; color:#38bdf8; font-weight:700;">
+          <div style="margin-top:12px; font-size:0.75rem; color:#c084fc; font-weight:700;">
             ✓ Frente al software frío: Listo para usar, adaptado a ti
           </div>
         </div>
 
         <!-- PILAR 3: IMPACTO DESDE LA SESIÓN 1 -->
-        <div class="bridge-pillar">
+        <div class="bridge-pillar" style="border-color: rgba(16, 185, 129, 0.35);">
           <span class="bridge-pillar-icon">⚡</span>
           <div class="bridge-pillar-title">3. Impacto Inmediato (Sesión 1)</div>
           <div class="bridge-pillar-desc">
             <b>Cero esperas de 6 meses:</b> Desde el primer encuentro tapamos tu mayor fuga y recuperas entre <b>5 y 10 horas a la semana</b> con cambios de alto impacto positivo.
           </div>
-          <div style="margin-top:10px; font-size:0.75rem; color:#38bdf8; font-weight:700;">
+          <div style="margin-top:12px; font-size:0.75rem; color:#34d399; font-weight:700;">
             ✓ Frente al coaching: Práctica pura, resultados tangibles
           </div>
         </div>
 
         <!-- PILAR 4: SOBERANÍA Y CONOCIMIENTO -->
-        <div class="bridge-pillar">
+        <div class="bridge-pillar" style="border-color: rgba(245, 158, 11, 0.35);">
           <span class="bridge-pillar-icon">🎓</span>
           <div class="bridge-pillar-title">4. Conocimiento y Soberanía Total</div>
           <div class="bridge-pillar-desc">
             <b>Herramientas que te quedan para siempre:</b> Aprendes a administrar tu energía, prioridades y negocio. Cero dependencia; tú te vuelves el líder de tu propio sistema.
           </div>
-          <div style="margin-top:10px; font-size:0.75rem; color:#38bdf8; font-weight:700;">
+          <div style="margin-top:12px; font-size:0.75rem; color:#fbbf24; font-weight:700;">
             ✓ Frente a la terapia: Métricas de negocio y autonomía
           </div>
         </div>
