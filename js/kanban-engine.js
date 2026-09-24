@@ -63,7 +63,7 @@ function renderKanbanTaskCard(task) {
     const isTodo = task.col === "todo";
     const isDoing = task.col === "doing";
     const isDone = task.col === "done";
-    const borderStyle = isDoing ? 'border-left: 3px solid #ffffff;' : (isDone ? 'border-left: 3px solid #10b981;' : '');
+    const borderStyle = isDoing ? 'border-left: 3px solid #f59e0b;' : (isDone ? 'border-left: 3px solid #10b981;' : '');
 
     return `
         <div class="kanban-card-item" style="${borderStyle}">
@@ -71,9 +71,9 @@ function renderKanbanTaskCard(task) {
             <div class="kanban-card-footer">
                 <span class="wip-limit-pill" style="background:#222; border-color:#333; color:#aaa;">${task.tag || 'Tarea'}</span>
                 <div class="kanban-card-actions">
-                    ${!isTodo ? `<button class="btn-card-action" onclick="moveKanbanTaskItem('${task.id}', '${isDone ? 'doing' : 'todo'}')" title="Mover atrás">⬅️</button>` : ''}
-                    ${!isDone ? `<button class="btn-card-action" onclick="moveKanbanTaskItem('${task.id}', '${isTodo ? 'doing' : 'done'}')" title="Mover adelante">➡️</button>` : ''}
-                    <button class="btn-card-action" onclick="deleteKanbanTaskItem('${task.id}')" title="Eliminar">🗑️</button>
+                    ${!isTodo ? `<button class="btn-card-action" onclick="moveKanbanTaskItem('${task.id}', '${isDone ? 'doing' : 'todo'}')" title="Mover atrás"><i class="fa-solid fa-chevron-left"></i></button>` : ''}
+                    ${!isDone ? `<button class="btn-card-action" onclick="moveKanbanTaskItem('${task.id}', '${isTodo ? 'doing' : 'done'}')" title="Mover adelante"><i class="fa-solid fa-chevron-right"></i></button>` : ''}
+                    <button class="btn-card-action" onclick="deleteKanbanTaskItem('${task.id}')" title="Eliminar" style="color:#f87171;"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             </div>
         </div>
