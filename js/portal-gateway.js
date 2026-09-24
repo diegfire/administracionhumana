@@ -174,107 +174,154 @@ document.addEventListener('click', (e) => {
  * CANONICAL CLIENT PORTAL RESOLVER BY PIN
  * Usable from the Landing page, Hubs, or any portal entry point
  */
-window.resolveClientPortalByPIN = function(rawPin) {
-    if (!rawPin) return { success: false, message: "Por favor ingresa tu clave o PIN personal." };
-    const pin = String(rawPin).trim().toLowerCase();
+/**
+ * CANONICAL CLIENT CREDENTIALS REGISTRY
+ * Cada persona cuenta con su usuario específico y clave/contraseña específica.
+ * Sin sugerencias públicas ni filtración de credenciales.
+ */
+const CLIENT_ACCOUNTS = [
+    {
+        id: "rocio",
+        name: "Rocío",
+        subtitle: "Puya Masajes & Canto",
+        usernames: ["rocio", "puya", "puyamasajes", "rocio@administracionhumana.com"],
+        passwords: ["rocio2026", "puya2026"],
+        url: "planes/rocio/index.html",
+        storageKey: "ah_auth_rocio"
+    },
+    {
+        id: "matias",
+        name: "Matías González",
+        subtitle: "Ingeniería & Software",
+        usernames: ["matias", "matias.gonzalez", "matias@administracionhumana.com"],
+        passwords: ["matias2026"],
+        url: "planes/matias/index.html",
+        storageKey: "ah_auth_matias"
+    },
+    {
+        id: "antonia",
+        name: "Antonia Jofré",
+        subtitle: "Habitarte & Movimiento",
+        usernames: ["antonia", "antojofre", "antonia@administracionhumana.com"],
+        passwords: ["antonia2026", "antojofre1995", "antojofre23091995", "antojofre"],
+        url: "planes/antonia/index.html",
+        storageKey: "ah_auth_antonia"
+    },
+    {
+        id: "alejandra",
+        name: "Alejandra Mattei",
+        subtitle: "Acompañamiento Integral",
+        usernames: ["alejandra", "alejandra.mattei", "alejandra@administracionhumana.com"],
+        passwords: ["alejandra2026"],
+        url: "planes/alejandra/index.html",
+        storageKey: "ah_auth_alejandra"
+    },
+    {
+        id: "melissa",
+        name: "Melissa Henríquez",
+        subtitle: "Educación & Gestión",
+        usernames: ["melissa", "melissa.henriquez", "melissa@administracionhumana.com"],
+        passwords: ["melissa2026"],
+        url: "planes/melissa/index.html",
+        storageKey: "ah_auth_melissa"
+    },
+    {
+        id: "demo",
+        name: "Caso Demostrativo",
+        subtitle: "Prototipo 2.0",
+        usernames: ["demo", "invitado", "demo@administracionhumana.com"],
+        passwords: ["demo2026", "invitado2026", "demo"],
+        url: "planes-demo.html",
+        storageKey: "ah_auth_demo"
+    },
+    {
+        id: "admin",
+        name: "Diego González (Consultor)",
+        subtitle: "Administrador Maestro",
+        usernames: ["admin", "diego", "consultor", "diego@administracionhumana.com"],
+        passwords: ["admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026"],
+        isMaster: true,
+        url: "visualizador.html"
+    }
+];
 
-    // Map of known active clients
-    const portalMap = {
-        "rocio2026": {
-            id: "rocio",
-            name: "Rocío",
-            url: "planes/rocio/index.html",
-            storageKey: "ah_auth_rocio"
-        },
-        "matias2026": {
-            id: "matias",
-            name: "Matías González",
-            url: "planes/matias/index.html",
-            storageKey: "ah_auth_matias"
-        },
-        "alejandra2026": {
-            id: "alejandra",
-            name: "Alejandra Mattei",
-            url: "planes/alejandra/index.html",
-            storageKey: "ah_auth_alejandra"
-        },
-        "melissa2026": {
-            id: "melissa",
-            name: "Melissa Henríquez",
-            url: "planes/melissa/index.html",
-            storageKey: "ah_auth_melissa"
-        },
-        "antonia2026": {
-            id: "antonia",
-            name: "Antonia Jofré",
-            url: "planes/antonia/index.html",
-            storageKey: "ah_auth_antonia"
-        },
-        "antojofre1995": {
-            id: "antonia",
-            name: "Antonia Jofré",
-            url: "planes/antonia/index.html",
-            storageKey: "ah_auth_antonia"
-        },
-        "antojofre23091995": {
-            id: "antonia",
-            name: "Antonia Jofré",
-            url: "planes/antonia/index.html",
-            storageKey: "ah_auth_antonia"
-        },
-        "antojofre": {
-            id: "antonia",
-            name: "Antonia Jofré",
-            url: "planes/antonia/index.html",
-            storageKey: "ah_auth_antonia"
-        },
-        "demo2026": {
-            id: "demo",
-            name: "Caso Demostrativo",
-            url: "planes-demo.html",
-            storageKey: "ah_auth_demo"
-        },
-        "invitado": {
-            id: "demo",
-            name: "Caso Demostrativo",
-            url: "planes-demo.html",
-            storageKey: "ah_auth_demo"
+window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
+    const user = String(rawUser || "").trim().toLowerCase();
+    const pass = String(rawPass || "").trim().toLowerCase();
+
+    if (!pass && !user) {
+        return { success: false, message: "Por favor ingresa tu usuario y clave personal." };
+    }
+
+    // 1. Si se proporciona usuario, validar primero por usuario
+    if (user) {
+        const account = CLIENT_ACCOUNTS.find(acc => acc.usernames.includes(user));
+        if (!account) {
+            return { 
+                success: false, 
+                message: `El usuario "${rawUser.trim()}" no fue encontrado en el sistema. Verifica que esté bien escrito o solicita tus credenciales a Diego.` 
+            };
         }
-    };
+        if (!account.passwords.includes(pass)) {
+            return { 
+                success: false, 
+                message: `Contraseña incorrecta para el usuario "${rawUser.trim()}". Si olvidaste tu clave, solicítala a Diego por WhatsApp.` 
+            };
+        }
+        return grantAccessSession(account);
+    }
 
-    // Consultant / Master PINs
-    const masterPins = ["diego2026", "admin2026", "diego_ah_master", "diegop1990", "master2026"];
-    if (masterPins.includes(pin)) {
-        localStorage.setItem("ah_client_auth_session", "authenticated_ok");
+    // 2. Si no se especificó usuario pero sí clave (modo directo o pruebas)
+    if (pass) {
+        const masterPins = ["diego2026", "admin2026", "diego_ah_master", "diegop1990", "master2026"];
+        if (masterPins.includes(pass)) {
+            const adminAcc = CLIENT_ACCOUNTS.find(acc => acc.id === "admin");
+            return grantAccessSession(adminAcc);
+        }
+        const account = CLIENT_ACCOUNTS.find(acc => acc.passwords.includes(pass));
+        if (account) {
+            return grantAccessSession(account);
+        }
+    }
+
+    return {
+        success: false,
+        message: "Credenciales no reconocidas. Por favor verifica tu usuario y contraseña asignados."
+    };
+};
+
+function grantAccessSession(account) {
+    localStorage.setItem(account.storageKey, "authenticated_ok");
+    localStorage.setItem(`client_authenticated_${account.id}`, "true");
+    sessionStorage.setItem(`client_authenticated_${account.id}`, "true");
+    localStorage.setItem("ah_client_auth_session", "authenticated_ok");
+
+    if (account.isMaster) {
         localStorage.setItem("ah_consultor_auth", "true");
         const isClientOps = window.location.pathname.includes("02_CLIENTES_ACTIVOS");
         const masterUrl = isClientOps ? "Visualizador_Planes_de_Vuelo.html" : "visualizador.html";
         return {
             success: true,
             isMaster: true,
-            name: "Diego González (Consultor)",
+            id: account.id,
+            name: account.name,
             url: masterUrl
         };
     }
 
-    const client = portalMap[pin];
-    if (client) {
-        localStorage.setItem(client.storageKey, "authenticated_ok");
-        localStorage.setItem(`client_authenticated_${client.id}`, "true");
-        sessionStorage.setItem(`client_authenticated_${client.id}`, "true");
-        localStorage.setItem("ah_client_auth_session", "authenticated_ok");
-
-        return {
-            success: true,
-            id: client.id,
-            name: client.name,
-            url: client.url
-        };
-    }
-
     return {
-        success: false,
-        message: "Clave o PIN no reconocido. Si olvidaste tu acceso o aún no tienes tu Plan de Vuelo, escríbele directo a Diego."
+        success: true,
+        isMaster: false,
+        id: account.id,
+        name: account.name,
+        url: account.url
     };
-};
+}
 
+// Wrapper canónico para compatibilidad hacia atrás
+window.resolveClientPortalByPIN = function(rawPin, optionalPass) {
+    if (optionalPass !== undefined) {
+        return window.resolveClientPortalByCredentials(rawPin, optionalPass);
+    }
+    return window.resolveClientPortalByCredentials("", rawPin);
+};

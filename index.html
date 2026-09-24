@@ -3960,15 +3960,23 @@
 
       <form onsubmit="handleTabPinSubmit(event); return false;" style="display:flex; flex-direction:column; gap:12px;">
         <input 
+          type="text" 
+          id="tab-client-user" 
+          class="auth-input" 
+          placeholder="Tu usuario asignado" 
+          autocomplete="username"
+          style="font-size:0.95rem; padding:12px 14px; border-radius:10px;"
+        />
+        <input 
           type="password" 
           id="tab-client-pin" 
           class="auth-input" 
-          placeholder="Ej: rocio2026, matias2026" 
+          placeholder="••••••••••••" 
           required 
           autocomplete="current-password"
-          style="font-size:1.15rem; letter-spacing:0.12em; text-align:center; padding:12px; font-family:monospace;"
+          style="font-size:1.1rem; letter-spacing:0.1em; padding:12px 14px; border-radius:10px; font-family:monospace;"
         />
-        <button type="submit" id="btn-tab-submit-pin" class="auth-btn-submit" style="font-weight:800; padding:12px; display:flex; align-items:center; justify-content:center; gap:8px;">
+        <button type="submit" id="btn-tab-submit-pin" class="auth-btn-submit" style="font-weight:800; padding:13px; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:50px;">
           <span>Ingresar a Mi Plan</span> <span>→</span>
         </button>
       </form>
@@ -4011,7 +4019,7 @@
           <p style="font-size: 0.82rem; color: #a1a1aa;">Estructura adaptada a neurodivergencia, blindaje sensorial, gestión de Puya Masajes y canto.</p>
         </div>
         <div style="margin-top: 18px;">
-          <button onclick="window.openClientPlanDirect('rocio2026')" class="btn-secondary" style="width: 100%; font-size: 0.82rem; font-weight: 700; cursor:pointer;">Desbloquear con PIN (rocio2026) 🔒</button>
+          <button onclick="window.openAuthModalWithUser('rocio')" class="btn-secondary" style="width: 100%; font-size: 0.82rem; font-weight: 700; cursor:pointer;">Acceder a Plan de Vuelo 🔒</button>
         </div>
       </div>
 
@@ -4023,7 +4031,7 @@
           <p style="font-size: 0.82rem; color: #a1a1aa;">Límites de pantalla, bloque de oro y autonomía operacional para ingeniería y desarrollo.</p>
         </div>
         <div style="margin-top: 18px;">
-          <button onclick="window.openClientPlanDirect('matias2026')" class="btn-secondary" style="width: 100%; font-size: 0.82rem; font-weight: 700; cursor:pointer;">Desbloquear con PIN (matias2026) 🔒</button>
+          <button onclick="window.openAuthModalWithUser('matias')" class="btn-secondary" style="width: 100%; font-size: 0.82rem; font-weight: 700; cursor:pointer;">Acceder a Plan de Vuelo 🔒</button>
         </div>
       </div>
     </div>
@@ -4152,10 +4160,24 @@
       <div class="auth-error" id="pin-login-error" style="display:none; margin-bottom:14px; text-align:left;"></div>
 
       <form id="form-pin-login" onsubmit="window.handleLandingPinSubmit(event); return false;">
-        <div class="auth-form-group">
-          <label style="display:flex; justify-content:space-between; align-items:center;">
-            <span>Clave de Acceso / PIN</span>
-            <span style="font-size:0.72rem; color:#888; text-transform:none; font-weight:normal;">(Ej: rocio2026, matias2026)</span>
+        <div class="auth-form-group" style="margin-bottom: 14px;">
+          <label style="font-size:0.8rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:6px;">
+            Usuario Asignado
+          </label>
+          <input 
+            type="text" 
+            id="landing-portal-user" 
+            class="auth-input" 
+            placeholder="Ingresa tu usuario" 
+            autocomplete="username"
+            style="font-size:0.95rem; padding:12px 14px; border-radius:10px;"
+            autofocus
+          />
+        </div>
+
+        <div class="auth-form-group" style="margin-bottom: 18px;">
+          <label style="font-size:0.8rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:6px;">
+            Contraseña / Clave
           </label>
           <input 
             type="password" 
@@ -4164,13 +4186,12 @@
             placeholder="••••••••••••" 
             required 
             autocomplete="current-password"
-            style="font-size:1.15rem; letter-spacing:0.12em; text-align:center; padding:12px; font-family:monospace;"
-            autofocus
+            style="font-size:1.1rem; letter-spacing:0.1em; padding:12px 14px; border-radius:10px; font-family:monospace;"
           />
         </div>
         
-        <button type="submit" id="btn-submit-pin" class="auth-btn-submit" style="display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; font-size:0.92rem;">
-          <span>Desbloquear Mi Plan</span> <span>→</span>
+        <button type="submit" id="btn-submit-pin" class="auth-btn-submit" style="display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; font-size:0.94rem; padding:13px; border-radius:50px;">
+          <span>Ingresar a Mi Plan</span> <span>→</span>
         </button>
       </form>
 
@@ -4721,24 +4742,39 @@ window.openAddClientAdminModal = function() {
     }
   };
 
+  window.openAuthModalWithUser = function(user) {
+    window.openAuthModal();
+    const userInput = document.getElementById('landing-portal-user');
+    const pinInput = document.getElementById('landing-portal-pin');
+    if (userInput && user) {
+      userInput.value = user;
+    }
+    if (pinInput) {
+      setTimeout(() => pinInput.focus(), 120);
+    }
+  };
+
   window.handleLandingPinSubmit = function(e) {
     if (e && e.preventDefault) e.preventDefault();
+    const userInput = document.getElementById('landing-portal-user');
     const pinInput = document.getElementById('landing-portal-pin');
     const errorBox = document.getElementById('pin-login-error');
     const submitBtn = document.getElementById('btn-submit-pin');
     if (!pinInput) return false;
 
-    const pin = pinInput.value.trim();
-    if (!pin) {
+    const user = userInput ? userInput.value.trim() : '';
+    const pass = pinInput.value.trim();
+
+    if (!pass && !user) {
       if (errorBox) {
-        errorBox.innerHTML = '⚠️ Por favor escribe tu clave o PIN personal.';
+        errorBox.innerHTML = '⚠️ Por favor ingresa tu usuario y clave personal.';
         errorBox.style.display = 'block';
       }
-      pinInput.focus();
+      if (userInput) userInput.focus();
       return false;
     }
 
-    if (typeof window.resolveClientPortalByPIN !== 'function') {
+    if (typeof window.resolveClientPortalByCredentials !== 'function' && typeof window.resolveClientPortalByPIN !== 'function') {
       if (errorBox) {
         errorBox.innerHTML = '⚠️ Módulo de seguridad no disponible. Recarga la página.';
         errorBox.style.display = 'block';
@@ -4746,7 +4782,9 @@ window.openAddClientAdminModal = function() {
       return false;
     }
 
-    const result = window.resolveClientPortalByPIN(pin);
+    const resolver = window.resolveClientPortalByCredentials || ((u, p) => window.resolveClientPortalByPIN(u, p));
+    const result = resolver(user, pass);
+
     if (result.success) {
       if (errorBox) errorBox.style.display = 'none';
       if (submitBtn) {
@@ -4764,8 +4802,61 @@ window.openAddClientAdminModal = function() {
           <div style="line-height:1.45; font-size:0.83rem;">
             ${result.message}
             <div style="margin-top:8px;">
-              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estoy%20en%20la%20web%20e%20ingres%C3%A9%20mi%20clave%20pero%20no%20me%20abre%20mi%20Plan%20de%20Vuelo" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:800; text-decoration:underline;">
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20necesito%20acceder%20a%20mi%20Plan%20de%20Vuelo%20y%20consultar%20mis%20credenciales" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:800; text-decoration:underline;">
                 Contactar a Diego por WhatsApp (+56975590132) →
+              </a>
+            </div>
+          </div>
+        `;
+        errorBox.style.display = 'block';
+      }
+      pinInput.focus();
+      pinInput.select();
+      return false;
+    }
+  };
+
+  window.handleTabPinSubmit = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const userInput = document.getElementById('tab-client-user');
+    const pinInput = document.getElementById('tab-client-pin');
+    const errorBox = document.getElementById('tab-pin-error');
+    const submitBtn = document.getElementById('btn-tab-submit-pin');
+    if (!pinInput) return false;
+
+    const user = userInput ? userInput.value.trim() : '';
+    const pass = pinInput.value.trim();
+
+    if (!pass && !user) {
+      if (errorBox) {
+        errorBox.innerHTML = '⚠️ Por favor ingresa tu usuario y clave.';
+        errorBox.style.display = 'block';
+      }
+      if (userInput) userInput.focus();
+      return false;
+    }
+
+    const resolver = window.resolveClientPortalByCredentials || ((u, p) => window.resolveClientPortalByPIN(u, p));
+    const result = resolver(user, pass);
+
+    if (result.success) {
+      if (errorBox) errorBox.style.display = 'none';
+      if (submitBtn) {
+        submitBtn.innerHTML = `<span>✓ Abriendo plan de ${result.name}...</span>`;
+        submitBtn.style.background = '#10b981';
+      }
+      setTimeout(() => {
+        window.location.href = result.url;
+      }, 350);
+      return false;
+    } else {
+      if (errorBox) {
+        errorBox.innerHTML = `
+          <div style="line-height:1.45; font-size:0.83rem;">
+            ${result.message}
+            <div style="margin-top:6px;">
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mis%20credenciales%20para%20mi%20Plan%20de%20Vuelo" target="_blank" style="color:#ffffff; font-weight:800; text-decoration:underline;">
+                Escribir a Diego (+56975590132) →
               </a>
             </div>
           </div>
