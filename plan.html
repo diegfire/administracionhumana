@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Plan de Vuelo 2.0 • Administración Humana</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Modular CSS Core & Components -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.5">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.5">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.5">
+
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #121212;
+            --primary: #10b981;
+            --secondary: #888888;
+            --forest: #10B981;
+            --amber: #F59E0B;
+            --blue: #3B82F6;
+            --rose: #EF4444;
+            --purple: #8B5CF6;
+            --border: #262626;
+            --border-hover: #333333;
+            --text-muted: #a1a1aa;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 6px;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* BARRA SUPERIOR DE CONSULTOR / CAMBIADOR DE CLIENTES */
+        .consultor-nav-bar {
+            background: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .consultor-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .consultor-nav-brand {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.88rem;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .consultor-nav-brand img {
+            height: 24px;
+            border-radius: 4px;
+        }
+        .consultor-client-chips {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .chip-client {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+        }
+        .chip-client:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        .chip-client.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            font-weight: 800;
+            box-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+        }
+
+        /* TAB RULES CRÍTICAS: CONMUTACIÓN 100% FUNCIONAL */
+        .tab-content {
+            display: none !important;
+            animation: fadeIn 0.25s ease;
+        }
+        .tab-content.active {
+            display: block !important;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* NAVEGACIÓN MODULAR EN 2 COLUMNAS / REJILLA RESPONSIVA */
+        .tabs {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+            gap: 0.65rem 0.85rem !important;
+            padding: 0.85rem !important;
+            background: rgba(18, 18, 22, 0.75) !important;
+            border: 1px solid var(--border, #262626) !important;
+            border-radius: var(--radius-md, 14px) !important;
+            margin-bottom: 2rem !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+        }
+        .tab-btn {
+            width: 100% !important;
+            padding: 0.85rem 1.15rem !important;
+            font-size: 0.88rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 0.7rem !important;
+            border-radius: 10px !important;
+            white-space: normal !important;
+            line-height: 1.3 !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: var(--text-muted, #a1a1aa) !important;
+            box-sizing: border-box !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .tab-btn i {
+            font-size: 1.05rem !important;
+            width: 1.3rem !important;
+            text-align: center !important;
+            flex-shrink: 0 !important;
+        }
+        .tab-btn:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-1px) !important;
+        }
+        .tab-btn.active {
+            background: var(--forest, #10b981) !important;
+            color: #000000 !important;
+            border-color: var(--forest, #10b981) !important;
+            font-weight: 800 !important;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35) !important;
+        }
+        .tab-btn.active i {
+            color: #000000 !important;
+        }
+
+        /* ══════════════════════════════════════════════════════════════════
+           TUTORIAL CALLOUT SYSTEM (HUMAN GUIDE)
+           ══════════════════════════════════════════════════════════════════ */
+        .tutorial-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(10, 15, 20, 0.85) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-md, 12px);
+            padding: 1.25rem 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+        }
+        .tutorial-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--forest, #10b981);
+        }
+        .tutorial-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 0.85rem;
+        }
+        .tutorial-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #34d399;
+            background: rgba(16, 185, 129, 0.15);
+            padding: 3px 10px;
+            border-radius: 50px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .tutorial-title {
+            font-family: var(--font-display, sans-serif);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 0.9rem;
+        }
+        .tutorial-pillar {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .tutorial-pillar h5 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tutorial-pillar p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin: 0;
+        }
+        .tutorial-steps-list {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            line-height: 1.55;
+        }
+        .tutorial-steps-list li {
+            margin-bottom: 0.3rem;
+        }
+        .tutorial-steps-list strong {
+            color: #f8fafc;
+        }
+
+        /* EISENHOWER QUADRANTS */
+        .eisenhower-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .quadrant-box {
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+        }
+        .q-input-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 0.8rem;
+        }
+        .q-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            outline: none;
+        }
+
+        /* INVENTORY LOG */
+        .inventory-log-item {
+            background: #111;
+            border: 1px solid #222;
+            border-left: 3px solid var(--forest);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* TOAST */
+        .toast-notification {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #ffffff;
+            color: #000000;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 999999;
+            animation: fadeIn 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. BARRA SUPERIOR DE CONSULTOR: ACCESO RÁPIDO ENTRE CLIENTES -->
+    <header class="consultor-nav-bar" id="consultor-bar">
+        <div class="consultor-nav-left">
+            <a href="index.html" class="consultor-nav-brand" title="Volver al Portal Central">
+                <img src="logo_oficial.png" alt="Logo AH" onerror="this.style.display='none'">
+                <span>AH • PLAN DE VUELO 2.0</span>
+            </a>
+            <div class="consultor-client-chips" id="consultor-chips-container">
+                <!-- Inyectado dinámicamente con las cuentas de clientes -->
+            </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+            <a href="visualizador.html" class="chip-client" style="border-color:#444;">
+                <i class="fa-solid fa-grid-2"></i> Directorio
+            </a>
+            <button onclick="logoutClientAuth()" class="chip-client" style="background:#222; border-color:#444; color:#fff; cursor:pointer;">
+                <i class="fa-solid fa-lock"></i> Bloquear
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. OVERLAY DE SEGURIDAD / PIN GATEWAY -->
+    <div id="client-auth-overlay" class="client-auth-overlay">
+        <div class="client-auth-card">
+            <div class="gateway-avatar" id="gate-avatar">🌿</div>
+            <div class="gateway-badge">
+                <i class="fa-solid fa-shield-halved"></i> Acceso Privado & Exclusivo
+            </div>
+            <h2 class="gateway-title">Plan de Vuelo 2.0</h2>
+            <p class="gateway-subtitle" id="gate-subtitle">Cargando expediente...</p>
+            
+            <form onsubmit="handleDynamicAuth(event)">
+                <div class="gateway-input-wrapper">
+                    <input type="password" id="auth-client-pin" class="gateway-input" placeholder="Ingresa tu clave PIN..." autocomplete="current-password" autofocus>
+                </div>
+                <button type="submit" class="btn-gateway-login">
+                    <span>Desbloquear Portal</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+            <div id="auth-error-msg" class="gateway-error" style="display:none;"></div>
+            <div class="gateway-footer">
+                <span>Administración Humana © 2026</span>
+                <span id="gate-hint" style="opacity: 0.5;"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="toast-notification">
+        <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
+        <span id="toast-text">¡Guardado con éxito!</span>
+    </div>
+
+    <!-- 3. CONTENEDOR PRINCIPAL DEL DASHBOARD -->
+    <div class="container" style="max-width:1440px; margin:0 auto; padding:1.5rem;">
+
+        <!-- TOP BAR / BRANDING DEL CLIENTE -->
+        <header style="margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div class="brand" style="display:flex; align-items:center; gap:1rem;">
+                <div class="brand-logo" id="header-avatar" style="font-size:2.2rem; background:rgba(255,255,255,0.05); width:56px; height:56px; display:flex; align-items:center; justify-content:center; border-radius:12px; border:1px solid #333;">🌿</div>
+                <div class="brand-title">
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--forest); font-weight:800;">ADMINISTRACIÓN HUMANA • SISTEMA AICC</div>
+                    <h1 id="header-client-name" style="font-family:var(--font-display); font-size:1.6rem; font-weight:800; margin:2px 0;">Plan de Vuelo 2.0</h1>
+                    <p id="header-tagline" style="font-size:0.82rem; color:var(--text-muted); margin:0;">Cargando perfil...</p>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;">
+                <span class="badge-role" id="badge-city"><i class="fa-solid fa-location-dot" style="color:#ef4444;"></i> Chile</span>
+                <span class="badge-role" id="badge-role"><i class="fa-solid fa-user-tie" style="color:var(--forest);"></i> Consultoría</span>
+                <a id="link-imprimibles-top" href="#" target="_blank" class="badge-role" style="text-decoration:none; background:rgba(16, 185, 129, 0.15); border-color:#10b981; color:#34d399;">
+                    <i class="fa-solid fa-print"></i> 📄 Imprimibles Físicos
+                </a>
+            </div>
+        </header>
+
+        <!-- HERO BANNER DEL DIAGNÓSTICO -->
+        <div class="hero-banner" style="background:linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(10,10,10,0.95) 100%); border:1px solid rgba(16,185,129,0.3); border-radius:var(--radius-lg); padding:1.8rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+            <div style="flex:1; min-width:300px;">
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16, 185, 129, 0.15); border:1px solid rgba(16, 185, 129, 0.4); color:#10b981; padding:4px 12px; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:0.6rem;">
+                    <i class="fa-solid fa-shield-check"></i> EXPEDIENTE CLÍNICO-OPERATIVO ACTIVO
+                </div>
+                <h2 id="hero-title" style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; margin:0 0 0.4rem 0; line-height:1.2;">
+                    Plan de Vuelo 2.0
+                </h2>
+                <p id="hero-summary" style="color:var(--secondary); font-size:0.9rem; max-width:860px; line-height:1.5; margin:0;">
+                    Cargando diagnóstico...
+                </p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                <a id="btn-open-imprimibles" href="#" target="_blank" style="background:#ffffff; color:#000000; text-decoration:none; padding:10px 18px; border-radius:8px; font-weight:800; font-size:0.85rem; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px rgba(255,255,255,0.2);">
+                    <i class="fa-solid fa-print"></i> Abrir Hub de Imprimibles
+                </a>
+                <button onclick="sendWhatsAppDiego()" style="background:#25D366; color:#000000; border:none; padding:9px 16px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fa-brands fa-whatsapp"></i> Chat Directo con Diego
+                </button>
+            </div>
+        </div>
+
+        <!-- STATS CUANTITATIVAS DEL DIAGNÓSTICO -->
+        <div class="stat-grid-melissa" id="stats-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-bottom:1.8rem;">
+            <!-- Inyectado dinámicamente -->
+        </div>
+
+        <!-- BARRA MAESTRA DE NAVEGACIÓN MODULAR -->
+        <nav class="tabs" id="tabs-navigation">
+            <button class="tab-btn active" onclick="switchDynamicTab('tab-diagnostico')">
+                <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
+            </button>
+            <button class="tab-btn" onclick="switchDynamicTab('tab-horario')">
+                <i class="fa-solid fa-calendar-week" style="color: #38bdf8;"></i> Mapeador 24H & Time Blocking
+            </button>
+            <button class="tab-btn" onclick="switchDynamicTab('tab-kanban')">
+                <i class="fa-solid fa-table-columns" style="color: #f59e0b;"></i> Kanban GTD (WIP=2)
+            </button>
+            <button class="tab-btn" onclick="switchDynamicTab('tab-eisenhower')">
+                <i class="fa-solid fa-table-cells-large" style="color: #c084fc;"></i> Matriz Eisenhower
+            </button>
+            <button class="tab-btn" onclick="switchDynamicTab('tab-inventario')">
+                <i class="fa-solid fa-award" style="color: #10b981;"></i> Inventario de Resultados
+            </button>
+            <button class="tab-btn" onclick="switchDynamicTab('tab-finanzas')">
+                <i class="fa-solid fa-wallet" style="color: #34d399;"></i> GPS Financiero 50/30/20
+            </button>
+            <button class="tab-btn" onclick="switchDynamicTab('tab-herramientas')" id="tab-btn-herramientas">
+                <i class="fa-solid fa-toolbox" style="color: #60a5fa;"></i> Herramientas & Checklists
+            </button>
+            <button class="tab-btn" onclick="switchDynamicTab('tab-acuerdos')" id="tab-btn-acuerdos">
+                <i class="fa-solid fa-handshake" style="color: #f59e0b;"></i> Acuerdos de Sesión
+            </button>
+        </nav>
+
+        <!-- =========================================================================
+             TAB 1: DIAGNÓSTICO & ESTRUCTURA
+             ========================================================================= -->
+        <div id="tab-diagnostico" class="tab-content active">
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div class="hero-tea-badge" style="display:inline-flex; align-items:center; gap:6px; color:#10b981; background:rgba(16,185,129,0.1); padding:4px 10px; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:0.6rem;">
+                    <i class="fa-solid fa-compass"></i> Diagnóstico Humano & Estructura Contenedora
+                </div>
+                <h3 id="diag-headline" style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:#fff; margin:0 0 0.5rem 0;">
+                    Diagnóstico Inicial
+                </h3>
+                <p id="diag-detail" style="font-size:0.88rem; color:#aaa; line-height:1.6; margin-bottom:1.5rem;">
+                    Cargando detalles...
+                </p>
+
+                <!-- IDENTIDADES / FRENTES / FODA CONTAINER -->
+                <div id="diag-identidades-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
+                    <!-- Inyectado dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 2: MAPEADOR 24H & TIME BLOCKING (CON TUTORIAL)
+             ========================================================================= -->
+        <div id="tab-horario" class="tab-content">
+            <!-- TUTORIAL BOX HORARIO -->
+            <div class="tutorial-box" style="border-color: rgba(56, 189, 248, 0.35); background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(10, 18, 30, 0.85) 100%);">
+                <div class="tutorial-header">
+                    <div>
+                        <span class="tutorial-tag" style="color: #38bdf8; background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.3);">
+                            <i class="fa-solid fa-graduation-cap"></i> Guía Rápida • Paso a Paso
+                        </span>
+                        <h3 class="tutorial-title">
+                            <i class="fa-solid fa-calendar-week" style="color: #38bdf8;"></i> Mapeador 24H & Time Blocking: ¿Para qué te sirve y cómo aplicarlo?
+                        </h3>
+                    </div>
+                    <span style="font-size: 0.76rem; color: #94a3b8; font-weight: 600;">⏱️ Tiempo estimado: 1 min</span>
+                </div>
+                <div class="tutorial-grid">
+                    <div class="tutorial-pillar" style="border-left: 3px solid #38bdf8;">
+                        <h5 style="color: #38bdf8;"><i class="fa-solid fa-user-clock"></i> 1. En tu contexto de frentes múltiples</h5>
+                        <p id="tut-horario-p1">Sostienes múltiples roles en tu semana. El mayor riesgo es la fuga de horas dando vueltas entre tareas sin un mapa visual que blinde tus descansos.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #10b981;">
+                        <h5 style="color: #10b981;"><i class="fa-solid fa-shield-halved"></i> 2. ¿Para qué te sirve en tu día a día?</h5>
+                        <p id="tut-horario-p2">Para blindar tus Ventanas de Oro y momentos sagrados personales/familiares. Al verlos en color en el tablero, tu mente elimina la culpa de estar desconectada del trabajo.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #f59e0b;">
+                        <h5 style="color: #fbbf24;"><i class="fa-solid fa-paintbrush"></i> 3. Tutorial de uso en 3 clics</h5>
+                        <ol class="tutorial-steps-list">
+                            <li><strong>Elige tu pincel:</strong> Selecciona una categoría abajo (ej. Trabajo, Estudio, Hogar).</li>
+                            <li><strong>Pinta las cajitas:</strong> Haz clic o arrastra el cursor sobre las horas de la semana.</li>
+                            <li><strong>Guarda o Exporta:</strong> Pulsa <em>"Guardar Horario"</em> o <em>"📸 Exportar PNG"</em> para tenerlo en imagen.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR DEL MAPEADOR INTERACTIVO 24H -->
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
+                    <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;" id="schedule-title">
+                        ⏰ Mapeador Semanal 24 Horas
+                    </span>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right: 4px;">
+                            <i class="fa-solid fa-circle" style="font-size:7px;"></i> Auto-guardado
+                        </span>
+                        <button class="btn-schedule-action" id="btn-manual-save-schedule" onclick="manualSaveSchedule()" style="background: #ffffff; color: #000000; font-weight: 800;">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Horario
+                        </button>
+                        <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
+                        <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG(activeClientData ? activeClientData.cliente.nombre : 'Plan de Vuelo')">📸 Exportar PNG</button>
+                        <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
+                    </div>
+                </div>
+
+                <div class="schedule-controls" style="margin-bottom:1rem;">
+                    <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase; margin-bottom:4px;">Pincel Activo:</div>
+                    <div class="brush-selector" id="brush-selector-container"></div>
+                </div>
+
+                <div class="schedule-scroll-wrapper" id="schedule-export-container" style="overflow-x:auto;">
+                    <table class="schedule-grid-table" id="schedule-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Hora</th>
+                                <th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th><th>Sábado</th><th>Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-stats-bar" id="schedule-stats-container" style="margin-top:1rem;"></div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 3: KANBAN GTD (WIP = 2 ESTRICTO) (CON TUTORIAL)
+             ========================================================================= -->
+        <div id="tab-kanban" class="tab-content">
+            <!-- TUTORIAL BOX KANBAN -->
+            <div class="tutorial-box" style="border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(25, 18, 10, 0.85) 100%);">
+                <div class="tutorial-header">
+                    <div>
+                        <span class="tutorial-tag" style="color: #fbbf24; background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3);">
+                            <i class="fa-solid fa-graduation-cap"></i> Guía Rápida • Paso a Paso
+                        </span>
+                        <h3 class="tutorial-title">
+                            <i class="fa-solid fa-table-columns" style="color: #f59e0b;"></i> Tablero Kanban con Límite WIP = 2: ¿Para qué te sirve y cómo aplicarlo?
+                        </h3>
+                    </div>
+                    <span style="font-size: 0.76rem; color: #94a3b8; font-weight: 600;">⏱️ Tiempo estimado: 1 min</span>
+                </div>
+                <div class="tutorial-grid">
+                    <div class="tutorial-pillar" style="border-left: 3px solid #f59e0b;">
+                        <h5 style="color: #fbbf24;"><i class="fa-solid fa-brain"></i> 1. El dolor: La sobrecarga de frentes abiertos</h5>
+                        <p>Cuando intentas avanzar en 4 o 5 proyectos a la vez, el cerebro colapsa por fatiga cognitiva, perdiendo energía en decidir qué hacer en vez de ejecutar.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #10b981;">
+                        <h5 style="color: #10b981;"><i class="fa-solid fa-filter"></i> 2. ¿Para qué te sirve la regla WIP = 2?</h5>
+                        <p><strong>WIP</strong> significa <em>Work In Progress</em>. La columna central solo permite <strong>máximo 2 tareas activas</strong>. Te obliga a cerrar antes de abrir, generando satisfacción y velocidad real.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #38bdf8;">
+                        <h5 style="color: #38bdf8;"><i class="fa-solid fa-hand-pointer"></i> 3. Cómo usar tu tablero</h5>
+                        <ol class="tutorial-steps-list">
+                            <li><strong>Captura todo:</strong> Escribe en <em>"Por Empezar"</em> cada tarea que te ronde la mente para vaciarla.</li>
+                            <li><strong>Elige tu foco del día:</strong> Mueve solo 1 o 2 tareas a <em>"En Foco"</em> al comenzar.</li>
+                            <li><strong>Cierra y celebra:</strong> Al terminar, arrástrala a <em>"Hito Cumplido"</em>. ¡Solo entonces jalas la siguiente!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABLERO KANBAN CONECTADO AL MOTOR -->
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.8rem;">
+                    <div>
+                        <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin:0;">
+                            📋 Tablero Kanban GTD • Enfoque Quirúrgico
+                        </h3>
+                        <p style="color:var(--secondary); font-size:0.82rem; margin:4px 0 0 0;">
+                            Límite estricto de Trabajo en Proceso: <strong>Máximo 2 tareas simultáneas</strong> en "En Foco".
+                        </p>
+                    </div>
+                    <button class="btn-schedule-action" onclick="resetKanbanDefault()"><i class="fa-solid fa-rotate-left"></i> Restablecer Tablero</button>
+                </div>
+
+                <div class="kanban-grid">
+                    <div class="kanban-col">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title"><i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> Por Empezar</div>
+                            <span id="count-todo" class="wip-limit-pill" style="border-color:#555; color:#aaa;">0</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-todo" placeholder="+ Nueva tarea pendiente..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('todo')">
+                            <button class="btn-card-action" onclick="addKanbanTask('todo')" style="background:#fff; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-todo" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+
+                    <div class="kanban-col" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02);">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title" style="color: #f59e0b;"><i class="fa-solid fa-bolt"></i> En Foco (WIP = 2 • Trabajo en Proceso)</div>
+                            <span id="count-doing" class="wip-limit-pill" style="border-color:#f59e0b; color:#f59e0b; background: rgba(245, 158, 11, 0.1);">0 / 2</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-doing" placeholder="+ Tarea en foco ahora..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('doing')">
+                            <button class="btn-card-action" onclick="addKanbanTask('doing')" style="background:#f59e0b; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-doing" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+
+                    <div class="kanban-col" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.02);">
+                        <div class="kanban-col-header">
+                            <div class="kanban-col-title" style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> Hito Cumplido</div>
+                            <span id="count-done" class="wip-limit-pill" style="border-color:#10b981; color:#10b981; background: rgba(16, 185, 129, 0.1);">0</span>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
+                            <input type="text" id="input-new-done" placeholder="+ Victoria cumplida..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline: none;" onkeypress="if(event.key==='Enter') addKanbanTask('done')">
+                            <button class="btn-card-action" onclick="addKanbanTask('done')" style="background:#10b981; color:#000; font-weight:800; padding: 0 10px;">+</button>
+                        </div>
+                        <div id="kanban-container-done" style="display: flex; flex-direction: column; gap: 0.6rem; min-height: 100px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 4: MATRIZ DE EISENHOWER (CON TUTORIAL)
+             ========================================================================= -->
+        <div id="tab-eisenhower" class="tab-content">
+            <!-- TUTORIAL BOX EISENHOWER -->
+            <div class="tutorial-box" style="border-color: rgba(168, 85, 247, 0.35); background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(20, 12, 30, 0.85) 100%);">
+                <div class="tutorial-header">
+                    <div>
+                        <span class="tutorial-tag" style="color: #c084fc; background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.3);">
+                            <i class="fa-solid fa-graduation-cap"></i> Guía Rápida • Paso a Paso
+                        </span>
+                        <h3 class="tutorial-title">
+                            <i class="fa-solid fa-table-cells-large" style="color: #c084fc;"></i> Matriz Eisenhower: ¿Para qué te sirve y cómo aplicarla?
+                        </h3>
+                    </div>
+                    <span style="font-size: 0.76rem; color: #94a3b8; font-weight: 600;">⏱️ Tiempo estimado: 1 min</span>
+                </div>
+                <div class="tutorial-grid">
+                    <div class="tutorial-pillar" style="border-left: 3px solid #ef4444;">
+                        <h5 style="color: #f87171;"><i class="fa-solid fa-triangle-exclamation"></i> 1. El peligro de las falsas urgencias</h5>
+                        <p>Siempre habrá demandas de último minuto. Si reaccionas a todo, tus verdaderas metas de largo plazo siempre se posponen para "después".</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #10b981;">
+                        <h5 style="color: #34d399;"><i class="fa-solid fa-gem"></i> 2. El Cuadrante 2 es tu tesoro</h5>
+                        <p><strong>Lo Importante NO Urgente (Q2)</strong> es donde construyes tu autonomía futura. Como nadie te apura con tus sueños, debes protegerlos tú misma en tu agenda.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #c084fc;">
+                        <h5 style="color: #c084fc;"><i class="fa-solid fa-sliders"></i> 3. Cómo filtrar cada pendiente</h5>
+                        <ol class="tutorial-steps-list">
+                            <li><strong>Q1 (Hacer Ya):</strong> Solo emergencias reales o plazos fatales ineludibles.</li>
+                            <li><strong>Q2 (Agendar):</strong> Tus proyectos estratégicos, estudio y salud. ¡Aquí inviertes tu energía!</li>
+                            <li><strong>Q3 (Condensar) & Q4 (Eliminar):</strong> Agrupa recados en 15 min y elimina rumiaciones o culpas estériles.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 CUADRANTES INTERACTIVOS -->
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin:0 0 0.4rem 0;">
+                    🎯 Matriz de Priorización Quirúrgica Eisenhower
+                </h3>
+                <p style="color:var(--secondary); font-size:0.82rem; margin:0 0 1rem 0;">
+                    Separa las demandas reactivas de lo verdaderamente trascendente.
+                </p>
+
+                <div class="eisenhower-grid">
+                    <div class="quadrant-box" style="background:rgba(239, 68, 68, 0.08); border:1px solid rgba(239, 68, 68, 0.3);">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                                <span style="font-weight:800; font-size:0.85rem; color:#ef4444;"><i class="fa-solid fa-fire"></i> 1. HACER YA (Crisis Real)</span>
+                                <span style="font-size:0.7rem; color:#888;">Urgente & Importante</span>
+                            </div>
+                            <div id="eisenhower-list-q1" style="display:flex; flex-direction:column; gap:4px;"></div>
+                        </div>
+                        <div class="q-input-row">
+                            <input type="text" id="input-q1" class="q-input" placeholder="+ Urgencia real..." onkeypress="if(event.key==='Enter') addEisenhowerItem('q1')">
+                            <button class="btn-card-action" onclick="addEisenhowerItem('q1')" style="background:#ef4444; color:#fff; font-weight:800; padding:0 8px;">+</button>
+                        </div>
+                    </div>
+
+                    <div class="quadrant-box" style="background:rgba(16, 185, 129, 0.08); border:1px solid rgba(16, 185, 129, 0.3);">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                                <span style="font-weight:800; font-size:0.85rem; color:#10b981;"><i class="fa-solid fa-star"></i> 2. AGENDAR & BLINDAR (Futuro)</span>
+                                <span style="font-size:0.7rem; color:#888;">No Urgente / Muy Importante</span>
+                            </div>
+                            <div id="eisenhower-list-q2" style="display:flex; flex-direction:column; gap:4px;"></div>
+                        </div>
+                        <div class="q-input-row">
+                            <input type="text" id="input-q2" class="q-input" placeholder="+ Proyecto estratégico..." onkeypress="if(event.key==='Enter') addEisenhowerItem('q2')">
+                            <button class="btn-card-action" onclick="addEisenhowerItem('q2')" style="background:#10b981; color:#000; font-weight:800; padding:0 8px;">+</button>
+                        </div>
+                    </div>
+
+                    <div class="quadrant-box" style="background:rgba(245, 158, 11, 0.08); border:1px solid rgba(245, 158, 11, 0.3);">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                                <span style="font-weight:800; font-size:0.85rem; color:#f59e0b;"><i class="fa-solid fa-clock-rotate-left"></i> 3. CONDENSAR (Apagafuegos)</span>
+                                <span style="font-size:0.7rem; color:#888;">Urgente / Poco Importante</span>
+                            </div>
+                            <div id="eisenhower-list-q3" style="display:flex; flex-direction:column; gap:4px;"></div>
+                        </div>
+                        <div class="q-input-row">
+                            <input type="text" id="input-q3" class="q-input" placeholder="+ Interrupción o recado..." onkeypress="if(event.key==='Enter') addEisenhowerItem('q3')">
+                            <button class="btn-card-action" onclick="addEisenhowerItem('q3')" style="background:#f59e0b; color:#000; font-weight:800; padding:0 8px;">+</button>
+                        </div>
+                    </div>
+
+                    <div class="quadrant-box" style="background:rgba(100, 116, 139, 0.08); border:1px solid rgba(100, 116, 139, 0.3);">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                                <span style="font-weight:800; font-size:0.85rem; color:#94a3b8;"><i class="fa-solid fa-trash-can"></i> 4. ELIMINAR (Fugas de Energía)</span>
+                                <span style="font-size:0.7rem; color:#888;">Ni Urgente Ni Importante</span>
+                            </div>
+                            <div id="eisenhower-list-q4" style="display:flex; flex-direction:column; gap:4px;"></div>
+                        </div>
+                        <div class="q-input-row">
+                            <input type="text" id="input-q4" class="q-input" placeholder="+ Distracción a soltar..." onkeypress="if(event.key==='Enter') addEisenhowerItem('q4')">
+                            <button class="btn-card-action" onclick="addEisenhowerItem('q4')" style="background:#64748b; color:#fff; font-weight:800; padding:0 8px;">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 5: INVENTARIO DE RESULTADOS (CON TUTORIAL)
+             ========================================================================= -->
+        <div id="tab-inventario" class="tab-content">
+            <!-- TUTORIAL BOX INVENTARIO -->
+            <div class="tutorial-box" style="border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(10, 24, 18, 0.85) 100%);">
+                <div class="tutorial-header">
+                    <div>
+                        <span class="tutorial-tag" style="color: #34d399; background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-graduation-cap"></i> Guía Rápida • Paso a Paso
+                        </span>
+                        <h3 class="tutorial-title">
+                            <i class="fa-solid fa-award" style="color: #10b981;"></i> Inventario Diario de Resultados: ¿Para qué te sirve y cómo aplicarlo?
+                        </h3>
+                    </div>
+                    <span style="font-size: 0.76rem; color: #94a3b8; font-weight: 600;">⏱️ Tiempo estimado: 1 min</span>
+                </div>
+                <div class="tutorial-grid">
+                    <div class="tutorial-pillar" style="border-left: 3px solid #ef4444;">
+                        <h5 style="color: #f87171;"><i class="fa-solid fa-bed"></i> 1. El sesgo de la culpa nocturna</h5>
+                        <p>Al final del día es común acostarse pensando: <em>"hoy no alcancé a hacer nada"</em>. Ese sesgo sabotea tu sueño y te llena de fatiga injustificada.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #10b981;">
+                        <h5 style="color: #10b981;"><i class="fa-solid fa-medal"></i> 2. ¿Para qué te sirve registrar 3 victorias?</h5>
+                        <p>Para demostrarle a tu mente con <strong>evidencia empírica diaria</strong> que sí avanzaste. Te vas a dormir en paz, con la autoestima alta y el cerebro sereno.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #38bdf8;">
+                        <h5 style="color: #38bdf8;"><i class="fa-solid fa-pen-fancy"></i> 3. Ritual de 3 minutos</h5>
+                        <ol class="tutorial-steps-list">
+                            <li><strong>Abre tu bitácora:</strong> En esta pestaña o en tu hoja impresa antes de dormir.</li>
+                            <li><strong>Anota 3 victorias:</strong> 1 profesional, 1 familiar/hogar y 1 personal.</li>
+                            <li><strong>Guarda y duerme:</strong> Pulsa <em>"Guardar Victoria"</em> y deja que tu descanso regenere tu energía.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REGISTRO DIARIO & HISTORIAL -->
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin:0 0 0.4rem 0;">
+                    🌟 Inventario Diario de Resultados & Autoestima
+                </h3>
+                <p style="color:var(--secondary); font-size:0.82rem; margin:0 0 1rem 0;">
+                    El ritual de 3 minutos para registrar tus victorias y mandar a dormir a la mente en calma.
+                </p>
+
+                <div style="background:#111; border:1px solid #222; border-radius:12px; padding:1.2rem; margin-bottom:1.5rem;">
+                    <div style="font-size:0.9rem; font-weight:800; color:#fff; margin-bottom:0.8rem;">
+                        📝 Registrar Victorias de Hoy (<span id="inv-current-date"></span>):
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; margin-bottom:1rem;">
+                        <div>
+                            <label style="font-size:0.75rem; font-weight:700; color:#60a5fa; display:block; margin-bottom:4px;" id="lbl-inv-1">1. 💼 Victoria Profesional / Laboral:</label>
+                            <input type="text" id="inv-input-1" placeholder="Ej. Concreté entrega de informes o cerramos reunión..." style="width:100%; background:#161616; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline:none; box-sizing:border-box;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.75rem; font-weight:700; color:#f59e0b; display:block; margin-bottom:4px;" id="lbl-inv-2">2. 🏡 Victoria Familiar / Hogar:</label>
+                            <input type="text" id="inv-input-2" placeholder="Ej. Compartimos una cena en calma o resolví un trámite..." style="width:100%; background:#161616; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline:none; box-sizing:border-box;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.75rem; font-weight:700; color:#10b981; display:block; margin-bottom:4px;" id="lbl-inv-3">3. 🌿 Victoria Personal / Proyecto Propio:</label>
+                            <input type="text" id="inv-input-3" placeholder="Ej. Leí 10 páginas, entrené o avancé en mi proyecto..." style="width:100%; background:#161616; border:1px solid #333; color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; outline:none; box-sizing:border-box;">
+                        </div>
+                    </div>
+                    <div style="display:flex; justify-content:flex-end;">
+                        <button class="btn-gateway-login" onclick="saveDynamicInventoryEntry()" style="width:auto; padding:8px 20px; font-size:0.82rem; margin:0;">
+                            <i class="fa-solid fa-check"></i> Guardar Victoria de Hoy
+                        </button>
+                    </div>
+                </div>
+
+                <div style="font-size:0.85rem; font-weight:800; color:#aaa; margin-bottom:0.6rem; text-transform:uppercase;">
+                    🏆 Bitácora de Victorias Acumuladas:
+                </div>
+                <div id="inventory-history-container" style="max-height:260px; overflow-y:auto; padding-right:4px;"></div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 6: GPS FINANCIERO 50/30/20 (CON TUTORIAL)
+             ========================================================================= -->
+        <div id="tab-finanzas" class="tab-content">
+            <!-- TUTORIAL BOX FINANZAS -->
+            <div class="tutorial-box" style="border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(10, 24, 20, 0.85) 100%);">
+                <div class="tutorial-header">
+                    <div>
+                        <span class="tutorial-tag" style="color: #34d399; background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-graduation-cap"></i> Guía Rápida • Paso a Paso
+                        </span>
+                        <h3 class="tutorial-title">
+                            <i class="fa-solid fa-wallet" style="color: #10b981;"></i> GPS Financiero 50/30/20: ¿Para qué te sirve y cómo aplicarlo?
+                        </h3>
+                    </div>
+                    <span style="font-size: 0.76rem; color: #94a3b8; font-weight: 600;">⏱️ Tiempo estimado: 1 min</span>
+                </div>
+                <div class="tutorial-grid">
+                    <div class="tutorial-pillar" style="border-left: 3px solid #60a5fa;">
+                        <h5 style="color: #60a5fa;"><i class="fa-solid fa-shield-cat"></i> 1. Tu mapa de tranquilidad</h5>
+                        <p id="tut-fin-p1">La meta es tener una estructura clara para que tus ingresos cubran el sustento esencial y a la vez impulsen tus proyectos sin endeudarte.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #fbbf24;">
+                        <h5 style="color: #fbbf24;"><i class="fa-solid fa-chart-pie"></i> 2. La regla de los 3 sobres</h5>
+                        <p><strong>50% Necesidades:</strong> Vivienda, cuentas y sustento innegociable.<br><strong>30% Estilo de Vida:</strong> Ocio, salidas y bienestar sin culpa.<br><strong>20% Reinversión:</strong> Cursos, materiales y fondo de libertad.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #34d399;">
+                        <h5 style="color: #34d399;"><i class="fa-solid fa-calculator"></i> 3. Cómo usar el simulador</h5>
+                        <ol class="tutorial-steps-list">
+                            <li><strong>Ingresa tu ingreso mensual:</strong> Ajusta el valor líquido estimado en la casilla.</li>
+                            <li><strong>Observa los montos:</strong> El simulador calcula automáticamente la cuota de cada sobre.</li>
+                            <li><strong>Separa el 20% el día 1 de pago:</strong> Guarda esa cuota inmediatamente para tus proyectos.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIMULADOR INTERACTIVO 50/30/20 -->
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
+                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+                    <div>
+                        <label style="font-size:0.78rem; font-weight:700; color:#aaa;">Ingreso Líquido Mensual Estimado:</label>
+                        <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
+                            <span style="font-size:1.2rem; font-weight:800; color:var(--forest);">$</span>
+                            <input type="number" id="fin-income-input" value="950000" step="10000" oninput="calculateDynamic503020()" style="background:#181818; border:1px solid #444; color:#fff; font-size:1.2rem; font-weight:800; padding:6px 12px; border-radius:6px; width:180px;">
+                            <span style="font-size:0.8rem; color:#888;">CLP</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="badge-role" id="fin-state-badge" style="color:var(--forest);"><i class="fa-solid fa-check-circle"></i> Posición Financiera Sólida</span>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem;">
+                    <div style="background:#0f172a; border:1px solid #1e3a8a; border-radius:10px; padding:1.2rem;">
+                        <div style="color:#60a5fa; font-weight:800; font-size:0.85rem; margin-bottom:4px;">50% NECESIDADES</div>
+                        <div id="fin-val-50" style="font-size:1.5rem; font-weight:800; font-family:var(--font-display); color:#fff; margin-bottom:4px;">$ 475.000</div>
+                        <p id="fin-desc-50" style="font-size:0.75rem; color:#94a3b8; line-height:1.4; margin:0;">Vivienda, cuentas básicas, alimentación y sustento familiar.</p>
+                    </div>
+
+                    <div style="background:#1c1917; border:1px solid #78350f; border-radius:10px; padding:1.2rem;">
+                        <div style="color:#fbbf24; font-weight:800; font-size:0.85rem; margin-bottom:4px;">30% ESTILO DE VIDA</div>
+                        <div id="fin-val-30" style="font-size:1.5rem; font-weight:800; font-family:var(--font-display); color:#fff; margin-bottom:4px;">$ 285.000</div>
+                        <p id="fin-desc-30" style="font-size:0.75rem; color:#d6d3d1; line-height:1.4; margin:0;">Salidas recreativas, autocuidado, deportes y ocio regenerativo.</p>
+                    </div>
+
+                    <div style="background:#064e3b; border:1px solid #047857; border-radius:10px; padding:1.2rem;">
+                        <div style="color:#34d399; font-weight:800; font-size:0.85rem; margin-bottom:4px;">20% REINVERSIÓN</div>
+                        <div id="fin-val-20" style="font-size:1.5rem; font-weight:800; font-family:var(--font-display); color:#fff; margin-bottom:4px;">$ 190.000</div>
+                        <p id="fin-desc-20" style="font-size:0.75rem; color:#a7f3d0; line-height:1.4; margin:0;">Fondo de reserva, materiales de proyecto y capacitaciones clave.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 7: HERRAMIENTAS ACTIVAS & CHECKLISTS
+             ========================================================================= -->
+        <div id="tab-herramientas" class="tab-content">
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin:0 0 0.4rem 0;">
+                    🛠️ Kit de Herramientas Operativas Activas
+                </h3>
+                <p style="color:var(--secondary); font-size:0.82rem; margin:0 0 1rem 0;">
+                    Módulos y protocolos activados para este expediente.
+                </p>
+                <div id="herramientas-cards-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;"></div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 8: ACUERDOS CLÍNICOS OPERATIVOS
+             ========================================================================= -->
+        <div id="tab-acuerdos" class="tab-content">
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin:0 0 0.4rem 0;">
+                    🤝 Acuerdos Clínico-Operativos Sesión a Sesión
+                </h3>
+                <p style="color:var(--secondary); font-size:0.82rem; margin:0 0 1rem 0;">
+                    Compromisos innegociables acordados con Diego para eliminar cuellos de botella.
+                </p>
+                <div id="acuerdos-cards-container" style="display:flex; flex-direction:column; gap:0.8rem;"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS MODULARES & REGISTRO DE DATOS -->
+    <script src="js/clients-data-registry.js?v=3.5"></script>
+    <script src="js/portal-gateway.js?v=3.5"></script>
+    <script src="js/schedule-engine.js?v=3.5"></script>
+    <script src="js/kanban-engine.js?v=3.5"></script>
+
+    <!-- MOTOR DINÁMICO CLIENTE (CORE APPLICATION) -->
+    <script>
+        let currentClientId = "melissa";
+        let activeClientData = null;
+
+        // MAPA DE RUTAS A FICHAS MAESTRAS FÍSICAS
+        const CLIENT_JSON_PATHS = {
+            rocio: "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Rocio/Ficha_Maestra.json",
+            melissa: "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Melissa Henriquez/Ficha_Maestra.json",
+            matias: "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias Gonzalez/Ficha_Maestra.json",
+            antonia: "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/ADMINISTRACION HUMANA Antonia Jofre/Ficha_Maestra.json",
+            alejandra: "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Alejandra/Ficha_Maestra.json",
+            alvaro: "../../05_CLIENTES_Y_OPERACIONES/03_HISTORICO_PILOTOS/CLIENTES_EN_PAUSA/Alvaro - Del Analisis a la Accion/Ficha_Maestra.json",
+            carlos: "../../05_CLIENTES_Y_OPERACIONES/03_HISTORICO_PILOTOS/CLIENTES_EN_PAUSA/Carlos Z/Ficha_Maestra.json",
+            karina: "../../05_CLIENTES_Y_OPERACIONES/03_HISTORICO_PILOTOS/CLIENTES_EN_PAUSA/Karina - Road to Sidney 2.0/Ficha_Maestra.json",
+            emi: "../../05_CLIENTES_Y_OPERACIONES/03_HISTORICO_PILOTOS/CLIENTES_EN_PAUSA/Emi/Ficha_Maestra.json"
+        };
+
+        const CLIENT_IMPRIMIBLES_PATHS = {
+            rocio: "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html",
+            melissa: "04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html",
+            matias: "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Matias Gonzalez/04_Imprimibles_Fisicos/Hub_Imprimibles_Matias.html",
+            antonia: "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/ADMINISTRACION HUMANA Antonia Jofre/04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html",
+            alejandra: "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Alejandra/04_Imprimibles_Fisicos/Hub_Imprimibles_Alejandra.html"
+        };
+
+        // INICIALIZACIÓN AL CARGAR
+        document.addEventListener("DOMContentLoaded", async function() {
+            const params = new URLSearchParams(window.location.search);
+            currentClientId = params.get("cliente") || params.get("id") || "melissa";
+            currentClientId = currentClientId.toLowerCase().trim();
+
+            renderConsultorChips();
+            await loadAndRenderClient(currentClientId);
+            checkClientAuthStatus();
+        });
+
+        // 1. CARGA DE DATOS (FETCH DIRECTO A FICHA MAESTRA O FALLBACK A REGISTRY)
+        async function loadAndRenderClient(cid) {
+            let data = null;
+
+            // Intento 1: Fetch a Ficha_Maestra.json física en disco
+            if (window.location.protocol.startsWith("http") && CLIENT_JSON_PATHS[cid]) {
+                try {
+                    const resp = await fetch(CLIENT_JSON_PATHS[cid] + "?t=" + Date.now());
+                    if (resp.ok) {
+                        data = await resp.json();
+                        console.log(`[Motor Dinámico] Ficha_Maestra.json cargada en vivo para '${cid}' vía fetch`);
+                    }
+                } catch(e) {
+                    console.warn(`[Motor Dinámico] No se pudo hacer fetch para '${cid}', usando fallback:`, e);
+                }
+            }
+
+            // Intento 2: Fallback a CLIENTS_MASTER_DATA precompilado
+            if (!data && window.CLIENTS_MASTER_DATA && window.CLIENTS_MASTER_DATA[cid]) {
+                data = window.CLIENTS_MASTER_DATA[cid];
+                console.log(`[Motor Dinámico] Ficha cargada desde registro precompilado para '${cid}'`);
+            }
+
+            if (!data) {
+                alert(`No se encontró la Ficha Maestra para el cliente: ${cid}`);
+                return;
+            }
+
+            activeClientData = data;
+            renderFlightPlan(data);
+        }
+
+        // 2. RENDERIZADO VISUAL DEL PLAN DE VUELO
+        function renderFlightPlan(data) {
+            const c = data.cliente || {};
+            const d = data.diagnostico || {};
+
+            // Título de pestaña y cabecera
+            document.title = `Plan de Vuelo 2.0 • ${c.nombre || 'Cliente'} • Administración Humana`;
+            document.getElementById("page-title").innerText = document.title;
+            document.getElementById("header-client-name").innerText = `Plan de Vuelo 2.0 • ${c.nombre || ''}`;
+            document.getElementById("header-avatar").innerText = c.avatar || "🌿";
+            document.getElementById("header-tagline").innerText = `${c.subtitulo || ''} • ${c.tagline || ''}`;
+            document.getElementById("badge-city").innerHTML = `<i class="fa-solid fa-location-dot" style="color:#ef4444;"></i> ${c.ciudad || 'Chile'}`;
+            document.getElementById("badge-role").innerHTML = `<i class="fa-solid fa-user-tie" style="color:var(--forest);"></i> ${c.rol_principal || 'Consultoría'}`;
+
+            // Gatekeeper info
+            document.getElementById("gate-avatar").innerText = c.avatar || "🌿";
+            document.getElementById("gate-subtitle").innerText = `${c.subtitulo || 'Plan de Vuelo 2.0'} • ${c.nombre || ''}`;
+            document.getElementById("gate-hint").innerText = `• Usuario: ${c.usuario || ''}`;
+
+            // Enlaces de Imprimibles
+            const impUrl = CLIENT_IMPRIMIBLES_PATHS[c.id] || `planes/${c.id}/04_Imprimibles_Fisicos/Hub_Imprimibles_${c.id}.html`;
+            document.getElementById("link-imprimibles-top").href = impUrl;
+            document.getElementById("btn-open-imprimibles").href = impUrl;
+
+            // Hero Diagnostic
+            document.getElementById("hero-title").innerText = c.subtitulo || "De la Dispersión a la Soberanía Operativa";
+            document.getElementById("hero-summary").innerText = d.resumen_humano || "Estructura clínica y operativa para desatar el potencial sin burnout.";
+
+            // Stats cuantitativas
+            const statsContainer = document.getElementById("stats-container");
+            if (d.stats && Array.isArray(d.stats)) {
+                statsContainer.innerHTML = d.stats.map(s => `
+                    <div style="background:#0a0a0a; border:1px solid #262626; border-radius:12px; padding:1.2rem; text-align:center;">
+                        <div style="font-size:1.8rem; font-weight:800; font-family:var(--font-display); color:${s.color || '#10b981'}; margin-bottom:4px;">${s.valor}</div>
+                        <div style="font-size:0.85rem; font-weight:700; color:#fff; margin-bottom:2px;">${s.etiqueta}</div>
+                        <div style="font-size:0.75rem; color:#888;">${s.sub || ''}</div>
+                    </div>
+                `).join("");
+            } else {
+                statsContainer.innerHTML = "";
+            }
+
+            // Tab Diagnóstico & Identidades / FODA
+            document.getElementById("diag-headline").innerText = `Diagnóstico de ${c.nombre}: ${c.subtitulo || ''}`;
+            document.getElementById("diag-detail").innerText = d.resumen_humano || '';
+
+            const identidadesContainer = document.getElementById("diag-identidades-container");
+            if (data.identidades && Array.isArray(data.identidades)) {
+                identidadesContainer.innerHTML = data.identidades.map(id => `
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1.1rem;">
+                        <span style="font-size:0.7rem; font-weight:800; color:var(--forest); text-transform:uppercase;">${id.energia || 'Rol'}</span>
+                        <h4 style="font-size:1rem; font-weight:800; color:#fff; margin:4px 0 6px 0;">${id.nombre}</h4>
+                        <p style="font-size:0.8rem; color:#aaa; margin:0; line-height:1.45;">${id.rol || id.enfoque || ''}</p>
+                    </div>
+                `).join("");
+            } else if (data.foda) {
+                identidadesContainer.innerHTML = `
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1.1rem;">
+                        <h4 style="color:#10b981; margin:0 0 6px 0;">💪 Fortalezas Clave</h4>
+                        <ul style="font-size:0.8rem; color:#ccc; margin:0; padding-left:1.1rem; line-height:1.5;">
+                            ${(data.foda.fortalezas || []).map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1.1rem;">
+                        <h4 style="color:#ef4444; margin:0 0 6px 0;">⚠️ Fricciones & Cuellos de Botella</h4>
+                        <ul style="font-size:0.8rem; color:#ccc; margin:0; padding-left:1.1rem; line-height:1.5;">
+                            ${(data.foda.debilidades || []).map(d => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            // Contexto específico en Tutoriales
+            if (c.id === "melissa") {
+                document.getElementById("tut-horario-p1").innerText = "Sostienes 40.5 horas fijas en el colegio en Pueblo Seco. Tu mayor fuga eran ~14 horas/semana dando vueltas al pasar de un rol a otro sin un mapa claro de navegación.";
+                document.getElementById("tut-horario-p2").innerText = "Para blindar tus 2 Ventanas de Oro (Diplomado el martes 16:30 y Träfmen el sábado 10:00) y tu Franja Sagrada con Chinito (18:00–20:30) sin sentir culpa de estar descuidando tus metas.";
+                document.getElementById("lbl-inv-1").innerText = "1. 🏫 Victoria en el Colegio (40h):";
+                document.getElementById("lbl-inv-2").innerText = "2. 👶 Victoria con Chinito / Crianza:";
+                document.getElementById("lbl-inv-3").innerText = "3. 🧸 Victoria Träfmen / Personal / Diplomado:";
+            } else if (c.id === "rocio") {
+                document.getElementById("tut-horario-p1").innerText = "Equilibras Psicopedagogía en UST, Puya Masajes, Voz Caleidoscopio y el cuidado del hogar con Nieve en Talcahuano.";
+                document.getElementById("tut-horario-p2").innerText = "Para blindar tus 4 frentes soberanos y agendar 2 pausas de 15 min innegociables de regulación sensorial y stimming TEA.";
+                document.getElementById("lbl-inv-1").innerText = "1. 🎓 Victoria en Universidad UST:";
+                document.getElementById("lbl-inv-2").innerText = "2. 💆‍♀️ Victoria en Puya Masajes / Canto:";
+                document.getElementById("lbl-inv-3").innerText = "3. 🧘 Victoria en Autocuidado & Stimming TEA:";
+            }
+
+            // Inicializar Mapeador 24H
+            let scheduleCats = (data.horario_24h && data.horario_24h.categorias) 
+                ? data.horario_24h.categorias 
+                : (d.mapeador_24h_actual && d.mapeador_24h_actual.cinco_ejes ? d.mapeador_24h_actual.cinco_ejes.map(e => ({ id: `eje_${e.id}`, name: e.nombre, color: '#3b82f6', tag: 'EJE' })) : null);
+            
+            if (typeof initScheduleEngine === "function") {
+                initScheduleEngine({
+                    storageKey: `ah_schedule_${c.id}`,
+                    defaultCategories: scheduleCats
+                });
+            }
+
+            // Inicializar Kanban GTD
+            let kanbanTasks = [];
+            if (data.kanban_gtd) {
+                (data.kanban_gtd.todo || []).forEach(t => kanbanTasks.push({ id: t.id || Math.random().toString(), col: 'todo', text: t.text || t, tag: t.tag || 'Pendiente' }));
+                (data.kanban_gtd.in_progress || []).forEach(t => kanbanTasks.push({ id: t.id || Math.random().toString(), col: 'doing', text: t.text || t, tag: t.tag || 'En Foco' }));
+                (data.kanban_gtd.done || []).forEach(t => kanbanTasks.push({ id: t.id || Math.random().toString(), col: 'done', text: t.text || t, tag: t.tag || 'Hito' }));
+            }
+            if (typeof initKanbanEngine === "function") {
+                initKanbanEngine({
+                    storageKey: `ah_kanban_${c.id}`,
+                    defaultTasks: kanbanTasks.length > 0 ? kanbanTasks : undefined
+                });
+            }
+
+            // Inicializar Eisenhower
+            initDynamicEisenhower(c.id);
+
+            // Inicializar Inventario
+            initDynamicInventory(c.id);
+
+            // Inicializar Finanzas 50/30/20
+            calculateDynamic503020();
+
+            // Renderizar Herramientas y Acuerdos
+            renderDynamicHerramientas(data);
+            renderDynamicAcuerdos(data);
+        }
+
+        // 3. BARRA DE CHIPS DE CONSULTOR
+        function renderConsultorChips() {
+            const container = document.getElementById("consultor-chips-container");
+            const clients = [
+                { id: "rocio", name: "🌿 Rocío" },
+                { id: "melissa", name: "🧸 Melissa" },
+                { id: "matias", name: "🤹 Matías" },
+                { id: "antonia", name: "💃 Antonia" },
+                { id: "alejandra", name: "📊 Alejandra" },
+                { id: "alvaro", name: "📁 Álvaro" },
+                { id: "carlos", name: "📁 Carlos Z" },
+                { id: "karina", name: "📁 Karina" },
+                { id: "emi", name: "📁 Emi" }
+            ];
+
+            container.innerHTML = clients.map(cl => `
+                <a href="plan.html?cliente=${cl.id}" class="chip-client ${cl.id === currentClientId ? 'active' : ''}">
+                    ${cl.name}
+                </a>
+            `).join("");
+        }
+
+        // 4. CONMUTADOR DE PESTAÑAS
+        function switchDynamicTab(tabId) {
+            document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add("active");
+
+            document.querySelectorAll(".tab-btn").forEach(btn => {
+                const clickAttr = btn.getAttribute("onclick") || "";
+                if (clickAttr.includes(tabId)) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // 5. GATEWAY AUTH DE SEGURIDAD
+        function checkClientAuthStatus() {
+            const key = `ah_auth_${currentClientId}`;
+            const isAuth = sessionStorage.getItem(key) || localStorage.getItem(key);
+            const overlay = document.getElementById("client-auth-overlay");
+            if (isAuth === "true") {
+                if (overlay) overlay.style.display = "none";
+            } else {
+                if (overlay) overlay.style.display = "flex";
+            }
+        }
+
+        function handleDynamicAuth(e) {
+            e.preventDefault();
+            const input = document.getElementById("auth-client-pin");
+            const err = document.getElementById("auth-error-msg");
+            if (!input) return;
+
+            const val = input.value.trim().toLowerCase();
+            const expectedPin = (activeClientData && activeClientData.cliente && activeClientData.cliente.pin) 
+                ? activeClientData.cliente.pin.toLowerCase() 
+                : "";
+
+            // Acepta pin exacto, pin sin mayúsculas, contraseña genérica o pin maestro
+            if (val === expectedPin || val === `${currentClientId}2026` || val === "ah-master9132" || (val.replace(/[^a-z0-9]/g, '') === expectedPin.replace(/[^a-z0-9]/g, ''))) {
+                sessionStorage.setItem(`ah_auth_${currentClientId}`, "true");
+                const overlay = document.getElementById("client-auth-overlay");
+                if (overlay) overlay.style.display = "none";
+                showToast("¡Bienvenida a tu Plan de Vuelo 2.0!");
+            } else {
+                err.innerText = "Clave incorrecta. Por favor revisa e intenta nuevamente.";
+                err.style.display = "block";
+            }
+        }
+
+        function logoutClientAuth() {
+            sessionStorage.removeItem(`ah_auth_${currentClientId}`);
+            localStorage.removeItem(`ah_auth_${currentClientId}`);
+            checkClientAuthStatus();
+        }
+
+        // 6. MATRIZ EISENHOWER DINÁMICA
+        function initDynamicEisenhower(cid) {
+            ["q1", "q2", "q3", "q4"].forEach(q => {
+                renderEisenhowerList(q, cid);
+            });
+        }
+
+        function addEisenhowerItem(q) {
+            const input = document.getElementById(`input-${q}`);
+            if (!input || !input.value.trim()) return;
+            const text = input.value.trim();
+            const key = `ah_eisen_${currentClientId}_${q}`;
+            let list = JSON.parse(localStorage.getItem(key) || "[]");
+            list.push({ id: Date.now().toString(), text: text });
+            localStorage.setItem(key, JSON.stringify(list));
+            input.value = "";
+            renderEisenhowerList(q, currentClientId);
+            showToast("Elemento agregado a la Matriz.");
+        }
+
+        function removeEisenhowerItem(q, id) {
+            const key = `ah_eisen_${currentClientId}_${q}`;
+            let list = JSON.parse(localStorage.getItem(key) || "[]");
+            list = list.filter(item => item.id !== id);
+            localStorage.setItem(key, JSON.stringify(list));
+            renderEisenhowerList(q, currentClientId);
+        }
+
+        function renderEisenhowerList(q, cid) {
+            const container = document.getElementById(`eisenhower-list-${q}`);
+            if (!container) return;
+            const key = `ah_eisen_${cid}_${q}`;
+            let list = JSON.parse(localStorage.getItem(key) || "[]");
+            
+            // Tareas predeterminadas si está vacío
+            if (list.length === 0) {
+                if (q === "q1") list = [{ id: "1", text: "Atender emergencias o fechas fatales inmediatas" }];
+                if (q === "q2") list = [{ id: "2", text: "Ventana de Oro: Avance en proyectos clave y estudio" }];
+                if (q === "q3") list = [{ id: "3", text: "Responder recados y trámites agrupados en 20 min" }];
+                if (q === "q4") list = [{ id: "4", text: "Eliminar rumiaciones nocturnas y culpa estéril" }];
+                localStorage.setItem(key, JSON.stringify(list));
+            }
+
+            container.innerHTML = list.map(item => `
+                <div style="background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; color:#eee;">
+                    <span>• ${item.text}</span>
+                    <button onclick="removeEisenhowerItem('${q}', '${item.id}')" style="background:transparent; border:none; color:#f87171; cursor:pointer; font-size:0.75rem;">&times;</button>
+                </div>
+            `).join("");
+        }
+
+        // 7. INVENTARIO DE RESULTADOS DINÁMICO
+        function initDynamicInventory(cid) {
+            const dateSpan = document.getElementById("inv-current-date");
+            if (dateSpan) dateSpan.innerText = new Date().toLocaleDateString("es-CL", { weekday: 'long', day: 'numeric', month: 'long' });
+            renderInventoryHistory(cid);
+        }
+
+        function saveDynamicInventoryEntry() {
+            const v1 = document.getElementById("inv-input-1").value.trim();
+            const v2 = document.getElementById("inv-input-2").value.trim();
+            const v3 = document.getElementById("inv-input-3").value.trim();
+            if (!v1 && !v2 && !v3) {
+                alert("Por favor anota al menos una victoria de hoy.");
+                return;
+            }
+            const key = `ah_inv_${currentClientId}_history`;
+            let history = JSON.parse(localStorage.getItem(key) || "[]");
+            const entry = {
+                id: Date.now().toString(),
+                date: new Date().toLocaleDateString("es-CL", { day: 'numeric', month: 'short', year: 'numeric' }),
+                v1: v1 || "Cumplí mis compromisos esenciales.",
+                v2: v2 || "Espacio de calidad familiar/hogar sostenido.",
+                v3: v3 || "Avance de autocuidado o proyecto personal."
+            };
+            history.unshift(entry);
+            localStorage.setItem(key, JSON.stringify(history));
+
+            document.getElementById("inv-input-1").value = "";
+            document.getElementById("inv-input-2").value = "";
+            document.getElementById("inv-input-3").value = "";
+            renderInventoryHistory(currentClientId);
+            showToast("🎉 ¡Victoria guardada en tu bitácora!");
+        }
+
+        function renderInventoryHistory(cid) {
+            const container = document.getElementById("inventory-history-container");
+            if (!container) return;
+            const key = `ah_inv_${cid}_history`;
+            const history = JSON.parse(localStorage.getItem(key) || "[]");
+
+            if (history.length === 0) {
+                container.innerHTML = `<div style="color:#666; font-size:0.8rem; font-style:italic;">Aún no hay victorias registradas esta semana. ¡Anota las de hoy arriba!</div>`;
+                return;
+            }
+
+            container.innerHTML = history.map(item => `
+                <div class="inventory-log-item">
+                    <div>
+                        <div style="font-size:0.72rem; color:var(--forest); font-weight:800; margin-bottom:2px;">📅 ${item.date}</div>
+                        <div style="font-size:0.8rem; color:#ddd;">• <strong>Laboral:</strong> ${item.v1}</div>
+                        <div style="font-size:0.8rem; color:#ddd;">• <strong>Hogar:</strong> ${item.v2}</div>
+                        <div style="font-size:0.8rem; color:#ddd;">• <strong>Personal:</strong> ${item.v3}</div>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        // 8. GPS FINANCIERO 50/30/20 DINÁMICO
+        function calculateDynamic503020() {
+            const input = document.getElementById("fin-income-input");
+            const income = parseInt(input.value) || 950000;
+            const v50 = Math.round(income * 0.5);
+            const v30 = Math.round(income * 0.3);
+            const v20 = Math.round(income * 0.2);
+
+            document.getElementById("fin-val-50").innerText = "$ " + v50.toLocaleString("es-CL");
+            document.getElementById("fin-val-30").innerText = "$ " + v30.toLocaleString("es-CL");
+            document.getElementById("fin-val-20").innerText = "$ " + v20.toLocaleString("es-CL");
+        }
+
+        // 9. HERRAMIENTAS Y ACUERDOS DINÁMICOS
+        function renderDynamicHerramientas(data) {
+            const container = document.getElementById("herramientas-cards-container");
+            const btnTab = document.getElementById("tab-btn-herramientas");
+            const list = data.herramientas_activas || [];
+
+            if (list.length === 0) {
+                if (btnTab) btnTab.style.display = "none";
+                return;
+            }
+            if (btnTab) btnTab.style.display = "flex";
+
+            container.innerHTML = list.map(h => `
+                <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1.2rem; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="font-size:0.7rem; font-weight:800; color:var(--forest); text-transform:uppercase;">Herramienta Activa</div>
+                        <h4 style="font-size:1rem; font-weight:800; color:#fff; margin:4px 0 6px 0;">${h.nombre}</h4>
+                        <p style="font-size:0.82rem; color:#aaa; margin:0; line-height:1.45;">${h.descripcion}</p>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function renderDynamicAcuerdos(data) {
+            const container = document.getElementById("acuerdos-cards-container");
+            const btnTab = document.getElementById("tab-btn-acuerdos");
+            const list = data.acuerdos_clinicos_operativos || [];
+
+            if (list.length === 0) {
+                if (btnTab) btnTab.style.display = "none";
+                return;
+            }
+            if (btnTab) btnTab.style.display = "flex";
+
+            container.innerHTML = list.map((a, idx) => `
+                <div style="background:#111; border:1px solid #222; border-left:3px solid #f59e0b; border-radius:8px; padding:0.9rem 1.2rem; display:flex; align-items:center; gap:12px;">
+                    <span style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; color:#f59e0b;">#0${idx + 1}</span>
+                    <span style="font-size:0.86rem; color:#eee; line-height:1.45;">${a.acuerdo}</span>
+                </div>
+            `).join("");
+        }
+
+        // 10. WHATSAPP & TOAST UTILITIES
+        function sendWhatsAppDiego() {
+            const clientName = (activeClientData && activeClientData.cliente) ? activeClientData.cliente.nombre : "Cliente";
+            const text = encodeURIComponent(`Hola Diego, estoy en mi Plan de Vuelo 2.0 (${clientName}) y tengo una consulta sobre mi seguimiento.`);
+            window.open(`https://wa.me/56975590132?text=${text}`, "_blank");
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById("toast-notification");
+            const s = document.getElementById("toast-text");
+            if (s) s.innerText = msg;
+            if (t) {
+                t.style.display = "flex";
+                setTimeout(() => { t.style.display = "none"; }, 3200);
+            }
+        }
+    </script>
+</body>
+</html>

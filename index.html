@@ -3822,8 +3822,7 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- SECCIÓN 02: EL PROBLEMA REAL (ESPEJO Y ALIVIO INMEDIATO) -->
   <section class="problem" id="el-problema-real">
@@ -5248,7 +5247,7 @@
           <p style="font-size: 0.82rem; color: #a1a1aa;">Prototipo completo con Mapeador 24H, Kanban GTD (WIP=2), Calculadora de Tarifas y simulador financiero.</p>
         </div>
         <div style="margin-top: 18px;">
-          <a href="planes-demo.html" class="btn-primary" style="display: block; text-align: center; text-decoration: none; font-size: 0.82rem; font-weight: 800; background: #3b82f6;">Ver Demostración en Vivo ↗</a>
+          <a href="planes-demo.html" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: block; text-align: center; text-decoration: none; font-size: 0.82rem; font-weight: 800; background: #3b82f6;">Ver Demostración en Vivo ↗</a>
         </div>
       </div>
 
@@ -6016,90 +6015,158 @@ window.DEFAULT_ADMIN_CLIENTS = [
   {
     id: "rocio",
     name: "Rocío",
-    username: "rocio",
+    username: "rocio.puya",
     subtitle: "Puya Masajes & Canto • Soberanía TEA & Bienestar",
     status: "🟢 En Acompañamiento",
-    pin: "rocio2026",
+    pin: "AH-Puya9842",
     planUrl: "planes/rocio/index.html",
     driveUrl: "https://drive.google.com"
   },
   {
     id: "matias",
     name: "Matías González",
-    username: "matias",
+    username: "matias.gonzalez",
     subtitle: "Ingeniería & Software • Resaca Digital & Autonomía",
     status: "🟢 En Acompañamiento",
-    pin: "matias2026",
+    pin: "AH-Matias7315",
     planUrl: "planes/matias/index.html",
     driveUrl: "https://drive.google.com"
   },
   {
     id: "antonia",
     name: "Antonia Jofré",
-    username: "antonia",
+    username: "antonia.jofre",
     subtitle: "Servicios Clínicos • Despegue Comercial & Batching",
     status: "🟢 En Acompañamiento",
-    pin: "antonia2026",
+    pin: "AH-Antonia5924",
     planUrl: "planes/antonia/index.html",
     driveUrl: "https://drive.google.com"
   },
   {
     id: "melissa",
     name: "Melissa Henríquez",
-    username: "melissa",
+    username: "melissa.trafmen",
     subtitle: "Träfmen • Círculo Dorado & Escalabilidad",
     status: "🟢 En Acompañamiento",
-    pin: "melissa2026",
+    pin: "AH-Trafmen8416",
     planUrl: "planes/melissa/index.html",
     driveUrl: "https://drive.google.com"
   },
   {
     id: "alejandra",
     name: "Alejandra Mattei",
-    username: "alejandra",
+    username: "alejandra.mattei",
     subtitle: "Consultoría & Procesos • Proyección & Tracción",
     status: "🟢 En Acompañamiento",
-    pin: "alejandra2026",
+    pin: "AH-Mattei6251",
     planUrl: "planes/alejandra/index.html",
     driveUrl: "https://drive.google.com"
   },
   {
     id: "demo",
     name: "Caso Demostrativo",
-    username: "demo",
+    username: "demo.explorador",
     subtitle: "Plan de Vuelo 2.0 • Prototipo Piloto",
     status: "⚪ Demostración / Prospectos",
-    pin: "demo2026",
+    pin: "AH-Demo2026",
     planUrl: "planes-demo.html",
+    driveUrl: ""
+  }
+];
+
+window.ARCHIVED_ADMIN_CLIENTS = [
+  {
+    id: "alvaro",
+    name: "Álvaro",
+    username: "alvaro.operaciones",
+    subtitle: "Operaciones & Análisis • En Pausa",
+    status: "📁 Archivado / En Pausa",
+    pin: "AH-Alvaro4183",
+    planUrl: "planes/alvaro/index.html",
+    driveUrl: ""
+  },
+  {
+    id: "carlos",
+    name: "Carlos Z",
+    username: "carlos.gestion",
+    subtitle: "Gestión Estratégica • En Pausa",
+    status: "📁 Archivado / En Pausa",
+    pin: "AH-Carlos5829",
+    planUrl: "planes/carlos/index.html",
+    driveUrl: ""
+  },
+  {
+    id: "karina",
+    name: "Karina",
+    username: "karina.sidney",
+    subtitle: "Road to Sidney • En Pausa",
+    status: "📁 Archivado / En Pausa",
+    pin: "AH-Karina9371",
+    planUrl: "planes/karina/index.html",
+    driveUrl: ""
+  },
+  {
+    id: "emi",
+    name: "Emi",
+    username: "emi.vuelo",
+    subtitle: "Plan de Vuelo 2.0 • En Pausa",
+    status: "📁 Archivado / En Pausa",
+    pin: "AH-Emi3628",
+    planUrl: "planes/emi/index.html",
     driveUrl: ""
   }
 ];
 
 window.getAdminClients = function() {
   const saved = localStorage.getItem('ah_admin_clients_custom');
+  const archivedIds = ['alvaro', 'carlos', 'karina', 'emi'];
   let clients = [];
   if (saved) {
     try {
       const customList = JSON.parse(saved);
       if (Array.isArray(customList)) {
-        const ids = customList.map(c => c.id);
+        // Excluir archivados de la lista activa guardada en localStorage
+        const activeCustomList = customList.filter(c => !archivedIds.includes(c.id));
+        const ids = activeCustomList.map(c => c.id);
         const missing = window.DEFAULT_ADMIN_CLIENTS.filter(c => !ids.includes(c.id));
-        clients = [...customList, ...missing];
+        // Actualizar credenciales si el usuario tenía pines genéricos antiguos
+        const upgradedList = activeCustomList.map(c => {
+          const defaultRef = window.DEFAULT_ADMIN_CLIENTS.find(d => d.id === c.id);
+          if (defaultRef) {
+            const isOldGenericPin = !c.pin || c.pin === `${c.id}2026` || c.pin === '2026';
+            const isOldSimpleUser = !c.username || c.username === c.id;
+            return {
+              ...c,
+              pin: isOldGenericPin ? defaultRef.pin : c.pin,
+              username: isOldSimpleUser ? defaultRef.username : c.username,
+              planUrl: c.planUrl || defaultRef.planUrl
+            };
+          }
+          return c;
+        });
+        clients = [...upgradedList, ...missing];
       }
     } catch(e) {}
   }
   if (!clients.length) {
     clients = [...window.DEFAULT_ADMIN_CLIENTS];
   }
-  return clients.map(c => ({
+  return clients.filter(c => !archivedIds.includes(c.id)).map(c => ({
     id: c.id,
     name: c.name || "Cliente Sin Nombre",
     username: c.username || c.id || (c.name ? c.name.toLowerCase().replace(/\s+/g, '') : "usuario"),
-    pin: c.pin || c.password || "2026",
+    pin: c.pin || c.password || "AH-2026",
     subtitle: c.subtitle || "Cliente de Consultoría • Plan Personalizado",
     status: c.status || "🟢 En Acompañamiento",
     planUrl: c.planUrl || "planes-demo.html",
     driveUrl: c.driveUrl || ""
+  }));
+};
+
+window.getArchivedAdminClients = function() {
+  return window.ARCHIVED_ADMIN_CLIENTS.map(c => ({
+    ...c,
+    status: localStorage.getItem(`ah_admin_status_${c.id}`) || c.status
   }));
 };
 
@@ -6108,16 +6175,19 @@ window.renderAdminClientsTable = function() {
   if (!container) return;
 
   const clients = window.getAdminClients();
-  container.innerHTML = clients.map(c => {
+  const archived = window.getArchivedAdminClients();
+
+  const renderCard = (c, isArchived = false) => {
     const savedNotes = localStorage.getItem(`ah_admin_notes_${c.id}`) || '';
     const savedStatus = localStorage.getItem(`ah_admin_status_${c.id}`) || c.status;
 
     return `
-      <div class="admin-client-card" id="admin-card-${c.id}">
+      <div class="admin-client-card" id="admin-card-${c.id}" style="${isArchived ? 'opacity:0.85; border-color:rgba(255,255,255,0.08); background:rgba(20,20,20,0.6);' : ''}">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
           <div>
             <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
               <h4 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:#fff;">${c.name}</h4>
+              ${isArchived ? '<span style="font-size:0.7rem; background:rgba(156,163,175,0.15); border:1px solid rgba(156,163,175,0.3); padding:2px 8px; border-radius:4px; color:#9ca3af; font-weight:700;">📁 ARCHIVADO / EN PAUSA</span>' : ''}
               <span style="font-size:0.75rem; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); padding:2px 8px; border-radius:4px; color:#38bdf8; font-family:monospace; font-weight:700;" title="Usuario Asignado">👤 @${c.username}</span>
               <span style="font-size:0.75rem; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); padding:2px 8px; border-radius:4px; color:#34d399; font-family:monospace; font-weight:700;" title="Contraseña / PIN">🔑 ${c.pin}</span>
             </div>
@@ -6130,6 +6200,7 @@ window.renderAdminClientsTable = function() {
               <option value="🔵 Sesión Agendada" ${savedStatus.includes('Agendada') ? 'selected' : ''}>🔵 Sesión Agendada</option>
               <option value="🟡 Diagnóstico / Sondeo" ${savedStatus.includes('Sondeo') || savedStatus.includes('Diagnóstico') ? 'selected' : ''}>🟡 Diagnóstico / Sondeo</option>
               <option value="⚪ Finalizado / Demo" ${savedStatus.includes('Finalizado') || savedStatus.includes('Demo') ? 'selected' : ''}>⚪ Finalizado / Demo</option>
+              <option value="📁 Archivado / En Pausa" ${savedStatus.includes('Archivado') || savedStatus.includes('Pausa') ? 'selected' : ''}>📁 Archivado / En Pausa</option>
             </select>
 
             <button onclick="window.openEditClientAdminModal('${c.id}')" class="btn-secondary" style="padding:6px 10px; font-size:0.78rem; border-color:#38bdf8; color:#38bdf8; cursor:pointer; border-radius:6px;" title="Editar Usuario y Clave">
@@ -6140,15 +6211,13 @@ window.renderAdminClientsTable = function() {
               💬 WhatsApp
             </button>
 
-            <button onclick="window.openClientPlanDirect('${c.pin}', '${c.planUrl}')" class="btn-primary" style="padding:6px 14px; font-size:0.8rem; font-weight:800; background:#38bdf8; color:#000; border:none; cursor:pointer; border-radius:6px;">
+            <a href="${c.planUrl || 'planes-demo.html'}" target="_blank" rel="noopener noreferrer" onclick="window.openClientPlanDirect('${c.pin}', '${c.planUrl}', true, event)" class="btn-primary" style="padding:6px 14px; font-size:0.8rem; font-weight:800; background:${isArchived ? '#64748b' : '#38bdf8'}; color:#000; border:none; cursor:pointer; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; gap:4px; box-shadow:0 0 10px rgba(56,189,248,0.2); transition:all 0.2s;" onmouseover="this.style.transform='translateY(-1px)';" onmouseout="this.style.transform='none';" title="Abrir Plan de Vuelo en nueva pestaña">
               Abrir Plan ↗
-            </button>
+            </a>
 
             ${c.driveUrl ? `<a href="${c.driveUrl}" target="_blank" class="btn-secondary" style="padding:6px 10px; font-size:0.8rem; border-color:#333; text-decoration:none; color:#aaa; border-radius:6px;" title="Abrir Google Drive">📁 Drive</a>` : ''}
 
-            <button onclick="window.deleteAdminClient('${c.id}')" class="btn-secondary" style="padding:6px 10px; font-size:0.78rem; border-color:#ef4444; color:#f87171; cursor:pointer; border-radius:6px;" title="Eliminar cliente">
-              🗑️
-            </button>
+            ${!isArchived ? `<button onclick="window.deleteAdminClient('${c.id}')" class="btn-secondary" style="padding:6px 10px; font-size:0.78rem; border-color:#ef4444; color:#f87171; cursor:pointer; border-radius:6px;" title="Eliminar cliente">🗑️</button>` : ''}
           </div>
         </div>
 
@@ -6164,7 +6233,26 @@ window.renderAdminClientsTable = function() {
         </div>
       </div>
     `;
-  }).join('');
+  };
+
+  const activeHtml = clients.map(c => renderCard(c, false)).join('');
+  const archivedHtml = archived.map(c => renderCard(c, true)).join('');
+
+  container.innerHTML = `
+    ${activeHtml}
+    <div style="margin-top: 28px; padding-top: 20px; border-top: 1px dashed rgba(255,255,255,0.15);">
+      <details style="background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 14px 18px;">
+        <summary style="font-family:var(--font-heading); font-size: 0.95rem; font-weight: 700; color: #94a3b8; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none;">
+          <span>📁 Clientes Archivados / En Pausa (${archived.length})</span>
+          <span style="font-size: 0.75rem; color: #64748b; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 6px;">Clic para ver expedientes</span>
+        </summary>
+        <p style="font-size: 0.8rem; color: #64748b; margin: 10px 0 16px;">Planes de vuelo pausados o finalizados (Álvaro, Carlos Z, Karina, Emi). Se conservan accesibles con credenciales asignadas:</p>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          ${archivedHtml}
+        </div>
+      </details>
+    </div>
+  `;
 };
 
 window.saveAdminClientNote = function(id, text) {
@@ -6182,7 +6270,7 @@ window.handleAdminGateLogin = function(e) {
   if (!pinInput) return;
   const pin = pinInput.value.trim().toLowerCase();
 
-  const validMasterPins = ["admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026"];
+  const validMasterPins = ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026"];
   if (validMasterPins.includes(pin)) {
     localStorage.setItem("ah_consultor_auth", "true");
     localStorage.setItem("ah_client_auth_session", "authenticated_ok");
@@ -6214,22 +6302,40 @@ window.logoutAdminPlatform = function() {
   }
 };
 
-window.openClientPlanDirect = function(pin, directUrl) {
-  if (directUrl && directUrl !== 'planes-demo.html') {
-    if (typeof window.resolveClientPortalByPIN === 'function') {
+window.openClientPlanDirect = function(pin, directUrl, inNewTab = true, event = null) {
+  if (pin && typeof window.resolveClientPortalByPIN === 'function') {
+    try {
       window.resolveClientPortalByPIN(pin);
-    }
-    window.location.href = directUrl;
-    return;
-  }
-  if (typeof window.resolveClientPortalByPIN === 'function') {
-    const res = window.resolveClientPortalByPIN(pin);
-    if (res.success) {
-      window.location.href = res.url;
-      return;
+    } catch(err) {
+      console.warn("Error autenticando cliente por PIN:", err);
     }
   }
-  window.openAuthModal();
+
+  // Si fue disparado por un enlace <a> nativo con target="_blank", permitimos la apertura nativa en nueva pestaña
+  if (event && event.currentTarget && event.currentTarget.tagName === 'A') {
+    return true;
+  }
+
+  let target = directUrl;
+  if (!target || target === 'planes-demo.html') {
+    if (typeof window.resolveClientPortalByPIN === 'function') {
+      const res = window.resolveClientPortalByPIN(pin);
+      if (res && res.success && res.url) {
+        target = res.url;
+      }
+    }
+  }
+  if (!target) target = 'planes-demo.html';
+
+  if (inNewTab) {
+    const w = window.open(target, '_blank', 'noopener,noreferrer');
+    if (!w) {
+      window.location.href = target;
+    }
+  } else {
+    window.location.href = target;
+  }
+  return true;
 };
 
 window.handleTabPinSubmit = function(e) {
@@ -6289,8 +6395,8 @@ window.openAddClientAdminModal = function() {
 };
 
 window.openEditClientAdminModal = function(clientId) {
-  const clients = window.getAdminClients();
-  const c = clients.find(item => item.id === clientId);
+  const allClients = [...window.getAdminClients(), ...(window.getArchivedAdminClients ? window.getArchivedAdminClients() : [])];
+  const c = allClients.find(item => item.id === clientId);
   if (!c) return;
 
   const modal = document.getElementById('admin-client-modal');
@@ -6434,8 +6540,8 @@ window.deleteAdminClient = function(clientId) {
 };
 
 window.copyClientWhatsAppCredentials = function(clientId) {
-  const clients = window.getAdminClients();
-  const c = clients.find(item => item.id === clientId);
+  const allClients = [...window.getAdminClients(), ...(window.getArchivedAdminClients ? window.getArchivedAdminClients() : [])];
+  const c = allClients.find(item => item.id === clientId);
   if (!c) return;
 
   const currentHost = window.location.origin;

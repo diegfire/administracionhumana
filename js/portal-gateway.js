@@ -50,8 +50,14 @@ function handleClientAuth(e) {
         if (Array.isArray(window.CLIENT_CONFIG.validPins)) {
             window.CLIENT_CONFIG.validPins.forEach(p => allowedPins.push(String(p).trim().toLowerCase()));
         }
+        if (window.CLIENT_CONFIG.clientId && typeof CLIENT_ACCOUNTS !== 'undefined') {
+            const acc = CLIENT_ACCOUNTS.find(a => a.id === window.CLIENT_CONFIG.clientId);
+            if (acc && Array.isArray(acc.passwords)) {
+                acc.passwords.forEach(pw => allowedPins.push(String(pw).trim().toLowerCase()));
+            }
+        }
     }
-    allowedPins.push("diego_ah_master", "diegop1990", "2026", "admin2026", "antonia2026", "antojofre23091995", "antojofre1995", "antojofre");
+    allowedPins.push("ah-master9132", "ah-master-9132", "diego_ah_master", "diegop1990", "2026", "admin2026", "antonia2026", "antojofre23091995", "antojofre1995", "antojofre");
 
     if (allowedPins.includes(enteredPin)) {
         localStorage.setItem(currentClientConfig.storageKey, "authenticated_ok");
@@ -184,53 +190,93 @@ const CLIENT_ACCOUNTS = [
         id: "rocio",
         name: "Rocío",
         subtitle: "Puya Masajes & Canto",
-        usernames: ["rocio", "puya", "puyamasajes", "rocio@administracionhumana.com"],
-        passwords: ["rocio2026", "puya2026"],
-        url: "planes/rocio/index.html",
+        usernames: ["rocio.puya", "rocio", "rocior", "puya", "puyamasajes", "rocio@administracionhumana.com"],
+        passwords: ["ah-puya9842", "ah-puya-9842", "puya9842", "rocior1998", "rocio2026", "puya2026"],
+        url: "plan.html?cliente=rocio",
         storageKey: "ah_auth_rocio"
     },
     {
         id: "matias",
         name: "Matías González",
         subtitle: "Ingeniería & Software",
-        usernames: ["matias", "matias.gonzalez", "matias@administracionhumana.com"],
-        passwords: ["matias2026"],
-        url: "planes/matias/index.html",
+        usernames: ["matias.gonzalez", "matias", "matiasg", "matias@administracionhumana.com"],
+        passwords: ["ah-matias7315", "ah-matias-7315", "matias7315", "matias2026"],
+        url: "plan.html?cliente=matias",
         storageKey: "ah_auth_matias"
     },
     {
         id: "antonia",
         name: "Antonia Jofré",
         subtitle: "Habitarte & Movimiento",
-        usernames: ["antonia", "antojofre", "antonia@administracionhumana.com"],
-        passwords: ["antonia2026", "antojofre1995", "antojofre23091995", "antojofre"],
-        url: "planes/antonia/index.html",
+        usernames: ["antonia.jofre", "antonia", "antojofre", "antonia@administracionhumana.com"],
+        passwords: ["ah-antonia5924", "ah-antonia-5924", "antonia5924", "antojofre1995", "antonia2026"],
+        url: "plan.html?cliente=antonia",
         storageKey: "ah_auth_antonia"
     },
     {
         id: "alejandra",
         name: "Alejandra Mattei",
         subtitle: "Acompañamiento Integral",
-        usernames: ["alejandra", "alejandra.mattei", "alejandra@administracionhumana.com"],
-        passwords: ["alejandra2026"],
-        url: "planes/alejandra/index.html",
+        usernames: ["alejandra.mattei", "alejandra", "juanamattei", "alejandra@administracionhumana.com"],
+        passwords: ["ah-mattei6251", "ah-mattei-6251", "mattei6251", "alejandra2026"],
+        url: "plan.html?cliente=alejandra",
         storageKey: "ah_auth_alejandra"
     },
     {
         id: "melissa",
         name: "Melissa Henríquez",
         subtitle: "Educación & Gestión",
-        usernames: ["melissa", "melissa.henriquez", "melissa@administracionhumana.com"],
-        passwords: ["melissa2026"],
-        url: "planes/melissa/index.html",
+        usernames: ["melissa.trafmen", "melissa", "trafmen", "melissa@administracionhumana.com"],
+        passwords: ["ah-trafmen8416", "ah-trafmen-8416", "trafmen8416", "melissa2026"],
+        url: "plan.html?cliente=melissa",
         storageKey: "ah_auth_melissa"
+    },
+    {
+        id: "alvaro",
+        name: "Álvaro",
+        subtitle: "Operaciones & Análisis • En Pausa",
+        archived: true,
+        usernames: ["alvaro.operaciones", "alvaro", "alvaro@administracionhumana.com"],
+        passwords: ["ah-alvaro4183", "ah-alvaro-4183", "alvaro4183", "alvaro2026"],
+        url: "plan.html?cliente=alvaro",
+        storageKey: "ah_auth_alvaro"
+    },
+    {
+        id: "carlos",
+        name: "Carlos Z",
+        subtitle: "Gestión Estratégica • En Pausa",
+        archived: true,
+        usernames: ["carlos.gestion", "carlos", "carlos@administracionhumana.com"],
+        passwords: ["ah-carlos5829", "ah-carlos-5829", "carlos5829", "carlos2026"],
+        url: "plan.html?cliente=carlos",
+        storageKey: "ah_auth_carlos"
+    },
+    {
+        id: "karina",
+        name: "Karina",
+        subtitle: "Road to Sidney • En Pausa",
+        archived: true,
+        usernames: ["karina.sidney", "karina", "karina@administracionhumana.com"],
+        passwords: ["ah-karina9371", "ah-karina-9371", "karina9371", "karina2026"],
+        url: "plan.html?cliente=karina",
+        storageKey: "ah_auth_karina"
+    },
+    {
+        id: "emi",
+        name: "Emi",
+        subtitle: "Plan de Vuelo • En Pausa",
+        archived: true,
+        usernames: ["emi.vuelo", "emi", "emi@administracionhumana.com"],
+        passwords: ["ah-emi3628", "ah-emi-3628", "emi3628", "emi2026"],
+        url: "plan.html?cliente=emi",
+        storageKey: "ah_auth_emi"
     },
     {
         id: "demo",
         name: "Caso Demostrativo",
         subtitle: "Prototipo 2.0",
-        usernames: ["demo", "invitado", "demo@administracionhumana.com"],
-        passwords: ["demo2026", "invitado2026", "demo"],
+        usernames: ["demo.explorador", "demo", "invitado", "demo@administracionhumana.com"],
+        passwords: ["ah-demo2026", "ah-demo-2026", "demo2026", "invitado2026", "demo"],
         url: "planes-demo.html",
         storageKey: "ah_auth_demo"
     },
@@ -238,8 +284,8 @@ const CLIENT_ACCOUNTS = [
         id: "admin",
         name: "Diego González (Consultor)",
         subtitle: "Administrador Maestro",
-        usernames: ["admin", "diego", "consultor", "diego@administracionhumana.com"],
-        passwords: ["admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026"],
+        usernames: ["diego.consultor", "admin", "diego", "consultor", "diego@administracionhumana.com"],
+        passwords: ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026"],
         isMaster: true,
         url: "visualizador.html"
     }
@@ -290,7 +336,7 @@ function getAllClientAccounts() {
 window.getAllClientAccounts = getAllClientAccounts;
 
 window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
-    const user = String(rawUser || "").trim().toLowerCase();
+    const user = String(rawUser || "").trim().toLowerCase().replace(/^@/, '');
     const pass = String(rawPass || "").trim().toLowerCase();
 
     if (!pass && !user) {
@@ -301,7 +347,7 @@ window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
 
     // 1. Si se proporciona usuario, validar primero por usuario
     if (user) {
-        const account = accounts.find(acc => acc.usernames && acc.usernames.includes(user));
+        const account = accounts.find(acc => acc.usernames && (acc.usernames.includes(user) || acc.usernames.includes(`@${user}`)));
         if (!account) {
             return { 
                 success: false, 
@@ -319,7 +365,7 @@ window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
 
     // 2. Si no se especificó usuario pero sí clave (modo directo o pruebas)
     if (pass) {
-        const masterPins = ["diego2026", "admin2026", "diego_ah_master", "diegop1990", "master2026"];
+        const masterPins = ["ah-master9132", "ah-master-9132", "diego2026", "admin2026", "diego_ah_master", "diegop1990", "master2026"];
         if (masterPins.includes(pass)) {
             const adminAcc = accounts.find(acc => acc.id === "admin") || CLIENT_ACCOUNTS.find(acc => acc.id === "admin");
             return grantAccessSession(adminAcc);
