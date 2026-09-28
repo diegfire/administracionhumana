@@ -442,8 +442,8 @@
                 </p>
             </div>
 
-            <!-- TIMELINE DE SESIONES -->
-            <div style="display:flex; flex-direction:column; gap:1.5rem; margin-top:1.5rem;">
+            <!-- TIMELINE DE SESIONES (DATA-FIRST CON PUENTE DINÁMICO) -->
+            <div id="sessions-dynamic-container" style="display:flex; flex-direction:column; gap:1.5rem; margin-top:1.5rem;">
 
                 <!-- SESIÓN 3 -->
                 <div class="card" style="border-color: rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.03);">
@@ -482,11 +482,11 @@
                                 <i class="fa-solid fa-bolt"></i> Compromisos de Acción (Próximo Vuelo):
                             </strong>
                             <ul class="custom-list" style="font-size:0.8rem; gap:0.4rem;">
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Enviar a Diego los modelos exactos de parlante y micrófono portátil.</label></li>
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Cotizar con Benjamín precios y catálogo de partituras para uso didáctico.</label></li>
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Coordinar con compañeros de UST la jornada de confección de lienzos.</label></li>
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Evaluar fechas para curso presencial/online de piedras calientes.</label></li>
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Incorporar campos de termoterapia en fichas de anamnesis física (Hoja 05).</label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" onchange="AICC_DATA_BRIDGE.toggleCommitment('s3_1', this)"> Enviar a Diego los modelos exactos de parlante y micrófono portátil.</label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" onchange="AICC_DATA_BRIDGE.toggleCommitment('s3_2', this)"> Cotizar con Benjamín precios y catálogo de partituras para uso didáctico.</label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:#10b981; font-weight:600;"><input type="checkbox" checked onchange="AICC_DATA_BRIDGE.toggleCommitment('s3_3', this)" style="accent-color:#10b981;"> Coordinar con compañeros de UST la jornada de confección de lienzos. <span style="font-size:0.75rem; background:rgba(16,185,129,0.18); color:#10b981; padding:1px 6px; border-radius:4px; margin-left:4px; font-weight:700;">✓ Listo</span></label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:#10b981; font-weight:600;"><input type="checkbox" checked onchange="AICC_DATA_BRIDGE.toggleCommitment('s3_4', this)" style="accent-color:#10b981;"> Evaluar fechas para curso presencial/online de piedras calientes. <span style="font-size:0.75rem; background:rgba(16,185,129,0.18); color:#10b981; padding:1px 6px; border-radius:4px; margin-left:4px; font-weight:700;">✓ Listo</span></label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" onchange="AICC_DATA_BRIDGE.toggleCommitment('s3_5', this)"> Incorporar campos de termoterapia en fichas de anamnesis física (Hoja 05).</label></li>
                             </ul>
                         </div>
                     </div>
@@ -529,11 +529,11 @@
                                 <i class="fa-solid fa-bolt"></i> Compromisos de Acción (Próximo Vuelo):
                             </strong>
                             <ul class="custom-list" style="font-size:0.8rem; gap:0.4rem;">
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Dejar cargado micrófono y amplificador la noche previa.</label></li>
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Imprimir planificador 08 de 70 min y clasificar canciones.</label></li>
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Invitar a primera alumna a crear su melodía propia.</label></li>
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Redactar los 3 copys de duetos 2x1 y 3x2 con Charli.</label></li>
-                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Proteger pausas de stimming (10:15 y 16:45) sin celulares.</label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" onchange="AICC_DATA_BRIDGE.toggleCommitment('s2_1', this)"> Dejar cargado micrófono y amplificador la noche previa.</label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:#10b981; font-weight:600;"><input type="checkbox" checked onchange="AICC_DATA_BRIDGE.toggleCommitment('s2_2', this)" style="accent-color:#10b981;"> Imprimir planificador 08 de repertorio de canciones y 70 min. <span style="font-size:0.75rem; background:rgba(16,185,129,0.18); color:#10b981; padding:1px 6px; border-radius:4px; margin-left:4px; font-weight:700;">✓ Listo</span></label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:#10b981; font-weight:600;"><input type="checkbox" checked onchange="AICC_DATA_BRIDGE.toggleCommitment('s2_3', this)" style="accent-color:#10b981;"> Invitar a primera alumna a crear su melodía propia. <span style="font-size:0.75rem; background:rgba(16,185,129,0.18); color:#10b981; padding:1px 6px; border-radius:4px; margin-left:4px; font-weight:700;">✓ Listo</span></label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:#10b981; font-weight:600;"><input type="checkbox" checked onchange="AICC_DATA_BRIDGE.toggleCommitment('s2_4', this)" style="accent-color:#10b981;"> Redactar los 3 copys de duetos 2x1 y 3x2 con Charli. <span style="font-size:0.75rem; background:rgba(16,185,129,0.18); color:#10b981; padding:1px 6px; border-radius:4px; margin-left:4px; font-weight:700;">✓ Listo</span></label></li>
+                                <li><label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:#10b981; font-weight:600;"><input type="checkbox" checked onchange="AICC_DATA_BRIDGE.toggleCommitment('s2_5', this)" style="accent-color:#10b981;"> Proteger pausas de stimming (10:15 y 16:45) sin celulares. <span style="font-size:0.75rem; background:rgba(16,185,129,0.18); color:#10b981; padding:1px 6px; border-radius:4px; margin-left:4px; font-weight:700;">✓ Listo</span></label></li>
                             </ul>
                         </div>
                     </div>
@@ -3622,6 +3622,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
     </script>
 
         <!-- MOTORES MODULARES -->
+    <script src="js/plan-data-bridge.js?v=1.0"></script>
     <script src="js/portal-gateway.js?v=3.2"></script>
     <script src="js/schedule-engine.js?v=3.2"></script>
     <script src="js/kanban-engine.js?v=3.2"></script>

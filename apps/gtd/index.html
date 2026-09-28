@@ -242,11 +242,29 @@
     <!-- MOTOR MAESTRO GTD (ÚNICA FUENTE DE LA VERDAD - SSOT) -->
     <script src="../../js/gtd-engine.js"></script>
     <script>
-        // Inicializar motor compartiendo la MISMA base de datos de localStorage
+        // Inicializar motor compartiendo la base de datos de localStorage por cliente
         document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const client = params.get("cliente") || params.get("id") || "";
+            const storageKey = client ? `ah_client_gtd_${client.toLowerCase()}` : "ah_client_gtd";
+            
             initGtdEngine({
-                storageKey: "ah_client_gtd" // Clave central compartida entre Standalone y Plan de Vuelo
+                storageKey: storageKey
             });
+
+            if (client) {
+                const headerActions = document.querySelector(".header-actions");
+                if (headerActions) {
+                    const btnPlan = document.createElement("a");
+                    btnPlan.href = `../../plan.html?cliente=${encodeURIComponent(client)}`;
+                    btnPlan.className = "header-btn";
+                    btnPlan.style.background = "rgba(56, 189, 248, 0.15)";
+                    btnPlan.style.borderColor = "#38bdf8";
+                    btnPlan.style.color = "#38bdf8";
+                    btnPlan.innerHTML = `<i class="fa-solid fa-arrow-left"></i> <span>Volver al Plan (${client})</span>`;
+                    headerActions.insertBefore(btnPlan, headerActions.firstChild);
+                }
+            }
         });
     </script>
 </body>

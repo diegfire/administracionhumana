@@ -285,6 +285,34 @@
             color: #f8fafc;
         }
 
+        /* CARTA ESPACIO & MISIÓN FOCO WIDGETS */
+        .btn-mission-level {
+            background: #181818;
+            border: 1px solid #333;
+            color: #ccc;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-mission-level:hover {
+            background: #252525;
+            color: #fff;
+        }
+        .btn-mission-level.active {
+            background: rgba(236, 72, 153, 0.2);
+            border-color: #ec4899;
+            color: #f472b6;
+            font-weight: 800;
+        }
+        @media (max-width: 900px) {
+            .carta-espacio-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
         /* EISENHOWER QUADRANTS */
         .eisenhower-grid {
             display: grid;
@@ -464,19 +492,22 @@
             <button class="tab-btn" onclick="switchDynamicTab('tab-horario')">
                 <i class="fa-solid fa-calendar-week" style="color: #38bdf8;"></i> Mapeador 24H & Time Blocking
             </button>
-            <button class="tab-btn" onclick="switchDynamicTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns" style="color: #f59e0b;"></i> Kanban GTD (WIP=2)
+            <button class="tab-btn" onclick="switchDynamicTab('tab-kanban')" id="tab-btn-kanban">
+                <i class="fa-solid fa-bolt" style="color: #38bdf8;"></i> GTD Pro (WIP=2)
             </button>
-            <button class="tab-btn" onclick="switchDynamicTab('tab-eisenhower')">
+            <button class="tab-btn" onclick="switchDynamicTab('tab-eisenhower')" id="tab-btn-eisenhower">
                 <i class="fa-solid fa-table-cells-large" style="color: #c084fc;"></i> Matriz Eisenhower
             </button>
-            <button class="tab-btn" onclick="switchDynamicTab('tab-inventario')">
+            <button class="tab-btn" onclick="switchDynamicTab('tab-inventario')" id="tab-btn-inventario">
                 <i class="fa-solid fa-award" style="color: #10b981;"></i> Inventario de Resultados
             </button>
-            <button class="tab-btn" onclick="switchDynamicTab('tab-finanzas')">
+            <button class="tab-btn" onclick="switchDynamicTab('tab-finanzas')" id="tab-btn-finanzas">
                 <i class="fa-solid fa-wallet" style="color: #34d399;"></i> GPS Financiero 50/30/20
             </button>
-            <button class="tab-btn" onclick="switchDynamicTab('tab-herramientas')" id="tab-btn-herramientas">
+            <button class="tab-btn" onclick="switchDynamicTab('tab-carta-espacio')" id="tab-btn-carta-espacio" style="display:none;">
+                <i class="fa-solid fa-gamepad" style="color: #ec4899;"></i> Carta Espacio & Misión Foco 30M
+            </button>
+            <button class="tab-btn" onclick="switchDynamicTab('tab-herramientas')" id="tab-btn-herramientas" style="display:none;">
                 <i class="fa-solid fa-toolbox" style="color: #60a5fa;"></i> Herramientas & Checklists
             </button>
             <button class="tab-btn" onclick="switchDynamicTab('tab-acuerdos')" id="tab-btn-acuerdos">
@@ -596,7 +627,7 @@
                             <i class="fa-solid fa-graduation-cap"></i> Guía Rápida • Paso a Paso
                         </span>
                         <h3 class="tutorial-title">
-                            <i class="fa-solid fa-table-columns" style="color: #f59e0b;"></i> Tablero Kanban con Límite WIP = 2: ¿Para qué te sirve y cómo aplicarlo?
+                            <i class="fa-solid fa-bolt" style="color: #38bdf8;"></i> GTD Pro Humanizado con Límite WIP = 2: ¿Para qué sirve y cómo aplicarlo?
                         </h3>
                     </div>
                     <span style="font-size: 0.76rem; color: #94a3b8; font-weight: 600;">⏱️ Tiempo estimado: 1 min</span>
@@ -611,14 +642,30 @@
                         <p><strong>WIP</strong> significa <em>Work In Progress</em>. La columna central solo permite <strong>máximo 2 tareas activas</strong>. Te obliga a cerrar antes de abrir, generando satisfacción y velocidad real.</p>
                     </div>
                     <div class="tutorial-pillar" style="border-left: 3px solid #38bdf8;">
-                        <h5 style="color: #38bdf8;"><i class="fa-solid fa-hand-pointer"></i> 3. Cómo usar tu tablero</h5>
+                        <h5 style="color: #38bdf8;"><i class="fa-solid fa-hand-pointer"></i> 3. El Flujo de Trabajo en 4 Pasos</h5>
                         <ol class="tutorial-steps-list">
-                            <li><strong>Captura todo:</strong> Escribe en <em>"Por Empezar"</em> cada tarea que te ronde la mente para vaciarla.</li>
-                            <li><strong>Elige tu foco del día:</strong> Mueve solo 1 o 2 tareas a <em>"En Foco"</em> al comenzar.</li>
-                            <li><strong>Cierra y celebra:</strong> Al terminar, arrástrala a <em>"Hito Cumplido"</em>. ¡Solo entonces jalas la siguiente!</li>
+                            <li><strong>1. Capturar:</strong> Vacía tu RAM mental en <em>"Por Empezar"</em> sin filtro.</li>
+                            <li><strong>2. Aclarar:</strong> Regla 2 Min (si toma menos, ¡hazlo ya!), proyectos y delegar.</li>
+                            <li><strong>3. Organizar:</strong> Asigna contextos (@computador, @llamadas, @calle, @casa).</li>
+                            <li><strong>4. Foco Activo:</strong> Mueve máximo 2 tareas a <em>"En Foco"</em> para ejecutar sin parálisis.</li>
                         </ol>
                     </div>
                 </div>
+            </div>
+
+            <!-- BANNER DE ACCESO A APLICACIÓN GTD PRO STANDALONE -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:1rem; padding:1rem 1.25rem; background:linear-gradient(135deg, rgba(2,132,199,0.12) 0%, rgba(56,189,248,0.04) 100%); border:1px solid rgba(56,189,248,0.3); border-radius:var(--radius-lg);">
+                <div style="flex:1; min-width:260px;">
+                    <div style="font-size:0.75rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em; display:flex; align-items:center; gap:6px;">
+                        <i class="fa-solid fa-bolt"></i> Aplicación GTD Pro Humanizado Integrada
+                    </div>
+                    <p style="font-size:0.84rem; color:#cbd5e1; margin:4px 0 0 0; line-height:1.4;">
+                        Puedes gestionar tu foco diario con límite estricto WIP=2 aquí mismo, o abrir la aplicación completa (con Wizard Inbox Zero, proyectos y contextos @) en pantalla completa.
+                    </p>
+                </div>
+                <a id="btn-open-gtd-standalone" href="apps/gtd/index.html?cliente=melissa" target="_blank" style="background:linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); color:#000000; font-weight:800; font-size:0.84rem; text-decoration:none; padding:9px 16px; border-radius:8px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 15px rgba(56,189,248,0.25); transition:transform 0.15s ease;">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Aplicación GTD Pro en Nueva Pestaña
+                </a>
             </div>
 
             <!-- TABLERO KANBAN CONECTADO AL MOTOR -->
@@ -935,6 +982,198 @@
         </div>
 
         <!-- =========================================================================
+             TAB 7: CARTA ESPACIO & MISIÓN FOCO 30 MINUTOS (CHINITO & MELISSA)
+             ========================================================================= -->
+        <div id="tab-carta-espacio" class="tab-content">
+            <!-- TUTORIAL BOX CARTA ESPACIO -->
+            <div class="tutorial-box" style="border-color: rgba(236, 72, 153, 0.35); background: linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(25, 10, 20, 0.85) 100%);">
+                <div class="tutorial-header">
+                    <div>
+                        <span class="tutorial-tag" style="color: #ec4899; background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.3);">
+                            <i class="fa-solid fa-gamepad"></i> Metodología AICC • Crianza Respetuosa & Soberanía Materna
+                        </span>
+                        <h3 class="tutorial-title">
+                            <i class="fa-solid fa-child-reaching" style="color: #ec4899;"></i> Carta Espacio & Misión Foco 30M: ¿Para qué sirve y cómo jugar esta carta?
+                        </h3>
+                    </div>
+                    <span style="font-size: 0.76rem; color: #f472b6; font-weight: 600;">⏱️ Tiempo estimado: 1 min</span>
+                </div>
+                <div class="tutorial-grid">
+                    <div class="tutorial-pillar" style="border-left: 3px solid #ec4899;">
+                        <h5 style="color: #ec4899;"><i class="fa-solid fa-heart"></i> 1. La Carta de Jugar de Melissa (Cero Culpa)</h5>
+                        <p>Jugar esta carta es legitimar tu derecho como madre y persona a tener 30 minutos propios sin culpa. Chinito y tú comparten mentes creativas e inquietas (TDAH): el autocuidado de la madre es la mejor inversión en la autorregulación del hijo.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #38bdf8;">
+                        <h5 style="color: #38bdf8;"><i class="fa-solid fa-puzzle-piece"></i> 2. La Misión Foco de Chinito (15 ➔ 20 ➔ 30 min)</h5>
+                        <p>En vez de exigirle concentración forzada o que "se quede quieto", activamos la <em>Misión Foco</em> como un juego con recompensa lúdica. Chinito entrena su atención autónoma progresiva con orgullo de logro.</p>
+                    </div>
+                    <div class="tutorial-pillar" style="border-left: 3px solid #10b981;">
+                        <h5 style="color: #10b981;"><i class="fa-solid fa-shield-check"></i> 3. El Doble Beneficio Simultáneo</h5>
+                        <p>Mientras Chinito entrena en su actividad (dibujo, estimulación motriz, bloques de madera Träfmen), Melissa avanza en su Diplomado, bocetos de juguetes o descansa en un té en silencio. ¡Ambos ganan al mismo tiempo!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR PRINCIPAL CARTA ESPACIO -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-bottom:1.5rem;" class="carta-espacio-grid">
+                <!-- WIDGET 1: TEMPORIZADOR EN VIVO MISIÓN FOCO -->
+                <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.8rem;">
+                            <span style="font-size:0.75rem; font-weight:800; color:#ec4899; text-transform:uppercase; letter-spacing:0.04em;">
+                                <i class="fa-solid fa-stopwatch"></i> Temporizador en Vivo
+                            </span>
+                            <span id="mission-status-badge" class="badge-role" style="background:rgba(236,72,153,0.15); border-color:#ec4899; color:#f472b6;">
+                                Listo para jugar
+                            </span>
+                        </div>
+                        <h4 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; color:#fff; margin:0 0 0.5rem 0;">
+                            Cronómetro de Misión Foco
+                        </h4>
+                        <p style="font-size:0.8rem; color:#aaa; margin:0 0 1rem 0;">
+                            Selecciona el nivel de duración para la misión de Chinito y el bloque de Melissa:
+                        </p>
+
+                        <!-- SELECTOR DE NIVELES -->
+                        <div style="display:flex; gap:8px; margin-bottom:1.2rem; flex-wrap:wrap;">
+                            <button class="btn-mission-level active" onclick="setMissionDuration(15, this)" id="btn-lvl-15">
+                                🟢 15 Min (Nivel 1)
+                            </button>
+                            <button class="btn-mission-level" onclick="setMissionDuration(20, this)" id="btn-lvl-20">
+                                🟡 20 Min (Nivel 2)
+                            </button>
+                            <button class="btn-mission-level" onclick="setMissionDuration(30, this)" id="btn-lvl-30">
+                                🟣 30 Min (Misión Oro)
+                            </button>
+                        </div>
+
+                        <!-- DISPLAY CRONÓMETRO -->
+                        <div style="background:#111; border:1px solid #333; border-radius:12px; padding:1.5rem; text-align:center; margin-bottom:1rem;">
+                            <div id="mission-timer-display" style="font-family:var(--font-display); font-size:3.2rem; font-weight:900; color:#fff; letter-spacing:2px; line-height:1;">
+                                15:00
+                            </div>
+                            <div id="mission-timer-sub" style="font-size:0.78rem; color:#888; margin-top:6px;">
+                                Chinito en concentración • Melissa en su ventana
+                            </div>
+                            <div style="width:100%; height:6px; background:#222; border-radius:4px; overflow:hidden; margin-top:12px;">
+                                <div id="mission-progress-bar" style="width:100%; height:100%; background:linear-gradient(90deg, #ec4899, #38bdf8); transition:width 1s linear;"></div>
+                            </div>
+                        </div>
+
+                        <!-- INPUTS ACTIVIDADES SIMULTÁNEAS -->
+                        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:1rem;">
+                            <div>
+                                <label style="font-size:0.75rem; font-weight:700; color:#f472b6;">👶 Actividad de Chinito:</label>
+                                <input type="text" id="mission-child-activity" value="Bloques de madera Träfmen / dibujo libre" style="width:100%; background:#161616; border:1px solid #333; color:#fff; font-size:0.82rem; padding:7px 10px; border-radius:6px; margin-top:2px;">
+                            </div>
+                            <div>
+                                <label style="font-size:0.75rem; font-weight:700; color:#38bdf8;">☕ Ventana Soberana de Melissa:</label>
+                                <input type="text" id="mission-mother-window" value="Té caliente en silencio + Lectura Diplomado" style="width:100%; background:#161616; border:1px solid #333; color:#fff; font-size:0.82rem; padding:7px 10px; border-radius:6px; margin-top:2px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BOTONES DE CONTROL -->
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <button id="btn-mission-toggle" onclick="toggleMissionTimer()" style="flex:1; background:#ec4899; color:#fff; border:none; padding:10px 16px; border-radius:8px; font-weight:800; font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
+                            <i class="fa-solid fa-play"></i> Iniciar Misión Foco
+                        </button>
+                        <button onclick="resetMissionTimer()" style="background:#222; border:1px solid #444; color:#aaa; padding:10px 14px; border-radius:8px; font-size:0.85rem; cursor:pointer;" title="Reiniciar">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- WIDGET 2: PROTOCOLOS OPERATIVOS PROTEGIDOS -->
+                <div style="display:flex; flex-direction:column; gap:1rem;">
+                    <!-- PROTOCOLO LAVADO DIURNO -->
+                    <div class="card-custom" style="background:#0a0a0a; border:1px solid #78350f; border-left:4px solid #f59e0b; border-radius:var(--radius-lg); padding:1.2rem;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                            <span style="font-size:1.1rem; color:#f59e0b;">🧺</span>
+                            <h4 style="font-family:var(--font-display); font-size:1rem; font-weight:800; color:#fff; margin:0;">
+                                Protocolo Anti-Fuga: Lavado Diurno Protegido
+                            </h4>
+                        </div>
+                        <div style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.25); border-radius:6px; padding:6px 10px; margin-bottom:8px;">
+                            <span style="font-size:0.78rem; font-weight:800; color:#fbbf24;">⚡ REGLA DE ORO:</span>
+                            <span style="font-size:0.78rem; color:#fef3c7;"> Prohibido encender lavadora pasadas las 19:00 hrs.</span>
+                        </div>
+                        <ul style="font-size:0.78rem; color:#d1d5db; margin:0; padding-left:1.1rem; line-height:1.45;">
+                            <li><strong>Bloque Diurno 1:</strong> Martes en la mañana (09:00 a 11:00) para tender con luz natural.</li>
+                            <li><strong>Bloque Diurno 2:</strong> Sábado mediodía (post-comparsa).</li>
+                            <li><strong>Impacto Clínico:</strong> Elimina el ciclo vicioso de ropa húmeda amanecida dentro del tambor, el doble consumo de agua/electricidad y la culpa nocturna.</li>
+                        </ul>
+                    </div>
+
+                    <!-- PROTOCOLO HIGIENE DEL SUEÑO -->
+                    <div class="card-custom" style="background:#0a0a0a; border:1px solid #064e3b; border-left:4px solid #10b981; border-radius:var(--radius-lg); padding:1.2rem;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                            <span style="font-size:1.1rem; color:#10b981;">🌙</span>
+                            <h4 style="font-family:var(--font-display); font-size:1rem; font-weight:800; color:#fff; margin:0;">
+                                Higiene del Sueño & Cierre Biológico
+                            </h4>
+                        </div>
+                        <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); border-radius:6px; padding:6px 10px; margin-bottom:8px;">
+                            <span style="font-size:0.78rem; font-weight:800; color:#34d399;">🛌 META SAGRADA:</span>
+                            <span style="font-size:0.78rem; color:#d1fae5;"> En la cama a las 23:00 hrs para dormir.</span>
+                        </div>
+                        <ul style="font-size:0.78rem; color:#d1d5db; margin:0; padding-left:1.1rem; line-height:1.45;">
+                            <li><strong>22:30 hrs:</strong> Luces cálidas tenues y pantallas apagadas (corte de cortisol visual).</li>
+                            <li><strong>Cero 'Segundo Aire':</strong> Cortar el hiperfoco nocturno engañoso que drena la lucidez del día siguiente.</li>
+                            <li><strong>Despertar con Soberanía:</strong> 07:00 hrs con cuerpo regenerado y sin sensación de arrastre.</li>
+                        </ul>
+                    </div>
+
+                    <!-- ACCESO A IMPRIMIBLES FÍSICOS -->
+                    <div style="background:#111; border:1px solid #333; border-radius:var(--radius-lg); padding:1rem 1.2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                        <div>
+                            <div style="font-size:0.78rem; font-weight:800; color:#fff;">¿Prefieres tenerla pegada en el refrigerador?</div>
+                            <div style="font-size:0.72rem; color:#888;">Disponible en la Hoja 6 del Cuadernillo Maestro de Imprimibles de Melissa.</div>
+                        </div>
+                        <a id="btn-print-carta-espacio" href="04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html#sheet-6" target="_blank" style="background:#fff; color:#000; font-weight:800; font-size:0.78rem; padding:7px 12px; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-print"></i> Abrir Hoja 6 Física
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WIDGET 3: MATRIZ SEMANAL INTERACTIVA DE MISIONES (LUNES A DOMINGO) -->
+            <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1rem;">
+                    <div>
+                        <h4 style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; color:#fff; margin:0;">
+                            🗓️ Bitácora Semanal de Misiones Foco (Lunes a Domingo)
+                        </h4>
+                        <p style="font-size:0.8rem; color:#aaa; margin:2px 0 0 0;">
+                            Marca los días en que jugaste la Carta Espacio y lograste los 15-20-30 minutos de oro.
+                        </p>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn-schedule-action" onclick="saveCartaEspacioData()"><i class="fa-solid fa-floppy-disk"></i> Guardar Bitácora</button>
+                        <button class="btn-schedule-action" onclick="resetCartaEspacioData()" style="color:#f87171;"><i class="fa-solid fa-rotate-left"></i> Restablecer</button>
+                    </div>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table class="schedule-grid-table" style="width:100%; border-collapse:collapse; text-align:left;">
+                        <thead>
+                            <tr style="background:#161616; border-bottom:1px solid #333;">
+                                <th style="padding:10px; width:100px; color:#fff; font-size:0.78rem;">Día</th>
+                                <th style="padding:10px; width:130px; color:#fff; font-size:0.78rem;">Misión</th>
+                                <th style="padding:10px; color:#f472b6; font-size:0.78rem;">Actividad Lúdica Chinito</th>
+                                <th style="padding:10px; color:#38bdf8; font-size:0.78rem;">Ventana Soberana Melissa</th>
+                                <th style="padding:10px; width:120px; text-align:center; color:#10b981; font-size:0.78rem;">¿Cumplida?</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carta-espacio-table-body">
+                            <!-- Inyectado dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================================
              TAB 7: HERRAMIENTAS ACTIVAS & CHECKLISTS
              ========================================================================= -->
         <div id="tab-herramientas" class="tab-content">
@@ -1166,28 +1405,53 @@
             // Renderizar Herramientas y Acuerdos
             renderDynamicHerramientas(data);
             renderDynamicAcuerdos(data);
+
+            // Standalone GTD launcher link
+            const btnGtdStandalone = document.getElementById("btn-open-gtd-standalone");
+            if (btnGtdStandalone) {
+                btnGtdStandalone.href = `apps/gtd/index.html?cliente=${c.id}`;
+            }
+
+            // Renderizar Carta Espacio & Misión Foco 30M si aplica (Melissa o data.carta_espacio)
+            const btnCartaEspacio = document.getElementById("tab-btn-carta-espacio");
+            if (data.carta_espacio || c.id === "melissa") {
+                if (btnCartaEspacio) btnCartaEspacio.style.display = "flex";
+                initCartaEspacio(data, c.id);
+            } else {
+                if (btnCartaEspacio) btnCartaEspacio.style.display = "none";
+            }
         }
 
         // 3. BARRA DE CHIPS DE CONSULTOR
         function renderConsultorChips() {
             const container = document.getElementById("consultor-chips-container");
-            const clients = [
+            const activeClients = [
                 { id: "rocio", name: "🌿 Rocío" },
                 { id: "melissa", name: "🧸 Melissa" },
                 { id: "matias", name: "🤹 Matías" },
                 { id: "antonia", name: "💃 Antonia" },
-                { id: "alejandra", name: "📊 Alejandra" },
+                { id: "alejandra", name: "📊 Alejandra" }
+            ];
+            const archivedClients = [
                 { id: "alvaro", name: "📁 Álvaro" },
                 { id: "carlos", name: "📁 Carlos Z" },
                 { id: "karina", name: "📁 Karina" },
                 { id: "emi", name: "📁 Emi" }
             ];
 
-            container.innerHTML = clients.map(cl => `
+            const activeHtml = activeClients.map(cl => `
                 <a href="plan.html?cliente=${cl.id}" class="chip-client ${cl.id === currentClientId ? 'active' : ''}">
                     ${cl.name}
                 </a>
             `).join("");
+
+            const archivedHtml = archivedClients.map(cl => `
+                <a href="plan.html?cliente=${cl.id}" class="chip-client ${cl.id === currentClientId ? 'active' : ''}" style="opacity:0.65; border-style:dashed;" title="Cliente en Pausa / Archivado">
+                    ${cl.name}
+                </a>
+            `).join("");
+
+            container.innerHTML = activeHtml + `<span style="color:#444; font-size:0.8rem; margin:0 4px; user-select:none;">|</span>` + archivedHtml;
         }
 
         // 4. CONMUTADOR DE PESTAÑAS
@@ -1409,6 +1673,211 @@
                     <span style="font-size:0.86rem; color:#eee; line-height:1.45;">${a.acuerdo}</span>
                 </div>
             `).join("");
+        }
+
+        // =========================================================================
+        // 9B. MOTOR CARTA ESPACIO & MISIÓN FOCO 30 MINUTOS (CHINITO & MELISSA)
+        // =========================================================================
+        window.currentCartaEspacioClientId = null;
+        window.currentCartaEspacioData = [];
+        let missionTimerDuration = 15 * 60; // 15 min default
+        let missionTimeLeft = 15 * 60;
+        let missionTimerInterval = null;
+        let isMissionRunning = false;
+
+        function getDefaultCartaEspacioWeek() {
+            return [
+                { dia: "Lunes", nivel: "Nivel 1 (15m)", chinito: "Bloques de madera Träfmen / dibujo libre", melissa: "Té caliente en silencio + Lectura Diplomado", done: true },
+                { dia: "Martes", nivel: "Nivel 2 (20m)", chinito: "Puzzle o plastilina no tóxica", melissa: "Revisión de entregas de la semana y plan", done: true },
+                { dia: "Miércoles", nivel: "Nivel 1 (15m)", chinito: "Circuitos con autos y pistas", melissa: "Ejercicios de respiración / pausa activa", done: false },
+                { dia: "Jueves", nivel: "Nivel 2 (20m)", chinito: "Construcción de animales de madera Träfmen", melissa: "Bocetos de nuevos juguetes didácticos", done: false },
+                { dia: "Viernes", nivel: "Misión Oro (30m)", chinito: "Desafío creativo: Castillo de madera Träfmen", melissa: "Ducha larga y café caliente sin apuro", done: false },
+                { dia: "Sábado", nivel: "Misión Oro (30m)", chinito: "Modelado con masa / juego autónomo guiado", melissa: "Organización de compras y desconexión", done: false },
+                { dia: "Domingo", nivel: "Nivel 1 (15m)", chinito: "Exploración de libros ilustrados", melissa: "Momento de gratitud y respiro semanal", done: false }
+            ];
+        }
+
+        function initCartaEspacio(clientData, clientId) {
+            window.currentCartaEspacioClientId = clientId;
+            const storageKey = `ah_carta_espacio_${clientId}`;
+            const cached = localStorage.getItem(storageKey);
+
+            if (cached) {
+                try {
+                    window.currentCartaEspacioData = JSON.parse(cached);
+                } catch (e) {
+                    window.currentCartaEspacioData = getDefaultCartaEspacioWeek();
+                }
+            } else {
+                window.currentCartaEspacioData = getDefaultCartaEspacioWeek();
+            }
+
+            renderCartaEspacioTable();
+            resetMissionTimer();
+        }
+
+        function renderCartaEspacioTable() {
+            const tbody = document.getElementById("carta-espacio-table-body");
+            if (!tbody) return;
+
+            tbody.innerHTML = window.currentCartaEspacioData.map((row, idx) => `
+                <tr style="border-bottom:1px solid #222; background:${row.done ? 'rgba(16,185,129,0.04)' : 'transparent'};">
+                    <td style="padding:10px; font-weight:800; color:#fff; font-size:0.82rem;">
+                        ${row.dia}
+                    </td>
+                    <td style="padding:10px;">
+                        <span style="display:inline-block; font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:4px; ${row.nivel.includes('Oro') ? 'background:rgba(236,72,153,0.2); color:#f472b6; border:1px solid #ec4899;' : (row.nivel.includes('20m') ? 'background:rgba(245,158,11,0.2); color:#fbbf24; border:1px solid #f59e0b;' : 'background:rgba(16,185,129,0.2); color:#34d399; border:1px solid #10b981;')}">
+                            ${row.nivel}
+                        </span>
+                    </td>
+                    <td style="padding:8px 10px;">
+                        <input type="text" value="${escapeHtml(row.chinito)}" onchange="updateCartaEspacioField(${idx}, 'chinito', this.value)" style="width:100%; background:#141414; border:1px solid #2b2b2b; color:#cbd5e1; font-size:0.8rem; padding:6px 8px; border-radius:4px;">
+                    </td>
+                    <td style="padding:8px 10px;">
+                        <input type="text" value="${escapeHtml(row.melissa)}" onchange="updateCartaEspacioField(${idx}, 'melissa', this.value)" style="width:100%; background:#141414; border:1px solid #2b2b2b; color:#cbd5e1; font-size:0.8rem; padding:6px 8px; border-radius:4px;">
+                    </td>
+                    <td style="padding:10px; text-align:center;">
+                        <button onclick="toggleMissionCheck(${idx})" style="padding:5px 10px; font-size:0.75rem; font-weight:800; border-radius:6px; cursor:pointer; border:none; ${row.done ? 'background:#10b981; color:#fff;' : 'background:#262626; color:#888;'}">
+                            ${row.done ? '✓ ¡Logrado!' : 'Pendiente'}
+                        </button>
+                    </td>
+                </tr>
+            `).join("");
+        }
+
+        function updateCartaEspacioField(idx, field, val) {
+            if (window.currentCartaEspacioData[idx]) {
+                window.currentCartaEspacioData[idx][field] = val;
+            }
+        }
+
+        function toggleMissionCheck(idx) {
+            if (window.currentCartaEspacioData[idx]) {
+                window.currentCartaEspacioData[idx].done = !window.currentCartaEspacioData[idx].done;
+                renderCartaEspacioTable();
+                saveCartaEspacioData(true);
+                if (window.currentCartaEspacioData[idx].done) {
+                    showToast(`🎉 ¡Felicitaciones! Misión de ${window.currentCartaEspacioData[idx].dia} cumplida.`);
+                }
+            }
+        }
+
+        function saveCartaEspacioData(silent = false) {
+            if (!window.currentCartaEspacioClientId) return;
+            const storageKey = `ah_carta_espacio_${window.currentCartaEspacioClientId}`;
+            localStorage.setItem(storageKey, JSON.stringify(window.currentCartaEspacioData));
+            if (!silent) {
+                showToast("✅ Bitácora de Carta Espacio guardada con éxito.");
+            }
+        }
+
+        function resetCartaEspacioData() {
+            if (confirm("¿Deseas restablecer la bitácora semanal a los valores iniciales recomendados?")) {
+                const storageKey = `ah_carta_espacio_${window.currentCartaEspacioClientId}`;
+                localStorage.removeItem(storageKey);
+                window.currentCartaEspacioData = getDefaultCartaEspacioWeek();
+                renderCartaEspacioTable();
+                showToast("🔄 Bitácora restablecida a los valores iniciales.");
+            }
+        }
+
+        // CONTROL DEL TEMPORIZADOR EN VIVO
+        function setMissionDuration(minutes, btn) {
+            if (isMissionRunning) {
+                clearInterval(missionTimerInterval);
+                isMissionRunning = false;
+                const toggleBtn = document.getElementById("btn-mission-toggle");
+                if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Misión Foco';
+            }
+            missionTimerDuration = minutes * 60;
+            missionTimeLeft = missionTimerDuration;
+
+            document.querySelectorAll(".btn-mission-level").forEach(b => b.classList.remove("active"));
+            if (btn) btn.classList.add("active");
+
+            updateMissionTimerDisplay();
+            const badge = document.getElementById("mission-status-badge");
+            if (badge) {
+                badge.innerText = `Nivel ${minutes} Min Seleccionado`;
+                badge.style.color = "#f472b6";
+            }
+        }
+
+        function updateMissionTimerDisplay() {
+            const display = document.getElementById("mission-timer-display");
+            const progressBar = document.getElementById("mission-progress-bar");
+            if (!display) return;
+
+            const m = Math.floor(missionTimeLeft / 60);
+            const s = missionTimeLeft % 60;
+            display.innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+
+            if (progressBar && missionTimerDuration > 0) {
+                const pct = (missionTimeLeft / missionTimerDuration) * 100;
+                progressBar.style.width = `${pct}%`;
+            }
+        }
+
+        function toggleMissionTimer() {
+            const toggleBtn = document.getElementById("btn-mission-toggle");
+            const badge = document.getElementById("mission-status-badge");
+
+            if (isMissionRunning) {
+                clearInterval(missionTimerInterval);
+                isMissionRunning = false;
+                if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i> Continuar Misión';
+                if (badge) {
+                    badge.innerText = "Pausado";
+                    badge.style.color = "#fbbf24";
+                }
+            } else {
+                if (missionTimeLeft <= 0) {
+                    missionTimeLeft = missionTimerDuration;
+                }
+                isMissionRunning = true;
+                if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar Misión';
+                if (badge) {
+                    badge.innerText = "⚡ Misión en curso...";
+                    badge.style.color = "#38bdf8";
+                }
+
+                missionTimerInterval = setInterval(() => {
+                    missionTimeLeft--;
+                    updateMissionTimerDisplay();
+
+                    if (missionTimeLeft <= 0) {
+                        clearInterval(missionTimerInterval);
+                        isMissionRunning = false;
+                        if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> Otra Misión';
+                        if (badge) {
+                            badge.innerText = "🏆 ¡Misión Lograda!";
+                            badge.style.color = "#10b981";
+                        }
+                        showToast("🎉 ¡TIEMPO CUMPLIDO! Melissa y Chinito han completado su Misión Foco con éxito.");
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetMissionTimer() {
+            if (isMissionRunning) {
+                clearInterval(missionTimerInterval);
+                isMissionRunning = false;
+            }
+            missionTimeLeft = missionTimerDuration;
+            updateMissionTimerDisplay();
+            const toggleBtn = document.getElementById("btn-mission-toggle");
+            if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Misión Foco';
+            const badge = document.getElementById("mission-status-badge");
+            if (badge) {
+                badge.innerText = "Listo para jugar";
+                badge.style.color = "#f472b6";
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
         // 10. WHATSAPP & TOAST UTILITIES

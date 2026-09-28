@@ -607,38 +607,43 @@ window.CLIENTS_MASTER_DATA = {
         "ahorro_inversion_20": "Diplomado online y fondo inicial para prototipos de madera Trafmen"
       }
     },
-    "herramientas_activas": [
-      {
-        "id": "time_blocking",
-        "nombre": "Time Blocking Flexible",
-        "descripcion": "Ventanas de oro de 90 min Martes tarde y Viernes tarde para Trafmen y estudio"
-      },
-      {
-        "id": "inventario_resultados",
-        "nombre": "Inventario Diario de Resultados",
-        "descripcion": "Registro nocturno análogo de 3 minutos para celebrar victorias y erradicar la culpa"
-      },
-      {
-        "id": "matriz_eisenhower",
-        "nombre": "Matriz de Eisenhower Quirúrgica",
-        "descripcion": "Filtrar la vorágine escolar para proteger el desarrollo de Trafmen"
-      },
-      {
-        "id": "gtd_wip2",
-        "nombre": "GTD con Límite WIP=2",
-        "descripcion": "Máximo dos tareas activas para eliminar la sensación de sobrecarga multipotencial"
-      },
-      {
-        "id": "carta_espacio_foco30m",
-        "nombre": "Carta Espacio & Misión Foco 30 Minutos",
-        "descripcion": "Entrenamiento lúdico progresivo de atención para Chinito (15-20-30 min) para blindar a la vez la ventana de autocuidado y foco propio de Melissa sin culpa"
-      },
-      {
-        "id": "protocolo_lavado_diurno",
-        "nombre": "Protocolo Anti-Fuga: Lavado Diurno Protegido",
-        "descripcion": "Horario fijo de lavado Martes/Sábado diurno. Regla de oro: prohibido encender lavadora pasadas las 19:00 para evitar ropa húmeda y doble consumo"
-      }
-    ],
+    "herramientas_activas": [],
+    "carta_espacio": {
+      "titulo": "Carta Espacio & Misión Foco 30 Minutos",
+      "subtitulo": "Entrenamiento progresivo de atención para Chinito (15-20-30 min) + Ventana de Soberanía para Melissa",
+      "principio": "Jugar esta carta es legitimar tu derecho como madre y persona a tener 30 minutos propios sin culpa. Chinito y tú tienen mentes creativas e inquietas (TDAH): en vez de exigirle concentración forzada, activamos la Misión Foco como un juego de autonomía. Mientras él entrena su atención en un dibujo, estimulación motriz o bloques de madera Träfmen, Melissa blindará su ventana de autocuidado, respiro o diplomado sin culpa moral.",
+      "misiones_semanales": [
+        { "dia": "Lunes", "minutos": 15, "actividad_hijo": "Dibujo libre / modelado de plasticina", "ventana_melissa": "Té en silencio y pausa sensorial", "completado": false },
+        { "dia": "Martes", "minutos": 20, "actividad_hijo": "Estimulación motriz / dibujo", "ventana_melissa": "Orden cocina relajado / respiro", "completado": true },
+        { "dia": "Miércoles", "minutos": 20, "actividad_hijo": "Rompecabezas didáctico", "ventana_melissa": "Lectura Diplomado online Kinesiología", "completado": false },
+        { "dia": "Jueves", "minutos": 25, "actividad_hijo": "Pintura con témpera / manualidad", "ventana_melissa": "Avance prototipos madera Träfmen", "completado": false },
+        { "dia": "Viernes", "minutos": 20, "actividad_hijo": "Cuentos ilustrados post-Chillán", "ventana_melissa": "Cierre semanal tranquilo y respiro", "completado": false },
+        { "dia": "Sábado", "minutos": 30, "actividad_hijo": "Percusión / juego sensorial", "ventana_melissa": "Descanso post-Comparsa", "completado": false },
+        { "dia": "Domingo", "minutos": 30, "actividad_hijo": "Bloques de madera Träfmen", "ventana_melissa": "Planificación y diseño semanal", "completado": false }
+      ],
+      "protocolos_acompanamiento": [
+        {
+          "id": "lavado_diurno",
+          "titulo": "🧺 Protocolo Anti-Fuga: Lavado Diurno Protegido",
+          "regla_oro": "Prohibido encender lavadora pasadas las 19:00 hrs.",
+          "pautas": [
+            "Día 1: Martes en la mañana (09:00 a 11:00).",
+            "Día 2: Sábado al mediodía (post-comparsa).",
+            "Fin definitivo al ciclo de ropa húmeda amanecida y doble consumo."
+          ]
+        },
+        {
+          "id": "higiene_sueno",
+          "titulo": "🌙 Protocolo Higiene del Sueño & Cierre Biológico",
+          "regla_oro": "Meta sagrada: en la cama a las 23:00 hrs.",
+          "pautas": [
+            "22:30: Luces tenues cálidas y pantallas apagadas.",
+            "Cortar el engañoso 'segundo aire' de hiperfoco nocturno.",
+            "Despertar descansada a las 07:00 para empezar el día con energía."
+          ]
+        }
+      ]
+    },
     "acuerdos_clinicos_operativos": [
       {
         "id": "horario_sueno",
