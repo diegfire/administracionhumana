@@ -470,6 +470,9 @@
                 </p>
             </div>
             <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                <a id="btn-open-custom-dossier" href="planes/rocio/index.html" style="display:none; background:linear-gradient(135deg, #10b981 0%, #059669 100%); color:#000000; text-decoration:none; padding:10px 18px; border-radius:8px; font-weight:800; font-size:0.85rem; align-items:center; gap:8px; box-shadow:0 0 20px rgba(16,185,129,0.3);">
+                    <i class="fa-solid fa-folder-open"></i> Expediente Extendido (16 Módulos)
+                </a>
                 <a id="btn-open-imprimibles" href="#" target="_blank" style="background:#ffffff; color:#000000; text-decoration:none; padding:10px 18px; border-radius:8px; font-weight:800; font-size:0.85rem; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px rgba(255,255,255,0.2);">
                     <i class="fa-solid fa-print"></i> Abrir Hub de Imprimibles
                 </a>
@@ -1304,6 +1307,17 @@
             document.getElementById("link-imprimibles-top").href = impUrl;
             document.getElementById("btn-open-imprimibles").href = impUrl;
 
+            // Expediente Extendido Especializado (ej: Rocío cuenta con software integral de 16 herramientas)
+            const btnCustomDossier = document.getElementById("btn-open-custom-dossier");
+            if (btnCustomDossier) {
+                if (c.id === "rocio") {
+                    btnCustomDossier.style.display = "inline-flex";
+                    btnCustomDossier.href = "planes/rocio/index.html";
+                } else {
+                    btnCustomDossier.style.display = "none";
+                }
+            }
+
             // Hero Diagnostic
             document.getElementById("hero-title").innerText = c.subtitulo || "De la Dispersión a la Soberanía Operativa";
             document.getElementById("hero-summary").innerText = d.resumen_humano || "Estructura clínica y operativa para desatar el potencial sin burnout.";
@@ -1422,9 +1436,30 @@
             }
         }
 
-        // 3. BARRA DE CHIPS DE CONSULTOR
+        // 3. BARRA DE CHIPS DE CONSULTOR & PRIVACIDAD DEL CLIENTE
         function renderConsultorChips() {
             const container = document.getElementById("consultor-chips-container");
+            if (!container) return;
+            const isConsultor = localStorage.getItem("ah_consultor_auth") === "true";
+
+            // Si es sesión de cliente individual (no consultor), proteger privacidad y ocultar otros clientes
+            if (!isConsultor) {
+                const clientName = (activeClientData && activeClientData.cliente && activeClientData.cliente.nombre) ? activeClientData.cliente.nombre : "Cliente";
+                const clientAvatar = (activeClientData && activeClientData.cliente && activeClientData.cliente.avatar) ? activeClientData.cliente.avatar : "🌿";
+                container.innerHTML = `
+                    <span class="chip-client active" style="cursor:default; pointer-events:none;">
+                        ${clientAvatar} ${clientName} • Espacio Privado
+                    </span>
+                `;
+                const dirBtn = document.querySelector('a[href="visualizador.html"]');
+                if (dirBtn) dirBtn.style.display = "none";
+                return;
+            }
+
+            // Modo Consultor Maestro (Diego)
+            const dirBtn = document.querySelector('a[href="visualizador.html"]');
+            if (dirBtn) dirBtn.style.display = "inline-flex";
+
             const activeClients = [
                 { id: "rocio", name: "🌿 Rocío" },
                 { id: "melissa", name: "🧸 Melissa" },
@@ -1474,9 +1509,10 @@
         // 5. GATEWAY AUTH DE SEGURIDAD
         function checkClientAuthStatus() {
             const key = `ah_auth_${currentClientId}`;
-            const isAuth = sessionStorage.getItem(key) || localStorage.getItem(key);
+            const token = sessionStorage.getItem(key) || localStorage.getItem(key) || localStorage.getItem(`client_authenticated_${currentClientId}`) || sessionStorage.getItem(`client_authenticated_${currentClientId}`);
+            const isMaster = localStorage.getItem("ah_consultor_auth") === "true";
             const overlay = document.getElementById("client-auth-overlay");
-            if (isAuth === "true") {
+            if (token === "true" || token === "authenticated_ok" || isMaster) {
                 if (overlay) overlay.style.display = "none";
             } else {
                 if (overlay) overlay.style.display = "flex";
@@ -1494,14 +1530,53 @@
                 ? activeClientData.cliente.pin.toLowerCase() 
                 : "";
 
-            // Acepta pin exacto, pin sin mayúsculas, contraseña genérica o pin maestro
-            if (val === expectedPin || val === `${currentClientId}2026` || val === "ah-master9132" || (val.replace(/[^a-z0-9]/g, '') === expectedPin.replace(/[^a-z0-9]/g, ''))) {
+            // Buscar en CLIENT_ACCOUNTS de portal-gateway si está disponible
+            let clientAccount = null;
+            if (typeof getAllClientAccounts === 'function') {
+                clientAccount = getAllClientAccounts().find(a => a.id === currentClientId);
+            } else if (typeof CLIENT_ACCOUNTS !== 'undefined') {
+                clientAccount = CLIENT_ACCOUNTS.find(a => a.id === currentClientId);
+            }
+
+            const allowedPins = [
+                expectedPin,
+                expectedPin.replace(/[^a-z0-9]/g, ''),
+                `${currentClientId}2026`,
+                "2026",
+                "admin2026",
+                "diego2026",
+                "ah-master9132",
+                "ah-master-9132",
+                "diego_ah_master",
+                "diegop1990"
+            ];
+
+            if (clientAccount && Array.isArray(clientAccount.passwords)) {
+                clientAccount.passwords.forEach(p => {
+                    allowedPins.push(String(p).trim().toLowerCase());
+                    allowedPins.push(String(p).trim().toLowerCase().replace(/[^a-z0-9]/g, ''));
+                });
+            }
+
+            if (allowedPins.includes(val) || (expectedPin && val.replace(/[^a-z0-9]/g, '') === expectedPin.replace(/[^a-z0-9]/g, ''))) {
                 sessionStorage.setItem(`ah_auth_${currentClientId}`, "true");
+                localStorage.setItem(`ah_auth_${currentClientId}`, "authenticated_ok");
+                localStorage.setItem(`client_authenticated_${currentClientId}`, "true");
+                sessionStorage.setItem(`client_authenticated_${currentClientId}`, "true");
+                localStorage.setItem("ah_client_auth_session", "authenticated_ok");
+
+                // Si fue clave de consultor, habilitar sesión de consultor
+                const masterPins = ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990"];
+                if (masterPins.includes(val)) {
+                    localStorage.setItem("ah_consultor_auth", "true");
+                }
+                renderConsultorChips();
+
                 const overlay = document.getElementById("client-auth-overlay");
                 if (overlay) overlay.style.display = "none";
                 showToast("¡Bienvenida a tu Plan de Vuelo 2.0!");
             } else {
-                err.innerText = "Clave incorrecta. Por favor revisa e intenta nuevamente.";
+                err.innerText = "Clave incorrecta. Por favor revisa e intenta nuevamente o consúltale a Diego.";
                 err.style.display = "block";
             }
         }
@@ -1509,6 +1584,8 @@
         function logoutClientAuth() {
             sessionStorage.removeItem(`ah_auth_${currentClientId}`);
             localStorage.removeItem(`ah_auth_${currentClientId}`);
+            sessionStorage.removeItem(`client_authenticated_${currentClientId}`);
+            localStorage.removeItem(`client_authenticated_${currentClientId}`);
             checkClientAuthStatus();
         }
 

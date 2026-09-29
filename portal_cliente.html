@@ -577,6 +577,13 @@
       if (storageKey) {
         localStorage.setItem(storageKey, storageKey);
       }
+      const cId = user.id || clientConfig.id;
+      if (cId) {
+        localStorage.setItem(`ah_auth_${cId}`, "authenticated_ok");
+        localStorage.setItem(`client_authenticated_${cId}`, "true");
+        sessionStorage.setItem(`client_authenticated_${cId}`, "true");
+      }
+      localStorage.setItem("ah_client_auth_session", "authenticated_ok");
 
       // UI Text Binding
       document.getElementById('user-pill-container').style.display = 'flex';

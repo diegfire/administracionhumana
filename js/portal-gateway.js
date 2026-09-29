@@ -192,7 +192,7 @@ const CLIENT_ACCOUNTS = [
         subtitle: "Puya Masajes & Canto",
         usernames: ["rocio.puya", "rocio", "rocior", "puya", "puyamasajes", "rocio@administracionhumana.com"],
         passwords: ["ah-puya9842", "ah-puya-9842", "puya9842", "rocior1998", "rocio2026", "puya2026"],
-        url: "plan.html?cliente=rocio",
+        url: "planes/rocio/index.html",
         storageKey: "ah_auth_rocio"
     },
     {
