@@ -3238,9 +3238,20 @@
     /* ── MINI-SONDEOS ESTILOS ── */
     .mini-sondeo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
       margin-top: 24px;
+    }
+    @media (max-width: 768px) {
+      .mini-sondeo-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      #mini-sondeo-result-box {
+        grid-template-columns: 1fr !important;
+        padding: 20px !important;
+        gap: 18px !important;
+      }
     }
     .mini-sondeo-card {
       background: #0d0d0f;
@@ -4123,7 +4134,7 @@
           </div>
         </div>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20mayor%20fuga%20es%20el%20Tiempo%20(apagafuegos)." id="hero-diag-wsp" target="_blank" class="btn-whatsapp-pulse" style="font-size: 0.82rem; padding: 10px 18px; text-decoration: none; border-radius: 50px;">
+          <a href="https://wa.me/56975590132?text=Hola%20Diego%21%20Hice%20el%20Auto-Diagn%C3%B3stico%20Express%20en%20tu%20plataforma%3A%0A%0A%F0%9F%9A%A8%20MI%20DOLOR%20OPERATIVO%20PRINCIPAL%3A%0A%E2%80%A2%20Fuga%20de%20Tiempo%20%28Apagafuegos%29%0A%E2%80%A2%20Situaci%C3%B3n%3A%20%C2%ABSe%20me%20va%20el%20d%C3%ADa%20apagando%20urgencias%20ajenas%20y%20no%20me%20queda%20tiempo%20para%20m%C3%AD%C2%BB%0A%E2%80%A2%20Fuga%20estimada%3A%2015%20a%2020%20horas%20por%20semana%0A%0A%F0%9F%92%A1%20SOLUCI%C3%93N%20IDENTIFICADA%3A%0A%E2%80%A2%20Mapeador%2024H%20y%20Blindaje%20de%20Bloques%20de%20Oro%0A%0AMe%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso%20y%20coordinar%20mi%20Sesi%C3%B3n%20de%20Despegue%20%28%2435.000%20CLP%29." id="hero-diag-wsp" target="_blank" class="btn-whatsapp-pulse" style="font-size: 0.82rem; padding: 10px 18px; text-decoration: none; border-radius: 50px;">
             💬 Conversar con Diego →
           </a>
           <button type="button" onclick="switchPlatformTab('view-que');" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 16px; border-radius: 50px; cursor: pointer;">
@@ -4171,15 +4182,15 @@
           <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuánto tiempo se te va resolviendo urgencias ajenas e interrupciones?</p>
         </div>
         <div>
-          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="0.5" data-label="Bajo: 1-2 interrupciones" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="0.5" data-label="Bajo: 1-2 interrupciones al día (~0.5h/d)" onclick="selectMiniSondeoOption(this)">
             <span>Bajo: 1-2 interrupciones al día</span>
             <span style="color:#10b981; font-weight:800;">~0.5h/d</span>
           </button>
-          <button class="mini-sondeo-opt-btn active" data-group="tiempo" data-val="2.5" data-label="Medio: 3-5 urgencias ajenas" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn active" data-group="tiempo" data-val="2.5" data-label="Medio: 3-5 urgencias ajenas (~2.5h/d)" onclick="selectMiniSondeoOption(this)">
             <span>Medio: 3-5 urgencias ajenas</span>
             <span style="color:#f59e0b; font-weight:800;">~2.5h/d</span>
           </button>
-          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="4.5" data-label="Crítico: Apago fuegos todo el día" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="4.5" data-label="Crítico: Apago fuegos todo el día (~4.5h/d)" onclick="selectMiniSondeoOption(this)">
             <span>Crítico: Apago fuegos todo el día</span>
             <span style="color:#ef4444; font-weight:800;">~4.5h/d</span>
           </button>
@@ -4197,15 +4208,15 @@
           <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuántos pendientes tienes abiertos en simultáneo en tu cabeza?</p>
         </div>
         <div>
-          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="0" data-label="Bajo: 1-2 frentes con tracción" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="0" data-label="Orden: 1-2 frentes con tracción (En Foco)" onclick="selectMiniSondeoOption(this)">
             <span>Orden: 1-2 frentes con tracción</span>
             <span style="color:#10b981; font-weight:800;">En Foco</span>
           </button>
-          <button class="mini-sondeo-opt-btn active" data-group="foco" data-val="1.5" data-label="Medio: 4-6 frentes a la vez" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn active" data-group="foco" data-val="1.5" data-label="Dispersión: 4-6 frentes a la vez (Disperso)" onclick="selectMiniSondeoOption(this)">
             <span>Dispersión: 4-6 frentes a la vez</span>
             <span style="color:#f59e0b; font-weight:800;">Disperso</span>
           </button>
-          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="3.0" data-label="Crítico: Caos de notas y pendientes" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="3.0" data-label="Saturación: 15 pestañas y pendientes (Parálisis)" onclick="selectMiniSondeoOption(this)">
             <span>Saturación: 15 pestañas y pendientes</span>
             <span style="color:#ef4444; font-weight:800;">Parálisis</span>
           </button>
@@ -4223,15 +4234,15 @@
           <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Sientes que lo que ganas compensa el esfuerzo y las horas que pones?</p>
         </div>
         <div>
-          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="0" data-label="Sostenible: Margen saludable" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="0" data-label="Equilibrado: Margen saludable (Sostenible)" onclick="selectMiniSondeoOption(this)">
             <span>Equilibrado: Margen saludable</span>
             <span style="color:#10b981; font-weight:800;">Sostenible</span>
           </button>
-          <button class="mini-sondeo-opt-btn active" data-group="finanzas" data-val="1.5" data-label="Desgaste: Trabajo mucho y no rinde" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn active" data-group="finanzas" data-val="1.5" data-label="Desgaste: Trabajo mucho y no rinde (Por Hora)" onclick="selectMiniSondeoOption(this)">
             <span>Desgaste: Trabajo mucho y no rinde</span>
             <span style="color:#f59e0b; font-weight:800;">Por Hora</span>
           </button>
-          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="3.0" data-label="Peligro: Regalo horas extras" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="3.0" data-label="Peligro: Regalo horas y cobro bajo (Erosión)" onclick="selectMiniSondeoOption(this)">
             <span>Peligro: Regalo horas y cobro bajo</span>
             <span style="color:#ef4444; font-weight:800;">Erosión</span>
           </button>
@@ -4249,15 +4260,15 @@
           <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cómo termina tu cabeza al terminar de trabajar o al irte a dormir?</p>
         </div>
         <div>
-          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="0" data-label="Tranquilo: Desconecto sin culpa" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="0" data-label="Tranquilo: Desconecto sin culpa (Descanso)" onclick="selectMiniSondeoOption(this)">
             <span>Tranquilo: Desconecto sin culpa</span>
             <span style="color:#10b981; font-weight:800;">Descanso</span>
           </button>
-          <button class="mini-sondeo-opt-btn active" data-group="energia" data-val="1.5" data-label="Resaca: Repaso pendientes de noche" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn active" data-group="energia" data-val="1.5" data-label="Resaca: Repaso pendientes de noche (Sobrecarga)" onclick="selectMiniSondeoOption(this)">
             <span>Resaca: Repaso pendientes de noche</span>
             <span style="color:#f59e0b; font-weight:800;">Sobrecarga</span>
           </button>
-          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="3.0" data-label="Burnout: Insomnio o culpa por parar" onclick="selectMiniSondeoOption(this)">
+          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="3.0" data-label="Burnout: Batería en 0% e insomnio (Alerta)" onclick="selectMiniSondeoOption(this)">
             <span>Burnout: Batería en 0% e insomnio</span>
             <span style="color:#ef4444; font-weight:800;">Alerta</span>
           </button>
@@ -7127,17 +7138,17 @@ window.initPlatformTabsFromHash = function() {
    MINI-SONDEOS ENGINE & PRE-DIAGNÓSTICO A WHATSAPP
    ══════════════════════════════════════════════════════════════════ */
 window.MINI_SONDEO_STATE = {
-  tiempo: { val: 2.5, label: "Medio: 3-5 urgencias ajenas diarias" },
-  foco: { val: 1.5, label: "Medio: 4-6 frentes a la vez" },
-  finanzas: { val: 1.5, label: "Desgaste: Trabajo mucho y no rinde" },
-  energia: { val: 1.5, label: "Resaca: Repaso pendientes de noche" }
+  tiempo: { val: 2.5, label: "Medio: 3-5 urgencias ajenas (~2.5h/d)" },
+  foco: { val: 1.5, label: "Dispersión: 4-6 frentes a la vez (Disperso)" },
+  finanzas: { val: 1.5, label: "Desgaste: Trabajo mucho y no rinde (Por Hora)" },
+  energia: { val: 1.5, label: "Resaca: Repaso pendientes de noche (Sobrecarga)" }
 };
 
 window.selectMiniSondeoOption = function(btn) {
   if (!btn) return;
   const group = btn.getAttribute('data-group');
   const val = parseFloat(btn.getAttribute('data-val') || '0');
-  const label = btn.getAttribute('data-label') || '';
+  const label = btn.getAttribute('data-label') || btn.innerText.replace(/\s+/g, ' ').trim();
 
   const parent = btn.parentElement;
   if (parent) {
@@ -7195,22 +7206,23 @@ window.updateMiniSondeoResults = function() {
 
   if (btnWa) {
     const greeting = userName ? `Hola Diego! Soy ${userName}.` : `Hola Diego!`;
-    const rawMsg = `${greeting} Hice el Mini-Sondeo en tu plataforma y obtuve este pre-diagnóstico:
+    const rawMsg = `${greeting} Acabo de completar el diagnóstico cuantitativo de 4 áreas en tu plataforma:
 
-📊 RESULTADO ESTIMADO:
-• Fuga de tiempo: ~${totalWeeklyLoss.toFixed(1)} h/semana (~${totalMonthlyLoss} h/mes)
+📋 RADIOGRAFÍA DE MIS 4 ÁREAS:
+• ⏳ 1. Tiempo: ${s.tiempo.label}
+• 🌪️ 2. Foco: ${s.foco.label}
+• 💸 3. Finanzas: ${s.finanzas.label}
+• 🌙 4. Energía: ${s.energia.label}
+
+📊 DIAGNÓSTICO ESTIMADO:
+• Fuga calculada: ~${totalWeeklyLoss.toFixed(1)} h/semana (~${totalMonthlyLoss} h/mes)
 • Nivel de alerta: ${alertText}
+• Situación actual: ${diagTitle}
 
-🔍 MIS PUNTOS CRÍTICOS:
-• ⏳ Tiempo: ${s.tiempo.label}
-• 🌪️ Foco: ${s.foco.label}
-• 💸 Tarifas: ${s.finanzas.label}
-• 🌙 Energía: ${s.energia.label}
-
-💡 HERRAMIENTAS SUGERIDAS:
+🧩 MÓDULOS RECOMENDADOS:
 • ${modulos}
 
-Me gustaría coordinar contigo mi Sesión de Despegue ($35.000 CLP) o conversar sobre mi caso.`;
+Me gustaría conversar contigo sobre mi caso y coordinar mi Sesión de Despegue ($35.000 CLP).`;
 
     btnWa.href = `https://wa.me/56975590132?text=${encodeURIComponent(rawMsg)}`;
   }
@@ -8654,19 +8666,52 @@ Quiero coordinar mi Sesión de Despegue ($35.000 CLP).`;
       badge.style.color = '#f59e0b';
       title.innerText = 'Tu mayor fuga es la dispersión por urgencias ajenas no filtradas.';
       desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Mapeador 24H</i> para blindar tus <b>Bloques de Oro</b> personales antes de que el mundo te los robe.';
-      if (wsp) wsp.href = 'https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20mayor%20fuga%20es%20el%20Tiempo%20(apagafuegos).';
+      const msgTiempo = `Hola Diego! Hice el Auto-Diagnóstico Express en tu plataforma:
+
+🚨 MI DOLOR OPERATIVO PRINCIPAL:
+• Fuga de Tiempo (Apagafuegos)
+• Situación: «Se me va el día apagando urgencias ajenas y no me queda tiempo para mí»
+• Fuga estimada: 15 a 20 horas por semana
+
+💡 SOLUCIÓN IDENTIFICADA:
+• Mapeador 24H y Blindaje de Bloques de Oro
+
+Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000 CLP).`;
+      if (wsp) wsp.href = 'https://wa.me/56975590132?text=' + encodeURIComponent(msgTiempo);
     } else if (type === 'foco') {
       badge.innerText = '⚡ PARÁLISIS POR SOBRECARGA: 20 FRENTES ABIERTOS';
       badge.style.color = '#38bdf8';
       title.innerText = 'Tu corteza prefrontal está colapsada por el cambio continuo de tareas (Task Switching).';
       desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Tablero Kanban WIP 2</i>: el software bloquea físicamente abrir un tercer frente hasta cerrar o pausar los dos activos.';
-      if (wsp) wsp.href = 'https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20mayor%20fuga%20es%20la%20Par%C3%A1lisis%20por%20Multitarea.';
+      const msgFoco = `Hola Diego! Hice el Auto-Diagnóstico Express en tu plataforma:
+
+⚡ MI DOLOR OPERATIVO PRINCIPAL:
+• Parálisis Multitarea (Task Switching)
+• Situación: «Tengo 20 frentes abiertos en la cabeza, salto de chat en chat y no cierro nada»
+• Impacto: Colapso de corteza prefrontal por cambio continuo de tareas
+
+💡 SOLUCIÓN IDENTIFICADA:
+• Tablero Kanban WIP 2 (Regla de Máximo 2 frentes activos)
+
+Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000 CLP).`;
+      if (wsp) wsp.href = 'https://wa.me/56975590132?text=' + encodeURIComponent(msgFoco);
     } else if (type === 'desconexion') {
       badge.innerText = '🌙 RESACA LABORAL & RUMIACIÓN: SUEÑO NO REPARADOR';
       badge.style.color = '#c084fc';
       title.innerText = 'Te paras del escritorio pero tu mente sigue trabajando en la cena y en la almohada.';
       desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Cierre Consciente (Shutdown)</i>: un ritual táctil de 2 minutos para vaciar tu memoria de trabajo y declarar formalmente el fin del día.';
-      if (wsp) wsp.href = 'https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20problema%20es%20la%20Resaca%20Laboral%20(no%20puedo%20desconectar).';
+      const msgDesconexion = `Hola Diego! Hice el Auto-Diagnóstico Express en tu plataforma:
+
+🌙 MI DOLOR OPERATIVO PRINCIPAL:
+• Resaca Laboral & Rumiación Nocturna
+• Situación: «Cierro la pantalla pero mi cabeza sigue trabajando en la cena y en la cama»
+• Impacto: Sueño no reparador y culpa constante al descansar
+
+💡 SOLUCIÓN IDENTIFICADA:
+• Cierre Consciente (Shutdown) y Vaciado Mental de 2 minutos
+
+Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000 CLP).`;
+      if (wsp) wsp.href = 'https://wa.me/56975590132?text=' + encodeURIComponent(msgDesconexion);
     }
   };
 
