@@ -2889,40 +2889,232 @@
       color: #ffffff;
     }
 
-    .bridge-pillars-grid {
+    /* =========================================================================
+       EL MÉTODO EN 3 PASOS: DE LA ESCUCHA ACTIVA AL PLAN DE VUELO
+       ========================================================================= */
+    .process-stepper-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
+      margin: 28px 0 34px 0;
       text-align: left;
     }
-    .bridge-pillar {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(56, 189, 248, 0.22);
-      border-radius: 12px;
-      padding: 20px;
-      transition: all 0.2s;
+    @media (max-width: 860px) {
+      .process-stepper-grid {
+        grid-template-columns: 1fr;
+      }
     }
-    .bridge-pillar:hover {
-      border-color: #38bdf8;
-      background: rgba(56, 189, 248, 0.08);
-      transform: translateY(-2px);
+    .process-step-card {
+      background: rgba(14, 18, 26, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 22px 20px;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .bridge-pillar-icon {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      display: block;
+    .process-step-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: transparent;
+      transition: background 0.25s ease;
     }
-    .bridge-pillar-title {
+    .process-step-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+    .process-step-card.step-1:hover { border-color: rgba(236, 72, 153, 0.45); }
+    .process-step-card.step-1:hover::before { background: linear-gradient(90deg, transparent, #ec4899, transparent); }
+    .process-step-card.step-2:hover { border-color: rgba(56, 189, 248, 0.45); }
+    .process-step-card.step-2:hover::before { background: linear-gradient(90deg, transparent, #38bdf8, transparent); }
+    .process-step-card.step-3:hover { border-color: rgba(16, 185, 129, 0.45); }
+    .process-step-card.step-3:hover::before { background: linear-gradient(90deg, transparent, #10b981, transparent); }
+
+    .step-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .step-badge {
+      font-size: 0.70rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .step-1 .step-badge { background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.35); color: #fbcfe8; }
+    .step-2 .step-badge { background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #7dd3fc; }
+    .step-3 .step-badge { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #a7f3d0; }
+
+    .step-icon-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .step-card-title {
       font-family: var(--font-heading);
-      font-size: 1rem;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .step-card-desc {
+      font-size: 0.84rem;
+      color: #cbd5e1;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .step-card-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      width: fit-content;
+    }
+    .step-1 .step-card-tag { background: rgba(236, 72, 153, 0.08); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.2); }
+    .step-2 .step-card-tag { background: rgba(56, 189, 248, 0.08); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.2); }
+    .step-3 .step-card-tag { background: rgba(16, 185, 129, 0.08); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.2); }
+
+    /* =========================================================================
+       PORTAL DE CLIENTES: EL PLAN DE VUELO EN VIVO CON TU CLAVE
+       ========================================================================= */
+    .portal-connection-banner {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 16px;
+      padding: 24px 26px;
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.12);
+    }
+    .portal-conn-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 4px 14px;
+      border-radius: 30px;
+      margin-bottom: 10px;
+    }
+    .portal-conn-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .portal-conn-sub {
+      font-size: 0.94rem;
+      color: #cbd5e1;
+      max-width: 780px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .portal-conn-sub strong {
+      color: #7dd3fc;
+    }
+
+    /* MÓDULOS DE MUESTRA REALES DEL PORTAL */
+    .portal-modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    @media (max-width: 860px) {
+      .portal-modules-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .portal-module-card {
+      background: #090c12;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+    }
+    .portal-module-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+    .portal-module-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 145px;
+      overflow: hidden;
+      background: #05070a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .portal-module-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.3s ease;
+    }
+    .portal-module-card:hover .portal-module-thumb {
+      transform: scale(1.03);
+    }
+    .portal-module-tag-overlay {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #38bdf8;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+    .portal-module-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+    .portal-module-name {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 6px;
+      line-height: 1.3;
     }
-    .bridge-pillar-desc {
-      font-size: 0.84rem;
+    .portal-module-desc {
+      font-size: 0.78rem;
       color: #94a3b8;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     /* MANIFIESTO CULPA MORAL */
@@ -4608,31 +4800,6 @@
     </div>
   </div>
 
-  <!-- BANNER DE TRANSICIÓN HACIA EL CÓMO -->
-  <div class="container" style="margin: 40px auto 60px;">
-    <div style="background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.12) 0%, #0d0d12 100%); border: 1px solid rgba(56,189,248,0.4); border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; box-shadow: 0 0 35px rgba(56,189,248,0.15);">
-      <span style="background: rgba(56,189,248,0.2); color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 5px 14px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
-        ✦ SIGUIENTE PASO: LA METODOLOGÍA
-      </span>
-      <h3 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: #fff; margin: 16px 0 10px;">
-        ¿Ya identificaste tu fuga? Conoce cómo la resolvemos juntos
-      </h3>
-      <p style="color: #a1a1aa; font-size: 0.95rem; max-width: 680px; margin: 0 auto 26px; line-height: 1.6;">
-        No te entregamos un reporte frío ni una plantilla vacía para que te arregles solo. Descubre el proceso de acompañamiento 1 a 1 y co-creación con Diego.
-      </p>
-      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-        <button onclick="switchPlatformTab('view-como')" class="btn-primary" style="background: #38bdf8; color: #000; font-weight: 800; padding: 13px 28px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border: none; box-shadow: 0 0 25px rgba(56,189,248,0.35);">
-          🧭 Conocer El Cómo: El Acompañamiento 1 a 1 →
-        </button>
-        <button onclick="switchPlatformTab('view-que')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem;">
-          🚀 Ir directo a Planes & Módulos →
-        </button>
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20hacer%20el%20sondeo%20en%20tu%20web%20y%20quiero%20conversar%20sobre%20mi%20caso" target="_blank" class="btn-secondary" style="font-size: 0.92rem; padding: 13px 24px; border-radius: 50px; text-decoration: none; border-color: rgba(255,255,255,0.2);">
-          💬 Hablar con Diego por WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
 
 </div>
 
@@ -4659,9 +4826,9 @@
   <section class="service-bridge-section" id="el-servicio" style="padding: 70px 0 50px 0;">
     <div class="container">
 
-      <!-- EL PUENTE CENTRAL: ADMINISTRACIÓN HUMANA -->
+      <!-- EL PUENTE CENTRAL: ADMINISTRACIÓN HUMANA (UNIFICADO Y VISUAL) -->
       <div class="central-bridge-card">
-        <span class="bridge-header-tag">✦ EL SERVICIO • EL PUNTO DE CONVERGENCIA JUSTO AL CENTRO DEL MAPA ✦</span>
+        <span class="bridge-header-tag">✦ EL PROCESO • DE LA ESCUCHA A LA ACCIÓN OPERATIVA ✦</span>
         <h2 class="bridge-title">ADMINISTRACIÓN HUMANA</h2>
         
         <!-- IDENTIDAD CERCANA EN PRIMERA PERSONA DE DIEGO -->
@@ -4669,13 +4836,75 @@
           <span class="consultant-avatar-icon">🤝</span>
           <div>
             <div class="consultant-badge-title">Acompañamiento 1 a 1 directo con Diego Alberto González Yáñez</div>
-            <div class="consultant-badge-sub">Sin intermediarios, sin bots ni respuestas genéricas: co-diseño tu sistema a la medida de tu realidad concreta.</div>
+            <div class="consultant-badge-sub">Sin intermediarios, sin bots ni respuestas genéricas: te escucho sin juicio, analizo tu caso con rigor técnico y co-diseño tu sistema a la medida de tu realidad.</div>
           </div>
         </div>
 
         <p class="bridge-sub">
-          No eres un número para una consultora, ni un seguidor de un gurú, ni un usuario abandonado en una app. <b>Me siento contigo a co-crear un sistema práctico en vivo</b>, para que desde la primera sesión sientas alivio real, orden operativo y recuperes el mando de tu tiempo.
+          No eres un número para una consultora, ni un seguidor de un gurú, ni un usuario abandonado en una app. <b>Unimos la escucha activa con la mirada técnica de la administración</b> para que todo tu orden se materialice en un <b>Plan de Vuelo vivo</b> que trabajamos juntos sesión a sesión.
         </p>
+
+        <!-- EL PROCESO EN 3 PASOS VISUALES (SENCILLO Y CLARO A SIMPLE VISTA) -->
+        <div class="process-stepper-grid">
+          
+          <!-- PASO 1: ESCUCHA ACTIVA -->
+          <div class="process-step-card step-1">
+            <div>
+              <div class="step-header-row">
+                <span class="step-badge">01 • LO HUMANO</span>
+                <span class="step-icon-circle">👂</span>
+              </div>
+              <h3 class="step-card-title">1. Escucha Activa & Espacio Seguro</h3>
+              <p class="step-card-desc">
+                Me siento contigo a escuchar tu trinchera real: el cansancio, el desorden de horarios, los miedos y la carga mental invisible. Cero juicios ni exigencias imposibles: cuidamos tu sistema nervioso.
+              </p>
+            </div>
+            <span class="step-card-tag">✦ Sin culpa moral ni poses</span>
+          </div>
+
+          <!-- PASO 2: MIRADA TÉCNICA EN TU IDIOMA -->
+          <div class="process-step-card step-2">
+            <div>
+              <div class="step-header-row">
+                <span class="step-badge">02 • EL RIGOR TÉCNICO</span>
+                <span class="step-icon-circle">📐</span>
+              </div>
+              <h3 class="step-card-title">2. Mirada Técnica en tu Idioma</h3>
+              <p class="step-card-desc">
+                Aplico la ingeniería de operaciones, capacidad de carga, finanzas y delimitación de roles, pero <b>te enseño lo técnico de la administración en lenguaje simple</b>, cercano y adaptado a tu contexto.
+              </p>
+            </div>
+            <span class="step-card-tag">✦ Gestión formal sin jerga vacía</span>
+          </div>
+
+          <!-- PASO 3: TRADUCCIÓN AL PLAN DE VUELO -->
+          <div class="process-step-card step-3">
+            <div>
+              <div class="step-header-row">
+                <span class="step-badge">03 • EL RESULTADO VIVO</span>
+                <span class="step-icon-circle">🚀</span>
+              </div>
+              <h3 class="step-card-title">3. Todo se traduce en tu Plan de Vuelo</h3>
+              <p class="step-card-desc">
+                Nada queda en el aire ni en un PDF frío de 80 páginas. Diagnosticamos tus fugas y seleccionamos los <b>módulos prácticos</b> exactos que necesitas para ordenar tu tiempo y tu negocio sin colapsar.
+              </p>
+            </div>
+            <span class="step-card-tag">✦ Módulos a tu medida real</span>
+          </div>
+
+        </div>
+
+        <!-- CONECTOR VISUAL AL PORTAL DE CLIENTES -->
+        <div class="portal-connection-banner">
+          <div class="portal-conn-tag">
+            <span>🔑</span>
+            <span>TU CENTRO DE OPERACIONES PRIVADO</span>
+          </div>
+          <h3 class="portal-conn-title">Este es tu Plan de Vuelo, alojado en nuestro Portal de Clientes</h3>
+          <p class="portal-conn-sub">
+            Recibes tu <strong>usuario y clave personal</strong> para acceder desde tu computador o celular (sin instalar nada). <strong>No te dejamos solo: lo vamos trabajando, calibrando y refinando juntos sesión a sesión en vivo:</strong>
+          </p>
+        </div>
 
         <!-- SHOWCASE VISUAL DEL SERVICIO Y ENTREGABLE REAL -->
         <div class="bridge-deliverable-panel">
@@ -4686,76 +4915,86 @@
               <span class="browser-dot green"></span>
             </div>
             <div class="browser-url-pill">
-              <span>🔒</span> administracionhumana.com/plan-de-vuelo-2.0/cliente-activo
+              <span>🔒</span> portal.administracionhumana.com/mi-plan-de-vuelo
             </div>
             <div style="font-size:0.7rem; color:#10b981; font-weight:700;">
-              ● SOFTWARE ACTIVO EN VIVO
+              ● SOFTWARE ACTIVO EN VIVO • ACCESO POR CLAVE
             </div>
           </div>
+          
+          <!-- CAPTURA MAESTRA DEL PLAN DE VUELO EN EL PORTAL -->
           <img src="assets/img/plan_vuelo/servicio_entregable_preview.png" alt="Plan de Vuelo 2.0 y Entregables de Administración Humana" class="deliverable-preview-img" />
+
+          <!-- MUESTRAS REALES DE LOS MÓDULOS INCLUIDOS ADENTRO -->
+          <div style="padding: 22px 20px 10px 20px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.06);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <span style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em;">
+                🛠️ Módulos Técnicos Adaptados a tu Día a Día (Muestras Reales del Portal):
+              </span>
+              <span style="font-size: 0.72rem; color: #94a3b8; font-family: monospace;">
+                Sesión a sesión desbloqueamos y operamos tus módulos ➔
+              </span>
+            </div>
+
+            <div class="portal-modules-grid">
+              
+              <!-- MUESTRA 1: MAPEA TU TIEMPO -->
+              <div class="portal-module-card">
+                <div class="portal-module-thumb-wrap">
+                  <img src="assets/img/plan_vuelo/plan_vuelo_dashboard.png" alt="Módulo Mapeador 24H" class="portal-module-thumb" />
+                  <span class="portal-module-tag-overlay">Módulo P1-01</span>
+                </div>
+                <div class="portal-module-body">
+                  <div class="portal-module-name">🕒 Mapeador 24H (168h)</div>
+                  <div class="portal-module-desc">
+                    Auditoría de tu semana real. Te enseña a equilibrar bloques de sueño, trabajo profundo y descanso libre de culpa.
+                  </div>
+                </div>
+              </div>
+
+              <!-- MUESTRA 2: TABLERO GTD -->
+              <div class="portal-module-card">
+                <div class="portal-module-thumb-wrap">
+                  <img src="assets/img/plan_vuelo/plan_vuelo_kanban.png" alt="Módulo Tablero GTD de Foco" class="portal-module-thumb" />
+                  <span class="portal-module-tag-overlay">Módulo P1-04</span>
+                </div>
+                <div class="portal-module-body">
+                  <div class="portal-module-name">⚡ Tablero de Foco (WIP=2)</div>
+                  <div class="portal-module-desc">
+                    Ingeniería contra la sobrecarga. Bloquea la multitarea y te muestra solo las 2 prioridades inmediatas de hoy.
+                  </div>
+                </div>
+              </div>
+
+              <!-- MUESTRA 3: RITUAL DE CIERRE -->
+              <div class="portal-module-card">
+                <div class="portal-module-thumb-wrap">
+                  <img src="assets/img/plan_vuelo/plan_vuelo_cierre_diario.png" alt="Módulo Cierre de Jornada" class="portal-module-thumb" />
+                  <span class="portal-module-tag-overlay">Módulo P3-04</span>
+                </div>
+                <div class="portal-module-body">
+                  <div class="portal-module-name">🌙 Cierre de Jornada (3 min)</div>
+                  <div class="portal-module-desc">
+                    Desconexión neurobiológica formal. Corta el estado de alerta del trabajo para volver a tu hogar en calma y dormir bien.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
           <div class="deliverable-footer-badges">
             <div class="deliverable-badge-item">
-              <span style="color:#38bdf8; font-size:1.1rem;">📲</span>
-              <span><strong>Tu Plan de Vuelo Privado:</strong> Web app interactiva en el celular (sin instalar nada)</span>
+              <span style="color:#38bdf8; font-size:1.1rem;">🔑</span>
+              <span><strong>Acceso con tu Clave Privada:</strong> Tu espacio seguro en la nube para consultar en cualquier momento</span>
             </div>
             <div class="deliverable-badge-item">
               <span style="color:#a855f7; font-size:1.1rem;">📄</span>
-              <span><strong>Cuadernillo Físico:</strong> 1 hoja de papel en tu escritorio para blindar tu foco</span>
+              <span><strong>Doble Soporte:</strong> Web app táctil en el celular + Cuadernillo físico de 1 hoja</span>
             </div>
             <div class="deliverable-badge-item">
-              <span style="color:#10b981; font-size:1.1rem;">⚡</span>
-              <span><strong>Impacto Sesión 1:</strong> De 5 a 10 horas semanales recuperadas</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- LOS 4 PILARES REDISEÑADOS -->
-        <div class="bridge-pillars-grid">
-          <!-- PILAR 1: ACOMPAÑAMIENTO 1 A 1 -->
-          <div class="bridge-pillar" style="border-color: rgba(56, 189, 248, 0.35);">
-            <span class="bridge-pillar-icon">🤝</span>
-            <div class="bridge-pillar-title">1. Acompañamiento 1 a 1 Real</div>
-            <div class="bridge-pillar-desc">
-              <b>Tu copiloto en la trinchera:</b> Ni reportes fríos de 80 páginas ni discursos masivos. Diego se sienta contigo a diseñar cada solución sobre tu realidad concreta.
-            </div>
-            <div style="margin-top:12px; font-size:0.75rem; color:#38bdf8; font-weight:700;">
-              ✓ Frente a consultoras y gurús: Cercanía humana sin poses
-            </div>
-          </div>
-
-          <!-- PILAR 2: SISTEMA EN LA PALMA DE TU MANO -->
-          <div class="bridge-pillar" style="border-color: rgba(168, 85, 247, 0.35);">
-            <span class="bridge-pillar-icon">📱</span>
-            <div class="bridge-pillar-title">2. Tu Sistema en la Palma de tu Mano</div>
-            <div class="bridge-pillar-desc">
-              <b>Doble soporte práctico:</b> Tu <b>Plan de Vuelo interactivo</b> en el celular + tu <b>Cuadernillo físico</b> de 1 hoja en papel. Cero cajas vacías ni horas configurando apps.
-            </div>
-            <div style="margin-top:12px; font-size:0.75rem; color:#c084fc; font-weight:700;">
-              ✓ Frente al software frío: Listo para usar, adaptado a ti
-            </div>
-          </div>
-
-          <!-- PILAR 3: IMPACTO DESDE LA SESIÓN 1 -->
-          <div class="bridge-pillar" style="border-color: rgba(16, 185, 129, 0.35);">
-            <span class="bridge-pillar-icon">⚡</span>
-            <div class="bridge-pillar-title">3. Impacto Inmediato (Sesión 1)</div>
-            <div class="bridge-pillar-desc">
-              <b>Cero esperas de 6 meses:</b> Desde el primer encuentro tapamos tu mayor fuga y recuperas entre <b>5 y 10 horas a la semana</b> con cambios de alto impacto positivo.
-            </div>
-            <div style="margin-top:12px; font-size:0.75rem; color:#34d399; font-weight:700;">
-              ✓ Frente al coaching: Práctica pura, resultados tangibles
-            </div>
-          </div>
-
-          <!-- PILAR 4: SOBERANÍA Y CONOCIMIENTO -->
-          <div class="bridge-pillar" style="border-color: rgba(245, 158, 11, 0.35);">
-            <span class="bridge-pillar-icon">🎓</span>
-            <div class="bridge-pillar-title">4. Conocimiento y Soberanía Total</div>
-            <div class="bridge-pillar-desc">
-              <b>Herramientas que te quedan para siempre:</b> Aprendes a administrar tu energía, prioridades y negocio. Cero dependencia; tú te vuelves el líder de tu propio sistema.
-            </div>
-            <div style="margin-top:12px; font-size:0.75rem; color:#fbbf24; font-weight:700;">
-              ✓ Frente a la terapia: Métricas de negocio y autonomía
+              <span style="color:#10b981; font-size:1.1rem;">🤝</span>
+              <span><strong>Calibración Continua:</strong> Lo trabajamos y afinamos en vivo en cada sesión con Diego</span>
             </div>
           </div>
         </div>
