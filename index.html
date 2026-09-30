@@ -104,6 +104,9 @@
     }
 
     /* PESTAÑAS CENTRALES DE NAVEGACIÓN */
+    .nav-tab-full { display: inline; }
+    .nav-tab-short { display: none; }
+
     .platform-nav-tabs {
       display: flex;
       gap: 6px;
@@ -221,18 +224,26 @@
       transform: translateY(-1px);
     }
 
-    /* RESPONSIVE NAVBAR CALIBRATION */
-    @media (max-width: 1260px) {
+    .brand-text-full { display: inline; }
+    .brand-text-short { display: none; }
+    .nav-pin-full { display: inline; }
+    .nav-pin-short { display: none; }
+
+    /* RESPONSIVE NAVBAR CALIBRATION - ANTI-CLIPPING & ADAPTIVE LABELS */
+    @media (max-width: 1320px) {
+      .nav-tab-full { display: none; }
+      .nav-tab-short { display: inline; }
       .nav-ig-text { display: none; }
       .nav-brand-text { font-size: 0.92rem; }
       .plat-tab-btn { padding: 6px 11px; font-size: 0.78rem; }
       .nav-platform-container { gap: 8px; padding: 0 14px; }
+      .platform-nav-tabs { justify-content: center; }
     }
-    @media (max-width: 1060px) {
+    @media (max-width: 1040px) {
       .nav-platform-container {
         flex-wrap: wrap;
         padding: 8px 14px;
-        gap: 8px;
+        gap: 8px 12px;
       }
       .nav-brand-group {
         order: 1;
@@ -243,24 +254,51 @@
       }
       .platform-nav-tabs {
         order: 3;
+        flex: 0 0 100% !important;
         width: 100%;
         max-width: 100%;
         padding-top: 4px;
-        padding-bottom: 2px;
-        justify-content: flex-start;
+        padding-bottom: 3px;
+        justify-content: center;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
     }
-    @media (max-width: 600px) {
-      .nav-brand-text { display: none; }
-      .nav-brand-img { height: 32px; }
-      .plat-tab-btn { padding: 6px 11px; font-size: 0.75rem; }
-      .nav-btn-pin { padding: 6px 12px; font-size: 0.75rem; }
-      .nav-ig-btn { padding: 6px 10px; font-size: 0.75rem; }
-      .nav-platform-container {
-        padding: 6px 10px;
+    @media (max-width: 650px) {
+      nav.master-platform-nav {
+        padding: 4px 0 3px;
       }
+      .nav-platform-container {
+        padding: 4px 8px;
+        gap: 4px 6px;
+      }
+      .nav-brand-group {
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .brand-text-full { display: none; }
+      .brand-text-short { display: inline; }
+      .nav-brand-text { 
+        font-size: 0.78rem; 
+        letter-spacing: 0.02em;
+      }
+      .nav-brand-img { height: 26px; }
+      .nav-pin-full { display: none; }
+      .nav-pin-short { display: inline; }
+      .nav-actions-group {
+        gap: 5px;
+      }
+      .nav-btn-pin { padding: 4px 9px; font-size: 0.72rem; gap: 3px; }
+      .nav-ig-btn { padding: 4px 7px; font-size: 0.72rem; }
+      .platform-nav-tabs {
+        justify-content: flex-start;
+        padding: 2px 0 3px;
+        gap: 4px;
+      }
+      .plat-tab-btn { padding: 4px 9px; font-size: 0.72rem; gap: 3px; }
+    }
+    @media (max-width: 340px) {
+      .nav-brand-text { display: none; }
     }
 
     /* ── HERO ── */
@@ -3833,16 +3871,20 @@
       gap: 6px;
       text-decoration: none;
       transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .float-bar-btn:hover {
       background: rgba(255, 255, 255, 0.1);
     }
-    .float-bar-btn.primary {
+    .float-bar-btn.primary,
+    .float-bar-btn.active {
       background: #10b981;
       color: #000000;
       box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
     }
-    .float-bar-btn.primary:hover {
+    .float-bar-btn.primary:hover,
+    .float-bar-btn.active:hover {
       background: #34d399;
       transform: translateY(-1px);
     }
@@ -3931,15 +3973,31 @@
       transform: translateY(-1px);
     }
 
+    .float-text-full { display: inline; }
+    .float-text-short { display: none; }
+
     @media (max-width: 650px) {
       .floating-quick-bar {
-        width: 92%;
-        justify-content: space-around;
-        padding: 6px 8px;
+        width: calc(100vw - 12px);
+        max-width: 430px;
+        bottom: 10px;
+        padding: 4px 5px;
+        gap: 2px;
+        justify-content: space-between;
+        border-radius: 40px;
+        box-sizing: border-box;
       }
+      .float-text-full { display: none; }
+      .float-text-short { display: inline; }
       .float-bar-btn {
-        padding: 6px 10px;
-        font-size: 0.74rem;
+        padding: 5px 6px;
+        font-size: 0.67rem;
+        white-space: nowrap !important;
+        flex-shrink: 0;
+        gap: 2px;
+      }
+      .float-bar-btn span:first-child {
+        font-size: 0.78rem;
       }
     }
   </style>
@@ -3955,22 +4013,25 @@
     <!-- Logotipo y Marca -->
     <a href="#porque" onclick="switchPlatformTab('view-porque'); return false;" class="nav-brand-group" title="Administración Humana">
       <img src="logo_oficial.png?v=sistemas_personalizados" alt="Logo Administración Humana" class="nav-brand-img" />
-      <span class="nav-brand-text">Administración Humana</span>
+      <span class="nav-brand-text"><span class="brand-text-full">Administración Humana</span><span class="brand-text-short">Admin Humana</span></span>
     </a>
 
     <!-- Pestañas Centrales de Plataforma (Círculo Dorado) -->
     <div class="platform-nav-tabs">
-      <button class="plat-tab-btn active" data-tab="view-porque" onclick="switchPlatformTab('view-porque')" title="Propósito, filosofía y diagnóstico en vivo">
-        <span>🎯</span> 1. El Por Qué
+      <button class="plat-tab-btn" data-tab="view-sondeos" onclick="switchPlatformTab('view-sondeos')" title="Diagnóstico operativo express y cuantitativo en 4 áreas">
+        <span>⚡</span> <span class="nav-tab-full">Sondeos / Diagnóstico</span><span class="nav-tab-short">Diagnóstico</span>
+      </button>
+      <button class="plat-tab-btn active" data-tab="view-porque" onclick="switchPlatformTab('view-porque')" title="Propósito, filosofía y comprensión metodológica">
+        <span>🎯</span> <span class="nav-tab-full">1. El Por Qué</span><span class="nav-tab-short">1. Por Qué</span>
       </button>
       <button class="plat-tab-btn" data-tab="view-como" onclick="switchPlatformTab('view-como')" title="Metodología y acompañamiento 1 a 1">
-        <span>🧭</span> 2. El Cómo
+        <span>🧭</span> <span class="nav-tab-full">2. El Cómo</span><span class="nav-tab-short">2. Cómo</span>
       </button>
       <button class="plat-tab-btn" data-tab="view-que" onclick="switchPlatformTab('view-que')" title="Plan de Vuelo 2.0, simuladores interactivos y precios">
-        <span>🚀</span> 3. El Qué (Planes & Módulos)
+        <span>🚀</span> <span class="nav-tab-full">3. El Qué (Planes & Módulos)</span><span class="nav-tab-short">3. El Qué</span>
       </button>
       <button class="plat-tab-btn plat-admin-tab" data-tab="view-admin" onclick="switchPlatformTab('view-admin')" title="Consola Privada de Consultoría para Diego">
-        <span>👑</span> Consola Admin
+        <span>👑</span> <span class="nav-tab-full">Consola Admin</span><span class="nav-tab-short">Admin</span>
       </button>
     </div>
 
@@ -3981,13 +4042,298 @@
       </a>
       <div id="nav-auth-wrapper" style="display:inline-flex; align-items:center; gap:6px;">
         <button id="btn-nav-auth" onclick="window.openAuthModal()" class="nav-btn-pin" title="Ingresar con PIN de cliente">
-          <span>🔒</span> Mi Plan de Vuelo
+          <span>🔒</span> <span class="nav-pin-full">Mi Plan de Vuelo</span><span class="nav-pin-short">Mi Plan</span>
         </button>
         <button id="btn-nav-logout" style="display:none; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#aaa; border-radius:50px; padding:6px 11px; font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s;" title="Cerrar sesión activa" onmouseover="this.style.color='#fff'; this.style.borderColor='#ef4444';" onmouseout="this.style.color='#aaa'; this.style.borderColor='rgba(255,255,255,0.2)';">✕ Salir</button>
       </div>
     </div>
   </div>
 </nav>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     VISTA SONDEOS: ⚡ DIAGNÓSTICO EN VIVO & SONDEOS (EXPRESS Y 4 ÁREAS)
+     ══════════════════════════════════════════════════════════════════ -->
+<div id="view-sondeos" class="platform-view">
+  <span id="sondeos"></span>
+  <span id="sondeo"></span>
+  <span id="diagnostico"></span>
+  <span id="mini-sondeos"></span>
+  <span id="sondeo-porque"></span>
+
+  <div id="mini-sondeos-seccion" style="padding-top: 20px;">
+    <span id="sondeo-porque"></span>
+    <span id="sondeos"></span>
+    <div class="container" style="padding-top: 20px; padding-bottom: 50px;">
+      <!-- CABECERA DE ALTO IMPACTO Y CONVERSIÓN -->
+    <div style="text-align: center; max-width: 780px; margin: 0 auto 30px;">
+      <span style="background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.06em;">
+        ⚡ DIAGNÓSTICO OPERATIVO EN VIVO • VÍA WHATSAPP
+      </span>
+      <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 800; color: #fff; margin-top: 14px; line-height: 1.25;">
+        Identifica tu Fuga Principal y Conversa tu Diagnóstico con Diego
+      </h2>
+      <p style="font-size: 0.92rem; color: #a1a1aa; margin-top: 10px; line-height: 1.55;">
+        Elige cómo prefieres evaluar tu semana: con el <b>Auto-Diagnóstico Express en 1 clic</b> o con el <b>Diagnóstico Cuantitativo en 4 Áreas</b>:
+      </p>
+    </div>
+
+    <!-- OPCIÓN 1: WIDGET DE AUTO-DIAGNÓSTICO TÁCTIL EXPRESS (1 CLIC) -->
+    <div class="hero-quick-diagnostic" style="margin: 0 auto 40px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.25rem;">⚡</span>
+          <span style="font-size: 0.76rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em;">
+            OPCIÓN 1 • AUTO-DIAGNÓSTICO EXPRESS EN 1 CLIC
+          </span>
+        </div>
+        <span style="font-size: 0.74rem; color: #94a3b8; font-family: monospace;">Toca tu caso más urgente para medir tu fuga semanal ➔</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;" id="hero-diagnostic-buttons">
+        <button type="button" class="hero-diag-btn active" onclick="selectHeroDiag(this, 'tiempo')">
+          <div style="font-size: 1.4rem; margin-bottom: 6px;">⏳</div>
+          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Fuga de Tiempo</div>
+          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Se me va el día apagando urgencias ajenas y no me queda tiempo para mí.»</div>
+        </button>
+
+        <button type="button" class="hero-diag-btn" onclick="selectHeroDiag(this, 'foco')">
+          <div style="font-size: 1.4rem; margin-bottom: 6px;">🧠</div>
+          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Parálisis Multitarea</div>
+          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Tengo 20 frentes abiertos en la cabeza, salto de chat en chat y no cierro nada.»</div>
+        </button>
+
+        <button type="button" class="hero-diag-btn" onclick="selectHeroDiag(this, 'desconexion')">
+          <div style="font-size: 1.4rem; margin-bottom: 6px;">🌙</div>
+          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Resaca Laboral</div>
+          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Cierro la pantalla pero mi cabeza sigue trabajando en la cena y en la cama.»</div>
+        </button>
+      </div>
+
+      <!-- RESULTADO DINÁMICO DEL HERO DIAGNÓSTICO -->
+      <div id="hero-diag-result" style="margin-top: 16px; background: rgba(0,0,0,0.6); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+        <div style="max-width: 560px;">
+          <div style="font-size: 0.74rem; font-weight: 800; color: #f59e0b; text-transform: uppercase; margin-bottom: 4px;" id="hero-diag-badge">
+            🚨 FUGA ESTIMADA: 15 A 20 HORAS / SEMANA
+          </div>
+          <div style="font-size: 0.88rem; color: #ffffff; font-weight: 700; margin-bottom: 4px;" id="hero-diag-title">
+            Tu mayor fuga es la dispersión por urgencias ajenas no filtradas.
+          </div>
+          <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.45;" id="hero-diag-desc">
+            En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Mapeador 24H</i> para blindar tus <b>Bloques de Oro</b> personales antes de que el mundo te los robe.
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20mayor%20fuga%20es%20el%20Tiempo%20(apagafuegos)." id="hero-diag-wsp" target="_blank" class="btn-whatsapp-pulse" style="font-size: 0.82rem; padding: 10px 18px; text-decoration: none; border-radius: 50px;">
+            💬 Conversar con Diego →
+          </a>
+          <button type="button" onclick="switchPlatformTab('view-que');" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 16px; border-radius: 50px; cursor: pointer;">
+            Ver Planes & Soluciones →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEPARADOR Y MODO 2: DIAGNÓSTICO EN 4 ÁREAS PRÁCTICAS -->
+    <div style="text-align: center; max-width: 780px; margin: 0 auto 28px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 36px;" id="mini-sondeo-4areas">
+      <span style="background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); color: #34d399; font-size: 0.75rem; font-weight: 800; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.06em;">
+        OPCIÓN 2 • DIAGNÓSTICO CUANTITATIVO DETALLADO (30s)
+      </span>
+      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #fff; margin-top: 12px;">
+        Calibra tus 4 Áreas Operativas Clave
+      </h3>
+      <p style="font-size: 0.88rem; color: #a1a1aa; margin-top: 6px;">
+        Toca cómo vives hoy cada una de las 4 áreas prácticas para calcular tu fuga semanal acumulada:
+      </p>
+
+      <!-- CAMPO OPCIONAL DE NOMBRE / PROFESIÓN PARA CERO FRICCIÓN -->
+      <div style="margin-top: 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); border-radius: 50px; padding: 6px 18px; display: inline-flex; align-items: center; gap: 10px; max-width: 440px; width: 100%;">
+        <span style="font-size: 1.1rem;">👤</span>
+        <input 
+          type="text" 
+          id="mini-sondeo-user-name" 
+          placeholder="Tu Nombre o Profesión (Opcional, ej: Rocío - Terapeuta)" 
+          oninput="window.updateMiniSondeoResults()" 
+          style="background: transparent; border: none; outline: none; color: #ffffff; font-size: 0.85rem; width: 100%; font-family: var(--font-sans);"
+        />
+      </div>
+    </div>
+
+    <!-- GRILLA DE LAS 4 ÁREAS PRÁCTICAS -->
+    <div class="mini-sondeo-grid">
+      <!-- Test 1: Fugas de Tiempo -->
+      <div class="mini-sondeo-card">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:1.6rem;">⏳</span>
+            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 1: Tiempo</span>
+          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Fugas & Apagafuegos</h4>
+          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuánto tiempo se te va resolviendo urgencias ajenas e interrupciones?</p>
+        </div>
+        <div>
+          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="0.5" data-label="Bajo: 1-2 interrupciones" onclick="selectMiniSondeoOption(this)">
+            <span>Bajo: 1-2 interrupciones al día</span>
+            <span style="color:#10b981; font-weight:800;">~0.5h/d</span>
+          </button>
+          <button class="mini-sondeo-opt-btn active" data-group="tiempo" data-val="2.5" data-label="Medio: 3-5 urgencias ajenas" onclick="selectMiniSondeoOption(this)">
+            <span>Medio: 3-5 urgencias ajenas</span>
+            <span style="color:#f59e0b; font-weight:800;">~2.5h/d</span>
+          </button>
+          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="4.5" data-label="Crítico: Apago fuegos todo el día" onclick="selectMiniSondeoOption(this)">
+            <span>Crítico: Apago fuegos todo el día</span>
+            <span style="color:#ef4444; font-weight:800;">~4.5h/d</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Test 2: Multitarea y Foco -->
+      <div class="mini-sondeo-card">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:1.6rem;">🌪️</span>
+            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 2: Foco</span>
+          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Foco & Multitarea</h4>
+          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuántos pendientes tienes abiertos en simultáneo en tu cabeza?</p>
+        </div>
+        <div>
+          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="0" data-label="Bajo: 1-2 frentes con tracción" onclick="selectMiniSondeoOption(this)">
+            <span>Orden: 1-2 frentes con tracción</span>
+            <span style="color:#10b981; font-weight:800;">En Foco</span>
+          </button>
+          <button class="mini-sondeo-opt-btn active" data-group="foco" data-val="1.5" data-label="Medio: 4-6 frentes a la vez" onclick="selectMiniSondeoOption(this)">
+            <span>Dispersión: 4-6 frentes a la vez</span>
+            <span style="color:#f59e0b; font-weight:800;">Disperso</span>
+          </button>
+          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="3.0" data-label="Crítico: Caos de notas y pendientes" onclick="selectMiniSondeoOption(this)">
+            <span>Saturación: 15 pestañas y pendientes</span>
+            <span style="color:#ef4444; font-weight:800;">Parálisis</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Test 3: Tarifas & Finanzas -->
+      <div class="mini-sondeo-card">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:1.6rem;">💸</span>
+            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 3: Finanzas</span>
+          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Tarifas & Rentabilidad</h4>
+          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Sientes que lo que ganas compensa el esfuerzo y las horas que pones?</p>
+        </div>
+        <div>
+          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="0" data-label="Sostenible: Margen saludable" onclick="selectMiniSondeoOption(this)">
+            <span>Equilibrado: Margen saludable</span>
+            <span style="color:#10b981; font-weight:800;">Sostenible</span>
+          </button>
+          <button class="mini-sondeo-opt-btn active" data-group="finanzas" data-val="1.5" data-label="Desgaste: Trabajo mucho y no rinde" onclick="selectMiniSondeoOption(this)">
+            <span>Desgaste: Trabajo mucho y no rinde</span>
+            <span style="color:#f59e0b; font-weight:800;">Por Hora</span>
+          </button>
+          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="3.0" data-label="Peligro: Regalo horas extras" onclick="selectMiniSondeoOption(this)">
+            <span>Peligro: Regalo horas y cobro bajo</span>
+            <span style="color:#ef4444; font-weight:800;">Erosión</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Test 4: Sobrecarga Mental -->
+      <div class="mini-sondeo-card">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:1.6rem;">🧠</span>
+            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 4: Energía</span>
+          </div>
+          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Cierre & Desconexión</h4>
+          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cómo termina tu cabeza al terminar de trabajar o al irte a dormir?</p>
+        </div>
+        <div>
+          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="0" data-label="Tranquilo: Desconecto sin culpa" onclick="selectMiniSondeoOption(this)">
+            <span>Tranquilo: Desconecto sin culpa</span>
+            <span style="color:#10b981; font-weight:800;">Descanso</span>
+          </button>
+          <button class="mini-sondeo-opt-btn active" data-group="energia" data-val="1.5" data-label="Resaca: Repaso pendientes de noche" onclick="selectMiniSondeoOption(this)">
+            <span>Resaca: Repaso pendientes de noche</span>
+            <span style="color:#f59e0b; font-weight:800;">Sobrecarga</span>
+          </button>
+          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="3.0" data-label="Burnout: Insomnio o culpa por parar" onclick="selectMiniSondeoOption(this)">
+            <span>Burnout: Batería en 0% e insomnio</span>
+            <span style="color:#ef4444; font-weight:800;">Alerta</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARJETA DINÁMICA DE PRE-DIAGNÓSTICO CON BOTÓN WHATSAPP -->
+    <div style="margin-top: 32px; background: #0c0c0f; border: 1px solid #333; border-radius: var(--radius-lg); padding: 30px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;" id="mini-sondeo-result-box">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
+          <span id="badge-urgencia" style="background:#f59e0b; color:#000; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:50px; text-transform:uppercase;">
+            ⚠️ Nivel de Alerta: Moderado
+          </span>
+          <span style="font-size:0.86rem; color:#d4d4d8;" id="text-fuga-estimada">Fuga estimada: <b>7.0 horas / semana</b> (~28 h/mes)</span>
+        </div>
+        <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#fff;" id="text-diagnostico-titulo">
+          Tu sistema está perdiendo horas valiosas en urgencias ajenas y dispersión
+        </h3>
+        <p style="font-size:0.88rem; color:#a1a1aa; margin-top:8px; line-height:1.5;" id="text-modulos-sugeridos">
+          Módulos recomendados para tu caso: <b>MOD-06 (Mapeador 24H)</b> y <b>MOD-07 (Tablero WIP 2 Tareas)</b>.
+        </p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px; align-items:stretch; min-width: 310px;">
+        <a id="btn-whatsapp-mini-sondeo" href="#" target="_blank" class="btn-whatsapp-pulse" style="justify-content:center; text-align:center;">
+          <span>📲</span> Enviar mi Sondeo a Diego por WhatsApp (1 Clic)
+        </a>
+        <button onclick="switchPlatformTab('view-que'); setTimeout(function(){ var el = document.getElementById('mod-showcase-kanban'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 250);" class="btn-secondary" style="font-size:0.84rem; padding:10px 18px; border-radius:50px; font-weight:700; width:100%; justify-content:center; border-color:rgba(56,189,248,0.35); color:#7dd3fc; background:rgba(56,189,248,0.06); cursor:pointer; display:flex; align-items:center; gap:8px;">
+          <span>🧩</span> Ver las Herramientas que resuelven esta fuga →
+        </button>
+        <div style="font-size:0.74rem; color:#888; text-align:center;">
+          ✓ Se abre tu WhatsApp con los resultados listos para enviar
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCESO ALTERNATIVO AL SONDEO 360 COMPLETO -->
+    <div style="text-align: center; margin-top: 36px; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.12);">
+      <p style="font-size: 0.88rem; color: #a1a1aa; margin-bottom: 10px;">
+        ¿Prefieres un análisis exhaustivo con opción de grabar una <b>nota de voz diagnóstica de hasta 5 minutos</b>?
+      </p>
+      <a href="sondeo.html" class="btn-secondary" style="font-size: 0.84rem; padding: 8px 20px; border-radius: 50px;">
+        ⚡ Ir al Sondeo 360° Completo (90s + Nota de Voz) →
+      </a>
+    </div>
+    </div>
+  </div>
+
+  <!-- BANNER DE ENLACE CON EL CÍRCULO DORADO (POR QUÉ, CÓMO, QUÉ) -->
+  <div class="container" style="margin: 20px auto 60px;">
+    <div style="background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.12) 0%, rgba(10,10,14,0.95) 100%); border: 1px solid rgba(56,189,248,0.35); border-radius: var(--radius-lg); padding: 36px 26px; text-align: center; box-shadow: 0 0 30px rgba(56,189,248,0.12);">
+      <span style="background: rgba(56,189,248,0.18); border: 1px solid rgba(56,189,248,0.35); color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
+        ✦ EL CÍRCULO DORADO DE ADMINISTRACIÓN HUMANA
+      </span>
+      <h3 style="font-family: var(--font-heading); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; color: #fff; margin: 16px 0 10px;">
+        Descubre el sistema metodológico detrás de este diagnóstico
+      </h3>
+      <p style="color: #a1a1aa; font-size: 0.94rem; max-width: 660px; margin: 0 auto 24px; line-height: 1.6;">
+        No te dejamos solo con un cálculo frío de horas. Conoce la filosofía profunda (<b>1. El Por Qué</b>), el proceso de co-creación 1 a 1 (<b>2. El Cómo</b>) y las herramientas del Plan de Vuelo 2.0 (<b>3. El Qué</b>).
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button onclick="switchPlatformTab('view-porque')" class="btn-primary" style="background:#ffffff; color:#000; font-weight:800; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-size: 0.9rem; border: none; box-shadow: 0 0 20px rgba(255,255,255,0.25);">
+          🎯 1. El Por Qué (Filosofía & Fricción) →
+        </button>
+        <button onclick="switchPlatformTab('view-como')" class="btn-secondary" style="font-weight: 700; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-size: 0.9rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
+          🧭 2. El Cómo (Acompañamiento 1 a 1) →
+        </button>
+        <button onclick="switchPlatformTab('view-que')" class="btn-secondary" style="font-weight: 700; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-size: 0.9rem;">
+          🚀 3. El Qué (Planes & Módulos) →
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 
 <!-- ══════════════════════════════════════════════════════════════════
      VISTA 1: 🎯 EL POR QUÉ (PROPÓSITO, FRICCIÓN & DIAGNÓSTICO EN VIVO)
@@ -4008,8 +4354,8 @@
       <button onclick="switchPlatformTab('view-que')" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); color:#fff; border:none; box-shadow: 0 0 20px rgba(16,185,129,0.4); font-weight:800; font-size:0.95rem; cursor:pointer;">
         🚀 Conocer el Plan de Vuelo 2.0 (Casos Reales) →
       </button>
-      <button onclick="document.getElementById('sondeo-porque').scrollIntoView({behavior:'smooth'})" class="btn-primary" style="background:#ffffff; color:#000000; font-weight:800; font-size:0.95rem; box-shadow:0 0 25px rgba(255,255,255,0.3); cursor:pointer;">
-        ⚡ Auto-Diagnóstico Rápido (30s) ↓
+      <button onclick="switchPlatformTab('view-sondeos')" class="btn-primary" style="background:#ffffff; color:#000000; font-weight:800; font-size:0.95rem; box-shadow:0 0 25px rgba(255,255,255,0.3); cursor:pointer;">
+        ⚡ Auto-Diagnóstico Rápido (30s) →
       </button>
       <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso" class="btn-secondary" target="_blank">💬 Hablar con Diego por WhatsApp</a>
     </div>
@@ -5191,257 +5537,34 @@
     </div>
   </section>
 
-  <!-- MINI-SONDEOS FUNCIONALES & DIAGNÓSTICO DE FUGAS EN VIVO -->
-  <div id="mini-sondeos-seccion" style="padding-top: 20px;">
-    <span id="sondeo-porque"></span>
-    <span id="sondeos"></span>
-    <div class="container" style="padding-top: 20px; padding-bottom: 50px;">
-      <!-- CABECERA DE ALTO IMPACTO Y CONVERSIÓN -->
-    <div style="text-align: center; max-width: 780px; margin: 0 auto 30px;">
-      <span style="background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.06em;">
-        ⚡ DIAGNÓSTICO OPERATIVO EN VIVO • VÍA WHATSAPP
+  <!-- BANNER DE TRANSICIÓN HACIA EL CÓMO Y LOS SONDEOS -->
+  <div class="container" style="margin: 40px auto 60px;">
+    <div style="background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.12) 0%, #0d0d12 100%); border: 1px solid rgba(56,189,248,0.4); border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; box-shadow: 0 0 35px rgba(56,189,248,0.15);">
+      <span style="background: rgba(56,189,248,0.2); color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 5px 14px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
+        ✦ SIGUIENTE PASO: LA METODOLOGÍA & DIAGNÓSTICO
       </span>
-      <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 800; color: #fff; margin-top: 14px; line-height: 1.25;">
-        Identifica tu Fuga Principal y Conversa tu Diagnóstico con Diego
-      </h2>
-      <p style="font-size: 0.92rem; color: #a1a1aa; margin-top: 10px; line-height: 1.55;">
-        Elige cómo prefieres evaluar tu semana: con el <b>Auto-Diagnóstico Express en 1 clic</b> o con el <b>Diagnóstico Cuantitativo en 4 Áreas</b>:
-      </p>
-    </div>
-
-    <!-- OPCIÓN 1: WIDGET DE AUTO-DIAGNÓSTICO TÁCTIL EXPRESS (1 CLIC) -->
-    <div class="hero-quick-diagnostic" style="margin: 0 auto 40px;">
-      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 1.25rem;">⚡</span>
-          <span style="font-size: 0.76rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em;">
-            OPCIÓN 1 • AUTO-DIAGNÓSTICO EXPRESS EN 1 CLIC
-          </span>
-        </div>
-        <span style="font-size: 0.74rem; color: #94a3b8; font-family: monospace;">Toca tu caso más urgente para medir tu fuga semanal ➔</span>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;" id="hero-diagnostic-buttons">
-        <button type="button" class="hero-diag-btn active" onclick="selectHeroDiag(this, 'tiempo')">
-          <div style="font-size: 1.4rem; margin-bottom: 6px;">⏳</div>
-          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Fuga de Tiempo</div>
-          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Se me va el día apagando urgencias ajenas y no me queda tiempo para mí.»</div>
-        </button>
-
-        <button type="button" class="hero-diag-btn" onclick="selectHeroDiag(this, 'foco')">
-          <div style="font-size: 1.4rem; margin-bottom: 6px;">🧠</div>
-          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Parálisis Multitarea</div>
-          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Tengo 20 frentes abiertos en la cabeza, salto de chat en chat y no cierro nada.»</div>
-        </button>
-
-        <button type="button" class="hero-diag-btn" onclick="selectHeroDiag(this, 'desconexion')">
-          <div style="font-size: 1.4rem; margin-bottom: 6px;">🌙</div>
-          <div style="font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Resaca Laboral</div>
-          <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4;">«Cierro la pantalla pero mi cabeza sigue trabajando en la cena y en la cama.»</div>
-        </button>
-      </div>
-
-      <!-- RESULTADO DINÁMICO DEL HERO DIAGNÓSTICO -->
-      <div id="hero-diag-result" style="margin-top: 16px; background: rgba(0,0,0,0.6); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
-        <div style="max-width: 560px;">
-          <div style="font-size: 0.74rem; font-weight: 800; color: #f59e0b; text-transform: uppercase; margin-bottom: 4px;" id="hero-diag-badge">
-            🚨 FUGA ESTIMADA: 15 A 20 HORAS / SEMANA
-          </div>
-          <div style="font-size: 0.88rem; color: #ffffff; font-weight: 700; margin-bottom: 4px;" id="hero-diag-title">
-            Tu mayor fuga es la dispersión por urgencias ajenas no filtradas.
-          </div>
-          <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.45;" id="hero-diag-desc">
-            En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Mapeador 24H</i> para blindar tus <b>Bloques de Oro</b> personales antes de que el mundo te los robe.
-          </div>
-        </div>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20hice%20el%20auto-diagn%C3%B3stico%20en%20tu%20web%20y%20mi%20mayor%20fuga%20es%20el%20Tiempo%20(apagafuegos)." id="hero-diag-wsp" target="_blank" class="btn-whatsapp-pulse" style="font-size: 0.82rem; padding: 10px 18px; text-decoration: none; border-radius: 50px;">
-            💬 Conversar con Diego →
-          </a>
-          <button type="button" onclick="switchPlatformTab('view-que');" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 16px; border-radius: 50px; cursor: pointer;">
-            Ver Planes & Soluciones →
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- SEPARADOR Y MODO 2: DIAGNÓSTICO EN 4 ÁREAS PRÁCTICAS -->
-    <div style="text-align: center; max-width: 780px; margin: 0 auto 28px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 36px;" id="mini-sondeo-4areas">
-      <span style="background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); color: #34d399; font-size: 0.75rem; font-weight: 800; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.06em;">
-        OPCIÓN 2 • DIAGNÓSTICO CUANTITATIVO DETALLADO (30s)
-      </span>
-      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #fff; margin-top: 12px;">
-        Calibra tus 4 Áreas Operativas Clave
+      <h3 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: #fff; margin: 16px 0 10px;">
+        ¿Ya comprendes el Por Qué? Conoce el Acompañamiento o Mide tus Fugas
       </h3>
-      <p style="font-size: 0.88rem; color: #a1a1aa; margin-top: 6px;">
-        Toca cómo vives hoy cada una de las 4 áreas prácticas para calcular tu fuga semanal acumulada:
+      <p style="color: #a1a1aa; font-size: 0.95rem; max-width: 680px; margin: 0 auto 26px; line-height: 1.6;">
+        No te entregamos un reporte frío ni una plantilla vacía para que te arregles solo. Descubre el proceso de acompañamiento 1 a 1 y co-creación con Diego o calibra tus fugas semanales en 30 segundos.
       </p>
-
-      <!-- CAMPO OPCIONAL DE NOMBRE / PROFESIÓN PARA CERO FRICCIÓN -->
-      <div style="margin-top: 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); border-radius: 50px; padding: 6px 18px; display: inline-flex; align-items: center; gap: 10px; max-width: 440px; width: 100%;">
-        <span style="font-size: 1.1rem;">👤</span>
-        <input 
-          type="text" 
-          id="mini-sondeo-user-name" 
-          placeholder="Tu Nombre o Profesión (Opcional, ej: Rocío - Terapeuta)" 
-          oninput="window.updateMiniSondeoResults()" 
-          style="background: transparent; border: none; outline: none; color: #ffffff; font-size: 0.85rem; width: 100%; font-family: var(--font-sans);"
-        />
-      </div>
-    </div>
-
-    <!-- GRILLA DE LAS 4 ÁREAS PRÁCTICAS -->
-    <div class="mini-sondeo-grid">
-      <!-- Test 1: Fugas de Tiempo -->
-      <div class="mini-sondeo-card">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:1.6rem;">⏳</span>
-            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 1: Tiempo</span>
-          </div>
-          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Fugas & Apagafuegos</h4>
-          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuánto tiempo se te va resolviendo urgencias ajenas e interrupciones?</p>
-        </div>
-        <div>
-          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="0.5" data-label="Bajo: 1-2 interrupciones" onclick="selectMiniSondeoOption(this)">
-            <span>Bajo: 1-2 interrupciones al día</span>
-            <span style="color:#10b981; font-weight:800;">~0.5h/d</span>
-          </button>
-          <button class="mini-sondeo-opt-btn active" data-group="tiempo" data-val="2.5" data-label="Medio: 3-5 urgencias ajenas" onclick="selectMiniSondeoOption(this)">
-            <span>Medio: 3-5 urgencias ajenas</span>
-            <span style="color:#f59e0b; font-weight:800;">~2.5h/d</span>
-          </button>
-          <button class="mini-sondeo-opt-btn" data-group="tiempo" data-val="4.5" data-label="Crítico: Apago fuegos todo el día" onclick="selectMiniSondeoOption(this)">
-            <span>Crítico: Apago fuegos todo el día</span>
-            <span style="color:#ef4444; font-weight:800;">~4.5h/d</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Test 2: Multitarea y Foco -->
-      <div class="mini-sondeo-card">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:1.6rem;">🌪️</span>
-            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 2: Foco</span>
-          </div>
-          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Foco & Multitarea</h4>
-          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cuántos pendientes tienes abiertos en simultáneo en tu cabeza?</p>
-        </div>
-        <div>
-          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="0" data-label="Bajo: 1-2 frentes con tracción" onclick="selectMiniSondeoOption(this)">
-            <span>Orden: 1-2 frentes con tracción</span>
-            <span style="color:#10b981; font-weight:800;">En Foco</span>
-          </button>
-          <button class="mini-sondeo-opt-btn active" data-group="foco" data-val="1.5" data-label="Medio: 4-6 frentes a la vez" onclick="selectMiniSondeoOption(this)">
-            <span>Dispersión: 4-6 frentes a la vez</span>
-            <span style="color:#f59e0b; font-weight:800;">Disperso</span>
-          </button>
-          <button class="mini-sondeo-opt-btn" data-group="foco" data-val="3.0" data-label="Crítico: Caos de notas y pendientes" onclick="selectMiniSondeoOption(this)">
-            <span>Saturación: 15 pestañas y pendientes</span>
-            <span style="color:#ef4444; font-weight:800;">Parálisis</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Test 3: Tarifas & Finanzas -->
-      <div class="mini-sondeo-card">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:1.6rem;">💸</span>
-            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 3: Finanzas</span>
-          </div>
-          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Tarifas & Rentabilidad</h4>
-          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Sientes que lo que ganas compensa el esfuerzo y las horas que pones?</p>
-        </div>
-        <div>
-          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="0" data-label="Sostenible: Margen saludable" onclick="selectMiniSondeoOption(this)">
-            <span>Equilibrado: Margen saludable</span>
-            <span style="color:#10b981; font-weight:800;">Sostenible</span>
-          </button>
-          <button class="mini-sondeo-opt-btn active" data-group="finanzas" data-val="1.5" data-label="Desgaste: Trabajo mucho y no rinde" onclick="selectMiniSondeoOption(this)">
-            <span>Desgaste: Trabajo mucho y no rinde</span>
-            <span style="color:#f59e0b; font-weight:800;">Por Hora</span>
-          </button>
-          <button class="mini-sondeo-opt-btn" data-group="finanzas" data-val="3.0" data-label="Peligro: Regalo horas extras" onclick="selectMiniSondeoOption(this)">
-            <span>Peligro: Regalo horas y cobro bajo</span>
-            <span style="color:#ef4444; font-weight:800;">Erosión</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Test 4: Sobrecarga Mental -->
-      <div class="mini-sondeo-card">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:1.6rem;">🧠</span>
-            <span style="font-size:0.72rem; color:#888; font-weight:700; text-transform:uppercase;">Área 4: Energía</span>
-          </div>
-          <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff;">Cierre & Desconexión</h4>
-          <p style="font-size:0.8rem; color:#a1a1aa; margin:6px 0 12px;">¿Cómo termina tu cabeza al terminar de trabajar o al irte a dormir?</p>
-        </div>
-        <div>
-          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="0" data-label="Tranquilo: Desconecto sin culpa" onclick="selectMiniSondeoOption(this)">
-            <span>Tranquilo: Desconecto sin culpa</span>
-            <span style="color:#10b981; font-weight:800;">Descanso</span>
-          </button>
-          <button class="mini-sondeo-opt-btn active" data-group="energia" data-val="1.5" data-label="Resaca: Repaso pendientes de noche" onclick="selectMiniSondeoOption(this)">
-            <span>Resaca: Repaso pendientes de noche</span>
-            <span style="color:#f59e0b; font-weight:800;">Sobrecarga</span>
-          </button>
-          <button class="mini-sondeo-opt-btn" data-group="energia" data-val="3.0" data-label="Burnout: Insomnio o culpa por parar" onclick="selectMiniSondeoOption(this)">
-            <span>Burnout: Batería en 0% e insomnio</span>
-            <span style="color:#ef4444; font-weight:800;">Alerta</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- TARJETA DINÁMICA DE PRE-DIAGNÓSTICO CON BOTÓN WHATSAPP -->
-    <div style="margin-top: 32px; background: #0c0c0f; border: 1px solid #333; border-radius: var(--radius-lg); padding: 30px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;" id="mini-sondeo-result-box">
-      <div>
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
-          <span id="badge-urgencia" style="background:#f59e0b; color:#000; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:50px; text-transform:uppercase;">
-            ⚠️ Nivel de Alerta: Moderado
-          </span>
-          <span style="font-size:0.86rem; color:#d4d4d8;" id="text-fuga-estimada">Fuga estimada: <b>7.0 horas / semana</b> (~28 h/mes)</span>
-        </div>
-        <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#fff;" id="text-diagnostico-titulo">
-          Tu sistema está perdiendo horas valiosas en urgencias ajenas y dispersión
-        </h3>
-        <p style="font-size:0.88rem; color:#a1a1aa; margin-top:8px; line-height:1.5;" id="text-modulos-sugeridos">
-          Módulos recomendados para tu caso: <b>MOD-06 (Mapeador 24H)</b> y <b>MOD-07 (Tablero WIP 2 Tareas)</b>.
-        </p>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:10px; align-items:stretch; min-width: 310px;">
-        <a id="btn-whatsapp-mini-sondeo" href="#" target="_blank" class="btn-whatsapp-pulse" style="justify-content:center; text-align:center;">
-          <span>📲</span> Enviar mi Sondeo a Diego por WhatsApp (1 Clic)
-        </a>
-        <button onclick="switchPlatformTab('view-que'); setTimeout(function(){ var el = document.getElementById('mod-showcase-kanban'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 250);" class="btn-secondary" style="font-size:0.84rem; padding:10px 18px; border-radius:50px; font-weight:700; width:100%; justify-content:center; border-color:rgba(56,189,248,0.35); color:#7dd3fc; background:rgba(56,189,248,0.06); cursor:pointer; display:flex; align-items:center; gap:8px;">
-          <span>🧩</span> Ver las Herramientas que resuelven esta fuga →
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <button onclick="switchPlatformTab('view-como')" class="btn-primary" style="background: #38bdf8; color: #000; font-weight: 800; padding: 13px 28px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border: none; box-shadow: 0 0 25px rgba(56,189,248,0.35);">
+          🧭 Conocer El Cómo: El Acompañamiento 1 a 1 →
         </button>
-        <div style="font-size:0.74rem; color:#888; text-align:center;">
-          ✓ Se abre tu WhatsApp con los resultados listos para enviar
-        </div>
+        <button onclick="switchPlatformTab('view-sondeos')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
+          ⚡ Medir tus Fugas en el Sondeo (30s) →
+        </button>
+        <button onclick="switchPlatformTab('view-que')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem;">
+          🚀 Ir directo a Planes & Módulos →
+        </button>
       </div>
     </div>
-
-    <!-- ACCESO ALTERNATIVO AL SONDEO 360 COMPLETO -->
-    <div style="text-align: center; margin-top: 36px; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.12);">
-      <p style="font-size: 0.88rem; color: #a1a1aa; margin-bottom: 10px;">
-        ¿Prefieres un análisis exhaustivo con opción de grabar una <b>nota de voz diagnóstica de hasta 5 minutos</b>?
-      </p>
-      <a href="sondeo.html" class="btn-secondary" style="font-size: 0.84rem; padding: 8px 20px; border-radius: 50px;">
-        ⚡ Ir al Sondeo 360° Completo (90s + Nota de Voz) →
-      </a>
-    </div>
-
   </div>
-    </div>
-  </div>
-
 
 </div>
+
 
 <!-- ══════════════════════════════════════════════════════════════════
      VISTA 2: 🧭 EL CÓMO (METODOLOGÍA, EL PUENTE CENTRAL & ACOMPAÑAMIENTO)
@@ -6015,7 +6138,73 @@
           </button>
         </div>
 
+      
+
+        <!-- Caso 5: Urgencias ajenas vs Foco estratégico -->
+        <div style="background: #0d0d12; border: 1px solid #252530; border-radius: 14px; padding: 22px 20px; border-left: 3px solid #f43f5e; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-size: 1.6rem; display: block; margin-bottom: 8px;">🎯</span>
+            <div style="font-size: 0.74rem; font-weight: 800; color: #f43f5e; text-transform: uppercase; margin-bottom: 6px;">Si tu problema es:</div>
+            <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+              «Vivo atrapado en urgencias de otros y nunca tengo tiempo para mis proyectos importantes»
+            </h4>
+            <p style="font-size: 0.82rem; color: #94a3b8; line-height: 1.5; margin-bottom: 12px;">
+              <b>El Módulo que te ayuda:</b> <i>Matriz de Eisenhower 2x2 & Filtro Q2 (MOD-08)</i>. Separa el ruido operativo de tus avances estratégicos. Te entrena para filtrar demandas ajenas y blindar horas intocables para lo que hace crecer tu negocio.
+            </p>
+            <div style="font-size: 0.78rem; color: #fb7185; font-weight: 700; margin-bottom: 14px;">✓ Retorno: Prioridades blindadas y capacidad de decir "no" sin culpa.</div>
+          </div>
+          <button type="button" class="module-jump-btn" onclick="switchPlatformTab('view-sondeos');">
+            <span>🎯 Calibrar Fugas en el Sondeo (30s) →</span>
+          </button>
+        </div>
+
+        <!-- Caso 6: Fusión de roles y culpa al descansar -->
+        <div style="background: #0d0d12; border: 1px solid #252530; border-radius: 14px; padding: 22px 20px; border-left: 3px solid #6366f1; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-size: 1.6rem; display: block; margin-bottom: 8px;">🛡️</span>
+            <div style="font-size: 0.74rem; font-weight: 800; color: #818cf8; text-transform: uppercase; margin-bottom: 6px;">Si tu problema es:</div>
+            <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+              «Se me mezclan los roles: trabajo mientras estoy con mi familia o me siento culpable si descanso»
+            </h4>
+            <p style="font-size: 0.82rem; color: #94a3b8; line-height: 1.5; margin-bottom: 12px;">
+              <b>El Módulo que te ayuda:</b> <i>Triangulación y Blindaje de Roles MECE (MOD-14)</i>. Establecemos un cerco nítido entre tu rol profesional, familiar y personal. Cero contaminación cruzada, pactos explícitos de disponibilidad y límites sanos con clientes.
+            </p>
+            <div style="font-size: 0.78rem; color: #a5b4fc; font-weight: 700; margin-bottom: 14px;">✓ Retorno: Presencia plena en cada área y descanso libre de ansiedad.</div>
+          </div>
+          <button type="button" class="module-jump-btn" onclick="switchPlatformTab('view-como');">
+            <span>🧭 Conocer Acompañamiento 1 a 1 →</span>
+          </button>
+        </div>
+</div>
+
+      <!-- BANNER DE PERSONALIZACIÓN: EN LA PALMA DE TU MANO -->
+      <div style="margin-top: 26px; background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(56,189,248,0.06) 50%, rgba(13,13,18,0.95) 100%); border: 1px solid rgba(16,185,129,0.28); border-radius: 16px; padding: 24px 26px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; box-shadow: 0 12px 35px rgba(0,0,0,0.45), 0 0 25px rgba(16,185,129,0.12);">
+        <div style="display: flex; align-items: center; gap: 16px; max-width: 780px;">
+          <div style="font-size: 2.1rem; background: rgba(16,185,129,0.14); border: 1px solid rgba(16,185,129,0.35); width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 18px rgba(16,185,129,0.22);">
+            📱
+          </div>
+          <div>
+            <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">
+              <span>✦</span> CATÁLOGO DE MÁS DE 60 HERRAMIENTAS ADAPTABLES
+            </div>
+            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px; line-height: 1.35;">
+              Esto es solo una parte de todas las herramientas que hay para personalizar en tu Plan de Vuelo, en la palma de tu mano
+            </h4>
+            <p style="font-size: 0.86rem; color: #94a3b8; line-height: 1.55; margin: 0;">
+              No te imponemos plantillas rígidas ni metodologías ajenas. Co-creamos contigo un sistema a tu medida, seleccionando únicamente los módulos que resuelven tus cuellos de botella: <b>100% interactivos y directamente en la palma de tu mano</b> (en tu celular o computador vía web app privada con PIN, sin instalar aplicaciones pesadas).
+            </p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'});" class="btn-primary" style="background: #10b981; color: #000; font-weight: 800; padding: 11px 22px; border-radius: 50px; font-size: 0.84rem; border: none; cursor: pointer; box-shadow: 0 0 18px rgba(16,185,129,0.35); transition: all 0.2s;">
+            🚀 Ver Planes de Vuelo →
+          </button>
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20conocer%20qu%C3%A9%20herramientas%20podr%C3%ADamos%20personalizar%20en%20mi%20Plan%20de%20Vuelo" target="_blank" class="btn-secondary" style="font-size: 0.84rem; padding: 11px 20px; border-radius: 50px; text-decoration: none; border-color: rgba(255,255,255,0.25);">
+            💬 Conversar con Diego
+          </a>
+        </div>
       </div>
+
     </div>
     </div>
 
@@ -6543,7 +6732,7 @@
       <a href="#porque" onclick="switchPlatformTab('view-porque'); return false;">1. El Por Qué</a>
       <a href="#como" onclick="switchPlatformTab('view-como'); return false;">2. El Cómo</a>
       <a href="#que" onclick="switchPlatformTab('view-que'); return false;">3. El Qué (Planes & Módulos)</a>
-      <a href="#sondeos" onclick="switchPlatformTab('view-porque'); setTimeout(function(){ var el = document.getElementById('sondeo-porque'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 150); return false;">Mini-Sondeo (30s)</a>
+      <a href="#sondeos" onclick="switchPlatformTab('view-sondeos'); return false;">⚡ Sondeos / Diagnóstico (30s)</a>
       <a href="#sobre-diego" onclick="switchPlatformTab('view-como'); setTimeout(function(){ var el = document.getElementById('sobre-diego'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 150); return false;">Sobre Diego</a>
       <a href="dossier.html">Dossier & Casos</a>
       <a href="sondeo.html">Sondeo 360°</a>
@@ -6802,8 +6991,9 @@
    ══════════════════════════════════════════════════════════════════ */
 window.switchPlatformTab = function(tabId) {
   // Aliases de compatibilidad directa hacia el Círculo Dorado
-  if (tabId === 'view-metodo' || tabId === 'view-sondeos') tabId = 'view-porque';
+  if (tabId === 'view-metodo') tabId = 'view-porque';
   if (tabId === 'view-modulos' || tabId === 'view-planes') tabId = 'view-que';
+  if (tabId === 'view-diagnostico') tabId = 'view-sondeos';
 
   const tabs = document.querySelectorAll('.plat-tab-btn');
   const views = document.querySelectorAll('.platform-view');
@@ -6825,6 +7015,7 @@ window.switchPlatformTab = function(tabId) {
     }
   }
 
+  // Actualizar estado activo en pestañas superiores
   tabs.forEach(btn => {
     if (btn.getAttribute('data-tab') === tabId) {
       btn.classList.add('active');
@@ -6833,6 +7024,19 @@ window.switchPlatformTab = function(tabId) {
     }
   });
 
+  // Actualizar botones de la barra flotante inferior
+  const floatBtns = document.querySelectorAll('#floating-quick-bar .float-bar-btn[data-tab]');
+  floatBtns.forEach(btn => {
+    if (btn.getAttribute('data-tab') === tabId) {
+      btn.classList.add('primary');
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('primary');
+      btn.classList.remove('active');
+    }
+  });
+
+  // Mostrar la vista seleccionada
   views.forEach(v => {
     if (v.id === tabId) {
       v.classList.add('active');
@@ -6844,6 +7048,7 @@ window.switchPlatformTab = function(tabId) {
   });
 
   const hashMap = {
+    'view-sondeos': 'sondeos',
     'view-porque': 'porque',
     'view-como': 'como',
     'view-que': 'que',
@@ -6862,6 +7067,12 @@ window.switchPlatformTab = function(tabId) {
 window.initPlatformTabsFromHash = function() {
   const hash = window.location.hash.replace('#', '').toLowerCase();
   const validHashes = {
+    'sondeos': 'view-sondeos',
+    'sondeo': 'view-sondeos',
+    'diagnostico': 'view-sondeos',
+    'mini-sondeos': 'view-sondeos',
+    'fugas': 'view-sondeos',
+
     'porque': 'view-porque',
     'el-porque': 'view-porque',
     'metodo': 'view-porque',
@@ -6869,8 +7080,6 @@ window.initPlatformTabsFromHash = function() {
     'filosofia': 'view-porque',
     'problema': 'view-porque',
     'el-problema': 'view-porque',
-    'sondeos': 'view-porque',
-    'mini-sondeos': 'view-porque',
     'simulador-impacto': 'view-porque',
 
     'como': 'view-como',
@@ -6894,12 +7103,6 @@ window.initPlatformTabsFromHash = function() {
   const targetTab = validHashes[hash] || 'view-porque';
   window.switchPlatformTab(targetTab);
 
-  if (hash === 'sondeos' || hash === 'mini-sondeos') {
-    setTimeout(() => {
-      const sEl = document.getElementById('sondeo-porque');
-      if (sEl) sEl.scrollIntoView({ behavior: 'smooth' });
-    }, 250);
-  }
   if (hash === 'sobre-diego') {
     setTimeout(() => {
       const sEl = document.getElementById('sobre-diego');
@@ -7906,7 +8109,7 @@ Una vez dentro, haz clic en "Mi Plan de Vuelo" en la barra superior o utiliza el
             };
           }
         } else {
-          btnNavAuth.innerHTML = '🔒 Mi Plan de Vuelo';
+          btnNavAuth.innerHTML = '<span>🔒</span> <span class="nav-pin-full">Mi Plan de Vuelo</span><span class="nav-pin-short">Mi Plan</span>';
           btnNavAuth.title = 'Acceso a Plan de Vuelo';
           btnNavAuth.onclick = (e) => {
             e.preventDefault();
@@ -8534,20 +8737,23 @@ Quiero coordinar mi Sesión de Despegue ($35.000 CLP).`;
 
 <!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (FLOATING QUICK BAR) -->
 <div id="floating-quick-bar" class="floating-quick-bar" aria-label="Acceso rápido">
-  <button type="button" class="float-bar-btn primary" onclick="switchPlatformTab('view-porque'); document.getElementById('sondeo-porque').scrollIntoView({behavior:'smooth'});">
-    <span>⚡ Diagnóstico (30s)</span>
+  <button type="button" class="float-bar-btn" data-tab="view-sondeos" onclick="switchPlatformTab('view-sondeos');">
+    <span>⚡</span> <span class="float-text-full">Diagnóstico (30s)</span><span class="float-text-short">Sondeo</span>
   </button>
-  <button type="button" class="float-bar-btn" onclick="switchPlatformTab('view-como');">
-    <span>🧭 El Cómo</span>
+  <button type="button" class="float-bar-btn active primary" data-tab="view-porque" onclick="switchPlatformTab('view-porque');">
+    <span>🎯</span> <span class="float-text-full">El Por Qué</span><span class="float-text-short">Por Qué</span>
   </button>
-  <button type="button" class="float-bar-btn" onclick="switchPlatformTab('view-que');">
-    <span>🚀 El Qué</span>
+  <button type="button" class="float-bar-btn" data-tab="view-como" onclick="switchPlatformTab('view-como');">
+    <span>🧭</span> <span class="float-text-full">El Cómo</span><span class="float-text-short">Cómo</span>
+  </button>
+  <button type="button" class="float-bar-btn" data-tab="view-que" onclick="switchPlatformTab('view-que');">
+    <span>🚀</span> <span class="float-text-full">El Qué</span><span class="float-text-short">Qué</span>
   </button>
   <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso" target="_blank" class="float-bar-btn" style="color: #34d399;">
-    <span>💬 WhatsApp</span>
+    <span>💬</span> <span class="float-text-full">WhatsApp</span><span class="float-text-short">WA</span>
   </a>
-  <button type="button" class="float-bar-btn" onclick="window.openAuthModal();" style="border-left: 1px solid rgba(255,255,255,0.15); padding-left: 10px;">
-    <span>🔒 PIN</span>
+  <button type="button" class="float-bar-btn" onclick="window.openAuthModal();" style="border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
+    <span>🔒</span> <span>PIN</span>
   </button>
 </div>
 
