@@ -4321,23 +4321,23 @@
   <div class="container" style="margin: 20px auto 60px;">
     <div style="background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.12) 0%, rgba(10,10,14,0.95) 100%); border: 1px solid rgba(56,189,248,0.35); border-radius: var(--radius-lg); padding: 36px 26px; text-align: center; box-shadow: 0 0 30px rgba(56,189,248,0.12);">
       <span style="background: rgba(56,189,248,0.18); border: 1px solid rgba(56,189,248,0.35); color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
-        ✦ EL CÍRCULO DORADO DE ADMINISTRACIÓN HUMANA
+        ✦ EL CÍRCULO DORADO: DE LA MEDICIÓN A LA SOLUCIÓN
       </span>
       <h3 style="font-family: var(--font-heading); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; color: #fff; margin: 16px 0 10px;">
-        Descubre el sistema metodológico detrás de este diagnóstico
+        Ya mediste tus fugas. Ahora descubre por qué ocurren y cómo las resolvemos.
       </h3>
-      <p style="color: #a1a1aa; font-size: 0.94rem; max-width: 660px; margin: 0 auto 24px; line-height: 1.6;">
-        No te dejamos solo con un cálculo frío de horas. Conoce la filosofía profunda (<b>1. El Por Qué</b>), el proceso de co-creación 1 a 1 (<b>2. El Cómo</b>) y las herramientas del Plan de Vuelo 2.0 (<b>3. El Qué</b>).
+      <p style="color: #a1a1aa; font-size: 0.94rem; max-width: 680px; margin: 0 auto 24px; line-height: 1.6;">
+        Un cálculo de horas por sí solo no te salva del burnout. Para transformar tu día necesitas la tríada completa: comprender la raíz biológica y operativa del colapso (<b>1. El Por Qué</b>), vivir el proceso de acompañamiento 1 a 1 (<b>2. El Cómo</b>) y activar tus herramientas a medida en tu Plan de Vuelo (<b>3. El Qué</b>).
       </p>
       <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-        <button onclick="switchPlatformTab('view-porque')" class="btn-primary" style="background:#ffffff; color:#000; font-weight:800; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-size: 0.9rem; border: none; box-shadow: 0 0 20px rgba(255,255,255,0.25);">
-          🎯 1. El Por Qué (Filosofía & Fricción) →
+        <button onclick="switchPlatformTab('view-porque')" class="btn-primary" style="background:#ffffff; color:#000; font-weight:800; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border: none; box-shadow: 0 0 20px rgba(255,255,255,0.25);">
+          🎯 Paso 1: Conocer El Por Qué (Filosofía & Fricción) →
         </button>
-        <button onclick="switchPlatformTab('view-como')" class="btn-secondary" style="font-weight: 700; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-size: 0.9rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
-          🧭 2. El Cómo (Acompañamiento 1 a 1) →
+        <button onclick="switchPlatformTab('view-como')" class="btn-secondary" style="font-weight: 700; padding: 13px 24px; border-radius: 50px; cursor: pointer; font-size: 0.9rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
+          🧭 Paso 2: El Cómo (Acompañamiento) →
         </button>
-        <button onclick="switchPlatformTab('view-que')" class="btn-secondary" style="font-weight: 700; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-size: 0.9rem;">
-          🚀 3. El Qué (Planes & Módulos) →
+        <button onclick="switchPlatformTab('view-que')" class="btn-secondary" style="font-weight: 700; padding: 13px 24px; border-radius: 50px; cursor: pointer; font-size: 0.9rem;">
+          🚀 Paso 3: El Qué (Módulos & Precios) →
         </button>
       </div>
     </div>
@@ -5189,6 +5189,9 @@
         </div>
 
         <cite class="card-cite-amber">✦ "El orden como camino hacia la libertad."</cite>
+        <button type="button" onclick="document.getElementById('cuadrante-disciplinas').scrollIntoView({behavior:'smooth'})" class="btn-secondary" style="margin-top: 14px; width: 100%; justify-content: center; font-size: 0.82rem; padding: 9px 14px; border-radius: 50px; border-color: rgba(245,158,11,0.4); color: #fbbf24; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <span>⚖️</span> Ver Cuadrante Comparativo del Mercado ↓
+        </button>
       </div>
 
       <!-- 2. EL CÓMO -->
@@ -5238,6 +5241,9 @@
         </div>
 
         <cite class="card-cite-cyan">✦ "Sistemas vivos y adaptados a tu propio ritmo."</cite>
+        <button type="button" onclick="switchPlatformTab('view-como')" class="btn-secondary" style="margin-top: 14px; width: 100%; justify-content: center; font-size: 0.82rem; padding: 9px 14px; border-radius: 50px; border-color: rgba(56,189,248,0.4); color: #38bdf8; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <span>🧭</span> Conocer el Acompañamiento 1 a 1 (Pestaña 2) →
+        </button>
       </div>
 
       <!-- 3. EL QUÉ -->
@@ -5297,6 +5303,9 @@
         </div>
 
         <cite class="card-cite-emerald">✦ "Herramientas ordenadas sin perder tu esencia."</cite>
+        <button type="button" onclick="switchPlatformTab('view-que')" class="btn-secondary" style="margin-top: 14px; width: 100%; justify-content: center; font-size: 0.82rem; padding: 9px 14px; border-radius: 50px; border-color: rgba(16,185,129,0.4); color: #34d399; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <span>🚀</span> Ver Módulos, Herramientas y Precios (Pestaña 3) →
+        </button>
       </div>
     </div>
   </div>
@@ -5552,23 +5561,23 @@
   <div class="container" style="margin: 40px auto 60px;">
     <div style="background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.12) 0%, #0d0d12 100%); border: 1px solid rgba(56,189,248,0.4); border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; box-shadow: 0 0 35px rgba(56,189,248,0.15);">
       <span style="background: rgba(56,189,248,0.2); color: #38bdf8; font-size: 0.75rem; font-weight: 800; padding: 5px 14px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
-        ✦ SIGUIENTE PASO: LA METODOLOGÍA & DIAGNÓSTICO
+        ✦ PASO 2 DEL CÍRCULO DORADO: DE LA FILOSOFÍA AL ACOMPAÑAMIENTO
       </span>
       <h3 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: #fff; margin: 16px 0 10px;">
-        ¿Ya comprendes el Por Qué? Conoce el Acompañamiento o Mide tus Fugas
+        Ya comprendes el Por Qué. Ahora conoce El Cómo: el Acompañamiento 1 a 1
       </h3>
       <p style="color: #a1a1aa; font-size: 0.95rem; max-width: 680px; margin: 0 auto 26px; line-height: 1.6;">
-        No te entregamos un reporte frío ni una plantilla vacía para que te arregles solo. Descubre el proceso de acompañamiento 1 a 1 y co-creación con Diego o calibra tus fugas semanales en 30 segundos.
+        Saber que tu sistema actual está colapsado es solo el primer paso. El cambio real ocurre cuando alguien experto se sienta contigo a diseñar la salida. Conoce cómo es el proceso de co-creación 1 a 1 con Diego: sin juicios, a tu propio ritmo y con cero tareas abrumadoras.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <button onclick="switchPlatformTab('view-como')" class="btn-primary" style="background: #38bdf8; color: #000; font-weight: 800; padding: 13px 28px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border: none; box-shadow: 0 0 25px rgba(56,189,248,0.35);">
-          🧭 Conocer El Cómo: El Acompañamiento 1 a 1 →
-        </button>
-        <button onclick="switchPlatformTab('view-sondeos')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
-          ⚡ Medir tus Fugas en el Sondeo (30s) →
+          🧭 Paso 2: Conocer El Cómo (Acompañamiento 1 a 1) →
         </button>
         <button onclick="switchPlatformTab('view-que')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem;">
-          🚀 Ir directo a Planes & Módulos →
+          🚀 Paso 3: Ver El Qué (Módulos & Precios) →
+        </button>
+        <button onclick="switchPlatformTab('view-sondeos')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
+          ⚡ Medir Fugas en el Sondeo (30s) →
         </button>
       </div>
     </div>
@@ -5666,6 +5675,24 @@
             <span class="step-card-tag">✦ Módulos a tu medida real</span>
           </div>
 
+        </div>
+
+        <!-- CALLOUT DE DINÁMICA DE TRABAJO REAL (SIN SOBRECARGA) -->
+        <div style="margin-top: 24px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(13, 13, 18, 0.95) 100%); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 14px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+          <div style="font-size: 1.8rem; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            📋
+          </div>
+          <div>
+            <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">
+              <span>✦</span> DINÁMICA DE TRABAJO REAL & RESPETUOSA DE TU ENERGÍA
+            </div>
+            <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+              Acompañamiento sin sobrecarga: Tareas livianas a tu propio ritmo
+            </h4>
+            <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
+              Durante las sesiones de 75 min trabajamos y programamos en vivo en pantalla: <b>tú no tienes que programar ni inventar nada</b>. Y entre sesión y sesión no te dejo tareas pesadas ni planillas infinitas que sumen más estrés: te entrego <b>checklists sencillos para anclar hábitos</b>, el <b>registro grabado de tu sesión</b> para que repases con calma, y herramientas listas en tu Plan de Vuelo para que avances a tus tiempos, con serenidad y sin culpa.
+            </p>
+          </div>
         </div>
 
         <!-- CONECTOR VISUAL AL PORTAL DE CLIENTES -->
@@ -5885,17 +5912,17 @@
   <div class="container" style="margin: 40px auto 60px;">
     <div style="background: radial-gradient(circle at 50% 50%, rgba(16,185,129,0.12) 0%, #0d0d12 100%); border: 1px solid rgba(16,185,129,0.4); border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; box-shadow: 0 0 35px rgba(16,185,129,0.15);">
       <span style="background: rgba(16,185,129,0.2); color: #34d399; font-size: 0.75rem; font-weight: 800; padding: 5px 14px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
-        ✦ PASO 3: EL ENTREGABLE TANGIBLE
+        ✦ PASO 3 DEL CÍRCULO DORADO: EL PRODUCTO TANGIBLE
       </span>
       <h3 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: #fff; margin: 16px 0 10px;">
-        Conoce el Plan de Vuelo 2.0 y sus Módulos en Acción
+        Ya conoces el proceso. Ahora explora El Qué: tu Plan de Vuelo 2.0 y sus Módulos
       </h3>
       <p style="color: #a1a1aa; font-size: 0.95rem; max-width: 680px; margin: 0 auto 26px; line-height: 1.6;">
-        Prueba los simuladores interactivos en vivo en tu pantalla, explora los casos reales y revisa las opciones de inversión con garantía total.
+        Todo el acompañamiento se traduce en herramientas vivas: tu software web privado con PIN, tu cuadernillo físico de 1 hoja para el escritorio, simuladores interactivos para probar en vivo y precios 100% transparentes con garantía de claridad total.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <button onclick="switchPlatformTab('view-que')" class="btn-primary" style="background: #10b981; color: #000; font-weight: 800; padding: 13px 28px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border: none; box-shadow: 0 0 25px rgba(16,185,129,0.35);">
-          🚀 Ver El Qué: Plan de Vuelo, Módulos & Precios →
+          🚀 Paso 3: Ver El Qué (Plan de Vuelo, Módulos & Precios) →
         </button>
         <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20conversar%20sobre%20c%C3%B3mo%20aplicar%20tu%20metodolog%C3%ADa%20en%20mi%20caso" target="_blank" class="btn-secondary" style="font-size: 0.92rem; padding: 13px 24px; border-radius: 50px; text-decoration: none; border-color: rgba(255,255,255,0.2);">
           💬 Hablar con Diego por WhatsApp
@@ -6463,30 +6490,34 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto;">
         
         <!-- PLAN 1: SESIÓN DESPEGUE -->
-        <div style="background: #0c0c0f; border: 1px solid #2a2a30; border-radius: var(--radius-lg); padding: 32px 26px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="background: #0c0c0f; border: 1px solid rgba(56,189,248,0.35); border-radius: var(--radius-lg); padding: 32px 26px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 25px rgba(56,189,248,0.08);">
           <div>
-            <span style="font-size: 0.72rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px;">
-              Paso 1 Recomendado
+            <span style="font-size: 0.72rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); padding: 4px 12px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              ✦ PASO 1 RECOMENDADO • CERO RIESGO ✦
             </span>
             <h4 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
               Sesión de Despegue 1 a 1
             </h4>
             <p style="font-size: 0.85rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 16px;">
-              75 minutos mano a mano con Diego para mapear tu semana real, identificar tus fugas de tiempo y salir con tu primera herramienta práctica instalada.
+              75 minutos mano a mano con Diego para mapear tu semana real, diagnosticar tus fugas de tiempo y salir con tu primera herramienta práctica instalada en tu Plan de Vuelo.
             </p>
             <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 16px; border-bottom: 1px solid #1f1f1f; padding-bottom: 14px;">
               <span style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #fff;">$35.000</span>
               <span style="font-size: 0.85rem; color: #888;">CLP</span>
             </div>
             <ul style="list-style: none; font-size: 0.84rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
-              <li style="display:flex; gap:8px;"><span>✓</span> <span>Sesión individual de 75 min online o presencial.</span></li>
-              <li style="display:flex; gap:8px;"><span>✓</span> <span>Mapeo de tu cuello de botella más urgente.</span></li>
-              <li style="display:flex; gap:8px;"><span>✓</span> <span>Entrega de tu 1er módulo operativo listo para usar.</span></li>
-              <li style="display:flex; gap:8px;"><span style="color:#10b981;">★</span> <span style="color:#34d399; font-weight:700;">100% deducible si continúas al Plan Integral.</span></li>
+              <li style="display:flex; gap:8px;"><span>✓</span> <span>Sesión individual de 75 min online vía Meet/Zoom o presencial.</span></li>
+              <li style="display:flex; gap:8px;"><span>✓</span> <span>Mapeo y orden de tu cuello de botella más urgente.</span></li>
+              <li style="display:flex; gap:8px;"><span>✓</span> <span>Tu 1er módulo operativo configurado y listo en tu celular.</span></li>
+              <li style="display:flex; gap:8px;"><span>✓</span> <span>Checklist liviano y registro grabado de tu sesión para repasar.</span></li>
+              <li style="display:flex; gap:8px; background: rgba(16,185,129,0.09); padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.28);">
+                <span style="color:#10b981; font-weight:900;">★</span> 
+                <span style="color:#34d399; font-weight:700;">100% Abonable: Si continúas al Plan Integral, tus $35.000 CLP se descuentan íntegramente del total.</span>
+              </li>
             </ul>
           </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20de%20Despegue%20Operativo%201%20a%201%20($35.000%20CLP)." target="_blank" class="btn-secondary" style="width: 100%; text-align: center; padding: 12px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block;">
-            Agendar Sesión de Despegue →
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20de%20Despegue%20Operativo%201%20a%201%20($35.000%20CLP)." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 13px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #38bdf8; color: #000; border: none; box-shadow: 0 0 20px rgba(56,189,248,0.35);">
+            Agendar Sesión de Despegue ($35k) →
           </a>
         </div>
 
