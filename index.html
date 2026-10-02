@@ -1677,6 +1677,13 @@
         padding: 16px 20px !important;
         font-size: 0.95rem !important;
       }
+      .hero-note {
+        flex-direction: column !important;
+        gap: 6px !important;
+      }
+      .hero-note-sep {
+        display: none !important;
+      }
 
       /* Grids & Containers */
       .container {
@@ -4370,12 +4377,12 @@
       </button>
       <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso" class="btn-secondary" target="_blank">💬 Hablar con Diego por WhatsApp</a>
     </div>
-    <p class="hero-note" style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:14px;">
-      <span>📱 <b>Web App Privada en tu Celular</b></span>
-      <span>•</span>
-      <span>📄 <b>Cuadernillo Físico de 1 Hoja</b></span>
-      <span>•</span>
-      <span>🤝 <b>Acompañamiento 1 a 1 Directo</b></span>
+    <p class="hero-note" style="display:flex; align-items:center; justify-content:center; gap:8px 12px; flex-wrap:wrap; margin-top:14px; font-size:0.86rem;">
+      <span class="hero-note-item">📱 <b>Plan de Vuelo (SGP): Web App Privada en tu Celular</b></span>
+      <span class="hero-note-sep">•</span>
+      <span class="hero-note-item">📄 <b>Cuadernillos Imprimibles Físicos Clave (1 Hoja)</b></span>
+      <span class="hero-note-sep">•</span>
+      <span class="hero-note-item">🤝 <b>Acompañamiento 1 a 1 Directo (Online o Presencial)</b></span>
     </p>
 
     <!-- 4 PILARES VISIBLES DE LA CO-CREACIÓN EN SESIÓN -->
@@ -4410,19 +4417,25 @@
       </div>
     </div>
 
-    <!-- MICRO-POSICIONAMIENTO DE CONVERGENCIA EN EL HERO -->
-    <div style="margin: 16px auto 0; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; font-size: 0.76rem; color: #94a3b8;">
-      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
-        ✕ Cero reportes fríos
+    <!-- MICRO-POSICIONAMIENTO: LO QUE NO ES vs. LO QUE SÍ ES (CONVERGENCIA REAL) -->
+    <div style="margin: 18px auto 0; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; font-size: 0.76rem; color: #d4d4d8;">
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
+        <span style="color:#f87171; font-weight:600;">✕ Cero reportes fríos</span>
+        <span style="color:#71717a;">➔</span>
+        <span style="color:#34d399; font-weight:700;">✓ Reportes humanos y personalizados</span>
       </span>
-      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
-        ✕ Cero humo de coaching
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
+        <span style="color:#f87171; font-weight:600;">✕ Cero humo de coaching</span>
+        <span style="color:#71717a;">➔</span>
+        <span style="color:#34d399; font-weight:700;">✓ Técnica administrativa aplicada a tu vida</span>
       </span>
-      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
-        ✕ Cero apps complicadas
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:5px 12px; border-radius:30px;">
+        <span style="color:#f87171; font-weight:600;">✕ Cero apps complicadas</span>
+        <span style="color:#71717a;">➔</span>
+        <span style="color:#34d399; font-weight:700;">✓ Micro-apps simples y funcionales</span>
       </span>
-      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); color:#34d399; font-weight:700; padding:5px 12px; border-radius:30px;">
-        ⚖️ Justo al Centro: Tu Sistema Operativo a Medida
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.4); color:#34d399; font-weight:800; padding:5px 14px; border-radius:30px; box-shadow: 0 0 15px rgba(16,185,129,0.15);">
+        ⚖️ Todo esto resulta en tu Sistema de Gestión Personalizado (SGP)
       </span>
     </div>
   </div>
