@@ -4034,11 +4034,8 @@
       <span class="nav-brand-text"><span class="brand-text-full">Administración Humana</span><span class="brand-text-short">Admin Humana</span></span>
     </a>
 
-    <!-- Pestañas Centrales de Plataforma (Círculo Dorado) -->
+    <!-- Pestañas Centrales de Plataforma (Círculo Dorado + Diagnóstico al final) -->
     <div class="platform-nav-tabs">
-      <button class="plat-tab-btn" data-tab="view-sondeos" onclick="switchPlatformTab('view-sondeos')" title="Diagnóstico operativo express y cuantitativo en 4 áreas">
-        <span>⚡</span> <span class="nav-tab-full">Sondeos / Diagnóstico</span><span class="nav-tab-short">Diagnóstico</span>
-      </button>
       <button class="plat-tab-btn active" data-tab="view-porque" onclick="switchPlatformTab('view-porque')" title="Propósito, filosofía y comprensión metodológica">
         <span>🎯</span> <span class="nav-tab-full">1. El Por Qué</span><span class="nav-tab-short">1. Por Qué</span>
       </button>
@@ -4048,13 +4045,16 @@
       <button class="plat-tab-btn" data-tab="view-que" onclick="switchPlatformTab('view-que')" title="Plan de Vuelo 2.0, simuladores interactivos y precios">
         <span>🚀</span> <span class="nav-tab-full">3. El Qué (Planes & Módulos)</span><span class="nav-tab-short">3. El Qué</span>
       </button>
-      <button class="plat-tab-btn plat-admin-tab" data-tab="view-admin" onclick="switchPlatformTab('view-admin')" title="Consola Privada de Consultoría para Diego">
-        <span>👑</span> <span class="nav-tab-full">Consola Admin</span><span class="nav-tab-short">Admin</span>
+      <button class="plat-tab-btn" data-tab="view-sondeos" onclick="switchPlatformTab('view-sondeos')" title="Diagnóstico operativo express y cuantitativo en 4 áreas">
+        <span>⚡</span> <span class="nav-tab-full">Sondeos / Diagnóstico</span><span class="nav-tab-short">Diagnóstico</span>
       </button>
     </div>
 
-    <!-- Acciones y Accesos (Derecha) -->
+    <!-- Acciones y Accesos (Derecha: Admin, Instagram y PIN) -->
     <div class="nav-actions-group">
+      <button class="plat-tab-btn plat-admin-tab" data-tab="view-admin" onclick="switchPlatformTab('view-admin')" title="Consola Privada de Consultoría para Diego">
+        <span>👑</span> <span class="nav-tab-full">Admin</span><span class="nav-tab-short">Admin</span>
+      </button>
       <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" class="nav-ig-btn" title="Instagram @administracionhumana">
         <span>📸</span> <span class="nav-ig-text">Instagram</span>
       </a>
@@ -8858,9 +8858,6 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
 
 <!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (FLOATING QUICK BAR) -->
 <div id="floating-quick-bar" class="floating-quick-bar" aria-label="Acceso rápido">
-  <button type="button" class="float-bar-btn" data-tab="view-sondeos" onclick="switchPlatformTab('view-sondeos');">
-    <span>⚡</span> <span class="float-text-full">Diagnóstico (30s)</span><span class="float-text-short">Sondeo</span>
-  </button>
   <button type="button" class="float-bar-btn active primary" data-tab="view-porque" onclick="switchPlatformTab('view-porque');">
     <span>🎯</span> <span class="float-text-full">El Por Qué</span><span class="float-text-short">Por Qué</span>
   </button>
@@ -8869,6 +8866,9 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
   </button>
   <button type="button" class="float-bar-btn" data-tab="view-que" onclick="switchPlatformTab('view-que');">
     <span>🚀</span> <span class="float-text-full">El Qué</span><span class="float-text-short">Qué</span>
+  </button>
+  <button type="button" class="float-bar-btn" data-tab="view-sondeos" onclick="switchPlatformTab('view-sondeos');">
+    <span>⚡</span> <span class="float-text-full">Diagnóstico (30s)</span><span class="float-text-short">Sondeo</span>
   </button>
   <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso" target="_blank" class="float-bar-btn" style="color: #34d399;">
     <span>💬</span> <span class="float-text-full">WhatsApp</span><span class="float-text-short">WA</span>
