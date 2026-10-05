@@ -1397,7 +1397,7 @@
             let kanbanTasks = [];
             if (data.kanban_gtd) {
                 (data.kanban_gtd.todo || []).forEach(t => kanbanTasks.push({ id: t.id || Math.random().toString(), col: 'todo', text: t.text || t, tag: t.tag || 'Pendiente' }));
-                (data.kanban_gtd.in_progress || []).forEach(t => kanbanTasks.push({ id: t.id || Math.random().toString(), col: 'doing', text: t.text || t, tag: t.tag || 'En Foco' }));
+                (data.kanban_gtd.doing || data.kanban_gtd.in_progress || []).forEach(t => kanbanTasks.push({ id: t.id || Math.random().toString(), col: 'doing', text: t.text || t, tag: t.tag || 'En Foco' }));
                 (data.kanban_gtd.done || []).forEach(t => kanbanTasks.push({ id: t.id || Math.random().toString(), col: 'done', text: t.text || t, tag: t.tag || 'Hito' }));
             }
             if (typeof initKanbanEngine === "function") {
