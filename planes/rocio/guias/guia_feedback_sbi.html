@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2-09 Feedback SBI (Situación, Comportamiento, Impacto) • Guía Canónica • Administración Humana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #090b10;
+            --card: #11141d;
+            --border: #232838;
+            --accent: #6366f1;
+            --accent-bg: rgba(99, 102, 241, 0.1);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.65;
+            padding: 1.5rem 1rem 4rem 1rem;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        .badge-code {
+            background: var(--accent-bg);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+        .header {
+            margin-bottom: 2.2rem;
+        }
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.4rem;
+            line-height: 1.25;
+        }
+        .header .subtitle {
+            color: var(--accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .header .meta {
+            color: var(--muted);
+            font-size: 0.82rem;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .guide-body {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.2rem;
+        }
+        .guide-body h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-size: 1.25rem;
+            margin: 1.8rem 0 0.8rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .guide-body h2:first-of-type { margin-top: 0; }
+        .guide-body h3 {
+            color: var(--accent);
+            font-size: 1rem;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+        .guide-body p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+            font-size: 0.94rem;
+        }
+        .guide-body ul, .guide-body ol {
+            margin-bottom: 1.2rem;
+            padding-left: 1.4rem;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+        }
+        .guide-body li {
+            margin-bottom: 0.45rem;
+        }
+        .guide-body blockquote {
+            background: var(--accent-bg);
+            border-left: 3px solid var(--accent);
+            padding: 0.9rem 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #f1f5f9;
+        }
+        .guide-body hr {
+            border: none;
+            border-top: 1px dashed var(--border);
+            margin: 1.8rem 0;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <a href="../index.html" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Vuelo de Rocío
+            </a>
+            <span class="badge-code">P2-09</span>
+        </div>
+
+        <div class="header">
+            <div style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Pilar 3: Liderazgo & Equipo</div>
+            <h1>Feedback SBI (Situación, Comportamiento, Impacto)</h1>
+            <div class="subtitle">La Precisión de la Comunicación Directa (Sin Herir ni Rodeos)</div>
+            <div class="meta">
+                <span><i class="fa-solid fa-user-tie"></i> Consultor: Diego González</span>
+                <span><i class="fa-solid fa-compass"></i> Metodología: AICC v2.0</span>
+                <span><i class="fa-solid fa-leaf"></i> Adaptado para: Rocío</span>
+            </div>
+        </div>
+
+        <div class="guide-body">
+            <h2>🎭 1. Metáfora Cercana & Nombre Humano</h2>
+<blockquote><strong>"La Precisión de la Comunicación Directa: Corregir Conductas sin Herir Identidades"<strong></blockquote>
+<p>para acelerar la corrección de errores y potenciar el rendimiento sin dañar el clima laboral.</p>
+<hr>
+<h2>🚩 2. Triggers Diagnósticos & Red Flags Clínicos</h2>
+<p>¿Cuándo se prescribe esta herramienta en sesión? Cuando el cliente manifiesta estos síntomas en su narrativa cotidiana o en su corporalidad:</p>
+<ul>
+<li><strong>Desgaste en Conversaciones Difíciles:</strong> Miedo a dar feedback, resentimientos acumulados o rumores de pasillo.</li>
+<li><strong>Falta de Claridad en Quién Decide:</strong> Tareas que nadie toma o dobles aprobaciones que frenan la velocidad del negocio.</li>
+<li><strong>Desconexión Emocional o Fuga de Talento:</strong> La gente renuncia o "hace como que trabaja" sin compromiso genuino.</li>
+</ul>
+<h3>❓ Pregunta Diagnóstica de Entrada:</h3>
+<blockquote><em>"¿Si hoy tuvieras una conversación completamente honesta y sin filtros con tu equipo, qué es lo que más te daría miedo escuchar?"<em></blockquote>
+<hr>
+<h2>🏛️ 3. Historia y Contexto de Origen</h2>
+<p>El modelo SBI (Situation, Behavior, Impact) fue desarrollado por el Center for Creative Leadership (CCL) . Se define como una estructura técnica para entregar retroalimentación centrada exclusivamente en hechos observables, alejándose de las interpretaciones subjetivas que suelen generar defensividad en el receptor. En el actual entorno BANI (Frágil, Ansioso, No lineal, Incomprensible) , la comunicación vaga es un multiplicador de ansiedad. La competitividad digital exige ciclos de aprendizaje ultra-rápidos; no hay tiempo para que un colaborador pase tres días descifrando qué quiso decir su líder. El SBI es vital porque transforma el feedback en datos accionables , permitiendo ajustes operativos en tiempo real y reduciendo el ruido político dentro de la organización. 2. El</p>
+<hr>
+<h2>🎙️ 4. El "Elevator Pitch" Humano (Guion Conversacional con el Cliente)</h2>
+<blockquote><em>""¿Alguna vez has dado feedback y el colaborador salió de la oficina sintiéndose atacado personalmente en lugar de motivado a mejorar? Ese es el costo de la ambigüedad. El modelo SBI es la herramienta definitiva para separar la persona del proceso. Al usarlo, tus líderes dejan de dar opiniones y empiezan a entregar diagnósticos precisos. Esto no solo ahorra horas de malentendidos y conflictos, sino que crea una cultura de transparencia radical donde el error se corrige hoy y la rentabilidad se protege mañana. Si quieres un equipo que ejecute con precisión, necesitas que su feedback sea igual de preciso." 3."<em></blockquote>
+<hr>
+<h2>⚙️ 5. Desglose para ADMINISTRADORES (Capa Técnica & Rigor Operativo)</h2>
+<p>Como consultores, sustentamos esta herramienta bajo los siguientes estándares de gestión profesional y gobierno empresarial:</p>
+<ul>
+<li>El modelo se divide en tres componentes innegociables que deben seguir este orden estricto: A. Situación (Situation)</li>
+<li>Definición Técnica: Anclaje espacio-temporal del evento. Define el "dónde" y el "cuándo" para evitar generalizaciones.</li>
+<li>Pregunta de Diagnóstico: "Si revisáramos las grabaciones o el registro de actividad, ¿podríamos identificar exactamente el minuto y el lugar al que te refieres sin lugar a dudas</li>
+<li>" B. Comportamiento (Behavior)</li>
+<li>Definición Técnica: Descripción de la acción física u observable. No se mencionan intenciones, actitudes o rasgos de personalidad.</li>
+<li>Pregunta de Diagnóstico: "¿Estás describiendo lo que la persona 'hizo' o lo que tú 'piensas' que la persona es (ej. 'fuiste irresponsable' vs 'no entregaste el reporte a las 5:00 PM')</li>
+<li>" C. Impacto (Impact)</li>
+<li>Definición Técnica: Explicación de las consecuencias directas de ese comportamiento en el negocio, el equipo o el cliente.</li>
+<li>Pregunta de Diagnóstico: "¿El colaborador entiende claramente cómo su acción específica afectó el KPI, el presupuesto o el flujo de trabajo de sus compañeros</li>
+<li>" 4.</li>
+</ul>
+<hr>
+<h2>💡 6. Desglose para NO-ADMINISTRADORES (Capa Didáctica & Metáforas Vivas)</h2>
+<p>Para trabajar con clientes y colaboradores sin abrumarlos con jerga técnica o tecnicismos fríos:</p>
+<ul>
+<li><strong>La Analogía del Árbitro de Fútbol (VAR):</strong> Imagina que el árbitro cobra penal no porque le caigas mal, sino porque la cámara muestra el momento exacto en que tocaste la pelota con la mano. El SBI es tu VAR personal: muestra la jugada exacta sin adivinar intenciones.</li>
+<li><strong>El Semáforo de la Comunicación:</strong></li>
+</ul>
+<p>1. <em>Situación (Verde):</em> Dónde y cuándo ocurrió el hecho.</p>
+<p>2. <em>Comportamiento (Amarillo):</em> La acción física y observable que hiciste o dijiste.</p>
+<p>3. <em>Impacto (Rojo/Luz):</em> Lo que provocó en el cliente, en el equipo o en los números.</p>
+<hr>
+<h2>🔗 7. Ecosistema: ¿Cómo Potencia a Otras Herramientas del Sistema AICC?</h2>
+<p>Esta herramienta no opera de forma aislada; es un engranaje clave dentro de la suite:</p>
+<ul>
+<li>El Feedback SBI es el conector humano que hace que el resto de las herramientas funcionen:</li>
+<li>Con Análisis FODA: Provee los datos objetivos para el cuadrante de Debilidades y Fortalezas . Evita que el FODA se base en "percepciones" y lo fundamenta en comportamientos recurrentes validados por SBI.</li>
+<li>Con GTD: Los resultados de una sesión SBI se convierten en "Próximas Acciones" o "Proyectos" de desarrollo personal en el sistema GTD del colaborador.</li>
+<li>Con 5S: Es la herramienta para mantener la disciplina ( Shitsuke ). Si un estándar de orden no se cumple, el SBI permite corregirlo sin que el empleado sienta que se le está juzgando por ser "sucio" o "desordenado".</li>
+<li>Con Batching: Los líderes senior utilizan el Batching para agrupar sus sesiones de feedback semanales, aplicando la estructura SBI de forma sistemática para mantener la agilidad mental y la coherencia en el mensaje. 5.</li>
+</ul>
+<hr>
+<h2>🚜 8. Casos de Aplicación "A Ras de Suelo" (La Vida Real)</h2>
+<p>Segmentados Escenario Situación Aplicación SBI Resultado Esperado A. Corporativo Un gerente interrumpe constantemente en las juntas directivas. "En la junta de hoy a las 10 AM ( S ), interrumpiste tres veces mientras el director financiero hablaba ( B ). Esto causó que perdiéramos el hilo de la proyección presupuestaria y extendió la reunión 20 minutos ( I )." El gerente comprende el impacto operativo de su conducta y ajusta su participación en la siguiente sesión. B. Startup / Freelance Un desarrollador entrega un código sin documentación básica. "En el despliegue del módulo de pagos de ayer ( S ), no incluiste los comentarios técnicos en el repositorio ( B ). Debido a esto, el equipo de QA tardó 4 horas extra en validar la integración ( I )." Corrección inmediata del estándar de entrega y optimización del tiempo de QA en el siguiente sprint. 6.</p>
+<hr>
+<h2>⚡ 9. Plan de Acción de 24 Horas (El Micro-hábito) & Antipatrones</h2>
+<h3>⏱️ El Micro-hábito Inmediato (Paso Cero):</h3>
+<p>El Feedback de "Baja Fricción": No esperes a una crisis. Mañana mismo, identifica un comportamiento positivo de un colega o subordinado. Aplica la estructura: "Ayer en la reunión (S), presentaste los datos con gráficos comparativos (B). Eso facilitó mucho que el cliente tomara la decisión rápido y cerramos la venta (I)" . Al empezar con lo positivo, entrenas tu cerebro para estructurar hechos antes de pasar a feedback correctivo complejo. 7.</p>
+<h3>🚫 Antipatrones Críticos (Lo que NO Hay que Hacer):</h3>
+<ul>
+<li>y Errores Críticos</li>
+<li>El "Sandwich de Feedback": Envolver la crítica entre dos elogios falsos. Impacto: Diluye el mensaje y hace que el colaborador desconfíe de los elogios futuros.</li>
+<li>Uso de Adjetivos Calificativos: Decir "eres poco profesional" o "estás distraído". Error: Eso no es un comportamiento, es una etiqueta que genera rechazo instantáneo.</li>
+<li>Feedback Retardado: Dar feedback sobre algo que pasó hace tres semanas. Error: La situación ya se enfrió y la precisión del recuerdo se pierde.</li>
+<li>Atribuir Intenciones: "Hiciste eso para fastidiarme". Error: No puedes ver la mente de los demás; solo puedes ver sus acciones.</li>
+<li>No pedir una solución: Terminar el SBI sin preguntar "¿Cómo podemos evitar esto la próxima vez</li>
+<li>". Error: El feedback sin plan de acción es solo una queja.</li>
+</ul>
+<hr>
+<h2>🛡️ Regla de Oro AICC</h2>
+<blockquote><strong>"Describe hechos que una cámara de video registraría; nunca adivines intenciones ni juzgues el carácter."<strong></blockquote>
+<hr>
+<h2>📊 Métrica de Impacto & ROI Humano</h2>
+<ul>
+<li><strong>KPI Principal:</strong> `Resolución de fricciones de equipo en <24 horas sin reactividad defensiva.`</li>
+</ul>
+        </div>
+
+        <div class="footer-note">
+            Administración Humana • Concepción / Talcahuano • 2026
+        </div>
+    </div>
+</body>
+</html>

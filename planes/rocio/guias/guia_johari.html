@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2-01 La Ventana de Johari (Puntos Ciegos y Autoconocimiento) • Guía Canónica • Administración Humana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #090b10;
+            --card: #11141d;
+            --border: #232838;
+            --accent: #06b6d4;
+            --accent-bg: rgba(6, 182, 212, 0.1);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.65;
+            padding: 1.5rem 1rem 4rem 1rem;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        .badge-code {
+            background: var(--accent-bg);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+        .header {
+            margin-bottom: 2.2rem;
+        }
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.4rem;
+            line-height: 1.25;
+        }
+        .header .subtitle {
+            color: var(--accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .header .meta {
+            color: var(--muted);
+            font-size: 0.82rem;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .guide-body {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.2rem;
+        }
+        .guide-body h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-size: 1.25rem;
+            margin: 1.8rem 0 0.8rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .guide-body h2:first-of-type { margin-top: 0; }
+        .guide-body h3 {
+            color: var(--accent);
+            font-size: 1rem;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+        .guide-body p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+            font-size: 0.94rem;
+        }
+        .guide-body ul, .guide-body ol {
+            margin-bottom: 1.2rem;
+            padding-left: 1.4rem;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+        }
+        .guide-body li {
+            margin-bottom: 0.45rem;
+        }
+        .guide-body blockquote {
+            background: var(--accent-bg);
+            border-left: 3px solid var(--accent);
+            padding: 0.9rem 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #f1f5f9;
+        }
+        .guide-body hr {
+            border: none;
+            border-top: 1px dashed var(--border);
+            margin: 1.8rem 0;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <a href="../index.html" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Vuelo de Rocío
+            </a>
+            <span class="badge-code">P2-01</span>
+        </div>
+
+        <div class="header">
+            <div style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Pilar 3: Liderazgo & Equipo</div>
+            <h1>La Ventana de Johari (Puntos Ciegos y Autoconocimiento)</h1>
+            <div class="subtitle">El Fin de los "No Sabía" y los Puntos Ciegos (La Ventana Clara)</div>
+            <div class="meta">
+                <span><i class="fa-solid fa-user-tie"></i> Consultor: Diego González</span>
+                <span><i class="fa-solid fa-compass"></i> Metodología: AICC v2.0</span>
+                <span><i class="fa-solid fa-leaf"></i> Adaptado para: Rocío</span>
+            </div>
+        </div>
+
+        <div class="guide-body">
+            <h2>🎭 1. Metáfora Cercana & Nombre Humano</h2>
+<blockquote><strong>"El Fin de los "No Sabía" y los Secretos Tóxicos: Ampliar el Área Abierta"<strong></blockquote>
+<p>La falta de confianza en el equipo, los rumores de pasillo y el no saber por qué los clientes no vuelven.</p>
+<hr>
+<h2>🚩 2. Triggers Diagnósticos & Red Flags Clínicos</h2>
+<p>¿Cuándo se prescribe esta herramienta en sesión? Cuando el cliente manifiesta estos síntomas en su narrativa cotidiana o en su corporalidad:</p>
+<ul>
+<li><strong>Desgaste en Conversaciones Difíciles:</strong> Miedo a dar feedback, resentimientos acumulados o rumores de pasillo.</li>
+<li><strong>Falta de Claridad en Quién Decide:</strong> Tareas que nadie toma o dobles aprobaciones que frenan la velocidad del negocio.</li>
+<li><strong>Desconexión Emocional o Fuga de Talento:</strong> La gente renuncia o "hace como que trabaja" sin compromiso genuino.</li>
+</ul>
+<h3>❓ Pregunta Diagnóstica de Entrada:</h3>
+<blockquote><em>"¿Si hoy tuvieras una conversación completamente honesta y sin filtros con tu equipo, qué es lo que más te daría miedo escuchar?"<em></blockquote>
+<hr>
+<h2>🏛️ 3. Historia y Contexto de Origen</h2>
+<p>Esta herramienta fue creada en 1955 por los psicólogos Joseph Luft y Harry Ingham (si juntas sus nombres, Joe + Harry, tienes "Johari"). Nació para entender cómo nos relacionamos y cómo la información fluye entre nosotros y los demás. Hoy es vital porque en un negocio pequeño, el dueño suele ser el último en enterarse de lo que hace mal, y el equipo suele callar por miedo. Abrir la ventana es oxigenar el negocio. El</p>
+<hr>
+<h2>🎙️ 4. El "Elevator Pitch" Humano (Guion Conversacional con el Cliente)</h2>
+<blockquote><em>""¿Te has preguntado alguna vez por qué tu equipo no te dice las cosas a la cara o por qué sientes que escondes demasiado para no parecer débil? La Ventana de Johari es como ponerle espejos a tu comunicación. Te ayuda a descubrir qué ven los demás que tú no ves, y a decidir qué partes de ti mismo te conviene mostrar más para que confíen en ti. Es pasar de ser un jefe 'misterioso' a un líder humano que sabe dónde está parado. Menos secretos, menos errores.""<em></blockquote>
+<hr>
+<h2>⚙️ 5. Desglose para ADMINISTRADORES (Capa Técnica & Rigor Operativo)</h2>
+<p>Como consultores, sustentamos esta herramienta bajo los siguientes estándares de gestión profesional y gobierno empresarial:</p>
+<ul>
+<li>Como consultores, sustentamos la Ventana de Johari bajo los principios de Inteligencia Emocional y Dinámica de Grupos :</li>
+<li>Reducción del Área Ciega: A través del Feedback constante, se minimizan los sesgos de autopercepción que afectan la toma de decisiones.</li>
+<li>Ampliación del Área Abierta: Aumenta la eficiencia operativa al reducir la ambigüedad en las instrucciones y mejorar la alineación cultural.</li>
+<li>Gestión del Área Oculta: Fomenta el Self-disclosure (autorrevelación) controlado para aumentar el capital social y la confianza intra-equipo.</li>
+<li>Variable de Control: "Clima Organizacional". Se mide por la disminución de conflictos interpersonales y el aumento en la velocidad de resolución de problemas internos.</li>
+</ul>
+<hr>
+<h2>💡 6. Desglose para NO-ADMINISTRADORES (Capa Didáctica & Metáforas Vivas)</h2>
+<p>Para trabajar con clientes y colaboradores sin abrumarlos con jerga técnica o tecnicismos fríos:</p>
+<ul>
+<li>Concepto Definición Cercana (Analogía) Pregunta de Diagnóstico Área Pública Es la "Vitrina" . Lo que tú sabes de ti y tus clientes/equipo también saben (ej: que eres puntual). ¿Qué es lo que todo el mundo diría de ti si les pregunto ahora mismo</li>
+<li>Área Ciega Es la "Nuca" . Lo que otros ven (tus tics, tu mal genio, tu talento oculto) pero tú no notas. ¿Cuándo fue la última vez que alguien te dijo algo de ti que te dejó pensando: "yo no soy así"</li>
+<li>Área Oculta Es el "Sótano" . Lo que tú sabes pero te da miedo o vergüenza contar (ej: que no sabes usar una app). ¿Qué cosa de tu negocio te quita el sueño pero no te atreves a contarle a nadie por miedo a quedar mal</li>
+<li>Área Desconocida Es el "Tesoro Enterrado" . Talentos que ni tú ni nadie sabe que tienes hasta que llega un desafío nuevo. ¿Qué cosa nueva te gustaría intentar en tu negocio pero te frena el "no sé si podré"</li>
+</ul>
+<hr>
+<h2>🔗 7. Ecosistema: ¿Cómo Potencia a Otras Herramientas del Sistema AICC?</h2>
+<p>Esta herramienta no opera de forma aislada; es un engranaje clave dentro de la suite:</p>
+<ul>
+<li>¿Cómo potencia a otras herramientas</li>
+<li>La Ventana de Johari es el "limpiaparabrisas" de tu administración:</li>
+<li>Potencia el FODA: Ayuda a descubrir Debilidades que estaban en tu Área Ciega y Fortalezas que tenías en el Área Desconocida.</li>
+<li>Nutre el Círculo Dorado: Te ayuda a ser más honesto con tu "Porqué" , sacándolo del Área Oculta para que conecte con la gente.</li>
+<li>Refuerza el Método OKR: Al ampliar el Área Pública, todos saben exactamente qué se espera de ellos, eliminando las suposiciones.</li>
+</ul>
+<hr>
+<h2>🚜 8. Casos de Aplicación "A Ras de Suelo" (La Vida Real)</h2>
+<ul>
+<li>Escenario A (Negocio - Servicio de Limpieza):</li>
+<li>El Problema: El dueño siente que el equipo no cuida las máquinas.</li>
+<li>Johari en acción: El dueño revela (Área Oculta) que le costó mucho esfuerzo comprarlas. El equipo revela (Área Ciega del dueño) que nunca les enseñaron bien cómo mantenerlas.</li>
+<li>Resultado: Se abre la ventana, se hace una capacitación y el equipo cuida las máquinas porque ahora entienden el valor humano detrás de ellas.</li>
+<li>Escenario B (Vida Personal - Paternidad / Proyectos):</li>
+<li>Johari en acción: Le preguntas a tu hijo Matías o Roma: "¿Qué es lo que más te gusta de jugar conmigo y qué es lo que te da lata</li>
+<li>".</li>
+<li>Resultado: Descubres que tu "Área Ciega" es que a veces eres muy mandón jugando. Al saberlo, puedes bajar un cambio y disfrutar más.</li>
+</ul>
+<hr>
+<h2>⚡ 9. Plan de Acción de 24 Horas (El Micro-hábito) & Antipatrones</h2>
+<h3>⏱️ El Micro-hábito Inmediato (Paso Cero):</h3>
+<p>Mañana mismo, busca a alguien de confianza (empleado, socio o cliente fiel): Hazle una sola pregunta: "¿Qué es algo que tú notas en mi forma de trabajar que yo quizás no me estoy dando cuenta?" . Escucha sin defenderte. Solo di "gracias". Acabas de achicar tu Área Ciega. ¡Felicidades!</p>
+<h3>🚫 Antipatrones Críticos (Lo que NO Hay que Hacer):</h3>
+<ul>
+<li>El "Sincericidio" Brutal: Abrir el Área Oculta y contar problemas personales íntimos que no vienen al caso. No es terapia, es administración integral.</li>
+<li>Pedir Feedback y Enojarse: Si preguntas qué hay en tu Área Ciega y te pones a la defensiva, la ventana se cierra con llave para siempre. ¡Acepta el error como un clown!</li>
+<li>Usar la información como arma: Usar lo que alguien te confió de su "Sótano" (Área Oculta) para criticarlo después. Eso mata la confianza.</li>
+<li>La Ventana de Humo: Decir que eres "transparente" pero seguir ocultando las cifras o los problemas reales del negocio.</li>
+<li>Olvidar el Área Desconocida: Creer que ya lo sabes todo de ti y de tu equipo. Siempre hay espacio para que aparezca un nuevo "truco" bajo la manga.</li>
+</ul>
+<hr>
+<h2>🛡️ Regla de Oro AICC</h2>
+<blockquote><strong>"A mayor área abierta compartida, menor espacio queda para la paranoia, el rumor y la desconfianza."<strong></blockquote>
+<hr>
+<h2>📊 Métrica de Impacto & ROI Humano</h2>
+<ul>
+<li><strong>KPI Principal:</strong> `Porcentaje de acuerdos y expectativas explícitas en el equipo (>90%).`</li>
+</ul>
+        </div>
+
+        <div class="footer-note">
+            Administración Humana • Concepción / Talcahuano • 2026
+        </div>
+    </div>
+</body>
+</html>

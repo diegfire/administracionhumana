@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P1-06 Matriz de Eisenhower (Urgente vs Importante) • Guía Canónica • Administración Humana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #090b10;
+            --card: #11141d;
+            --border: #232838;
+            --accent: #ef4444;
+            --accent-bg: rgba(239, 68, 68, 0.1);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.65;
+            padding: 1.5rem 1rem 4rem 1rem;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        .badge-code {
+            background: var(--accent-bg);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+        .header {
+            margin-bottom: 2.2rem;
+        }
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.4rem;
+            line-height: 1.25;
+        }
+        .header .subtitle {
+            color: var(--accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .header .meta {
+            color: var(--muted);
+            font-size: 0.82rem;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .guide-body {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.2rem;
+        }
+        .guide-body h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-size: 1.25rem;
+            margin: 1.8rem 0 0.8rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .guide-body h2:first-of-type { margin-top: 0; }
+        .guide-body h3 {
+            color: var(--accent);
+            font-size: 1rem;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+        .guide-body p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+            font-size: 0.94rem;
+        }
+        .guide-body ul, .guide-body ol {
+            margin-bottom: 1.2rem;
+            padding-left: 1.4rem;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+        }
+        .guide-body li {
+            margin-bottom: 0.45rem;
+        }
+        .guide-body blockquote {
+            background: var(--accent-bg);
+            border-left: 3px solid var(--accent);
+            padding: 0.9rem 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #f1f5f9;
+        }
+        .guide-body hr {
+            border: none;
+            border-top: 1px dashed var(--border);
+            margin: 1.8rem 0;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <a href="../index.html" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Vuelo de Rocío
+            </a>
+            <span class="badge-code">P1-06</span>
+        </div>
+
+        <div class="header">
+            <div style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Pilar 2: Productividad & Tiempo</div>
+            <h1>Matriz de Eisenhower (Urgente vs Importante)</h1>
+            <div class="subtitle">La Cura para la "Urgentitis" Crónica (El Filtro de Fuego)</div>
+            <div class="meta">
+                <span><i class="fa-solid fa-user-tie"></i> Consultor: Diego González</span>
+                <span><i class="fa-solid fa-compass"></i> Metodología: AICC v2.0</span>
+                <span><i class="fa-solid fa-leaf"></i> Adaptado para: Rocío</span>
+            </div>
+        </div>
+
+        <div class="guide-body">
+            <h2>🎭 1. Metáfora Cercana & Nombre Humano</h2>
+<blockquote><strong>"La Cura para la Urgentitis Crónica: Diferenciar el Incendio del Ensayo"<strong></blockquote>
+<p>La sensación de estar "corriendo todo el día sin avanzar nada real", el agotamiento mental de decidir qué hacer primero y la culpa de postergar lo que de verdad hace crecer tu negocio por atender pequeñeces. 2.</p>
+<hr>
+<h2>🚩 2. Triggers Diagnósticos & Red Flags Clínicos</h2>
+<p>¿Cuándo se prescribe esta herramienta en sesión? Cuando el cliente manifiesta estos síntomas en su narrativa cotidiana o en su corporalidad:</p>
+<ul>
+<li><strong>Sensación de Dispersión "en Spray":</strong> Saltar de pestaña en pestaña sin cerrar ninguna tarea; revisar el teléfono compulsivamente.</li>
+<li><strong>Amnesia y Ansiedad Nocturna:</strong> Despertarse en la madrugada recordando correos o compromisos olvidados.</li>
+<li><strong>Agotamiento sin Progreso:</strong> Sentir que se trabajó 10 horas seguidas pero la aguja del negocio no se movió un solo milímetro.</li>
+</ul>
+<h3>❓ Pregunta Diagnóstica de Entrada:</h3>
+<blockquote><em>"¿Confías plenamente en tu sistema para recordar lo que tienes que hacer hoy, o tu cerebro está al borde del colapso por sostener 40 pendientes en el aire?"<em></blockquote>
+<hr>
+<h2>🏛️ 3. Historia y Contexto de Origen</h2>
+<p>Esta joya fue popularizada por Stephen Covey, pero se basa en la filosofía de vida de Dwight D. Eisenhower , general de cinco estrellas y 34.º presidente de los EE. UU. Él decía: "Lo que es importante rara vez es urgente, y lo que es urgente rara vez es importante" . En el mundo de hoy, donde el celular nos grita "urgencia" por cada notificación, esta herramienta es tu escudo para proteger tu tiempo más valioso. 3.</p>
+<hr>
+<h2>🎙️ 4. El "Elevator Pitch" Humano (Guion Conversacional con el Cliente)</h2>
+<blockquote><em>""¿Te has sentido como un malabarista al que le lanzan antorchas encendidas mientras intenta leer un libro? La Matriz de Eisenhower es el filtro que te permite soltar las antorchas que no queman y concentrarte en el libro que te enseñará a no quemarte más. Es la herramienta para dejar de reaccionar a los gritos de los demás y empezar a responder a tus propios sueños. Menos incendios, más progreso real." 4."<em></blockquote>
+<hr>
+<h2>⚙️ 5. Desglose para ADMINISTRADORES (Capa Técnica & Rigor Operativo)</h2>
+<p>Como consultores, sustentamos esta herramienta bajo los siguientes estándares de gestión profesional y gobierno empresarial:</p>
+<ul>
+<li>Desde la consultoría estratégica, sustentamos la Matriz de Eisenhower como un modelo de Categorización de Actividades basada en Valor vs. Tiempo . Gestionamos cuatro cuadrantes críticos:</li>
+<li>Cuadrante I (Urgente/Importante - Crisis): Actividades que requieren atención inmediata y afectan directamente la supervivencia del negocio. Se gestiona bajo el modo "Hacer".</li>
+<li>Cuadrante II (No Urgente/Importante - Estrategia): Es la mina de oro. Actividades de prevención, construcción de relaciones, planificación y crecimiento. Aquí es donde se maximiza el ROI del tiempo. Se gestiona bajo el modo "Programar".</li>
+<li>Cuadrante III (Urgente/No Importante - Interrupción): Tareas que parecen apremiantes pero no agregan valor a tus objetivos a largo plazo (correos de otros, reuniones sin agenda). Se gestiona bajo el modo "Delegar".</li>
+<li>Cuadrante IV (No Urgente/No Importante - Distracción): Escapismo puro y pérdida de recursos. Se gestiona bajo el modo "Eliminar". Variable de Control: Porcentaje de tiempo semanal invertido en el Cuadrante II vs. Cuadrante I. 5.</li>
+</ul>
+<hr>
+<h2>💡 6. Desglose para NO-ADMINISTRADORES (Capa Didáctica & Metáforas Vivas)</h2>
+<p>Para trabajar con clientes y colaboradores sin abrumarlos con jerga técnica o tecnicismos fríos:</p>
+<ul>
+<li>Concepto Definición Cercana (Analogía) Pregunta de Diagnóstico "Al Hueso" Urgente El Incendio: Algo que está pasando AHORA y grita por tu atención (como un bebé llorando). ¿Esto tiene que pasar en los próximos 10 minutos o se acaba el mundo</li>
+<li>Importante El Ensayo: Lo que te hace ser mejor en lo que haces, aunque nadie te esté presionando. ¿Si hago esto hoy, mi negocio (o mi vida) será mejor dentro de un mes</li>
+<li>Delegar Pasar la Pelota: Dejar que otro juegue su parte para que tú puedas dirigir el equipo. ¿Soy realmente la ÚNICA persona en el planeta que puede apretar este botón</li>
+<li>Eliminar Limpiar el Trastero: Botar las cajas viejas que solo ocupan espacio y te hacen tropezar. ¿Esto me acerca a mi meta o solo me está ayudando a perder el tiempo de forma 'divertida'</li>
+<li>6.</li>
+</ul>
+<hr>
+<h2>🔗 7. Ecosistema: ¿Cómo Potencia a Otras Herramientas del Sistema AICC?</h2>
+<p>Esta herramienta no opera de forma aislada; es un engranaje clave dentro de la suite:</p>
+<ul>
+<li>La Matriz de Eisenhower es el filtro de entrada para todo lo demás:</li>
+<li>GTD: Te ayuda en la fase de Aclarar para decidir en qué lista poner cada tarea.</li>
+<li>Batching: Una vez que identificas tus tareas del Cuadrante II (Importantes/No Urgentes), las agrupas en bloques para sacarlas adelante sin interrupciones.</li>
+<li>Kanban: Puedes usar colores diferentes en tus post-its para visualizar cuántas tareas de "Crisis" tienes frente a las de "Estrategia". 7.</li>
+</ul>
+<hr>
+<h2>🚜 8. Casos de Aplicación "A Ras de Suelo" (La Vida Real)</h2>
+<ul>
+<li>Escenario A (Negocio - Taller o Servicio de Limpieza):</li>
+<li>Urgente/Importante: Un cliente se queja porque el servicio quedó mal (Hacer ya).</li>
+<li>No Urgente/Importante: Crear un manual de limpieza para que el equipo no cometa errores (Programar para el martes).</li>
+<li>Urgente/No Importante: El proveedor de internet llama para ofrecerte un plan "mejor" (Delegar a tu asistente o decir que no).</li>
+<li>No Urgente/No Importante: Revisar el Instagram de la competencia por tercera vez en el día (Eliminar).</li>
+<li>Escenario B (Vida Personal - Paternidad/Hogar):</li>
+<li>Urgente/Importante: El niño se cayó y necesita una curita.</li>
+<li>No Urgente/Importante: Salir a caminar 20 minutos con tu pareja para hablar de la semana (Programar).</li>
+<li>Urgente/No Importante: El grupo de WhatsApp del colegio está ardiendo por una tarea de cartulina.</li>
+<li>No Urgente/No Importante: Ver "un capítulo más" de la serie cuando ya son las 11 PM y estás agotado. 8.</li>
+</ul>
+<hr>
+<h2>⚡ 9. Plan de Acción de 24 Horas (El Micro-hábito) & Antipatrones</h2>
+<h3>⏱️ El Micro-hábito Inmediato (Paso Cero):</h3>
+<p>(Micro-hábito) Mañana mismo: Toma tu lista de tareas y dibuja una cruz grande (los 4 cuadrantes). Clasifica tus pendientes. Elige UNA SOLA tarea del Cuadrante II (lo Importante que NO es Urgente) y ponle fecha y hora para hacerla esta semana. Dale prioridad a lo que te hace crecer, no solo a lo que te hace correr. 9.</p>
+<h3>🚫 Antipatrones Críticos (Lo que NO Hay que Hacer):</h3>
+<ul>
+<li>"El Adicto a la Adrenalina": Dejar que todo se vuelva urgente (Cuadrante I) para sentir que "trabajas mucho". (Spoiler: Solo te estás quemando).</li>
+<li>"Confundir Ruido con Importancia": Pensar que porque alguien te escribe en mayúsculas, la tarea es importante. El volumen del grito no define la calidad del mensaje.</li>
+<li>"Vivir en el Cuadrante IV": Pasar todo el día "organizando el escritorio" o viendo videitos porque te da miedo enfrentar la tarea importante del Cuadrante II.</li>
+<li>"Delegar sin Soltar": Decirle a alguien que haga algo pero estar encima de su hombro cada 2 minutos. Eso no es delegar, es estorbar.</li>
+<li>"El Tablero Estático": Hacer la matriz una vez y no volver a mirarla. Las prioridades cambian; el filtro debe estar siempre activo.</li>
+</ul>
+<hr>
+<h2>🛡️ Regla de Oro AICC</h2>
+<blockquote><strong>"Lo que es urgente rara vez es importante, y lo que es importante casi nunca es urgente."<strong></blockquote>
+<hr>
+<h2>📊 Métrica de Impacto & ROI Humano</h2>
+<ul>
+<li><strong>KPI Principal:</strong> `Porcentaje de tiempo dedicado al Cuadrante 2 (>30% de la semana en prevención y construcción).`</li>
+<li><strong>Criterio de Éxito:</strong> Sensación de alivio cognitivo comprobable y avance visible en la primera sesión.</li>
+<li><strong>Indicador Emocional:</strong> Reducción del cortisol mental y recuperación del entusiasmo por el propio proyecto.</li>
+</ul>
+        </div>
+
+        <div class="footer-note">
+            Administración Humana • Concepción / Talcahuano • 2026
+        </div>
+    </div>
+</body>
+</html>
