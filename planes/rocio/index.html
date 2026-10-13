@@ -252,6 +252,92 @@
             font-size: 0.72rem;
             font-weight: 700;
         }
+    
+        /* MODAL LECTOR DE GUÍAS CANÓNICAS */
+        .guide-modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 9999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+        }
+        .guide-modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
+        .guide-modal-box {
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 18px;
+            max-width: 860px;
+            width: 100%;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+            overflow: hidden;
+        }
+        .guide-modal-header {
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111624;
+        }
+        .guide-modal-close {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color 0.15s;
+        }
+        .guide-modal-close:hover { color: #ffffff; }
+        .guide-modal-body {
+            padding: 1.8rem;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+        .guide-modal-body h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin: 1.6rem 0 0.6rem 0;
+            padding-bottom: 0.35rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }}
+        .guide-modal-body h2:first-of-type { margin-top: 0; }
+        .guide-modal-body h3 {
+            color: #10b981;
+            font-size: 0.98rem;
+            margin: 1.1rem 0 0.4rem 0;
+        }
+        .guide-modal-body p { margin-bottom: 0.9rem; }
+        .guide-modal-body ul { margin-bottom: 1.1rem; padding-left: 1.3rem; }
+        .guide-modal-body li { margin-bottom: 0.35rem; }
+        .guide-modal-body blockquote {
+            background: rgba(16, 185, 129, 0.08);
+            border-left: 3px solid #10b981;
+            padding: 0.8rem 1.1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #f1f5f9;
+        }
+        .guide-modal-body hr {
+            border: none;
+            border-top: 1px dashed rgba(255,255,255,0.12);
+            margin: 1.5rem 0;
+        }
+
     </style>
 </head>
 <body>
@@ -289,6 +375,31 @@
     </div>
 
     <!-- TOAST NOTIFICATION -->
+    
+    <!-- MODAL LECTOR DE GUÍAS CANÓNICAS AICC -->
+    <div id="guide-modal" class="guide-modal-overlay" onclick="closeGuideModal(event)">
+        <div class="guide-modal-box" onclick="event.stopPropagation()">
+            <div class="guide-modal-header">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span id="guide-modal-badge" style="background:rgba(16,185,129,0.15); color:#10b981; border:1px solid #10b98144; font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:800; padding:3px 8px; border-radius:6px;">AICC</span>
+                    <div>
+                        <h3 id="guide-modal-title" style="margin:0; font-size:1.05rem; color:#fff; font-family:'Space Grotesk', sans-serif;">Guía Canónica</h3>
+                        <p id="guide-modal-subtitle" style="margin:0; font-size:0.75rem; color:#10b981; font-weight:600;"></p>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <a id="guide-modal-external" href="#" target="_blank" style="color:#cbd5e1; font-size:0.75rem; text-decoration:none; padding:5px 10px; border-radius:6px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); display:flex; align-items:center; gap:5px;" title="Abrir en pestaña nueva">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Nueva Pestaña
+                    </a>
+                    <button class="guide-modal-close" onclick="closeGuideModal()">&times;</button>
+                </div>
+            </div>
+            <div id="guide-modal-body" class="guide-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
     <div id="toast-notification" class="toast-notification">
         <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
         <span id="toast-text">¡Prompt copiado con éxito! Pégalo en ChatGPT.</span>
@@ -3125,7 +3236,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                             </ul>
                             <div style="margin-top:0.6rem; border-top:1px dashed #333; padding-top:0.5rem; display:flex; justify-content:space-between; align-items:center;">
                                 <span style="font-size:0.72rem; color:#888;">📄 Guía Canónica: P3-02 Plan Estratégico</span>
-                                <a href="02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Plan Estrategico/guia_humana.md" target="_blank" style="font-size:0.74rem; color:#10b981; font-weight:700;">Ver Guía Completa →</a>
+                                <a href="planes/rocio/guias/guia_plan_estrategico.html" onclick="openGuideModal('plan_estrategico'); return false;" target="_blank" style="font-size:0.74rem; color:#10b981; font-weight:700; cursor:pointer;">Ver Guía Completa →</a>
                             </div>
                         </div>
                     </div>
@@ -3174,7 +3285,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                             </ul>
                             <div style="margin-top:0.6rem; border-top:1px dashed #333; padding-top:0.5rem; display:flex; justify-content:space-between; align-items:center;">
                                 <span style="font-size:0.72rem; color:#888;">📄 Guía Canónica: P2-18 Principio de Pareto</span>
-                                <a href="02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Principio de Pareto/guia_humana.md" target="_blank" style="font-size:0.74rem; color:#f59e0b; font-weight:700;">Ver Guía Completa →</a>
+                                <a href="planes/rocio/guias/guia_pareto.html" onclick="openGuideModal('pareto'); return false;" target="_blank" style="font-size:0.74rem; color:#f59e0b; font-weight:700; cursor:pointer;">Ver Guía Completa →</a>
                             </div>
                         </div>
                     </div>
@@ -3275,7 +3386,7 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
                             </ul>
                             <div style="margin-top:0.6rem; border-top:1px dashed #333; padding-top:0.5rem; display:flex; justify-content:space-between; align-items:center;">
                                 <span style="font-size:0.72rem; color:#888;">📄 Guía Canónica: P2-13 Filosofía Kaizen</span>
-                                <a href="02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kaizen/guia_humana.md" target="_blank" style="font-size:0.74rem; color:#a78bfa; font-weight:700;">Ver Guía Completa →</a>
+                                <a href="planes/rocio/guias/guia_kaizen.html" onclick="openGuideModal('kaizen'); return false;" target="_blank" style="font-size:0.74rem; color:#a78bfa; font-weight:700; cursor:pointer;">Ver Guía Completa →</a>
                             </div>
                         </div>
                     </div>
@@ -4758,6 +4869,50 @@ Para confirmar tu cupo y preparar la sala, por favor confírmame tu asistencia r
             window.calcularRoiPiedras();
         }
     });
+    
+        // LECTOR DE GUÍAS CANÓNICAS AICC EN MODAL
+        const AICC_GUIDES_DATA = {"plan_estrategico": {"code": "P3-02", "title": "Plan Estratégico Trienal & Roadmap de Transición", "subtitle": "El Mapa para Dejar de Correr como Pollo sin Cabeza", "color": "#10b981", "url": "planes/rocio/guias/guia_plan_estrategico.html", "body": "<h2>🎭 1. Metáfora Cercana & Nombre Humano</h2>\n<blockquote><strong>\"El Mapa para Dejar de Correr como Pollo sin Cabeza\"<strong></blockquote>\n<p>La reactividad constante, la sensación de estancamiento y el agotamiento por decidir todo sobre la marcha.</p>\n<hr>\n<h2>🚩 2. Triggers Diagnósticos & Red Flags Clínicos</h2>\n<p>¿Cuándo se prescribe esta herramienta en sesión? Cuando el cliente manifiesta estos síntomas en su narrativa cotidiana o en su corporalidad:</p>\n<ul>\n<li><strong>Sensación Somática de Agotamiento:</strong> Tensión en hombros y mandíbula, insomnio por rumiación de pendientes o sensación de estar \"atrapado en arenas movedizas\".</li>\n<li><strong>Narrativa de Culpabilidad:</strong> Creer que la falta de resultados se debe a \"debilidad de carácter\" o \"falta de disciplina\", cuando en realidad es ausencia de un contenedor metodológico claro.</li>\n<li><strong>Fuga de Recursos:</strong> Dinero que se evapora sin saber dónde, horas perdidas en apagado de incendios de otros o dispersión en 10 frentes simultáneos.</li>\n</ul>\n<h3>❓ Pregunta Diagnóstica de Entrada:</h3>\n<blockquote><em>\"Si tuviéramos que ser brutalmente honestos hoy sobre esta dimensión, ¿qué es lo que te drena la energía y qué te devolvería la paz si lo ordenamos en los próximos 15 minutos?\"<em></blockquote>\n<hr>\n<h2>🏛️ 3. Historia y Contexto de Origen</h2>\n<p>La palabra \"estrategia\" viene del griego strategos (ejército y conducir). Aunque nació en el campo de batalla con personajes como Sun Tzu, en los años 60 saltó al mundo de los negocios para ayudar a las empresas a sobrevivir en entornos cambiantes. Hoy, para un dueño de negocio, es vital porque el mundo no se detiene; si no tienes un plan, terminas trabajando para el plan de alguien más.</p>\n<hr>\n<h2>🎙️ 4. El \"Elevator Pitch\" Humano (Guion Conversacional con el Cliente)</h2>\n<blockquote><em>\"\"¿Te ha pasado que terminas la semana agotado pero sientes que no avanzaste nada importante? Eso es porque estás en modo 'supervivencia'. El Plan Estratégico es como dejar de mirar tus pies mientras caminas para levantar la vista y ver la montaña a la que quieres subir. No es un documento aburrido de 50 páginas; es la declaración de guerra contra el caos. Es decidir hoy qué batallas vas a ganar para que mañana tu negocio te dé la libertad que buscabas cuando empezaste.\"\"<em></blockquote>\n<hr>\n<h2>⚙️ 5. Desglose para ADMINISTRADORES (Capa Técnica & Rigor Operativo)</h2>\n<p>Como consultores, sustentamos esta herramienta bajo los siguientes estándares de gestión profesional y gobierno empresarial:</p>\n<ul>\n<li>Como consultores, sustentamos la planificación estratégica bajo el rigor de la coherencia operativa y la ventaja competitiva:</li>\n<li>Declaración de Identidad Estratégica: Definición de Misión (Propósito), Visión (Estado futuro deseado) y Valores (Principios rectores).</li>\n<li>Análisis de Brechas (Gap Analysis): Determinación de la distancia entre la situación actual (AS-IS) y la situación deseada (TO-BE).</li>\n<li>Ejes Estratégicos: Áreas críticas de enfoque (Finanzas, Clientes, Procesos, Aprendizaje) que agrupan los esfuerzos de la organización.</li>\n<li>Cascada de Objetivos: Desglose de metas de largo plazo en tácticas operativas de corto plazo.</li>\n<li>Variable de Control: \"Alineación Organizacional\". Un plan estratégico exitoso se mide por la capacidad de que cada tarea diaria contribuya directamente a un objetivo de largo plazo.</li>\n</ul>\n<hr>\n<h2>💡 6. Desglose para NO-ADMINISTRADORES (Capa Didáctica & Metáforas Vivas)</h2>\n<p>Para trabajar con clientes y colaboradores sin abrumarlos con jerga técnica o tecnicismos fríos:</p>\n<ul>\n<li>Concepto Definición Cercana (Analogía) Pregunta de Diagnóstico Misión Es el \"¿Quién soy hoy</li>\n<li>\" . Tu carnet de identidad. Lo que te hace único en el barrio. ¿Si tu negocio desapareciera mañana, qué es lo que más extrañarían tus clientes</li>\n<li>Visión Es el \"¿A dónde voy</li>\n<li>\" . Como mirar por un telescopio y ver dónde quieres estar en 2 años. Si todo saliera perfecto, ¿cómo se vería tu vida y tu negocio en el próximo año</li>\n<li>Valores Son las \"Reglas del Juego\" . Como en el fútbol: no se vale usar las manos. Es lo que no transas por nada. ¿Qué cosas jamás permitirías que pasaran en tu negocio, aunque te dieran dinero</li>\n<li>Estrategia Es el \"Camino\" . Si quieres llegar a la playa, decides si vas por la autopista o por el cerro. ¿Estás eligiendo el camino más inteligente o solo el que tienes en frente</li>\n</ul>\n<hr>\n<h2>🔗 7. Ecosistema: ¿Cómo Potencia a Otras Herramientas del Sistema AICC?</h2>\n<p>Esta herramienta no opera de forma aislada; es un engranaje clave dentro de la suite:</p>\n<ul>\n<li>El Plan Estratégico es el \"Sol\" de tu sistema solar:</li>\n<li>Potencia el FODA: El plan te dice qué fortalezas usar y qué amenazas atacar primero.</li>\n<li>Nutre los OKR y SMART: Sin plan, las metas SMART son solo flechas disparadas al aire. El plan te dice a qué blanco apuntar.</li>\n<li>Ordena el Presupuesto: Te ayuda a decir \"no\" a gastos tentadores que no te llevan a tu visión de futuro.</li>\n</ul>\n<hr>\n<h2>🚜 8. Casos de Aplicación \"A Ras de Suelo\" (La Vida Real)</h2>\n<ul>\n<li>Escenario A (Negocio - Servicio de Limpieza):</li>\n<li>Misión: Devolverle el brillo y la salud a los hogares de Concepción.</li>\n<li>Visión: Ser el servicio de limpieza de tapices más confiable de la región para</li>\n<li>Estrategia: Especializarse solo en máquinas de vapor de alta gama para diferenciarse de la competencia barata.</li>\n<li>Escenario B (Vida Personal - Paternidad / Creatividad):</li>\n<li>Misión: Ser el soporte emocional y guía creativo de mis hijos.</li>\n<li>Visión: Tener una relación de confianza total donde ellos se sientan libres de crear.</li>\n<li>Estrategia: Bloquear los viernes en la tarde como \"Tarde de Inventos\" para conectar desde el juego y no desde la orden. Plan de Acción de 24 Horas: El Micro-hábito Tu misión para mañana (Cero parálisis): Tómate 10 minutos con un café. Escribe en una sola frase: \"Mi negocio existe para [Misión] y en un año quiero que esté en [Visión]\" . No tiene que ser perfecto, puede tener tachones. Como en el Clown, el primer intento es para perder el miedo. ¡Solo escríbelo! Antipatrones (Lo que NO hay que hacer)</li>\n<li>El Plan \"Cajón de Sastre\": Hacer un plan hermoso, imprimirlo y guardarlo en un cajón para que junte polvo. El plan se vive todos los días.</li>\n<li>Copiar la Misión de Google: Poner frases bonitas que no significan nada para ti. Si tu misión no te hace vibrar, no sirve.</li>\n<li>El \"Llanero Solitario\": Hacer el plan tú solo sin preguntarle a nadie (ni a tu equipo ni a tu familia). Si ellos no son parte del plan, no te ayudarán a cumplirlo.</li>\n<li>Rigidez de Cemento: Creer que el plan no se puede cambiar. Si el camino está cortado, ¡se busca otra ruta! El estratega es flexible como un payaso esquivando un pastel.</li>\n<li>Confundir Deseos con Plan: \"Quiero ser rico\" no es un plan. \"Voy a ahorrar el 10% y subir mis precios un 15%\" sí lo es.</li>\n</ul>\n<hr>\n<h2>⚡ 9. Plan de Acción de 24 Horas (El Micro-hábito) & Antipatrones</h2>\n<h3>⏱️ El Micro-hábito Inmediato (Paso Cero):</h3>\n<p>Tu próxima comunicación (WhatsApp, Mail o charla) será al revés: Antes de enviar tu próximo mensaje de trabajo, borra el saludo eterno y escribe la conclusión en la primera línea . Luego añade un \"Porque:\" y pon dos puntos clave. Hazlo una sola vez mañana. Verás cómo la gente te responde más rápido.</p>\n<h3>🚫 Antipatrones Críticos (Lo que NO Hay que Hacer):</h3>\n<ul>\n<li>La Novela de Misterio: Guardar la conclusión para el final después de 20 minutos de charla. ¡No somos Agatha Christie!</li>\n<li>La Pirámide Flotante: Tirar una conclusión fuerte sin tener datos que la sujeten. Eso se llama \"humo\".</li>\n<li>El Laberinto de Ideas: Mezclar argumentos de dinero con argumentos de sentimientos en el mismo pilar. Cada pata de la mesa en su lugar.</li>\n<li>Exceso de Equipaje: Poner 10 pilares. El cerebro ama el</li>\n<li>Si tienes más de 4 razones, probablemente algunas son la misma con distinto disfraz.</li>\n<li>Omitir el Lado Humano: Ser directo no significa ser un robot. Puedes usar la Pirámide y seguir siendo un \"profe bacán\". La estructura da claridad, tu tono da la confianza. Plan Estratégico: El mapa para dejar de \"correr como pollo sin cabeza\"</li>\n</ul>\n<hr>\n<h2>🛡️ Regla de Oro AICC</h2>\n<blockquote><strong>\"Un plan a 3 años no es una camisa de fuerza inamovible; es el guion de la película para saber qué escena toca rodar hoy.\"<strong></blockquote>\n<hr>\n<h2>📊 Métrica de Impacto & ROI Humano</h2>\n<ul>\n<li><strong>KPI Principal:</strong> `Tasa de cumplimiento de hitos trimestrales (>80%) sin trabajar fines de semana no planificados.`</li>\n<li><strong>Criterio de Éxito:</strong> Sensación de alivio cognitivo comprobable y avance visible en la primera sesión.</li>\n<li><strong>Indicador Emocional:</strong> Reducción del cortisol mental y recuperación del entusiasmo por el propio proyecto.</li>\n</ul>"}, "pareto": {"code": "P2-18", "title": "Principio de Pareto (La Regla del 80/20)", "subtitle": "La Cura para el Agotamiento por \"Hacer de Todo\"", "color": "#f59e0b", "url": "planes/rocio/guias/guia_pareto.html", "body": "<h2>🎭 1. Metáfora Cercana & Nombre Humano</h2>\n<blockquote><strong>\"La Cura para el Agotamiento por \"Hacer de Todo\": Foco en el Músculo Vital\"<strong></blockquote>\n<p>La sensación de estar \"trabajando como chino\" pero ver que la cuenta bancaria no se mueve, el estrés de tener una lista de pendientes infinita y la frustración de dedicarle tiempo a clientes que solo traen problemas. 2.</p>\n<hr>\n<h2>🚩 2. Triggers Diagnósticos & Red Flags Clínicos</h2>\n<p>¿Cuándo se prescribe esta herramienta en sesión? Cuando el cliente manifiesta estos síntomas en su narrativa cotidiana o en su corporalidad:</p>\n<ul>\n<li><strong>Sensación de Dispersión \"en Spray\":</strong> Saltar de pestaña en pestaña sin cerrar ninguna tarea; revisar el teléfono compulsivamente.</li>\n<li><strong>Amnesia y Ansiedad Nocturna:</strong> Despertarse en la madrugada recordando correos o compromisos olvidados.</li>\n<li><strong>Agotamiento sin Progreso:</strong> Sentir que se trabajó 10 horas seguidas pero la aguja del negocio no se movió un solo milímetro.</li>\n</ul>\n<h3>❓ Pregunta Diagnóstica de Entrada:</h3>\n<blockquote><em>\"¿Confías plenamente en tu sistema para recordar lo que tienes que hacer hoy, o tu cerebro está al borde del colapso por sostener 40 pendientes en el aire?\"<em></blockquote>\n<hr>\n<h2>🏛️ 3. Historia y Contexto de Origen</h2>\n<p>Esta joya nació en 1896. El economista italiano Vilfredo Pareto se dio cuenta de algo loquísimo: el 20% de las personas en Italia poseía el 80% de las tierras. Luego miró su jardín y vio que el 20% de las vainas de sus arvejas producían el 80% de las arvejas. Años después, Joseph Juran (el gurú de la calidad) lo aplicó a los negocios. Es vital hoy porque vivimos en la era de la distracción, y si no eliges tus batallas, las vas a perder todas por cansancio. 3.</p>\n<hr>\n<h2>🎙️ 4. El \"Elevator Pitch\" Humano (Guion Conversacional con el Cliente)</h2>\n<blockquote><em>\"\"¿Te has fijado que usas el mismo par de zapatos el 80% del tiempo aunque tengas diez en el clóset? La vida funciona así: la minoría de lo que haces genera la mayoría de lo que consigues. El Principio de Pareto es tu permiso legal para dejar de hacer el 80% de las cosas que te quitan energía y no te dan un peso, para enfocarte en ese pequeño 20% que de verdad cambia tu vida y la de tus clientes. Es trabajar menos, pero trabajar donde importa.\" 4.\"<em></blockquote>\n<hr>\n<h2>⚙️ 5. Desglose para ADMINISTRADORES (Capa Técnica & Rigor Operativo)</h2>\n<p>Como consultores, sustentamos esta herramienta bajo los siguientes estándares de gestión profesional y gobierno empresarial:</p>\n<ul>\n<li>Desde la consultoría estratégica, sustentamos el Principio de Pareto como un modelo de Distribución de Causalidad Selectiva . Sus fundamentos técnicos son:</li>\n<li>Ley de los 'Pocos Vitales' vs. los 'Muchos Triviales': Establece que en cualquier sistema, el 80% de las consecuencias provienen del 20% de las causas.</li>\n<li>Optimización del ROI Operativo: Identificamos que el grueso de la rentabilidad suele estar concentrado en un pequeño segmento de productos o clientes (Análisis ABC).</li>\n<li>Variable de Control: El objetivo es la eficiencia marginal . No se trata de eliminar el 80% restante de inmediato, sino de desviar los recursos críticos (tiempo, talento, capital) hacia el 20% de mayor impacto. 5.</li>\n</ul>\n<hr>\n<h2>💡 6. Desglose para NO-ADMINISTRADORES (Capa Didáctica & Metáforas Vivas)</h2>\n<p>Para trabajar con clientes y colaboradores sin abrumarlos con jerga técnica o tecnicismos fríos:</p>\n<ul>\n<li>Concepto Definición Cercana (Analogía) Pregunta de Diagnóstico \"Al Hueso\" La Regla 80/20 La Crema de la Leche: Es esa parte de arriba que tiene todo el sabor y la grasa rica, mientras que el resto es solo agua. Si hoy solo pudieras trabajar 2 horas, ¿qué tareas harías para que tu negocio no muera</li>\n<li>Pocos Vitales Tus Clientes 'Regalones': Esos tres clientes que no reclaman, pagan a tiempo y te recomiendan con todo el mundo. ¿Quiénes son los 2 de cada 10 clientes que te traen casi toda la plata y la alegría</li>\n<li>Muchos Triviales El Ruido de Fondo: Esas tareas que te toman todo el día (llenar papeles, ver Instagram) pero que no te traen ni un cliente nuevo. ¿Qué actividades haces solo por costumbre pero que si dejaras de hacerlas mañana, nadie se daría cuenta</li>\n<li>6.</li>\n</ul>\n<hr>\n<h2>🔗 7. Ecosistema: ¿Cómo Potencia a Otras Herramientas del Sistema AICC?</h2>\n<p>Esta herramienta no opera de forma aislada; es un engranaje clave dentro de la suite:</p>\n<ul>\n<li>Pareto es el filtro que limpia el camino para las demás herramientas:</li>\n<li>Matriz de Eisenhower: Te ayuda a ver que el 80% de lo que crees que es \"Urgente\" es en realidad \"Trivial\".</li>\n<li>Batching: Agrupas ese 20% de tareas vitales para sacarlas adelante con toda tu energía.</li>\n<li>GTD: Te permite vaciar tu mente, pero Pareto te dice qué cosas de esa lista de verdad merecen tu atención. 7.</li>\n</ul>\n<hr>\n<h2>🚜 8. Casos de Aplicación \"A Ras de Suelo\" (La Vida Real)</h2>\n<ul>\n<li>Escenario A (Negocio - Local físico o Taller): Tienes un taller de muebles y haces de todo: sillas, mesas, repisas y arreglos chicos. Al aplicar Pareto, notas que las mesas de comedor representan el 80% de tus ganancias, pero solo te toman el 20% de tu tiempo. Los arreglos de sillas te quitan todo el día y no te dejan nada. Acción de Mentor: Deja de promocionar arreglos de sillas y vuélvete el \"Maestro de las Mesas\".</li>\n<li>Escenario B (Vida Personal - Hogar / Proyectos): Sientes que pasas todo el día ordenando la casa y nunca terminas. Notas que el 80% del desorden lo causan solo dos lugares (la mesa del comedor y la entrada). Acción de Mentor: Enfócate solo en mantener limpios esos dos puntos críticos. Verás cómo la sensación de orden en toda la casa sube un 80% sin haber limpiado cada rincón. 8.</li>\n</ul>\n<hr>\n<h2>⚡ 9. Plan de Acción de 24 Horas (El Micro-hábito) & Antipatrones</h2>\n<h3>⏱️ El Micro-hábito Inmediato (Paso Cero):</h3>\n<p>(Micro-hábito) Mañana mismo: Toma tu lista de tareas o revisa tus ventas del último mes. Identifica LA actividad o EL cliente que más resultados te dio. Solo uno. Mañana, asegúrate de dedicarle la primera hora de tu día a potenciar eso. Lo demás puede esperar, el 20% manda. 9.</p>\n<h3>🚫 Antipatrones Críticos (Lo que NO Hay que Hacer):</h3>\n<ul>\n<li>\"El Perfeccionista Matemático\": Intentar que sea exactamente 80 y</li>\n<li>A veces es 70/30 o 90/</li>\n<li>Lo importante es el concepto de desequilibrio.</li>\n<li>\"Despreciar al 80%\": Ignorar totalmente a los clientes pequeños. Hay que gestionarlos, pero no dejar que te quiten el tiempo de los grandes.</li>\n<li>\"La Excusa para la Flojera\": Usar Pareto para no hacer nada del trabajo administrativo aburrido. El 20% es para enfoque, no para evadir responsabilidades básicas.</li>\n<li>\"Olvidar que las cosas cambian\": El 20% de hoy puede no ser el de mañana. Hay que revisar el mapa cada cierto tiempo (como el payaso que revisa si el público se sigue riendo de lo mismo).</li>\n<li>\"Enfoque sin Acción\": Identificar tu 20% pero seguir dedicándole el día entero a las distracciones por miedo a lo importante. 1.</li>\n</ul>\n<hr>\n<h2>🛡️ Regla de Oro AICC</h2>\n<blockquote><strong>\"El 80% de tus resultados proviene del 20% de tus esfuerzos; todo lo demás es grasa operativa a podar.\"<strong></blockquote>\n<hr>\n<h2>📊 Métrica de Impacto & ROI Humano</h2>\n<ul>\n<li><strong>KPI Principal:</strong> `Identificación y blindaje del 20% de tareas de alto impacto con eliminación de 3 distractores semanales.`</li>\n<li><strong>Criterio de Éxito:</strong> Sensación de alivio cognitivo comprobable y avance visible en la primera sesión.</li>\n<li><strong>Indicador Emocional:</strong> Reducción del cortisol mental y recuperación del entusiasmo por el propio proyecto.</li>\n</ul>"}, "kaizen": {"code": "P2-13", "title": "Filosofía Kaizen (Mejora Continua del 1% Diario)", "subtitle": "La Cura para la Parálisis por Perfeccionismo: Micro-Avanzar Sin Traumatismos", "color": "#a78bfa", "url": "planes/rocio/guias/guia_kaizen.html", "body": "<h2>🎭 1. Metáfora Cercana & Nombre Humano</h2>\n<blockquote><strong>\"La Cura para la Parálisis por Perfeccionismo: Micro-Avanzar Sin Traumatismos\"<strong></blockquote>\n<p>El agobio de sentir que necesitas una \"gran revolución\" para mejorar el negocio, el miedo a los cambios drásticos que paralizan al equipo y la frustración de ver cómo los grandes planes se quedan en el papel por ser inalcanzables. 2.</p>\n<hr>\n<h2>🚩 2. Triggers Diagnósticos & Red Flags Clínicos</h2>\n<p>¿Cuándo se prescribe esta herramienta en sesión? Cuando el cliente manifiesta estos síntomas en su narrativa cotidiana o en su corporalidad:</p>\n<ul>\n<li><strong>Fricción Operativa Constante:</strong> El mismo error se repite semana tras semana; discusiones por \"quién fue la culpa\".</li>\n<li><strong>Dependencia Absoluta del Dueño:</strong> Si el líder no está en el local o en el chat, la operación se paraliza.</li>\n<li><strong>Sobrecarga de Retrabajo:</strong> Hacer las cosas dos veces porque \"no quedaron bien a la primera\".</li>\n</ul>\n<h3>❓ Pregunta Diagnóstica de Entrada:</h3>\n<blockquote><em>\"¿Si hoy tuvieras que ausentarte 3 días de tu negocio, qué proceso colapsaría primero y por qué?\"<em></blockquote>\n<hr>\n<h2>🏛️ 3. Historia y Contexto de Origen</h2>\n<p>La palabra viene del japonés: Kai (Cambio) y Zen (Bueno/Mejor). Nació en un Japón devastado después de la Segunda Guerra Mundial. Empresas como Toyota se dieron cuenta de que no tenían plata para grandes máquinas nuevas, así que decidieron mejorar lo que ya tenían, un poquito cada día. Hoy es vital porque el mundo cambia tan rápido que, si esperas a tener el \"plan perfecto\", ya llegaste tarde. 3.</p>\n<hr>\n<h2>🎙️ 4. El \"Elevator Pitch\" Humano (Guion Conversacional con el Cliente)</h2>\n<blockquote><em>\"\"¿Y si te dijera que no tienes que dar vuelta tu negocio como un calcetín para que funcione mejor? El Kaizen es la técnica de mejorar un 1% cada día. Parece poco, pero al final del año serás 37 veces mejor que hoy. Es la herramienta para los que quieren resultados reales sin quemar el motor (ni a su equipo). Es dejar de buscar el 'gran salto' para empezar a disfrutar de la caminata.\" 4.\"<em></blockquote>\n<hr>\n<h2>⚙️ 5. Desglose para ADMINISTRADORES (Capa Técnica & Rigor Operativo)</h2>\n<p>Como consultores, sustentamos esta herramienta bajo los siguientes estándares de gestión profesional y gobierno empresarial:</p>\n<ul>\n<li>Desde la consultoría de alto nivel, sustentamos el Kaizen como un sistema de Mejora Continua basado en la eficiencia operativa y la eliminación de desperdicios. Sus fundamentos estratégicos son:</li>\n<li>Ciclo PDCA (Deming): Plan (Planificar), Do (Hacer), Check (Verificar) y Act (Actuar). Es un bucle infinito de optimización.</li>\n<li>Eliminación de \"Muda\" (Desperdicio): Identificar todo aquello que consume recursos pero no agrega valor al cliente final (sobreproducción, esperas, movimientos innecesarios).</li>\n<li>Cultura de Empoderamiento: El Kaizen no viene de la gerencia, viene del \"Gemba\" (el lugar donde ocurren las cosas). Es el operador quien detecta la mejora, lo que aumenta el compromiso y reduce la rotación. Variable de Control: Reducción de costos marginales y aumento de la calidad incremental (Zero Defects). 5.</li>\n</ul>\n<hr>\n<h2>💡 6. Desglose para NO-ADMINISTRADORES (Capa Didáctica & Metáforas Vivas)</h2>\n<p>Para trabajar con clientes y colaboradores sin abrumarlos con jerga técnica o tecnicismos fríos:</p>\n<ul>\n<li>Concepto Definición Cercana (Analogía) Pregunta de Diagnóstico \"Al Hueso\" Mejora Continua Lavar los platos: No esperas a que no haya ni una cuchara limpia para lavar todo; vas lavando lo que usas para que la cocina siempre fluya. ¿Qué pequeña cosa de mi negocio me molesta todos los días y hoy podría arreglar en 5 minutos</li>\n<li>Muda (Desperdicio) La grasa del asado: Es parte de la carne, pero no te la quieres comer. Hay que quitarla para que el plato sea perfecto. ¿En qué parte de mi día siento que estoy perdiendo el tiempo sin avanzar nada real</li>\n<li>Gemba Estar en la cocina: No puedes saber si la sopa está rica desde la oficina; tienes que ir a la olla y probarla. ¿Cuándo fue la última vez que hice el trabajo de mi equipo para entender dónde les aprieta el zapato</li>\n<li>6.</li>\n</ul>\n<hr>\n<h2>🔗 7. Ecosistema: ¿Cómo Potencia a Otras Herramientas del Sistema AICC?</h2>\n<p>Esta herramienta no opera de forma aislada; es un engranaje clave dentro de la suite:</p>\n<ul>\n<li>El Kaizen es el combustible que mantiene vivas a las demás:</li>\n<li>GTD: El Kaizen te ayuda a que tu proceso de Revisión Semanal sea cada vez más rápido y efectivo.</li>\n<li>Design Thinking: Se usa en la fase de Testeo para ir puliendo el prototipo poquito a poquito hasta que sea brillante.</li>\n<li>Matriz RACI: Te ayuda a ajustar los roles cuando notas que una responsabilidad está \"cojeando\" en el día a día. 7.</li>\n</ul>\n<hr>\n<h2>🚜 8. Casos de Aplicación \"A Ras de Suelo\" (La Vida Real)</h2>\n<ul>\n<li>Escenario A (Negocio - Taller o Servicio de Limpieza): Los trabajadores pierden 10 minutos cada mañana buscando las llaves o las herramientas.</li>\n<li>Acción Kaizen: En vez de comprar un software de gestión caro, pones un tablero con ganchos y la silueta de cada herramienta dibujada. Costo: casi cero. Resultado: 10 minutos ganados al día para siempre.</li>\n<li>Escenario B (Vida Personal - Paternidad): Las mañanas son un caos de gritos para que los niños se vistan.</li>\n<li>Acción Kaizen: En vez de un castigo nuevo, cada noche dejamos los calcetines dentro de los zapatos. Un cambio de 10 segundos que quita 5 minutos de estrés matutino. Pasito a pasito. 8.</li>\n</ul>\n<hr>\n<h2>⚡ 9. Plan de Acción de 24 Horas (El Micro-hábito) & Antipatrones</h2>\n<h3>⏱️ El Micro-hábito Inmediato (Paso Cero):</h3>\n<p>(Micro-hábito) Mañana mismo: Elige un solo rincón de tu oficina o local que esté desordenado (un cajón, una repisa). Ordénalo. Solo ese rincón. No intentes ordenar todo el local. Siente la satisfacción de esa pequeña zona bajo control. El éxito es contagioso. 9.</p>\n<h3>🚫 Antipatrones Críticos (Lo que NO Hay que Hacer):</h3>\n<ul>\n<li>\"El Efecto Fuegos Artificiales\": Querer cambiar todo de golpe el lunes y que el viernes ya todos hayan vuelto a lo de siempre. El Kaizen es una tortuga, no un conejo.</li>\n<li>\"Culpar al Mensajero\": Si algo falla, el Kaizen dice que el problema es el proceso , no la persona. No seas el jefe que grita, sé el mentor que arregla el sistema.</li>\n<li>\"Olvidar el 'Check'\": Hacer un cambio y nunca volver a mirar si funcionó. Si no mides el resultado, es solo una ocurrencia, no mejora.</li>\n<li>\"Kaizen de Escritorio\": Intentar mejorar el trabajo de tu equipo sin preguntarles a ellos. El que tiene la escoba sabe mejor dónde está la basura.</li>\n<li>\"Perfeccionismo Paralizante\": No aplicar una mejora porque \"no es la solución definitiva\". ¡Hazla igual! Una mejora de un 1% es mejor que una de 0%.</li>\n</ul>\n<hr>\n<h2>🛡️ Regla de Oro AICC</h2>\n<blockquote><strong>\"Un 1% mejor cada día te hace 37 veces mejor en un año; una revolución violenta te deja agotado en una semana.\"<strong></blockquote>\n<hr>\n<h2>📊 Métrica de Impacto & ROI Humano</h2>\n<ul>\n<li><strong>KPI Principal:</strong> `Al menos 1 micro-mejora operativa implementada y documentada cada viernes.`</li>\n<li><strong>Criterio de Éxito:</strong> Sensación de alivio cognitivo comprobable y avance visible en la primera sesión.</li>\n<li><strong>Indicador Emocional:</strong> Reducción del cortisol mental y recuperación del entusiasmo por el propio proyecto.</li>\n</ul>"}};
+
+        function openGuideModal(guideKey) {
+            const guide = AICC_GUIDES_DATA[guideKey];
+            if (!guide) return;
+            const modal = document.getElementById("guide-modal");
+            const badge = document.getElementById("guide-modal-badge");
+            const title = document.getElementById("guide-modal-title");
+            const subtitle = document.getElementById("guide-modal-subtitle");
+            const body = document.getElementById("guide-modal-body");
+            const extLink = document.getElementById("guide-modal-external");
+
+            badge.innerText = guide.code;
+            badge.style.color = guide.color;
+            badge.style.borderColor = guide.color + "66";
+            badge.style.background = guide.color + "22";
+
+            title.innerText = guide.title;
+            subtitle.innerText = guide.subtitle;
+            subtitle.style.color = guide.color;
+            body.innerHTML = guide.body;
+            extLink.href = guide.url;
+
+            if (modal) {
+                modal.classList.add("active");
+                body.scrollTop = 0;
+            }
+        }
+
+        function closeGuideModal(e) {
+            const modal = document.getElementById("guide-modal");
+            if (modal) modal.classList.remove("active");
+        }
+
+        // Cerrar con Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeGuideModal();
+            }
+        });
+
     </script>
 </body>
 </html>
