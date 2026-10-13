@@ -32,7 +32,8 @@ window.CLIENTS_MASTER_DATA = {
       "fondo_reserva_paz",
       "calculadora_roi_capacitaciones",
       "paquetizacion_servicios_mes",
-      "somatica_y_autorregulacion_tea",
+      "regulacion_corporal_tea",
+      "oceano_azul_diferencial",
       "vaciado_nocturno_analogo",
       "cero_pantallas_celular",
       "pedagogia_quirurgica_bloques",
@@ -41,7 +42,10 @@ window.CLIENTS_MASTER_DATA = {
       "alianzas_operativas_duetos",
       "inversion_piedras_calientes",
       "estudio_grabacion_voz",
-      "movilizacion_lienzos_ust"
+      "movilizacion_lienzos_ust",
+      "plan_estrategico_hitos",
+      "principio_pareto_80_20",
+      "kaizen_mejora_continua"
     ],
     "diagnostico": {
       "resumen_humano": "Rocío equilibra admirablemente sus estudios universitarios en UST con dos emprendimientos independientes (Puya Masajes y Voz Caleidoscopio) y el cuidado del hogar en Talcahuano con su perrita Nieve. Presenta una disciplina y orden físico excepcionales (10/10 y 1/5 en abandono de sistemas). Su desafío es la fuga por interrupciones constantes (5/5, 21h/sem) y la necesidad innegociable de agendar pausas de autorregulación sensorial (Stimming TEA).",
@@ -77,12 +81,22 @@ window.CLIENTS_MASTER_DATA = {
         "trabajo_estudio": 28,
         "dispersion_interrupciones": 21,
         "apagafuegos": 14
+      },
+      "contexto_laboral_actual": {
+        "hotel": "Turnos de 42 a 49 horas semanales (5 a 6h todos los días, 1 o 2 descansos de mañana al mes), vigencia hasta enero-febrero 2027.",
+        "universidad": "Universidad Santo Tomás (1er año Psicopedagogía), horario 18:40 a 22:40. Cierre de semestre: 15 de diciembre 2026.",
+        "cursos_fin_de_ano": [
+          "Piedras Calientes (15 de noviembre, 5 días intensivos, $75k con maletín incluido)",
+          "Reestructuración Articular",
+          "Masaje estilo Tailandés con Danae (traductora, guía, artesana, masajista)"
+        ],
+        "estrategia_transicion": "3 fases: Fase 1 Blindaje (hasta 15 dic), Fase 2 Preventa (15 dic a feb), Fase 3 Despegue Total (feb en adelante)."
       }
     },
     "foda": {
       "fortalezas": [
         "Capacidad inventiva conceptual, storytelling y desarrollo de experiencias sensoriales.",
-        "Alta disciplina corporal y cuidado somático constante (Salud 8/10).",
+        "Alta disciplina corporal y hábitos de bienestar constante (Salud 8/10).",
         "Inteligencia emocional y capacidad de fijar límites sanos con apoyo familiar (9/10).",
         "Consistencia sobresaliente en sistemas y rutinas análogas (1/5 abandono)."
       ],
@@ -157,76 +171,81 @@ window.CLIENTS_MASTER_DATA = {
     "kanban_gtd": {
       "todo": [
         {
-          "id": "r1",
-          "text": "Redactar borrador petitorio transporte estudiantil UST",
-          "tag": "UST"
-        },
-        {
-          "id": "r2",
-          "text": "Configurar WhatsApp Business para Puya Masajes",
-          "tag": "Puya"
-        },
-        {
-          "id": "r3",
-          "text": "Contactar a Vicente para audio de práctica",
+          "id": "r4",
+          "text": "Canto: Probar Guía de Experiencia (Microrrelato 3 líneas) en la próxima sesión outdoor",
           "tag": "Canto"
         },
         {
           "id": "r5",
-          "text": "Investigar souvenirs sensoriales (velas/inciensos)",
+          "text": "Canto: Diseñar flujo de co-creación musical indoor con El Mapa de la Canción Propia",
+          "tag": "Canto"
+        },
+        {
+          "id": "r6",
+          "text": "Puya: Integrar campos de termoterapia/piedras en ficha de anamnesis física (Hoja 05)",
           "tag": "Puya"
         },
         {
           "id": "r7",
-          "text": "Diseñar propuesta Plan Terapéutico 1 Mes (4 sesiones)",
+          "text": "Puya: Lanzar propuesta Plan Terapéutico 1 Mes (4 sesiones) en WhatsApp",
           "tag": "Puya"
+        },
+        {
+          "id": "r8",
+          "text": "Puya: Configurar las 3 respuestas rápidas en WhatsApp Business",
+          "tag": "Puya"
+        },
+        {
+          "id": "r9",
+          "text": "UST: Redactar borrador petitorio transporte estudiantil UST",
+          "tag": "UST"
         }
       ],
       "doing": [
         {
-          "id": "r10",
-          "text": "UST: Averiguar y cotizar partituras con Benjamín",
+          "id": "r2",
+          "text": "UST: Averiguar y cotizar partituras didácticas con Benjamín",
           "tag": "UST"
         },
         {
-          "id": "r11",
-          "text": "Canto: Entregar a Diego modelos exactos de parlante y micrófono",
+          "id": "r3",
+          "text": "Canto: Buscar parlante a batería esta semana y entregar modelo exacto a Diego",
           "tag": "Canto"
         }
       ],
       "done": [
         {
-          "id": "r8",
-          "text": "Delegar formalmente paseo diario de Nieve a papá",
-          "tag": "Hogar"
-        },
-        {
-          "id": "r9",
+          "id": "r1",
           "text": "UST: Coordinar materiales y jornada de pintura de lienzos",
           "tag": "UST"
         },
         {
-          "id": "r12",
+          "id": "r10",
           "text": "Puya: Evaluar fechas para curso de piedras calientes y maletín seco",
           "tag": "Puya"
         },
         {
-          "id": "r13",
+          "id": "r11",
+          "text": "Delegar formalmente paseo diario de Nieve a papá",
+          "tag": "Hogar"
+        },
+        {
+          "id": "r12",
           "text": "Canto: Invitar a primera alumna a crear su melodía propia",
           "tag": "Canto"
         },
         {
-          "id": "r14",
+          "id": "r13",
           "text": "Puya: Redactar los 3 copys de duetos 2x1 y 3x2 con Charli",
           "tag": "Puya"
         },
         {
-          "id": "r15",
+          "id": "r14",
           "text": "TEA: Proteger pausas de stimming sin celulares (10:15 y 16:45)",
           "tag": "TEA"
         },
         {
-          "id": "r16",
+          "id": "r15",
           "text": "Canto: Imprimir planificador 08 de 70 min y repertorio de canciones",
           "tag": "Canto"
         }
@@ -282,22 +301,89 @@ window.CLIENTS_MASTER_DATA = {
     ],
     "plan_24h": {
       "hacer_ya": [
-        "1. Mochila de Voz al Aire Libre: Dejar cargado micrófono y amplificador portátil.",
-        "2. Cancionero & Estructura 70 min: Imprimir planificador 08 y seleccionar repertorio de orientación.",
-        "3. Laboratorio de Composición: Invitar a alumna a crear su primera frase melódica.",
-        "4. Paquetización Puya Masajes: Redactar propuesta del Plan Terapéutico de 1 Mes.",
-        "5. Vaciado Nocturno Análogo: Primer vaciado mental en libreta física 10 min antes de dormir."
+        "1. Retirar parlante a batería esta semana y compartir modelo exacto con Diego.",
+        "2. Probar Guía de Experiencia (Microrrelato 3 líneas) al cerrar la próxima sesión en la playa.",
+        "3. Utilizar El Mapa de la Canción Propia (4 pasos) para estructurar la co-creación musical indoor.",
+        "4. Integrar sección de termoterapia/piedras calientes en ficha de anamnesis física.",
+        "5. Sostener vaciado nocturno en libreta de papel antes de dormir."
       ],
       "antipatrones": [
-        "🚫 Desplazamientos logísticos caóticos sin zonificar cuadrantes.",
+        "🚫 Intentar forzar zonificación territorial si no hay masa crítica suficiente por zona.",
         "🚫 Vender masajes por hora suelta en lugar de paquetes de 1 mes.",
-        "🚫 Salir a clases en espacios abiertos sin verificar batería de micrófono.",
+        "🚫 Salir a clases en espacios abiertos sin verificar batería de micrófono y parlante.",
         "🚫 Leer textos densos en pantallas pequeñas de celular.",
         "🚫 Ignorar pausas de stimming en días de alta demanda sensorial.",
         "🚫 Acostarse sin vaciado mental análogo."
       ]
     },
     "sesiones": [
+      {
+        "numero": 5,
+        "fecha": "12 de Octubre, 2026",
+        "titulo": "Roadmap de Transición Hotel/UST, Especialización Tripartita (Piedras, Tailandés, Articular) & Sistema Kaizen de 15 Minutos",
+        "foco_estrategico": "Manejo de la carga extrema (42-49h hotel + UST 18:40-22:40), absorción de 3 cursos técnicos, validación del Sistema de Bonos de Fidelización ($140k/$210k), incorporación del Plan Estratégico, Pareto 80/20 y Filosofía Kaizen de 15 minutos diarios.",
+        "aportes_diego": [
+          "Plan Estratégico en 3 Fases: Eliminar culpa en Fase 1 (hasta 15 dic), abrir preventa en Fase 2 (15 dic a feb) y soberanía en Fase 3 (febrero en adelante).",
+          "Principio de Pareto 80/20: Prohibido desgastarse en redes y estados pasivos; enfocar el 20% en venta directa 1 a 1 de planes mensuales y cobro de canto a inicio de mes.",
+          "Filosofía Kaizen & Banco de 15 Minutos: Ejecutar solo 1 micro-acción de 15 minutos al día (63 micro-avances antes del 15 de diciembre) para blindar la batería sensorial TEA.",
+          "Validación Sistema de Bonos Puya Masajes: Plan 1 Mes ($140.000 / 4 sesiones) y Plan 2 Meses ($210.000 / 8 sesiones) con bonos de continuidad en valor añadido (minutos extra / aromaterapia) sin devaluar el precio.",
+          "Desbloqueo de Activos Clave: Estudio de grabación en Talcahuano a costo $0 con socio, gabinete activo en Collao/Talcahuano, y alianza 50/50 con Charli con presupuesto común."
+        ],
+        "compromisos_accion": [
+          "[ ] Ejecutar el protocolo Kaizen de 15 minutos diarios con cronómetro usando el Banco de Micro-Acciones.",
+          "[ ] Mantener Fase 1 activa sin sobreexigencia comercial hasta el cierre de la universidad (15 de diciembre).",
+          "[ ] Participar del curso intensivo de piedras calientes en la quincena de noviembre ($75k con maletín incluido).",
+          "[ ] Cargar el Plan Terapéutico 1 Mes ($140k) y respuestas rápidas al catálogo de WhatsApp Business.",
+          "[ ] Conseguir filtro cortaviento (deadcat) para el micrófono del parlante Blick Party Voice para clases en la playa."
+        ]
+      },
+      {
+        "numero": 4,
+        "fecha": "5 de Octubre, 2026",
+        "titulo": "Estrategia Dual Voz Caleidoscopio, Océano Azul, NotebookLM & Mitigación de Miedos",
+        "modalidad": "Sesión Estratégica & Calibración de Producto",
+        "aportes_diego": [
+          "<strong>Estrategia del Océano Azul (P3-06):</strong> Salir de la competencia sangrienta por precio; consolidar Puya Masajes (bienestar en box + piedras calientes) y Voz Caleidoscopio (canto y naturaleza) en un espacio de mercado incontestado.",
+          "<strong>NotebookLM & Caleidovoz Copys Magnéticos:</strong> Inducción práctica a NotebookLM para procesar documentos de marca y generar copys magnéticos para captación.",
+          "<strong>Dualidad de Voz Caleidoscopio:</strong> Definición de las 2 aristas clave: Indoor (co-creación guiada con El Mapa de la Canción Propia, alto valor y entrega de maqueta en audio) y Outdoor (liberación y conexión corporal en la playa, usando el viento y las olas como resonador).",
+          "<strong>Guía de Experiencia Outdoor:</strong> Formalización del microrrelato de 3 líneas (Paisaje, Voz, Huella) para documentar cada sesión al aire libre y publicar testimonios poéticos.",
+          "<strong>Madurez Financiera e Inventario de Resultados:</strong> Rocío tiene presente que si bien falta recuperar la inversión inicial en insumos y capacitaciones (cursos tomados, piedras, parlante), tiene total certeza y tranquilidad de que los está amortizando activamente con sus clases y planes. Un hito de agencia económica notable.",
+          "<strong>Foco Crítico: Mitigación de Miedos del Cliente:</strong> Protocolos de acogida y seguridad para que los clientes se suelten, confíen y puedan fluir (desbloqueo de pudor en masajes y timidez en el canto).",
+          "<strong>Ajuste Terminológico Político-Cultural:</strong> Erradicación estricta de la palabra 'somática/somático' en coherencia con la postura cultural de Rocío, reemplazándola por 'poder fluir' y 'conexión/expresión corporal'."
+        ],
+        "compromisos": [
+          {
+            "id": "s4_1",
+            "texto": "Retirar parlante a batería esta semana y entregar modelo exacto a Diego",
+            "done": false
+          },
+          {
+            "id": "s4_2",
+            "texto": "Aplicar protocolo de acogida y mitigación de miedos con próxima alumna/paciente para facilitar la soltura",
+            "done": false
+          },
+          {
+            "id": "s4_3",
+            "texto": "Probar la Guía de Experiencia (Microrrelato 3 líneas) al cerrar la próxima sesión en la playa",
+            "done": false
+          },
+          {
+            "id": "s4_4",
+            "texto": "Diseñar flujo de co-creación musical indoor con El Mapa de la Canción Propia",
+            "done": false
+          },
+          {
+            "id": "s4_5",
+            "texto": "Cotizar con Benjamín precios y catálogo de partituras didácticas para UST",
+            "done": false
+          },
+          {
+            "id": "s4_6",
+            "texto": "Incorporar campos de termoterapia en fichas de anamnesis física (Hoja 05)",
+            "done": false
+          }
+        ]
+      },
       {
         "numero": 3,
         "fecha": "8 de Septiembre, 2026",
@@ -344,8 +430,8 @@ window.CLIENTS_MASTER_DATA = {
         "titulo": "Desbloqueo Metodológico, Sello de Playa & Kit Operativo",
         "modalidad": "Sesión en Vivo",
         "aportes_diego": [
-          "<strong>ROI Certificación Feldenkrais ($400k):</strong> Amortización en <3 meses con solo 3 alumnas en plan somático.",
-          "<strong>Sello Canto Somático en la Playa:</strong> Conceptualización del gran diferenciador regional frente al mar.",
+          "<strong>ROI Certificación Feldenkrais ($400k):</strong> Amortización en <3 meses con solo 3 alumnas en plan integral.",
+          "<strong>Sello Canto y Expresión Corporal en la Playa:</strong> Conceptualización del gran diferenciador regional frente al mar.",
           "<strong>Mochila Estandarizada:</strong> Checklist innegociable de salida con micrófono inalámbrico al 100%.",
           "<strong>Estructura Quirúrgica 70 min:</strong> 5 bloques + 4 micro-pausas conscientes de 2 min que protegen su energía TEA.",
           "<strong>Laboratorio de Composición:</strong> Guía de 4 pasos para que las alumnas compongan su propia canción."
@@ -613,13 +699,55 @@ window.CLIENTS_MASTER_DATA = {
       "subtitulo": "Entrenamiento progresivo de atención para Chinito (15-20-30 min) + Ventana de Soberanía para Melissa",
       "principio": "Jugar esta carta es legitimar tu derecho como madre y persona a tener 30 minutos propios sin culpa. Chinito y tú tienen mentes creativas e inquietas (TDAH): en vez de exigirle concentración forzada, activamos la Misión Foco como un juego de autonomía. Mientras él entrena su atención en un dibujo, estimulación motriz o bloques de madera Träfmen, Melissa blindará su ventana de autocuidado, respiro o diplomado sin culpa moral.",
       "misiones_semanales": [
-        { "dia": "Lunes", "minutos": 15, "actividad_hijo": "Dibujo libre / modelado de plasticina", "ventana_melissa": "Té en silencio y pausa sensorial", "completado": false },
-        { "dia": "Martes", "minutos": 20, "actividad_hijo": "Estimulación motriz / dibujo", "ventana_melissa": "Orden cocina relajado / respiro", "completado": true },
-        { "dia": "Miércoles", "minutos": 20, "actividad_hijo": "Rompecabezas didáctico", "ventana_melissa": "Lectura Diplomado online Kinesiología", "completado": false },
-        { "dia": "Jueves", "minutos": 25, "actividad_hijo": "Pintura con témpera / manualidad", "ventana_melissa": "Avance prototipos madera Träfmen", "completado": false },
-        { "dia": "Viernes", "minutos": 20, "actividad_hijo": "Cuentos ilustrados post-Chillán", "ventana_melissa": "Cierre semanal tranquilo y respiro", "completado": false },
-        { "dia": "Sábado", "minutos": 30, "actividad_hijo": "Percusión / juego sensorial", "ventana_melissa": "Descanso post-Comparsa", "completado": false },
-        { "dia": "Domingo", "minutos": 30, "actividad_hijo": "Bloques de madera Träfmen", "ventana_melissa": "Planificación y diseño semanal", "completado": false }
+        {
+          "dia": "Lunes",
+          "minutos": 15,
+          "actividad_hijo": "Dibujo libre / modelado de plasticina",
+          "ventana_melissa": "Té en silencio y pausa sensorial",
+          "completado": false
+        },
+        {
+          "dia": "Martes",
+          "minutos": 20,
+          "actividad_hijo": "Estimulación motriz / dibujo",
+          "ventana_melissa": "Orden cocina relajado / respiro",
+          "completado": true
+        },
+        {
+          "dia": "Miércoles",
+          "minutos": 20,
+          "actividad_hijo": "Rompecabezas didáctico",
+          "ventana_melissa": "Lectura Diplomado online Kinesiología",
+          "completado": false
+        },
+        {
+          "dia": "Jueves",
+          "minutos": 25,
+          "actividad_hijo": "Pintura con témpera / manualidad",
+          "ventana_melissa": "Avance prototipos madera Träfmen",
+          "completado": false
+        },
+        {
+          "dia": "Viernes",
+          "minutos": 20,
+          "actividad_hijo": "Cuentos ilustrados post-Chillán",
+          "ventana_melissa": "Cierre semanal tranquilo y respiro",
+          "completado": false
+        },
+        {
+          "dia": "Sábado",
+          "minutos": 30,
+          "actividad_hijo": "Percusión / juego sensorial",
+          "ventana_melissa": "Descanso post-Comparsa",
+          "completado": false
+        },
+        {
+          "dia": "Domingo",
+          "minutos": 30,
+          "actividad_hijo": "Bloques de madera Träfmen",
+          "ventana_melissa": "Planificación y diseño semanal",
+          "completado": false
+        }
       ],
       "protocolos_acompanamiento": [
         {
@@ -923,195 +1051,6 @@ window.CLIENTS_MASTER_DATA = {
         "🚫 El Bloqueo del Orgullo: Discutir en lugar de pedir feedback con humildad.",
         "🚫 Esperar la Interrogación: Quedarse inactivo esperando que los padres manden estudiar."
       ]
-    },
-    "status": "active"
-  },
-  "antonia": {
-    "cliente": {
-      "id": "antonia",
-      "nombre": "Antonia Jofré",
-      "avatar": "🧘‍♀️",
-      "usuario": "antonia.jofre",
-      "pin": "AH-Antonia5924",
-      "subtitulo": "De la Carga Mental y Fricción a la Soberanía Operativa",
-      "tagline": "Cuidados Familiares • Clases de Yoga & Zumba • Hito Santiago ($160k)",
-      "edad": 28,
-      "ciudad": "Concepción",
-      "rol_principal": "Instructora de Yoga Somático & Clases de Zumba / Baile",
-      "ultima_actualizacion": "2026-09-11"
-    },
-    "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "matriz_identidades",
-      "triangulacion_roles",
-      "inventario_cero_culpa",
-      "habitarte_estudio_somatico",
-      "kanban_gtd_wip2",
-      "simulador_financiero",
-      "mapeador_24h",
-      "plan_24h_antipatrones",
-      "activador_ia_chatgpt",
-      "tips_antigravity",
-      "biblioteca_musical_coreografica",
-      "caja_herramientas"
-    ],
-    "categorias_gestion": [
-      "01_Perfil_y_Antecedentes",
-      "02_Gestion_Operativa_y_Metas",
-      "03_Finanzas_y_Presupuesto",
-      "04_Servicios_y_Proyectos_Profesionales",
-      "05_Herramientas_y_Evaluacion",
-      "06_Bitacora_y_Multimedia"
-    ],
-    "diagnostico": {
-      "resumen_humano": "Antonia sostiene una alta carga de cuidados médicos y familiares de Mateo y Roma, experimentando el Síndrome de Saturación Sistémica Quíntuple (marcó los 5 cuellos de botella en su sondeo con ~21h/sem de fricción). Está en proceso terapéutico y requiere estructura contenedora para calmar la búsqueda de estímulo constante y recuperar el control. Su gran meta es consolidar sus clases de yoga online ('Cuerpos Cansados') con pase mensual prepagado para cubrir el Hito Santiago de $160.000 mensuales (8 alumnas a $20k).",
-      "stats": [
-        {
-          "valor": "~21 Horas / Sem",
-          "etiqueta": "Fricción & Dispersión (Sondeo)",
-          "color": "#ef4444",
-          "sub": "Colapso operativo a recuperar"
-        },
-        {
-          "valor": "2 Bloques (4h)",
-          "etiqueta": "Bloques de Oro Semanales",
-          "color": "#10b981",
-          "sub": "Lun 10–12 & Vie 09–11 (Yoga Online)"
-        },
-        {
-          "valor": "8 Alumnas",
-          "etiqueta": "Meta Pasajes ($160k)",
-          "color": "#60a5fa",
-          "sub": "Pase prepagado del 1 al 5"
-        },
-        {
-          "valor": "3 min",
-          "etiqueta": "Inventario Cero Culpa",
-          "color": "#f59e0b",
-          "sub": "Visibilizar cuidados cada noche"
-        }
-      ],
-      "mapeador_24h_actual": {
-        "nombre": "Semana Actual al 11 Sep (Muni 7.5h + Capa 1 Construcción)",
-        "pdf_contexto": "contexto laboral actual antonia al 11 sep.pdf",
-        "total_horas": 168,
-        "distribucion": {
-          "sueno_recarga": 58,
-          "clases_muni_fijas": 7.5,
-          "lo_laboral_construccion": 10,
-          "antonia_terapia_autocuidado": 25,
-          "hijas_cuidados": 32,
-          "casa_logistica": 34.5,
-          "finanzas_gestion_cupos": 1
-        },
-        "cinco_ejes": [
-          {
-            "id": 1,
-            "nombre": "Antonia",
-            "enfoque": "Autocuidado, terapia y descanso sin culpa"
-          },
-          {
-            "id": 2,
-            "nombre": "Casa",
-            "enfoque": "Logística doméstica y orden básico concentrado"
-          },
-          {
-            "id": 3,
-            "nombre": "Hijas",
-            "enfoque": "Mateo & Roma, presencia de calidad y cuidados"
-          },
-          {
-            "id": 4,
-            "nombre": "Lo Laboral",
-            "enfoque": "Clases Muni 7,5h + docencia Habitarte 90 min/sem"
-          },
-          {
-            "id": 5,
-            "nombre": "Finanzas & Cupos",
-            "enfoque": "1h/sem para llenar cupos de Habitarte y monitorear Hito Santiago"
-          }
-        ]
-      }
-    },
-    "identidades": [
-      {
-        "nombre": "La Estratega",
-        "rol": "Diseña programas y calcula metas financieras",
-        "energia": "Alta / Foco"
-      },
-      {
-        "nombre": "La Ejecutora",
-        "rol": "Dicta clases de yoga y atiende alumnas",
-        "energia": "Presente / Somática"
-      },
-      {
-        "nombre": "La Nutricia",
-        "rol": "Acompaña a su familia y realiza trámites",
-        "energia": "Empática / Emocional"
-      },
-      {
-        "nombre": "La Saboteadora",
-        "rol": "Genera culpa nocturna por trabajo invisible",
-        "energia": "Rumiación / Freno"
-      }
-    ],
-    "kanban_gtd": {
-      "todo": [
-        {
-          "id": "a1",
-          "text": "Grabar 1 clase comodín de respaldo para alumnas",
-          "tag": "Yoga"
-        },
-        {
-          "id": "a2",
-          "text": "Calcular costo exacto de arriendo compartido en Santiago",
-          "tag": "Finanzas"
-        }
-      ],
-      "doing": [
-        {
-          "id": "a3",
-          "text": "Proteger 2 Bloques de Oro de 45 min esta semana",
-          "tag": "Yoga"
-        }
-      ],
-      "done": [
-        {
-          "id": "a4",
-          "text": "Definir meta matemática de 8 alumnas para pasajes",
-          "tag": "Finanzas"
-        }
-      ]
-    },
-    "habitarte": {
-      "nombre": "Habitarte • Estudio Somático & Movimiento Consciente",
-      "enfoque": "Cuerpos cansados, descompresión del sistema nervioso y movimiento amable",
-      "pilares": [
-        "Cuerpos Cansados",
-        "Pilates Somático",
-        "Movilidad Articular",
-        "Flexibilidad Progresiva",
-        "Fuerza Isométrica"
-      ],
-      "rango_etareo": "18 a 70+ años",
-      "arancel_mensual": 20000,
-      "clases_semana": 2,
-      "duracion_minutos": 45,
-      "metas_financieras": {
-        "hito_1_santiago": {
-          "alumnas": 8,
-          "ingreso": 160000
-        },
-        "hito_2_tranquilidad": {
-          "alumnas": 15,
-          "ingreso": 300000
-        },
-        "hito_3_soberania": {
-          "alumnas": 25,
-          "ingreso": 500000
-        }
-      }
     },
     "status": "active"
   },
