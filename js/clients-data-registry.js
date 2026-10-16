@@ -818,6 +818,7 @@ window.CLIENTS_MASTER_DATA = {
       "kanban_gtd",
       "caja_herramientas",
       "sacar_la_voz_valentia",
+      "orientacion_vocacional",
       "plan_24h_antipatrones"
     ],
     "diagnostico": {
@@ -1050,6 +1051,78 @@ window.CLIENTS_MASTER_DATA = {
         "🚫 Planificación de Pánico: Ignorar entregas de semanas y estresarse el día previo.",
         "🚫 El Bloqueo del Orgullo: Discutir en lugar de pedir feedback con humildad.",
         "🚫 Esperar la Interrogación: Quedarse inactivo esperando que los padres manden estudiar."
+      ]
+    },
+    "orientacion_vocacional": {
+      "titulo": "Orientación Vocacional & Mapeo de Carreras en Concepción",
+      "subtitulo": "Canalización de Talentos Creativos, Deportivos y Tecnológicos",
+      "edad": 15,
+      "colegio": "Colegio Concepción",
+      "pilares_interes": [
+        {
+          "id": "arte_digital",
+          "pilar": "Arte Visual, Animación Digital & Diseño Multimedia",
+          "descripcion": "Ilustración digital, modelado 3D, diseño de personajes y animación."
+        },
+        {
+          "id": "tecnologia_juegos",
+          "pilar": "Tecnología, Programación & Videojuegos",
+          "descripcion": "Desarrollo de software, lógica interactiva, diseño de videojuegos y hardware."
+        },
+        {
+          "id": "kinesico_deporte",
+          "pilar": "Vóleibol Competitivo, Kinesiología & Alto Rendimiento",
+          "descripcion": "Entrenamiento físico, biomecánica deportiva, rendimiento en cancha y rehabilitación."
+        },
+        {
+          "id": "arquitectura_espacio",
+          "pilar": "Arquitectura & Diseño Espacial",
+          "descripcion": "Maquetas 3D, dibujo técnico, diseño ambiental y transformación urbana en Concepción."
+        }
+      ],
+      "carreras_concepcion": [
+        {
+          "nombre": "Animación Digital & Efectos Visuales",
+          "institucion": "Duoc UC Sede San Andrés / USS Campus Tres Pascualas",
+          "duracion": "4 - 5 años",
+          "tipo": "Profesional",
+          "por_que_encaja": "Canaliza su hiperfoco artístico en dibujo de personajes y proyectos visuales prácticos sin teoría abstracta."
+        },
+        {
+          "nombre": "Diseño Gráfico & Multimedia",
+          "institucion": "Universidad del Bío-Bío (UBB) / Inacap",
+          "duracion": "4 - 5 años",
+          "tipo": "Universitaria / Profesional",
+          "por_que_encaja": "Combina talleres de creación gráfica, identidad visual y creatividad proyectual de alto estímulo."
+        },
+        {
+          "nombre": "Ingeniería Civil Informática / Desarrollo de Software",
+          "institucion": "Universidad de Concepción (UdeC) / UBB / UNAB",
+          "duracion": "5 - 5.5 años",
+          "tipo": "Universitaria",
+          "por_que_encaja": "Ideal para la mente con TDAH que disfruta de la lógica de programación y la creación de juegos o sistemas interactivos."
+        },
+        {
+          "nombre": "Arquitectura",
+          "institucion": "Universidad del Bío-Bío (UBB) / Universidad de Concepción (UdeC)",
+          "duracion": "5.5 - 6 años",
+          "tipo": "Universitaria",
+          "por_que_encaja": "Enfoque en dibujo técnico, maquetas tridimensionales y proyección espacial con alto prestigio en la región."
+        },
+        {
+          "nombre": "Kinesiología & Rehabilitación Deportiva",
+          "institucion": "Universidad de Concepción (UdeC) / UNAB / USS",
+          "duracion": "5 años",
+          "tipo": "Universitaria",
+          "por_que_encaja": "Conecta con su pasión kinésica por el vóley para acompañar a atletas y optimizar la salud corporal."
+        },
+        {
+          "nombre": "Entrenador Deportivo / Preparación Física",
+          "institucion": "Universidad Andrés Bello (UNAB) / Duoc UC / UdeC",
+          "duracion": "2.5 - 4 años",
+          "tipo": "Técnica / Profesional",
+          "por_que_encaja": "Trabajo 100% en cancha, dinamismo físico, liderazgo de equipos y cero encierro en oficinas."
+        }
       ]
     },
     "status": "active"

@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Modular CSS Core & Components (Cache-Busting v3.2) -->
-    <link rel="stylesheet" href="css/portal-core.css?v=3.2">
-    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.2">
-    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.2">
+    <link rel="stylesheet" href="../../02_CLIENTES_ACTIVOS/css/portal-core.css?v=3.2">
+    <link rel="stylesheet" href="../../02_CLIENTES_ACTIVOS/css/schedule-mapper.css?v=3.2">
+    <link rel="stylesheet" href="../../02_CLIENTES_ACTIVOS/css/kanban-gtd.css?v=3.2">
 
     <!-- Inmersión Visual & Reglas Móviles de Alta Prioridad -->
     <style>
@@ -124,7 +124,7 @@
         <div class="client-auth-card">
             <div class="gateway-avatar">💡</div>
             <div class="gateway-badge">
-                <i class="fa-solid fa-shield-halved"></i> Acceso Privado & Exclusivo
+                <i class="fa-solid fa-shield-halved"></i> Acceso Privado & Exclusivo • Archivado
             </div>
             <h2 class="gateway-title">Plan de Vuelo 2.0</h2>
             <p class="gateway-subtitle">Claridad Creativa y Estructura Financiera • <strong>Emi</strong></p>
@@ -140,7 +140,7 @@
                 </button>
             </form>
             <p style="font-size: 0.72rem; color: #555; margin-top: 1.5rem;">
-                Administración Humana • Sistema de Acompañamiento Integral
+                Administración Humana • Expediente Histórico
             </p>
         </div>
     </div>
@@ -159,15 +159,15 @@
                 <div class="brand-logo">💡</div>
                 <div class="brand-title">
                     <h1>Plan de Vuelo 2.0</h1>
-                    <p>Claridad Creativa y Estructura Financiera • Emi</p>
+                    <p>Claridad Creativa y Estructura Financiera • Emi (Histórico)</p>
                 </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                <div class="meta-badge">
-                    <span class="dot"></span>
-                    <span>Creatividad • Arquetipos • Hábitos de Cierre</span>
+                <div class="meta-badge" style="border-color:#444; color:#888;">
+                    <span class="dot" style="background:#888;"></span>
+                    <span>📁 En Pausa / Archivado</span>
                 </div>
-                <button class="btn-portal-lock" onclick="lockClientPortal()">
+                <button class="btn-portal-lock" onclick="logoutClientAuth()">
                     <i class="fa-solid fa-lock"></i> Bloquear
                 </button>
             </div>
@@ -198,11 +198,7 @@
                 </p>
             </div>
 
-            
-
             <div class="grid-2">
-                
-
                 <div class="card">
                     <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
                     <ul class="custom-list">
@@ -213,18 +209,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-        
-
-        
-
-
 
         <!-- TAB CONTENT: HERRAMIENTAS -->
         <div id="tab-herramientas" class="tab-content">
@@ -241,7 +225,7 @@
                         <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
                         <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
                         <div class="image-preview">
-                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
+                            <img src="../../../03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/assets/img/herramientas/Time Blocking.webp" data-fallback="../../../03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
                     </div>
@@ -252,7 +236,7 @@
                         <p class="tool-meta">Urgente vs Importante</p>
                         <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
                         <div class="image-preview">
-                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
+                            <img src="../../../03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="../../../03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
                     </div>
@@ -263,7 +247,7 @@
                         <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
                         <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
                         <div class="image-preview">
-                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
+                            <img src="../../../03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="../../../03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
                     </div>
@@ -274,15 +258,13 @@
                         <p class="tool-meta">Comunicación & Autopercepción</p>
                         <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
                         <div class="image-preview">
-                            <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
+                            <img src="../../../03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/assets/img/herramientas/La Ventana de Johari.webp" data-fallback="../../../03_PRODUCTOS_Y_APLICACIONES/00_Sondeo_Maestro/assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         <!-- TAB CONTENT: ACTION & ANTIPATTERNS -->
         <div id="tab-accion" class="tab-content">
@@ -304,74 +286,6 @@
 
     </div><!-- /container -->
 
-    <!-- MODAL 1: GESTIÓN DE CATEGORÍAS 24H -->
-    <div id="modal-category-manager" class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-title">
-                <span>⚙️ Gestionar Categorías 24H</span>
-                <button class="modal-close-btn" onclick="closeCategoryManagerModal()">&times;</button>
-            </div>
-            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Edita las categorías de tiempo o agrega nuevas.</p>
-            <div id="category-manager-list" style="display:flex; flex-direction:column; gap:0.6rem; max-height:240px; overflow-y:auto; margin-bottom:1.2rem; padding-right:4px;"></div>
-            <div style="border-top:1px solid #222; padding-top:0.8rem; margin-bottom:1rem;">
-                <span style="font-size:0.75rem; font-weight:700; color:#aaa; text-transform:uppercase;">+ Agregar Nueva Categoría:</span>
-                <div style="display:flex; gap:6px; margin-top:0.4rem;">
-                    <input type="text" id="new-cat-label" placeholder="Nombre (ej. Proyecto X)" style="flex:2; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
-                    <input type="text" id="new-cat-tag" placeholder="Tag (ej. PROY)" style="flex:1; background:#141414; border:1px solid #333; color:#fff; padding:6px 8px; border-radius:6px; font-size:0.8rem;">
-                    <input type="color" id="new-cat-color" value="#10b981" style="width:36px; height:32px; background:transparent; border:none; cursor:pointer;">
-                    <button class="btn-card-action" onclick="addNewCategoryFromModal()" style="background:#fff; color:#000; font-weight:800;">+</button>
-                </div>
-            </div>
-            <div style="display:flex; justify-content:space-between; gap:8px;">
-                <button class="btn-schedule-action" onclick="resetCategoriesDefault()" style="color:#f87171; font-size:0.75rem;">Restablecer Predeterminadas</button>
-                <button class="btn-gateway-login" onclick="closeCategoryManagerModal()" style="width:auto; padding:6px 16px; margin:0; font-size:0.8rem;">Cerrar y Aplicar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL 2: RELLENAR POR RANGO -->
-    <div id="modal-range-fill" class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-title">
-                <span>⚡ Rellenar Horario por Rango</span>
-                <button class="modal-close-btn" onclick="closeRangeFillModal()">&times;</button>
-            </div>
-            <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">Pinta bloques continuos de una sola vez.</p>
-            <div style="display:flex; flex-direction:column; gap:0.8rem; margin-bottom:1.2rem;">
-                <div>
-                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Categoría:</label>
-                    <select id="range-category-select" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
-                </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Inicio:</label>
-                        <select id="range-start-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
-                    </div>
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Hora Fin (inclusive):</label>
-                        <select id="range-end-hour" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:0.85rem; margin-top:4px;"></select>
-                    </div>
-                </div>
-                <div>
-                    <label style="font-size:0.75rem; color:#aaa; font-weight:700; display:block; margin-bottom:4px;">Días a Aplicar:</label>
-                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-0" checked> Lun</label>
-                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-1" checked> Mar</label>
-                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-2" checked> Mié</label>
-                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-3" checked> Jue</label>
-                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-4" checked> Vie</label>
-                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-5"> Sáb</label>
-                        <label style="font-size:0.75rem; color:#ccc; display:flex; align-items:center; gap:3px;"><input type="checkbox" id="range-day-6"> Dom</label>
-                    </div>
-                </div>
-            </div>
-            <div style="display:flex; justify-content:flex-end; gap:8px;">
-                <button class="btn-schedule-action" onclick="closeRangeFillModal()">Cancelar</button>
-                <button class="btn-gateway-login" onclick="applyRangeFill()" style="width:auto; padding:6px 16px; margin:0; font-size:0.85rem;">Aplicar Relleno</button>
-            </div>
-        </div>
-    </div>
-
     <!-- CONFIGURACIÓN DEL CLIENTE EN JAVASCRIPT -->
     <script>
         window.CLIENT_CONFIG = {
@@ -384,24 +298,6 @@
 
         window.CLIENT_SCHEDULE_CATEGORIES = [];
         window.CLIENT_KANBAN_DEFAULT = [];
-
-        const voiceScenarios = [];
-        function selectClientVoiceScenario(scId) {
-            const sc = voiceScenarios.find(s => s.id === scId);
-            if (sc) {
-                const p = document.getElementById("voice-guion-text");
-                if (p) p.innerText = sc.guion;
-            }
-        }
-
-        function copyVoiceGuion() {
-            const p = document.getElementById("voice-guion-text");
-            if (p) {
-                navigator.clipboard.writeText(p.innerText).then(() => {
-                    alert("¡Guion copiado al portapapeles!");
-                });
-            }
-        }
 
         function openLightbox(src) {
             const modal = document.getElementById("lightbox-modal");
@@ -431,9 +327,9 @@
     </script>
 
     <!-- MOTORES MODULARES -->
-    <script src="js/portal-gateway.js?v=3.2"></script>
-    <script src="js/schedule-engine.js?v=3.2"></script>
-    <script src="js/kanban-engine.js?v=3.2"></script>
-    <script src="js/whatsapp-widget.js?v=3.2"></script>
+    <script src="../../02_CLIENTES_ACTIVOS/js/portal-gateway.js?v=3.2"></script>
+    <script src="../../02_CLIENTES_ACTIVOS/js/schedule-engine.js?v=3.2"></script>
+    <script src="../../02_CLIENTES_ACTIVOS/js/kanban-engine.js?v=3.2"></script>
+    <script src="../../02_CLIENTES_ACTIVOS/js/whatsapp-widget.js?v=3.2"></script>
 </body>
 </html>

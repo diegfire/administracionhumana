@@ -114,6 +114,399 @@
             margin-bottom: 0.8rem; transition: all 0.2s ease;
         }
         .printable-card:hover { border-color: #444; background: #161616; transform: translateX(4px); }
+
+        /* ── KIT DE HERRAMIENTAS ENRIQUECIDO (DISEÑO CANÓNICO AICC) ── */
+        .tool-card-rich {
+            background: rgba(18, 18, 24, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            transition: all 0.25s ease;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .tool-card-rich:hover {
+            border-color: rgba(16, 185, 129, 0.35);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        .tool-header-rich {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tool-title-group h3 {
+            font-family: var(--font-display);
+            font-size: 1.22rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        .tool-context-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);
+            border-left: 3px solid #10b981;
+            border-radius: 0 10px 10px 0;
+            padding: 1rem 1.15rem;
+            font-size: 0.86rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        .tool-context-box h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #34d399;
+            margin: 0 0 0.45rem 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .tool-context-box p {
+            margin: 0 0 0.45rem 0;
+        }
+        .tool-context-box p:last-child {
+            margin-bottom: 0;
+        }
+        .tool-context-box ul {
+            margin: 0.4rem 0 0.4rem 1.2rem;
+            padding: 0;
+        }
+        .tool-context-box li {
+            margin-bottom: 0.35rem;
+        }
+        .tool-checklist-wrapper {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            padding: 1.1rem;
+        }
+        .tool-checklist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.85rem;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tool-checklist-title {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tool-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-progress-track {
+            width: 90px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .tool-progress-fill {
+            height: 100%;
+            background: #10b981;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .tool-progress-text {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #10b981;
+            min-width: 45px;
+            text-align: right;
+        }
+        .tool-checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .tool-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 0.55rem 0.7rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+        .tool-check-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .tool-check-item input[type="checkbox"] {
+            margin-top: 2px;
+            width: 16px;
+            height: 16px;
+            accent-color: #10b981;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .tool-check-item span {
+            font-size: 0.83rem;
+            color: #d1d5db;
+            line-height: 1.45;
+            transition: color 0.15s ease;
+        }
+        .tool-check-item.completed {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+        .tool-check-item.completed span {
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .tool-checklist-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.8rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+        }
+        .btn-tool-reset {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 0.72rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+        .btn-tool-reset:hover {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* ── ORIENTACIÓN VOCACIONAL (CONCEPCIÓN 2026) ── */
+        .voc-hero-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(139, 92, 246, 0.08) 50%, rgba(10, 10, 15, 0.95) 100%);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 14px;
+            padding: 1.6rem;
+            margin-bottom: 1.8rem;
+        }
+        .voc-progress-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: #60a5fa;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+        .voc-question-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
+        }
+        .voc-question-card:hover {
+            border-color: rgba(96, 165, 250, 0.3);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .voc-question-card.answered {
+            border-color: rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.03);
+        }
+        .voc-q-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .voc-q-num {
+            background: #2563eb;
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+        .voc-q-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .voc-q-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            line-height: 1.45;
+            margin-bottom: 0.9rem;
+        }
+        .voc-opts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        @media (max-width: 640px) {
+            .voc-opts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .btn-voc-opt {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            padding: 0.6rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.18s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-voc-opt:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+        .btn-voc-opt.selected {
+            background: #2563eb;
+            border-color: #60a5fa;
+            color: #ffffff;
+            font-weight: 800;
+            box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+            transform: scale(1.02);
+        }
+        .btn-voc-opt.selected.opt-fire {
+            background: #dc2626;
+            border-color: #f87171;
+            box-shadow: 0 0 12px rgba(220, 38, 38, 0.5);
+        }
+        .btn-voc-opt.selected.opt-like {
+            background: #059669;
+            border-color: #34d399;
+            box-shadow: 0 0 12px rgba(5, 150, 105, 0.5);
+        }
+        .btn-voc-opt.selected.opt-meh {
+            background: #d97706;
+            border-color: #fbbf24;
+            box-shadow: 0 0 12px rgba(217, 119, 6, 0.5);
+        }
+
+        .voc-pillar-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .voc-pillar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .voc-pillar-name {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .voc-pillar-pct {
+            font-size: 1.1rem;
+            font-weight: 800;
+            font-family: var(--font-display);
+        }
+        .voc-bar-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .voc-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .voc-career-card {
+            background: rgba(20, 20, 28, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .voc-career-card:hover {
+            border-color: rgba(96, 165, 250, 0.35);
+            transform: translateY(-2px);
+        }
+        .voc-uni-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+        .voc-today-tip {
+            background: rgba(16, 185, 129, 0.08);
+            border-left: 3px solid #10b981;
+            padding: 0.6rem 0.8rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.78rem;
+            color: #a7f3d0;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -186,16 +579,17 @@
             <button class="tab-btn " onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
-                        <button class="tab-btn " onclick="switchTab('tab-kanban')">
+            <button class="tab-btn " onclick="switchTab('tab-kanban')">
                 <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2 • En Foco)
             </button>
             <button class="tab-btn " onclick="switchTab('tab-paso-cero')" style="border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08);">
                 <i class="fa-solid fa-bolt" style="color: #10b981;"></i> ⚡ Paso Cero & Pomodoro
             </button>
-                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
-            </button>
             <button class="tab-btn " onclick="switchTab('tab-voice')">
                 <i class="fa-solid fa-bullhorn"></i> Sacar la Voz & Valentía
+            </button>
+            <button class="tab-btn " onclick="switchTab('tab-vocacional')" style="border: 1px solid rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.08);">
+                <i class="fa-solid fa-compass-drafting" style="color: #60a5fa;"></i> 🧭 Orientación Vocacional (Concepción)
             </button>
             <button class="tab-btn " onclick="switchTab('tab-herramientas')">
                 <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
@@ -562,59 +956,561 @@
             </div>
         </div>
 
-        <!-- TAB CONTENT: HERRAMIENTAS -->
+        <!-- TAB CONTENT: ORIENTACIÓN VOCACIONAL (CONCEPCIÓN) -->
+        <div id="tab-vocacional" class="tab-content">
+            <div class="voc-hero-box">
+                <div class="voc-progress-badge">
+                    <i class="fa-solid fa-compass-drafting"></i> Orientación Vocacional Personalizada • Concepción 2026
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 0.6rem;">
+                    🧭 Brújula de Futuro: De tus Talentos a tu Carrera en Concepción
+                </h2>
+                <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1.2rem;">
+                    A tus 15 años, en el <strong>Colegio Concepción</strong>, no necesitas tener toda tu vida resuelta hoy. Lo que sí necesitas es saber hacia dónde apunta tu fuego interno: tu habilidad visual y creativa para el dibujo, tu agilidad física y competitividad en el vóleibol, tu curiosidad tecnológica por los videojuegos y el software. Este test interactivo conecta lo que te apasiona con las <strong>carreras reales disponibles en las universidades e institutos de Concepción</strong> (UdeC, UBB, Duoc UC, USS, UNAB, Inacap).
+                </p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                    <span style="font-size: 0.8rem; background: rgba(255,255,255,0.06); padding: 5px 12px; border-radius: 20px; color: #94a3b8;">
+                        <i class="fa-solid fa-list-ol" style="color: #60a5fa;"></i> 12 Preguntas de Diagnóstico Rápido
+                    </span>
+                    <span style="font-size: 0.8rem; background: rgba(255,255,255,0.06); padding: 5px 12px; border-radius: 20px; color: #94a3b8;">
+                        <i class="fa-solid fa-graduation-cap" style="color: #10b981;"></i> Mapeo UdeC • UBB • Duoc • USS • UNAB • Inacap
+                    </span>
+                    <span id="voc-test-counter" style="font-size: 0.82rem; font-weight: 800; color: #f59e0b; margin-left: auto;">
+                        Respondidas: 0 / 12
+                    </span>
+                </div>
+            </div>
+
+            <!-- TEST INTERACTIVO CONTAINER -->
+            <div id="voc-test-container">
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 10px;">
+                        <div>
+                            <h3 class="section-title" style="margin-bottom: 0.3rem;"><span>Test de Intereses Vocacionales (Concepción)</span></h3>
+                            <p style="font-size: 0.8rem; color: #888; margin: 0;">Selecciona el nivel que mejor describe tu entusiasmo en cada actividad:</p>
+                        </div>
+                        <div style="font-size: 0.75rem; color: #60a5fa; background: rgba(59,130,246,0.1); padding: 4px 10px; border-radius: 12px; border: 1px solid rgba(59,130,246,0.25);">
+                            <i class="fa-solid fa-bolt"></i> Guardado automático en tu equipo
+                        </div>
+                    </div>
+                    
+                    <div id="voc-questions-list">
+                        <!-- Questions dynamically rendered by JS -->
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; flex-wrap: wrap; gap: 10px;">
+                        <button type="button" class="btn-tool-reset" onclick="resetVocTest()">
+                            <i class="fa-solid fa-rotate-left"></i> Reiniciar Respuestas
+                        </button>
+                        <button type="button" class="btn-gateway-login" onclick="calculateVocResults(true)" style="width: auto; padding: 10px 22px; font-size: 0.9rem; margin: 0; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                            <i class="fa-solid fa-chart-pie"></i> Ver Mi Perfil Vocacional & Carreras
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULTADOS DEL TEST (DINÁMICO & PERSISTENTE) -->
+            <div id="voc-results-container" style="display: none; margin-bottom: 2rem;">
+                <!-- Hero de Perfil Dominante -->
+                <div class="card" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%); border-color: rgba(96, 165, 250, 0.4); margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                        <div style="max-width: 680px;">
+                            <span class="hero-tea-badge" style="background: rgba(96, 165, 250, 0.15); border-color: #60a5fa; color: #93c5fd;">
+                                <i class="fa-solid fa-award"></i> Diagnóstico Vocacional Personalizado
+                            </span>
+                            <h3 id="voc-dominant-title" style="font-family: var(--font-display); font-size: 1.45rem; color: #ffffff; margin: 0.3rem 0;">
+                                Perfil: Creador Visual & Estratega Dinámico
+                            </h3>
+                            <p id="voc-dominant-desc" style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
+                                Tienes una combinación excepcional entre alta inteligencia visoespacial (dibujo/diseño) y energía kinestésica (vóleibol). Tu entorno ideal de estudio no es un aula pasiva de memorización, sino talleres de proyectos, laboratorios de creación digital y canchas de alto rendimiento.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-card-action" onclick="shareVocWhatsApp()" style="background: #25D366; color: #000; font-weight: 800; border: none; padding: 10px 16px; font-size: 0.85rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-brands fa-whatsapp"></i> Compartir con Papá Diego
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráfico de Afinidad por 4 Pilares -->
+                <div class="section-title">
+                    <span>Nivel de Afinidad por Área de Talento</span>
+                </div>
+                <div class="grid-2" style="margin-bottom: 1.8rem; gap: 1rem;">
+                    <!-- Pilar 1: Arte Visual & Animación Digital -->
+                    <div class="voc-pillar-card">
+                        <div class="voc-pillar-header">
+                            <span class="voc-pillar-name"><i class="fa-solid fa-palette" style="color: #c084fc;"></i> Arte Visual & Animación Digital</span>
+                            <span class="voc-pillar-pct" id="voc-pct-arte" style="color: #c084fc;">0%</span>
+                        </div>
+                        <div class="voc-bar-track">
+                            <div class="voc-bar-fill" id="voc-bar-arte" style="background: #c084fc; width: 0%;"></div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Ilustración, animación 2D/3D, diseño de personajes y narrativa gráfica.</p>
+                    </div>
+
+                    <!-- Pilar 2: Informática, Videojuegos & Tech -->
+                    <div class="voc-pillar-card">
+                        <div class="voc-pillar-header">
+                            <span class="voc-pillar-name"><i class="fa-solid fa-gamepad" style="color: #60a5fa;"></i> Informática & Videojuegos</span>
+                            <span class="voc-pillar-pct" id="voc-pct-tech" style="color: #60a5fa;">0%</span>
+                        </div>
+                        <div class="voc-bar-track">
+                            <div class="voc-bar-fill" id="voc-bar-tech" style="background: #60a5fa; width: 0%;"></div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Lógica de código, motores de juegos, desarrollo de software y hardware.</p>
+                    </div>
+
+                    <!-- Pilar 3: Vóleibol, Kinesiología & Deporte -->
+                    <div class="voc-pillar-card">
+                        <div class="voc-pillar-header">
+                            <span class="voc-pillar-name"><i class="fa-solid fa-volleyball" style="color: #ea580c;"></i> Vóleibol & Rendimiento Físico</span>
+                            <span class="voc-pillar-pct" id="voc-pct-sport" style="color: #ea580c;">0%</span>
+                        </div>
+                        <div class="voc-bar-track">
+                            <div class="voc-bar-fill" id="voc-bar-sport" style="background: #ea580c; width: 0%;"></div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Biomecánica del salto, preparación física, rehabilitación y competencia en cancha.</p>
+                    </div>
+
+                    <!-- Pilar 4: Arquitectura & Diseño Espacial -->
+                    <div class="voc-pillar-card">
+                        <div class="voc-pillar-header">
+                            <span class="voc-pillar-name"><i class="fa-solid fa-building" style="color: #10b981;"></i> Arquitectura & Diseño Espacial</span>
+                            <span class="voc-pillar-pct" id="voc-pct-arqui" style="color: #10b981;">0%</span>
+                        </div>
+                        <div class="voc-bar-track">
+                            <div class="voc-bar-fill" id="voc-bar-arqui" style="background: #10b981; width: 0%;"></div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Estructuras espaciales, volumetría tridimensional y proyectos urbanos en Concepción.</p>
+                    </div>
+                </div>
+
+                <!-- Directorio de Carreras en Concepción -->
+                <div class="section-title">
+                    <span>Carreras Recomendadas en Concepción para tu Perfil</span>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">
+                    Estas son las opciones académicas con sedes en el Gran Concepción que mejor se alinean con tu perfil neurocognitivo:
+                </p>
+
+                <div class="grid-2" style="gap: 1.2rem;" id="voc-careers-grid">
+                    <!-- Carreras en Concepción (renderizadas) -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: HERRAMIENTAS (ENRIQUECIDO CON TUTORIALES & CHECKLISTS APLICADOS) -->
         <div id="tab-herramientas" class="tab-content">
             <div class="section-title">
-                <span>Kit de Herramientas Didácticas & Diagramas</span>
+                <span>Kit de Herramientas Didácticas & Metodológicas</span>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
-                Haz clic sobre cualquier diagrama para ampliarlo en pantalla completa con el <strong>Visor Lightbox</strong>.
+            <p style="color: var(--text-muted); margin-bottom: 1.8rem; font-size: 0.95rem;">
+                Cada herramienta cuenta con su <strong>tutorial aplicado a tu contexto real (15 años, Colegio Concepción, TDAH, Vóley y Dibujo)</strong> y su <strong>checklist interactivo persistente</strong> para monitorear tu autonomía semana a semana. Haz clic en cualquier imagen para abrirla en pantalla completa.
             </p>
-            <div class="grid-2">
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>1. Time Blocking & Blindaje de Foco</h3>
-                        <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
-                        <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
+
+            <div class="grid-2" style="gap: 1.4rem;">
+                
+                <!-- HERRAMIENTA 1: TIME BLOCKING & VENTANAS DE ORO -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
+                                <i class="fa-regular fa-clock"></i> Gestión del Tiempo & Batería Mental
+                            </span>
+                            <h3>1. Time Blocking & Ventanas de Oro</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- TUTORIAL APLICADO AL CONTEXTO DE MATÍAS -->
+                    <div class="tool-context-box" style="border-left-color: #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #34d399;"><i class="fa-solid fa-graduation-cap"></i> Tutorial Aplicado al Contexto de Matías</h4>
+                        <p>
+                            Para un cerebro con TDAH, el tiempo no se siente en horas continuas, sino como <em>"ahora"</em> o <em>"después"</em>. Si no tienes bloques de color claros en tu semana, el <em>"después"</em> se convierte en 4 horas de celular y luego en pánico a las 23:00 con la tarea sin hacer. <strong>Time Blocking no es una cárcel: es tu garantía de libertad.</strong>
+                        </p>
+                        <p>
+                            <strong>Cómo aplicarlo en tu rutina:</strong>
+                        </p>
+                        <ul>
+                            <li><strong>Bloques Fijos (Colegio Concepción)</strong>: De 08:00 a 16:30. Ya están dados, acéptalos y no gastes energía mental renegando de ellos.</li>
+                            <li><strong>Ventana Vóley (Desfogue Kinésico)</strong>: Tus entrenamientos son sagrados. Tu cuerpo necesita gastar esa energía motora para poder regular tu atención después.</li>
+                            <li><strong>Bloque de Estudio de Baja Fricción (45 min)</strong>: Al llegar a casa (17:30 - 18:15). Aplicas Paso Cero y liquidas los deberes de una vez. Cuando este bloque termina, ¡tu mente queda 100% libre!</li>
+                            <li><strong>Dopamina Creativa (Dibujo & Arte)</strong>: 19:00 a 20:30. Tu espacio protegido para ilustrar sin que nadie te reclame tareas.</li>
+                            <li><strong>Blindaje de Sueño (22:30 a 06:30)</strong>: 8 horas sin pantallas en la cama para recargar los neurotransmisores de tu foco.</li>
+                        </ul>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #10b981;"></i> Checklist de Aplicación Semanal
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-tb" style="background: #10b981;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-tb" style="color: #10b981;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_1" onchange="toggleToolCheck(this)">
+                                <span>Tengo identificados y respetados mis <strong>bloques fijos de colegio y traslados</strong> en mi Mapeador 24H.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_2" onchange="toggleToolCheck(this)">
+                                <span>Protegí mis <strong>entrenamientos de vóleibol</strong> como mi recarga física obligatoria sin llevar pantallas a la cancha.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_3" onchange="toggleToolCheck(this)">
+                                <span>Ejecuté mi <strong>Bloque de Estudio de 45 min</strong> apenas llegué a casa, antes de tocar el teléfono o la consola.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_4" onchange="toggleToolCheck(this)">
+                                <span>Blindé al menos 1 bloque de 45 min de <strong>Dopamina Sana (dibujo, pintura o diseño)</strong> 100% libre de culpa.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="tb" data-tool-check="tb_5" onchange="toggleToolCheck(this)">
+                                <span>Respeté el <strong>corte de pantallas a las 21:30</strong> para asegurar mis 8 horas de sueño reparador.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('tb')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>2. Matriz de Eisenhower (Priorización)</h3>
-                        <p class="tool-meta">Urgente vs Importante</p>
-                        <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
+
+                <!-- HERRAMIENTA 2: MATRIZ DE EISENHOWER -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3);">
+                                <i class="fa-solid fa-table-cells-large"></i> Priorización Estratégica
+                            </span>
+                            <h3>2. Matriz de Eisenhower (Priorización)</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- TUTORIAL APLICADO AL CONTEXTO DE MATÍAS -->
+                    <div class="tool-context-box" style="border-left-color: #60a5fa; background: linear-gradient(135deg, rgba(96, 165, 250, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #60a5fa;"><i class="fa-solid fa-bullseye"></i> Tutorial Aplicado al Contexto de Matías</h4>
+                        <p>
+                            Para el cerebro TDAH, un mensaje de Discord o un video de TikTok parece "urgente" y una prueba de Biología que es el jueves parece "lejana e invisible". La Matriz de Eisenhower es tu filtro para no caer en esa trampa y proteger tu paz.
+                        </p>
+                        <p>
+                            <strong>Los 4 Cuadrantes en tu vida real:</strong>
+                        </p>
+                        <ul>
+                            <li><strong>Cuadrante I (Urgente & Importante - ¡HACER HOY!)</strong>: La prueba de mañana, la guía con nota que se entrega en 24h, o hablar con papá de frente si te equivocaste en algo. Se ataca primero con Paso Cero.</li>
+                            <li><strong>Cuadrante II (No Urgente pero Vital - TU TESORO)</strong>: Entrenar vóley, practicar dibujo, dormir temprano, ordenar la mochila antes de acostarte. Si pasas tiempo aquí, NUNCA tendrás que vivir con estrés de última hora.</li>
+                            <li><strong>Cuadrante III (Urgente pero No Importante - DELEGAR O SILENCIAR)</strong>: Notificaciones de grupos de WhatsApp, memes y cadenas del curso. No requieren tu respuesta inmediata.</li>
+                            <li><strong>Cuadrante IV (Ni Urgente Ni Importante - EL POZO DIGITAL)</strong>: Scrollear Reels por 3 horas o buscar pantallas alternativas a escondidas. Esto te roba la confianza familiar y tu propia energía.</li>
+                        </ul>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #60a5fa;"></i> Checklist de Aplicación Semanal
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-eisen" style="background: #60a5fa;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-eisen" style="color: #60a5fa;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_1" onchange="toggleToolCheck(this)">
+                                <span>Ante una tarea escolar, pregunté: ¿Tiene nota directa esta semana? Si sí, la coloqué en mi <strong>Cuadrante I</strong>.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_2" onchange="toggleToolCheck(this)">
+                                <span>Blindé hoy al menos 1 acción de mi <strong>Cuadrante II</strong> (entrenamiento de vóley, dibujo o repasar 15 min con calma).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_3" onchange="toggleToolCheck(this)">
+                                <span>Silencié notificaciones y grupos de chat mientras ejecutaba mi bloque de estudio.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_4" onchange="toggleToolCheck(this)">
+                                <span>Frené a tiempo la tentación del <strong>Cuadrante IV</strong> (scrollear sin propósito en redes sociales).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="eisen" data-tool-check="eisen_5" onchange="toggleToolCheck(this)">
+                                <span>Si se acumularon dos deberes urgentes, le pedí a papá Diego 5 minutos para ordenarlos por prioridad real.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('eisen')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
-                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
-                        <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
+
+                <!-- HERRAMIENTA 3: GTD & VACIADO MENTAL (WIP=2) -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <i class="fa-solid fa-brain"></i> Descarga Cognitiva & Memoria de Trabajo
+                            </span>
+                            <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- TUTORIAL APLICADO AL CONTEXTO DE MATÍAS -->
+                    <div class="tool-context-box" style="border-left-color: #f59e0b; background: linear-gradient(135deg, rgba(245, 158, 11, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #f59e0b;"><i class="fa-solid fa-brain"></i> Tutorial Aplicado al Contexto de Matías</h4>
+                        <p>
+                            Tu cerebro es una máquina para <strong>TENER ideas y CREAR arte</strong>, no para retener 15 pendientes sueltos en la memoria. Cuando intentas acordarte de memoria de la cartulina, la guía de matemáticas y las rodilleras de vóley, tu procesador mental se sobrecalienta y te da parálisis. El Vaciado GTD saca todo de tu cabeza y lo aterriza en papel.
+                        </p>
+                        <p>
+                            <strong>Reglas maestras de operación:</strong>
+                        </p>
+                        <ul>
+                            <li><strong>Límite WIP = 2 (Work In Progress)</strong>: Nunca tengas más de 2 cosas abiertas en tu mesa a la vez (ejemplo: Cuaderno de Historia + Lápiz). Todo lo demás guardado en la mochila. Menos estímulos = cero distracción.</li>
+                            <li><strong>Libreta de Descarga Rápida</strong>: Si mientras estudias se te ocurre una idea genial de dibujo o te acuerdas de algo, no abras el celular: anótalo en una esquina de tu cuaderno y sigue con lo tuyo.</li>
+                            <li><strong>Vaciado Nocturno Análogo (21:30)</strong>: Antes de apagar la luz, dejas la mochila lista con los cuadernos de mañana y tu uniforme colgado. Te duermes con la mente vacía y tranquila.</li>
+                        </ul>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #f59e0b;"></i> Checklist de Aplicación Semanal
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-gtd" style="background: #f59e0b;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-gtd" style="color: #f59e0b;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_1" onchange="toggleToolCheck(this)">
+                                <span>Hice el vaciado rápido de tareas escolares pendientes en papel o en la planilla compartida con papá.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_2" onchange="toggleToolCheck(this)">
+                                <span>Apliqué la regla <strong>WIP = 2</strong>: solo tuve sobre mi escritorio los materiales de 1 tarea a la vez.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_3" onchange="toggleToolCheck(this)">
+                                <span>Anoté en un papel los pensamientos distractores que se me cruzaron en lugar de saltar a ellos.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_4" onchange="toggleToolCheck(this)">
+                                <span>Cerré y marqué como 'Hecha' una tarea escolar antes de comenzar cualquier actividad de ocio.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="gtd" data-tool-check="gtd_5" onchange="toggleToolCheck(this)">
+                                <span>Completé mi vaciado análogo de 3 minutos a las 21:30 para dejar mi mochila y uniforme listos antes de dormir.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('gtd')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>4. La Ventana de Johari (Alineación)</h3>
-                        <p class="tool-meta">Comunicación & Autopercepción</p>
-                        <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
+
+                <!-- HERRAMIENTA 4: VENTANA DE JOHARI & SACAR LA VOZ -->
+                <div class="tool-card-rich">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3);">
+                                <i class="fa-solid fa-bullhorn"></i> Comunicación Asertiva & Madurez
+                            </span>
+                            <h3>4. La Ventana de Johari (Sacar la Voz)</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana Johari Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- TUTORIAL APLICADO AL CONTEXTO DE MATÍAS -->
+                    <div class="tool-context-box" style="border-left-color: #a855f7; background: linear-gradient(135deg, rgba(168, 85, 247, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #c084fc;"><i class="fa-solid fa-comments"></i> Tutorial Aplicado al Contexto de Matías</h4>
+                        <p>
+                            Todos cometemos errores o nos atrasamos con tareas escolares. Lo que destruye la confianza y la paz familiar no es la nota baja: <strong>es el silencio, la mentira o la evasión por vergüenza</strong>. Cuando guardas un problema en secreto, tu <em>Área Oculta</em> se agranda como un monstruo que te llena de culpa y genera tensión en la casa.
+                        </p>
+                        <p>
+                            <strong>Protocolo de Valentía en 3 Pasos:</strong>
+                        </p>
+                        <ul>
+                            <li><strong>La Verdad en 5 Segundos</strong>: Si te fue mal en una prueba o no alcanzaste a hacer una guía, acércate tú primero a Diego o Ángela y dilo de frente. La reacción será 90% más comprensiva porque demostraste madurez y valentía.</li>
+                            <li><strong>Prohibido el "No Sé"</strong>: El "no sé" es un escudo de defensa que corta la conversación. Si estás confundido, di: <em>«Dame 1 minuto para pensar bien y te respondo lo que realmente me pasa»</em>.</li>
+                            <li><strong>Cerrar Bucles (Efecto Zeigarnik)</strong>: Si estás tenso y necesitas una pausa en una conversación difícil, fija la hora exacta: <em>«Dame 20 minutos para ducharme y a las 19:30 nos sentamos a resolverlo»</em>. Y cumple tu palabra.</li>
+                        </ul>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #c084fc;"></i> Checklist de Aplicación Semanal
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-johari" style="background: #c084fc;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-johari" style="color: #c084fc;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_1" onchange="toggleToolCheck(this)">
+                                <span>Si cometí un error o tuve una mala nota escolar, fui transparente con Diego o Ángela en menos de 24h.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_2" onchange="toggleToolCheck(this)">
+                                <span>Eliminé la respuesta automática "no sé" y me di 1 minuto para responder con sinceridad lo que siento.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_3" onchange="toggleToolCheck(this)">
+                                <span>Si pedí una pausa responsable en una conversación difícil, fijé la hora exacta y retomé yo el diálogo.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_4" onchange="toggleToolCheck(this)">
+                                <span>Compartí de forma proactiva algo positivo de mi día (un bloqueo en vóley, un dibujo o una buena nota).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="johari" data-tool-check="johari_5" onchange="toggleToolCheck(this)">
+                                <span>Acepté feedback o corrección de mis padres sin cerrarme en el orgullo ni aislarme con hostilidad.</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('johari')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                <!-- HERRAMIENTA 5: PASO CERO & POMODORO ADAPTADO -->
+                <div class="tool-card-rich" style="grid-column: span 2;">
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <i class="fa-solid fa-bolt"></i> Superación de la Inercia TDAH
+                            </span>
+                            <h3>5. Protocolo Paso Cero (5 min) & Pomodoro Adaptado</h3>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW IMAGEN LIGHTBOX -->
+                    <div class="image-preview" style="margin: 0;">
+                        <img src="assets/img/herramientas/Tecnica Pomodoro.webp" data-fallback="assets/img/herramientas/Tecnica Pomodoro.png" alt="Pomodoro Diagrama" onclick="openLightbox(this.src)" style="max-height: 200px; object-fit: contain; width: 100%; border-radius: 8px;">
+                        <p style="font-size: 0.72rem; color: #888; text-align: center; margin-top: 4px;">🔍 Haz clic para ampliar diagrama metodológico</p>
+                    </div>
+
+                    <!-- TUTORIAL APLICADO AL CONTEXTO DE MATÍAS -->
+                    <div class="tool-context-box" style="border-left-color: #ef4444; background: linear-gradient(135deg, rgba(239, 68, 68, 0.07) 0%, rgba(15, 23, 42, 0.45) 100%);">
+                        <h4 style="color: #f87171;"><i class="fa-solid fa-stopwatch"></i> Tutorial Aplicado al Contexto de Matías</h4>
+                        <p>
+                            La parálisis ante los estudios escolares no es flojera ni falta de capacidad: <strong>es la dopamina baja de tu cerebro que percibe una guía como una montaña imposible</strong>. Tu cerebro se defiende queriendo escapar a los videojuegos o al celular.
+                        </p>
+                        <p>
+                            <strong>El Engaño Cognitivo de los 5 Minutos:</strong>
+                        </p>
+                        <ul>
+                            <li><strong>Pacto contigo mismo</strong>: <em>«Solo voy a trabajar en esta tarea durante 5 minutos de reloj. Solo 5. Si a los 5 minutos me siento miserable, tengo permiso total de parar»</em>.</li>
+                            <li><strong>Activación sensorial</strong>: Pones el cronómetro en el plan de vuelo, abres el cuaderno y pones el lápiz en la hoja.</li>
+                            <li><strong>Efecto Inercia</strong>: El 85% de las veces, una vez que rompiste la fricción del arranque, tu cerebro entra en flujo y terminas la página sin esfuerzo.</li>
+                            <li><strong>Pomodoros Cortos de 15 Minutos</strong>: No estudies 45 minutos seguidos si tu batería está baja. Haz bloques de 15 minutos de foco absoluto + 5 minutos de pausa kinésica (tomar agua, 10 toques con la pelota de vóley, estirar los brazos).</li>
+                        </ul>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #f87171;"></i> Checklist de Aplicación Semanal
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-pasocero" style="background: #ef4444;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-pasocero" style="color: #f87171;">0/5 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="pasocero" data-tool-check="pasocero_1" onchange="toggleToolCheck(this)">
+                                <span>Cuando sentí parálisis o flojera extrema, activé el cronómetro de <strong>Paso Cero (5 min)</strong> en el plan.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="pasocero" data-tool-check="pasocero_2" onchange="toggleToolCheck(this)">
+                                <span>Preparé mi entorno de baja fricción antes de iniciar (botella de agua lista, cuaderno abierto, celular fuera de la vista).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="pasocero" data-tool-check="pasocero_3" onchange="toggleToolCheck(this)">
+                                <span>Me mantuve enfocado en una sola hoja o ejercicio durante los primeros 5 minutos sin rendirme.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="pasocero" data-tool-check="pasocero_4" onchange="toggleToolCheck(this)">
+                                <span>Utilicé bloques cortos de <strong>15 min de foco + 5 min de pausa física</strong> en lugar de largas sesiones agotadoras.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool-id="pasocero" data-tool-check="pasocero_5" onchange="toggleToolCheck(this)">
+                                <span>Reconocí y celebré haber roto la inercia (cada inicio exitoso entrena mi músculo de la autonomía).</span>
+                            </label>
+                        </div>
+
+                        <div class="tool-checklist-footer">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('pasocero')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -825,7 +1721,453 @@
     <script src="js/portal-gateway.js?v=3.2"></script>
     <script src="js/schedule-engine.js?v=3.2"></script>
     <script src="js/kanban-engine.js?v=3.2"></script>
-    <script src="js/whatsapp-widget.js?v=3.2">
+    <script src="js/whatsapp-widget.js?v=3.2"></script>
+    
+    <script>
+        // =========================================================================
+        // NOTIFICACIONES TOAST (AUTOCONTENIDAS)
+        // =========================================================================
+        function showToast(msg) {
+            let toast = document.getElementById('toast-notification');
+            let text = document.getElementById('toast-text');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast-notification';
+                toast.style.cssText = 'position:fixed;bottom:25px;right:25px;background:rgba(15,23,42,0.95);border:1px solid #10b981;color:#fff;padding:12px 20px;border-radius:10px;font-size:0.88rem;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,0.6);display:none;align-items:center;gap:10px;z-index:999999;backdrop-filter:blur(10px);transition:all 0.3s ease;';
+                toast.innerHTML = '<i class="fa-solid fa-circle-check" style="color:#10b981;"></i><span id="toast-text"></span>';
+                document.body.appendChild(toast);
+                text = document.getElementById('toast-text');
+            }
+            if (text) text.textContent = msg;
+            toast.style.display = 'flex';
+            if (window._toastTimeout) clearTimeout(window._toastTimeout);
+            window._toastTimeout = setTimeout(() => { if (toast) toast.style.display = 'none'; }, 3200);
+        }
+
+        // =========================================================================
+        // MOTOR DE CHECKLISTS DIDÁCTICOS DEL KIT DE HERRAMIENTAS (MATIAS)
+        // =========================================================================
+        const TOOLS_CHECKLIST_KEY = 'matias_tools_checklist_v2';
+
+        function getToolsChecklistState() {
+            try {
+                const raw = localStorage.getItem(TOOLS_CHECKLIST_KEY);
+                return raw ? JSON.parse(raw) : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveToolsChecklistState(state) {
+            try {
+                localStorage.setItem(TOOLS_CHECKLIST_KEY, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        function toggleToolCheck(checkbox) {
+            const id = checkbox.getAttribute('data-tool-check');
+            const toolId = checkbox.getAttribute('data-tool-id');
+            const state = getToolsChecklistState();
+            state[id] = checkbox.checked;
+            saveToolsChecklistState(state);
+
+            const label = checkbox.closest('.tool-check-item');
+            if (label) {
+                if (checkbox.checked) {
+                    label.classList.add('completed');
+                } else {
+                    label.classList.remove('completed');
+                }
+            }
+
+            updateToolProgress(toolId);
+            showToast('✅ Checklist actualizado y guardado en tu equipo');
+        }
+
+        function updateToolProgress(toolId) {
+            const checkboxes = document.querySelectorAll(`input[data-tool-id="${toolId}"]`);
+            if (!checkboxes.length) return;
+
+            let checkedCount = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) checkedCount++;
+            });
+
+            const total = checkboxes.length;
+            const pct = Math.round((checkedCount / total) * 100);
+
+            const fill = document.getElementById(`progress-fill-${toolId}`);
+            const text = document.getElementById(`progress-text-${toolId}`);
+            if (fill) fill.style.width = pct + '%';
+            if (text) text.textContent = `${checkedCount}/${total} (${pct}%)`;
+        }
+
+        function resetToolChecklist(toolId) {
+            if (!confirm("¿Deseas reiniciar este checklist para una nueva semana?")) return;
+            const checkboxes = document.querySelectorAll(`input[data-tool-id="${toolId}"]`);
+            const state = getToolsChecklistState();
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                const id = cb.getAttribute('data-tool-check');
+                delete state[id];
+                const label = cb.closest('.tool-check-item');
+                if (label) label.classList.remove('completed');
+            });
+            saveToolsChecklistState(state);
+            updateToolProgress(toolId);
+            showToast('🔄 Checklist restablecido');
+        }
+
+        function initToolsChecklists() {
+            const state = getToolsChecklistState();
+            const tools = ['tb', 'eisen', 'gtd', 'johari', 'pasocero'];
+
+            document.querySelectorAll('input[data-tool-check]').forEach(cb => {
+                const id = cb.getAttribute('data-tool-check');
+                if (state[id]) {
+                    cb.checked = true;
+                    const label = cb.closest('.tool-check-item');
+                    if (label) label.classList.add('completed');
+                }
+            });
+
+            tools.forEach(t => updateToolProgress(t));
+        }
+
+        // =========================================================================
+        // MOTOR DE TEST DE ORIENTACIÓN VOCACIONAL (CONCEPCIÓN 2026)
+        // =========================================================================
+        const VOC_STORAGE_KEY = 'matias_vocational_test_v2';
+
+        const VOC_QUESTIONS = [
+            { id: "q1", num: 1, tag: "Arte & Creatividad", pillar: "arte", text: "Pasar 3 horas dibujando, ilustrando digitalmente o diseñando personajes y cómics sin darme cuenta del tiempo." },
+            { id: "q2", num: 2, tag: "Vóleibol & Deporte", pillar: "sport", text: "Competir en vóleibol, saltar en la red para bloquear/rematar y entrenar duro la resistencia física con mi equipo." },
+            { id: "q3", num: 3, tag: "Tecnología & Juegos", pillar: "tech", text: "Curiosidad por entender cómo se programan los videojuegos, cómo funcionan los mods o la lógica de software." },
+            { id: "q4", num: 4, tag: "Arquitectura & Espacio", pillar: "arqui", text: "Diseñar maquetas, crear planos en 3D, imaginar casas futuristas o entender cómo se construyen grandes edificios." },
+            { id: "q5", num: 5, tag: "Animación & Cine", pillar: "arte", text: "Darle vida a dibujos cuadro a cuadro (animación 2D o 3D) y crear los efectos visuales para una escena o videojuego." },
+            { id: "q6", num: 6, tag: "Kinesiología & Salud", pillar: "sport", text: "Aprender sobre biomecánica corporal, prevención de lesiones articulares y ayudar a deportistas a rehabilitarse." },
+            { id: "q7", num: 7, tag: "Informática & Lógica", pillar: "tech", text: "Desarmar computadores, optimizar tarjetas gráficas, crear scripts o resolver problemas lógicos con código." },
+            { id: "q8", num: 8, tag: "Diseño Urbano & 3D", pillar: "arqui", text: "Imaginar cómo rediseñar espacios públicos en Concepción (parques, campus, bordes del río) con maquetas y planos." },
+            { id: "q9", num: 9, tag: "Diseño Gráfico & Marca", pillar: "arte", text: "Crear identidades visuales impactantes: logos, paletas cromáticas, afiches y portadas con estilo profesional." },
+            { id: "q10", num: 10, tag: "Diseño de Videojuegos", pillar: "tech", text: "Idear las reglas, niveles de dificultad, mecánicas de combate y diseño de interfaces interactivas para jugadores." },
+            { id: "q11", num: 11, tag: "Liderazgo en Cancha", pillar: "sport", text: "La adrenalina de competir bajo presión en un partido de vóley, motivar al equipo y leer la cancha en milésimas de segundo." },
+            { id: "q12", num: 12, tag: "Modelado Tridimensional", pillar: "arqui", text: "Ver una idea en mi cabeza y construirla con volumen real en software de modelado 3D o con cartón y madera." }
+        ];
+
+        const VOC_CAREERS = [
+            {
+                id: "c1",
+                nombre: "Animación Digital & Efectos Visuales (VFX)",
+                instituciones: ["Duoc UC Sede San Andrés", "USS Campus Tres Pascualas", "Santo Tomás Concepción"],
+                duracion: "4 - 5 años",
+                matchPillars: ["arte", "tech"],
+                badgeColor: "#c084fc",
+                porQue: "Combina tu hiperfoco en el dibujo con la animación 2D/3D. Enfoque 100% práctico en talleres de diseño de personajes, texturizado y proyectos reales sin horas muertas de teoría pasiva.",
+                hoyTip: "A tus 15 años: Sigue practicando anatomía en croquera y prueba softwares gratuitos de animación como Blender u OpenToonz."
+            },
+            {
+                id: "c2",
+                nombre: "Diseño Gráfico & Comunicación Multimedia",
+                instituciones: ["Universidad del Bío-Bío (UBB Concepción)", "Inacap San Pedro / Concepción", "Duoc UC"],
+                duracion: "4 - 5 años",
+                matchPillars: ["arte", "arqui"],
+                badgeColor: "#10b981",
+                porQue: "Te enseña a dominar la identidad visual, el arte publicitario, diseño UX/UI de aplicaciones y narrativa gráfica. Taller continuo y evaluación por portafolio visual.",
+                hoyTip: "A tus 15 años: Diseña afiches o identidades visuales para tu equipo de vóley o proyectos del Colegio Concepción."
+            },
+            {
+                id: "c3",
+                nombre: "Ingeniería Civil en Informática / Desarrollo de Software",
+                instituciones: ["Universidad de Concepción (UdeC)", "Universidad del Bío-Bío (UBB)", "UNAB Concepción"],
+                duracion: "5 - 5.5 años",
+                matchPillars: ["tech"],
+                badgeColor: "#60a5fa",
+                porQue: "Una de las carreras con mayor proyección global, opciones de trabajo remoto desde Concepción con sueldos altos y la posibilidad de programar motores de videojuegos o inteligencia artificial.",
+                hoyTip: "A tus 15 años: Dale sentido a las matemáticas del colegio aprendiendo lógica básica en Python o Scratch."
+            },
+            {
+                id: "c4",
+                nombre: "Arquitectura & Urbanismo",
+                instituciones: ["Universidad del Bío-Bío (UBB - Escuela de renombre)", "Universidad de Concepción (UdeC)", "UDD Concepción"],
+                duracion: "5.5 - 6 años",
+                matchPillars: ["arqui", "arte"],
+                badgeColor: "#34d399",
+                porQue: "Canaliza tu visión espacial y talento para el dibujo hacia maquetas físicas, volumetría y estructuras reales. Los talleres de arquitectura son dinámicos y exigen mucha creatividad.",
+                hoyTip: "A tus 15 años: Observa los edificios de Concepción, dibuja perspectivas y experimenta armando modelos a escala."
+            },
+            {
+                id: "c5",
+                nombre: "Kinesiología & Rehabilitación Deportiva",
+                instituciones: ["Universidad de Concepción (UdeC)", "Universidad Andrés Bello (UNAB)", "USS Concepción"],
+                duracion: "5 años",
+                matchPillars: ["sport"],
+                badgeColor: "#ea580c",
+                porQue: "Conecta con tu pasión por el vóley para acompañar a atletas de alto rendimiento a saltar mejor, prevenir desgarros y recuperarse en clínicas deportivas.",
+                hoyTip: "A tus 15 años: Aprende sobre estiramientos, biomecánica del remate de vóley y cuida tu propia flexibilidad muscular."
+            },
+            {
+                id: "c6",
+                nombre: "Entrenador Deportivo / Preparación Física",
+                instituciones: ["Universidad Andrés Bello (UNAB)", "Duoc UC San Andrés", "UdeC (Ed. Física)"],
+                duracion: "2.5 - 4 años",
+                matchPillars: ["sport"],
+                badgeColor: "#f59e0b",
+                porQue: "Trabajo 100% en cancha y gimnasio. Cero encierro de oficina: diseñar rutinas de fuerza, potencia de salto y liderar selecciones deportivas escolares o de liga.",
+                hoyTip: "A tus 15 años: Analiza las tácticas de juego de colocadores y atacantes en partidos internacionales de voleibol."
+            }
+        ];
+
+        function getVocState() {
+            try {
+                const raw = localStorage.getItem(VOC_STORAGE_KEY);
+                return raw ? JSON.parse(raw) : { answers: {} };
+            } catch (e) {
+                return { answers: {} };
+            }
+        }
+
+        function saveVocState(state) {
+            try {
+                localStorage.setItem(VOC_STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        function renderVocQuestions() {
+            const container = document.getElementById("voc-questions-list");
+            if (!container) return;
+
+            const state = getVocState();
+            let html = "";
+
+            const optLabels = [
+                { val: 0, text: "💤 Nada que ver", cls: "" },
+                { val: 1, text: "🤔 Poco interés", cls: "opt-meh" },
+                { val: 2, text: "👍 Me gusta", cls: "opt-like" },
+                { val: 3, text: "🔥 ¡Es lo mío!", cls: "opt-fire" }
+            ];
+
+            VOC_QUESTIONS.forEach(q => {
+                const currentVal = state.answers[q.id];
+                const isAnswered = currentVal !== undefined;
+                
+                html += `
+                    <div class="voc-question-card ${isAnswered ? 'answered' : ''}" id="voc-card-${q.id}">
+                        <div class="voc-q-header">
+                            <span class="voc-q-num">#${q.num}</span>
+                            <span class="voc-q-tag">${q.tag}</span>
+                        </div>
+                        <div class="voc-q-text">${q.text}</div>
+                        <div class="voc-opts-grid">
+                            ${optLabels.map(opt => `
+                                <button type="button" 
+                                    class="btn-voc-opt ${currentVal === opt.val ? ('selected ' + opt.cls) : ''}" 
+                                    onclick="selectVocOption('${q.id}', ${opt.val})">
+                                    <span>${opt.text}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            updateVocCounter();
+        }
+
+        function selectVocOption(qId, val) {
+            const state = getVocState();
+            state.answers[qId] = val;
+            saveVocState(state);
+
+            const card = document.getElementById(`voc-card-${qId}`);
+            if (card) {
+                card.classList.add("answered");
+                const btns = card.querySelectorAll(".btn-voc-opt");
+                btns.forEach((b, idx) => {
+                    b.className = "btn-voc-opt";
+                    if (idx === val) {
+                        const optClasses = ["", "opt-meh", "opt-like", "opt-fire"];
+                        b.classList.add("selected");
+                        if (optClasses[val]) b.classList.add(optClasses[val]);
+                    }
+                });
+            }
+
+            updateVocCounter();
+            calculateVocResults(false);
+        }
+
+        function updateVocCounter() {
+            const state = getVocState();
+            const answeredCount = Object.keys(state.answers).length;
+            const counter = document.getElementById("voc-test-counter");
+            if (counter) {
+                counter.innerText = `Respondidas: ${answeredCount} / ${VOC_QUESTIONS.length}`;
+                counter.style.color = answeredCount === VOC_QUESTIONS.length ? '#10b981' : '#f59e0b';
+            }
+        }
+
+        function calculateVocResults(shouldScroll) {
+            const state = getVocState();
+            const answeredCount = Object.keys(state.answers).length;
+
+            if (answeredCount === 0) {
+                if (shouldScroll) alert("Por favor responde al menos algunas preguntas para calcular tu afinidad.");
+                return;
+            }
+
+            // Calcular puntajes por pilar (cada pilar tiene 3 preguntas, max 9 puntos)
+            const scores = { arte: 0, tech: 0, sport: 0, arqui: 0 };
+            const maxScores = { arte: 0, tech: 0, sport: 0, arqui: 0 };
+
+            VOC_QUESTIONS.forEach(q => {
+                maxScores[q.pillar] += 3;
+                if (state.answers[q.id] !== undefined) {
+                    scores[q.pillar] += state.answers[q.id];
+                }
+            });
+
+            const pcts = {
+                arte: Math.round((scores.arte / maxScores.arte) * 100),
+                tech: Math.round((scores.tech / maxScores.tech) * 100),
+                sport: Math.round((scores.sport / maxScores.sport) * 100),
+                arqui: Math.round((scores.arqui / maxScores.arqui) * 100)
+            };
+
+            // Actualizar barras
+            const setPillarBar = (id, pct) => {
+                const fill = document.getElementById(`voc-bar-${id}`);
+                const text = document.getElementById(`voc-pct-${id}`);
+                if (fill) fill.style.width = pct + '%';
+                if (text) text.innerText = pct + '%';
+            };
+
+            setPillarBar("arte", pcts.arte);
+            setPillarBar("tech", pcts.tech);
+            setPillarBar("sport", pcts.sport);
+            setPillarBar("arqui", pcts.arqui);
+
+            // Generar título dominante
+            const sortedPillars = Object.keys(pcts).sort((a, b) => pcts[b] - pcts[a]);
+            const topPillar = sortedPillars[0];
+            const secondPillar = sortedPillars[1];
+
+            const profileTitles = {
+                arte: "Creador Visual & Animador Digital",
+                tech: "Estratega Tecnológico & Programador",
+                sport: "Atleta de Alto Rendimiento & Líder de Cancha",
+                arqui: "Diseñador Espacial & Creador 3D"
+            };
+
+            const domTitle = document.getElementById("voc-dominant-title");
+            if (domTitle) {
+                domTitle.innerText = `Perfil: ${profileTitles[topPillar]} + ${profileTitles[secondPillar].split('&')[0]}`;
+            }
+
+            // Renderizar tarjetas de carreras ordenadas por afinidad
+            renderCareersRanking(pcts);
+
+            const resContainer = document.getElementById("voc-results-container");
+            if (resContainer) {
+                resContainer.style.display = "block";
+                if (shouldScroll) {
+                    resContainer.scrollIntoView({ behavior: 'smooth' });
+                    showToast('📊 Perfil vocacional actualizado con éxito');
+                }
+            }
+        }
+
+        function renderCareersRanking(pcts) {
+            const grid = document.getElementById("voc-careers-grid");
+            if (!grid) return;
+
+            // Calcular compatibilidad para cada carrera
+            const evaluatedCareers = VOC_CAREERS.map(c => {
+                let sum = 0;
+                c.matchPillars.forEach(p => sum += (pcts[p] || 0));
+                const matchPct = Math.round(sum / c.matchPillars.length);
+                return { ...c, matchPct };
+            }).sort((a, b) => b.matchPct - a.matchPct);
+
+            let html = "";
+            evaluatedCareers.forEach(c => {
+                html += `
+                    <div class="voc-career-card" style="border-left: 3px solid ${c.badgeColor};">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                            <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: #fff; margin: 0;">
+                                ${c.nombre}
+                            </h4>
+                            <span style="font-size: 0.82rem; font-weight: 800; color: ${c.badgeColor}; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px; white-space: nowrap;">
+                                ${c.matchPct}% Match
+                            </span>
+                        </div>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            ${c.instituciones.map(inst => `
+                                <span class="voc-uni-badge"><i class="fa-solid fa-building-columns"></i> ${inst}</span>
+                            `).join('')}
+                            <span class="voc-uni-badge" style="color: #94a3b8;"><i class="fa-regular fa-clock"></i> ${c.duracion}</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
+                            ${c.porQue}
+                        </p>
+                        <div class="voc-today-tip">
+                            <strong>🎯 Qué hacer hoy:</strong> ${c.hoyTip}
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+        }
+
+        function shareVocWhatsApp() {
+            const state = getVocState();
+            const answeredCount = Object.keys(state.answers).length;
+            if (answeredCount < 3) {
+                alert("Responde al menos 3 preguntas antes de compartir tus resultados.");
+                return;
+            }
+
+            const scores = { arte: 0, tech: 0, sport: 0, arqui: 0 };
+            VOC_QUESTIONS.forEach(q => {
+                if (state.answers[q.id] !== undefined) scores[q.pillar] += state.answers[q.id];
+            });
+
+            const pcts = {
+                arte: Math.round((scores.arte / 9) * 100),
+                tech: Math.round((scores.tech / 9) * 100),
+                sport: Math.round((scores.sport / 9) * 100),
+                arqui: Math.round((scores.arqui / 9) * 100)
+            };
+
+            const text = `¡Hola papá! Completé mi Test de Orientación Vocacional (Concepción) en mi Plan de Vuelo 2.0 🧭:
+- 🎨 Arte & Animación Digital: ${pcts.arte}%
+- 🏐 Vóleibol & Rendimiento: ${pcts.sport}%
+- 💻 Informática & Videojuegos: ${pcts.tech}%
+- 📐 Arquitectura & Espacio 3D: ${pcts.arqui}%
+
+Mis carreras recomendadas en Concepción que más me llaman la atención son Animación Digital (Duoc San Andrés) e Informática/Vóley. ¡Lo comentamos en nuestra cita semanal!`;
+
+            const url = `https://wa.me/56975590132?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function resetVocTest() {
+            if (!confirm("¿Deseas reiniciar todas tus respuestas del test vocacional?")) return;
+            localStorage.removeItem(VOC_STORAGE_KEY);
+            renderVocQuestions();
+            const resContainer = document.getElementById("voc-results-container");
+            if (resContainer) resContainer.style.display = "none";
+            showToast("Test vocacional restablecido");
+        }
+
+        function checkSavedVocTest() {
+            const state = getVocState();
+            if (Object.keys(state.answers).length >= 4) {
+                calculateVocResults(false);
+            }
+        }
+
         // =========================================================================
         // P1-10 & P1-08: PASO CERO Y POMODORO (MATIAS)
         // =========================================================================
@@ -1004,7 +2346,12 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", () => { initMatiasShutdown(); });
+        document.addEventListener("DOMContentLoaded", () => {
+            initMatiasShutdown();
+            initToolsChecklists();
+            renderVocQuestions();
+            checkSavedVocTest();
+        });
 </script>
 </body>
 </html>

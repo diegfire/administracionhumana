@@ -201,7 +201,7 @@ const CLIENT_ACCOUNTS = [
         subtitle: "Ingeniería & Software",
         usernames: ["matias.gonzalez", "matias", "matiasg", "matias@administracionhumana.com"],
         passwords: ["ah-matias7315", "ah-matias-7315", "matias7315", "matias2026"],
-        url: "plan.html?cliente=matias",
+        url: "planes-matias.html",
         storageKey: "ah_auth_matias"
     },
     {

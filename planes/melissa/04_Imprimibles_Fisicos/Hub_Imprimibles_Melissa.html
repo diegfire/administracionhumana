@@ -206,6 +206,12 @@
             height: 1.4rem;
             margin-bottom: 0.25rem;
         }
+        .dot-matrix {
+            background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+            background-size: 8px 8px;
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+        }
 
         /* ESTILOS ESPECÍFICOS DE HORARIO */
         .time-table {
@@ -277,7 +283,7 @@
     </div>
 
     <!-- =========================================================================
-         HOJA 1: PLANIFICADOR SEMANAL TIME BLOCKING 24H
+         HOJA 1: PLANIFICADOR SEMANAL TIME BLOCKING 24H (COLEGIO + TRAFMEN + DIPLOMADO)
          ========================================================================= -->
     <section class="sheet-page" id="sheet-1">
         <div>
@@ -293,6 +299,7 @@
                 </div>
             </div>
 
+            <!-- TABLA HORARIA QUIRÚRGICA -->
             <table class="time-table" style="margin-bottom:0.5rem;">
                 <thead>
                     <tr>
@@ -372,6 +379,7 @@
                 </tbody>
             </table>
 
+            <!-- BLOQUES DE CONTROL Y ENFOQUE -->
             <div class="grid-3">
                 <div class="box">
                     <div class="box-title"><i class="fa-solid fa-bullseye" style="color:var(--forest);"></i> 2 Objetivos Innegociables</div>
@@ -402,7 +410,7 @@
     </section>
 
     <!-- =========================================================================
-         HOJA 2: INVENTARIO DIARIO DE RESULTADOS & AUTOESTIMA
+         HOJA 2: INVENTARIO DIARIO DE RESULTADOS & AUTOESTIMA (CERO CULPA)
          ========================================================================= -->
     <section class="sheet-page" id="sheet-2">
         <div>
@@ -520,6 +528,7 @@
             </div>
 
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; height:20.5cm;">
+                <!-- CUADRANTE 1: URGENTE & IMPORTANTE -->
                 <div class="box" style="border:2px solid #EF4444; background:#FEF2F2; display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
                         <div class="box-title" style="color:#B91C1C;">
@@ -536,6 +545,7 @@
                     <div style="font-size:6.5pt; font-weight:700; color:#991B1B; text-align:right;">Regla: Ejecutar sin rumiar</div>
                 </div>
 
+                <!-- CUADRANTE 2: NO URGENTE PERO MUY IMPORTANTE (EL CORAZÓN DE AH) -->
                 <div class="box" style="border:2px solid #059669; background:#F0FDF4; display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
                         <div class="box-title" style="color:#047857;">
@@ -552,6 +562,7 @@
                     <div style="font-size:6.5pt; font-weight:700; color:#065F46; text-align:right;">Regla: Proteger en Time Blocking</div>
                 </div>
 
+                <!-- CUADRANTE 3: URGENTE PERO NO IMPORTANTE -->
                 <div class="box" style="border:2px solid #F59E0B; background:#FFFBEB; display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
                         <div class="box-title" style="color:#B45309;">
@@ -568,6 +579,7 @@
                     <div style="font-size:6.5pt; font-weight:700; color:#78350F; text-align:right;">Regla: No interrumpir la hora de oro</div>
                 </div>
 
+                <!-- CUADRANTE 4: NI URGENTE NI IMPORTANTE -->
                 <div class="box" style="border:2px solid #64748B; background:#F8FAFC; display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
                         <div class="box-title" style="color:#334155;">
@@ -610,6 +622,7 @@
                 </div>
             </div>
 
+            <!-- DATOS DEL USUARIO / FAMILIA -->
             <div class="box" style="margin-bottom:0.45rem;">
                 <div class="box-title"><i class="fa-solid fa-child"></i> Datos del Niño / Niña & Cuidadores</div>
                 <div class="grid-3" style="margin-bottom:0.3rem;">
@@ -623,6 +636,7 @@
                 </div>
             </div>
 
+            <!-- CATEGORIZACIÓN DEL TALLER -->
             <div class="box" style="margin-bottom:0.45rem;">
                 <div class="box-title"><i class="fa-solid fa-shapes"></i> Modalidad de Atención Trafmen</div>
                 <div class="grid-4" style="font-size:7.2pt; font-weight:700;">
@@ -633,6 +647,7 @@
                 </div>
             </div>
 
+            <!-- VALORACIÓN MOTRIZ Y SENSORIAL -->
             <div class="box" style="margin-bottom:0.45rem;">
                 <div class="box-title"><i class="fa-solid fa-person-running"></i> Ejes de Observación Psicomotriz & Sensorial</div>
                 <div class="grid-2" style="gap:0.6rem;">
@@ -651,6 +666,7 @@
                 </div>
             </div>
 
+            <!-- CONCLUSIÓN EN CRISTIANO PARA LOS PADRES -->
             <div class="box" style="background:#FEFCE8; border:1px solid #FEF08A; margin-bottom:0.45rem;">
                 <div class="box-title" style="color:#A16207;">
                     <i class="fa-solid fa-comment-dots"></i> Devolución a la Familia ("En Cristiano" • Cero Tecnicismos)
@@ -663,6 +679,7 @@
                 <div class="line-field" style="border-color:#EAB308;"></div>
             </div>
 
+            <!-- ACUERDO DE CONTINUIDAD / PASE PREPAGADO -->
             <div class="box" style="padding:0.4rem 0.6rem;">
                 <div class="grid-3" style="font-size:7.2pt; font-weight:700;">
                     <div>Próxima Sesión: ____/____/2026</div>
@@ -696,7 +713,9 @@
                 </div>
             </div>
 
+            <!-- CAJAS DE LOS 3 PILARES -->
             <div class="grid-3" style="margin-bottom:0.55rem;">
+                <!-- 50% NECESIDADES -->
                 <div class="box" style="border-top:3px solid #2563EB;">
                     <div class="box-title" style="color:#1D4ED8;">
                         <i class="fa-solid fa-house"></i> 50% NECESIDADES
@@ -711,6 +730,7 @@
                     </table>
                 </div>
 
+                <!-- 30% GUSTOS -->
                 <div class="box" style="border-top:3px solid #F59E0B;">
                     <div class="box-title" style="color:#B45309;">
                         <i class="fa-solid fa-mug-saucer"></i> 30% ESTILO DE VIDA
@@ -725,6 +745,7 @@
                     </table>
                 </div>
 
+                <!-- 20% AHORRO / REINVERSIÓN -->
                 <div class="box" style="border-top:3px solid #059669;">
                     <div class="box-title" style="color:#047857;">
                         <i class="fa-solid fa-seedling"></i> 20% INVERSIÓN & PAZ
@@ -740,6 +761,7 @@
                 </div>
             </div>
 
+            <!-- RESUMEN MENSUAL Y BALANCE DE FLUJO -->
             <div class="box" style="background:#F8FAFC;">
                 <div class="box-title"><i class="fa-solid fa-calculator"></i> Balance Mensual & Flujo de Oportunidad</div>
                 <div class="grid-3" style="text-align:center; padding:0.4rem 0;">
@@ -758,6 +780,7 @@
                 </div>
             </div>
 
+            <!-- COMPROMISO FINANCIERO -->
             <div class="box" style="margin-top:0.45rem;">
                 <div class="box-title"><i class="fa-solid fa-handshake"></i> Regla de Separación Innegociable</div>
                 <div style="font-size:7.4pt; color:#334155; line-height:1.35;">
@@ -773,6 +796,7 @@
         </div>
     </section>
 
+    <!-- SCRIPT DE FILTRADO Y MODO HOJA AISLADA -->
     <script>
         function filterSheet(sheetId) {
             const sheets = document.querySelectorAll('.sheet-page');
