@@ -507,6 +507,216 @@
             color: #a7f3d0;
             line-height: 1.4;
         }
+
+        /* ── EXPLORADOR DE MALLAS CURRICULARES & PONDERACIONES PAES ── */
+        .malla-career-tabs {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.4rem;
+        }
+        .btn-malla-tab {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 0.7rem 1.1rem;
+            border-radius: 10px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        .btn-malla-tab:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: #fff;
+        }
+        .btn-malla-tab.active {
+            background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
+            border-color: #38bdf8;
+            color: #ffffff;
+            box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+        }
+
+        .paes-weights-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0 1.4rem 0;
+        }
+        @media (max-width: 768px) {
+            .paes-weights-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .paes-weights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .paes-box {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .paes-box-val {
+            background: rgba(255, 255, 255, 0.95);
+            color: #0f172a;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            padding: 0.45rem 0.3rem;
+        }
+        .paes-box-lbl {
+            padding: 0.55rem 0.35rem;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1.2;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .year-filter-bar {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 0.75rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .btn-year-filter {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 0.45rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-year-filter:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .btn-year-filter.active {
+            background: #38bdf8;
+            color: #0f172a;
+            border-color: #38bdf8;
+            font-weight: 800;
+        }
+
+        .semesters-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+        }
+        @media (max-width: 820px) {
+            .semesters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .semester-card {
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 14px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .semester-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.65rem;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .semester-badge {
+            background: #0284c7;
+            color: #fff;
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+        .semester-year-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #38bdf8;
+            text-transform: uppercase;
+        }
+        .ramo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .ramo-item {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-left: 3px solid #0284c7;
+            border-radius: 8px;
+            padding: 0.85rem;
+            transition: all 0.18s ease;
+        }
+        .ramo-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+        .ramo-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 0.4rem;
+        }
+        .ramo-name {
+            font-family: var(--font-display);
+            font-size: 0.94rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+        }
+        .ramo-cat-pill {
+            font-size: 0.66rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 12px;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+        .ramo-detail {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            line-height: 1.45;
+            margin: 0.25rem 0;
+        }
+        .ramo-utility {
+            font-size: 0.78rem;
+            color: #93c5fd;
+            background: rgba(2, 132, 199, 0.12);
+            padding: 0.45rem 0.65rem;
+            border-radius: 6px;
+            margin-top: 0.4rem;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -960,69 +1170,82 @@
         <div id="tab-vocacional" class="tab-content">
             <div class="voc-hero-box">
                 <div class="voc-progress-badge">
-                    <i class="fa-solid fa-compass-drafting"></i> Orientación Vocacional Personalizada • Concepción 2026
+                    <i class="fa-solid fa-compass-drafting"></i> Orientación Vocacional & Mallas Universitarias • Concepción 2026
                 </div>
                 <h2 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 0.6rem;">
                     🧭 Brújula de Futuro: De tus Talentos a tu Carrera en Concepción
                 </h2>
                 <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1.2rem;">
-                    A tus 15 años, en el <strong>Colegio Concepción</strong>, no necesitas tener toda tu vida resuelta hoy. Lo que sí necesitas es saber hacia dónde apunta tu fuego interno: tu habilidad visual y creativa para el dibujo, tu agilidad física y competitividad en el vóleibol, tu curiosidad tecnológica por los videojuegos y el software. Este test interactivo conecta lo que te apasiona con las <strong>carreras reales disponibles en las universidades e institutos de Concepción</strong> (UdeC, UBB, Duoc UC, USS, UNAB, Inacap).
+                    A tus <strong>17 años</strong> (nacido el <strong>8 de septiembre de 2009</strong>), cursando tu etapa final en el <strong>Colegio Concepción</strong>, estás en el momento ideal para conectar tus talentos reales —tu habilidad visual y artística para el dibujo, tu potencia física y competitividad en el vóleibol, y tu curiosidad por la tecnología y los videojuegos— con una carrera universitaria o profesional en Concepción. Aquí tienes tu <strong>Test Vocacional Completo de 20 Preguntas (Modelo Holland RIASEC + CHASIDE)</strong> y un <strong>Explorador de Mallas Curriculares ramo por ramo</strong> para que entiendas exactamente qué significa cursar un semestre en la universidad.
                 </p>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
                     <span style="font-size: 0.8rem; background: rgba(255,255,255,0.06); padding: 5px 12px; border-radius: 20px; color: #94a3b8;">
-                        <i class="fa-solid fa-list-ol" style="color: #60a5fa;"></i> 12 Preguntas de Diagnóstico Rápido
+                        <i class="fa-solid fa-list-ol" style="color: #60a5fa;"></i> 20 Preguntas (Holland RIASEC + CHASIDE)
                     </span>
                     <span style="font-size: 0.8rem; background: rgba(255,255,255,0.06); padding: 5px 12px; border-radius: 20px; color: #94a3b8;">
-                        <i class="fa-solid fa-graduation-cap" style="color: #10b981;"></i> Mapeo UdeC • UBB • Duoc • USS • UNAB • Inacap
+                        <i class="fa-solid fa-graduation-cap" style="color: #10b981;"></i> Mallas Oficiales UdeC • UBB • Duoc • USS • UNAB
                     </span>
                     <span id="voc-test-counter" style="font-size: 0.82rem; font-weight: 800; color: #f59e0b; margin-left: auto;">
-                        Respondidas: 0 / 12
+                        Respondidas: 0 / 20
                     </span>
                 </div>
             </div>
 
-            <!-- TEST INTERACTIVO CONTAINER -->
-            <div id="voc-test-container">
+            <!-- NAVEGACIÓN INTERNA RÁPIDA DENTRO DE ORIENTACIÓN VOCACIONAL -->
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                <a href="#seccion-test-20" onclick="document.getElementById('seccion-test-20').scrollIntoView({behavior:'smooth'}); return false;" style="text-decoration:none; background: rgba(37, 99, 235, 0.18); border: 1px solid rgba(96, 165, 250, 0.4); color: #93c5fd; padding: 8px 16px; border-radius: 10px; font-size: 0.84rem; font-weight: 700;">
+                    <i class="fa-solid fa-clipboard-question"></i> 1. Ir al Test Vocacional (20 Preguntas)
+                </a>
+                <a href="#seccion-guia-semestre" onclick="document.getElementById('seccion-guia-semestre').scrollIntoView({behavior:'smooth'}); return false;" style="text-decoration:none; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #6ee7b7; padding: 8px 16px; border-radius: 10px; font-size: 0.84rem; font-weight: 700;">
+                    <i class="fa-solid fa-book-open-reader"></i> 2. ¿Qué es un Semestre y cómo funciona la PAES?
+                </a>
+                <a href="#seccion-mallas-explorador" onclick="document.getElementById('seccion-mallas-explorador').scrollIntoView({behavior:'smooth'}); return false;" style="text-decoration:none; background: rgba(234, 88, 12, 0.18); border: 1px solid rgba(251, 146, 60, 0.4); color: #fdba74; padding: 8px 16px; border-radius: 10px; font-size: 0.84rem; font-weight: 700;">
+                    <i class="fa-solid fa-sitemap"></i> 3. Explorar Mallas Ramo por Ramo (Ej: Kinesiología UdeC)
+                </a>
+            </div>
+
+            <!-- SECCIÓN 1: TEST INTERACTIVO DE 20 PREGUNTAS -->
+            <div id="seccion-test-20">
                 <div class="card" style="margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 10px;">
                         <div>
-                            <h3 class="section-title" style="margin-bottom: 0.3rem;"><span>Test de Intereses Vocacionales (Concepción)</span></h3>
-                            <p style="font-size: 0.8rem; color: #888; margin: 0;">Selecciona el nivel que mejor describe tu entusiasmo en cada actividad:</p>
+                            <h3 class="section-title" style="margin-bottom: 0.3rem;"><span>1. Test Vocacional de 20 Preguntas (Concepción)</span></h3>
+                            <p style="font-size: 0.82rem; color: #94a3b8; margin: 0;">Basado en los modelos psicotécnicos <strong>Holland (RIASEC)</strong> y <strong>CHASIDE</strong> utilizados en 3° y 4° Medio en Chile. Marca tu nivel real de interés:</p>
                         </div>
                         <div style="font-size: 0.75rem; color: #60a5fa; background: rgba(59,130,246,0.1); padding: 4px 10px; border-radius: 12px; border: 1px solid rgba(59,130,246,0.25);">
-                            <i class="fa-solid fa-bolt"></i> Guardado automático en tu equipo
+                            <i class="fa-solid fa-bolt"></i> Guardado automático en tu teléfono
                         </div>
                     </div>
                     
                     <div id="voc-questions-list">
-                        <!-- Questions dynamically rendered by JS -->
+                        <!-- 20 Questions dynamically rendered by JS -->
                     </div>
 
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; flex-wrap: wrap; gap: 10px;">
                         <button type="button" class="btn-tool-reset" onclick="resetVocTest()">
-                            <i class="fa-solid fa-rotate-left"></i> Reiniciar Respuestas
+                            <i class="fa-solid fa-rotate-left"></i> Reiniciar las 20 Respuestas
                         </button>
                         <button type="button" class="btn-gateway-login" onclick="calculateVocResults(true)" style="width: auto; padding: 10px 22px; font-size: 0.9rem; margin: 0; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
-                            <i class="fa-solid fa-chart-pie"></i> Ver Mi Perfil Vocacional & Carreras
+                            <i class="fa-solid fa-chart-pie"></i> Calcular Mi Perfil Vocacional (20 Preguntas)
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- RESULTADOS DEL TEST (DINÁMICO & PERSISTENTE) -->
-            <div id="voc-results-container" style="display: none; margin-bottom: 2rem;">
+            <!-- RESULTADOS DEL TEST (DINÁMICO & PERSISTENTE - 5 PILARES) -->
+            <div id="voc-results-container" style="display: none; margin-bottom: 2.2rem;">
                 <!-- Hero de Perfil Dominante -->
                 <div class="card" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%); border-color: rgba(96, 165, 250, 0.4); margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                         <div style="max-width: 680px;">
                             <span class="hero-tea-badge" style="background: rgba(96, 165, 250, 0.15); border-color: #60a5fa; color: #93c5fd;">
-                                <i class="fa-solid fa-award"></i> Diagnóstico Vocacional Personalizado
+                                <i class="fa-solid fa-award"></i> Resultado Psicotécnico • Modelo Holland + CHASIDE
                             </span>
                             <h3 id="voc-dominant-title" style="font-family: var(--font-display); font-size: 1.45rem; color: #ffffff; margin: 0.3rem 0;">
-                                Perfil: Creador Visual & Estratega Dinámico
+                                Perfil: Creador Visual & Estratega Kinésico
                             </h3>
                             <p id="voc-dominant-desc" style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
-                                Tienes una combinación excepcional entre alta inteligencia visoespacial (dibujo/diseño) y energía kinestésica (vóleibol). Tu entorno ideal de estudio no es un aula pasiva de memorización, sino talleres de proyectos, laboratorios de creación digital y canchas de alto rendimiento.
+                                Tienes una combinación excepcional entre alta inteligencia visoespacial (dibujo/diseño), curiosidad tecnológica y energía kinestésica (vóleibol y movimiento). Tu entorno ideal de estudio no es un aula pasiva de memorización, sino laboratorios prácticos, talleres de creación y clínicas deportivas en terreno.
                             </p>
                         </div>
                         <div style="display: flex; gap: 8px;">
@@ -1033,70 +1256,159 @@
                     </div>
                 </div>
 
-                <!-- Gráfico de Afinidad por 4 Pilares -->
+                <!-- Gráfico de Afinidad por 5 Pilares -->
                 <div class="section-title">
-                    <span>Nivel de Afinidad por Área de Talento</span>
+                    <span>Nivel de Afinidad por Área Vocacional (5 Ejes)</span>
                 </div>
                 <div class="grid-2" style="margin-bottom: 1.8rem; gap: 1rem;">
-                    <!-- Pilar 1: Arte Visual & Animación Digital -->
+                    <!-- Pilar 1: Salud, Kinesiología & Deporte -->
                     <div class="voc-pillar-card">
                         <div class="voc-pillar-header">
-                            <span class="voc-pillar-name"><i class="fa-solid fa-palette" style="color: #c084fc;"></i> Arte Visual & Animación Digital</span>
-                            <span class="voc-pillar-pct" id="voc-pct-arte" style="color: #c084fc;">0%</span>
-                        </div>
-                        <div class="voc-bar-track">
-                            <div class="voc-bar-fill" id="voc-bar-arte" style="background: #c084fc; width: 0%;"></div>
-                        </div>
-                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Ilustración, animación 2D/3D, diseño de personajes y narrativa gráfica.</p>
-                    </div>
-
-                    <!-- Pilar 2: Informática, Videojuegos & Tech -->
-                    <div class="voc-pillar-card">
-                        <div class="voc-pillar-header">
-                            <span class="voc-pillar-name"><i class="fa-solid fa-gamepad" style="color: #60a5fa;"></i> Informática & Videojuegos</span>
-                            <span class="voc-pillar-pct" id="voc-pct-tech" style="color: #60a5fa;">0%</span>
-                        </div>
-                        <div class="voc-bar-track">
-                            <div class="voc-bar-fill" id="voc-bar-tech" style="background: #60a5fa; width: 0%;"></div>
-                        </div>
-                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Lógica de código, motores de juegos, desarrollo de software y hardware.</p>
-                    </div>
-
-                    <!-- Pilar 3: Vóleibol, Kinesiología & Deporte -->
-                    <div class="voc-pillar-card">
-                        <div class="voc-pillar-header">
-                            <span class="voc-pillar-name"><i class="fa-solid fa-volleyball" style="color: #ea580c;"></i> Vóleibol & Rendimiento Físico</span>
+                            <span class="voc-pillar-name"><i class="fa-solid fa-volleyball" style="color: #ea580c;"></i> 🏐 Salud, Kinesiología & Alto Rendimiento</span>
                             <span class="voc-pillar-pct" id="voc-pct-sport" style="color: #ea580c;">0%</span>
                         </div>
                         <div class="voc-bar-track">
                             <div class="voc-bar-fill" id="voc-bar-sport" style="background: #ea580c; width: 0%;"></div>
                         </div>
-                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Biomecánica del salto, preparación física, rehabilitación y competencia en cancha.</p>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Biomecánica del salto, rehabilitación de lesiones, fisiología del ejercicio y deporte.</p>
+                    </div>
+
+                    <!-- Pilar 2: Arte Visual & Animación Digital -->
+                    <div class="voc-pillar-card">
+                        <div class="voc-pillar-header">
+                            <span class="voc-pillar-name"><i class="fa-solid fa-palette" style="color: #c084fc;"></i> 🎨 Arte Visual, Animación & Multimedia</span>
+                            <span class="voc-pillar-pct" id="voc-pct-arte" style="color: #c084fc;">0%</span>
+                        </div>
+                        <div class="voc-bar-track">
+                            <div class="voc-bar-fill" id="voc-bar-arte" style="background: #c084fc; width: 0%;"></div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Ilustración digital, animación 2D/3D, diseño de personajes y dirección de arte.</p>
+                    </div>
+
+                    <!-- Pilar 3: Informática, Videojuegos & Tech -->
+                    <div class="voc-pillar-card">
+                        <div class="voc-pillar-header">
+                            <span class="voc-pillar-name"><i class="fa-solid fa-gamepad" style="color: #60a5fa;"></i> 💻 Informática, Videojuegos & Código</span>
+                            <span class="voc-pillar-pct" id="voc-pct-tech" style="color: #60a5fa;">0%</span>
+                        </div>
+                        <div class="voc-bar-track">
+                            <div class="voc-bar-fill" id="voc-bar-tech" style="background: #60a5fa; width: 0%;"></div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Programación, motores gráficos de juegos, hardware, lógica e inteligencia artificial.</p>
                     </div>
 
                     <!-- Pilar 4: Arquitectura & Diseño Espacial -->
                     <div class="voc-pillar-card">
                         <div class="voc-pillar-header">
-                            <span class="voc-pillar-name"><i class="fa-solid fa-building" style="color: #10b981;"></i> Arquitectura & Diseño Espacial</span>
+                            <span class="voc-pillar-name"><i class="fa-solid fa-building" style="color: #10b981;"></i> 📐 Arquitectura, Maquetas & Diseño 3D</span>
                             <span class="voc-pillar-pct" id="voc-pct-arqui" style="color: #10b981;">0%</span>
                         </div>
                         <div class="voc-bar-track">
                             <div class="voc-bar-fill" id="voc-bar-arqui" style="background: #10b981; width: 0%;"></div>
                         </div>
-                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Estructuras espaciales, volumetría tridimensional y proyectos urbanos en Concepción.</p>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Estructuras espaciales, modelado tridimensional y proyectos urbanos en Concepción.</p>
+                    </div>
+
+                    <!-- Pilar 5: Liderazgo Deportivo, Psicología & Equipos -->
+                    <div class="voc-pillar-card" style="grid-column: 1 / -1;">
+                        <div class="voc-pillar-header">
+                            <span class="voc-pillar-name"><i class="fa-solid fa-users-gear" style="color: #fbbf24;"></i> 🤝 Liderazgo en Cancha, Psicología Deportiva & Gestión de Equipos</span>
+                            <span class="voc-pillar-pct" id="voc-pct-social" style="color: #fbbf24;">0%</span>
+                        </div>
+                        <div class="voc-bar-track">
+                            <div class="voc-bar-fill" id="voc-bar-social" style="background: #fbbf24; width: 0%;"></div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0;">Dirección de equipos, enseñanza deportiva, motivación bajo presión y gestión de proyectos propios.</p>
                     </div>
                 </div>
 
                 <!-- Directorio de Carreras en Concepción -->
                 <div class="section-title">
-                    <span>Carreras Recomendadas en Concepción para tu Perfil</span>
+                    <span>Ranking de Carreras en Concepción según tu Test</span>
                 </div>
                 <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">
-                    Estas son las opciones académicas con sedes en el Gran Concepción que mejor se alinean con tu perfil neurocognitivo:
+                    Haz clic en <strong>"Ver Malla Curricular"</strong> en cualquiera de estas carreras para explorar qué ramos se estudian semestre a semestre:
                 </p>
 
                 <div class="grid-2" style="gap: 1.2rem;" id="voc-careers-grid">
                     <!-- Carreras en Concepción (renderizadas) -->
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: GUÍA PRÁCTICA — ¿QUÉ ES UN SEMESTRE Y QUÉ SIGNIFICA UNA CARRERA? -->
+            <div id="seccion-guia-semestre" class="card" style="border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, rgba(6, 78, 59, 0.18) 0%, rgba(10, 10, 14, 0.95) 100%); margin-bottom: 2rem;">
+                <span class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.15); border-color: #10b981; color: #6ee7b7;">
+                    <i class="fa-solid fa-graduation-cap"></i> Guía de Inmersión Universitaria • Para entender cómo funciona de verdad
+                </span>
+                <h3 style="font-family: var(--font-display); font-size: 1.45rem; color: #fff; margin: 0.3rem 0 0.8rem 0;">
+                    🎓 ¿Qué significa estudiar una Carrera Universitaria y qué es un Semestre?
+                </h3>
+                <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1.2rem;">
+                    En el colegio tienes las mismas 10 o 12 materias todo el año de marzo a diciembre. <strong>En la universidad el sistema cambia por completo y es mucho más dinámico:</strong>
+                </p>
+
+                <div class="grid-3" style="gap: 1rem; margin-bottom: 0;">
+                    <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.1rem;">
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 0.3rem;">1. ¿Qué es un Semestre?</div>
+                        <h4 style="font-family: var(--font-display); font-size: 1.05rem; color: #fff; margin: 0 0 0.5rem 0;">Ciclos Cortos de 4,5 Meses</h4>
+                        <p style="font-size: 0.82rem; color: #94a3b8; line-height: 1.5; margin: 0;">
+                            Cada año se divide en <strong>2 Semestres independientes</strong> (Semestre I: Marzo a Julio | Semestre II: Agosto a Diciembre). En cada semestre solo tienes <strong>5 o 6 ramos</strong>. Cuando apruebas un ramo en julio, ¡se cierra para siempre y desbloqueas el siguiente nivel como en un videojuego!
+                        </p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.1rem;">
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #10b981; text-transform: uppercase; margin-bottom: 0.3rem;">2. Las 3 Etapas de una Malla</div>
+                        <h4 style="font-family: var(--font-display); font-size: 1.05rem; color: #fff; margin: 0 0 0.5rem 0;">De la Base al Terreno Real</h4>
+                        <p style="font-size: 0.82rem; color: #94a3b8; line-height: 1.5; margin: 0;">
+                            • <strong>1° y 2° Año:</strong> Ciencias base y fundamentos.<br>
+                            • <strong>3° y 4° Año:</strong> Ramos prácticos, laboratorios, talleres y trabajo con personas/proyectos.<br>
+                            • <strong>5° Año (Internado):</strong> Cero pruebas de sala; vas directo a clínicas, hospitales o estudios a ejercer como profesional en práctica.
+                        </p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.1rem;">
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #f59e0b; text-transform: uppercase; margin-bottom: 0.3rem;">3. ¿Cómo se entra? (PAES + Notas)</div>
+                        <h4 style="font-family: var(--font-display); font-size: 1.05rem; color: #fff; margin: 0 0 0.5rem 0;">Tus Notas del Colegio Valen un 40%</h4>
+                        <p style="font-size: 0.82rem; color: #94a3b8; line-height: 1.5; margin: 0;">
+                            En universidades como la <strong>UdeC</strong>, el <strong>NEM (15%)</strong> + el <strong>Ranking de Notas (25%)</strong> suman el <strong>40% de tu puntaje total de entrada</strong>. El otro 60% viene de la prueba PAES (Comprensión Lectora, Matemática M1 y Ciencias/Historia). ¡Por eso cada nota hoy en tus 17 años suma directo a tu meta!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: EXPLORADOR INTERACTIVO DE MALLAS CURRICULARES RAMO POR RAMO -->
+            <div id="seccion-mallas-explorador" class="card" style="border-color: rgba(56, 189, 248, 0.4);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 1rem;">
+                    <div>
+                        <span class="hero-tea-badge" style="background: rgba(2, 132, 199, 0.2); border-color: #38bdf8; color: #7dd3fc;">
+                            <i class="fa-solid fa-sitemap"></i> Biblioteca Interactiva de Mallas Curriculares • Concepción
+                        </span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.55rem; color: #ffffff; margin: 0.3rem 0;">
+                            🗺️ Explorador de Carreras y Ramos Semestre a Semestre
+                        </h3>
+                        <p style="font-size: 0.88rem; color: #94a3b8; margin: 0;">
+                            Selecciona una carrera para ver su malla curricular oficial, qué porcentaje pide de cada prueba PAES, <strong>qué se enseña en cada ramo y para qué te sirve en la vida real</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SELECTOR DE CARRERAS EN LA BIBLIOTECA DE MALLAS -->
+                <div class="malla-career-tabs" id="malla-career-tabs">
+                    <button type="button" class="btn-malla-tab active" onclick="selectMallaCareer('kine_udec')" id="tab-malla-kine_udec">
+                        <i class="fa-solid fa-volleyball"></i> 1. Kinesiología — UdeC (Malla Oficial Completa)
+                    </button>
+                    <button type="button" class="btn-malla-tab" onclick="selectMallaCareer('animacion_duoc')" id="tab-malla-animacion_duoc">
+                        <i class="fa-solid fa-palette"></i> 2. Animación Digital — Duoc UC Concepción
+                    </button>
+                    <button type="button" class="btn-malla-tab" onclick="selectMallaCareer('informatica_udec')" id="tab-malla-informatica_udec">
+                        <i class="fa-solid fa-laptop-code"></i> 3. Ing. Civil Informática — UdeC / UBB
+                    </button>
+                    <button type="button" class="btn-malla-tab" onclick="selectMallaCareer('arquitectura_ubb')" id="tab-malla-arquitectura_ubb">
+                        <i class="fa-solid fa-compass-drafting"></i> 4. Arquitectura — UBB / UdeC
+                    </button>
+                </div>
+
+                <!-- CONTENEDOR DINÁMICO DE LA MALLA SELECCIONADA -->
+                <div id="malla-viewer-content">
+                    <!-- Renderizado dinámico por JS (por defecto Kinesiología UdeC completa con los 10 semestres y su imagen oficial) -->
                 </div>
             </div>
         </div>
@@ -1107,7 +1419,7 @@
                 <span>Kit de Herramientas Didácticas & Metodológicas</span>
             </div>
             <p style="color: var(--text-muted); margin-bottom: 1.8rem; font-size: 0.95rem;">
-                Cada herramienta cuenta con su <strong>tutorial aplicado a tu contexto real (15 años, Colegio Concepción, TDAH, Vóley y Dibujo)</strong> y su <strong>checklist interactivo persistente</strong> para monitorear tu autonomía semana a semana. Haz clic en cualquier imagen para abrirla en pantalla completa.
+                Cada herramienta cuenta con su <strong>tutorial aplicado a tu contexto real (17 años, Colegio Concepción, TDAH, Vóley y Dibujo)</strong> y su <strong>checklist interactivo persistente</strong> para monitorear tu autonomía semana a semana. Haz clic en cualquier imagen para abrirla en pantalla completa.
             </p>
 
             <div class="grid-2" style="gap: 1.4rem;">
@@ -1835,85 +2147,107 @@
         }
 
         // =========================================================================
-        // MOTOR DE TEST DE ORIENTACIÓN VOCACIONAL (CONCEPCIÓN 2026)
+        // MOTOR DE TEST DE ORIENTACIÓN VOCACIONAL (20 PREGUNTAS • CONCEPCIÓN 2026)
         // =========================================================================
-        const VOC_STORAGE_KEY = 'matias_vocational_test_v2';
+        const VOC_STORAGE_KEY = 'matias_vocational_test_v3_20q';
 
         const VOC_QUESTIONS = [
-            { id: "q1", num: 1, tag: "Arte & Creatividad", pillar: "arte", text: "Pasar 3 horas dibujando, ilustrando digitalmente o diseñando personajes y cómics sin darme cuenta del tiempo." },
-            { id: "q2", num: 2, tag: "Vóleibol & Deporte", pillar: "sport", text: "Competir en vóleibol, saltar en la red para bloquear/rematar y entrenar duro la resistencia física con mi equipo." },
-            { id: "q3", num: 3, tag: "Tecnología & Juegos", pillar: "tech", text: "Curiosidad por entender cómo se programan los videojuegos, cómo funcionan los mods o la lógica de software." },
-            { id: "q4", num: 4, tag: "Arquitectura & Espacio", pillar: "arqui", text: "Diseñar maquetas, crear planos en 3D, imaginar casas futuristas o entender cómo se construyen grandes edificios." },
-            { id: "q5", num: 5, tag: "Animación & Cine", pillar: "arte", text: "Darle vida a dibujos cuadro a cuadro (animación 2D o 3D) y crear los efectos visuales para una escena o videojuego." },
-            { id: "q6", num: 6, tag: "Kinesiología & Salud", pillar: "sport", text: "Aprender sobre biomecánica corporal, prevención de lesiones articulares y ayudar a deportistas a rehabilitarse." },
-            { id: "q7", num: 7, tag: "Informática & Lógica", pillar: "tech", text: "Desarmar computadores, optimizar tarjetas gráficas, crear scripts o resolver problemas lógicos con código." },
-            { id: "q8", num: 8, tag: "Diseño Urbano & 3D", pillar: "arqui", text: "Imaginar cómo rediseñar espacios públicos en Concepción (parques, campus, bordes del río) con maquetas y planos." },
-            { id: "q9", num: 9, tag: "Diseño Gráfico & Marca", pillar: "arte", text: "Crear identidades visuales impactantes: logos, paletas cromáticas, afiches y portadas con estilo profesional." },
-            { id: "q10", num: 10, tag: "Diseño de Videojuegos", pillar: "tech", text: "Idear las reglas, niveles de dificultad, mecánicas de combate y diseño de interfaces interactivas para jugadores." },
-            { id: "q11", num: 11, tag: "Liderazgo en Cancha", pillar: "sport", text: "La adrenalina de competir bajo presión en un partido de vóley, motivar al equipo y leer la cancha en milésimas de segundo." },
-            { id: "q12", num: 12, tag: "Modelado Tridimensional", pillar: "arqui", text: "Ver una idea en mi cabeza y construirla con volumen real en software de modelado 3D o con cartón y madera." }
+            // PILAR 1: SPORT (Salud, Kinesiología & Alto Rendimiento - 4 preguntas)
+            { id: "q1", num: 1, tag: "Vóleibol & Potencia Física", pillar: "sport", text: "Competir en vóleibol, saltar en la red para bloquear o rematar y entrenar duro la potencia física junto a mi equipo." },
+            // PILAR 2: ARTE (Arte Visual, Animación & Multimedia - 4 preguntas)
+            { id: "q2", num: 2, tag: "Dibujo & Hiperfoco Creativo", pillar: "arte", text: "Pasar horas dibujando en croquera, ilustrando digitalmente o diseñando personajes y cómics sin darme cuenta del tiempo." },
+            // PILAR 3: TECH (Informática, Videojuegos & Código - 4 preguntas)
+            { id: "q3", num: 3, tag: "Videojuegos & Motores 3D", pillar: "tech", text: "Curiosidad por entender cómo se programan por dentro los videojuegos, cómo funcionan los motores gráficos (Unreal/Unity) o los mods." },
+            // PILAR 4: ARQUI (Arquitectura, Maquetas & Diseño 3D - 4 preguntas)
+            { id: "q4", num: 4, tag: "Arquitectura & Maquetas", pillar: "arqui", text: "Diseñar maquetas físicas o planos en 3D, imaginar casas modernas, gimnasios o grandes edificios y entender cómo se construyen." },
+            // PILAR 5: SOCIAL (Liderazgo en Cancha, Psicología & Gestión - 4 preguntas)
+            { id: "q5", num: 5, tag: "Liderazgo en Cancha", pillar: "social", text: "La adrenalina de tomar decisiones bajo presión en un partido de vóley, ordenar la cancha y levantar el ánimo de mis compañeros." },
+
+            { id: "q6", num: 6, tag: "Kinesiología & Biomecánica", pillar: "sport", text: "Aprender cómo funcionan los músculos, tendones y articulaciones en el salto y cómo prevenir o rehabilitar lesiones deportivas." },
+            { id: "q7", num: 7, tag: "Animación 2D/3D & Cine", pillar: "arte", text: "Darle movimiento y vida a dibujos cuadro a cuadro (animación 2D/3D) y crear efectos visuales para escenas de acción o cine." },
+            { id: "q8", num: 8, tag: "Lógica, Código & IA", pillar: "tech", text: "Resolver acertijos lógicos, escribir código para automatizar tareas o aprender cómo funciona la inteligencia artificial." },
+            { id: "q9", num: 9, tag: "Diseño Urbano en Concepción", pillar: "arqui", text: "Imaginar cómo rediseñar espacios públicos en Concepción (parques, campus universitarios, estadios o bordes del río Biobío)." },
+            { id: "q10", num: 10, tag: "Entrenamiento & Enseñanza", pillar: "social", text: "Enseñar una técnica deportiva o de dibujo paso a paso a alguien más y ayudarlo a superar su frustración cuando algo no le sale." },
+
+            { id: "q11", num: 11, tag: "Clínica & Rehabilitación", pillar: "sport", text: "Trabajar en un centro kinésico aplicando ejercicio terapéutico y tecnología de rehabilitación para que un deportista vuelva a la cancha." },
+            { id: "q12", num: 12, tag: "Concept Art & Diseño Visual", pillar: "arte", text: "Crear identidades visuales potentes: diseño de mundos (concept art), paletas de colores, afiches, logos y portadas profesionales." },
+            { id: "q13", num: 13, tag: "Mecánicas de Juego & Nivel", pillar: "tech", text: "Diseñar las reglas de un juego: árboles de habilidades, físicas de movimiento, niveles de dificultad e interfaces para el jugador." },
+            { id: "q14", num: 14, tag: "Modelado Tridimensional", pillar: "arqui", text: "Transformar una idea que está en mi cabeza en un objeto con volumen real usando software 3D (Blender, SketchUp, CAD) o madera/cartón." },
+            { id: "q15", num: 15, tag: "Gestión de Clubes & Proyectos", pillar: "social", text: "Organizar torneos deportivos, coordinar equipos de trabajo o liderar mi propio centro/estudio creativo con autonomía." },
+
+            { id: "q16", num: 16, tag: "Fisiología del Ejercicio", pillar: "sport", text: "Investigar en laboratorio cómo responden el corazón, los pulmones y el cerebro humano cuando un atleta entrena al máximo nivel." },
+            { id: "q17", num: 17, tag: "Storyboard & Portafolio", pillar: "arte", text: "Estudiar una carrera donde en vez de pruebas de memoria tradicional me evalúen por mis creaciones, animaciones y portafolio visual." },
+            { id: "q18", num: 18, tag: "Hardware & Futuro Global", pillar: "tech", text: "Optimizar computadores y tarjetas gráficas, y proyectarme trabajando desde Concepción para empresas tecnológicas de todo el mundo." },
+            { id: "q19", num: 19, tag: "Luz, Materiales & Geometría", pillar: "arqui", text: "Observar cómo entra la luz en los edificios, cómo se combinan materiales (madera, acero, cristal) y dibujar perspectivas espaciales." },
+            { id: "q20", num: 20, tag: "Empatía & Apoyo Humano", pillar: "social", text: "Escuchar a un paciente o deportista lesionado, darle seguridad mental durante su recuperación y celebrar sus avances." }
         ];
 
         const VOC_CAREERS = [
             {
                 id: "c1",
-                nombre: "Animación Digital & Efectos Visuales (VFX)",
-                instituciones: ["Duoc UC Sede San Andrés", "USS Campus Tres Pascualas", "Santo Tomás Concepción"],
-                duracion: "4 - 5 años",
-                matchPillars: ["arte", "tech"],
-                badgeColor: "#c084fc",
-                porQue: "Combina tu hiperfoco en el dibujo con la animación 2D/3D. Enfoque 100% práctico en talleres de diseño de personajes, texturizado y proyectos reales sin horas muertas de teoría pasiva.",
-                hoyTip: "A tus 15 años: Sigue practicando anatomía en croquera y prueba softwares gratuitos de animación como Blender u OpenToonz."
+                mallaKey: "kine_udec",
+                nombre: "Kinesiología & Rehabilitación Deportiva",
+                instituciones: ["Universidad de Concepción (UdeC)", "Universidad Andrés Bello (UNAB)", "USS Concepción"],
+                duracion: "5 años (10 Semestres)",
+                matchPillars: ["sport", "social"],
+                badgeColor: "#ea580c",
+                porQue: "Conecta directamente tu pasión por el vóleibol con la ciencia del movimiento humano, biomecánica del salto, fisiología del ejercicio y rehabilitación de lesiones deportivas en terreno.",
+                hoyTip: "A tus 17 años: Cuida tu NEM y Ranking en el Colegio Concepción (valen el 40% del ingreso a la UdeC) y pon atención en Biología, Física y Matemática M1."
             },
             {
                 id: "c2",
-                nombre: "Diseño Gráfico & Comunicación Multimedia",
-                instituciones: ["Universidad del Bío-Bío (UBB Concepción)", "Inacap San Pedro / Concepción", "Duoc UC"],
-                duracion: "4 - 5 años",
-                matchPillars: ["arte", "arqui"],
-                badgeColor: "#10b981",
-                porQue: "Te enseña a dominar la identidad visual, el arte publicitario, diseño UX/UI de aplicaciones y narrativa gráfica. Taller continuo y evaluación por portafolio visual.",
-                hoyTip: "A tus 15 años: Diseña afiches o identidades visuales para tu equipo de vóley o proyectos del Colegio Concepción."
+                mallaKey: "animacion_duoc",
+                nombre: "Animación Digital & Efectos Visuales (VFX)",
+                instituciones: ["Duoc UC Sede San Andrés (Concepción)", "USS Tres Pascualas", "Santo Tomás"],
+                duracion: "4 años (8 Semestres)",
+                matchPillars: ["arte", "tech"],
+                badgeColor: "#c084fc",
+                porQue: "Une tu hiperfoco en el dibujo con el modelado 3D, animación de personajes y motores de videojuegos. 100% práctico en talleres y evaluación por proyectos visuales.",
+                hoyTip: "A tus 17 años: Arma una carpeta con tus mejores dibujos de personajes y prueba Blender o Krita en tus bloques de arte."
             },
             {
                 id: "c3",
-                nombre: "Ingeniería Civil en Informática / Desarrollo de Software",
+                mallaKey: "informatica_udec",
+                nombre: "Ingeniería Civil en Informática / Desarrollo de Videojuegos",
                 instituciones: ["Universidad de Concepción (UdeC)", "Universidad del Bío-Bío (UBB)", "UNAB Concepción"],
-                duracion: "5 - 5.5 años",
+                duracion: "5 - 5.5 años (10-11 Semestres)",
                 matchPillars: ["tech"],
                 badgeColor: "#60a5fa",
-                porQue: "Una de las carreras con mayor proyección global, opciones de trabajo remoto desde Concepción con sueldos altos y la posibilidad de programar motores de videojuegos o inteligencia artificial.",
-                hoyTip: "A tus 15 años: Dale sentido a las matemáticas del colegio aprendiendo lógica básica en Python o Scratch."
+                porQue: "Te entrega el poder de programar software, inteligencia artificial y motores gráficos de videojuegos, con altísima empleabilidad y sueldos globales trabajando desde Concepción.",
+                hoyTip: "A tus 17 años: Entrena Matemática M1 y M2 para la PAES y experimenta creando un minijuego 2D en Godot o Python."
             },
             {
                 id: "c4",
-                nombre: "Arquitectura & Urbanismo",
-                instituciones: ["Universidad del Bío-Bío (UBB - Escuela de renombre)", "Universidad de Concepción (UdeC)", "UDD Concepción"],
-                duracion: "5.5 - 6 años",
+                mallaKey: "arquitectura_ubb",
+                nombre: "Arquitectura & Diseño Espacial 3D",
+                instituciones: ["Universidad del Bío-Bío (UBB Concepción)", "Universidad de Concepción (UdeC)", "UDD"],
+                duracion: "5.5 años (11 Semestres)",
                 matchPillars: ["arqui", "arte"],
-                badgeColor: "#34d399",
-                porQue: "Canaliza tu visión espacial y talento para el dibujo hacia maquetas físicas, volumetría y estructuras reales. Los talleres de arquitectura son dinámicos y exigen mucha creatividad.",
-                hoyTip: "A tus 15 años: Observa los edificios de Concepción, dibuja perspectivas y experimenta armando modelos a escala."
+                badgeColor: "#10b981",
+                porQue: "Transforma tu talento para el dibujo y la visión tridimensional en maquetas, recintos deportivos, viviendas y diseño urbano real en talleres muy dinámicos.",
+                hoyTip: "A tus 17 años: Practica dibujo en perspectiva de edificios y explora el modelado espacial en SketchUp."
             },
             {
                 id: "c5",
-                nombre: "Kinesiología & Rehabilitación Deportiva",
-                instituciones: ["Universidad de Concepción (UdeC)", "Universidad Andrés Bello (UNAB)", "USS Concepción"],
-                duracion: "5 años",
-                matchPillars: ["sport"],
-                badgeColor: "#ea580c",
-                porQue: "Conecta con tu pasión por el vóley para acompañar a atletas de alto rendimiento a saltar mejor, prevenir desgarros y recuperarse en clínicas deportivas.",
-                hoyTip: "A tus 15 años: Aprende sobre estiramientos, biomecánica del remate de vóley y cuida tu propia flexibilidad muscular."
+                mallaKey: "animacion_duoc",
+                nombre: "Diseño Gráfico & Comunicación Multimedia (UX/UI)",
+                instituciones: ["Universidad del Bío-Bío (UBB)", "Duoc UC San Andrés", "Inacap Concepción"],
+                duracion: "4 - 5 años (8-10 Semestres)",
+                matchPillars: ["arte", "arqui"],
+                badgeColor: "#34d399",
+                porQue: "Ideal para dominar la ilustración digital, dirección de arte, diseño de interfaces para apps/juegos y creación de marcas deportivas o creativas.",
+                hoyTip: "A tus 17 años: Diseña afiches, logos o camisetas para tu equipo de vóley o actividades del colegio."
             },
             {
                 id: "c6",
-                nombre: "Entrenador Deportivo / Preparación Física",
-                instituciones: ["Universidad Andrés Bello (UNAB)", "Duoc UC San Andrés", "UdeC (Ed. Física)"],
-                duracion: "2.5 - 4 años",
-                matchPillars: ["sport"],
-                badgeColor: "#f59e0b",
-                porQue: "Trabajo 100% en cancha y gimnasio. Cero encierro de oficina: diseñar rutinas de fuerza, potencia de salto y liderar selecciones deportivas escolares o de liga.",
-                hoyTip: "A tus 15 años: Analiza las tácticas de juego de colocadores y atacantes en partidos internacionales de voleibol."
+                mallaKey: "kine_udec",
+                nombre: "Ciencias del Deporte / Pedagogía en Educación Física",
+                instituciones: ["Universidad de Concepción (UdeC)", "UNAB Concepción", "USS / UCSC"],
+                duracion: "4 - 5 años (8-10 Semestres)",
+                matchPillars: ["sport", "social"],
+                badgeColor: "#fbbf24",
+                porQue: "Pensada para liderar en cancha, dirigir selecciones de vóleibol, planificar el entrenamiento de alto rendimiento y formar deportivamente a nuevas generaciones.",
+                hoyTip: "A tus 17 años: Analiza sistemas tácticos de vóleibol (5-1, bloqueos y rotaciones) y apoya a tus compañeros en cancha."
             }
         ];
 
@@ -1953,7 +2287,7 @@
                 html += `
                     <div class="voc-question-card ${isAnswered ? 'answered' : ''}" id="voc-card-${q.id}">
                         <div class="voc-q-header">
-                            <span class="voc-q-num">#${q.num}</span>
+                            <span class="voc-q-num">Pregunta #${q.num} de 20</span>
                             <span class="voc-q-tag">${q.tag}</span>
                         </div>
                         <div class="voc-q-text">${q.text}</div>
@@ -2007,18 +2341,10 @@
             }
         }
 
-        function calculateVocResults(shouldScroll) {
+        function computeVocPercentages() {
             const state = getVocState();
-            const answeredCount = Object.keys(state.answers).length;
-
-            if (answeredCount === 0) {
-                if (shouldScroll) alert("Por favor responde al menos algunas preguntas para calcular tu afinidad.");
-                return;
-            }
-
-            // Calcular puntajes por pilar (cada pilar tiene 3 preguntas, max 9 puntos)
-            const scores = { arte: 0, tech: 0, sport: 0, arqui: 0 };
-            const maxScores = { arte: 0, tech: 0, sport: 0, arqui: 0 };
+            const scores = { sport: 0, arte: 0, tech: 0, arqui: 0, social: 0 };
+            const maxScores = { sport: 0, arte: 0, tech: 0, arqui: 0, social: 0 };
 
             VOC_QUESTIONS.forEach(q => {
                 maxScores[q.pillar] += 3;
@@ -2027,14 +2353,26 @@
                 }
             });
 
-            const pcts = {
-                arte: Math.round((scores.arte / maxScores.arte) * 100),
-                tech: Math.round((scores.tech / maxScores.tech) * 100),
-                sport: Math.round((scores.sport / maxScores.sport) * 100),
-                arqui: Math.round((scores.arqui / maxScores.arqui) * 100)
+            return {
+                sport: Math.round((scores.sport / (maxScores.sport || 12)) * 100),
+                arte: Math.round((scores.arte / (maxScores.arte || 12)) * 100),
+                tech: Math.round((scores.tech / (maxScores.tech || 12)) * 100),
+                arqui: Math.round((scores.arqui / (maxScores.arqui || 12)) * 100),
+                social: Math.round((scores.social / (maxScores.social || 12)) * 100)
             };
+        }
 
-            // Actualizar barras
+        function calculateVocResults(shouldScroll) {
+            const state = getVocState();
+            const answeredCount = Object.keys(state.answers).length;
+
+            if (answeredCount === 0) {
+                if (shouldScroll) alert("Por favor responde al menos algunas preguntas para calcular tu afinidad vocacional.");
+                return;
+            }
+
+            const pcts = computeVocPercentages();
+
             const setPillarBar = (id, pct) => {
                 const fill = document.getElementById(`voc-bar-${id}`);
                 const text = document.getElementById(`voc-pct-${id}`);
@@ -2042,21 +2380,22 @@
                 if (text) text.innerText = pct + '%';
             };
 
+            setPillarBar("sport", pcts.sport);
             setPillarBar("arte", pcts.arte);
             setPillarBar("tech", pcts.tech);
-            setPillarBar("sport", pcts.sport);
             setPillarBar("arqui", pcts.arqui);
+            setPillarBar("social", pcts.social);
 
-            // Generar título dominante
             const sortedPillars = Object.keys(pcts).sort((a, b) => pcts[b] - pcts[a]);
             const topPillar = sortedPillars[0];
             const secondPillar = sortedPillars[1];
 
             const profileTitles = {
+                sport: "Especialista en Movimiento & Alto Rendimiento (Kinesiología/Deporte)",
                 arte: "Creador Visual & Animador Digital",
-                tech: "Estratega Tecnológico & Programador",
-                sport: "Atleta de Alto Rendimiento & Líder de Cancha",
-                arqui: "Diseñador Espacial & Creador 3D"
+                tech: "Desarrollador Tecnológico & Creador de Videojuegos",
+                arqui: "Arquitecto Espacial & Modelador 3D",
+                social: "Líder de Equipos & Estratega en Cancha"
             };
 
             const domTitle = document.getElementById("voc-dominant-title");
@@ -2064,7 +2403,6 @@
                 domTitle.innerText = `Perfil: ${profileTitles[topPillar]} + ${profileTitles[secondPillar].split('&')[0]}`;
             }
 
-            // Renderizar tarjetas de carreras ordenadas por afinidad
             renderCareersRanking(pcts);
 
             const resContainer = document.getElementById("voc-results-container");
@@ -2072,16 +2410,21 @@
                 resContainer.style.display = "block";
                 if (shouldScroll) {
                     resContainer.scrollIntoView({ behavior: 'smooth' });
-                    showToast('📊 Perfil vocacional actualizado con éxito');
+                    showToast('📊 Perfil vocacional de 20 preguntas actualizado');
                 }
             }
+        }
+
+        function jumpToMallaFromTest(mallaKey) {
+            selectMallaCareer(mallaKey);
+            const sec = document.getElementById("seccion-mallas-explorador");
+            if (sec) sec.scrollIntoView({ behavior: 'smooth' });
         }
 
         function renderCareersRanking(pcts) {
             const grid = document.getElementById("voc-careers-grid");
             if (!grid) return;
 
-            // Calcular compatibilidad para cada carrera
             const evaluatedCareers = VOC_CAREERS.map(c => {
                 let sum = 0;
                 c.matchPillars.forEach(p => sum += (pcts[p] || 0));
@@ -2111,7 +2454,12 @@
                             ${c.porQue}
                         </p>
                         <div class="voc-today-tip">
-                            <strong>🎯 Qué hacer hoy:</strong> ${c.hoyTip}
+                            <strong>🎯 Qué hacer hoy (17 años):</strong> ${c.hoyTip}
+                        </div>
+                        <div style="margin-top: auto; padding-top: 0.5rem;">
+                            <button type="button" onclick="jumpToMallaFromTest('${c.mallaKey}')" style="width: 100%; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.4); color: #7dd3fc; padding: 8px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                <i class="fa-solid fa-sitemap"></i> Ver Malla Curricular y Ramos en Detalle
+                            </button>
                         </div>
                     </div>
                 `;
@@ -2123,42 +2471,33 @@
         function shareVocWhatsApp() {
             const state = getVocState();
             const answeredCount = Object.keys(state.answers).length;
-            if (answeredCount < 3) {
-                alert("Responde al menos 3 preguntas antes de compartir tus resultados.");
+            if (answeredCount < 4) {
+                alert("Responde al menos 4 preguntas antes de compartir tus resultados.");
                 return;
             }
 
-            const scores = { arte: 0, tech: 0, sport: 0, arqui: 0 };
-            VOC_QUESTIONS.forEach(q => {
-                if (state.answers[q.id] !== undefined) scores[q.pillar] += state.answers[q.id];
-            });
+            const pcts = computeVocPercentages();
 
-            const pcts = {
-                arte: Math.round((scores.arte / 9) * 100),
-                tech: Math.round((scores.tech / 9) * 100),
-                sport: Math.round((scores.sport / 9) * 100),
-                arqui: Math.round((scores.arqui / 9) * 100)
-            };
-
-            const text = `¡Hola papá! Completé mi Test de Orientación Vocacional (Concepción) en mi Plan de Vuelo 2.0 🧭:
-- 🎨 Arte & Animación Digital: ${pcts.arte}%
-- 🏐 Vóleibol & Rendimiento: ${pcts.sport}%
+            const text = `¡Hola papá! Completé mi Test de Orientación Vocacional de 20 preguntas en mi Plan de Vuelo 2.0 🧭 (respondidas ${answeredCount}/20):
+- 🏐 Salud, Kinesiología & Deporte: ${pcts.sport}%
+- 🎨 Arte Visual & Animación Digital: ${pcts.arte}%
 - 💻 Informática & Videojuegos: ${pcts.tech}%
 - 📐 Arquitectura & Espacio 3D: ${pcts.arqui}%
+- 🤝 Liderazgo en Cancha & Gestión: ${pcts.social}%
 
-Mis carreras recomendadas en Concepción que más me llaman la atención son Animación Digital (Duoc San Andrés) e Informática/Vóley. ¡Lo comentamos en nuestra cita semanal!`;
+Además estuve revisando las mallas semestre a semestre (como Kinesiología UdeC). ¡Conversémoslo en nuestra cita semanal!`;
 
             const url = `https://wa.me/56975590132?text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
 
         function resetVocTest() {
-            if (!confirm("¿Deseas reiniciar todas tus respuestas del test vocacional?")) return;
+            if (!confirm("¿Deseas reiniciar las 20 respuestas de tu test vocacional?")) return;
             localStorage.removeItem(VOC_STORAGE_KEY);
             renderVocQuestions();
             const resContainer = document.getElementById("voc-results-container");
             if (resContainer) resContainer.style.display = "none";
-            showToast("Test vocacional restablecido");
+            showToast("Test vocacional de 20 preguntas restablecido");
         }
 
         function checkSavedVocTest() {
@@ -2166,6 +2505,944 @@ Mis carreras recomendadas en Concepción que más me llaman la atención son Ani
             if (Object.keys(state.answers).length >= 4) {
                 calculateVocResults(false);
             }
+        }
+
+        // =========================================================================
+        // EXPLORADOR INTERACTIVO DE MALLAS CURRICULARES (CONCEPCIÓN)
+        // Incluye KINESIOLOGÍA UdeC (10 Semestres Oficiales Completos + Imagen)
+        // =========================================================================
+        let currentMallaKey = 'kine_udec';
+        let currentMallaYear = 'all';
+
+        const MALLAS_DB = {
+            kine_udec: {
+                id: "kine_udec",
+                titulo: "Kinesiología — Universidad de Concepción (UdeC)",
+                subtitulo: "Facultad de Medicina UdeC • Campus Concepción • 5 Años (10 Semestres) • Fuente oficial: admision.udec.cl",
+                grado: "Licenciado(a) en Kinesiología / Título Profesional: Kinesiólogo(a)",
+                imagenOficial: "assets/img/herramientas/Malla_Kinesiologia_UdeC.png",
+                resumenCarrera: "La Kinesiología estudia la ciencia del movimiento humano. Como kinesiólogo no solo rehabilitas a deportistas lesionados o pacientes en clínicas, sino que analizas la biomecánica del salto, la fisiología del ejercicio, la neurología del control motor y la recuperación cardiorrespiratoria. En 5° año (Semestres IX y X) ya no tienes clases en sala: haces 4 Internados Clínicos reales atendiendo pacientes.",
+                ponderaciones: [
+                    { label: "NEM (Notas)", val: "15%", active: true },
+                    { label: "RANKING", val: "25%", active: true },
+                    { label: "COMP. LECTORA", val: "20%", active: true },
+                    { label: "MATEMÁTICAS 1", val: "25%", active: true },
+                    { label: "HISTORIA", val: "—", active: false },
+                    { label: "CIENCIAS", val: "15%", active: true },
+                    { label: "MATEMÁTICAS 2", val: "—", active: false }
+                ],
+                semestres: [
+                    {
+                        num: "SEM I",
+                        anio: 1,
+                        titulo: "Primer Semestre (Marzo – Julio • 1° Año)",
+                        meta: "Nivelación científica, adaptación a la vida universitaria en el Campus UdeC y primer mapa completo del cuerpo humano.",
+                        ramos: [
+                            {
+                                nombre: "Anatomía Humana I",
+                                area: "Ciencias Morfológicas",
+                                color: "#38bdf8",
+                                ensena: "Estudio práctico en laboratorio de todos los huesos, articulaciones y músculos del cuerpo humano (extremidades superiores, inferiores y columna).",
+                                sirve: "Para saber exactamente qué músculo, tendón o ligamento trabaja o se lesiona cuando un jugador de vóley salta a rematar o aterriza de un bloqueo."
+                            },
+                            {
+                                nombre: "Habilidades para la Vida Universitaria",
+                                area: "Formación General",
+                                color: "#a855f7",
+                                ensena: "Técnicas de estudio universitario, gestión del tiempo, trabajo en equipo, manejo del estrés y uso de plataformas de la UdeC.",
+                                sirve: "Conecta directo con tu Plan de Vuelo (Time Blocking y Kanban) para que el paso del Colegio Concepción a la universidad sea fluido y organizado."
+                            },
+                            {
+                                nombre: "Matemática Básica y Cálculo",
+                                area: "Ciencias Básicas",
+                                color: "#60a5fa",
+                                ensena: "Funciones, álgebra, vectores, razones de cambio y lógica matemática aplicada a fenómenos biológicos y físicos.",
+                                sirve: "Te da la base para calcular fuerzas articulares, ángulos de tracción muscular, estadísticas médicas y dosificación exacta de cargas de entrenamiento."
+                            },
+                            {
+                                nombre: "Química General y Orgánica",
+                                area: "Ciencias Básicas",
+                                color: "#60a5fa",
+                                ensena: "Estructura de las moléculas de la vida: proteínas, carbohidratos, lípidos, pH sanguíneo y reacciones químicas celulares.",
+                                sirve: "Permite entender cómo el músculo obtiene energía (ATP), por qué se acumula lactato en un partido intenso y cómo hidratar o nutrir el tejido."
+                            },
+                            {
+                                nombre: "Inglés Comunicativo I Nivel Principiante",
+                                area: "Idiomas",
+                                color: "#a855f7",
+                                ensena: "Comprensión lectora y comunicación oral básica en inglés enfocada en contextos cotidianos y académicos.",
+                                sirve: "Los mejores estudios mundiales de medicina deportiva y biomecánica del deporte se publican en inglés; esto te abre las puertas a nivel global."
+                            },
+                            {
+                                nombre: "Socioantropología",
+                                area: "Humanidades & Salud",
+                                color: "#f59e0b",
+                                ensena: "Cómo la cultura, la sociedad, el entorno familiar y los hábitos de vida influyen en la salud, el deporte y la enfermedad de las personas.",
+                                sirve: "Te enseña a tratar a cada paciente o deportista como un ser humano completo con su historia y motivación, no solo como 'una rodilla lesionada'."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM II",
+                        anio: 1,
+                        titulo: "Segundo Semestre (Agosto – Diciembre • 1° Año)",
+                        meta: "Profundización en física del movimiento, biología de la reparación celular y tu primer contacto directo con la profesión de Kinesiólogo.",
+                        ramos: [
+                            {
+                                nombre: "Biología Celular y Molecular",
+                                area: "Ciencias Básicas",
+                                color: "#60a5fa",
+                                ensena: "Cómo funcionan las células por dentro: fibras musculares, neuronas, genética, inflamación y regeneración de tejidos.",
+                                sirve: "Para comprender cómo cicatriza un desgarro muscular o un esguince de tobillo a nivel microscópico y cuánto tiempo biológico real tarda en sanar."
+                            },
+                            {
+                                nombre: "Anatomía Humana II",
+                                area: "Ciencias Morfológicas",
+                                color: "#38bdf8",
+                                ensena: "Anatomía de los sistemas internos: corazón, pulmones, vasos sanguíneos, sistema nervioso central (cerebro y médula) y nervios periféricos.",
+                                sirve: "Es la base para la kinesiología cardiorrespiratoria y la neurokinesiología (saber qué nervio activa cada músculo del brazo o la pierna)."
+                            },
+                            {
+                                nombre: "Introducción a la Kinesiología",
+                                area: "Profesional Kinésico",
+                                color: "#10b981",
+                                ensena: "Historia, rol y áreas de acción del kinesiólogo: deporte de alto rendimiento, traumatología, UCI hospitalaria, neurología y ergonomía.",
+                                sirve: "Te muestra en terreno todos los lugares donde puedes trabajar al titularte y cómo piensa un kinesiólogo frente a un paciente real."
+                            },
+                            {
+                                nombre: "Física General",
+                                area: "Ciencias Básicas",
+                                color: "#60a5fa",
+                                ensena: "Mecánica clásica, palancas, torque, vectores de fuerza, gravedad, centro de masa, electricidad y ondas.",
+                                sirve: "Nuestro esqueleto funciona como un sistema de palancas físicas. Este ramo explica la física pura detrás de un salto vertical o el uso de electroterapia."
+                            },
+                            {
+                                nombre: "Inglés Comunicativo II Nivel Elemental",
+                                area: "Idiomas",
+                                color: "#a855f7",
+                                ensena: "Segundo nivel de inglés práctico para leer artículos científicos de rehabilitación y comunicarte con fluidez.",
+                                sirve: "Te permite leer investigaciones de la NBA, la FIVB (Federación Internacional de Vóleibol) o clínicas europeas sin barreras de idioma."
+                            },
+                            {
+                                nombre: "Complementaria 1",
+                                area: "Formación Libre UdeC",
+                                color: "#a855f7",
+                                ensena: "Ramo electivo que tú mismo eliges dentro de la UdeC (puede ser un deporte universitario como Vóleibol UdeC, arte, música o tecnología).",
+                                sirve: "Hace que tu semestre sea entretenido y te permite representar o entrenar tu deporte favorito o desarrollar tu lado artístico dentro del campus."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM III",
+                        anio: 2,
+                        titulo: "Tercer Semestre (Marzo – Julio • 2° Año)",
+                        meta: "Entras de lleno al movimiento humano, el cerebro deportivo y las primeras evaluaciones kinésicas prácticas entre compañeros.",
+                        ramos: [
+                            {
+                                nombre: "Fisiología General",
+                                area: "Ciencias Biomédicas",
+                                color: "#38bdf8",
+                                ensena: "Cómo funcionan en vivo todos los sistemas del cuerpo: contracción muscular, bombeo cardíaco, respiración pulmonar y hormonas.",
+                                sirve: "Para entender cómo responde el cuerpo sano en reposo y en actividad antes de estudiar las enfermedades o el entrenamiento extremo."
+                            },
+                            {
+                                nombre: "Neurociencia",
+                                area: "Ciencias Biomédicas",
+                                color: "#38bdf8",
+                                ensena: "Cómo el cerebro, el cerebelo y la médula espinal procesan los sentidos, coordinan los reflejos, aprenden movimientos y sienten dolor.",
+                                sirve: "Explica la 'memoria muscular': cómo un jugador de vóley automatiza la técnica de recepción o armado gracias a la neuroplasticidad."
+                            },
+                            {
+                                nombre: "Salud Pública",
+                                area: "Salud & Comunidad",
+                                color: "#f59e0b",
+                                ensena: "Cómo se organiza el sistema de salud en Chile (hospitales, CESFAM, clínicas), prevención de enfermedades y epidemiología.",
+                                sirve: "Te da visión estratégica para liderar programas de prevención de lesiones y vida activa en colegios, clubes y comunas como Concepción."
+                            },
+                            {
+                                nombre: "Análisis de Movimiento Humano",
+                                area: "Preclínico & Movimiento",
+                                color: "#10b981",
+                                ensena: "Observación detallada de la postura, la marcha (caminar/correr) y los gestos motores humanos en los distintos planos del espacio.",
+                                sirve: "Entrena tu ojo clínico (muy conectado con tu talento visual de dibujo) para detectar al instante si alguien pisa mal o tiene una asimetría al saltar."
+                            },
+                            {
+                                nombre: "Fundamentos de la Evaluación Kinesiológica",
+                                area: "Profesional Kinésico",
+                                color: "#10b981",
+                                ensena: "Cómo entrevistar a un paciente (anamnesis), medir rangos de movilidad articular con goniómetro y evaluar la fuerza muscular manual.",
+                                sirve: "Son tus primeras herramientas prácticas de consulta: aprender a tocar, medir y descubrir exactamente dónde y por qué duele."
+                            },
+                            {
+                                nombre: "Electiva 1",
+                                area: "Profundización",
+                                color: "#a855f7",
+                                ensena: "Asignatura electiva de profundización dentro del área de la salud o ciencias del deporte.",
+                                sirve: "Te permite ir perfilando tu camino hacia el área que más te apasione (deporte, rehabilitación tecnológica, etc.)."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM IV",
+                        anio: 2,
+                        titulo: "Cuarto Semestre (Agosto – Diciembre • 2° Año)",
+                        meta: "Dominio de la biomecánica deportiva, primeros auxilios en cancha y técnicas avanzadas para evaluar lesiones.",
+                        ramos: [
+                            {
+                                nombre: "Infecciones Asociadas a la Atención de Salud y Primeros Auxilios",
+                                area: "Clínica & Urgencia",
+                                color: "#ef4444",
+                                ensena: "Reanimación cardiopulmonar (RCP), uso de desfibrilador, inmovilización de fracturas/esguinces agudos en cancha y bioseguridad clínica.",
+                                sirve: "Si un compañero sufre una caída fuerte o lesión aguda en pleno partido de vóley, sabrás actuar en los primeros 30 segundos con total seguridad."
+                            },
+                            {
+                                nombre: "Fisiopatología",
+                                area: "Ciencias Biomédicas",
+                                color: "#38bdf8",
+                                ensena: "Qué ocurre en el cuerpo cuando los sistemas fallan: mecanismos de inflamación, dolor crónico, enfermedades respiratorias, cardíacas y metabólicas.",
+                                sirve: "Te permite entender la raíz biológica de cada enfermedad o lesión para no aplicar tratamientos a ciegas."
+                            },
+                            {
+                                nombre: "Administración y Gestión en Salud",
+                                area: "Liderazgo & Gestión",
+                                color: "#f59e0b",
+                                ensena: "Cómo administrar un centro de rehabilitación, liderar equipos clínicos, gestionar presupuestos y crear tu propia consulta o clínica deportiva.",
+                                sirve: "Si el día de mañana quieres abrir tu propio Centro de Kinesiología Deportiva en Concepción, aquí aprendes cómo gestionarlo con éxito."
+                            },
+                            {
+                                nombre: "Bioética Clínica",
+                                area: "Humanidades & Salud",
+                                color: "#f59e0b",
+                                ensena: "Principios éticos en la atención de pacientes, confidencialidad, respeto por la dignidad humana y toma de decisiones clínicas difíciles.",
+                                sirve: "Forma tu carácter e integridad profesional: decir la verdad al paciente, cuidar su bienestar y actuar con responsabilidad (Sacar la Voz)."
+                            },
+                            {
+                                nombre: "Biomecánica y Control Motor",
+                                area: "Preclínico & Movimiento",
+                                color: "#10b981",
+                                ensena: "Cinemática y cinética de las articulaciones (hombro, rodilla, tobillo, columna) y cómo el sistema nervioso coordina movimientos complejos.",
+                                sirve: "¡Uno de los ramos más entretenidos! Analizas en video y laboratorio la biomecánica exacta del remate de hombro y la amortiguación de rodilla en el vóley."
+                            },
+                            {
+                                nombre: "Técnicas Kinésicas de Evaluación",
+                                area: "Profesional Kinésico",
+                                color: "#10b981",
+                                ensena: "Pruebas ortopédicas especiales (tests de ligamentos cruzados, meniscos, manguito rotador), evaluación neurológica y cardiorrespiratoria.",
+                                sirve: "Con tus propias manos podrás examinar un hombro o una rodilla y detectar qué estructura exacta está comprometida."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM V",
+                        anio: 3,
+                        titulo: "Quinto Semestre (Marzo – Julio • 3° Año)",
+                        meta: "Mitad de la carrera: entras de lleno a Fisiología del Ejercicio, Traumatología y Razonamiento Clínico.",
+                        ramos: [
+                            {
+                                nombre: "Evaluación Kinesiológica Integral y Razonamiento Clínico",
+                                area: "Clínica & Rehabilitación",
+                                color: "#10b981",
+                                ensena: "Cómo conectar todos los síntomas, pruebas físicas e imágenes médicas de una persona para formular un diagnóstico kinésico certero.",
+                                sirve: "Funciona como ser un detective del cuerpo humano: descubres que un dolor de rodilla en realidad venía por una falta de movilidad en la cadera o el tobillo."
+                            },
+                            {
+                                nombre: "Fisiología del Ejercicio",
+                                area: "Deporte & Rendimiento",
+                                color: "#ea580c",
+                                ensena: "Adaptaciones del cuerpo al entrenamiento de fuerza, potencia anaeróbica, resistencia aeróbica (VO2 máx), fatiga muscular y recuperación.",
+                                sirve: "Ramo estrella para deportistas: aprendes la ciencia exacta para aumentar el salto vertical, ganar potencia explosiva y evitar el sobreentrenamiento."
+                            },
+                            {
+                                nombre: "Kinesiología del Curso de Vida I",
+                                area: "Clínica & Rehabilitación",
+                                color: "#10b981",
+                                ensena: "Desarrollo psicomotor desde el nacimiento, infancia y adolescencia, y cómo estimular o rehabilitar el movimiento en niños y jóvenes.",
+                                sirve: "Para acompañar el crecimiento deportivo saludable en etapas escolares y detectar a tiempo escoliosis o alteraciones posturales."
+                            },
+                            {
+                                nombre: "Neurología Niños y Adultos",
+                                area: "Ciencias Médicas",
+                                color: "#38bdf8",
+                                ensena: "Patologías del sistema nervioso: accidentes cerebrovasculares (ACV), lesiones medulares, traumatismos encefalocraneanos y parálisis cerebral.",
+                                sirve: "Comprendes el diagnóstico médico neurológico para luego ayudar a personas a volver a caminar o recuperar la movilidad de sus manos."
+                            },
+                            {
+                                nombre: "Ortopedia y Traumatología",
+                                area: "Deporte & Traumatología",
+                                color: "#ea580c",
+                                ensena: "Lesiones deportivas y traumáticas: esguinces, desgarros, tendinopatías rotulianas/hombro, fracturas, luxaciones y cirugías de ligamento cruzado.",
+                                sirve: "Es el corazón de la kinesiología deportiva: entiendes cada lesión traumatológica y cómo la opera el médico traumatólogo."
+                            },
+                            {
+                                nombre: "Patología Médico-Quirúrgica",
+                                area: "Ciencias Médicas",
+                                color: "#38bdf8",
+                                ensena: "Enfermedades cardíacas, pulmonares, cirugías torácicas/abdominales y manejo del paciente hospitalizado o en cuidados intensivos (UCI).",
+                                sirve: "Prepara tu base médica para rehabilitar pacientes complejos después de grandes cirugías o enfermedades respiratorias."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM VI",
+                        anio: 3,
+                        titulo: "Sexto Semestre (Agosto – Diciembre • 3° Año)",
+                        meta: "Pasas de la evaluación al TRATAMIENTO activo: técnicas manuales, prescripción de ejercicio clínico y farmacología.",
+                        ramos: [
+                            {
+                                nombre: "Farmacología Aplicada a la Kinesiología",
+                                area: "Ciencias Biomédicas",
+                                color: "#38bdf8",
+                                ensena: "Cómo actúan los analgésicos, antiinflamatorios, relajantes musculares, broncodilatadores y fármacos cardiovasculares durante el ejercicio.",
+                                sirve: "Para saber cómo los medicamentos que toma un deportista o paciente modifican su frecuencia cardíaca, su dolor o su respuesta al entrenamiento."
+                            },
+                            {
+                                nombre: "Fisiología Clínica del Ejercicio",
+                                area: "Deporte & Rendimiento",
+                                color: "#ea580c",
+                                ensena: "Prescripción de ejercicio físico dosificado como medicina para personas con patologías (diabetes, hipertensión, obesidad, cardiopatías).",
+                                sirve: "Aprendes a usar el ejercicio como el fármaco más potente que existe para transformar la salud y capacidad física de las personas."
+                            },
+                            {
+                                nombre: "Geriatría y Gerontología",
+                                area: "Clínica & Rehabilitación",
+                                color: "#10b981",
+                                ensena: "Proceso de envejecimiento humano, prevención de la pérdida muscular (sarcopenia), equilibrio, prevención de caídas y vitalidad en adultos mayores.",
+                                sirve: "Te entrega herramientas para devolverle la independencia, la fuerza y la alegría de moverse a personas mayores (abuelos/as)."
+                            },
+                            {
+                                nombre: "Kinesiología del Curso de Vida II",
+                                area: "Clínica & Rehabilitación",
+                                color: "#10b981",
+                                ensena: "Salud kinésica en el adulto trabajador y el adulto mayor, ergonomía laboral y adaptaciones funcionales a lo largo de la vida.",
+                                sirve: "Para prevenir lesiones por malas posturas en el trabajo o estudio y mantener el cuerpo funcional a cualquier edad."
+                            },
+                            {
+                                nombre: "Metodología de la Investigación I",
+                                area: "Investigación Científica",
+                                color: "#60a5fa",
+                                ensena: "Cómo buscar evidencia científica real (Kinesiología Basada en Evidencia), formular preguntas de investigación y diseñar estudios clínicos.",
+                                sirve: "Te enseña a distinguir entre 'mitos de internet/redes sociales' y tratamientos kinésicos que están 100% comprobados por la ciencia."
+                            },
+                            {
+                                nombre: "Técnicas Kinesiológicas de Tratamiento",
+                                area: "Profesional Kinésico",
+                                color: "#10b981",
+                                ensena: "Terapia manual ortopédica, movilización articular, liberación miofascial, vendajes funcionales (taping) y facilitación neuromuscular.",
+                                sirve: "Aquí tus manos se convierten en tu herramienta terapéutica para aliviar el dolor, recuperar el rango de movimiento y proteger articulaciones."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM VII",
+                        anio: 4,
+                        titulo: "Séptimo Semestre (Marzo – Julio • 4° Año)",
+                        meta: "Rehabilitación avanzada en las 3 grandes especialidades kinésicas, tecnología de fisioterapia y ejercicio terapéutico.",
+                        ramos: [
+                            {
+                                nombre: "Agentes Electrofísicos y Tecnológicos en Rehabilitación",
+                                area: "Tecnología & Deporte",
+                                color: "#ea580c",
+                                ensena: "Uso clínico de electroterapia (TENS, EMS para fortalecimiento), ultrasonido, láser, ondas de choque, termoterapia, crioterapia y biofeedback.",
+                                sirve: "Aprenderás a configurar toda la tecnología moderna que usan los clubes profesionales y clínicas para acelerar la recuperación muscular y tendinosa."
+                            },
+                            {
+                                nombre: "Ejercicio Terapéutico Aplicado",
+                                area: "Deporte & Rehabilitación",
+                                color: "#ea580c",
+                                ensena: "Diseño de progresiones de ejercicios de estabilidad (core), propiocepción, fuerza excéntrica, pliometría (saltos) y retorno deportivo (Return to Play).",
+                                sirve: "Es el puente exacto entre la camilla y la cancha: cómo llevar a un jugador lesionado paso a paso hasta que vuelva a saltar y competir al 100%."
+                            },
+                            {
+                                nombre: "Kinesiología Cardiorrespiratoria I",
+                                area: "Especialidad Clínica",
+                                color: "#10b981",
+                                ensena: "Evaluación y tratamiento kinésico de enfermedades respiratorias en niños y adultos, espirometría y técnicas de permeabilización bronquial.",
+                                sirve: "Permite expandir la capacidad pulmonar y salvar vidas en pacientes con crisis respiratorias, asma o neumonías."
+                            },
+                            {
+                                nombre: "Kinesiología Musculoesquelética I",
+                                area: "Especialidad Deportiva",
+                                color: "#ea580c",
+                                ensena: "Rehabilitación integral de lesiones de extremidades (hombro de lanzador/rematador, codo, muñeca, cadera, rodilla de saltador y tobillo).",
+                                sirve: "Ramo 100% aplicable al vóleibol: dominas los protocolos completos para rehabilitar tendinopatía rotuliana, esguinces de tobillo y lesiones de hombro."
+                            },
+                            {
+                                nombre: "Metodología de la Investigación II",
+                                area: "Investigación Científica",
+                                color: "#60a5fa",
+                                ensena: "Bioestadística aplicada, análisis de datos experimentales y preparación del proyecto de investigación (tesis/seminario).",
+                                sirve: "Para medir con datos objetivos (por ejemplo, plataformas de salto o sensores de movimiento) la efectividad de un entrenamiento o terapia."
+                            },
+                            {
+                                nombre: "Neurokinesiología I",
+                                area: "Especialidad Clínica",
+                                color: "#10b981",
+                                ensena: "Rehabilitación neurológica infantil: estimulación del control postural, marcha y coordinación en niños con desafíos neuromotores.",
+                                sirve: "Desarrolla una enorme sensibilidad humana y destreza técnica para lograr que niños alcancen su máxima autonomía motora."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM VIII",
+                        anio: 4,
+                        titulo: "Octavo Semestre (Agosto – Diciembre • 4° Año)",
+                        meta: "Cierre de tu etapa teórica-práctica y obtención del Grado Académico de Licenciado(a) en Kinesiología.",
+                        ramos: [
+                            {
+                                nombre: "Atención Primaria y Salud Familiar",
+                                area: "Salud & Comunidad",
+                                color: "#f59e0b",
+                                ensena: "Intervención kinésica comunitaria en centros de salud familiar (CESFAM), salas de rehabilitación comunitaria y promoción de actividad física.",
+                                sirve: "Te prepara para liderar equipos de salud cercanos a la gente y dirigir programas de rehabilitación en los barrios de Concepción."
+                            },
+                            {
+                                nombre: "Especialidades en Kinesiología",
+                                area: "Deporte & Vanguardia",
+                                color: "#ea580c",
+                                ensena: "Áreas emergentes y de alta especialidad: Kinesiología Deportiva de Alto Rendimiento, Piso Pélvico, Oncología, Quemados, Dermatofuncional y Ergonomía.",
+                                sirve: "Conoces de primera mano a kinesiólogos especialistas (incluyendo deporte de élite) para decidir en qué área quieres especializarte."
+                            },
+                            {
+                                nombre: "Kinesiología Cardiorrespiratoria II",
+                                area: "Especialidad Clínica",
+                                color: "#10b981",
+                                ensena: "Rehabilitación cardiovascular (post-infarto), ventilación mecánica y manejo kinésico del paciente crítico en Unidad de Cuidados Intensivos (UCI).",
+                                sirve: "Te da competencias de altísimo nivel hospitalario y comprensión total de la resistencia cardiorrespiratoria humana."
+                            },
+                            {
+                                nombre: "Kinesiología Musculoesquelética II",
+                                area: "Especialidad Deportiva",
+                                color: "#ea580c",
+                                ensena: "Rehabilitación avanzada de columna vertebral (cervical, dorsal y lumbar), dolor persistente y reintegro deportivo de alta exigencia.",
+                                sirve: "Completas tu formación traumatológica dominando el manejo de lumbagos, hernias discales y sobrecargas posturales en deportistas."
+                            },
+                            {
+                                nombre: "Neurokinesiología II",
+                                area: "Especialidad Clínica",
+                                color: "#10b981",
+                                ensena: "Rehabilitación neurológica en adultos: reentrenamiento de la marcha, equilibrio, realidad virtual en rehabilitación y robótica asistiva.",
+                                sirve: "Aprendes a reentrenar el cerebro adulto después de lesiones graves utilizando movimiento guiado y tecnología."
+                            },
+                            {
+                                nombre: "Seminario de Investigación",
+                                area: "Licenciatura (Tesis)",
+                                color: "#60a5fa",
+                                ensena: "Ejecución y defensa de tu investigación científica grupal (por ejemplo, un estudio sobre biomecánica y prevención de lesiones en jugadores de vóleibol).",
+                                sirve: "Al aprobar este semestre obtienes tu grado académico universitario de Licenciado(a) en Kinesiología y pasas directo al Internado Clínico."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM IX y SEM X (5° AÑO COMPLETO)",
+                        anio: 5,
+                        titulo: "Noveno y Décimo Semestre (5° Año Completo • Internado Profesional)",
+                        meta: "100% Terreno Clínico Real: Cero pruebas de sala. Rotas por 4 grandes centros clínicos, deportivos y hospitalarios ejerciendo como Kinesiólogo Interno.",
+                        ramos: [
+                            {
+                                nombre: "Internado en Kinesiología Musculoesquelética",
+                                area: "Práctica Profesional en Terreno",
+                                color: "#ea580c",
+                                ensena: "Rotación intensiva en clínicas traumatológicas, centros de medicina deportiva y gimnasios de rehabilitación atendiendo pacientes y deportistas reales bajo tutoría.",
+                                sirve: "Aquí vives la experiencia real de evaluar lesiones de rodilla, hombro, tobillo y columna, y dirigir la vuelta al deporte de tus propios pacientes."
+                            },
+                            {
+                                nombre: "Internado en Kinesiología Cardiorrespiratoria",
+                                area: "Práctica Profesional en Terreno",
+                                color: "#10b981",
+                                ensena: "Rotación clínica en hospitales de alta complejidad (como el Hospital Regional de Concepción) en unidades respiratorias, cardiología y UCI.",
+                                sirve: "Te da una seguridad clínica total para manejar pacientes complejos y trabajar en equipos médicos de alto nivel."
+                            },
+                            {
+                                nombre: "Internado en Neurokinesiología",
+                                area: "Práctica Profesional en Terreno",
+                                color: "#38bdf8",
+                                ensena: "Rotación en centros de rehabilitación neurológica infantil y de adultos (ej. Teletón, hospitales e institutos de neurorehabilitación).",
+                                sirve: "Aplicas todo lo aprendido en neurociencia y control motor para transformar la calidad de vida de niños y adultos en rehabilitación."
+                            },
+                            {
+                                nombre: "Internado en Atención Primaria y Salud Familiar",
+                                area: "Práctica Profesional en Terreno",
+                                color: "#f59e0b",
+                                ensena: "Rotación en centros de salud de la comunidad, liderando salas de rehabilitación osteomuscular, respiratoria y talleres de ejercicio activo.",
+                                sirve: "Al completar estas 4 rotaciones de 5° año, recibes tu Título Profesional de Kinesiólogo(a) de la Universidad de Concepción listo para ejercer."
+                            }
+                        ]
+                    }
+                ]
+            },
+
+            animacion_duoc: {
+                id: "animacion_duoc",
+                titulo: "Animación Digital — Duoc UC Sede San Andrés (Concepción)",
+                subtitulo: "Escuela de Comunicación Duoc UC • Concepción • 4 Años (8 Semestres) • Enfoque 100% Práctico por Portafolio",
+                grado: "Título Profesional: Animador(a) Digital",
+                imagenOficial: "",
+                resumenCarrera: "Una carrera diseñada para mentes visuales y creativas que aman el dibujo, el cine de animación y los videojuegos. En vez de estudiar teoría en pizarrón, desde el Semestre I trabajas en laboratorios con tabletas gráficas (Wacom/Cintiq) y motores 3D aprendiendo a crear personajes, darles esqueleto digital (rigging), animarlos cuadro a cuadro e integrarlos en motores como Unreal Engine o Unity.",
+                ponderaciones: [
+                    { label: "REQUISITO PAES", val: "No Exige", active: true },
+                    { label: "ADMISIÓN", val: "Directa", active: true },
+                    { label: "LICENCIA 4° MEDIO", val: "100%", active: true },
+                    { label: "EVALUACIÓN", val: "Portafolio", active: true }
+                ],
+                semestres: [
+                    {
+                        num: "SEM I y II (1° AÑO)",
+                        anio: 1,
+                        titulo: "Primer Año: Dibujo Anatómico, Narrativa Visual y Base 2D/3D",
+                        meta: "Transformar tu talento natural de dibujo en croquera en técnica profesional de animación e ilustración digital.",
+                        ramos: [
+                            {
+                                nombre: "Dibujo, Anatomía Artística y Expresión",
+                                area: "Arte & Dibujo",
+                                color: "#c084fc",
+                                ensena: "Proporción de la figura humana en movimiento, poses dinámicas (línea de acción), expresiones faciales y perspectiva espacial.",
+                                sirve: "Para que tus personajes dibujados tengan peso, fuerza, equilibrio y dinamismo real (por ejemplo, dibujando poses de salto o acción)."
+                            },
+                            {
+                                nombre: "Principios de la Animación 2D (Cut-Out y Tradigital)",
+                                area: "Animación 2D",
+                                color: "#10b981",
+                                ensena: "Los 12 principios clásicos de la animación (anticipación, estirar y encoger, timing, arcos de movimiento) usando Toon Boom Harmony.",
+                                sirve: "Logras que tus dibujos cobren vida en pantalla a 24 cuadros por segundo como en las series de anime o estudios internacionales."
+                            },
+                            {
+                                nombre: "Storyboard y Narrativa Audiovisual",
+                                area: "Cine & Guion",
+                                color: "#38bdf8",
+                                ensena: "Lenguaje de cámaras, planos cinematográficos, ritmo de montaje y creación de guiones gráficos (storyboards) y animatics.",
+                                sirve: "Te permite dirigir escenas completas de acción o emoción antes de animarlas, igual que los directores de cine y videojuegos."
+                            },
+                            {
+                                nombre: "Introducción al Modelado Digital 3D",
+                                area: "Arte 3D",
+                                color: "#f59e0b",
+                                ensena: "Escultura y modelado poligonal de objetos, escenarios y personajes en tres dimensiones (Maya / Blender / ZBrush).",
+                                sirve: "Pasas del papel plano en 2D a esculpir personajes y mundos completos en 3D listos para animar o llevar a un videojuego."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM III y IV (2° AÑO)",
+                        anio: 2,
+                        titulo: "Segundo Año: Rigging, Actuación de Personajes y Mundos 3D",
+                        meta: "Construir los 'huesos y músculos digitales' de los personajes y aprender a hacerlos actuar.",
+                        ramos: [
+                            {
+                                nombre: "Rigging (Esqueletos y Controles Digitales)",
+                                area: "Técnica 3D",
+                                color: "#60a5fa",
+                                ensena: "Cómo colocar huesos virtuales, articulaciones y controles faciales dentro de un modelo 3D para que pueda moverse como una marioneta.",
+                                sirve: "Une la anatomía con la tecnología: sin un buen Rigging, ningún personaje de videojuego o película 3D podría saltar o hablar."
+                            },
+                            {
+                                nombre: "Animación de Personajes 3D y Biomecánica",
+                                area: "Animación 3D",
+                                color: "#10b981",
+                                ensena: "Ciclos de caminata, carrera, saltos acrobáticos, levantamiento de peso y física corporal en entornos tridimensionales.",
+                                sirve: "Tu experiencia corporal en el vóleibol es una ventaja gigante aquí, porque entiendes en tu propio cuerpo cómo se impulsa y aterriza un salto."
+                            },
+                            {
+                                nombre: "Texturizado, Iluminación y Render",
+                                area: "Dirección de Arte",
+                                color: "#c084fc",
+                                ensena: "Creación de materiales digitales (piel, metal, tela, agua), iluminación cinematográfica de escenas y procesado final de imagen.",
+                                sirve: "Hace que tus escenas 3D se vean con calidad de película de estudio (estilo Spider-Verse, Arcane o Pixar)."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM V y VI (3° AÑO)",
+                        anio: 3,
+                        titulo: "Tercer Año: Efectos Visuales (VFX) y Motores de Videojuegos",
+                        meta: "Integración con la industria del gaming, captura de movimiento y efectos especiales.",
+                        ramos: [
+                            {
+                                nombre: "Animación para Videojuegos (Unreal Engine / Unity)",
+                                area: "Videojuegos & Tech",
+                                color: "#60a5fa",
+                                ensena: "Cómo exportar tus personajes y animaciones de ataque, salto y movimiento dentro de un motor de videojuegos interactivo en tiempo real.",
+                                sirve: "Puedes controlar con un joystick al personaje que tú mismo dibujaste, modelaste y animaste."
+                            },
+                            {
+                                nombre: "Efectos Visuales (VFX) y Composición Digital",
+                                area: "Postproducción",
+                                color: "#ea580c",
+                                ensena: "Simulación de partículas (fuego, humo, energía, explosiones, lluvia), croma verde e integración de 3D con video real.",
+                                sirve: "Te abre campo laboral tanto en estudios de animación como en cine, publicidad y trailers de videojuegos."
+                            }
+                        ]
+                    },
+                    {
+                        num: "SEM VII y VIII (4° AÑO)",
+                        anio: 4,
+                        titulo: "Cuarto Año: Cortometraje de Título, Demo Reel y Práctica",
+                        meta: "Salir al mundo laboral con un Portafolio Internacional (Demo Reel) listo para estudios de Chile y el extranjero.",
+                        ramos: [
+                            {
+                                nombre: "Taller de Realización de Cortometraje / Proyecto de Título",
+                                area: "Proyecto Final",
+                                color: "#10b981",
+                                ensena: "Producción completa en equipo de un cortometraje animado o cinemática de videojuego cumpliendo roles de estudio real.",
+                                sirve: "Es tu carta de presentación profesional para postular a estudios chilenos (como Punkrobot, ganadores del Oscar) o trabajar remoto globalmente."
+                            },
+                            {
+                                nombre: "Portafolio Profesional (Demo Reel) y Práctica Laboral",
+                                area: "Inserción Laboral",
+                                color: "#f59e0b",
+                                ensena: "Selección de tus mejores segundos de animación, trabajo freelance internacional y práctica en productoras o estudios digitales.",
+                                sirve: "Te enseña a cobrar por tu talento creativo y vivir de lo que te apasiona."
+                            }
+                        ]
+                    }
+                ]
+            },
+
+            informatica_udec: {
+                id: "informatica_udec",
+                titulo: "Ingeniería Civil Informática — Universidad de Concepción (UdeC / UBB)",
+                subtitulo: "Facultad de Ingeniería UdeC • Campus Concepción • 5 a 5.5 Años • Alta Proyección Global y Desarrollo de Software/Juegos",
+                grado: "Licenciado(a) en Ciencias de la Ingeniería / Ingeniero(a) Civil Informático(a)",
+                imagenOficial: "",
+                resumenCarrera: "Si te atrae resolver problemas lógicos, entender cómo funcionan los computadores, programar videojuegos o crear inteligencia artificial, Informática es una de las carreras con mayor futuro y libertad laboral. Los primeros 2 años construyen tu base matemática y de programación, y de 3° a 5° año diseñas software real, gráficos 3D, apps móviles e IA.",
+                ponderaciones: [
+                    { label: "NEM (Notas)", val: "15%", active: true },
+                    { label: "RANKING", val: "25%", active: true },
+                    { label: "COMP. LECTORA", val: "15%", active: true },
+                    { label: "MATEMÁTICAS 1", val: "25%", active: true },
+                    { label: "HISTORIA", val: "—", active: false },
+                    { label: "CIENCIAS", val: "10%", active: true },
+                    { label: "MATEMÁTICAS 2", val: "10%", active: true }
+                ],
+                semestres: [
+                    {
+                        num: "1° AÑO (SEM I y II)",
+                        anio: 1,
+                        titulo: "Primer Año: Lógica de Programación y Base Matemática de Ingeniería",
+                        meta: "Aprender a pensar como ingeniero y escribir tus primeros programas funcionales en código.",
+                        ramos: [
+                            {
+                                nombre: "Introducción a la Programación",
+                                area: "Programación & Código",
+                                color: "#60a5fa",
+                                ensena: "Fundamentos de programación en Python y C/C++: variables, ciclos, condicionales, funciones y resolución lógica de problemas.",
+                                sirve: "Desde el primer semestre aprendes a darle instrucciones al computador para crear programas, simulaciones o minijuegos."
+                            },
+                            {
+                                nombre: "Cálculo I y II + Álgebra Lineal",
+                                area: "Ciencias de Ingeniería",
+                                color: "#38bdf8",
+                                ensena: "Matrices, vectores en 3D, derivadas e integrales aplicadas a la física y la computación.",
+                                sirve: "El Álgebra Lineal (matrices y vectores) es literalmente el motor matemático que mueve las cámaras y los gráficos 3D en cualquier videojuego."
+                            }
+                        ]
+                    },
+                    {
+                        num: "2° y 3° AÑO (SEM III al VI)",
+                        anio: 2,
+                        titulo: "Segundo y Tercer Año: Estructuras de Datos, Hardware y Desarrollo de Software",
+                        meta: "Dominar la arquitectura interna de los computadores, bases de datos y creación de aplicaciones completas.",
+                        ramos: [
+                            {
+                                nombre: "Estructuras de Datos y Análisis de Algoritmos",
+                                area: "Ciencias de la Computación",
+                                color: "#10b981",
+                                ensena: "Cómo organizar millones de datos en memoria (árboles, grafos, mapas) para que un programa o juego corra a máxima velocidad sin lag.",
+                                sirve: "Por ejemplo, los algoritmos de grafos son los que usan los NPCs de los videojuegos para encontrar el camino más corto en un mapa."
+                            },
+                            {
+                                nombre: "Arquitectura de Computadores y Sistemas Operativos",
+                                area: "Hardware & Sistemas",
+                                color: "#f59e0b",
+                                ensena: "Cómo funcionan por dentro los procesadores (CPU), la memoria RAM, las tarjetas gráficas (GPU) y sistemas como Linux y Windows.",
+                                sirve: "Comprendes al 100% cómo el código se transforma en señales eléctricas y rendimiento real en el hardware."
+                            },
+                            {
+                                nombre: "Ingeniería de Software y Desarrollo Web / Móvil",
+                                area: "Desarrollo Práctico",
+                                color: "#60a5fa",
+                                ensena: "Creación en equipo de aplicaciones reales con interfaces modernas, servidores en la nube y bases de datos.",
+                                sirve: "Te da la capacidad de construir tus propias plataformas, apps deportivas o startups digitales."
+                            }
+                        ]
+                    },
+                    {
+                        num: "4° y 5° AÑO (SEM VII al X)",
+                        anio: 4,
+                        titulo: "Cuarto y Quinto Año: Inteligencia Artificial, Gráficos 3D y Especialización",
+                        meta: "Especializarte en áreas de vanguardia tecnológica y realizar tus prácticas profesionales.",
+                        ramos: [
+                            {
+                                nombre: "Inteligencia Artificial y Machine Learning",
+                                area: "IA & Vanguardia",
+                                color: "#c084fc",
+                                ensena: "Redes neuronales, visión por computador (por ejemplo, cámaras que analizan automáticamente un partido de vóley) y modelos inteligentes.",
+                                sirve: "Una de las habilidades mejor pagadas del mundo actual, aplicable al deporte, la medicina, los videojuegos y la industria."
+                            },
+                            {
+                                nombre: "Electivos de Computación Gráfica y Desarrollo de Videojuegos",
+                                area: "Gráficos 3D & Gaming",
+                                color: "#10b981",
+                                ensena: "Renderizado en tiempo real, shaders en GPU, físicas de colisión y desarrollo interactivo.",
+                                sirve: "Une tu gusto por el arte visual con la ingeniería informática de alto nivel."
+                            }
+                        ]
+                    }
+                ]
+            },
+
+            arquitectura_ubb: {
+                id: "arquitectura_ubb",
+                titulo: "Arquitectura — Universidad del Bío-Bío (UBB) / UdeC",
+                subtitulo: "Facultad de Arquitectura, Construcción y Diseño UBB (Concepción) • 5.5 Años • Taller Creativo y Visión Espacial",
+                grado: "Licenciado(a) en Arquitectura / Título Profesional: Arquitecto(a)",
+                imagenOficial: "",
+                resumenCarrera: "La escuela de Arquitectura en Concepción (especialmente en la UBB y la UdeC) tiene prestigio nacional. El corazón de cada semestre es el 'Taller de Arquitectura', donde no hay pruebas de alternativas: entregas maquetas físicas, croquis dibujados a mano, planos digitales en 3D y defiendes tus ideas de edificios, centros deportivos o parques frente a tus profesores.",
+                ponderaciones: [
+                    { label: "NEM (Notas)", val: "20%", active: true },
+                    { label: "RANKING", val: "20%", active: true },
+                    { label: "COMP. LECTORA", val: "20%", active: true },
+                    { label: "MATEMÁTICAS 1", val: "30%", active: true },
+                    { label: "CIENCIAS O HIST.", val: "10%", active: true }
+                ],
+                semestres: [
+                    {
+                        num: "1° y 2° AÑO",
+                        anio: 1,
+                        titulo: "Ciclo Inicial: Croquis, Maquetas, Geometría del Espacio y Taller",
+                        meta: "Aprender a observar la ciudad, dibujar a mano alzada y construir tus primeras volumetrías a escala.",
+                        ramos: [
+                            {
+                                nombre: "Taller de Diseño Arquitectónico I al IV",
+                                area: "Taller Central",
+                                color: "#10b981",
+                                ensena: "Diseño de espacios habitables, manejo de la luz natural, proporción humana y construcción de maquetas en madera, cartón y corte láser.",
+                                sirve: "Aprovecha al máximo tu talento para el dibujo y las manualidades en un entorno 100% activo y visual."
+                            },
+                            {
+                                nombre: "Medios de Expresión, Croquis y Modelado Digital BIM/3D",
+                                area: "Representación Visual",
+                                color: "#c084fc",
+                                ensena: "Dibujo arquitectónico a mano alzada y dominio de software profesional (AutoCAD, SketchUp, Revit, Rhino y motores de renderizado).",
+                                sirve: "Puedes recorrer en realidad virtual un edificio o gimnasio deportivo antes de que se ponga el primer ladrillo."
+                            }
+                        ]
+                    },
+                    {
+                        num: "3° a 5° AÑO",
+                        anio: 3,
+                        titulo: "Ciclo Profesional: Estructuras, Sustentabilidad, Ciudad y Proyecto de Título",
+                        meta: "Diseñar grandes equipamientos urbanos (polideportivos, centros culturales, viviendas) que resistan sismos y cuiden el medioambiente.",
+                        ramos: [
+                            {
+                                nombre: "Estructuras y Construcción en Madera, Acero y Hormigón",
+                                area: "Ingeniería & Obra",
+                                color: "#f59e0b",
+                                ensena: "Cómo se sostienen los grandes techos (como el de un coliseo de vóleibol sin pilares al medio) y cómo resisten los terremotos en Chile.",
+                                sirve: "Convierte tus dibujos creativos en obras reales, seguras y construibles."
+                            },
+                            {
+                                nombre: "Urbanismo y Diseño de Espacios Públicos",
+                                area: "Ciudad & Territorio",
+                                color: "#38bdf8",
+                                ensena: "Planificación de ciudades, parques deportivos, ciclovías y barrios sustentables en el Gran Concepción.",
+                                sirve: "Dejas una huella física real en tu ciudad que miles de personas usarán todos los días."
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function selectMallaCareer(careerKey) {
+            if (!MALLAS_DB[careerKey]) return;
+            currentMallaKey = careerKey;
+            currentMallaYear = 'all';
+
+            // Actualizar botones activos de carrera
+            document.querySelectorAll('.btn-malla-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const activeBtn = document.getElementById(`tab-malla-${careerKey}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            renderMallaViewer();
+        }
+
+        function filterMallaYear(year) {
+            currentMallaYear = year;
+            document.querySelectorAll('.btn-year-filter').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-year') === String(year));
+            });
+            renderSemestersGrid();
+        }
+
+        function searchMallaRamos(query) {
+            renderSemestersGrid(query);
+        }
+
+        function renderMallaViewer() {
+            const container = document.getElementById("malla-viewer-content");
+            if (!container) return;
+
+            const data = MALLAS_DB[currentMallaKey];
+            if (!data) return;
+
+            // Obtener años únicos disponibles en esta carrera
+            const years = [...new Set(data.semestres.map(s => s.anio))];
+
+            let html = `
+                <!-- CABECERA DE LA CARRERA Y PONDERACIONES PAES -->
+                <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 1.3rem; margin-bottom: 1.4rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 0.8rem;">
+                        <div>
+                            <h4 style="font-family: var(--font-display); font-size: 1.35rem; color: #fff; margin: 0 0 0.25rem 0;">
+                                ${data.titulo}
+                            </h4>
+                            <div style="font-size: 0.82rem; color: #7dd3fc; font-weight: 600;">
+                                ${data.subtitulo}
+                            </div>
+                        </div>
+                        <span style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #6ee7b7; font-size: 0.76rem; font-weight: 800; padding: 5px 12px; border-radius: 20px;">
+                            <i class="fa-solid fa-user-graduate"></i> ${data.grado}
+                        </span>
+                    </div>
+
+                    <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6; margin: 0 0 1rem 0;">
+                        ${data.resumenCarrera}
+                    </p>
+
+                    <!-- PONDERACIONES OFICIALES PAES / ADMISIÓN -->
+                    <div style="font-size: 0.75rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">
+                        <i class="fa-solid fa-scale-balanced" style="color: #38bdf8;"></i> Ponderaciones Oficiales de Admisión (PAES / Notas de Enseñanza Media):
+                    </div>
+                    <div class="paes-weights-grid">
+                        ${data.ponderaciones.map(p => `
+                            <div class="paes-box" style="${p.active ? 'border-color: rgba(56, 189, 248, 0.45); background: rgba(2, 132, 199, 0.15);' : 'opacity: 0.5;'}">
+                                <span class="paes-lbl">${p.label}</span>
+                                <span class="paes-val" style="${p.active ? 'color: #38bdf8;' : 'color: #64748b;'}">${p.val}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${data.imagenOficial ? `
+                        <div style="margin-top: 1.2rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 0.6rem;">
+                                <span style="font-size: 0.82rem; font-weight: 800; color: #fff;">
+                                    <i class="fa-solid fa-image" style="color: #38bdf8;"></i> Malla Curricular Oficial UdeC (Haz clic en la imagen para ampliarla a pantalla completa)
+                                </span>
+                                <button type="button" onclick="openLightbox('${data.imagenOficial}')" style="background: #0284c7; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 700; cursor: pointer;">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar Malla Oficial
+                                </button>
+                            </div>
+                            <img src="${data.imagenOficial}" alt="Malla Oficial ${data.titulo}" onclick="openLightbox(this.src)" style="width: 100%; max-height: 360px; object-fit: contain; border-radius: 8px; cursor: zoom-in; background: #fff;">
+                        </div>
+                    ` : ''}
+                </div>
+
+                <!-- BARRA DE FILTRO POR AÑO Y BUSCADOR DE RAMOS -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 1.2rem;">
+                    <div class="year-filter-bar" style="margin-bottom: 0;">
+                        <button type="button" class="btn-year-filter active" data-year="all" onclick="filterMallaYear('all')">
+                            Todos los Semestres (${data.semestres.length})
+                        </button>
+                        ${years.map(y => `
+                            <button type="button" class="btn-year-filter" data-year="${y}" onclick="filterMallaYear(${y})">
+                                ${y}° Año
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div style="flex: 1; min-width: 230px; max-width: 340px;">
+                        <input type="text" id="malla-search-input" oninput="searchMallaRamos(this.value)" placeholder="🔍 Buscar ramo (ej: ejercicio, anatomía, 3D)..." style="width: 100%; background: #14141c; border: 1px solid rgba(255,255,255,0.18); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 0.82rem; outline: none;">
+                    </div>
+                </div>
+
+                <!-- GRILLA DE SEMESTRES Y RAMOS EXPLICADOS -->
+                <div class="semesters-grid" id="malla-semesters-grid"></div>
+            `;
+
+            container.innerHTML = html;
+            renderSemestersGrid();
+        }
+
+        function renderSemestersGrid(searchQuery = '') {
+            const grid = document.getElementById("malla-semesters-grid");
+            if (!grid) return;
+
+            const data = MALLAS_DB[currentMallaKey];
+            if (!data) return;
+
+            const q = (searchQuery || '').trim().toLowerCase();
+
+            const filteredSemesters = data.semestres.filter(sem => {
+                if (currentMallaYear !== 'all' && String(sem.anio) !== String(currentMallaYear)) {
+                    return false;
+                }
+                if (!q) return true;
+                return sem.ramos.some(r =>
+                    r.nombre.toLowerCase().includes(q) ||
+                    r.ensena.toLowerCase().includes(q) ||
+                    r.sirve.toLowerCase().includes(q) ||
+                    r.area.toLowerCase().includes(q)
+                );
+            });
+
+            if (filteredSemesters.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #94a3b8; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                        No se encontraron ramos que coincidan con "${searchQuery}". Prueba con otra palabra o selecciona "Todos los Semestres".
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            filteredSemesters.forEach(sem => {
+                const ramosToShow = q
+                    ? sem.ramos.filter(r =>
+                        r.nombre.toLowerCase().includes(q) ||
+                        r.ensena.toLowerCase().includes(q) ||
+                        r.sirve.toLowerCase().includes(q) ||
+                        r.area.toLowerCase().includes(q)
+                      )
+                    : sem.ramos;
+
+                html += `
+                    <div class="semester-card">
+                        <div class="semester-header">
+                            <div>
+                                <span style="font-size: 0.72rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em; display: block;">
+                                    ${sem.num} • ${sem.anio}° AÑO UNIVERSITARIO
+                                </span>
+                                <span class="semester-title">${sem.titulo}</span>
+                            </div>
+                            <span class="semester-badge">${ramosToShow.length} Ramos</span>
+                        </div>
+                        <div style="padding: 0.75rem 1.1rem; background: rgba(2, 132, 199, 0.07); border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.8rem; color: #cbd5e1;">
+                            <strong>🎯 Objetivo de este semestre:</strong> ${sem.meta}
+                        </div>
+                        <div class="ramo-list">
+                            ${ramosToShow.map(r => `
+                                <div class="ramo-item" style="border-left-color: ${r.color};">
+                                    <div class="ramo-name">
+                                        <span>📘 ${r.nombre}</span>
+                                        <span class="ramo-area-tag" style="background: ${r.color}22; color: ${r.color}; border: 1px solid ${r.color}55;">
+                                            ${r.area}
+                                        </span>
+                                    </div>
+                                    <div class="ramo-detail">
+                                        <strong style="color: #e2e8f0;">📖 ¿Qué se enseña?:</strong> ${r.ensena}
+                                    </div>
+                                    <div class="ramo-utility">
+                                        <strong style="color: #7dd3fc;">🚀 ¿Para qué te sirve en la práctica?:</strong> ${r.sirve}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
         }
 
         // =========================================================================
@@ -2351,6 +3628,7 @@ Mis carreras recomendadas en Concepción que más me llaman la atención son Ani
             initToolsChecklists();
             renderVocQuestions();
             checkSavedVocTest();
+            selectMallaCareer('kine_udec');
         });
 </script>
 </body>

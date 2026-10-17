@@ -805,9 +805,10 @@ window.CLIENTS_MASTER_DATA = {
       "pin": "AH-Matias7315",
       "subtitulo": "De la Resaca Digital a la Autonomía",
       "tagline": "TDAH • Acompañamiento Escolar • Comunicación & Valentía",
-      "edad": 15,
+      "fecha_nacimiento": "2009-09-08",
+      "edad": 17,
       "ciudad": "Concepción",
-      "rol_principal": "Estudiante de Secundaria / Taller de Arte y Vóley"
+      "rol_principal": "Estudiante de Enseñanza Media (Colegio Concepción) / Taller de Arte y Vóley"
     },
     "modulos_activos": [
       "seguridad_pin",
@@ -1056,7 +1057,8 @@ window.CLIENTS_MASTER_DATA = {
     "orientacion_vocacional": {
       "titulo": "Orientación Vocacional & Mapeo de Carreras en Concepción",
       "subtitulo": "Canalización de Talentos Creativos, Deportivos y Tecnológicos",
-      "edad": 15,
+      "fecha_nacimiento": "2009-09-08",
+      "edad": 17,
       "colegio": "Colegio Concepción",
       "pilares_interes": [
         {
