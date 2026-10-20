@@ -498,8 +498,7 @@ window.CLIENTS_MASTER_DATA = {
           }
         ]
       }
-    ],
-    "status": "active"
+    ]
   },
   "melissa": {
     "cliente": {
@@ -793,8 +792,7 @@ window.CLIENTS_MASTER_DATA = {
         "id": "espacio_comparsa",
         "acuerdo": "Sábado 11:00 AM: Comparsa de Melissa protegida como espacio no negociable de recreación y goce personal."
       }
-    ],
-    "status": "active"
+    ]
   },
   "matias": {
     "cliente": {
@@ -1126,8 +1124,7 @@ window.CLIENTS_MASTER_DATA = {
           "por_que_encaja": "Trabajo 100% en cancha, dinamismo físico, liderazgo de equipos y cero encierro en oficinas."
         }
       ]
-    },
-    "status": "active"
+    }
   },
   "alejandra": {
     "cliente": {
@@ -1339,8 +1336,7 @@ window.CLIENTS_MASTER_DATA = {
       ],
       "escenario_a": "Beca Doctoral 4 años (dedicación 100% a investigación, ingresos estables de investigación)",
       "escenario_b": "Trabajo 1 año (08:00 a 16:00) + Avance de tesis doctoral en bloque nocturno de 2 horas"
-    },
-    "status": "active"
+    }
   },
   "alvaro": {
     "cliente": {
@@ -1385,8 +1381,7 @@ window.CLIENTS_MASTER_DATA = {
           "sub": "Time boxing estricto"
         }
       ]
-    },
-    "status": "paused"
+    }
   },
   "carlos": {
     "cliente": {
@@ -1408,8 +1403,7 @@ window.CLIENTS_MASTER_DATA = {
       "kanban_gtd",
       "simulador_financiero",
       "plan_24h_antipatrones"
-    ],
-    "status": "paused"
+    ]
   },
   "karina": {
     "cliente": {
@@ -1430,8 +1424,7 @@ window.CLIENTS_MASTER_DATA = {
       "matriz_identidades",
       "simulador_contingencias",
       "plan_24h_antipatrones"
-    ],
-    "status": "paused"
+    ]
   },
   "emi": {
     "cliente": {
@@ -1452,7 +1445,277 @@ window.CLIENTS_MASTER_DATA = {
       "matriz_eisenhower",
       "vaciado_mental_gtd",
       "ventana_johari"
+    ]
+  },
+  "antonia": {
+    "cliente": {
+      "id": "antonia",
+      "nombre": "Antonia Jofré",
+      "avatar": "🧘‍♀️",
+      "usuario": "antonia.jofre",
+      "pin": "AH-Antonia5924",
+      "subtitulo": "De la Carga Mental y Fricción a la Soberanía Operativa",
+      "tagline": "Cuidados Familiares • Clases de Yoga & Zumba • Hito Santiago ($160k)",
+      "edad": 28,
+      "ciudad": "Concepción",
+      "rol_principal": "Instructora de Yoga Somático & Clases de Zumba / Baile",
+      "ultima_actualizacion": "2026-09-11"
+    },
+    "modulos_activos": [
+      "seguridad_pin",
+      "diagnostico_general",
+      "matriz_identidades",
+      "triangulacion_roles",
+      "inventario_cero_culpa",
+      "habitarte_estudio_somatico",
+      "kanban_gtd_wip2",
+      "simulador_financiero",
+      "mapeador_24h",
+      "plan_24h_antipatrones",
+      "activador_ia_chatgpt",
+      "tips_antigravity",
+      "biblioteca_musical_coreografica",
+      "caja_herramientas"
     ],
-    "status": "paused"
+    "categorias_gestion": [
+      "01_Perfil_y_Antecedentes",
+      "02_Gestion_Operativa_y_Metas",
+      "03_Finanzas_y_Presupuesto",
+      "04_Servicios_y_Proyectos_Profesionales",
+      "05_Herramientas_y_Evaluacion",
+      "06_Bitacora_y_Multimedia"
+    ],
+    "diagnostico": {
+      "resumen_humano": "Antonia sostiene una alta carga de cuidados médicos y familiares de Mateo y Roma, experimentando el Síndrome de Saturación Sistémica Quíntuple (marcó los 5 cuellos de botella en su sondeo con ~21h/sem de fricción). Está en proceso terapéutico y requiere estructura contenedora para calmar la búsqueda de estímulo constante y recuperar el control. Su gran meta es consolidar sus clases de yoga online ('Cuerpos Cansados') con pase mensual prepagado para cubrir el Hito Santiago de $160.000 mensuales (8 alumnas a $20k).",
+      "stats": [
+        {
+          "valor": "~21 Horas / Sem",
+          "etiqueta": "Fricción & Dispersión (Sondeo)",
+          "color": "#ef4444",
+          "sub": "Colapso operativo a recuperar"
+        },
+        {
+          "valor": "2 Bloques (4h)",
+          "etiqueta": "Bloques de Oro Semanales",
+          "color": "#10b981",
+          "sub": "Lun 10–12 & Vie 09–11 (Yoga Online)"
+        },
+        {
+          "valor": "8 Alumnas",
+          "etiqueta": "Meta Pasajes ($160k)",
+          "color": "#60a5fa",
+          "sub": "Pase prepagado del 1 al 5"
+        },
+        {
+          "valor": "3 min",
+          "etiqueta": "Inventario Cero Culpa",
+          "color": "#f59e0b",
+          "sub": "Visibilizar cuidados cada noche"
+        }
+      ],
+      "mapeador_24h_actual": {
+        "nombre": "Semana Actual al 11 Sep (Muni 7.5h + Capa 1 Construcción)",
+        "pdf_contexto": "contexto laboral actual antonia al 11 sep.pdf",
+        "total_horas": 168,
+        "distribucion": {
+          "sueno_recarga": 58,
+          "clases_muni_fijas": 7.5,
+          "lo_laboral_construccion": 10,
+          "antonia_terapia_autocuidado": 25,
+          "hijas_cuidados": 32,
+          "casa_logistica": 34.5,
+          "finanzas_gestion_cupos": 1
+        },
+        "cinco_ejes": [
+          {
+            "id": 1,
+            "nombre": "Antonia",
+            "enfoque": "Autocuidado, terapia y descanso sin culpa"
+          },
+          {
+            "id": 2,
+            "nombre": "Casa",
+            "enfoque": "Logística doméstica y orden básico concentrado"
+          },
+          {
+            "id": 3,
+            "nombre": "Hijas",
+            "enfoque": "Mateo & Roma, presencia de calidad y cuidados"
+          },
+          {
+            "id": 4,
+            "nombre": "Lo Laboral",
+            "enfoque": "Clases Muni 7,5h + docencia Habitarte 90 min/sem"
+          },
+          {
+            "id": 5,
+            "nombre": "Finanzas & Cupos",
+            "enfoque": "1h/sem para llenar cupos de Habitarte y monitorear Hito Santiago"
+          }
+        ]
+      }
+    },
+    "identidades": [
+      {
+        "nombre": "La Estratega",
+        "rol": "Diseña programas y calcula metas financieras",
+        "energia": "Alta / Foco"
+      },
+      {
+        "nombre": "La Ejecutora",
+        "rol": "Dicta clases de yoga y atiende alumnas",
+        "energia": "Presente / Somática"
+      },
+      {
+        "nombre": "La Nutricia",
+        "rol": "Acompaña a su familia y realiza trámites",
+        "energia": "Empática / Emocional"
+      },
+      {
+        "nombre": "La Saboteadora",
+        "rol": "Genera culpa nocturna por trabajo invisible",
+        "energia": "Rumiación / Freno"
+      }
+    ],
+    "kanban_gtd": {
+      "todo": [
+        {
+          "id": "a1",
+          "text": "Grabar 1 clase comodín de respaldo para alumnas",
+          "tag": "Yoga"
+        },
+        {
+          "id": "a2",
+          "text": "Calcular costo exacto de arriendo compartido en Santiago",
+          "tag": "Finanzas"
+        }
+      ],
+      "doing": [
+        {
+          "id": "a3",
+          "text": "Proteger 2 Bloques de Oro de 45 min esta semana",
+          "tag": "Yoga"
+        }
+      ],
+      "done": [
+        {
+          "id": "a4",
+          "text": "Definir meta matemática de 8 alumnas para pasajes",
+          "tag": "Finanzas"
+        }
+      ]
+    },
+    "habitarte": {
+      "nombre": "Habitarte • Estudio Somático & Movimiento Consciente",
+      "enfoque": "Cuerpos cansados, descompresión del sistema nervioso y movimiento amable",
+      "pilares": [
+        "Cuerpos Cansados",
+        "Pilates Somático",
+        "Movilidad Articular",
+        "Flexibilidad Progresiva",
+        "Fuerza Isométrica"
+      ],
+      "rango_etareo": "18 a 70+ años",
+      "arancel_mensual": 20000,
+      "clases_semana": 2,
+      "duracion_minutos": 45,
+      "metas_financieras": {
+        "hito_1_santiago": {
+          "alumnas": 8,
+          "ingreso": 160000
+        },
+        "hito_2_tranquilidad": {
+          "alumnas": 15,
+          "ingreso": 300000
+        },
+        "hito_3_soberania": {
+          "alumnas": 25,
+          "ingreso": 500000
+        }
+      }
+    }
+  },
+  "diego": {
+    "cliente": {
+      "id": "diego",
+      "nombre": "Diego Alberto González Yáñez",
+      "avatar": "🚀",
+      "usuario": "diego.gonzalez",
+      "pin": "AH-Diego9132",
+      "subtitulo": "Del Perfeccionismo a la Venta Activa y Soberanía Total",
+      "tagline": "Consultor & Estratega • Operaciones & Vida",
+      "rol_principal": "Consultor & Estratega de Operaciones • Fundador de Administración Humana",
+      "whatsapp": "+56975590132",
+      "email": "contacto@administracionhumana.com",
+      "ciudad": "Concepción, Chile",
+      "estado": "Piloto Fundador / Cliente Cero",
+      "fechaInicio": "2026-09-20"
+    },
+    "diagnostico": {
+      "resumen_humano": "Diego sostiene la arquitectura integral de Administración Humana, el marketing y operaciones de Don Diego Vapor y el costeo de Risalfajores, junto a la crianza de Roma Galia y Matías. Su mayor desafío es el cuello de botella por rumiación previa al lanzamiento y la dispersión multipotencial. El Plan de Vuelo 2.0 activa su foco monotarea (WIP=2), blindaje financiero 50/30/20 y venta activa de Sesiones de Despegue a $35k.",
+      "stats": [
+        {
+          "valor": "WIP = 2",
+          "etiqueta": "Límite Monotarea",
+          "color": "#10b981",
+          "sub": "Cero parálisis por análisis"
+        },
+        {
+          "valor": "$813.000",
+          "etiqueta": "Piso Gastos Fijos",
+          "color": "#f59e0b",
+          "sub": "Paz financiera verificada"
+        },
+        {
+          "valor": "4 Frentes",
+          "etiqueta": "Proyectos Clave",
+          "color": "#38bdf8",
+          "sub": "AH • Don Diego • Ris • Crianza"
+        },
+        {
+          "valor": "$35.000",
+          "etiqueta": "Sesión Despegue",
+          "color": "#c084fc",
+          "sub": "Oferta activa de caja"
+        }
+      ]
+    },
+    "diagnostico_inicial": {
+      "dolor_principal": "Cuello de botella por perfeccionismo previo a la venta activa y sobrecarga de frentes multipotenciales.",
+      "frentes_activos": [
+        "Administración Humana (Consultoría 1 a 1, Planes de Vuelo, Sesiones de Despegue)",
+        "Don Diego Vapor y Extracción (Marketing, Ventas, Redes)",
+        "Risalfajores (Costos ManteMagic, Producción)",
+        "Crianza y Cuidados (Roma Galia y Matías)"
+      ],
+      "horas_fuga_estimadas": "12-15 h/sem en rumiación y pulido de herramientas no publicadas",
+      "solucion_inmediata": "Sesión de Despegue a $35.000 CLP como motor de caja rápida y testing de módulos en su propio Plan de Vuelo."
+    },
+    "finanzas": {
+      "arriendo": 504520,
+      "pension_matias": 200000,
+      "cuentas_basicas": 98000,
+      "gastos_fijos_totales": 813000,
+      "meta_semanal_caja": 300000,
+      "ingreso_meta_mensual": 1200000,
+      "distribucion_503020": {
+        "necesidades_50": 600000,
+        "deseos_30": 360000,
+        "ahorro_deuda_20": 240000
+      },
+      "tarifa_minima_hora": 12000
+    },
+    "modulos_activos": [
+      "seguridad_pin",
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "foda_came",
+      "finanzas_503020",
+      "triangulacion_roles",
+      "inventario_cero_culpa",
+      "ia_chatgpt_prompts_puente"
+    ]
   }
 };
