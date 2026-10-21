@@ -109,14 +109,14 @@
 
     .platform-nav-tabs {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       align-items: center;
-      flex: 1;
-      justify-content: center;
+      flex: 1 1 auto;
+      min-width: 0;
+      justify-content: safe center;
       white-space: nowrap;
       padding: 2px 4px;
       overflow-x: auto;
-      max-width: 100%;
       scrollbar-width: none;
       -ms-overflow-style: none;
       -webkit-overflow-scrolling: touch;
@@ -230,14 +230,18 @@
     .nav-pin-short { display: none; }
 
     /* RESPONSIVE NAVBAR CALIBRATION - ANTI-CLIPPING & ADAPTIVE LABELS */
-    @media (max-width: 1320px) {
+    @media (max-width: 1450px) {
+      .plat-tab-btn { padding: 6px 10px; font-size: 0.77rem; }
+      .nav-platform-container { gap: 8px; padding: 0 12px; }
+    }
+    @media (max-width: 1260px) {
       .nav-tab-full { display: none; }
       .nav-tab-short { display: inline; }
       .nav-ig-text { display: none; }
-      .nav-brand-text { font-size: 0.92rem; }
-      .plat-tab-btn { padding: 6px 11px; font-size: 0.78rem; }
-      .nav-platform-container { gap: 8px; padding: 0 14px; }
-      .platform-nav-tabs { justify-content: center; }
+      .nav-brand-text { font-size: 0.9rem; }
+      .plat-tab-btn { padding: 6px 9px; font-size: 0.75rem; }
+      .nav-platform-container { gap: 6px; padding: 0 10px; }
+      .platform-nav-tabs { justify-content: safe center; }
     }
     @media (max-width: 1040px) {
       .nav-platform-container {
@@ -4038,19 +4042,19 @@
         <!-- Pestañas Centrales de Plataforma: Enlaces de Salto Rápido en Página Continua -->
     <div class="platform-nav-tabs">
       <button class="plat-tab-btn active" data-anchor="productos" onclick="scrollToSection('productos')" title="Las 4 modalidades de servicio y precios">
-        <span>🚀</span> <span class="nav-tab-full">1. Productos & Precios</span><span class="nav-tab-short">1. Productos</span>
+        <span>🚀</span> <span class="nav-tab-full">1. Productos</span><span class="nav-tab-short">Productos</span>
       </button>
       <button class="plat-tab-btn" data-anchor="servicio" onclick="scrollToSection('servicio')" title="Acompañamiento 1 a 1 de Diego en Google Drive">
-        <span>🧭</span> <span class="nav-tab-full">2. Acompañamiento 1:1</span><span class="nav-tab-short">2. Acompañamiento</span>
+        <span>🧭</span> <span class="nav-tab-full">2. Acompañamiento</span><span class="nav-tab-short">Acompañamiento</span>
       </button>
       <button class="plat-tab-btn" data-anchor="arsenal" onclick="scrollToSection('arsenal')" title="Arsenal de +60 módulos, simulador Kanban y formato dual">
-        <span>🧱</span> <span class="nav-tab-full">3. Arsenal Modular</span><span class="nav-tab-short">3. Arsenal</span>
+        <span>🧱</span> <span class="nav-tab-full">3. Arsenal (+60)</span><span class="nav-tab-short">Arsenal</span>
       </button>
       <button class="plat-tab-btn" data-anchor="casos" onclick="scrollToSection('casos')" title="Casos reales: Rocío, Don Diego y personalización">
-        <span>✨</span> <span class="nav-tab-full">4. Casos Reales</span><span class="nav-tab-short">4. Casos</span>
+        <span>✨</span> <span class="nav-tab-full">4. Casos</span><span class="nav-tab-short">Casos</span>
       </button>
       <button class="plat-tab-btn" data-anchor="sondeos" onclick="scrollToSection('sondeos')" title="Radiografía de dolores en 6 estaciones y WhatsApp">
-        <span>⚡</span> <span class="nav-tab-full">5. Triage Sondeos</span><span class="nav-tab-short">5. Sondeos</span>
+        <span>⚡</span> <span class="nav-tab-full">5. Triage</span><span class="nav-tab-short">Triage</span>
       </button>
     </div>
 
