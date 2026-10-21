@@ -4040,12 +4040,12 @@
 
     <!-- Pestañas Centrales de Plataforma (Círculo Dorado + Diagnóstico al final) -->
         <!-- Pestañas Centrales de Plataforma: Enlaces de Salto Rápido en Página Continua -->
-    <div class="platform-nav-tabs">
-      <button class="plat-tab-btn active" data-anchor="productos" onclick="scrollToSection('productos')" title="Las 4 modalidades de servicio y precios">
-        <span>🚀</span> <span class="nav-tab-full">1. Productos</span><span class="nav-tab-short">Productos</span>
+        <div class="platform-nav-tabs">
+      <button class="plat-tab-btn active" data-anchor="servicio" onclick="scrollToSection('servicio')" title="Acompañamiento 1 a 1 de Diego en Google Drive">
+        <span>🧭</span> <span class="nav-tab-full">1. Acompañamiento</span><span class="nav-tab-short">Acompañamiento</span>
       </button>
-      <button class="plat-tab-btn" data-anchor="servicio" onclick="scrollToSection('servicio')" title="Acompañamiento 1 a 1 de Diego en Google Drive">
-        <span>🧭</span> <span class="nav-tab-full">2. Acompañamiento</span><span class="nav-tab-short">Acompañamiento</span>
+      <button class="plat-tab-btn" data-anchor="productos" onclick="scrollToSection('productos')" title="Las 4 modalidades de servicio y precios">
+        <span>🚀</span> <span class="nav-tab-full">2. Productos</span><span class="nav-tab-short">Productos</span>
       </button>
       <button class="plat-tab-btn" data-anchor="arsenal" onclick="scrollToSection('arsenal')" title="Arsenal de +60 módulos, simulador Kanban y formato dual">
         <span>🧱</span> <span class="nav-tab-full">3. Arsenal (+60)</span><span class="nav-tab-short">Arsenal</span>
@@ -4823,953 +4823,6 @@
   </section>
 
   <!-- 2. PUENTE EMPÁTICO: NO TE FALTA VOLUNTAD -->
-  <section id="puente" class="landing-section" style="padding: 20px 0 40px 0;">
-    
-
-<!-- SCRIPT DE INTERACCIÓN, AUTO-ROTACIÓN Y SUGERENCIA DE CLICS -->
-<script>
-  (function initHeroShowcase() {
-    let currentHeroStep = 1;
-    let heroAutoTimer = null;
-    let isUserPaused = false;
-
-    const nextStepLabels = {
-      1: "Siguiente: 📄 Ficha de 1 Hoja (Papel) →",
-      2: "Siguiente: 💻 Sesión en Pantalla con Diego →",
-      3: "Siguiente: 🤝 Copiloto WhatsApp y Voz →",
-      4: "Volver a: 📱 Web App en tu Celular →"
-    };
-
-    window.activateHeroShowcaseTab = function(step, manual) {
-      if (manual) isUserPaused = true;
-      currentHeroStep = step;
-
-      // Actualizar pestañas superiores
-      for (let i = 1; i <= 4; i++) {
-        const tab = document.getElementById('hero-tab-' + i);
-        const panel = document.getElementById('hero-panel-' + i);
-        const valItem = document.getElementById('val-item-' + i);
-
-        if (tab) {
-          tab.classList.toggle('active', i === step);
-          const badge = tab.querySelector('.hsg-pulse-pill');
-          if (badge) {
-            if (i === step) {
-              badge.textContent = "● Activo";
-              badge.className = "hsg-pulse-pill";
-              badge.style.color = "#10b981";
-            } else {
-              badge.textContent = i === 2 ? "✨ Tocar" : i === 3 ? "✨ Ver" : "✨ 1 a 1";
-              badge.className = "hsg-pulse-pill hint";
-              badge.style.color = "";
-            }
-          }
-        }
-        if (panel) panel.classList.toggle('active', i === step);
-        if (valItem) valItem.classList.toggle('active', i === step);
-      }
-
-      // Actualizar barra de progreso y botón siguiente
-      const prog = document.getElementById('hero-progress-bar');
-      if (prog) prog.style.width = (step * 25) + '%';
-
-      const stepNum = document.getElementById('hero-step-num');
-      if (stepNum) stepNum.textContent = step;
-
-      const nextBtn = document.getElementById('hero-btn-next-step');
-      if (nextBtn) {
-        nextBtn.innerHTML = '<span>' + (nextStepLabels[step] || 'Siguiente →') + '</span>';
-      }
-    };
-
-    window.nextHeroShowcaseTab = function() {
-      let next = currentHeroStep + 1;
-      if (next > 4) next = 1;
-      window.activateHeroShowcaseTab(next, true);
-    };
-
-    window.pauseHeroRotation = function() {
-      isUserPaused = true;
-      if (heroAutoTimer) clearInterval(heroAutoTimer);
-    };
-
-    window.resumeHeroRotation = function() {
-      isUserPaused = false;
-      startAutoCycle();
-    };
-
-    function startAutoCycle() {
-      if (heroAutoTimer) clearInterval(heroAutoTimer);
-      heroAutoTimer = setInterval(function() {
-        if (!isUserPaused) {
-          let next = currentHeroStep + 1;
-          if (next > 4) next = 1;
-          window.activateHeroShowcaseTab(next, false);
-        }
-      }, 5000);
-    }
-
-    startAutoCycle();
-  })();
-</script>
-
-  <!-- EL PROBLEMA REAL (DE LA CABEZA SATURADA A LA CLARIDAD OPERATIVA) -->
-  <style>
-    /* ── COMPONENTE VISUAL: TRANSFORMACIÓN COGNITIVA Y OPERATIVA ── */
-    .pr-transformation-wrapper {
-      background: radial-gradient(ellipse at 15% 20%, rgba(239, 68, 68, 0.05) 0%, transparent 45%),
-                  radial-gradient(ellipse at 85% 20%, rgba(16, 185, 129, 0.06) 0%, transparent 45%),
-                  radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.04) 0%, transparent 55%),
-                  #0a0a0c;
-      border: 1px solid #26262a;
-      border-radius: var(--radius-lg);
-      padding: clamp(26px, 4vw, 44px) clamp(18px, 3.5vw, 38px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-      position: relative;
-      margin-bottom: 45px;
-    }
-    .pr-header {
-      text-align: center;
-      max-width: 840px;
-      margin: 0 auto 34px;
-    }
-    .pr-badge-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(239, 68, 68, 0.12);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.32);
-      padding: 5px 14px;
-      border-radius: 30px;
-      font-size: 0.76rem;
-      font-weight: 800;
-      font-family: var(--font-heading);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .pr-badge-dot {
-      width: 6px;
-      height: 6px;
-      background-color: #ef4444;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #ef4444;
-      animation: prPulse 2s infinite ease-in-out;
-    }
-    @keyframes prPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-    .pr-title {
-      font-family: var(--font-heading);
-      font-size: clamp(1.85rem, 3.6vw, 2.7rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin: 14px 0 12px;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-    }
-    .pr-title-gradient {
-      background: linear-gradient(135deg, #ffffff 20%, #38bdf8 65%, #34d399 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline;
-    }
-    .pr-subtitle {
-      font-size: 1.02rem;
-      color: #a1a1aa;
-      line-height: 1.6;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    /* GRID COMPARATIVO 3 COLUMNAS */
-    .pr-comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px 1fr;
-      gap: 20px;
-      align-items: stretch;
-      margin-bottom: 28px;
-    }
-    @media (max-width: 1040px) {
-      .pr-comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
-      }
-    }
-
-    /* TARJETAS DE ESTADO */
-    .pr-card {
-      border-radius: 16px;
-      border: 1px solid #27272a;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      background: #111114;
-    }
-    .pr-card-chaos {
-      border-color: rgba(239, 68, 68, 0.32);
-      background: linear-gradient(180deg, rgba(239, 68, 68, 0.06) 0%, rgba(17, 17, 20, 0.98) 100%);
-    }
-    .pr-card-order {
-      border-color: rgba(16, 185, 129, 0.36);
-      background: linear-gradient(180deg, rgba(16, 185, 129, 0.06) 0%, rgba(17, 17, 20, 0.98) 100%);
-    }
-
-    /* CABECERAS DE VENTANA / ESTADO */
-    .pr-card-header {
-      padding: 14px 18px;
-      background: rgba(0, 0, 0, 0.35);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .pr-card-status {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .pr-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-    }
-    .pr-dot.red { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.5); }
-    .pr-dot.yellow { background: #f59e0b; }
-    .pr-dot.green { background: #10b981; box-shadow: 0 0 6px rgba(16,185,129,0.5); }
-    .pr-dot.cyan { background: #38bdf8; }
-    .pr-dot.dark { background: #3f3f46; }
-    .pr-dot.white { background: #e4e4e7; }
-    .pr-card-status-title {
-      font-family: var(--font-heading);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      margin-left: 6px;
-    }
-    .pr-status-chaos .pr-card-status-title { color: #f87171; }
-    .pr-status-order .pr-card-status-title { color: #34d399; }
-
-    /* BARRAS DE RAM / CARGA */
-    .pr-ram-bar-wrap {
-      background: rgba(0, 0, 0, 0.45);
-      border-radius: 8px;
-      padding: 7px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .pr-ram-info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.74rem;
-      margin-bottom: 5px;
-      color: #94a3b8;
-    }
-    .pr-ram-track {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .pr-ram-fill {
-      height: 100%;
-      border-radius: 10px;
-    }
-    .pr-ram-danger {
-      width: 98%;
-      background: linear-gradient(90deg, #f59e0b, #ef4444);
-      box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
-    }
-    .pr-ram-success {
-      width: 22%;
-      background: linear-gradient(90deg, #10b981, #34d399);
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
-    }
-    .pr-text-danger { color: #f87171; font-weight: 700; }
-    .pr-text-success { color: #34d399; font-weight: 700; }
-
-    /* CUERPO DE TARJETA */
-    .pr-card-body {
-      padding: 18px 18px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .pr-tabs-visual-label {
-      font-size: 0.77rem;
-      font-weight: 700;
-      color: #cbd5e1;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .pr-tabs-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 18px;
-    }
-    .pr-tab-pill {
-      font-size: 0.74rem;
-      font-weight: 600;
-      padding: 4px 9px;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      line-height: 1.3;
-    }
-    .pr-tab-danger {
-      background: rgba(239, 68, 68, 0.12);
-      border: 1px solid rgba(239, 68, 68, 0.28);
-      color: #fca5a5;
-    }
-    .pr-tab-warning {
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.28);
-      color: #fcd34d;
-    }
-    .pr-tab-muted {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px dashed rgba(255, 255, 255, 0.14);
-      color: #71717a;
-      font-size: 0.71rem;
-    }
-    .pr-tab-success {
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: #6ee7b7;
-    }
-    .pr-tab-cyan {
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: #7dd3fc;
-    }
-    .pr-tab-muted-order {
-      background: rgba(16, 185, 129, 0.05);
-      border: 1px solid rgba(16, 185, 129, 0.18);
-      color: #a7f3d0;
-      font-size: 0.71rem;
-    }
-
-    /* LISTA DE IMPACTO */
-    .pr-symptoms-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: auto;
-    }
-    .pr-symptom-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      background: rgba(0, 0, 0, 0.28);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 10px 12px;
-      transition: border-color 0.2s ease;
-    }
-    .pr-symptom-item:hover {
-      border-color: rgba(255, 255, 255, 0.12);
-    }
-    .pr-symptom-icon {
-      font-size: 1.05rem;
-      line-height: 1.2;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .pr-symptom-item strong {
-      display: block;
-      font-size: 0.82rem;
-      color: #f1f5f9;
-      margin-bottom: 2px;
-      font-family: var(--font-heading);
-    }
-    .pr-symptom-item p {
-      font-size: 0.77rem;
-      color: #94a3b8;
-      line-height: 1.45;
-      margin: 0;
-    }
-    .pr-benefit-item {
-      border-color: rgba(16, 185, 129, 0.15);
-      background: rgba(16, 185, 129, 0.03);
-    }
-    .pr-benefit-item:hover {
-      border-color: rgba(16, 185, 129, 0.35);
-    }
-
-    /* FOOTERS DE TARJETA */
-    .pr-card-footer {
-      padding: 10px 18px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .pr-footer-chaos {
-      background: rgba(239, 68, 68, 0.08);
-      color: #f87171;
-    }
-    .pr-footer-order {
-      background: rgba(16, 185, 129, 0.08);
-      color: #34d399;
-    }
-
-    /* PUENTE CENTRAL (EL ACOMPAÑAMIENTO DE DIEGO) */
-    .pr-bridge-card {
-      background: linear-gradient(180deg, #101424 0%, #0a0d16 100%);
-      border: 1px solid rgba(99, 102, 241, 0.36);
-      border-radius: 16px;
-      padding: 22px 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.12);
-    }
-    .pr-bridge-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid rgba(99, 102, 241, 0.4);
-      color: #c7d2fe;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      align-self: flex-start;
-      margin-bottom: 12px;
-    }
-    .pr-bridge-title {
-      font-family: var(--font-heading);
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.3;
-      margin-bottom: 8px;
-    }
-    .pr-bridge-desc {
-      font-size: 0.8rem;
-      color: #cbd5e1;
-      line-height: 1.5;
-      margin-bottom: 18px;
-    }
-    .pr-bridge-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .pr-step-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 10px;
-      padding: 9px 11px;
-    }
-    .pr-step-num {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #6366f1, #38bdf8);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .pr-step-content strong {
-      display: block;
-      font-size: 0.79rem;
-      color: #ffffff;
-      margin-bottom: 2px;
-    }
-    .pr-step-content p {
-      font-size: 0.73rem;
-      color: #94a3b8;
-      line-height: 1.4;
-      margin: 0;
-    }
-    .pr-step-arrow {
-      text-align: center;
-      color: #6366f1;
-      font-size: 0.85rem;
-      font-weight: 800;
-      margin: -2px 0;
-    }
-    .pr-bridge-guarantee {
-      margin-top: 18px;
-      background: rgba(99, 102, 241, 0.12);
-      border: 1px dashed rgba(99, 102, 241, 0.35);
-      border-radius: 8px;
-      padding: 9px 10px;
-      text-align: center;
-      font-size: 0.75rem;
-      color: #c7d2fe;
-      font-weight: 700;
-    }
-
-    /* BANNER DE CITA Y LLAMADO */
-    .pr-quote-banner {
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.03) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .pr-quote-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      max-width: 680px;
-    }
-    .pr-quote-mark {
-      font-size: 2.8rem;
-      line-height: 1;
-      color: #38bdf8;
-      font-family: Georgia, serif;
-      opacity: 0.8;
-      flex-shrink: 0;
-    }
-    .pr-quote-text {
-      font-size: 0.95rem;
-      color: #f1f5f9;
-      line-height: 1.5;
-    }
-    .pr-quote-text strong {
-      color: #ffffff;
-      font-weight: 700;
-    }
-    .pr-quote-author {
-      display: block;
-      font-size: 0.76rem;
-      color: #94a3b8;
-      margin-top: 4px;
-      font-family: var(--font-heading);
-      letter-spacing: 0.04em;
-    }
-    .pr-quote-btn {
-      background: #ffffff;
-      color: #000000;
-      text-decoration: none;
-      padding: 11px 20px;
-      border-radius: 50px;
-      font-family: var(--font-heading);
-      font-size: 0.82rem;
-      font-weight: 800;
-      white-space: nowrap;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    }
-    .pr-quote-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 22px rgba(255, 255, 255, 0.35);
-    }
-  </style>
-
-  <div class="container" style="margin-top: 10px; margin-bottom: 30px;">
-    <div class="pr-transformation-wrapper" id="el-problema-real">
-      
-      <!-- HEADER VISUAL -->
-      <div class="pr-header">
-        <span class="pr-badge-tag">
-          <span class="pr-badge-dot"></span> ⚠️ El Origen del Colapso • No es Falta de Disciplina
-        </span>
-        <h2 class="pr-title">
-          No te falta voluntad.<br />
-          <span class="pr-title-gradient">Tu cabeza está saturada porque tu sistema no existe.</span>
-        </h2>
-        <p class="pr-subtitle">
-          Tu cerebro fue diseñado para resolver problemas, crear y decidir; no para sostener 50 compromisos abiertos en la memoria biológica. 
-          Mira la transformación cuando aplicamos <strong>acompañamiento real 1 a 1 y administración humana</strong>:
-        </p>
-      </div>
-
-      <!-- GRID COMPARATIVO: ANTES ➔ PUENTE ➔ DESPUÉS -->
-      <div class="pr-comparison-grid">
-        
-        <!-- ESTADO INICIAL: CABEZA SATURADA (ANTES) -->
-        <div class="pr-card pr-card-chaos">
-          <div class="pr-card-header">
-            <div class="pr-card-status pr-status-chaos">
-              <span class="pr-dot red"></span>
-              <span class="pr-dot yellow"></span>
-              <span class="pr-dot dark"></span>
-              <span class="pr-card-status-title">🧠 CABEZA SATURADA • SIN SISTEMA</span>
-            </div>
-            <div class="pr-ram-bar-wrap">
-              <div class="pr-ram-info">
-                <span>Carga Mental:</span>
-                <strong class="pr-text-danger">98% (Colapso inminente)</strong>
-              </div>
-              <div class="pr-ram-track">
-                <div class="pr-ram-fill pr-ram-danger"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pr-card-body">
-            <div class="pr-tabs-visual-label">
-              <span>🔥 50 Pestañas abiertas consumiendo energía:</span>
-            </div>
-            <div class="pr-tabs-cloud">
-              <div class="pr-tab-pill pr-tab-danger">💬 14 WhatsApps sin responder</div>
-              <div class="pr-tab-pill pr-tab-danger">🚨 Urgencias de última hora</div>
-              <div class="pr-tab-pill pr-tab-warning">⏳ "¿En qué se me fue el día?"</div>
-              <div class="pr-tab-pill pr-tab-warning">💳 Cobros y números por ordenar</div>
-              <div class="pr-tab-pill pr-tab-danger">🌀 Metas sin aterrizar a tareas</div>
-              <div class="pr-tab-pill pr-tab-muted">+45 frentes abiertos en segundo plano...</div>
-            </div>
-
-            <div class="pr-symptoms-list">
-              <div class="pr-symptom-item">
-                <span class="pr-symptom-icon">⚡</span>
-                <div>
-                  <strong>Decisiones por Fatiga</strong>
-                  <p>Eliges lo urgente del minuto, postergas lo estratégico y vives apagando incendios.</p>
-                </div>
-              </div>
-              <div class="pr-symptom-item">
-                <span class="pr-symptom-icon">⏳</span>
-                <div>
-                  <strong>Tiempo que se Esfuma</strong>
-                  <p>10 horas pegado a la pantalla para terminar agotado y con sensación de cero avance.</p>
-                </div>
-              </div>
-              <div class="pr-symptom-item">
-                <span class="pr-symptom-icon">😔</span>
-                <div>
-                  <strong>Culpa al Descansar</strong>
-                  <p>Te vas a acostar con el cuerpo cansado pero la cabeza encendida rumiando pendientes.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pr-card-footer pr-footer-chaos">
-            <span>❌ Diagnóstico: Todo vive en tu memoria biológica</span>
-          </div>
-        </div>
-
-        <!-- EL PUENTE: QUÉ OFREZCO EXACTAMENTE (ACOMPAÑAMIENTO DE DIEGO) -->
-        <div class="pr-bridge-card">
-          <div>
-            <div class="pr-bridge-badge">
-              🤝 QUÉ OFREZCO EXACTAMENTE
-            </div>
-            <h3 class="pr-bridge-title">
-              Me siento contigo a ordenar el tablero
-            </h3>
-            <p class="pr-bridge-desc">
-              No te vendo un curso grabado ni una app fría. Te acompaño mano a mano para traducir el caos a estructura real:
-            </p>
-
-            <div class="pr-bridge-steps">
-              <div class="pr-step-item">
-                <div class="pr-step-num">1</div>
-                <div class="pr-step-content">
-                  <strong>Escucha Activa y Desahogo</strong>
-                  <p>Vaciamos todas las pestañas de tu cabeza en una sesión guiada sin juzgarte.</p>
-                </div>
-              </div>
-              <div class="pr-step-arrow">↓</div>
-              <div class="pr-step-item">
-                <div class="pr-step-num">2</div>
-                <div class="pr-step-content">
-                  <strong>Traducción Técnica en tu Idioma</strong>
-                  <p>Aterrizamos la administración a reglas simples y hábitos viables para tu ritmo.</p>
-                </div>
-              </div>
-              <div class="pr-step-arrow">↓</div>
-              <div class="pr-step-item">
-                <div class="pr-step-num">3</div>
-                <div class="pr-step-content">
-                  <strong>Plan de Vuelo en tu Portal</strong>
-                  <p>Herramientas en tu portal privado que calibramos y sostenemos semana a semana.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pr-bridge-guarantee">
-            <span>✨ El sistema sostiene el trabajo • Tu mente queda libre</span>
-          </div>
-        </div>
-
-        <!-- ESTADO FINAL: CABEZA ORDENADA (DESPUÉS) -->
-        <div class="pr-card pr-card-order">
-          <div class="pr-card-header">
-            <div class="pr-card-status pr-status-order">
-              <span class="pr-dot green"></span>
-              <span class="pr-dot cyan"></span>
-              <span class="pr-dot white"></span>
-              <span class="pr-card-status-title">💎 MENTE CLARA • SISTEMA EN MARCHA</span>
-            </div>
-            <div class="pr-ram-bar-wrap">
-              <div class="pr-ram-info">
-                <span>Carga Mental:</span>
-                <strong class="pr-text-success">22% (Modo Enfoque & Creación)</strong>
-              </div>
-              <div class="pr-ram-track">
-                <div class="pr-ram-fill pr-ram-success"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pr-card-body">
-            <div class="pr-tabs-visual-label">
-              <span>🟢 Cabina de mando despejada y priorizada:</span>
-            </div>
-            <div class="pr-tabs-cloud">
-              <div class="pr-tab-pill pr-tab-success">🎯 Hoy: Solo 2 prioridades (WIP=2)</div>
-              <div class="pr-tab-pill pr-tab-success">⏳ 168h: Bloques protegidos</div>
-              <div class="pr-tab-pill pr-tab-cyan">🛡️ Criterio claro para decir "NO"</div>
-              <div class="pr-tab-pill pr-tab-cyan">📋 Portal 100% sincronizado</div>
-              <div class="pr-tab-pill pr-tab-success">🌙 Cierre de jornada en paz a las 19:30</div>
-              <div class="pr-tab-pill pr-tab-muted-order">✓ Cero pendientes volando en la cabeza</div>
-            </div>
-
-            <div class="pr-symptoms-list">
-              <div class="pr-symptom-item pr-benefit-item">
-                <span class="pr-symptom-icon">🎯</span>
-                <div>
-                  <strong>Decisiones Rápidas y Claras</strong>
-                  <p>Sabes en 30 segundos qué hacer hoy, qué agendar y qué descartar sin dudar.</p>
-                </div>
-              </div>
-              <div class="pr-symptom-item pr-benefit-item">
-                <span class="pr-symptom-icon">⚡</span>
-                <div>
-                  <strong>Soberanía de tu Tiempo</strong>
-                  <p>Resuelves en 4 horas enfocadas lo que antes te tomaba días de dispersión y estrés.</p>
-                </div>
-              </div>
-              <div class="pr-symptom-item pr-benefit-item">
-                <span class="pr-symptom-icon">🧘‍♂️</span>
-                <div>
-                  <strong>Cierre de Día Sin Culpa</strong>
-                  <p>Cierras tu laptop sabiendo que todo está capturado en tu portal y descansas de verdad.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pr-card-footer pr-footer-order">
-            <span>✅ Resultado: Tu sistema opera por ti • Recuperas tu vida</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- BANNER DE CITA Y LLAMADO DIRECTO -->
-      <div class="pr-quote-banner">
-        <div class="pr-quote-left">
-          <div class="pr-quote-mark">“</div>
-          <div>
-            <div class="pr-quote-text">
-              El problema no eres tú. Es que nadie te enseñó a gestionar tu vida como lo que es: 
-              <strong>el proyecto más importante que tendrás.</strong>
-            </div>
-            <div class="pr-quote-author">
-              — Diego Alberto González Yáñez <span>• Fundador de Administración Humana</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <a href="#contacto" class="pr-quote-btn">
-            Ordenar mi Cabeza 1 a 1 →
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MI FILOSOFÍA DE TRABAJO • EL CÍRCULO DORADO CONCÉNTRICO INTERACTIVO -->
-  
-  </section>
-
-  <!-- 3. MENÚ DESEMPAQUETADO & PRODUCTOS ($35k, $190k, $65k, Vitrina) -->
-  <section id="productos" class="landing-section" style="padding: 50px 0 40px 0; border-top: 1px solid rgba(255,255,255,0.06);">
-    
-    <span id="precios"></span>
-    
-  
-  
-  
-  
-
-  <div class="container" style="padding-top: 50px; padding-bottom: 70px;">
-    
-    <!-- CABECERA PRINCIPAL: MENÚ DESEMPAQUETADO & SOLUCIONES TANGIBLES -->
-    <div style="text-align: center; max-width: 860px; margin: 0 auto 28px;" id="productos-header">
-      <span style="background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); color: #10b981; font-size: 0.76rem; font-weight: 800; padding: 5px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
-        🚀 3. EL QUÉ • MENÚ DESEMPAQUETADO & SOLUCIONES TANGIBLES
-      </span>
-      <h2 style="font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: #fff; margin-top: 14px; line-height: 1.2;">
-        Las 4 Formas Concretas de Trabajar Conmigo
-      </h2>
-      <p style="font-size: 0.95rem; color: #a1a1aa; line-height: 1.65; max-width: 820px; margin: 0 auto 10px;">
-        Servicios desempaquetados y transparentes. No todos necesitan lo mismo: el Plan de Vuelo es 1 de nuestros productos completos, pero perfectamente podemos sincronizar directamente con tu propio Google Drive para un destrabe puntual, montar tu Oficina 2.0 o sumarte a nuestra Vitrina con Propósito. Elige la escala que responde a tu momento de hoy:
-      </p>
-    </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
-        
-        <!-- SERVICIO 1: SESIÓN DE DESTRABE PUNTUAL -->
-        <div style="background: #0c0c0f; border: 1px solid rgba(56,189,248,0.35); border-radius: var(--radius-lg); padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 25px rgba(56,189,248,0.08);">
-          <div>
-            <span style="font-size: 0.7rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 10px;">
-              ✦ FOCO QUIRÚRGICO • 1 SESIÓN ✦
-            </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
-              Sesión de Destrabe Puntual & Carpeta Drive
-            </h4>
-            <p style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 14px;">
-              75 min mano a mano para resolver 1 cuello de botella urgente (ordenar tu semana, costear un producto o vaciar tu mente).
-            </p>
-            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid #1f1f1f; padding-bottom: 12px;">
-              <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #fff;">$35.000</span>
-              <span style="font-size: 0.8rem; color: #888;">CLP</span>
-            </div>
-            <ul style="list-style: none; font-size: 0.8rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Sesión individual de 75 min online o presencial.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Carpeta privada en <b>TU Google Drive</b>.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>1 herramienta interactiva configurada para ti.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Plantilla física lista para imprimir en 1 hoja.</span></li>
-            </ul>
-          </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20de%20Destrabe%20Puntual%20y%20Carpeta%20Drive%20($35.000%20CLP)." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #38bdf8; color: #000; border: none; font-size: 0.82rem;">
-            Agendar Destrabe ($35k) →
-          </a>
-        </div>
-
-        <!-- SERVICIO 2: PLAN DE VUELO INTEGRAL (CORE PRODUCT) -->
-        <div style="background: radial-gradient(circle at top right, rgba(16,185,129,0.12) 0%, #0d0e14 100%); border: 2px solid #10b981; border-radius: var(--radius-lg); padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 30px rgba(16,185,129,0.2); position: relative;">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:6px;">
-              <span style="font-size: 0.7rem; font-weight: 800; color: #10b981; text-transform: uppercase; background: rgba(16,185,129,0.18); border: 1px solid rgba(16,185,129,0.45); padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items:center; gap:4px;">
-                ✦ MÁS ELEGIDO • 4 SEMANAS ✦
-              </span>
-              <span style="font-size:0.72rem; color:#34d399; font-weight:700;">★ Cupos Limitados</span>
-            </div>
-            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
-              Tu Sistema de Gestión Personalizado (SGP) — Plan de Vuelo
-            </h4>
-            <p style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 14px;">
-              La transformación integral: co-creamos e instalamos tu sistema operativo semana a semana en tu Drive con acompañamiento continuo.
-            </p>
-            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px;">
-              <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #fff;">$190.000</span>
-              <span style="font-size: 0.8rem; color: #10b981; font-weight: 700;">CLP</span>
-            </div>
-            <div style="font-size: 0.74rem; color: #94a3b8; margin-bottom: 14px; border-bottom: 1px solid rgba(16,185,129,0.25); padding-bottom: 10px;">
-              o 2 cuotas de $98.000 CLP (o 3 de $68.000)
-            </div>
-            <ul style="list-style: none; font-size: 0.8rem; color: #f3f4f6; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
-              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>4 sesiones 1 a 1 en vivo</b> de co-creación profunda.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Tu Tablero Web Interactivo</b> con acceso por PIN.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Cuadernillo Físico Imprimible</b> de 1 hoja carta.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Acompañamiento por WhatsApp</b> continuo entre sesiones.</span></li>
-            </ul>
-          </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20me%20gustar%C3%ADa%20iniciar%20Tu%20Sistema%20de%20Gesti%C3%B3n%20Personalizado%20(SGP)%20%E2%80%94%20Plan%20de%20Vuelo." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px; font-weight: 800; background: #10b981; color: #000; border-radius: 50px; text-decoration: none; display: block; font-size: 0.82rem; box-shadow: 0 0 15px rgba(16,185,129,0.35);">
-            Comenzar Mi SGP Plan de Vuelo →
-          </a>
-        </div>
-
-        <!-- SERVICIO 3: VITRINA CON PROPÓSITO & CO-MARKETING -->
-        <div style="background: #0c0c0f; border: 1px solid rgba(245,158,11,0.35); border-radius: var(--radius-lg); padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 25px rgba(245,158,11,0.08);">
-          <div>
-            <span style="font-size: 0.7rem; font-weight: 800; color: #fbbf24; text-transform: uppercase; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 10px;">
-              ✦ CO-MARKETING • EN TERRENO U ONLINE ✦
-            </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
-              Vitrina con Propósito & Co-Marketing
-            </h4>
-            <p style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 14px;">
-              Para emprendedores y creadores con excelentes productos que necesitan visibilidad auténtica: destrabamos un nudo en vivo y te promociono en mis redes.
-            </p>
-            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid #1f1f1f; padding-bottom: 12px;">
-              <span style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fbbf24;">Aporte Voluntario</span>
-            </div>
-            <ul style="list-style: none; font-size: 0.8rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Visita presencial a tu taller/local o sesión online.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Diagnóstico y resolución de 1 problema en vivo.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Grabación de cápsula mostrando tu trabajo real.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Difusión en mis redes y entrega del video para ti.</span></li>
-            </ul>
-          </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20tengo%20un%20emprendimiento%20y%20me%20gustar%C3%ADa%20postular%20a%20Vitrina%20con%20Prop%C3%B3sito%20y%20Co-Marketing." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #f59e0b; color: #000; border: none; font-size: 0.82rem;">
-            Postular a Vitrina con Propósito →
-          </a>
-        </div>
-
-        <!-- SERVICIO 4: CREACIÓN DE TU OFICINA 2.0 -->
-        <div style="background: #0c0c0f; border: 1px solid rgba(168,85,247,0.35); border-radius: var(--radius-lg); padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 25px rgba(168,85,247,0.08);">
-          <div>
-            <span style="font-size: 0.7rem; font-weight: 800; color: #c084fc; text-transform: uppercase; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 10px;">
-              ✦ TECNOLOGÍA • SIN PROGRAMAR ✦
-            </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
-              Creación de tu Oficina 2.0: Centralizada y Gestionada
-            </h4>
-            <p style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 14px;">
-              Instalamos tu centro de comandos inteligente en tu computador + Google Drive. Aprende a usar IA para costear, redactar y organizar en español cotidiano.
-            </p>
-            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid #1f1f1f; padding-bottom: 12px;">
-              <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #fff;">$65.000</span>
-              <span style="font-size: 0.8rem; color: #888;">CLP</span>
-            </div>
-            <ul style="list-style: none; font-size: 0.8rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Instalación y configuración llave en mano en tu PC.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Vinculación a tus carpetas reales en Google Drive.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Plantilla de 10 prompts canónicos para tu negocio.</span></li>
-              <li style="display:flex; gap:6px;"><span>✓</span> <span>Taller 1:1 de 90 min para operar tu asistente en español.</span></li>
-            </ul>
-          </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20crear%20mi%20Oficina%202.0%20centralizada%20y%20gestionada%20desde%201%20solo%20lugar%20($65.000%20CLP)." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #a855f7; color: #000; border: none; font-size: 0.82rem;">
-            Crear Mi Oficina 2.0 ($65k) →
-          </a>
-        </div>
-
-      </div>
-
-
-    <!-- CALLOUT ESTRATÉGICO: TU GOOGLE DRIVE VS EL PLAN DE VUELO -->
-    <div style="max-width: 1200px; margin: 36px auto 50px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(13, 13, 18, 0.98) 100%); border: 1.5px solid #06b6d4; border-radius: 16px; padding: 24px 26px; display: flex; align-items: flex-start; gap: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-      <div style="font-size: 2.2rem; background: rgba(6, 182, 212, 0.18); border: 1px solid rgba(6, 182, 212, 0.4); width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-        💡
-      </div>
-      <div>
-        <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 800; color: #06b6d4; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">
-          ✦ CLAVE ESTRATÉGICA • TU PROPIO DRIVE ES TU CENTRO DE VERDAD ✦
-        </div>
-        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
-          El Plan de Vuelo es solo 1 producto: tus herramientas viven y se trabajan en tu propio Google Drive
-        </h4>
-        <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
-          <b>No estás obligado a contratar un sistema gigante si solo tienes un nudo puntual en tu semana.</b> El Plan de Vuelo es una plataforma web completa que integra varios módulos a la vez. Pero en cualquiera de nuestras modalidades, abrimos tu carpeta directamente en <b>TU propio Google Drive</b> y te dejamos plantillas de 1 hoja, bitácoras táctiles y micro-herramientas para que avances a tu ritmo. <b>Tu información es 100% tuya, privada y para siempre.</b>
-        </p>
-      </div>
-    </div>
-
-
-    
-  </section>
-
-  <!-- 4. LA FORMA DE DAR EL SERVICIO: ACOMPAÑAMIENTO 1 A 1 (DIEGO) -->
   <section id="servicio" class="landing-section" style="padding: 50px 0 40px 0; border-top: 1px solid rgba(255,255,255,0.06);">
     
     
@@ -5780,9 +4833,7 @@
 
   <!-- CABECERA INTRODUCTORIA DE EL CÓMO (ENFOQUE 100% EN EL MÉTODO Y ACOMPAÑAMIENTO HUMANO) -->
   <div class="container" style="padding-top: 45px; text-align: center; max-width: 840px; margin: 0 auto 20px;">
-    <span style="background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.35); color: #38bdf8; font-size: 0.76rem; font-weight: 800; padding: 5px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
-      🧭 2. EL CÓMO • MÉTODO & ACOMPAÑAMIENTO HUMANO
-    </span>
+    <span style="background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); color: #38bdf8; font-size: 0.76rem; font-weight: 800; padding: 5px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em; display: inline-flex; align-items: center; gap: 6px;">✦ 1. EL ACOMPAÑAMIENTO HUMANO • EL NÚCLEO DEL SERVICIO ✦</span>
     <h2 style="font-family: var(--font-heading); font-size: clamp(1.8rem, 3.8vw, 2.5rem); font-weight: 800; color: #fff; margin-top: 14px; line-height: 1.25;">
       Acompañamiento 1 a 1 a Escala Humana: Sin Bots ni Intermediarios
     </h2>
@@ -6085,6 +5136,174 @@
   </section>
 
   <!-- 5. POSIBILIDADES & ARSENAL MODULAR (KANBAN WIP 2, 24H, SHUTDOWN, DUAL) -->
+  <section id="productos" class="landing-section" style="padding: 50px 0 40px 0; border-top: 1px solid rgba(255,255,255,0.06);">
+    
+    <span id="precios"></span>
+    
+  
+  
+  
+  
+
+  <div class="container" style="padding-top: 50px; padding-bottom: 70px;">
+    
+    <!-- CABECERA PRINCIPAL: MENÚ DESEMPAQUETADO & SOLUCIONES TANGIBLES -->
+    <div style="text-align: center; max-width: 860px; margin: 0 auto 28px;" id="productos-header">
+      <span style="background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); color: #10b981; font-size: 0.76rem; font-weight: 800; padding: 5px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em; display: inline-flex; align-items: center; gap: 6px;">✦ 2. MODALIDADES & PRECIOS TRANSPARENTES ✦</span>
+      <h2 style="font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: #fff; margin-top: 14px; line-height: 1.2;">
+        Las 4 Formas Concretas de Trabajar Conmigo
+      </h2>
+      <p style="font-size: 0.95rem; color: #a1a1aa; line-height: 1.65; max-width: 820px; margin: 0 auto 10px;">
+        Servicios desempaquetados y transparentes. No todos necesitan lo mismo: el Plan de Vuelo es 1 de nuestros productos completos, pero perfectamente podemos sincronizar directamente con tu propio Google Drive para un destrabe puntual, montar tu Oficina 2.0 o sumarte a nuestra Vitrina con Propósito. Elige la escala que responde a tu momento de hoy:
+      </p>
+    </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+        
+        <!-- SERVICIO 1: SESIÓN DE DESTRABE PUNTUAL -->
+        <div style="background: #0c0c0f; border: 1px solid rgba(56,189,248,0.35); border-radius: var(--radius-lg); padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 25px rgba(56,189,248,0.08);">
+          <div>
+            <span style="font-size: 0.7rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 10px;">
+              ✦ FOCO QUIRÚRGICO • 1 SESIÓN ✦
+            </span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+              Sesión de Destrabe Puntual & Carpeta Drive
+            </h4>
+            <p style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 14px;">
+              75 min mano a mano para resolver 1 cuello de botella urgente (ordenar tu semana, costear un producto o vaciar tu mente).
+            </p>
+            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid #1f1f1f; padding-bottom: 12px;">
+              <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #fff;">$35.000</span>
+              <span style="font-size: 0.8rem; color: #888;">CLP</span>
+            </div>
+            <ul style="list-style: none; font-size: 0.8rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Sesión individual de 75 min online o presencial.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Carpeta privada en <b>TU Google Drive</b>.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>1 herramienta interactiva configurada para ti.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Plantilla física lista para imprimir en 1 hoja.</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20de%20Destrabe%20Puntual%20y%20Carpeta%20Drive%20($35.000%20CLP)." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #38bdf8; color: #000; border: none; font-size: 0.82rem;">
+            Agendar Destrabe ($35k) →
+          </a>
+        </div>
+
+        <!-- SERVICIO 2: PLAN DE VUELO INTEGRAL (CORE PRODUCT) -->
+        <div style="background: radial-gradient(circle at top right, rgba(16,185,129,0.12) 0%, #0d0e14 100%); border: 2px solid #10b981; border-radius: var(--radius-lg); padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 30px rgba(16,185,129,0.2); position: relative;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:6px;">
+              <span style="font-size: 0.7rem; font-weight: 800; color: #10b981; text-transform: uppercase; background: rgba(16,185,129,0.18); border: 1px solid rgba(16,185,129,0.45); padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items:center; gap:4px;">
+                ✦ MÁS ELEGIDO • 4 SEMANAS ✦
+              </span>
+              <span style="font-size:0.72rem; color:#34d399; font-weight:700;">★ Cupos Limitados</span>
+            </div>
+            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+              Tu Sistema de Gestión Personalizado (SGP) — Plan de Vuelo
+            </h4>
+            <p style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 14px;">
+              La transformación integral: co-creamos e instalamos tu sistema operativo semana a semana en tu Drive con acompañamiento continuo.
+            </p>
+            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px;">
+              <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #fff;">$190.000</span>
+              <span style="font-size: 0.8rem; color: #10b981; font-weight: 700;">CLP</span>
+            </div>
+            <div style="font-size: 0.74rem; color: #94a3b8; margin-bottom: 14px; border-bottom: 1px solid rgba(16,185,129,0.25); padding-bottom: 10px;">
+              o 2 cuotas de $98.000 CLP (o 3 de $68.000)
+            </div>
+            <ul style="list-style: none; font-size: 0.8rem; color: #f3f4f6; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>4 sesiones 1 a 1 en vivo</b> de co-creación profunda.</span></li>
+              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Tu Tablero Web Interactivo</b> con acceso por PIN.</span></li>
+              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Cuadernillo Físico Imprimible</b> de 1 hoja carta.</span></li>
+              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Acompañamiento por WhatsApp</b> continuo entre sesiones.</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20me%20gustar%C3%ADa%20iniciar%20Tu%20Sistema%20de%20Gesti%C3%B3n%20Personalizado%20(SGP)%20%E2%80%94%20Plan%20de%20Vuelo." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px; font-weight: 800; background: #10b981; color: #000; border-radius: 50px; text-decoration: none; display: block; font-size: 0.82rem; box-shadow: 0 0 15px rgba(16,185,129,0.35);">
+            Comenzar Mi SGP Plan de Vuelo →
+          </a>
+        </div>
+
+        <!-- SERVICIO 3: VITRINA CON PROPÓSITO & CO-MARKETING -->
+        <div style="background: #0c0c0f; border: 1px solid rgba(245,158,11,0.35); border-radius: var(--radius-lg); padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 25px rgba(245,158,11,0.08);">
+          <div>
+            <span style="font-size: 0.7rem; font-weight: 800; color: #fbbf24; text-transform: uppercase; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 10px;">
+              ✦ CO-MARKETING • EN TERRENO U ONLINE ✦
+            </span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+              Vitrina con Propósito & Co-Marketing
+            </h4>
+            <p style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 14px;">
+              Para emprendedores y creadores con excelentes productos que necesitan visibilidad auténtica: destrabamos un nudo en vivo y te promociono en mis redes.
+            </p>
+            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid #1f1f1f; padding-bottom: 12px;">
+              <span style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fbbf24;">Aporte Voluntario</span>
+            </div>
+            <ul style="list-style: none; font-size: 0.8rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Visita presencial a tu taller/local o sesión online.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Diagnóstico y resolución de 1 problema en vivo.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Grabación de cápsula mostrando tu trabajo real.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Difusión en mis redes y entrega del video para ti.</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20tengo%20un%20emprendimiento%20y%20me%20gustar%C3%ADa%20postular%20a%20Vitrina%20con%20Prop%C3%B3sito%20y%20Co-Marketing." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #f59e0b; color: #000; border: none; font-size: 0.82rem;">
+            Postular a Vitrina con Propósito →
+          </a>
+        </div>
+
+        <!-- SERVICIO 4: CREACIÓN DE TU OFICINA 2.0 -->
+        <div style="background: #0c0c0f; border: 1px solid rgba(168,85,247,0.35); border-radius: var(--radius-lg); padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 25px rgba(168,85,247,0.08);">
+          <div>
+            <span style="font-size: 0.7rem; font-weight: 800; color: #c084fc; text-transform: uppercase; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 10px;">
+              ✦ TECNOLOGÍA • SIN PROGRAMAR ✦
+            </span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+              Creación de tu Oficina 2.0: Centralizada y Gestionada
+            </h4>
+            <p style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 14px;">
+              Instalamos tu centro de comandos inteligente en tu computador + Google Drive. Aprende a usar IA para costear, redactar y organizar en español cotidiano.
+            </p>
+            <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid #1f1f1f; padding-bottom: 12px;">
+              <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #fff;">$65.000</span>
+              <span style="font-size: 0.8rem; color: #888;">CLP</span>
+            </div>
+            <ul style="list-style: none; font-size: 0.8rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Instalación y configuración llave en mano en tu PC.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Vinculación a tus carpetas reales en Google Drive.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Plantilla de 10 prompts canónicos para tu negocio.</span></li>
+              <li style="display:flex; gap:6px;"><span>✓</span> <span>Taller 1:1 de 90 min para operar tu asistente en español.</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20crear%20mi%20Oficina%202.0%20centralizada%20y%20gestionada%20desde%201%20solo%20lugar%20($65.000%20CLP)." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #a855f7; color: #000; border: none; font-size: 0.82rem;">
+            Crear Mi Oficina 2.0 ($65k) →
+          </a>
+        </div>
+
+      </div>
+
+
+    <!-- CALLOUT ESTRATÉGICO: TU GOOGLE DRIVE VS EL PLAN DE VUELO -->
+    <div style="max-width: 1200px; margin: 36px auto 50px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(13, 13, 18, 0.98) 100%); border: 1.5px solid #06b6d4; border-radius: 16px; padding: 24px 26px; display: flex; align-items: flex-start; gap: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+      <div style="font-size: 2.2rem; background: rgba(6, 182, 212, 0.18); border: 1px solid rgba(6, 182, 212, 0.4); width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        💡
+      </div>
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 800; color: #06b6d4; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">
+          ✦ CLAVE ESTRATÉGICA • TU PROPIO DRIVE ES TU CENTRO DE VERDAD ✦
+        </div>
+        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+          El Plan de Vuelo es solo 1 producto: tus herramientas viven y se trabajan en tu propio Google Drive
+        </h4>
+        <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
+          <b>No estás obligado a contratar un sistema gigante si solo tienes un nudo puntual en tu semana.</b> El Plan de Vuelo es una plataforma web completa que integra varios módulos a la vez. Pero en cualquiera de nuestras modalidades, abrimos tu carpeta directamente en <b>TU propio Google Drive</b> y te dejamos plantillas de 1 hoja, bitácoras táctiles y micro-herramientas para que avances a tu ritmo. <b>Tu información es 100% tuya, privada y para siempre.</b>
+        </p>
+      </div>
+    </div>
+
+
+    
+  </div>
+</section>
+
+  <!-- 4. LA FORMA DE DAR EL SERVICIO: ACOMPAÑAMIENTO 1 A 1 (DIEGO) -->
   <section id="arsenal" class="landing-section" style="padding: 50px 0 40px 0; border-top: 1px solid rgba(255,255,255,0.06);">
     
     
@@ -7123,7 +6342,129 @@
   <!-- ══════════════════════════════════════════════════════════════════
        SECCIÓN 7: FILOSOFÍA Y FUNDAMENTOS (EXPANDIBLE / ACORDEÓN)
        ══════════════════════════════════════════════════════════════════ -->
-  <section id="filosofia-desplegable" class="landing-section" style="padding: 40px 0 60px 0; border-top: 1px solid rgba(255,255,255,0.08);">
+  <section id="faq-cierre" class="landing-section" style="padding: 40px 0 80px 0;">
+    <div style="margin-top: 50px; margin-bottom: 60px;" id="faq-resumen-inversion">
+
+<!-- BANNER DE GARANTÍA DE CLARIDAD RADICAL EN SESIÓN 1 -->
+      <div style="max-width: 860px; margin: 36px auto 0; background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(13,13,18,0.95) 100%); border: 1px solid rgba(16,185,129,0.35); border-radius: var(--radius-lg); padding: 26px 28px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+        <div style="font-size: 2.2rem; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); width: 62px; height: 62px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          🛡️
+        </div>
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 6px; flex-wrap:wrap;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #10b981; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(16,185,129,0.15); padding: 2px 8px; border-radius: 4px;">
+              100% LIBRE DE RIESGO
+            </span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin: 0;">
+              Garantía de Claridad Total en tu Primera Sesión
+            </h4>
+          </div>
+          <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
+            Si al terminar tu primera sesión de trabajo sientes que el enfoque o las herramientas no se adaptan a tu forma de pensar y operar, te devuelvo el <b>100% de tu dinero de inmediato</b>, sin preguntas ni condiciones ocultas. El riesgo es completamente mío.
+          </p>
+        </div>
+      </div>
+
+      <!-- PREGUNTAS FRECUENTES (FAQ ACORDEÓN) -->
+      <div style="max-width: 860px; margin: 50px auto 30px;">
+        <div style="text-align: center; margin-bottom: 28px;">
+          <span class="section-tag" style="background: rgba(56,189,248,0.12); color: #38bdf8; border-color: rgba(56,189,248,0.3);">
+            💬 DUDAS FRECUENTES • RESPUESTAS DIRECTAS
+          </span>
+          <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 10px;">
+            Preguntas Frecuentes antes de Despegar
+          </h3>
+          <p style="font-size: 0.88rem; color: #a1a1aa; margin-top: 6px;">
+            Las respuestas más claras a lo que se pregunta un independiente antes de empezar:
+          </p>
+        </div>
+
+        <div class="faq-accordion-group">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
+              <span>¿Necesito saber de tecnología, Notion o instalar aplicaciones complejas?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p><b>Absolutamente no.</b> Tú no tienes que aprender software complejo ni ver tutoriales. Yo me encargo de estructurar y programar tus herramientas en pantalla durante las sesiones. Tú solo accedes a tu Plan de Vuelo desde tu celular o computador mediante un enlace privado con tu PIN personal, acompañado de tus fichas físicas de 1 hoja.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
+              <span>¿Cuánto tiempo a la semana me va a demandar el acompañamiento?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Solo la sesión semanal de <b>75 minutos mano a mano con Diego</b> y <b>2 minutos al final de cada día</b> para ejecutar tu checklist táctil de Cierre Consciente (Shutdown). El objetivo no es darte una tarea más, sino devolverte de 5 a 10 horas libres cada semana.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
+              <span>¿Qué pasa si mis horarios o compromisos cambian todas las semanas?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Precisamente por eso no te imponemos un horario rígido. El <b>Mapeador 24H</b> funciona por cajitas dinámicas y <i>Batching</i> (agrupación inteligente de tareas similares). Si tu semana cambia por una urgencia o un proyecto nuevo, recalibras tu mapa visual en 3 minutos sin que el sistema colapse.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
+              <span>¿Cómo funcionan las formas de pago, cuotas y abonos?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Puedes pagar mediante transferencia bancaria directa en pesos chilenos (CLP). Si tomas la <b>Sesión de Despegue ($35.000 CLP)</b> y luego decides continuar al Plan Integral ($190.000 CLP), <b>los $35.000 se descuentan íntegramente</b> del total. Además, el Plan Integral cuenta con facilidad de pago en 2 cuotas de $98.000 o 3 cuotas de $68.000.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ACCESO RÁPIDO POR PIN PARA CLIENTES ACTIVOS -->
+    <div style="max-width: 520px; margin: 40px auto 20px; background: #0c0c0e; border: 1px solid #333; border-radius: var(--radius-lg); padding: 32px 28px; text-align: center; box-shadow: 0 0 30px rgba(0,0,0,0.8);">
+      <span style="display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); font-size:1.6rem; margin-bottom:12px;">🔒</span>
+      <h3 style="font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:#fff;">¿Ya eres Cliente Activo?</h3>
+      <p style="font-size:0.86rem; color:#888; margin:6px 0 20px;">Ingresa tu usuario y PIN asignado para abrir tu tablero 100% interactivo.</p>
+      
+      <div id="tab-pin-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid #ef4444; color:#fca5a5; padding:10px 14px; border-radius:8px; font-size:0.82rem; margin-bottom:14px; text-align:left;"></div>
+
+      <form onsubmit="handleTabPinSubmit(event); return false;" style="display:flex; flex-direction:column; gap:12px;">
+        <input 
+          type="text" 
+          id="tab-client-user" 
+          class="auth-input" 
+          placeholder="Tu usuario asignado" 
+          autocomplete="username"
+          style="font-size:0.95rem; padding:12px 14px; border-radius:10px;"
+        />
+        <input 
+          type="password" 
+          id="tab-client-pin" 
+          class="auth-input" 
+          placeholder="••••••••••••" 
+          required 
+          autocomplete="current-password"
+          style="font-size:1.1rem; letter-spacing:0.1em; padding:12px 14px; border-radius:10px; font-family:monospace;"
+        />
+        <button type="submit" id="btn-tab-submit-pin" class="auth-btn-submit" style="font-weight:800; padding:13px; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:50px;">
+          <span>Ingresar a Mi Plan</span> <span>→</span>
+        </button>
+      </form>
+      <div style="margin-top:16px; font-size:0.78rem; color:#666;">
+        ¿Olvidaste tu clave? <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mi%20clave%20para%20mi%20Plan%20de%20Vuelo" target="_blank" style="color:#10b981; font-weight:700; text-decoration:none;">Escríbele a Diego por WhatsApp</a>
+      </div>
+  </section>
+
+</div>
+<section id="filosofia-desplegable" class="landing-section" style="padding: 40px 0 60px 0; border-top: 1px solid rgba(255,255,255,0.08);">
     <div class="container" style="max-width: 1220px; margin: 0 auto; padding: 0 16px;">
       <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 18px 24px; cursor: pointer; transition: all 0.3s ease;">
         <summary style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; justify-content: space-between; outline: none; list-style: none;">
@@ -7581,153 +6922,8 @@
 
 
   <!-- FAQ / PRECIOS FINAL -->
-  <section id="faq-cierre" class="landing-section" style="padding: 40px 0 80px 0;">
-    <div style="margin-top: 50px; margin-bottom: 60px;" id="faq-resumen-inversion">
-
-<!-- BANNER DE GARANTÍA DE CLARIDAD RADICAL EN SESIÓN 1 -->
-      <div style="max-width: 860px; margin: 36px auto 0; background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(13,13,18,0.95) 100%); border: 1px solid rgba(16,185,129,0.35); border-radius: var(--radius-lg); padding: 26px 28px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
-        <div style="font-size: 2.2rem; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); width: 62px; height: 62px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          🛡️
-        </div>
-        <div>
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 6px; flex-wrap:wrap;">
-            <span style="font-size: 0.72rem; font-weight: 800; color: #10b981; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(16,185,129,0.15); padding: 2px 8px; border-radius: 4px;">
-              100% LIBRE DE RIESGO
-            </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin: 0;">
-              Garantía de Claridad Total en tu Primera Sesión
-            </h4>
-          </div>
-          <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.5; margin: 0;">
-            Si al terminar tu primera sesión de trabajo sientes que el enfoque o las herramientas no se adaptan a tu forma de pensar y operar, te devuelvo el <b>100% de tu dinero de inmediato</b>, sin preguntas ni condiciones ocultas. El riesgo es completamente mío.
-          </p>
-        </div>
-      </div>
-
-      <!-- PREGUNTAS FRECUENTES (FAQ ACORDEÓN) -->
-      <div style="max-width: 860px; margin: 50px auto 30px;">
-        <div style="text-align: center; margin-bottom: 28px;">
-          <span class="section-tag" style="background: rgba(56,189,248,0.12); color: #38bdf8; border-color: rgba(56,189,248,0.3);">
-            💬 DUDAS FRECUENTES • RESPUESTAS DIRECTAS
-          </span>
-          <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 10px;">
-            Preguntas Frecuentes antes de Despegar
-          </h3>
-          <p style="font-size: 0.88rem; color: #a1a1aa; margin-top: 6px;">
-            Las respuestas más claras a lo que se pregunta un independiente antes de empezar:
-          </p>
-        </div>
-
-        <div class="faq-accordion-group">
-          <!-- FAQ 1 -->
-          <div class="faq-item">
-            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
-              <span>¿Necesito saber de tecnología, Notion o instalar aplicaciones complejas?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-content">
-              <p><b>Absolutamente no.</b> Tú no tienes que aprender software complejo ni ver tutoriales. Yo me encargo de estructurar y programar tus herramientas en pantalla durante las sesiones. Tú solo accedes a tu Plan de Vuelo desde tu celular o computador mediante un enlace privado con tu PIN personal, acompañado de tus fichas físicas de 1 hoja.</p>
-            </div>
-          </div>
-
-          <!-- FAQ 2 -->
-          <div class="faq-item">
-            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
-              <span>¿Cuánto tiempo a la semana me va a demandar el acompañamiento?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-content">
-              <p>Solo la sesión semanal de <b>75 minutos mano a mano con Diego</b> y <b>2 minutos al final de cada día</b> para ejecutar tu checklist táctil de Cierre Consciente (Shutdown). El objetivo no es darte una tarea más, sino devolverte de 5 a 10 horas libres cada semana.</p>
-            </div>
-          </div>
-
-          <!-- FAQ 3 -->
-          <div class="faq-item">
-            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
-              <span>¿Qué pasa si mis horarios o compromisos cambian todas las semanas?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-content">
-              <p>Precisamente por eso no te imponemos un horario rígido. El <b>Mapeador 24H</b> funciona por cajitas dinámicas y <i>Batching</i> (agrupación inteligente de tareas similares). Si tu semana cambia por una urgencia o un proyecto nuevo, recalibras tu mapa visual en 3 minutos sin que el sistema colapse.</p>
-            </div>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="faq-item">
-            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
-              <span>¿Cómo funcionan las formas de pago, cuotas y abonos?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-content">
-              <p>Puedes pagar mediante transferencia bancaria directa en pesos chilenos (CLP). Si tomas la <b>Sesión de Despegue ($35.000 CLP)</b> y luego decides continuar al Plan Integral ($190.000 CLP), <b>los $35.000 se descuentan íntegramente</b> del total. Además, el Plan Integral cuenta con facilidad de pago en 2 cuotas de $98.000 o 3 cuotas de $68.000.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- BANNER FINAL: INVITACIÓN AL DIAGNÓSTICO EN VIVO CON LOS AVISOS SE BUSCA -->
-    <div style="max-width: 900px; margin: 45px auto 20px; background: radial-gradient(circle at 50% 50%, rgba(6,182,212,0.12) 0%, #0c0d12 100%); border: 1.5px solid rgba(6,182,212,0.4); border-radius: var(--radius-lg); padding: 36px 28px; text-align: center; box-shadow: 0 0 35px rgba(6,182,212,0.15);">
-      <span style="background: rgba(6,182,212,0.2); color: #38bdf8; font-size: 0.74rem; font-weight: 800; padding: 4px 14px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;">
-        ✦ RADIOGRAFÍA EN VIVO • PASO 1 RECOMENDADO ✦
-      </span>
-      <h3 style="font-family: var(--font-heading); font-size: clamp(1.4rem, 3.2vw, 1.9rem); font-weight: 800; color: #fff; margin: 14px 0 8px;">
-        ¿Aún no sabes qué modalidad necesitas? Mide tus fugas primero
-      </h3>
-      <p style="color: #94a3b8; font-size: 0.88rem; max-width: 680px; margin: 0 auto 22px; line-height: 1.55;">
-        Explora nuestros 34 carteles «Se Busca» ordenados por las 6 estaciones operativas. Marca tus dolores y su urgencia, y tu expediente se armará en vivo para conversarlo por WhatsApp.
-      </p>
-      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-        <button type="button" onclick="switchPlatformTab('view-sondeos')" class="btn-primary" style="background: #06b6d4; color: #000; font-weight: 800; padding: 12px 26px; border-radius: 50px; cursor: pointer; font-size: 0.88rem; border: none; box-shadow: 0 0 25px rgba(6,182,212,0.35);">
-          ⚡ Ir al Diagnóstico Guiado (Avisos Se Busca) →
-        </button>
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estoy%20revisando%20tu%20sitio%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20qu%C3%A9%20modalidad%20me%20conviene." target="_blank" class="btn-secondary" style="font-size: 0.88rem; padding: 12px 22px; border-radius: 50px; text-decoration: none; border-color: rgba(255,255,255,0.2);">
-          💬 Consultar con Diego por WhatsApp
-        </a>
-      </div>
-    </div>
-
   </div>
 
-</div>
-
-<!-- ACCESO RÁPIDO POR PIN PARA CLIENTES ACTIVOS -->
-    <div style="max-width: 520px; margin: 40px auto 20px; background: #0c0c0e; border: 1px solid #333; border-radius: var(--radius-lg); padding: 32px 28px; text-align: center; box-shadow: 0 0 30px rgba(0,0,0,0.8);">
-      <span style="display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); font-size:1.6rem; margin-bottom:12px;">🔒</span>
-      <h3 style="font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:#fff;">¿Ya eres Cliente Activo?</h3>
-      <p style="font-size:0.86rem; color:#888; margin:6px 0 20px;">Ingresa tu usuario y PIN asignado para abrir tu tablero 100% interactivo.</p>
-      
-      <div id="tab-pin-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid #ef4444; color:#fca5a5; padding:10px 14px; border-radius:8px; font-size:0.82rem; margin-bottom:14px; text-align:left;"></div>
-
-      <form onsubmit="handleTabPinSubmit(event); return false;" style="display:flex; flex-direction:column; gap:12px;">
-        <input 
-          type="text" 
-          id="tab-client-user" 
-          class="auth-input" 
-          placeholder="Tu usuario asignado" 
-          autocomplete="username"
-          style="font-size:0.95rem; padding:12px 14px; border-radius:10px;"
-        />
-        <input 
-          type="password" 
-          id="tab-client-pin" 
-          class="auth-input" 
-          placeholder="••••••••••••" 
-          required 
-          autocomplete="current-password"
-          style="font-size:1.1rem; letter-spacing:0.1em; padding:12px 14px; border-radius:10px; font-family:monospace;"
-        />
-        <button type="submit" id="btn-tab-submit-pin" class="auth-btn-submit" style="font-weight:800; padding:13px; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:50px;">
-          <span>Ingresar a Mi Plan</span> <span>→</span>
-        </button>
-      </form>
-      <div style="margin-top:16px; font-size:0.78rem; color:#666;">
-        ¿Olvidaste tu clave? <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mi%20clave%20para%20mi%20Plan%20de%20Vuelo" target="_blank" style="color:#10b981; font-weight:700; text-decoration:none;">Escríbele a Diego por WhatsApp</a>
-      </div>
-  </section>
-
-</div>
 <div id="view-admin" class="platform-view">
   <div class="admin-console-box">
 
@@ -9871,12 +9067,13 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
 
 <!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (FLOATING QUICK BAR) -->
 <!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (FLOATING QUICK BAR EN PÁGINA CONTINUA) -->
+<!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (FLOATING QUICK BAR EN PÁGINA CONTINUA) -->
 <div id="floating-quick-bar" class="floating-quick-bar" aria-label="Acceso rápido">
-  <button type="button" class="float-bar-btn active primary" data-anchor="productos" onclick="scrollToSection('productos');">
-    <span>🚀</span> <span class="float-text-full">Productos</span><span class="float-text-short">Productos</span>
+  <button type="button" class="float-bar-btn active primary" data-anchor="servicio" onclick="scrollToSection('servicio');">
+    <span>🧭</span> <span class="float-text-full">Acompañamiento</span><span class="float-text-short">Acompañamiento</span>
   </button>
-  <button type="button" class="float-bar-btn" data-anchor="servicio" onclick="scrollToSection('servicio');">
-    <span>🧭</span> <span class="float-text-full">Acompañamiento</span><span class="float-text-short">Servicio</span>
+  <button type="button" class="float-bar-btn" data-anchor="productos" onclick="scrollToSection('productos');">
+    <span>🚀</span> <span class="float-text-full">Productos</span><span class="float-text-short">Productos</span>
   </button>
   <button type="button" class="float-bar-btn" data-anchor="arsenal" onclick="scrollToSection('arsenal');">
     <span>🧱</span> <span class="float-text-full">Arsenal</span><span class="float-text-short">Arsenal</span>
@@ -9982,7 +9179,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
 
   // ScrollSpy para actualizar botones activos y alternar entre barra de navegación y dock de WhatsApp
   window.addEventListener('scroll', () => {
-    const sections = ['hero', 'puente', 'productos', 'servicio', 'arsenal', 'casos', 'sondeos'];
+    const sections = ['hero', 'servicio', 'productos', 'arsenal', 'casos', 'sondeos'];
     const scrollPos = window.scrollY + 140;
 
     let currentSec = 'hero';
@@ -9995,7 +9192,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
 
     // Normalizar anclaje activo
     let activeAnchor = currentSec;
-    if (currentSec === 'hero' || currentSec === 'puente') activeAnchor = 'productos';
+    if (currentSec === 'hero') activeAnchor = 'servicio';
 
     document.querySelectorAll('.plat-tab-btn[data-anchor]').forEach(btn => {
       if (btn.getAttribute('data-anchor') === activeAnchor) {
