@@ -8,8 +8,8 @@ window.CLIENTS_MASTER_DATA = {
       "avatar": "🌿",
       "usuario": "rocio.puya",
       "pin": "AH-Puya9842",
-      "subtitulo": "Del Cuello de Botella a la Soberanía del Tiempo",
-      "tagline": "TEA + Multipotencialidad • UST / Puya Masajes / Canto",
+      "subtitulo": "Del Cuello de Botella a la Soberanía del Tiempo (Estudiar y Trabajar)",
+      "tagline": "Estudio Universitario + Trabajo Independiente • UST / Puya Masajes / Canto",
       "edad": 28,
       "ciudad": "Talcahuano",
       "rol_principal": "Estudiante de Psicopedagogía / Masoterapeuta / Instructora de Canto"
