@@ -4081,7 +4081,230 @@
   <span id="mini-sondeos"></span>
   <span id="sondeo-porque"></span>
 
-  <section id="diagnostico-guiado-se-busca" style="padding: 16px 0 95px 0;">
+  
+  <!-- ESTILOS EXCLUSIVOS PARA EL LISTADO HORIZONTAL DE AVISOS 'SE BUSCA' -->
+  <style>
+    .avisos-area-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+    .wizard-aviso-horizontal-row {
+      width: 100%;
+      background: #0c0d14;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 4px solid var(--station-color, #38bdf8);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .wizard-aviso-horizontal-row:hover {
+      background: #11131c;
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+    .wizard-aviso-horizontal-row.selected {
+      background: #131622;
+      border-color: var(--station-color, #38bdf8);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.15);
+    }
+    .aviso-row-main {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .aviso-row-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+    }
+    .aviso-tag-pill {
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border-width: 1px;
+      border-style: solid;
+    }
+    .aviso-num-pill {
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: #64748b;
+      font-weight: 700;
+    }
+    .aviso-pilar-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .aviso-arquetipo-pill {
+      font-size: 0.72rem;
+      font-style: italic;
+      color: #94a3b8;
+    }
+    .aviso-row-headline {
+      font-family: var(--font-heading);
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.35;
+      margin: 0 0 5px 0;
+    }
+    .aviso-row-bajada {
+      font-size: 0.83rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+      margin: 0 0 8px 0;
+    }
+    .aviso-row-solution {
+      font-size: 0.74rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 6px;
+      padding: 4px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      max-width: 100%;
+      word-break: break-word;
+    }
+    .aviso-row-actions {
+      flex: 0 0 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+    .btn-toggle-aviso {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #cbd5e1;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-sizing: border-box;
+      user-select: none;
+    }
+    .btn-toggle-aviso:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .btn-toggle-aviso.is-selected {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+    .aviso-urgencia-box {
+      display: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 6px;
+    }
+    .aviso-urgencia-box.is-visible {
+      display: block;
+    }
+    .urgencia-label {
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .urgencia-btn-group {
+      display: flex;
+      gap: 4px;
+    }
+    .urg-btn {
+      flex: 1;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 5px 2px;
+      border-radius: 6px;
+      background: #12131a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .urg-btn.active-alta {
+      background: rgba(239, 68, 68, 0.3) !important;
+      border-color: #ef4444 !important;
+      color: #f87171 !important;
+      font-weight: 800;
+    }
+    .urg-btn.active-media {
+      background: rgba(245, 158, 11, 0.3) !important;
+      border-color: #f59e0b !important;
+      color: #fbbf24 !important;
+      font-weight: 800;
+    }
+    .urg-btn.active-baja {
+      background: rgba(16, 185, 129, 0.3) !important;
+      border-color: #10b981 !important;
+      color: #34d399 !important;
+      font-weight: 800;
+    }
+
+    /* ADAPTACIÓN MÓVIL EXACTA PARA GRABACIÓN DE PANTALLA EN TELÉFONO */
+    @media (max-width: 768px) {
+      #sticky-expediente-dock {
+        padding: 8px 12px !important;
+        gap: 8px !important;
+      }
+      #sticky-expediente-dock select {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      #btn-whatsapp-expediente {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 8px 14px !important;
+        font-size: 0.82rem !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .wizard-aviso-horizontal-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 12px 14px !important;
+        gap: 10px !important;
+      }
+      .aviso-row-actions {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 8px;
+      }
+      .aviso-row-headline {
+        font-size: 0.94rem !important;
+      }
+      .aviso-row-bajada {
+        font-size: 0.8rem !important;
+      }
+    }
+  </style>
+
+  <section id="diagnostico-guiado-se-busca" style="padding: 16px 0 140px 0;">
     <div class="container" style="max-width: 1220px; margin: 0 auto; padding: 0 16px;">
       
       <!-- ENCABEZADO ULTRA-COMPACTO -->
@@ -4276,13 +4499,6 @@
       });
     }
 
-    function scrollAreaRow(areaKey, offset) {
-      const row = document.getElementById('row-cards-' + areaKey);
-      if (row) {
-        row.scrollBy({ left: offset, behavior: 'smooth' });
-      }
-    }
-
     function renderAllAreasSections() {
       const container = document.getElementById('areas-sections-container');
       if (!container) return;
@@ -4300,129 +4516,102 @@
         sec.style.cssText = `
           background: #090a0f;
           border: 1px solid rgba(255,255,255,0.08);
-          border-left: 3px solid ${ar.color};
+          border-left: 4px solid ${ar.color};
           border-radius: 14px;
           padding: 18px 20px 20px 20px;
           margin-bottom: 22px;
           box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         `;
 
-        // Cabecera del Área con controles de desplazamiento en el encabezado (NO tapan los carteles)
+        // Cabecera del Área con badge de conteo y descripción limpia (sin controles laterales)
         sec.innerHTML = `
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px;">
             <div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 0.7rem; font-weight: 800; color: ${ar.color}; text-transform: uppercase; letter-spacing: 0.08em; background: ${ar.color}18; border: 1px solid ${ar.color}44; padding: 2px 10px; border-radius: 50px;">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.72rem; font-weight: 800; color: ${ar.color}; text-transform: uppercase; letter-spacing: 0.08em; background: ${ar.color}18; border: 1px solid ${ar.color}44; padding: 3px 12px; border-radius: 50px;">
                   ${ar.title.split(':')[0]}
                 </span>
-                <span id="counter-badge-${ar.key}" style="font-size: 0.72rem; font-weight: 700; color: ${selectedInArea > 0 ? ar.color : '#94a3b8'}; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px;">
+                <span id="counter-badge-${ar.key}" style="font-size: 0.72rem; font-weight: 700; color: ${selectedInArea > 0 ? ar.color : '#94a3b8'}; background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);">
                   ${selectedInArea} de ${areaAvisos.length} marcados
                 </span>
               </div>
-              <h3 style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: #fff; margin: 6px 0 2px 0;">
+              <h3 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin: 8px 0 3px 0;">
                 ${ar.question}
               </h3>
-              <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">
+              <p style="font-size: 0.82rem; color: #94a3b8; margin: 0; line-height: 1.4;">
                 ${ar.sub}
               </p>
             </div>
 
-            <!-- CONTROLES DE DESPLAZAMIENTO LATERAL EN LA CABECERA (LIMPIOS) -->
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span style="font-size: 0.7rem; color: #64748b; font-weight: 600; margin-right: 4px;">Fila única:</span>
-              <button type="button" onclick="scrollAreaRow('${ar.key}', -340)" style="width: 30px; height: 30px; border-radius: 50%; background: #12131a; border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 0.85rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;" title="Desplazar a la izquierda">
-                ◀
-              </button>
-              <button type="button" onclick="scrollAreaRow('${ar.key}', 340)" style="width: 30px; height: 30px; border-radius: 50%; background: #12131a; border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 0.85rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;" title="Desplazar a la derecha">
-                ▶
-              </button>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.72rem; color: #94a3b8; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 50px;">
+                ${areaAvisos.length} dolores en lista
+              </span>
             </div>
           </div>
 
-          <!-- FILA ÚNICA HORIZONTAL DE CARTELES (FONDO NEGRO, LETRAS BLANCAS) -->
-          <div id="row-cards-${ar.key}" style="display: flex; flex-direction: row; flex-wrap: nowrap; gap: 14px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 10px 2px 14px 2px; scrollbar-width: thin; scrollbar-color: ${ar.color}55 rgba(255, 255, 255, 0.04);">
+          <!-- LISTADO VERTICAL DE CARTELES HORIZONTALES (FONDO NEGRO, LETRAS BLANCAS) -->
+          <div id="list-cards-${ar.key}" class="avisos-area-list">
             <!-- Inyectado por JS -->
           </div>
         `;
 
-        const rowContainer = sec.querySelector('#row-cards-' + ar.key);
+        const listContainer = sec.querySelector('#list-cards-' + ar.key);
 
         areaAvisos.forEach(item => {
           const isSelected = !!window.SELECTED_EXPEDIENTE[item.id];
           const currentUrgencia = isSelected ? window.SELECTED_EXPEDIENTE[item.id].urgencia : 'alta';
 
           const card = document.createElement('div');
-          card.className = 'wizard-aviso-card ' + (isSelected ? 'selected' : '');
+          card.className = 'wizard-aviso-horizontal-row ' + (isSelected ? 'selected' : '');
           card.id = 'card-' + item.id;
-          card.style.cssText = `
-            flex: 0 0 310px;
-            width: 310px;
-            min-width: 310px;
-            max-width: 310px;
-            scroll-snap-align: start;
-            background: #0f1015;
-            border: 1.5px solid ${isSelected ? ar.color : 'rgba(255,255,255,0.08)'};
-            border-radius: 12px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: ${isSelected ? '0 0 16px ' + ar.color + '25' : 'none'};
-            box-sizing: border-box;
-          `;
+          card.style.setProperty('--station-color', ar.color);
 
           card.innerHTML = `
-            <div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 0.65rem; font-weight: 800; color: ${ar.color}; background: rgba(255,255,255,0.05); border: 1px solid ${ar.color}44; padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">
-                  ${ar.short_label.split(' ')[0]} ${ar.short_label.split(' ')[1] || ''}
+            <div class="aviso-row-main">
+              <div class="aviso-row-meta">
+                <span class="aviso-tag-pill" style="color: ${ar.color}; background: ${ar.color}15; border-color: ${ar.color}44;">
+                  SE BUSCA
                 </span>
-                <span style="font-family: monospace; font-size: 0.7rem; color: #64748b; font-weight: 700;">
+                <span class="aviso-num-pill">
                   N° ${String(item.numero).padStart(2, '0')}
                 </span>
+                <span class="aviso-pilar-pill" style="color: ${ar.color};">
+                  ${ar.short_label}
+                </span>
+                ${item.arquetipo ? `<span class="aviso-arquetipo-pill">• ${item.arquetipo}</span>` : ''}
               </div>
               
-              <div style="font-size: 0.64rem; letter-spacing: 0.15em; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 3px;">
-                SE BUSCA
-              </div>
-              <h4 style="font-family: var(--font-heading); font-size: 0.92rem; font-weight: 800; color: #fff; line-height: 1.4; margin: 0 0 6px 0;">
+              <h4 class="aviso-row-headline">
                 ${item.headline}
               </h4>
-              <p style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45; margin: 0 0 10px 0;">
+              <p class="aviso-row-bajada">
                 ${item.bajada}
               </p>
+              <div class="aviso-row-solution">
+                💡 <strong style="color: #fff;">Solución:</strong> ${item.herramienta.split('(')[0].trim()}
+              </div>
             </div>
 
-            <div>
-              <div style="font-size: 0.72rem; color: #38bdf8; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); border-radius: 6px; padding: 5px 8px; margin-bottom: 10px;">
-                💡 <b>Solución:</b> ${item.herramienta.split('(')[0]}
+            <div class="aviso-row-actions">
+              <div class="btn-toggle-aviso ${isSelected ? 'is-selected' : ''}" style="${isSelected ? 'background:' + ar.color + '22; border-color:' + ar.color + '; color:#fff; font-weight:800;' : ''}">
+                ${isSelected ? '✓ Marcado en expediente' : '+ Marcar este dolor'}
               </div>
 
               <!-- SELECTOR DE URGENCIA TÁCTIL (FONDO NEGRO Y LETRAS BLANCAS) -->
-              <div style="display: ${isSelected ? 'block' : 'none'}; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px; margin-top: 6px;">
-                <span style="font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; display: block; margin-bottom: 5px;">
-                  Nivel de urgencia que sientes:
-                </span>
-                <div style="display: flex; gap: 5px;" onclick="event.stopPropagation()">
-                  <button type="button" onclick="setExpUrgencia('${item.id}', 'alta')" style="flex:1; font-size:0.68rem; font-weight:700; padding:4px; border-radius:6px; border:1px solid ${currentUrgencia==='alta' ? '#ef4444' : 'rgba(255,255,255,0.1)'}; background:${currentUrgencia==='alta' ? 'rgba(239,68,68,0.25)' : '#12131a'}; color:${currentUrgencia==='alta' ? '#f87171' : '#fff'}; cursor:pointer;">
+              <div class="aviso-urgencia-box ${isSelected ? 'is-visible' : ''}" onclick="event.stopPropagation()">
+                <span class="urgencia-label">Nivel de urgencia:</span>
+                <div class="urgencia-btn-group">
+                  <button type="button" onclick="setExpUrgencia('${item.id}', 'alta')" class="urg-btn ${currentUrgencia==='alta' ? 'active-alta' : ''}">
                     🔴 Alta
                   </button>
-                  <button type="button" onclick="setExpUrgencia('${item.id}', 'media')" style="flex:1; font-size:0.68rem; font-weight:700; padding:4px; border-radius:6px; border:1px solid ${currentUrgencia==='media' ? '#f59e0b' : 'rgba(255,255,255,0.1)'}; background:${currentUrgencia==='media' ? 'rgba(245,158,11,0.25)' : '#12131a'}; color:${currentUrgencia==='media' ? '#fbbf24' : '#fff'}; cursor:pointer;">
+                  <button type="button" onclick="setExpUrgencia('${item.id}', 'media')" class="urg-btn ${currentUrgencia==='media' ? 'active-media' : ''}">
                     🟡 Media
                   </button>
-                  <button type="button" onclick="setExpUrgencia('${item.id}', 'baja')" style="flex:1; font-size:0.68rem; font-weight:700; padding:4px; border-radius:6px; border:1px solid ${currentUrgencia==='baja' ? '#10b981' : 'rgba(255,255,255,0.1)'}; background:${currentUrgencia==='baja' ? 'rgba(16,185,129,0.25)' : '#12131a'}; color:${currentUrgencia==='baja' ? '#34d399' : '#fff'}; cursor:pointer;">
+                  <button type="button" onclick="setExpUrgencia('${item.id}', 'baja')" class="urg-btn ${currentUrgencia==='baja' ? 'active-baja' : ''}">
                     🟢 Baja
                   </button>
                 </div>
-              </div>
-
-              <!-- BOTÓN DE ESTADO -->
-              <div style="margin-top: 8px; text-align: center;">
-                <span style="font-size: 0.72rem; font-weight: 700; color: ${isSelected ? ar.color : '#94a3b8'};">
-                  ${isSelected ? '✓ Marcado en tu expediente' : '+ Tocar para seleccionar'}
-                </span>
               </div>
             </div>
           `;
@@ -4431,7 +4620,7 @@
             toggleExpedienteItem(item.id);
           });
 
-          rowContainer.appendChild(card);
+          listContainer.appendChild(card);
         });
 
         container.appendChild(sec);
@@ -7866,6 +8055,16 @@ window.switchPlatformTab = function(tabId) {
       v.style.display = 'none';
     }
   });
+
+  // Ocultar barra flotante inferior en Sondeos para dar prioridad al Triage Dock de WhatsApp
+  const floatBar = document.getElementById('floating-quick-bar');
+  if (floatBar) {
+    if (tabId === 'view-sondeos') {
+      floatBar.style.display = 'none';
+    } else {
+      floatBar.style.display = '';
+    }
+  }
 
   const hashMap = {
     'view-sondeos': 'sondeos',
