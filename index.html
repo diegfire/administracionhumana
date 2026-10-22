@@ -4103,7 +4103,7 @@
 <nav class="master-platform-nav platform-nav-wrapper">
   <div class="nav-platform-container">
     <!-- Logotipo y Marca -->
-    <a href="#porque" onclick="switchPlatformTab('view-porque'); return false;" class="nav-brand-group" title="Administración Humana">
+    <a href="#hero" onclick="scrollToSection('hero'); return false;" class="nav-brand-group" title="Administración Humana">
       <img src="logo_oficial.png?v=sistemas_personalizados" alt="Logo Administración Humana" class="nav-brand-img" />
       <span class="nav-brand-text"><span class="brand-text-full">Administración Humana</span><span class="brand-text-short">Admin Humana</span></span>
     </a>
@@ -4159,13 +4159,7 @@
      ══════════════════════════════════════════════════════════════════ -->
 <div id="view-landing" class="platform-view active">
 
-  <!-- 1. HERO DIRECTO & VISUAL SHOWCASE SGP -->
-  <section id="hero" class="landing-section">
-    
-    <span id="inicio"></span>
-    
-  
-  
+  <!-- 1. ANCLAJES GLOBALES Y ESTILOS DEL HERO -->
   <span id="el-problema"></span>
 
   <!-- ══════════════════════════════════════════════════════════════════
@@ -4757,19 +4751,22 @@
           Aplico la técnica administrativa clásica —<strong>Planificar, Organizar, Dirigir y Controlar</strong>— adaptada a tu realidad humana. Te ayudo a ganar <strong>autoconocimiento de tu energía</strong> y <strong>autonomía total</strong> sobre tus finanzas, clientes y tiempo, con sistemas a tu medida en tu propio Google Drive y sin depender de plataformas de pago ni consultores eternos.
         </p>
 
-        <!-- BOTONES DE NAVEGACIÓN DIRECTA AL CAMINO -->
+        <!-- BOTONES DE NAVEGACIÓN DIRECTA AL CAMINO (ROADMAP 5 ETAPAS) -->
         <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; align-items: center; margin-top: 14px;">
-          <a href="#capacidades" onclick="scrollToSection('capacidades'); return false;" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); color: #000; font-weight: 800; font-size: 0.88rem; padding: 12px 22px; box-shadow: 0 0 25px rgba(16,185,129,0.4); text-decoration: none; border-radius: 50px;">
-            🧭 1. El Camino: Cabina en Vivo ↓
+          <a href="#capacidades" onclick="scrollToSection('capacidades'); return false;" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); color: #000; font-weight: 800; font-size: 0.86rem; padding: 11px 20px; box-shadow: 0 0 25px rgba(16,185,129,0.4); text-decoration: none; border-radius: 50px;">
+            🧭 1. Cabina Demo ↓
           </a>
-          <a href="#servicio" onclick="scrollToSection('servicio'); return false;" class="btn-secondary" style="font-size: 0.86rem; padding: 11px 20px; font-weight: 700; border-radius: 50px; text-decoration: none;">
-            🎙️ 2. El Acompañamiento 1 a 1 →
+          <a href="#servicio" onclick="scrollToSection('servicio'); return false;" class="btn-secondary" style="font-size: 0.86rem; padding: 11px 18px; font-weight: 700; border-radius: 50px; text-decoration: none;">
+            🎙️ 2. Cómo Funciona →
           </a>
-          <a href="#sondeos" onclick="scrollToSection('sondeos'); return false;" class="btn-secondary" style="font-size: 0.86rem; padding: 11px 20px; font-weight: 700; border-radius: 50px; text-decoration: none;">
-            ⚡ 3. Tu Triage de Dolores →
+          <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;" class="btn-secondary" style="font-size: 0.86rem; padding: 11px 18px; font-weight: 700; border-radius: 50px; text-decoration: none;">
+            🧱 3. Arsenal & Casos →
           </a>
-          <a href="#productos" onclick="scrollToSection('productos'); return false;" class="btn-secondary" style="font-size: 0.86rem; padding: 11px 20px; font-weight: 700; border-radius: 50px; text-decoration: none;">
-            🚀 4. Modalidades & Precios ($35k - $190k)
+          <a href="#sondeos" onclick="scrollToSection('sondeos'); return false;" class="btn-secondary" style="font-size: 0.86rem; padding: 11px 18px; font-weight: 700; border-radius: 50px; text-decoration: none;">
+            ⚡ 4. Triage Dolores →
+          </a>
+          <a href="#productos" onclick="scrollToSection('productos'); return false;" class="btn-secondary" style="font-size: 0.86rem; padding: 11px 18px; font-weight: 700; border-radius: 50px; text-decoration: none;">
+            🚀 5. Precios & Planes ($35k - $190k)
           </a>
           <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso" target="_blank" class="btn-secondary" style="font-size: 0.86rem; padding: 11px 16px; border-color: rgba(37,211,102,0.4); color: #25d366; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; gap: 6px;">
             💬 WhatsApp
@@ -4778,7 +4775,7 @@
       </div>
 
       <!-- TARJETA EJECUTIVA DE IDENTIDAD & FILOSOFÍA SOSTENIBLE DE DIEGO -->
-      <div class="diego-identity-card">
+      <div class="diego-identity-card" id="sobre-diego">
         
         <!-- PERFIL DE DIEGO -->
         <div class="diego-profile-left">
@@ -5415,6 +5412,7 @@
             </a>
           </div>
         </div>
+      </div> <!-- /.cap-cockpit-box -->
 
       
       <!-- PUENTE NARRATIVO A ETAPA 2 -->
@@ -5816,21 +5814,21 @@
 
           <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 14px;">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-              <span style="font-size: 1.2rem;">📊</span>
-              <strong style="color: #fff; font-size: 0.88rem; font-family: var(--font-heading);">Simulador Financiero</strong>
+              <span style="font-size: 1.2rem;">⚡</span>
+              <strong style="color: #fff; font-size: 0.88rem; font-family: var(--font-heading);">4 Arquetipos de Energía</strong>
             </div>
             <p style="font-size: 0.78rem; color: #94a3b8; line-height: 1.45; margin: 0;">
-              Cálculo del valor real de tu hora ($/h), punto de equilibrio y separación estricta 50/30/20.
+              Calibración según tus estados biológicos (Foco Láser, Creativo, Administrativo y Descanso Blindado).
             </p>
           </div>
 
           <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 14px;">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
               <span style="font-size: 1.2rem;">📄</span>
-              <strong style="color: #fff; font-size: 0.88rem; font-family: var(--font-heading);">Imprimibles de 1 Hoja</strong>
+              <strong style="color: #fff; font-size: 0.88rem; font-family: var(--font-heading);">Kit Time Blocking & Checklist</strong>
             </div>
             <p style="font-size: 0.78rem; color: #94a3b8; line-height: 1.45; margin: 0;">
-              Fichas físicas de foco, bitácora diaria y protocolo de cierre listas para imprimir en 1 clic.
+              Ficha con Lightbox zoom, tutorial guiado paso a paso y checklist operativo con barra de progreso interactiva.
             </p>
           </div>
 
@@ -5864,16 +5862,9 @@
 
   <!-- 7. RADIOGRAFÍA DE DOLORES OPERATIVOS (TRIAGE EN VIVO "SE BUSCA") -->
   <section id="sondeos" class="landing-section" style="padding: 50px 0 20px 0; border-top: 1px solid rgba(255,255,255,0.06);">
-    
     <span id="triage"></span>
-    
-  
-  
-  
-  
-  
+    <span id="diagnostico-guiado-se-busca"></span>
 
-  
   <!-- ESTILOS EXCLUSIVOS PARA EL LISTADO HORIZONTAL DE AVISOS 'SE BUSCA' -->
   <style>
     .avisos-area-list {
@@ -6096,8 +6087,7 @@
     }
   </style>
 
-  <section id="diagnostico-guiado-se-busca" style="padding: 16px 0 140px 0;">
-    <div class="container" style="max-width: 1220px; margin: 0 auto; padding: 0 16px;">
+    <div class="container" style="max-width: 1220px; margin: 0 auto; padding: 16px 16px 140px 16px;">
       
       <!-- ENCABEZADO DE ETAPA 4 · RADIOGRAFÍA OPERATIVA -->
       <div style="text-align: center; max-width: 880px; margin: 0 auto 14px;">
@@ -6534,14 +6524,6 @@
       updateExpedienteSummary();
     });
   </script>
-
-
-
-  <!-- ══════════════════════════════════════════════════════════════════
-     VISTA 1: 🎯 EL POR QUÉ (PROPÓSITO, FRICCIÓN & DIAGNÓSTICO EN VIVO)
-     ══════════════════════════════════════════════════════════════════ -->
-
-  </section>
 
   
   <!-- ══════════════════════════════════════════════════════════════════
@@ -7004,8 +6986,8 @@
         </div>
 
         <cite class="card-cite-cyan">✦ "Sistemas vivos adaptados a tu propio ritmo."</cite>
-        <button type="button" onclick="switchPlatformTab('view-como')" class="btn-secondary" style="margin-top: 14px; width: 100%; justify-content: center; font-size: 0.82rem; padding: 9px 14px; border-radius: 50px; border-color: rgba(56,189,248,0.4); color: #38bdf8; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-          <span>🧭</span> Conocer el Acompañamiento 1 a 1 (Pestaña 2) →
+        <button type="button" onclick="scrollToSection('servicio')" class="btn-secondary" style="margin-top: 14px; width: 100%; justify-content: center; font-size: 0.82rem; padding: 9px 14px; border-radius: 50px; border-color: rgba(56,189,248,0.4); color: #38bdf8; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <span>🎙️</span> Conocer el Acompañamiento 1 a 1 →
         </button>
       </div>
 
@@ -7029,8 +7011,8 @@
         </div>
 
         <cite class="card-cite-emerald">✦ "Herramientas ordenadas sin perder tu esencia."</cite>
-        <button type="button" onclick="switchPlatformTab('view-que')" class="btn-secondary" style="margin-top: 14px; width: 100%; justify-content: center; font-size: 0.82rem; padding: 9px 14px; border-radius: 50px; border-color: rgba(16,185,129,0.4); color: #34d399; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-          <span>🚀</span> Ver Módulos, Simuladores y Precios (Pestaña 3) →
+        <button type="button" onclick="scrollToSection('productos')" class="btn-secondary" style="margin-top: 14px; width: 100%; justify-content: center; font-size: 0.82rem; padding: 9px 14px; border-radius: 50px; border-color: rgba(16,185,129,0.4); color: #34d399; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <span>🚀</span> Ver Modalidades y Precios Transparentes →
         </button>
       </div>
     </div>
@@ -7296,14 +7278,14 @@
         Saber que tu sistema actual está colapsado es solo el primer paso. El cambio real ocurre cuando alguien experto se sienta contigo a diseñar la salida. Conoce cómo es el proceso de co-creación 1 a 1 con Diego: sin juicios, a tu propio ritmo y con cero tareas abrumadoras.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-        <button onclick="switchPlatformTab('view-como')" class="btn-primary" style="background: #38bdf8; color: #000; font-weight: 800; padding: 13px 28px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border: none; box-shadow: 0 0 25px rgba(56,189,248,0.35);">
-          🧭 Paso 2: Conocer El Cómo (Acompañamiento 1 a 1) →
+        <button onclick="scrollToSection('servicio')" class="btn-primary" style="background: #38bdf8; color: #000; font-weight: 800; padding: 13px 28px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border: none; box-shadow: 0 0 25px rgba(56,189,248,0.35);">
+          🎙️ Etapa 2: El Acompañamiento 1 a 1 →
         </button>
-        <button onclick="switchPlatformTab('view-que')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem;">
-          🚀 Paso 3: Ver El Qué (Módulos & Precios) →
+        <button onclick="scrollToSection('productos')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem;">
+          🚀 Etapa 5: Modalidades & Precios →
         </button>
-        <button onclick="switchPlatformTab('view-sondeos')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
-          ⚡ Medir Fugas en el Sondeo (30s) →
+        <button onclick="scrollToSection('sondeos')" class="btn-secondary" style="font-weight: 700; padding: 13px 26px; border-radius: 50px; cursor: pointer; font-size: 0.92rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
+          ⚡ Etapa 4: Triage de Dolores (30s) →
         </button>
       </div>
     </div>
@@ -7416,11 +7398,13 @@
       <span class="footer-logo" style="margin-bottom:0;">Administración Humana</span>
     </div>
     <div class="footer-links" style="margin-top:12px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <a href="#porque" onclick="switchPlatformTab('view-porque'); return false;">1. El Por Qué</a>
-      <a href="#como" onclick="switchPlatformTab('view-como'); return false;">2. El Cómo</a>
-      <a href="#que" onclick="switchPlatformTab('view-que'); return false;">3. El Qué (Planes & Módulos)</a>
-      <a href="#sondeos" onclick="switchPlatformTab('view-sondeos'); return false;">⚡ Sondeos / Diagnóstico (30s)</a>
-      <a href="#sobre-diego" onclick="switchPlatformTab('view-como'); setTimeout(function(){ var el = document.getElementById('sobre-diego'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 150); return false;">Sobre Diego</a>
+      <a href="#capacidades" onclick="scrollToSection('capacidades'); return false;">1. Cabina Demo</a>
+      <a href="#servicio" onclick="scrollToSection('servicio'); return false;">2. Cómo Funciona</a>
+      <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;">3. Arsenal & Casos</a>
+      <a href="#sondeos" onclick="scrollToSection('sondeos'); return false;">4. Triage Dolores</a>
+      <a href="#productos" onclick="scrollToSection('productos'); return false;">5. Precios & Planes</a>
+      <a href="#sobre-diego" onclick="scrollToSection('sobre-diego'); return false;">Sobre Diego</a>
+      <a href="planes-demo.html" target="_blank" rel="noopener noreferrer">Plan Demo 2.0 ↗</a>
       <a href="dossier.html">Dossier & Casos</a>
       <a href="sondeo.html">Sondeo 360°</a>
       <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:700;">📸 @administracionhumana</a>
@@ -7674,150 +7658,47 @@
 
 <script>
 /* ══════════════════════════════════════════════════════════════════
-   PLATFORM TABS CONTROLLER (GOLDEN CIRCLE, HASH & PERSISTENCE)
+   PLATFORM CONTROLLER: HASH NAVIGATION & ADMIN GATEWAY
    ══════════════════════════════════════════════════════════════════ */
-window.switchPlatformTab = function(tabId) {
-  // Aliases de compatibilidad directa hacia el Círculo Dorado
-  if (tabId === 'view-metodo') tabId = 'view-porque';
-  if (tabId === 'view-modulos' || tabId === 'view-planes') tabId = 'view-que';
-  if (tabId === 'view-diagnostico') tabId = 'view-sondeos';
-
-  const tabs = document.querySelectorAll('.plat-tab-btn');
-  const views = document.querySelectorAll('.platform-view');
-
-  // Check Admin Tab Security
-  if (tabId === 'view-admin') {
-    const isAuth = localStorage.getItem('ah_consultor_auth') === 'true';
-    const adminGate = document.getElementById('admin-gatekeeper');
-    const adminPanel = document.getElementById('admin-dashboard-content');
-    if (!isAuth) {
-      if (adminGate) adminGate.style.display = 'block';
-      if (adminPanel) adminPanel.style.display = 'none';
-    } else {
-      if (adminGate) adminGate.style.display = 'none';
-      if (adminPanel) adminPanel.style.display = 'block';
-      if (typeof window.renderAdminClientsTable === 'function') {
-        window.renderAdminClientsTable();
-      }
-    }
-  }
-
-  // Actualizar estado activo en pestañas superiores
-  tabs.forEach(btn => {
-    if (btn.getAttribute('data-tab') === tabId) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
-
-  // Actualizar botones de la barra flotante inferior
-  const floatBtns = document.querySelectorAll('#floating-quick-bar .float-bar-btn[data-tab]');
-  floatBtns.forEach(btn => {
-    if (btn.getAttribute('data-tab') === tabId) {
-      btn.classList.add('primary');
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('primary');
-      btn.classList.remove('active');
-    }
-  });
-
-  // Mostrar la vista seleccionada
-  views.forEach(v => {
-    if (v.id === tabId) {
-      v.classList.add('active');
-      v.style.display = 'block';
-    } else {
-      v.classList.remove('active');
-      v.style.display = 'none';
-    }
-  });
-
-  // Ocultar barra flotante inferior en Sondeos para dar prioridad al Triage Dock de WhatsApp
-  const floatBar = document.getElementById('floating-quick-bar');
-  if (floatBar) {
-    if (tabId === 'view-sondeos') {
-      floatBar.style.display = 'none';
-    } else {
-      floatBar.style.display = '';
-    }
-  }
-
-  const hashMap = {
-    'view-sondeos': 'sondeos',
-    'view-porque': 'porque',
-    'view-como': 'como',
-    'view-que': 'que',
-    'view-admin': 'admin'
-  };
-  if (hashMap[tabId]) {
-    history.replaceState(null, null, '#' + hashMap[tabId]);
-  }
-
-  // Scroll to top of platform view smoothly if scrolled
-  if (window.scrollY > 40) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-};
-
 window.initPlatformTabsFromHash = function() {
   const hash = window.location.hash.replace('#', '').toLowerCase();
-  const validHashes = {
-    'sondeos': 'view-sondeos',
-    'sondeo': 'view-sondeos',
-    'diagnostico': 'view-sondeos',
-    'mini-sondeos': 'view-sondeos',
-    'fugas': 'view-sondeos',
-
-    'porque': 'view-porque',
-    'el-porque': 'view-porque',
-    'metodo': 'view-porque',
-    'el-metodo': 'view-porque',
-    'filosofia': 'view-porque',
-    'problema': 'view-porque',
-    'el-problema': 'view-porque',
-    'simulador-impacto': 'view-porque',
-
-    'como': 'view-como',
-    'el-como': 'view-como',
-    'servicio': 'view-como',
-    'el-servicio': 'view-como',
-    'sobre-diego': 'view-como',
-
-    'que': 'view-que',
-    'el-que': 'view-que',
-    'modulos': 'view-que',
-    'catalogo': 'view-que',
-    'planes': 'view-que',
-    'planes-vuelo': 'view-que',
-    'precios': 'view-que',
-    'inversion': 'view-que',
-
-    'admin': 'view-admin'
+  if (!hash) return;
+  if (hash === 'admin') {
+    if (typeof window.switchPlatformTab === 'function') {
+      window.switchPlatformTab('view-admin');
+    }
+    return;
+  }
+  const anchorAliases = {
+    'porque': 'hero',
+    'el-porque': 'hero',
+    'filosofia': 'filosofia-desplegable',
+    'metodo': 'servicio',
+    'el-metodo': 'servicio',
+    'servicio': 'servicio',
+    'como': 'servicio',
+    'el-como': 'servicio',
+    'sobre-diego': 'sobre-diego',
+    'arsenal': 'arsenal',
+    'modulos': 'arsenal',
+    'casos': 'casos',
+    'planes-demo': 'casos',
+    'triage': 'sondeos',
+    'sondeos': 'sondeos',
+    'diagnostico': 'sondeos',
+    'fugas': 'sondeos',
+    'que': 'productos',
+    'el-que': 'productos',
+    'planes': 'productos',
+    'precios': 'productos',
+    'inversion': 'productos'
   };
-
-  const targetTab = validHashes[hash] || 'view-porque';
-  window.switchPlatformTab(targetTab);
-
-  if (hash === 'sobre-diego') {
-    setTimeout(() => {
-      const sEl = document.getElementById('sobre-diego');
-      if (sEl) sEl.scrollIntoView({ behavior: 'smooth' });
-    }, 250);
-  }
-  if (hash === 'modulos' || hash === 'catalogo') {
-    setTimeout(() => {
-      const mEl = document.getElementById('mod-showcase-kanban');
-      if (mEl) mEl.scrollIntoView({ behavior: 'smooth' });
-    }, 250);
-  }
-  if (hash === 'precios' || hash === 'inversion') {
-    setTimeout(() => {
-      const pEl = document.getElementById('precios');
-      if (pEl) pEl.scrollIntoView({ behavior: 'smooth' });
-    }, 250);
-  }
+  const targetId = anchorAliases[hash] || hash;
+  setTimeout(() => {
+    if (typeof window.scrollToSection === 'function') {
+      window.scrollToSection(targetId);
+    }
+  }, 200);
 };
 
 /* ══════════════════════════════════════════════════════════════════
@@ -9701,7 +9582,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
 
   // ScrollSpy para actualizar botones activos y alternar entre barra de navegación y dock de WhatsApp
   window.addEventListener('scroll', () => {
-    const sections = ['hero', 'capacidades', 'servicio', 'productos', 'arsenal', 'casos', 'sondeos'];
+    const sections = ['hero', 'capacidades', 'servicio', 'arsenal', 'casos', 'sondeos', 'productos'];
     const scrollPos = window.scrollY + 140;
 
     let currentSec = 'hero';
@@ -9714,7 +9595,8 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
 
     // Normalizar anclaje activo
     let activeAnchor = currentSec;
-    if (currentSec === 'hero' || currentSec === 'servicio') activeAnchor = 'capacidades';
+    if (currentSec === 'hero') activeAnchor = 'capacidades';
+    if (currentSec === 'casos') activeAnchor = 'arsenal';
 
     document.querySelectorAll('.plat-tab-btn[data-anchor]').forEach(btn => {
       if (btn.getAttribute('data-anchor') === activeAnchor) {
