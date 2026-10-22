@@ -17,9 +17,15 @@
     <link rel="stylesheet" href="css/portal-core.css?v=3.5">
     <link rel="stylesheet" href="css/schedule-mapper.css?v=3.5">
     <link rel="stylesheet" href="css/kanban-gtd.css?v=3.5">
-    <link rel="stylesheet" href="css/zumba-library.css?v=3.5">
 
     <style>
+        .tool-chk-item.completed {
+            background: rgba(16, 185, 129, 0.08) !important;
+            border-color: rgba(16, 185, 129, 0.3) !important;
+        }
+        .tool-chk-item.completed span {
+            color: #a7f3d0 !important;
+        }
         :root {
             --color-bg: #000000;
             --color-surface: #0a0a0a;
@@ -675,31 +681,19 @@
             <div id="case-header-pills" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;"></div>
         </header>
 
-        <!-- 3. HUB DE PESTAÑAS MODULARES COMPLETO (TODOS LOS MÓDULOS DEL PLAN DE VUELO) -->
+        <!-- 3. HUB DE PESTAÑAS MODULARES DEMOSTRATIVAS (ELEMENTOS PRECISOS Y VIVOS) -->
         <nav class="tabs" id="main-tabs-nav" aria-label="Navegación de Módulos">
-            <button class="tab-btn active" id="tab-btn-overview" onclick="switchTab('tab-overview')">
-                <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
-            </button>
-            <button class="tab-btn" id="tab-btn-identidades" onclick="switchTab('tab-identidades')">
-                <i class="fa-solid fa-masks-theater"></i> 4 Arquetipos Energía
-            </button>
-            <button class="tab-btn" id="tab-btn-horario" onclick="switchTab('tab-horario')">
+            <button class="tab-btn active" id="tab-btn-horario" onclick="switchTab('tab-horario')">
                 <i class="fa-regular fa-clock"></i> Mapeador 24H
             </button>
             <button class="tab-btn" id="tab-btn-kanban" onclick="switchTab('tab-kanban')">
                 <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
             </button>
-            <button class="tab-btn" id="tab-btn-ia-chatgpt" onclick="switchTab('tab-ia-chatgpt')">
-                <i class="fa-solid fa-wand-magic-sparkles" style="color: #60a5fa;"></i> Activador IA & ChatGPT
-            </button>
-            <button class="tab-btn" id="tab-btn-antigravity-tips" onclick="switchTab('tab-antigravity-tips')">
-                <i class="fa-solid fa-lightbulb" style="color: #f59e0b;"></i> Guía de Hábitos AH
+            <button class="tab-btn" id="tab-btn-identidades" onclick="switchTab('tab-identidades')">
+                <i class="fa-solid fa-masks-theater"></i> 4 Arquetipos Energía
             </button>
             <button class="tab-btn" id="tab-btn-herramientas" onclick="switchTab('tab-herramientas')">
-                <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
-            </button>
-            <button class="tab-btn" id="tab-btn-especialidad" onclick="switchTab('tab-especialidad')">
-                <i class="fa-solid fa-star" style="color: #ec4899;"></i> <span id="label-especialidad">Módulo de Especialidad</span>
+                <i class="fa-solid fa-toolbox"></i> Herramienta: Time Blocking & Foco
             </button>
             <button class="tab-btn" id="tab-btn-resultados" onclick="switchTab('tab-resultados')">
                 <i class="fa-solid fa-trophy" style="color: #10b981;"></i> Resultados & Calibración
@@ -718,132 +712,9 @@
         </nav>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 1: DIAGNÓSTICO & ESTRUCTURA                              -->
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-overview" class="tab-content active">
-            <!-- DIAGNOSTIC BOX -->
-            <div class="diagnostic-box">
-                <div class="hero-tea-badge">
-                    <i class="fa-solid fa-dna"></i> Diagnóstico Humano & Estructura Personal
-                </div>
-                <h3 id="m1-diag-title"><span>El Estado Actual: Soberanía Operativa & Foco</span></h3>
-                <p id="m1-diag-context" style="font-size: 0.94rem; line-height: 1.6; color: #e2e8f0; margin-bottom: 14px;"></p>
-                
-                <div style="background: rgba(16, 185, 129, 0.08); border-left: 3px solid #10b981; padding: 12px 16px; border-radius: 0 8px 8px 0;">
-                    <div style="font-size: 0.74rem; font-weight: 800; text-transform: uppercase; color: #10b981; margin-bottom: 4px;">
-                        🎯 Por qué este caso es clave (Fricción Humana Universal):
-                    </div>
-                    <p id="m1-diag-saleshook" style="font-size: 0.88rem; color: #d1fae5; line-height: 1.5; margin: 0;"></p>
-                </div>
-            </div>
-
-            <!-- SIMULADOR INTERACTIVO DE CONTRASTE (ANTES VS DESPUÉS) -->
-            <div class="sim-contrast-box">
-                <div class="sim-toggle-row">
-                    <div>
-                        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin: 0;">
-                            ⚖️ Transformación Operativa en Tiempo Real
-                        </h4>
-                        <p style="font-size: 0.78rem; color: #888; margin: 2px 0 0;">Alterna para ver el estado de colapso inicial versus el sistema calibrado con Administración Humana:</p>
-                    </div>
-                    <div style="display: flex; gap: 8px;">
-                        <button class="sim-toggle-btn btn-before" id="btn-sim-before" onclick="setSimState('before')">
-                            ❌ Antes (Saturación)
-                        </button>
-                        <button class="sim-toggle-btn active" id="btn-sim-after" onclick="setSimState('after')">
-                            ✅ Con Plan de Vuelo 2.0
-                        </button>
-                    </div>
-                </div>
-                <div class="sim-cards-grid" id="m1-sim-grid"></div>
-            </div>
-
-            <!-- DOS COLUMNAS: DIAGNÓSTICO ESTRATÉGICO & ECOSISTEMA DIGITAL -->
-            <div class="grid-2">
-                <div class="card">
-                    <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
-                    <ul class="custom-list">
-                        <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
-                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
-                        <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 class="section-title"><span>Ecosistema de Gestión Digital Sincronizada</span></h3>
-                    <ul class="custom-list">
-                        <li><strong>📂 Carpeta Compartida:</strong> Google Drive con sincronización directa a tu computador.</li>
-                        <li><strong>🤖 ChatGPT + Antigravity:</strong> Pega tus prompts en ChatGPT y activa tus módulos en tiempo real.</li>
-                        <li><strong>📱 Acceso Modo App:</strong> Agrega esta página a tu pantalla de inicio en tu celular.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- DOS COLUMNAS: SÍNTOMAS EXPRESADOS VS CIRUGÍA DIAGNÓSTICA -->
-            <div class="grid-2" style="margin-top: 1.2rem;">
-                <div class="card" style="border-color: rgba(239, 68, 68, 0.25);">
-                    <h3 class="section-title" style="color: #f87171;">
-                        <span>🚨 Lo que la persona expresaba (El Síntoma)</span>
-                    </h3>
-                    <blockquote id="m1-quote" style="font-style: italic; color: #e2e8f0; font-size: 0.88rem; line-height: 1.6; border-left: 2px solid #f87171; padding-left: 12px; margin-bottom: 12px;"></blockquote>
-                    <ul class="custom-list" id="m1-symptoms-list" style="font-size: 0.84rem;"></ul>
-                </div>
-
-                <div class="card" style="border-color: rgba(56, 189, 248, 0.3);">
-                    <h3 class="section-title" style="color: #38bdf8;">
-                        <span>🎯 Diagnóstico Operativo (La Causa Real)</span>
-                    </h3>
-                    <div style="background: rgba(56, 189, 248, 0.08); border-radius: 8px; padding: 12px; font-size: 0.86rem; color: #e0f2fe; line-height: 1.5; margin-bottom: 12px;" id="m1-insight"></div>
-                    <div id="m1-diagnosis-points" style="display: flex; flex-direction: column; gap: 8px; font-size: 0.84rem;"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ════════════════════════════════════════════════════════════════ -->
         <!-- PESTAÑA 2: 4 ARQUETIPOS DE ENERGÍA PERSONAL (EN 2 COLUMNAS)      -->
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-identidades" class="tab-content">
-            <div class="section-title">
-                <span>Matriz de los 4 Arquetipos de Energía Personal</span>
-            </div>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.92rem;">
-                Comprender qué identidad está activa en cada momento te permite neutralizar el auto-sabotaje y activar tu foco operativo.
-            </p>
-            <div class="grid-2" id="identidades-grid">
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> 1. La Estratega
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-estratega-desc"><strong>Rol / Función:</strong> Diseña programas y calcula metas financieras</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Alta / Foco</span>
-                </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-bolt" style="color: #10b981;"></i> 2. La Ejecutora
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-ejecutora-desc"><strong>Rol / Función:</strong> Entrega el servicio y atiende clientes con calidad</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Presente / Somática</span>
-                </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-heart" style="color: #ec4899;"></i> 3. La Nutricia
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-nutricia-desc"><strong>Rol / Función:</strong> Acompaña a su entorno, sostiene la familia y el autocuidado</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Empática / Emocional</span>
-                </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-shield-halved" style="color: #f59e0b;"></i> 4. La Saboteadora
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-saboteadora-desc"><strong>Rol / Función:</strong> Genera culpa nocturna por tareas pendientes o perfeccionismo</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Rumiación / Freno</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 3: MAPEADOR SEMANAL 24 HORAS                            -->
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-horario" class="tab-content">
+        <div id="tab-horario" class="tab-content active">
             <div class="card">
                 <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
                     <span style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#fff;" id="m2-schedule-title">
@@ -966,244 +837,215 @@
         </div>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 5: ACTIVADOR IA & CHATGPT                               -->
+        <!-- PESTAÑA: HERRAMIENTA DEMOSTRATIVA • TIME BLOCKING & BLINDAJE   -->
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-ia-chatgpt" class="tab-content">
-            <div class="ai-hub-header">
-                <div class="hero-tea-badge" style="background: rgba(96, 165, 250, 0.15); border-color: rgba(96, 165, 250, 0.35); color: #60a5fa;">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> Activador IA & Puente ChatGPT + Administración Humana
-                </div>
-                <h2 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
-                    Centro de Contexto & Activación de Módulos
-                </h2>
-                <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 850px; line-height: 1.5;">
-                    Aprovecha que tienes Google Drive sincronizado y que usas ChatGPT habitualmente. Copia estos prompts, pégalos en ChatGPT para estructurar tus ideas y guarda el resultado en tu carpeta compartida.
-                </p>
-
-                <div class="ai-step-flow">
-                    <div class="ai-step-card">
-                        <div class="ai-step-num">1</div>
-                        <div>
-                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Copia el Prompt</div>
-                            <div style="font-size: 0.74rem; color: #888;">Elige el módulo que deseas activar abajo y haz clic en "Copiar".</div>
-                        </div>
-                    </div>
-                    <div class="ai-step-card">
-                        <div class="ai-step-num">2</div>
-                        <div>
-                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Pégalo en ChatGPT</div>
-                            <div style="font-size: 0.74rem; color: #888;">Agrega tus notas o audios para que te devuelva el archivo listo.</div>
-                        </div>
-                    </div>
-                    <div class="ai-step-card">
-                        <div class="ai-step-num">3</div>
-                        <div>
-                            <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">Sincronización en Drive</div>
-                            <div style="font-size: 0.74rem; color: #888;">Guarda el archivo Markdown en tu carpeta para que quede activo.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROMPT MAESTRO UNIVERSAL PARA CHATS EXISTENTES -->
-            <div class="prompt-card" style="border: 1px solid rgba(96, 165, 250, 0.4); background: rgba(96, 165, 250, 0.03);">
-                <div class="prompt-header">
-                    <div>
-                        <span class="prompt-badge" style="background: rgba(96, 165, 250, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.4);">
-                            <i class="fa-solid fa-brain"></i> Extracción Universal • Para Chats Existentes en ChatGPT
-                        </span>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
-                            🌟 Prompt Maestro • Volcar Contexto Completo de un Chat para Administración Humana
-                        </h3>
-                    </div>
-                    <button class="btn-copy-prompt" onclick="copyPromptText('prompt-universal-text', this)">
-                        <i class="fa-regular fa-copy"></i> Copiar Prompt Maestro
-                    </button>
-                </div>
-                <p style="font-size: 0.8rem; color: #bbb; margin-bottom: 0.4rem;">
-                    Pega este prompt al final de cualquier conversación que ya tengas abierta en ChatGPT con reflexiones o ideas.
-                </p>
-                <div class="prompt-box" id="prompt-universal-text">Actúa como un sintetizador de contexto para mi sistema operativo en Administración Humana.
-Por favor, analiza todo lo que hemos conversado en este chat y extrae un resumen estructurado bajo el formato "Ficha de Extracción para Administración Humana".
-
-Incluye exclusivamente:
-1. Decisiones ya tomadas (lo que ya está definido y no se discute más).
-2. Restricciones duras (tiempos no negociables, límites de energía, cuidados médicos).
-3. Datos clave & Números (precios, metas financieras, fechas, cantidades de personas).
-4. Ideas & Proyectos pendientes (propuestas para aterrizar en micro-tareas).
-5. Cuellos de botella o preocupaciones actuales (lo que está frenando el avance).
-
-Entrega el resultado en Markdown limpio, con viñetas y tablas si aplica, listo para guardar en mi carpeta de Administración Humana.</div>
-            </div>
-
-            <!-- LISTA DE PROMPTS QUIRÚRGICOS DEL CASO -->
-            <div id="m4-prompts-container"></div>
-
-            <!-- DOS COLUMNAS: GUÍA DE CARPETAS EN GOOGLE DRIVE -->
-            <div class="card" style="margin-top: 1.5rem; border-color: rgba(255, 255, 255, 0.1);">
-                <h3 class="section-title"><span>📂 Mapa de Carpetas en tu Google Drive Sincronizado</span></h3>
-                <div class="grid-2">
-                    <div style="font-size: 0.85rem; color: #ccc; line-height: 1.7;">
-                        <div>📁 <code>01_Perfil_y_Antecedentes/</code> → Diagnóstico y audios de sesión.</div>
-                        <div>📁 <code>02_Gestion_Operativa_y_Metas/</code> → Horarios 24h y tareas GTD.</div>
-                        <div>📁 <code>03_Finanzas_y_Presupuesto/</code> → Metas y cálculo financiero.</div>
-                    </div>
-                    <div style="font-size: 0.85rem; color: #ccc; line-height: 1.7;">
-                        <div>📁 <code>04_Servicios_y_Proyectos_Profesionales/</code> → Ofertas y programas.</div>
-                        <div>📁 <code>05_Herramientas_y_Evaluacion/</code> → Inventario nocturno y plantillas.</div>
-                        <div>📁 <code>06_Bitacora_y_Multimedia/</code> → Registro de avances y notas de voz.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 6: TIPS ANTIGRAVITY / GUÍA DE HÁBITOS AH (EN 2 COLUMNAS)  -->
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-antigravity-tips" class="tab-content">
-            <div class="ai-hub-header" style="border-color: rgba(245, 158, 11, 0.3); background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(0, 0, 0, 0.4));">
-                <div class="hero-tea-badge" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.35); color: #f59e0b;">
-                    <i class="fa-solid fa-lightbulb"></i> Guía de Hábitos & Sistemas AH
-                </div>
-                <h2 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
-                    ⚡ Estrategias Clave para Sostener tu Sistema
-                </h2>
-                <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 850px; line-height: 1.5;">
-                    Mientras que ChatGPT es para <em>charlar y estructurar ideas</em>, <strong>Administración Humana es tu ejecutor en tu computador</strong>: lee tus archivos, actualiza tu Plan de Vuelo y mueve tus tareas de Kanban al instante.
-                </p>
-            </div>
-
-            <!-- COMPARATIVA EN 2 COLUMNAS: CHATGPT VS ANTIGRAVITY -->
-            <div class="grid-2" style="margin-bottom: 1.5rem;">
-                <div class="card" style="border-color: rgba(96, 165, 250, 0.25);">
-                    <h3 style="color: #60a5fa; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-comments"></i> 1. ChatGPT = El Pensador
-                    </h3>
-                    <ul class="custom-list" style="font-size: 0.85rem; color: #ccc;">
-                        <li>💬 Tu espacio de desahogo, conversación y brainstorming.</li>
-                        <li>✍️ Redacta borradores, pule copys y crea secuencias de trabajo.</li>
-                        <li>🧠 Te entrega la <em>Ficha de Contexto</em> lista para Administración Humana.</li>
-                    </ul>
-                </div>
-                <div class="card" style="border-color: rgba(16, 185, 129, 0.3);">
-                    <h3 style="color: #10b981; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-bolt"></i> 2. Administración Humana = El Ejecutor
-                    </h3>
-                    <ul class="custom-list" style="font-size: 0.85rem; color: #ccc;">
-                        <li>⚡ Modifica este portal y actualiza tus widgets en tiempo real.</li>
-                        <li>🗂️ Lee tus carpetas de Google Drive y organiza tus archivos.</li>
-                        <li>🔄 Sincroniza al 100% tu espacio de trabajo con el de Diego.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- COMANDOS MAESTROS -->
+        <div id="tab-identidades" class="tab-content">
             <div class="section-title">
-                <span>🎯 Los 4 Prompts Mágicos para pedirle cosas a Administración Humana</span>
-            </div>
-            <div class="prompt-card">
-                <div class="prompt-header">
-                    <div>
-                        <span class="prompt-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
-                            <i class="fa-solid fa-arrows-rotate"></i> Actualización de Portal
-                        </span>
-                        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">
-                            1. Aterrizar un archivo nuevo de ChatGPT a tu Plan de Vuelo
-                        </h4>
-                    </div>
-                    <button class="btn-copy-prompt" onclick="copyPromptText('tip-prompt-1', this)">
-                        <i class="fa-regular fa-copy"></i> Copiar Prompt
-                    </button>
-                </div>
-                <div class="prompt-box" id="tip-prompt-1">Administración Humana, acabo de guardar una ficha de contexto en mi carpeta de Drive. 
-Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi portal Plan de Vuelo para que los datos queden visibles e interactivos.</div>
-            </div>
-
-            <!-- DOS COLUMNAS: REGLAS DE ORO -->
-            <div class="card" style="margin-top: 1rem; border-color: rgba(255, 255, 255, 0.1);">
-                <h3 class="section-title"><span>🛡️ Reglas de Oro para Comunicarte con Administración Humana</span></h3>
-                <div class="grid-2" style="font-size: 0.85rem; color: #ccc; line-height: 1.7;">
-                    <div>
-                        <div>🎯 <strong>1. Háblale en lenguaje natural:</strong> No necesitas saber programación; pídele lo que necesitas como a un asistente de confianza.</div>
-                        <div>📂 <strong>2. Indica la carpeta o archivo:</strong> Si guardaste una nota o audio, menciona la carpeta (ej: <code>04_Servicios</code>).</div>
-                    </div>
-                    <div>
-                        <div>🛡️ <strong>3. Límite de Foco Protegido:</strong> Siempre cuidará tu salud mental respetando el límite Máximo 2 Tareas.</div>
-                        <div>☁️ <strong>4. Sincronización Automática:</strong> Cualquier cambio se sincroniza de inmediato con tu Google Drive.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 7: KIT DE HERRAMIENTAS DIDÁCTICAS (EN 2 COLUMNAS)        -->
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-herramientas" class="tab-content">
-            <div class="section-title">
-                <span>Kit de Herramientas Didácticas & Diagramas</span>
+                <span>Matriz de los 4 Arquetipos de Energía Personal</span>
             </div>
             <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.92rem;">
-                Haz clic sobre cualquier diagrama para ampliarlo en pantalla completa con el <strong>Visor Lightbox</strong>.
+                Comprender qué identidad está activa en cada momento te permite neutralizar el auto-sabotaje y activar tu foco operativo.
             </p>
-            <div class="grid-2">
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>1. Time Blocking & Blindaje de Foco</h3>
-                        <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
-                        <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
-                        </div>
-                    </div>
+            <div class="grid-2" id="identidades-grid">
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> 1. La Estratega
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-estratega-desc"><strong>Rol / Función:</strong> Diseña programas y calcula metas financieras</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Alta / Foco</span>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>2. Matriz de Eisenhower (Priorización)</h3>
-                        <p class="tool-meta">Urgente vs Importante</p>
-                        <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
-                        </div>
-                    </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-bolt" style="color: #10b981;"></i> 2. La Ejecutora
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-ejecutora-desc"><strong>Rol / Función:</strong> Entrega el servicio y atiende clientes con calidad</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Presente / Somática</span>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
-                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
-                        <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
-                        </div>
-                    </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-heart" style="color: #ec4899;"></i> 3. La Nutricia
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-nutricia-desc"><strong>Rol / Función:</strong> Acompaña a su entorno, sostiene la familia y el autocuidado</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Empática / Emocional</span>
                 </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>4. La Ventana de Johari (Alineación)</h3>
-                        <p class="tool-meta">Comunicación & Autopercepción</p>
-                        <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
-                        </div>
-                    </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-shield-halved" style="color: #f59e0b;"></i> 4. La Saboteadora
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-saboteadora-desc"><strong>Rol / Función:</strong> Genera culpa nocturna por tareas pendientes o perfeccionismo</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Rumiación / Freno</span>
                 </div>
             </div>
-
-            <!-- CURADURÍA DE PALANCAS DEL CASO EN 2 COLUMNAS -->
-            <div class="section-title" style="margin-top: 2rem;">
-                <span>🧰 Palancas Quirúrgicas Prescritas para este Caso</span>
-            </div>
-            <div class="grid-2" id="m4-tools-grid"></div>
         </div>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 8: MÓDULO DE ESPECIALIDAD DEL CASO                      -->
+        <!-- PESTAÑA 3: MAPEADOR SEMANAL 24 HORAS                            -->
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-especialidad" class="tab-content">
-            <div id="m4-specialized-container"></div>
+        <div id="tab-herramientas" class="tab-content">
+            <div class="card" style="border-color: rgba(56, 189, 248, 0.35); background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(0, 0, 0, 0.4)); margin-bottom: 1.5rem;">
+                <div class="hero-tea-badge" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8;">
+                    <i class="fa-solid fa-toolbox"></i> Herramienta Maestra del Kit • Demostración Práctica
+                </div>
+                <h2 style="font-family: var(--font-heading); font-size: clamp(1.25rem, 3vw, 1.6rem); font-weight: 800; color: #fff; margin: 4px 0 8px;">
+                    Time Blocking & Blindaje de Foco
+                </h2>
+                <p style="font-size: 0.92rem; color: #e2e8f0; line-height: 1.6; max-width: 950px; margin: 0;">
+                    El multitasking drena hasta un 40% de tu energía diaria por fragmentación atencional (<em>Task-Switching</em>). 
+                    <strong>Time Blocking</strong> no es llenar tu agenda de obligaciones: es delimitar ventanas protegidas de trabajo profundo (<em>Deep Work</em>), intercalar amortiguadores de imprevistos y asegurar descansos libres de culpa.
+                </p>
+            </div>
+
+            <!-- DOS COLUMNAS: DIAGRAMA DIDÁCTICO + TUTORIAL & CHECKLIST -->
+            <div class="grid-2" style="align-items: start; gap: 1.5rem;">
+                
+                <!-- COLUMNA 1: DIAGRAMA LIGHTBOX & 3 PRINCIPIOS INQUEBRANTABLES -->
+                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    
+                    <!-- CAJA DEL DIAGRAMA CON LIGHTBOX -->
+                    <div class="card" style="padding: 1.2rem; text-align: center; border-color: rgba(255, 255, 255, 0.12);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span style="font-size: 0.76rem; font-weight: 800; text-transform: uppercase; color: #38bdf8; letter-spacing: 0.5px;">
+                                <i class="fa-solid fa-image"></i> Diagrama de Arquitectura
+                            </span>
+                            <span style="font-size: 0.72rem; color: #aaa; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 12px;">
+                                Clic para Zoom 🔍
+                            </span>
+                        </div>
+                        <div class="image-preview" style="background: #0d0d0d; border-radius: 10px; padding: 10px; border: 1px solid rgba(255,255,255,0.06);">
+                            <img src="assets/img/herramientas/Time Blocking.webp" 
+                                 data-fallback="assets/img/herramientas/Time Blocking.png" 
+                                 alt="Diagrama Time Blocking" 
+                                 onclick="openLightbox(this.src)" 
+                                 style="cursor: zoom-in; max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); transition: transform 0.25s ease;"
+                                 onmouseover="this.style.transform='scale(1.02)'"
+                                 onmouseout="this.style.transform='scale(1)'">
+                            <p style="font-size: 0.76rem; color: #888; margin-top: 10px;">
+                                <i class="fa-solid fa-expand"></i> Haz clic en la imagen para abrir en pantalla completa
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 3 PRINCIPIOS INQUEBRANTABLES -->
+                    <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Los 3 Principios de Blindaje Operativo
+                        </h4>
+                        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.86rem; line-height: 1.5;">
+                            <div style="background: rgba(16, 185, 129, 0.05); border-left: 3px solid #10b981; padding: 10px 12px; border-radius: 0 6px 6px 0;">
+                                <strong style="color: #34d399;">1. El Bloque Dorado (90 a 120 min):</strong>
+                                <div style="color: #ccc; margin-top: 2px;">Una sola prioridad ejecutada en tu horario de máxima energía biológica, antes de abrir WhatsApp o correos.</div>
+                            </div>
+                            <div style="background: rgba(56, 189, 248, 0.05); border-left: 3px solid #38bdf8; padding: 10px 12px; border-radius: 0 6px 6px 0;">
+                                <strong style="color: #7dd3fc;">2. Amortiguador Buffer (30 min):</strong>
+                                <div style="color: #ccc; margin-top: 2px;">Colchón de seguridad entre reuniones o bloques. Si surge un imprevisto, absorbe el golpe sin robarle tiempo a tu vida personal.</div>
+                            </div>
+                            <div style="background: rgba(245, 158, 11, 0.05); border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 0 6px 6px 0;">
+                                <strong style="color: #fcd34d;">3. Ritual de Cierre Sagrado (10 min):</strong>
+                                <div style="color: #ccc; margin-top: 2px;">Vaciado de pendientes en papel análogo al finalizar la jornada. Corta el efecto Zeigarnik y evita la rumiación nocturna en la cama.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- COLUMNA 2: TUTORIAL PASO A PASO + CHECKLIST INTERACTIVO -->
+                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    
+                    <!-- TUTORIAL PASO A PASO -->
+                    <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                        <div class="section-title" style="margin-bottom: 0.8rem;">
+                            <span>📖 Tutorial Práctico: Cómo Aplicarlo en tu Mapeador 24H</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;">1</div>
+                                <div>
+                                    <strong style="color: #fff; font-size: 0.9rem;">Auditoría de Energía Biológica:</strong>
+                                    <p style="font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; margin: 2px 0 0;">Identifica en qué franja horaria tu mente está más despierta (generalmente entre 9:00 y 11:30) y dónde cae tu energía (siesta o tarde).</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;">2</div>
+                                <div>
+                                    <strong style="color: #fff; font-size: 0.9rem;">Pintar el Bloque en el Mapeador:</strong>
+                                    <p style="font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; margin: 2px 0 0;">Ve a la pestaña <strong>Mapeador 24H</strong> y pinta ese intervalo con la categoría de trabajo estratégico. Ese bloque queda blindado en tu calendario.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;">3</div>
+                                <div>
+                                    <strong style="color: #fff; font-size: 0.9rem;">Aislamiento Atencional:</strong>
+                                    <p style="font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; margin: 2px 0 0;">Activa el modo 'No Molestar' en tu teléfono o colócalo boca abajo fuera de tu alcance durante esos 90 minutos.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;">4</div>
+                                <div>
+                                    <strong style="color: #fff; font-size: 0.9rem;">Checklist y Cierre Análogo:</strong>
+                                    <p style="font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; margin: 2px 0 0;">Al sonar la alarma de término, detén la tarea sin culpa, anota en tu libreta el punto exacto donde retomarás mañana y descansa.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CHECKLIST INTERACTIVO CON BARRA DE PROGRESO Y PERSISTENCIA -->
+                    <div class="card" style="border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, rgba(16, 185, 129, 0.04), rgba(0, 0, 0, 0.3));">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 0.6rem;">
+                            <h4 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-list-check" style="color: #10b981;"></i> Checklist de Blindaje Semanal
+                            </h4>
+                            <span id="tool-progress-pct" style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #10b981;">0%</span>
+                        </div>
+
+                        <!-- BARRA DE PROGRESO DINÁMICA -->
+                        <div style="width: 100%; height: 8px; background: #1a1a1a; border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; border: 1px solid #333;">
+                            <div id="tool-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981, #38bdf8); transition: width 0.35s ease; border-radius: 10px;"></div>
+                        </div>
+                        <div id="tool-progress-status" style="font-size: 0.8rem; margin-bottom: 1rem;">
+                            <span style="color: #888;">⚪ Sin iniciar (0/4 completados)</span>
+                        </div>
+
+                        <!-- LISTA DE CHECKBOXES INTERACTIVOS -->
+                        <div style="display: flex; flex-direction: column; gap: 10px;" id="tool-checklist-items">
+                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+                                <input type="checkbox" class="tool-chk-step" data-index="0" style="margin-top: 3px; accent-color: #10b981; width: 17px; height: 17px; cursor: pointer;">
+                                <span style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.45;">
+                                    <strong>Bloque Dorado (90m) agendado:</strong> Reservado e innegociable en el Mapeador 24H antes del mediodía.
+                                </span>
+                            </label>
+
+                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+                                <input type="checkbox" class="tool-chk-step" data-index="1" style="margin-top: 3px; accent-color: #10b981; width: 17px; height: 17px; cursor: pointer;">
+                                <span style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.45;">
+                                    <strong>Blindaje de notificaciones:</strong> Teléfono en silencio y WhatsApp Web cerrado durante el bloque.
+                                </span>
+                            </label>
+
+                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+                                <input type="checkbox" class="tool-chk-step" data-index="2" style="margin-top: 3px; accent-color: #10b981; width: 17px; height: 17px; cursor: pointer;">
+                                <span style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.45;">
+                                    <strong>Colchón Buffer (30m) activo:</strong> Margen de seguridad reservado entre compromisos para absorber imprevistos.
+                                </span>
+                            </label>
+
+                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+                                <input type="checkbox" class="tool-chk-step" data-index="3" style="margin-top: 3px; accent-color: #10b981; width: 17px; height: 17px; cursor: pointer;">
+                                <span style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.45;">
+                                    <strong>Ritual de Cierre Sagrado (10m):</strong> Vaciado en libreta de pendientes y apagado de pantallas de trabajo.
+                                </span>
+                            </label>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 1rem;">
+                            <button class="btn-schedule-action" onclick="resetToolTimeBlockingChecklist()" style="color: #aaa; font-size: 0.78rem;">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer Checklist
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
@@ -1424,88 +1266,12 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
         </div>
     </div>
 
-    <!-- MODAL 4: AGREGAR / EDITAR CANCIÓN DE ZUMBA -->
-    <div id="modal-zumba-song" class="modal-overlay">
-        <div class="modal-box" style="max-width:560px;">
-            <div class="modal-title">
-                <span id="zumba-modal-title">🎶 Agregar Canción a la Biblioteca</span>
-                <button class="modal-close-btn" onclick="closeZumbaSongModal()">&times;</button>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.2rem;">
-                <input type="hidden" id="song-edit-id">
-                <div style="display:grid; grid-template-columns:2fr 1fr; gap:8px;">
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Título de la Canción *</label>
-                        <input type="text" id="song-edit-title" placeholder="ej. Pegao / Despacito" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
-                    </div>
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Artista</label>
-                        <input type="text" id="song-edit-artist" placeholder="ej. Omega / Fonsi" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
-                    </div>
-                </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Ritmo</label>
-                        <select id="song-edit-rhythm" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
-                            <option value="warmup">❄️ Calentamiento</option>
-                            <option value="merengue">🔥 Merengue</option>
-                            <option value="salsa">💃 Salsa</option>
-                            <option value="reggaeton">⚡ Reggaetón</option>
-                            <option value="cumbia">🌴 Cumbia</option>
-                            <option value="bachata">🌸 Bachata</option>
-                            <option value="urbano">✨ Urbano</option>
-                            <option value="peak">🚀 Peak Cardio</option>
-                            <option value="cooldown">🧘‍♀️ Vuelta a la Calma</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Duración (mm:ss)</label>
-                        <input type="text" id="song-edit-duration" placeholder="03:45" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
-                    </div>
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">BPM</label>
-                        <input type="number" id="song-edit-bpm" placeholder="130" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
-                    </div>
-                </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Intensidad (1 a 5)</label>
-                        <select id="song-edit-intensity" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
-                            <option value="1">1 (Suave / Warm-Up)</option>
-                            <option value="2">2 (Baja / Activación)</option>
-                            <option value="3" selected>3 (Media / Cardio Moderado)</option>
-                            <option value="4">4 (Alta / Cardio Intenso)</option>
-                            <option value="5">5 (Explosiva / Peak)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Fuente de Audio</label>
-                        <select id="song-edit-audio" style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px;">
-                            <option value="hq_paypal">⭐ Pista Original HQ (PayPal)</option>
-                            <option value="spotify">🟢 Spotify Master</option>
-                            <option value="youtube">🟠 YouTube / Referencia</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label style="font-size:0.75rem; color:#aaa; font-weight:700;">Notas Coreográficas & Pasos Clave</label>
-                    <textarea id="song-edit-notes" rows="3" placeholder="Paso básico en estrofas; 4 saltos con brazos arriba en el drop..." style="width:100%; background:#141414; border:1px solid #333; color:#fff; padding:7px 9px; border-radius:6px; font-size:0.82rem; margin-top:3px; resize:vertical;"></textarea>
-                </div>
-            </div>
-            <div style="display:flex; justify-content:flex-end; gap:8px;">
-                <button class="btn-schedule-action" onclick="closeZumbaSongModal()">Cancelar</button>
-                <button class="btn-gateway-login" onclick="saveZumbaSongFromModal()" style="width:auto; padding:6px 18px; margin:0; font-size:0.85rem; background:#ec4899; color:#fff;">Guardar Canción</button>
-            </div>
-        </div>
-    </div>
-
     <!-- SCRIPTS MODULARES & MOTORES -->
     <script src="js/casos-plan-vuelo-data.js?v=3.5"></script>
     <script src="js/modulos-data.js?v=3.5"></script>
     <script src="js/portal-gateway.js?v=3.5"></script>
     <script src="js/schedule-engine.js?v=3.5"></script>
     <script src="js/kanban-engine.js?v=3.5"></script>
-    <script src="js/zumba-library-engine.js?v=3.5"></script>
     <script src="js/whatsapp-widget.js?v=3.5"></script>
 
     <script>
@@ -1513,7 +1279,7 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
         let currentCaseId = "caso_a";
         let activeCaseData = null;
         let currentSimState = "after";
-        let activeTabId = "tab-overview";
+        let activeTabId = "tab-horario";
 
         // Auto-desbloqueo demo
         localStorage.setItem("ah_client_auth_session", "authenticated_ok");
@@ -1537,6 +1303,9 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
 
             if (tabId === "tab-horario" && typeof renderScheduleGrid === "function") {
                 setTimeout(renderScheduleGrid, 40);
+            }
+            if (tabId === "tab-herramientas" && typeof initToolTimeBlockingChecklist === "function") {
+                initToolTimeBlockingChecklist();
             }
         }
 
@@ -1606,11 +1375,15 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
                 `).join("");
             }
 
-            // 4. Renderizar Pestaña 1 (Diagnóstico & Estructura)
-            document.getElementById("m1-diag-title").innerHTML = `<span>El Estado Actual: Soberanía Operativa • ${p.shortName}</span>`;
-            document.getElementById("m1-diag-context").innerHTML = p.context;
-            document.getElementById("m1-diag-saleshook").innerHTML = p.salesHook;
-            document.getElementById("m1-quote").innerText = activeCaseData.step1?.quote || "";
+            // 4. Elementos de diagnóstico (guardados condicionalmente si existieran)
+            const diagTitle = document.getElementById("m1-diag-title");
+            if (diagTitle) diagTitle.innerHTML = `<span>El Estado Actual: Soberanía Operativa • ${p.shortName}</span>`;
+            const diagContext = document.getElementById("m1-diag-context");
+            if (diagContext) diagContext.innerHTML = p.context;
+            const diagHook = document.getElementById("m1-diag-saleshook");
+            if (diagHook) diagHook.innerHTML = p.salesHook;
+            const diagQuote = document.getElementById("m1-quote");
+            if (diagQuote) diagQuote.innerText = activeCaseData.step1?.quote || "";
             
             const symptomsList = document.getElementById("m1-symptoms-list");
             if (symptomsList && activeCaseData.step1?.symptoms) {
@@ -1631,13 +1404,14 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
                 `).join("");
             }
 
-            renderSimulatorItems();
+            if (typeof renderSimulatorItems === "function") renderSimulatorItems();
 
-            // 5. Renderizar Pestaña 2 (Arquetipos) adaptados al caso
+            // 5. Renderizar Pestaña Arquetipos adaptados al caso
             renderCaseArchetypes();
 
             // 6. Conectar Mapeador 24H dinámico por caso
-            document.getElementById("m2-schedule-title").innerText = `⏰ Mapeador Semanal 24 Horas (${p.shortName})`;
+            const schedTitle = document.getElementById("m2-schedule-title");
+            if (schedTitle) schedTitle.innerText = `⏰ Mapeador Semanal 24 Horas (${p.shortName})`;
             if (typeof window.initScheduleEngine === "function") {
                 const storageKey = `ah_schedule_${caseId}`;
                 window.CLIENT_SCHEDULE_CATEGORIES = activeCaseData.scheduleCategories || [];
@@ -1680,27 +1454,99 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
             // Renderizar Checklist Diario del caso
             renderCaseChecklist();
 
-            // 8. Renderizar Pestaña Activador IA
-            renderCasePrompts();
+            // 8. Inicializar Checklist Interactivo de la Herramienta Time Blocking
+            initToolTimeBlockingChecklist();
 
-            // 9. Renderizar Pestaña Kit de Herramientas Didácticas
-            renderCaseTools();
-
-            // 10. Renderizar Pestaña Especialidad
-            renderSpecializedTabLabel();
-            renderSpecializedModule();
-
-            // 11. Renderizar Pestaña Resultados & Calibración
-            document.getElementById("m5-summary-text").innerText = activeCaseData.summary || "";
+            // 9. Renderizar Pestaña Resultados & Calibración
+            const summaryText = document.getElementById("m5-summary-text");
+            if (summaryText) summaryText.innerText = activeCaseData.summary || "";
             renderCaseMetrics();
             renderCaseCalibration();
 
-            // 12. Renderizar Módulos Dinámicos agregados del Catálogo para este caso
+            // 10. Renderizar Módulos Dinámicos agregados del Catálogo para este caso
             renderActiveDynamicModules();
             updateConsultorModeUI();
 
-            // Mantener activa la pestaña en la que estaba
-            switchTab(activeTabId);
+            // Mantener activa la pestaña seleccionada (por defecto Mapeador 24H)
+            switchTab(activeTabId || "tab-horario");
+        }
+
+        // ══════════════════════════════════════════════════════════════════════
+        // GESTIÓN DEL CHECKLIST INTERACTIVO: TIME BLOCKING & BLINDAJE DE FOCO
+        // ══════════════════════════════════════════════════════════════════════
+        function initToolTimeBlockingChecklist() {
+            const checkboxes = document.querySelectorAll(".tool-chk-step");
+            if (!checkboxes.length) return;
+            
+            let saved = {};
+            try {
+                saved = JSON.parse(localStorage.getItem("ah_tool_timeblocking_checklist") || "{}");
+            } catch(e) { saved = {}; }
+
+            checkboxes.forEach((chk, idx) => {
+                if (saved[idx] !== undefined) {
+                    chk.checked = !!saved[idx];
+                }
+                chk.onchange = () => updateToolTimeBlockingProgress(true);
+            });
+            updateToolTimeBlockingProgress(false);
+        }
+
+        function updateToolTimeBlockingProgress(shouldSave = true) {
+            const checkboxes = document.querySelectorAll(".tool-chk-step");
+            if (!checkboxes.length) return;
+
+            let checkedCount = 0;
+            const state = {};
+            checkboxes.forEach((chk, idx) => {
+                if (chk.checked) checkedCount++;
+                state[idx] = chk.checked;
+                const parent = chk.closest(".tool-chk-item");
+                if (parent) {
+                    parent.classList.toggle("completed", chk.checked);
+                }
+            });
+
+            if (shouldSave) {
+                try {
+                    localStorage.setItem("ah_tool_timeblocking_checklist", JSON.stringify(state));
+                } catch(e) {}
+            }
+
+            const total = checkboxes.length;
+            const pct = Math.round((checkedCount / total) * 100);
+
+            const bar = document.getElementById("tool-progress-bar");
+            const label = document.getElementById("tool-progress-pct");
+            const statusEl = document.getElementById("tool-progress-status");
+
+            if (bar) bar.style.width = `${pct}%`;
+            if (label) label.innerText = `${pct}%`;
+            if (statusEl) {
+                if (pct === 100) {
+                    statusEl.innerHTML = `<span style="color:#10b981; font-weight:800;"><i class="fa-solid fa-circle-check"></i> ¡Semana Blindada con Éxito! Foco y descansos al 100%.</span>`;
+                } else if (pct >= 50) {
+                    statusEl.innerHTML = `<span style="color:#38bdf8; font-weight:700;"><i class="fa-solid fa-bolt"></i> En ejecución operativa (${checkedCount}/${total} completados).</span>`;
+                } else if (pct > 0) {
+                    statusEl.innerHTML = `<span style="color:#f59e0b; font-weight:700;"><i class="fa-solid fa-hourglass-half"></i> Iniciando blindaje (${checkedCount}/${total} completados).</span>`;
+                } else {
+                    statusEl.innerHTML = `<span style="color:#888;">⚪ Sin iniciar (${checkedCount}/${total} completados). Tilda las casillas para avanzar.</span>`;
+                }
+            }
+        }
+
+        function resetToolTimeBlockingChecklist() {
+            try {
+                localStorage.removeItem("ah_tool_timeblocking_checklist");
+            } catch(e) {}
+            const checkboxes = document.querySelectorAll(".tool-chk-step");
+            checkboxes.forEach(chk => {
+                chk.checked = false;
+                const parent = chk.closest(".tool-chk-item");
+                if (parent) parent.classList.remove("completed");
+            });
+            updateToolTimeBlockingProgress(false);
+            showToast("Checklist de blindaje restablecido.");
         }
 
         // RENDER DE ARQUETIPOS SEGÚN EL CASO
@@ -1713,7 +1559,7 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
 
             if (currentCaseId === "caso_a") { // Sofía
                 if (estrategaDesc) estrategaDesc.innerHTML = `<strong>Rol / Función:</strong> Diseña programas de yoga y calcula la meta de pasajes ($160k).`;
-                if (ejecutoraDesc) ejecutoraDesc.innerHTML = `<strong>Rol / Función:</strong> Dicta clases de yoga somático y zumba con pistas HQ.`;
+                if (ejecutoraDesc) ejecutoraDesc.innerHTML = `<strong>Rol / Función:</strong> Dicta clases de yoga somático y talleres presenciales con foco.`;
                 if (nutriciaDesc) nutriciaDesc.innerHTML = `<strong>Rol / Función:</strong> Cuida a familiares mayores y gestiona trámites de salud.`;
                 if (saboteadoraDesc) saboteadoraDesc.innerHTML = `<strong>Rol / Función:</strong> Culpa por no producir en horario de oficina tradicional.`;
             } else if (currentCaseId === "caso_b") { // Camila
@@ -1768,304 +1614,6 @@ Por favor léela, extrae los puntos clave y actualiza mi Ficha Maestra y mi port
 
             const labelEl = document.getElementById("chk-label-" + idx);
             if (labelEl) labelEl.classList.toggle("completed", isChecked);
-        }
-
-        // RENDER ETIQUETA PESTAÑA ESPECIALIDAD
-        function renderSpecializedTabLabel() {
-            const label = document.getElementById("label-especialidad");
-            if (!label) return;
-            const names = {
-                caso_a: "🎶 Biblioteca Zumba & Coreos",
-                caso_b: "💆‍♀️ Paquetes & Límites Sensoriales",
-                caso_c: "⚡ Temporizador Paso Cero (TDAH)",
-                caso_d: "👓 Tracción Comercial 7 Días",
-                caso_e: "🌏 Solvencia & Hitos Migratorios"
-            };
-            label.innerText = names[currentCaseId] || "Módulo Especializado";
-        }
-
-        // RENDER MÓDULO ESPECIALIZADO
-        function renderSpecializedModule() {
-            const container = document.getElementById("m4-specialized-container");
-            if (!container) return;
-
-            const modType = activeCaseData.specializedModule;
-
-            if (modType === "zumba") {
-                container.innerHTML = `
-                    <div class="zumba-header-box">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
-                            <div>
-                                <div class="hero-tea-badge" style="background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.35); color: #ec4899;">
-                                    <i class="fa-solid fa-music"></i> Módulo 25 • Biblioteca Musical & Repertorio Coreográfico
-                                </div>
-                                <h2 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
-                                    🎶 Biblioteca Musical & Inventario Coreográfico de Zumba
-                                </h2>
-                                <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 880px; line-height: 1.5;">
-                                    Centraliza pistas originales HQ PayPal, curva somática de 52 minutos y armado de playlists en 1 clic.
-                                </p>
-                            </div>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                <button class="btn-schedule-action" onclick="openAddSongModal()" style="background: #ec4899; color: #fff; border-color: #ec4899; font-weight: 800;">
-                                    <i class="fa-solid fa-plus"></i> + Agregar Canción
-                                </button>
-                                <button class="btn-schedule-action" onclick="resetZumbaDefaultSongs()" style="color: #aaa;">
-                                    <i class="fa-solid fa-rotate-left"></i> Restablecer Biblioteca
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="class-builder-card" style="margin-top: 1rem;">
-                        <div class="class-builder-header">
-                            <div>
-                                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0;">
-                                    ⚡ Armador Visual de Clase (Curva Somática de 52m)
-                                </h3>
-                                <p style="font-size: 0.8rem; color: #aaa; margin-top: 2px;">
-                                    Calentamiento ➔ Ritmos Progresivos ➔ Clímax Cardio ➔ Vuelta a la Calma.
-                                </p>
-                            </div>
-                            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                                <button class="btn-schedule-action" onclick="copyClassSetlistWhatsApp(this)" style="background: #ffffff; color: #000000; font-weight: 800;">
-                                    <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Copiar a WhatsApp
-                                </button>
-                                <button class="btn-schedule-action" onclick="printZumbaClassSheet()">
-                                    <i class="fa-solid fa-print"></i> Imprimir Ficha
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="intensity-curve-bar" id="class-flow-curve-bar" style="margin: 1rem 0;"></div>
-                        <div class="class-flow-list" id="zumba-class-flow-list"></div>
-                    </div>
-                `;
-                if (typeof renderClassFlowList === "function") {
-                    setTimeout(() => {
-                        renderClassFlowList();
-                        renderIntensityCurveBar();
-                    }, 50);
-                }
-            } else if (modType === "sensorial") {
-                const savedSingle = parseInt(localStorage.getItem("ah_calc_camila")) || 25000;
-                const packPrice = Math.round(savedSingle * 4 * 0.85);
-                const monthlyTotal = packPrice * 8;
-                container.innerHTML = `
-                    <div class="card" style="border-color: rgba(6, 182, 212, 0.35);">
-                        <div class="hero-tea-badge" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4; border-color: rgba(6,182,212,0.35);">
-                            <i class="fa-solid fa-calculator"></i> Herramienta Interactiva • Modelo de Negocio Sensorial
-                        </div>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 4px 0 8px;">
-                            💆‍♀️ Calculadora de Fidelización: Paquetes 4x de Masajes
-                        </h3>
-                        <p style="font-size: 0.86rem; color: #aaa; margin-bottom: 1.4rem;">
-                            Compara la diferencia entre la incertidumbre de cobrar sesión a sesión versus cobrar paquetes mensuales de 4 atenciones por adelantado:
-                        </p>
-
-                        <div class="grid-2">
-                            <div style="background: #111; border: 1px solid #222; border-radius: 10px; padding: 1.2rem;">
-                                <label style="font-size: 0.76rem; color: #aaa; font-weight: 700;">Tarifa por Sesión Suelta:</label>
-                                <input type="range" min="15000" max="45000" step="2500" value="${savedSingle}" id="calc-single-price" oninput="updateCamilaCalculator()" style="width: 100%; accent-color: #06b6d4; margin: 10px 0;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700; color: #fff;">
-                                    <span>Valor Sesión:</span>
-                                    <span id="calc-val-single">$${savedSingle.toLocaleString("es-CL")} CLP</span>
-                                </div>
-                            </div>
-                            <div style="background: #111; border: 1px solid #06b6d444; border-radius: 10px; padding: 1.2rem; display: flex; flex-direction: column; justify-content: center;">
-                                <div style="font-size: 0.74rem; color: #06b6d4; font-weight: 800; text-transform: uppercase;">Paquete Mensual (4 Sesiones):</div>
-                                <div style="font-size: 1.6rem; font-weight: 800; color: #fff;" id="calc-val-package">$${packPrice.toLocaleString("es-CL")} CLP</div>
-                                <div style="font-size: 0.76rem; color: #10b981; margin-top:4px;" id="calc-val-monthly">Con 8 clientas fidelizadas = $${monthlyTotal.toLocaleString("es-CL")} CLP (Cero cancelaciones)</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (modType === "tdah") {
-                container.innerHTML = `
-                    <div class="card" style="border-color: rgba(245, 158, 11, 0.4);">
-                        <div class="hero-tea-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border-color: rgba(245,158,11,0.35);">
-                            <i class="fa-solid fa-stopwatch"></i> Protocolo Anti-Parálisis • Técnica Paso Cero
-                        </div>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 4px 0 6px;">
-                            ⚡ Temporizador Visual "Paso Cero" (5 Minutos con Permiso de Parar)
-                        </h3>
-                        <p style="font-size: 0.86rem; color: #aaa; margin-bottom: 0.8rem;">
-                            El compromiso no es estudiar 2 horas; es sentarse 5 minutos cronometrados. Si a los 5 min quieres parar, tienes permiso total. El 85% de las veces la inercia se rompe y el foco continúa.
-                        </p>
-
-                        <div class="timer-display" id="paso-cero-clock">05:00</div>
-                        <div class="timer-progress-bar">
-                            <div class="timer-progress-fill" id="paso-cero-bar"></div>
-                        </div>
-
-                        <div style="display: flex; justify-content: center; gap: 10px;">
-                            <button class="btn-schedule-action" onclick="togglePasoCeroTimer()" id="btn-timer-toggle" style="background: #f59e0b; color: #000; font-weight: 800; padding: 8px 20px;">
-                                <i class="fa-solid fa-play"></i> Iniciar Paso Cero
-                            </button>
-                            <button class="btn-schedule-action" onclick="resetPasoCeroTimer()">
-                                <i class="fa-solid fa-rotate-left"></i> Reiniciar (5m)
-                            </button>
-                        </div>
-                    </div>
-                `;
-            } else if (modType === "ventas") {
-                container.innerHTML = `
-                    <div class="card" style="border-color: rgba(16, 185, 129, 0.4);">
-                        <div class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border-color: rgba(16,185,129,0.35);">
-                            <i class="fa-solid fa-rocket"></i> Tracción Inmediata • Regla del 70%
-                        </div>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 4px 0 6px;">
-                            👓 Matriz de Lanzamiento Mínimo: Primeros Cobros en 7 Días
-                        </h3>
-                        <p style="font-size: 0.86rem; color: #aaa; margin-bottom: 1.2rem;">
-                            Prohibido rediseñar logos o buscar pasarelas complejas. Estas 2 acciones concretan tus primeras ventas:
-                        </p>
-                        <div class="grid-2">
-                            <div style="background:#111; border:1px solid #222; border-radius:8px; padding:16px;">
-                                <strong style="color:#10b981; font-size:0.9rem;">Paso 1: Catálogo PDF de 2 Páginas</strong>
-                                <p style="font-size:0.8rem; color:#aaa; margin-top:6px;">Fotos tomadas con luz natural sobre fondo neutro con precio y características claras.</p>
-                            </div>
-                            <div style="background:#111; border:1px solid #222; border-radius:8px; padding:16px;">
-                                <strong style="color:#10b981; font-size:0.9rem;">Paso 2: Conversación Directa por WhatsApp</strong>
-                                <p style="font-size:0.8rem; color:#aaa; margin-top:6px;">Contacto a 10 conocidos con oferta de lanzamiento para recibir feedback y validar caja.</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (modType === "carrera") {
-                container.innerHTML = `
-                    <div class="card" style="border-color: rgba(56, 189, 248, 0.4);">
-                        <div class="hero-tea-badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56,189,248,0.35);">
-                            <i class="fa-solid fa-plane-departure"></i> Proyecto Road to Sidney 2.0
-                        </div>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 4px 0 6px;">
-                            🌏 Termómetro de Hitos Migratorios & Solvencia $2.4M
-                        </h3>
-                        <p style="font-size: 0.86rem; color: #aaa; margin-bottom: 1.2rem;">
-                            Transición estructurada en 3 trimestres independientes para evitar el burnout de doble jornada:
-                        </p>
-                        <div class="grid-2">
-                            <div style="background:#111; border:1px solid #38bdf844; border-radius:8px; padding:16px;">
-                                <div style="font-size:0.72rem; color:#38bdf8; font-weight:800;">TRIMESTRE 1</div>
-                                <strong style="color:#fff; font-size:0.92rem;">Certificación Idioma C1</strong>
-                                <p style="font-size:0.8rem; color:#888; margin-top:4px;">Bloque matutino innegociable de 35 min antes de salir de casa.</p>
-                            </div>
-                            <div style="background:#111; border:1px solid #10b98144; border-radius:8px; padding:16px;">
-                                <div style="font-size:0.72rem; color:#10b981; font-weight:800;">TRIMESTRE 2 & 3</div>
-                                <strong style="color:#fff; font-size:0.92rem;">Trámites Consulares & Solvencia ($2.4M)</strong>
-                                <p style="font-size:0.8rem; color:#888; margin-top:4px;">Ahorro sistemático automatizado 50/30/20.</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        function updateCamilaCalculator() {
-            const single = parseInt(document.getElementById("calc-single-price").value) || 25000;
-            localStorage.setItem("ah_calc_camila", single);
-            document.getElementById("calc-val-single").innerText = "$" + single.toLocaleString("es-CL") + " CLP";
-            const packPrice = Math.round(single * 4 * 0.85);
-            document.getElementById("calc-val-package").innerText = "$" + packPrice.toLocaleString("es-CL") + " CLP";
-            const monthlyTotal = packPrice * 8;
-            document.getElementById("calc-val-monthly").innerText = `Con 8 clientas fidelizadas = $${monthlyTotal.toLocaleString("es-CL")} CLP (Cero cancelaciones)`;
-        }
-
-        function togglePasoCeroTimer() {
-            const btn = document.getElementById("btn-timer-toggle");
-            if (timerRunning) {
-                clearInterval(timerInterval);
-                timerRunning = false;
-                if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Reanudar';
-            } else {
-                timerRunning = true;
-                if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar';
-                timerInterval = setInterval(() => {
-                    if (timerSecondsRemaining > 0) {
-                        timerSecondsRemaining--;
-                        updateTimerDisplay();
-                    } else {
-                        clearInterval(timerInterval);
-                        timerRunning = false;
-                        if (btn) btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Paso Cero Cumplido!';
-                        showToast("🎉 ¡Felicidades! Completaste los 5 minutos de Paso Cero.");
-                    }
-                }, 1000);
-            }
-        }
-
-        function resetPasoCeroTimer() {
-            clearInterval(timerInterval);
-            timerRunning = false;
-            timerSecondsRemaining = 300;
-            updateTimerDisplay();
-            const btn = document.getElementById("btn-timer-toggle");
-            if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Iniciar Paso Cero';
-        }
-
-        function updateTimerDisplay() {
-            const m = Math.floor(timerSecondsRemaining / 60).toString().padStart(2, '0');
-            const s = (timerSecondsRemaining % 60).toString().padStart(2, '0');
-            const clock = document.getElementById("paso-cero-clock");
-            if (clock) clock.innerText = `${m}:${s}`;
-            const bar = document.getElementById("paso-cero-bar");
-            if (bar) bar.style.width = (timerSecondsRemaining / 300 * 100) + "%";
-        }
-
-        // RENDER TOOLS & PROMPTS
-        function renderCaseTools() {
-            const container = document.getElementById("m4-tools-grid");
-            if (!container || !activeCaseData.tools) return;
-
-            container.innerHTML = activeCaseData.tools.map(tool => `
-                <div class="card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <div style="display:flex; align-items:center; gap:8px;">
-                            <span style="font-size:1.4rem;">${tool.icon}</span>
-                            <strong style="color:#fff; font-size:0.95rem;">${tool.name}</strong>
-                        </div>
-                        <span class="wip-limit-pill" style="border-color:#333; color:#aaa; font-size:0.7rem;">${tool.tag}</span>
-                    </div>
-                    <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px; line-height:1.4;">${tool.desc}</p>
-                    ${tool.checklist && tool.checklist.length > 0 ? `
-                        <div style="border-top:1px dashed rgba(255,255,255,0.1); padding-top:8px;">
-                            <div style="font-size:0.72rem; color:#10b981; font-weight:800; text-transform:uppercase; margin-bottom:4px;">
-                                <i class="fa-solid fa-list-check"></i> Checklist de Aplicación:
-                            </div>
-                            ${tool.checklist.map(chk => `
-                                <div style="font-size:0.78rem; color:#ccc; display:flex; align-items:flex-start; gap:6px; margin-bottom:3px;">
-                                    <span style="color:#10b981;">•</span>
-                                    <span>${chk}</span>
-                                </div>
-                            `).join("")}
-                        </div>
-                    ` : ''}
-                </div>
-            `).join("");
-        }
-
-        function renderCasePrompts() {
-            const container = document.getElementById("m4-prompts-container");
-            if (!container || !activeCaseData.aiPrompts) return;
-
-            container.innerHTML = activeCaseData.aiPrompts.map(pr => `
-                <div class="prompt-card" style="margin-bottom:1.2rem;">
-                    <div class="prompt-header">
-                        <div>
-                            <span class="prompt-badge" style="background:rgba(255,255,255,0.06); color:${pr.tagColor || '#fff'}; border:1px solid ${pr.tagColor || '#555'};">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> ${pr.badge}
-                            </span>
-                            <h4 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:#fff; margin-top:0.3rem;">
-                                ${pr.title}
-                            </h4>
-                        </div>
-                        <button class="btn-copy-prompt" onclick="copyPromptText('${pr.id}', this)">
-                            <i class="fa-regular fa-copy"></i> Copiar Prompt
-                        </button>
-                    </div>
-                    <div class="prompt-box" id="${pr.id}">${pr.text}</div>
-                </div>
-            `).join("");
         }
 
         function renderCaseMetrics() {
