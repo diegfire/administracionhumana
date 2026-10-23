@@ -232,6 +232,15 @@ const CLIENT_ACCOUNTS = [
         storageKey: "ah_auth_melissa"
     },
     {
+        id: "francisca",
+        name: "Francisca Lissette",
+        subtitle: "Nutrición & Pedagogía en Biología",
+        usernames: ["francisca.lissette", "francisca", "lissette", "francisca@administracionhumana.com", "francisca.lizeth"],
+        passwords: ["ah-lissette2026", "ah-lissette-2026", "lissette2026", "francisca2026", "1234", "ah-lizeth2026", "lizeth2026"],
+        url: "plan.html?cliente=francisca",
+        storageKey: "ah_auth_francisca"
+    },
+    {
         id: "alvaro",
         name: "Álvaro",
         subtitle: "Operaciones & Análisis • En Pausa",

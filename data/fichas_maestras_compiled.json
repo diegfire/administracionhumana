@@ -1715,5 +1715,482 @@
       "inventario_cero_culpa",
       "ia_chatgpt_prompts_puente"
     ]
+  },
+  "francisca": {
+    "cliente": {
+      "id": "francisca",
+      "nombre": "Francisca Lissette",
+      "avatar": "🥗🔬👩‍👦‍👦",
+      "usuario": "francisca.lissette",
+      "pin": "AH-Lissette2026",
+      "subtitulo": "De la Sobrecarga Reactiva a la Soberanía Diaria",
+      "tagline": "Nutrición Clínica • Maternidad en Dueto • Pedagogía en Biología • Descompresión del Autosabotaje",
+      "edad": 33,
+      "ciudad": "Chile",
+      "rol_principal": "Nutricionista & Estudiante de Pedagogía en Biología",
+      "ultima_actualizacion": "2026-10-23"
+    },
+    "modulos_activos": [
+      "seguridad_pin",
+      "diagnostico_general",
+      "calendario_centralizado",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "kanban_gtd_wip2",
+      "protocolo_paso_cero",
+      "tecnica_pomodoro_ajustable",
+      "inventario_cero_culpa",
+      "triangulacion_roles",
+      "finanzas_503020",
+      "hub_imprimibles_maestro",
+      "whatsapp_directo",
+      "equipamiento_bioimpedancia"
+    ],
+    "categorias_gestion": [
+      "01_Perfil_y_Diagnostico",
+      "02_Gestion_Operativa_y_Metas",
+      "03_Finanzas_y_Presupuesto",
+      "04_Imprimibles_Fisicos"
+    ],
+    "diagnostico": {
+      "resumen_humano": "Francisca Lissette es nutricionista y madre soltera de dos hijos, mientras actualmente cursa sus estudios de Pedagogía en Biología. En su dinámica diaria coexisten la alta demanda física y afectiva de la crianza de sus dos pequeños, la atención y seguimiento de pacientes en nutrición clínica, y la exigencia intelectual de laboratorios, certámenes e informes pedagógicos. Al carecer de un mapa visual unificado y centralizado, la acumulación de demandas en multitarea simultánea satura su memoria de trabajo, detonando un leve colapso reactivo donde surge el autosabotaje: paralizarse y postergar ('escoger no hacer las cosas') como mecanismo de defensa biológica ante la sobrecarga. Mediante un calendario centralizado de vida, el mapeo de 168 horas por bloques, la diferenciación estricta de la Matriz de Eisenhower y el vaciado mental GTD con límite WIP=2, se desactiva la culpa y se instaura una rutina compasiva y soberana.",
+      "stats": [
+        {
+          "valor": "2 Hijos",
+          "etiqueta": "Maternidad Presente",
+          "color": "#ec4899",
+          "sub": "Crianza, rutinas y contención"
+        },
+        {
+          "valor": "2 Profesiones",
+          "etiqueta": "Nutrición + Pedagogía",
+          "color": "#38bdf8",
+          "sub": "Clínica activa y estudio de biología"
+        },
+        {
+          "valor": "WIP = 2",
+          "etiqueta": "Límite Anti-Colapso",
+          "color": "#10b981",
+          "sub": "Máximo 2 tareas activas en progreso"
+        },
+        {
+          "valor": "~12 h / Sem",
+          "etiqueta": "Energía Recuperable",
+          "color": "#f59e0b",
+          "sub": "Fricción eliminada por orden previo"
+        }
+      ],
+      "mapeador_24h_actual": {
+        "nombre": "Semana Base Francisca Lissette (Maternidad + Nutrición + Biología + Autocuidado)",
+        "total_horas": 168,
+        "distribucion": {
+          "sueno_recarga": 52.5,
+          "maternidad_hijos": 35.0,
+          "pedagogia_biologia": 25.0,
+          "consultas_nutricion": 18.0,
+          "logistica_hogar_batch": 17.5,
+          "autocuidado_pausa": 10.0,
+          "tiempo_libre_colchon": 10.0
+        },
+        "cinco_ejes": [
+          {
+            "id": 1,
+            "nombre": "👶 Crianza & Maternidad (2 Hijos)",
+            "color": "#EC4899",
+            "tag": "MAMÁ",
+            "enfoque": "Despertar, rutinas escolares, alimentación compartida, juego y contención emocional sin pantallas ni distracciones."
+          },
+          {
+            "id": 2,
+            "nombre": "🔬 Pedagogía en Biología",
+            "color": "#38BDF8",
+            "tag": "BIO",
+            "enfoque": "Asistencia a cátedras, laboratorios científicos, lectura de papers y preparación de planificaciones educativas."
+          },
+          {
+            "id": 3,
+            "nombre": "🥗 Nutrición Clínica & Pacientes",
+            "color": "#10B981",
+            "tag": "NUTRI",
+            "enfoque": "Atención presencial/online de pacientes, cálculo de pautas alimentarias y seguimiento clínico estructurado."
+          },
+          {
+            "id": 4,
+            "nombre": "🧘 Autocuidado & Descompresión",
+            "color": "#8B5CF6",
+            "tag": "PAUSA",
+            "enfoque": "Ventanas de oro de descanso sagrado, pausas sensoriales, ducha tranquila y corte del autosabotaje."
+          },
+          {
+            "id": 5,
+            "nombre": "🏠 Logística Hogar & Batch Cooking",
+            "color": "#F59E0B",
+            "tag": "HOGAR",
+            "enfoque": "Compras de supermercado y feria, preparación de comidas en lote para la semana y orden esencial."
+          }
+        ]
+      }
+    },
+    "identidades": [
+      {
+        "nombre": "La Mamá Nutricia & Protectora",
+        "rol": "Guía, cuida y contiene con afecto a sus 2 hijos, protegiendo un hogar seguro",
+        "energia": "Afectiva / Nutricia"
+      },
+      {
+        "nombre": "La Nutricionista Científica",
+        "rol": "Aplica la ciencia de la alimentación para transformar la salud de sus pacientes",
+        "energia": "Clínica / Profesional"
+      },
+      {
+        "nombre": "La Futura Docente de Biología",
+        "rol": "Aprende pedagogía y ciencias biológicas para inspirar a futuras generaciones",
+        "energia": "Intelectual / Vocacional"
+      },
+      {
+        "nombre": "La Mujer Soberana (Autocuidado)",
+        "rol": "Reclama su espacio de silencio, respiro y desconexión sin culpa parental",
+        "energia": "Regenerativa / Vital"
+      },
+      {
+        "nombre": "La Saboteadora por Sobrecarga (Antipatrón a contener)",
+        "rol": "Se activa cuando la multitarea es inmanejable; paraliza el cuerpo para evitar el sufrimiento",
+        "energia": "Fricción / Alerta Biológica"
+      }
+    ],
+    "kanban_gtd": {
+      "inbox": [
+        {
+          "id": "fl_inbox_1",
+          "text": "Comprar cartulinas y materiales escolares para los niños",
+          "tag": "Mamá",
+          "prioridad": 2
+        },
+        {
+          "id": "fl_inbox_2",
+          "text": "Enviar pauta nutricional ajustada a paciente de las 18:00",
+          "tag": "Nutri",
+          "prioridad": 1
+        },
+        {
+          "id": "fl_inbox_3",
+          "text": "Descargar papers del módulo de Fisiología Celular",
+          "tag": "Biología",
+          "prioridad": 2
+        }
+      ],
+      "todo": [
+        {
+          "id": "fl_t1",
+          "text": "Batch cooking dominical: preparar 4 bases de almuerzos saludables",
+          "tag": "Hogar",
+          "prioridad": 2
+        },
+        {
+          "id": "fl_t2",
+          "text": "Bloque de lectura de 45m para informe de Didáctica de la Biología",
+          "tag": "Biología",
+          "prioridad": 2
+        },
+        {
+          "id": "fl_t3",
+          "text": "Agendar controles de seguimiento nutricional semana entrante",
+          "tag": "Nutri",
+          "prioridad": 3
+        }
+      ],
+      "in_progress": [
+        {
+          "id": "fl_ip1",
+          "text": "Paseo al aire libre con los dos niños sin revisar mensajes de trabajo",
+          "tag": "Mamá",
+          "prioridad": 2
+        },
+        {
+          "id": "fl_ip2",
+          "text": "Estudio activo: Mapa conceptual de Mitosis y Meiosis (Paso Cero 15m)",
+          "tag": "Biología",
+          "prioridad": 2
+        }
+      ],
+      "done": [
+        {
+          "id": "fl_d1",
+          "text": "Diagnóstico inicial y mapa de ruta con Diego (Plan de Vuelo)",
+          "tag": "AH",
+          "prioridad": 1
+        },
+        {
+          "id": "fl_d2",
+          "text": "Instalación del Calendario de Vida Centralizado en su teléfono",
+          "tag": "Hábitos",
+          "prioridad": 2
+        }
+      ]
+    },
+    "matriz_eisenhower": {
+      "q1": [
+        {
+          "id": "fl_eq1_1",
+          "text": "Urgencias escolares o médicas de los 2 niños (Atención Inmediata)"
+        },
+        {
+          "id": "fl_eq1_2",
+          "text": "Entrega inaplazable de certamen o informe de Pedagogía en Biología"
+        },
+        {
+          "id": "fl_eq1_3",
+          "text": "Atención de consulta nutricional agendada para hoy"
+        }
+      ],
+      "q2": [
+        {
+          "id": "fl_eq2_1",
+          "text": "Ventana de Oro: Estudio universitario anticipado (elimina trasnoches)"
+        },
+        {
+          "id": "fl_eq2_2",
+          "text": "Batch cooking y planificación semanal de menús nutritivos en casa"
+        },
+        {
+          "id": "fl_eq2_3",
+          "text": "Espacio de juego 100% presente con sus 2 hijos sin pantallas"
+        },
+        {
+          "id": "fl_eq2_4",
+          "text": "Pausa sagrada de 30m de autocuidado y regulación para evitar el colapso"
+        }
+      ],
+      "q3": [
+        {
+          "id": "fl_eq3_1",
+          "text": "Responder dudas de WhatsApp de pacientes (Agrupar en bloque de 20m a las 14:00)"
+        },
+        {
+          "id": "fl_eq3_2",
+          "text": "Trámites domésticos y compras de última hora (Delegar o sistematizar)"
+        },
+        {
+          "id": "fl_eq3_3",
+          "text": "Reuniones o peticiones externas que interrumpen las ventanas de estudio"
+        }
+      ],
+      "q4": [
+        {
+          "id": "fl_eq4_1",
+          "text": "Scrollear en redes sociales cuando sube la ansiedad por la multitarea"
+        },
+        {
+          "id": "fl_eq4_2",
+          "text": "Rumiar pensamientos de culpa por 'no alcanzar a hacer todo perfecto'"
+        },
+        {
+          "id": "fl_eq4_3",
+          "text": "Parálisis por sobrecarga (Antídoto: activar Protocolo Paso Cero de 5 min)"
+        }
+      ]
+    },
+    "eventos_calendario_modelo": [
+      {
+        "id": "evt_1",
+        "titulo": "🎒 Rutina Matinal & Despacho Colegio Niños",
+        "fecha": "2026-10-26",
+        "hora_inicio": "07:00",
+        "hora_fin": "08:30",
+        "todo_el_dia": false,
+        "categoria": "crianza",
+        "eje": "👶 Crianza 2 Hijos",
+        "color": "#ec4899",
+        "prioridad": "q1",
+        "completado": false,
+        "notas": "Desayuno tranquilo, mochilas listas desde la noche anterior."
+      },
+      {
+        "id": "evt_2",
+        "titulo": "🔬 Cátedra: Didáctica y Genética General",
+        "fecha": "2026-10-26",
+        "hora_inicio": "09:00",
+        "hora_fin": "12:15",
+        "todo_el_dia": false,
+        "categoria": "biologia",
+        "eje": "🔬 Pedagogía en Biología",
+        "color": "#38bdf8",
+        "prioridad": "q2",
+        "completado": false,
+        "notas": "Toma de apuntes sintetizados y mapa de conceptos clave."
+      },
+      {
+        "id": "evt_3",
+        "titulo": "🥗 Bloque Consultas Nutricionales (2 Pacientes)",
+        "fecha": "2026-10-26",
+        "hora_inicio": "14:30",
+        "hora_fin": "17:00",
+        "todo_el_dia": false,
+        "categoria": "nutricion",
+        "eje": "🥗 Consultas Nutrición",
+        "color": "#10b981",
+        "prioridad": "q1",
+        "completado": false,
+        "notas": "Consulta evaluación inicial Andrea M. y control deportista Juan P."
+      },
+      {
+        "id": "evt_4",
+        "titulo": "🧸 Tarde de Parque & Cuentos con mis 2 Hijos",
+        "fecha": "2026-10-26",
+        "hora_inicio": "17:30",
+        "hora_fin": "19:30",
+        "todo_el_dia": false,
+        "categoria": "crianza",
+        "eje": "👶 Crianza 2 Hijos",
+        "color": "#ec4899",
+        "prioridad": "q2",
+        "completado": false,
+        "notas": "Teléfono en modo avión. Conexión y juego libre."
+      },
+      {
+        "id": "evt_5",
+        "titulo": "🧘 Ducha Caliente & Respiro Anti-Colapso",
+        "fecha": "2026-10-26",
+        "hora_inicio": "21:30",
+        "hora_fin": "22:15",
+        "todo_el_dia": false,
+        "categoria": "autocuidado",
+        "eje": "🧘 Autocuidado & Pausa",
+        "color": "#8b5cf6",
+        "prioridad": "q2",
+        "completado": false,
+        "notas": "Descompresión sensorial, música suave, cero pantallas."
+      },
+      {
+        "id": "evt_6",
+        "titulo": "🔬 Laboratorio Biología Celular: Informe",
+        "fecha": "2026-10-27",
+        "hora_inicio": "10:00",
+        "hora_fin": "12:00",
+        "todo_el_dia": false,
+        "categoria": "biologia",
+        "eje": "🔬 Pedagogía en Biología",
+        "color": "#38bdf8",
+        "prioridad": "q2",
+        "completado": false,
+        "notas": "Paso Cero: redactar los primeros 2 párrafos de la discusión."
+      },
+      {
+        "id": "evt_7",
+        "titulo": "🍲 Batch Cooking Semanal: Porciones Nutri",
+        "fecha": "2026-10-28",
+        "hora_inicio": "18:00",
+        "hora_fin": "19:30",
+        "todo_el_dia": false,
+        "categoria": "hogar",
+        "eje": "🏠 Logística Hogar",
+        "color": "#f59e0b",
+        "prioridad": "q2",
+        "completado": false,
+        "notas": "Preparar verduras cocidas, legumbres y proteína en potes de vidrio."
+      }
+    ],
+    "finanzas": {
+      "modelo": "Regla 50/30/20 Equilibrada",
+      "meta_consultas_mensual": 20,
+      "valor_promedio_consulta": 28000,
+      "ingreso_objetivo_nutricion": 560000,
+      "distribucion": {
+        "necesidades_50": "Vivienda, sustento escolar y alimentación de los 2 niños",
+        "gustos_30": "Paseos familiares, actividades lúdicas y bienestar personal",
+        "ahorro_inversion_20": "Materiales de Pedagogía en Biología y fondo de reserva de paz"
+      }
+    },
+    "acuerdos_clinicos_operativos": [
+      {
+        "id": "acuerdo_un_solo_calendario",
+        "acuerdo": "Regla del Calendario Único: Todo compromiso o tarea con fecha debe registrarse en el Calendario de Vida Centralizado para liberar la RAM mental y no confiar en la memoria."
+      },
+      {
+        "id": "acuerdo_wip2",
+        "acuerdo": "Límite Sagrado WIP = 2: Prohibido tener más de dos actividades abiertas simultáneamente. Si surge una emergencia con los niños, se pausa la tarea académica y se retoma después sin culpa."
+      },
+      {
+        "id": "acuerdo_paso_cero_anticolapso",
+        "acuerdo": "Protocolo Paso Cero de 5 Minutos: Frente al impulso de parálisis o autosabotaje por sobrecarga, ejecutar una micro-acción ridículamente pequeña de 5 minutos antes de decidir abandonar."
+      },
+      {
+        "id": "acuerdo_corte_pantallas",
+        "acuerdo": "Cierre Sensorial Nocturno a las 22:30: Apagar pantallas y rumiaciones laborales/académicas para proteger el descanso biológico que sostiene la maternidad y el estudio."
+      },
+      {
+        "id": "acuerdo_batching_pacientes",
+        "acuerdo": "Batching de Consultas y Mensajes: Agrupar la atención de pacientes en bloques concentrados de 2 a 3 horas y responder consultas de WhatsApp únicamente en 2 ventanas diurnas definidas."
+      }
+    ],
+    "equipamiento_profesional_bioimpedancia": {
+      "palanca_estrategica": "Mejora clave e indispensable para la práctica de Francisca: permite dar el salto cualitativo a Nutrición Deportiva y Recomposición Corporal de Alto Valor en Concepción, blindando a pacientes con descenso de peso masivo (caso Marjorie) contra la fobia a la balanza, aumentando el ticket promedio de $28.000 a $35.000-$50.000 y reduciendo el tiempo de cálculo manual.",
+      "caso_estudio_marjorie": {
+        "contexto": "Ex sobrepeso con baja drástica de peso en 1 año.",
+        "riesgo_clinico": "Adaptación metabólica, pérdida de masa muscular y terror a la balanza convencional si sube peso por retención de agua/glucógeno.",
+        "solucion_bia": "Demuestra objetivamente que las variaciones de peso corresponden a masa magra e hidratación celular, validando el reverse dieting y el entrenamiento de fuerza."
+      },
+      "modelos": [
+        {
+          "id": "modelo_1_dial",
+          "nombre": "InBody Dial H30N / Tanita BC-545N",
+          "gama": "Inicio Profesional / Portátil",
+          "rango_valor_clp": "$450.000 - $580.000",
+          "electrodos": "8 electrodos (4 pies + 4 manos en barra retráctil)",
+          "peso_kg": 2.7,
+          "software": "App Bluetooth para Smartphone",
+          "pros": [
+            "100% transportable para domicilios o box por horas",
+            "Baja barrera de entrada económica",
+            "Amortización en menos de 1.5 meses"
+          ],
+          "contras": [
+            "No emite informe impreso A4 clínico sin celular"
+          ],
+          "tarifa_consulta_sugerida": "$32.000 - $35.000 CLP",
+          "meses_retorno_roi": 1.5
+        },
+        {
+          "id": "modelo_2_inbody120",
+          "nombre": "InBody 120 + Software Lookin'Body Basic",
+          "gama": "Estándar Clínico Móvil (Recomendación Maestra / Sweet Spot)",
+          "rango_valor_clp": "$1.950.000 - $2.450.000",
+          "electrodos": "8 electrodos táctiles DSM-BIA Multifrecuencia (20 kHz y 100 kHz)",
+          "peso_kg": 4.3,
+          "software": "Lookin'Body PC con informe impreso/PDF de 1 página A4",
+          "pros": [
+            "Máximo estatus y validación médica internacional",
+            "Reporte A4 profesional con gráficos evolutivos",
+            "Ideal para planes deportivos y recomposición corporal",
+            "Transportable en maletín acolchado rígido"
+          ],
+          "contras": [
+            "Requiere notebook/PC para emitir el reporte impreso"
+          ],
+          "tarifa_consulta_sugerida": "$35.000 - $42.000 CLP (o Pack $50.000/mes)",
+          "meses_retorno_roi": 3.5
+        },
+        {
+          "id": "modelo_3_inbody270",
+          "nombre": "InBody 270",
+          "gama": "Élite Médica Institucional",
+          "rango_valor_clp": "$4.800.000 - $5.600.000",
+          "electrodos": "8 electrodos tetrapolares de grado hospitalario",
+          "peso_kg": 14.0,
+          "software": "Pantalla touch a color integrada + Impresión directa USB/Red",
+          "pros": [
+            "100% autónomo (no depende de PC ni celular)",
+            "Diseño de columna médica imponente para consulta fija",
+            "Permite convenios con clubes, clínicas y gimnasios premium"
+          ],
+          "contras": [
+            "Inversión inicial alta",
+            "Difícil de transportar frecuentemente"
+          ],
+          "tarifa_consulta_sugerida": "$40.000 - $48.000 CLP",
+          "meses_retorno_roi": 8.0
+        }
+      ]
+    }
   }
 }

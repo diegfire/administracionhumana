@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Maestro de Imprimibles Físicos — Francisca Lissette • Administración Humana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #0284C7;
+            --forest: #059669;
+            --amber: #D97706;
+            --purple: #7C3AED;
+            --rose: #E11D48;
+            --pink: #DB2777;
+            --border: #CBD5E1;
+            --border-dark: #334155;
+            --bg-card: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        @page {
+            size: letter portrait;
+            margin: 0.6cm 0.7cm 0.5cm 0.7cm;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #0B0F17;
+            padding: 0;
+            margin: 0;
+            font-size: 8.5pt;
+            line-height: 1.25;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ── TOOLBAR DE CONTROL (NO-PRINT) ── */
+        .hub-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #0F172A;
+            border-bottom: 2px solid var(--forest);
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .hub-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #FFF;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .hub-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .select-sheet {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btn-hub {
+            background: var(--forest);
+            color: #FFF;
+            border: none;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-hub:hover { background: #047857; }
+        .btn-hub.secondary { background: #334155; }
+        .btn-hub.secondary:hover { background: #475569; }
+
+        /* ── ESTRUCTURA DE PÁGINA IMPRIMIBLE EXACTA (1 HOJA CARTA) ── */
+        .sheet-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 0;
+            gap: 2rem;
+        }
+
+        .sheet-page {
+            width: 21.59cm;
+            min-height: 27.94cm;
+            height: 27.94cm;
+            background: #FFF;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 0.7cm 0.8cm 0.6cm 0.8cm;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+            break-after: page;
+            overflow: hidden;
+        }
+
+        /* ── CABECERA Y PIE DE PÁGINA ── */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ph-title-group h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 13pt;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.15;
+            letter-spacing: -0.3px;
+        }
+
+        .ph-title-group .sub {
+            font-size: 7.5pt;
+            font-weight: 600;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .ph-meta-badge {
+            text-align: right;
+            font-size: 7pt;
+            color: #475569;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.3;
+        }
+
+        .ph-meta-badge strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .page-footer {
+            border-top: 1px solid #E2E8F0;
+            padding-top: 0.3rem;
+            margin-top: 0.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 6.8pt;
+            color: #64748B;
+        }
+
+        .page-footer strong { color: var(--forest); }
+
+        /* ── COMPONENTES REUTILIZABLES ── */
+        .rule-callout {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-left: 3.5px solid var(--forest);
+            padding: 0.35rem 0.6rem;
+            border-radius: 4px;
+            font-size: 7.2pt;
+            color: #334155;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        .rule-callout strong { color: var(--primary); }
+
+        .banner-axes {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+            margin-bottom: 0.5rem;
+        }
+        .axis-chip {
+            border-radius: 4px;
+            padding: 4px 6px;
+            font-size: 6.8pt;
+            font-weight: 700;
+            color: #FFF;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        /* TABLA DE HORARIOS 24H */
+        .table-24h {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 6.4pt;
+            margin-bottom: 0.4rem;
+        }
+        .table-24h th, .table-24h td {
+            border: 1px solid #CBD5E1;
+            padding: 2px 4px;
+            text-align: center;
+        }
+        .table-24h th {
+            background: #0F172A;
+            color: #FFF;
+            font-weight: 800;
+            font-size: 6.8pt;
+        }
+        .table-24h .time-col {
+            font-family: 'JetBrains Mono', monospace;
+            background: #F1F5F9;
+            font-weight: 700;
+            width: 48px;
+            color: #334155;
+        }
+
+        /* MATRIZ EISENHOWER 2X2 */
+        .eisen-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 8px;
+            flex: 1;
+            margin-bottom: 0.4rem;
+        }
+        .eisen-box {
+            border: 1.5px solid;
+            border-radius: 6px;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            background: #FFF;
+        }
+        .eisen-q1 { border-color: var(--rose); background: rgba(225, 29, 72, 0.02); }
+        .eisen-q2 { border-color: var(--forest); background: rgba(5, 150, 105, 0.02); }
+        .eisen-q3 { border-color: var(--amber); background: rgba(217, 119, 6, 0.02); }
+        .eisen-q4 { border-color: #64748B; background: rgba(100, 116, 139, 0.02); }
+
+        .eisen-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #CBD5E1;
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+            font-weight: 800;
+            font-size: 8pt;
+        }
+        .eisen-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+        .eisen-line {
+            border-bottom: 1px dashed #CBD5E1;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            font-size: 7.2pt;
+            color: #475569;
+            padding-left: 2px;
+        }
+
+        /* KANBAN GTD */
+        .kanban-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            flex: 1;
+            margin-bottom: 0.4rem;
+        }
+        .kanban-col {
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            background: #F8FAFC;
+            padding: 6px 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        .kanban-col-head {
+            font-size: 7.5pt;
+            font-weight: 800;
+            color: var(--primary);
+            border-bottom: 2px solid;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ── MODO IMPRESIÓN ESTRICTO ── */
+        @media print {
+            body { background: #FFF; }
+            .hub-toolbar { display: none !important; }
+            .sheet-container { padding: 0 !important; gap: 0 !important; }
+            .sheet-page {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+            .hide-in-single-mode { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOOLBAR INTERACTIVO SUPERIOR (NO-PRINT) -->
+    <div class="hub-toolbar no-print">
+        <div class="hub-title">
+            <i class="fa-solid fa-print" style="color:var(--forest);"></i>
+            <span>Hub de Imprimibles Físicos • Francisca Lissette</span>
+        </div>
+        <div class="hub-controls">
+            <select id="sheetSelector" class="select-sheet" onchange="filterSheet(this.value)">
+                <option value="all">📚 Cuadernillo Completo (6 Hojas Carta)</option>
+                <option value="sheet-1">Hoja 1: Mapeador Horarios 24H (168 Horas)</option>
+                <option value="sheet-2">Hoja 2: Matriz de Eisenhower Anti-Colapso</option>
+                <option value="sheet-3">Hoja 3: Calendario & Planificador Semanal</option>
+                <option value="sheet-4">Hoja 4: Tablero GTD de Vaciado & Monotarea (WIP 2)</option>
+                <option value="sheet-5">Hoja 5: Protocolo Paso Cero & Bitácora Cero Culpa</option>
+                <option value="sheet-6">Hoja 6: Planificador Mensual Panorámico (Vista Mes Físico)</option>
+            </select>
+            <button class="btn-hub" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Imprimir Selección
+            </button>
+            <button class="btn-hub secondary" onclick="printAllSheets()">
+                <i class="fa-solid fa-book-open"></i> Imprimir Cuadernillo
+            </button>
+            <a href="../Plan%20de%20Vuelo%202.0%20-%20Francisca%20Lissette.html" class="btn-hub secondary" style="text-decoration:none;">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Portal
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DE PÁGINAS EXACTAS -->
+    <div class="sheet-container">
+
+        <!-- ==================================================================== -->
+        <!-- HOJA 1: MAPEADOR SEMANAL DE HORARIOS 24H (168 HORAS)                 -->
+        <!-- ==================================================================== -->
+        <section class="sheet-page" id="sheet-1">
+            <div>
+                <header class="page-header">
+                    <div class="ph-title-group">
+                        <div class="sub">Administración Humana • Herramienta P1-02</div>
+                        <h1>⏰ Mapeador Semanal de Horarios 24H (168 Horas)</h1>
+                    </div>
+                    <div class="ph-meta-badge">
+                        Cliente: <strong>Francisca Lissette</strong><br>
+                        Enfoque: <strong>Soberanía Semanal sin Multitarea</strong>
+                    </div>
+                </header>
+
+                <div class="rule-callout">
+                    <strong>Regla de Oro de Francisca:</strong> Pinta tus bloques con lápices de color antes de que comience la semana. Tus 168 horas deben proteger la crianza de tus 2 hijos y tu estudio universitario sin sacrificar tu descanso ni detonar el colapso.
+                </div>
+
+                <div class="banner-axes">
+                    <div class="axis-chip" style="background:#EC4899;">
+                        <span>👶 Crianza (2 Hijos)</span>
+                        <small>Rutinas & Contención</small>
+                    </div>
+                    <div class="axis-chip" style="background:#0284C7;">
+                        <span>🔬 Pedagogía Biología</span>
+                        <small>Cátedras & Estudio Oro</small>
+                    </div>
+                    <div class="axis-chip" style="background:#059669;">
+                        <span>🥗 Nutrición Clínica</span>
+                        <small>Consultas & Pautas</small>
+                    </div>
+                    <div class="axis-chip" style="background:#7C3AED;">
+                        <span>🧘 Autocuidado Sagrado</span>
+                        <small>Pausa Anti-Colapso</small>
+                    </div>
+                    <div class="axis-chip" style="background:#D97706;">
+                        <span>🏠 Logística & Batch</span>
+                        <small>Cocina en Lote & Hogar</small>
+                    </div>
+                </div>
+
+                <table class="table-24h">
+                    <thead>
+                        <tr>
+                            <th class="time-col">Hora</th>
+                            <th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th><th>Sábado</th><th>Domingo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="time-col">07:00</td><td>🎒 Rutina Niños</td><td>🎒 Rutina Niños</td><td>🎒 Rutina Niños</td><td>🎒 Rutina Niños</td><td>🎒 Rutina Niños</td><td>☀️ Despertar Suave</td><td>☀️ Despertar Suave</td></tr>
+                        <tr><td class="time-col">08:00</td><td>🎒 Traslado Colegio</td><td>🎒 Traslado Colegio</td><td>🎒 Traslado Colegio</td><td>🎒 Traslado Colegio</td><td>🎒 Traslado Colegio</td><td>🥞 Desayuno Familiar</td><td>🥞 Desayuno Familiar</td></tr>
+                        <tr><td class="time-col">09:00</td><td>🔬 Cátedra Biología</td><td>🔬 Laboratorio Bio</td><td>🔬 Cátedra Biología</td><td>🔬 Laboratorio Bio</td><td>🔬 Lectura Estudio</td><td>🛒 Compras & Feria</td><td>🧘 Respiro Propio</td></tr>
+                        <tr><td class="time-col">10:00</td><td>🔬 Cátedra Biología</td><td>🔬 Laboratorio Bio</td><td>🔬 Cátedra Biología</td><td>🔬 Laboratorio Bio</td><td>🔬 Lectura Estudio</td><td>🛒 Compras & Feria</td><td>🍲 Batch Cooking</td></tr>
+                        <tr><td class="time-col">11:00</td><td>🔬 Ventana de Oro</td><td>🔬 Didáctica Bio</td><td>🔬 Ventana de Oro</td><td>🔬 Didáctica Bio</td><td>🥗 Pautas Pacientes</td><td>🧸 Juegos con Niños</td><td>🍲 Batch Cooking</td></tr>
+                        <tr><td class="time-col">12:00</td><td>🥗 Revisión Pautas</td><td>🥗 Pautas Nutri</td><td>🥗 Revisión Pautas</td><td>🥗 Pautas Nutri</td><td>🥗 Pautas Pacientes</td><td>🧸 Juegos con Niños</td><td>🍲 Envasar Comidas</td></tr>
+                        <tr><td class="time-col">13:00</td><td>🍽️ Almuerzo</td><td>🍽️ Almuerzo</td><td>🍽️ Almuerzo</td><td>🍽️ Almuerzo</td><td>🍽️ Almuerzo</td><td>🍽️ Almuerzo</td><td>🍽️ Almuerzo Familiar</td></tr>
+                        <tr><td class="time-col">14:00</td><td>⏳ WhatsApp Nutri</td><td>⏳ WhatsApp Nutri</td><td>⏳ WhatsApp Nutri</td><td>⏳ WhatsApp Nutri</td><td>⏳ WhatsApp Nutri</td><td>🧘 Siesta / Descanso</td><td>🧘 Siesta / Descanso</td></tr>
+                        <tr><td class="time-col">15:00</td><td>🥗 Consulta Paciente</td><td>🥗 Consulta Paciente</td><td>🥗 Consulta Paciente</td><td>🥗 Consulta Paciente</td><td>🥗 Consulta Paciente</td><td>🌳 Salida Parque</td><td>📅 Plan Calendario</td></tr>
+                        <tr><td class="time-col">16:00</td><td>🥗 Consulta Paciente</td><td>🥗 Consulta Paciente</td><td>🥗 Consulta Paciente</td><td>🥗 Consulta Paciente</td><td>🥗 Consulta Paciente</td><td>🌳 Salida Parque</td><td>📅 Plan Calendario</td></tr>
+                        <tr><td class="time-col">17:00</td><td>👶 Retiro Colegio</td><td>👶 Retiro Colegio</td><td>👶 Retiro Colegio</td><td>👶 Retiro Colegio</td><td>👶 Retiro Colegio</td><td>🍦 Once Familiar</td><td>👶 Rutina Baño Niños</td></tr>
+                        <tr><td class="time-col">18:00</td><td>👶 Tareas & Once</td><td>👶 Tareas & Once</td><td>👶 Tareas & Once</td><td>👶 Tareas & Once</td><td>👶 Tarde Libre Hijos</td><td>🎲 Juegos de Mesa</td><td>👶 Cuentos & Dormir</td></tr>
+                        <tr><td class="time-col">19:00</td><td>🧸 Juego Compartido</td><td>🧸 Juego Compartido</td><td>🧸 Juego Compartido</td><td>🧸 Juego Compartido</td><td>🧸 Película Familiar</td><td>🎲 Juegos de Mesa</td><td>🧘 Silencio en Casa</td></tr>
+                        <tr><td class="time-col">20:00</td><td>👶 Cena & Baño</td><td>👶 Cena & Baño</td><td>👶 Cena & Baño</td><td>👶 Cena & Baño</td><td>👶 Cena Ligera</td><td>👶 Cena & Dormir</td><td>🧘 Té de Hierbas</td></tr>
+                        <tr><td class="time-col">21:00</td><td>👶 Cuentos & Cama</td><td>👶 Cuentos & Cama</td><td>👶 Cuentos & Cama</td><td>👶 Cuentos & Cama</td><td>👶 Cama Niños</td><td>🧘 Lectura Placer</td><td>🌙 Higiene del Sueño</td></tr>
+                        <tr><td class="time-col">22:00</td><td>🧘 Ducha & Respiro</td><td>🧘 Ducha & Respiro</td><td>🧘 Ducha & Respiro</td><td>🧘 Ducha & Respiro</td><td>🧘 Desconexión</td><td>🌙 Dormir</td><td>🌙 Dormir</td></tr>
+                        <tr><td class="time-col">23:00</td><td>😴 Sueño Reparador</td><td>😴 Sueño Reparador</td><td>😴 Sueño Reparador</td><td>😴 Sueño Reparador</td><td>😴 Sueño Reparador</td><td>😴 Sueño Reparador</td><td>😴 Sueño Reparador</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <footer class="page-footer">
+                <span>Administración Humana • Sistema AICC v3.0</span>
+                <span>Ficha Física 1/5 • Hoja 1 Carta</span>
+                <span><strong>Diego González Yáñez</strong> (+56975590132)</span>
+            </footer>
+        </section>
+
+        <!-- ==================================================================== -->
+        <!-- HOJA 2: MATRIZ DE EISENHOWER ANTI-COLAPSO & FOCO                     -->
+        <!-- ==================================================================== -->
+        <section class="sheet-page" id="sheet-2">
+            <div>
+                <header class="page-header">
+                    <div class="ph-title-group">
+                        <div class="sub">Administración Humana • Herramienta P1-06</div>
+                        <h1>🎯 Matriz de Eisenhower Anti-Colapso & Foco</h1>
+                    </div>
+                    <div class="ph-meta-badge">
+                        Cliente: <strong>Francisca Lissette</strong><br>
+                        Propósito: <strong>Detener la Parálisis por Sobrecarga</strong>
+                    </div>
+                </header>
+
+                <div class="rule-callout">
+                    <strong>Protocolo de Emergencia:</strong> Cuando sientas el amague del colapso, detén tus manos. Si lo que te agobia no está en Q1 (emergencia médica o fecha fatal de hoy), <strong>no tienes derecho a quemar tu sistema nervioso</strong>. Protege Q2 para que el futuro no sea un incendio.
+                </div>
+
+                <div class="eisen-grid" style="height: 18.5cm;">
+                    <!-- Q1 -->
+                    <div class="eisen-box eisen-q1">
+                        <div class="eisen-box-header" style="color:var(--rose);">
+                            <span>🔥 Q1: CRISIS (Hacer YA)</span>
+                            <small>Urgente + Importante</small>
+                        </div>
+                        <p style="font-size:6.8pt; color:#64748B; margin-bottom:6px;">Urgencias de salud de los 2 niños, entrega inaplazable de biología de hoy, paciente esperando.</p>
+                        <div class="eisen-lines">
+                            <div class="eisen-line">1. </div>
+                            <div class="eisen-line">2. </div>
+                            <div class="eisen-line">3. </div>
+                            <div class="eisen-line">4. </div>
+                            <div class="eisen-line">5. </div>
+                            <div class="eisen-line">6. </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="eisen-box eisen-q2">
+                        <div class="eisen-box-header" style="color:var(--forest);">
+                            <span>🌟 Q2: BLOQUES DE ORO (Planificar)</span>
+                            <small>No Urgente + Muy Importante</small>
+                        </div>
+                        <p style="font-size:6.8pt; color:#64748B; margin-bottom:6px;">Estudio anticipado para no trasnochar, batch cooking nutritivo, presencia con tus hijos, ducha de paz.</p>
+                        <div class="eisen-lines">
+                            <div class="eisen-line">1. </div>
+                            <div class="eisen-line">2. </div>
+                            <div class="eisen-line">3. </div>
+                            <div class="eisen-line">4. </div>
+                            <div class="eisen-line">5. </div>
+                            <div class="eisen-line">6. </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="eisen-box eisen-q3">
+                        <div class="eisen-box-header" style="color:var(--amber);">
+                            <span>⏳ Q3: INTERRUPCIONES (Agrupar)</span>
+                            <small>Urgente + Poco Importante</small>
+                        </div>
+                        <p style="font-size:6.8pt; color:#64748B; margin-bottom:6px;">WhatsApp de pacientes con dudas menores (agrupar de 14:00 a 14:30), trámites domésticos de última hora.</p>
+                        <div class="eisen-lines">
+                            <div class="eisen-line">1. </div>
+                            <div class="eisen-line">2. </div>
+                            <div class="eisen-line">3. </div>
+                            <div class="eisen-line">4. </div>
+                            <div class="eisen-line">5. </div>
+                            <div class="eisen-line">6. </div>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="eisen-box eisen-q4">
+                        <div class="eisen-box-header" style="color:#64748B;">
+                            <span>🗑️ Q4: AUTOSABOTAJE & FUGAS (Eliminar)</span>
+                            <small>Ni Urgente ni Aportador</small>
+                        </div>
+                        <p style="font-size:6.8pt; color:#64748B; margin-bottom:6px;">Scroll en redes por ansiedad, rumiar culpa por no alcanzar todo, parálisis. Antídoto: Paso Cero 5m.</p>
+                        <div class="eisen-lines">
+                            <div class="eisen-line">1. </div>
+                            <div class="eisen-line">2. </div>
+                            <div class="eisen-line">3. </div>
+                            <div class="eisen-line">4. </div>
+                            <div class="eisen-line">5. </div>
+                            <div class="eisen-line">6. </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="page-footer">
+                <span>Administración Humana • Sistema AICC v3.0</span>
+                <span>Ficha Física 2/5 • Hoja 2 Carta</span>
+                <span><strong>Diego González Yáñez</strong> (+56975590132)</span>
+            </footer>
+        </section>
+
+        <!-- ==================================================================== -->
+        <!-- HOJA 3: CALENDARIO & PLANIFICADOR SEMANAL DE VIDA                    -->
+        <!-- ==================================================================== -->
+        <section class="sheet-page" id="sheet-3">
+            <div>
+                <header class="page-header">
+                    <div class="ph-title-group">
+                        <div class="sub">Administración Humana • Aplicación Central</div>
+                        <h1>📅 Calendario & Planificador Semanal de Vida</h1>
+                    </div>
+                    <div class="ph-meta-badge">
+                        Cliente: <strong>Francisca Lissette</strong><br>
+                        Uso: <strong>Para pegar en el Refrigerador / Muro</strong>
+                    </div>
+                </header>
+
+                <div class="rule-callout">
+                    <strong>Regla del Calendario Visible:</strong> Este cuadrante físico sincroniza a tu familia. Anota aquí con plumón los hitos de la semana: certámenes de Biología, consultas nutricionales fijas y las salidas recreativas de tus 2 hijos.
+                </div>
+
+                <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap: 6px; height: 18.5cm;">
+                    <div class="kanban-col" style="background:#FFF;">
+                        <div class="kanban-col-head" style="border-color:#38BDF8;"><span>LUNES</span><small>Día 1</small></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin-bottom:4px;">🎯 Foco:</div>
+                        <div style="border-bottom:1px dashed #E2E8F0; height:18px;"></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin:6px 0 4px 0;">📋 Eventos:</div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                        </div>
+                    </div>
+                    <div class="kanban-col" style="background:#FFF;">
+                        <div class="kanban-col-head" style="border-color:#38BDF8;"><span>MARTES</span><small>Día 2</small></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin-bottom:4px;">🎯 Foco:</div>
+                        <div style="border-bottom:1px dashed #E2E8F0; height:18px;"></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin:6px 0 4px 0;">📋 Eventos:</div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                        </div>
+                    </div>
+                    <div class="kanban-col" style="background:#FFF;">
+                        <div class="kanban-col-head" style="border-color:#38BDF8;"><span>MIÉRCOLES</span><small>Día 3</small></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin-bottom:4px;">🎯 Foco:</div>
+                        <div style="border-bottom:1px dashed #E2E8F0; height:18px;"></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin:6px 0 4px 0;">📋 Eventos:</div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                        </div>
+                    </div>
+                    <div class="kanban-col" style="background:#FFF;">
+                        <div class="kanban-col-head" style="border-color:#38BDF8;"><span>JUEVES</span><small>Día 4</small></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin-bottom:4px;">🎯 Foco:</div>
+                        <div style="border-bottom:1px dashed #E2E8F0; height:18px;"></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin:6px 0 4px 0;">📋 Eventos:</div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                        </div>
+                    </div>
+                    <div class="kanban-col" style="background:#FFF;">
+                        <div class="kanban-col-head" style="border-color:#38BDF8;"><span>VIERNES</span><small>Día 5</small></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin-bottom:4px;">🎯 Foco:</div>
+                        <div style="border-bottom:1px dashed #E2E8F0; height:18px;"></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin:6px 0 4px 0;">📋 Eventos:</div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                        </div>
+                    </div>
+                    <div class="kanban-col" style="background:#FFF;">
+                        <div class="kanban-col-head" style="border-color:#EC4899;"><span>SÁBADO</span><small>Familia</small></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin-bottom:4px;">🎯 Foco:</div>
+                        <div style="border-bottom:1px dashed #E2E8F0; height:18px;"></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin:6px 0 4px 0;">📋 Eventos:</div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                        </div>
+                    </div>
+                    <div class="kanban-col" style="background:#FFF;">
+                        <div class="kanban-col-head" style="border-color:#F59E0B;"><span>DOMINGO</span><small>Batch & Paz</small></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin-bottom:4px;">🎯 Foco:</div>
+                        <div style="border-bottom:1px dashed #E2E8F0; height:18px;"></div>
+                        <div style="font-size:6.8pt; color:#64748B; margin:6px 0 4px 0;">📋 Eventos:</div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                            <div style="border-bottom:1px dashed #CBD5E1; height:20px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="page-footer">
+                <span>Administración Humana • Sistema AICC v3.0</span>
+                <span>Ficha Física 3/5 • Hoja 3 Carta</span>
+                <span><strong>Diego González Yáñez</strong> (+56975590132)</span>
+            </footer>
+        </section>
+
+        <!-- ==================================================================== -->
+        <!-- HOJA 4: TABLERO GTD DE VACIADO MENTAL & MONOTAREA (WIP 2)            -->
+        <!-- ==================================================================== -->
+        <section class="sheet-page" id="sheet-4">
+            <div>
+                <header class="page-header">
+                    <div class="ph-title-group">
+                        <div class="sub">Administración Humana • Herramienta P1-04 & P1-05</div>
+                        <h1>📥 Tablero GTD de Vaciado & Monotarea (WIP 2)</h1>
+                    </div>
+                    <div class="ph-meta-badge">
+                        Cliente: <strong>Francisca Lissette</strong><br>
+                        Regla: <strong>Máximo 2 Tareas 'En Foco' a la Vez</strong>
+                    </div>
+                </header>
+
+                <div class="rule-callout">
+                    <strong>Tu Mente es para Tener Ideas, No para Retener 40 Pendientes:</strong> Vierte todo en el Inbox. Para ejecutar, arrastra máximo 2 tareas a 'En Foco (WIP 2)'. Si una tarea toma menos de 2 minutos, hazla ya. Si no, déjala en Próximas.
+                </div>
+
+                <div class="kanban-grid" style="height: 18.5cm;">
+                    <!-- INBOX -->
+                    <div class="kanban-col">
+                        <div class="kanban-col-head" style="border-color:#38BDF8;">
+                            <span>📥 1. INBOX (Vaciado RAM)</span>
+                        </div>
+                        <p style="font-size:6.8pt; color:#64748B; margin-bottom:6px;">Anota sin filtro todo lo que te ronda la cabeza.</p>
+                        <div style="display:flex; flex-direction:column; gap:6px;">
+                            <div class="eisen-line">□ </div><div class="eisen-line">□ </div><div class="eisen-line">□ </div>
+                            <div class="eisen-line">□ </div><div class="eisen-line">□ </div><div class="eisen-line">□ </div>
+                            <div class="eisen-line">□ </div><div class="eisen-line">□ </div><div class="eisen-line">□ </div>
+                        </div>
+                    </div>
+
+                    <!-- EN FOCO (WIP 2) -->
+                    <div class="kanban-col" style="background:rgba(16,185,129,0.04); border: 2px solid #10B981;">
+                        <div class="kanban-col-head" style="border-color:#10B981; color:#059669;">
+                            <span>🎯 2. EN FOCO (WIP 2)</span>
+                            <small>¡Límite Sagrado!</small>
+                        </div>
+                        <p style="font-size:6.8pt; color:#059669; font-weight:700; margin-bottom:8px;">SOLO 2 ACCIONES ACTIVAS HOY</p>
+                        <div style="background:#FFF; border:1px solid #10B981; border-radius:6px; padding:10px; height:80px; margin-bottom:10px;">
+                            <span style="font-weight:800; font-size:7pt; color:#059669;">ACCION 1:</span>
+                        </div>
+                        <div style="background:#FFF; border:1px solid #10B981; border-radius:6px; padding:10px; height:80px;">
+                            <span style="font-weight:800; font-size:7pt; color:#059669;">ACCION 2:</span>
+                        </div>
+                        <div style="margin-top:auto; font-size:6.5pt; color:#64748B; text-align:center; padding:4px;">
+                            ⛔ Prohibido agregar otra antes de tachar una de estas dos.
+                        </div>
+                    </div>
+
+                    <!-- PRÓXIMAS ACCIONES -->
+                    <div class="kanban-col">
+                        <div class="kanban-col-head" style="border-color:#F59E0B;">
+                            <span>⚡ 3. PRÓXIMAS (@)</span>
+                        </div>
+                        <p style="font-size:6.8pt; color:#64748B; margin-bottom:6px;">Listas para entrar cuando se libere el cupo WIP.</p>
+                        <div style="display:flex; flex-direction:column; gap:6px;">
+                            <div class="eisen-line">@Bio: </div><div class="eisen-line">@Nutri: </div>
+                            <div class="eisen-line">@Niños: </div><div class="eisen-line">@Hogar: </div>
+                            <div class="eisen-line">@Trámite: </div><div class="eisen-line">□ </div>
+                            <div class="eisen-line">□ </div><div class="eisen-line">□ </div>
+                        </div>
+                    </div>
+
+                    <!-- VICTORIAS LOGRADAS -->
+                    <div class="kanban-col">
+                        <div class="kanban-col-head" style="border-color:#8B5CF6;">
+                            <span>🏆 4. VICTORIAS CERRADAS</span>
+                        </div>
+                        <p style="font-size:6.8pt; color:#64748B; margin-bottom:6px;">Tacha aquí tus logros para alimentar tu autoconfianza.</p>
+                        <div style="display:flex; flex-direction:column; gap:6px;">
+                            <div class="eisen-line" style="color:#059669;">✓ </div><div class="eisen-line" style="color:#059669;">✓ </div>
+                            <div class="eisen-line" style="color:#059669;">✓ </div><div class="eisen-line" style="color:#059669;">✓ </div>
+                            <div class="eisen-line" style="color:#059669;">✓ </div><div class="eisen-line" style="color:#059669;">✓ </div>
+                            <div class="eisen-line" style="color:#059669;">✓ </div><div class="eisen-line" style="color:#059669;">✓ </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="page-footer">
+                <span>Administración Humana • Sistema AICC v3.0</span>
+                <span>Ficha Física 4/5 • Hoja 4 Carta</span>
+                <span><strong>Diego González Yáñez</strong> (+56975590132)</span>
+            </footer>
+        </section>
+
+        <!-- ==================================================================== -->
+        <!-- HOJA 5: PROTOCOLO PASO CERO & BITÁCORA CERO CULPA                    -->
+        <!-- ==================================================================== -->
+        <section class="sheet-page" id="sheet-5">
+            <div>
+                <header class="page-header">
+                    <div class="ph-title-group">
+                        <div class="sub">Administración Humana • Herramienta P1-11 & P1-12</div>
+                        <h1>🧘 Protocolo Paso Cero & Bitácora Cero Culpa</h1>
+                    </div>
+                    <div class="ph-meta-badge">
+                        Cliente: <strong>Francisca Lissette</strong><br>
+                        Foco: <strong>Desactivación del Autosabotaje Nocturno</strong>
+                    </div>
+                </header>
+
+                <div class="rule-callout">
+                    <strong>Antídoto a la Resaca Emocional:</strong> No le exijas a tu cuerpo que duerma en paz si antes de acostarte solo le pasaste la cuenta de lo que faltó. Registra tus 3 micro-victorias del día y aplica el Paso Cero para destrabar el mañana.
+                </div>
+
+                <!-- PROTOCOLO PASO CERO (5 MINUTOS) -->
+                <div style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:6px; padding:10px 14px; margin-bottom:12px;">
+                    <h3 style="font-size:8.5pt; font-weight:800; color:var(--primary); margin-bottom:4px;">
+                        ⚡ El Protocolo Paso Cero (5 Minutos Anti-Parálisis):
+                    </h3>
+                    <p style="font-size:7.2pt; color:#334155; line-height:1.35;">
+                        Cuando sientas el deseo impulsivo de posponer un informe de Biología o la pauta de un paciente, haz un trato con tu mente: <strong>"Solo voy a sentarme 5 minutos de reloj. Solo abriré el archivo y escribiré el primer título o leeré 1 página. Si a los 5 minutos quiero parar, tengo permiso total"</strong>. El 80% de las veces, la fricción inicial se desvanece y la inercia te lleva al éxito.
+                    </p>
+                </div>
+
+                <!-- BITÁCORA DE 7 DÍAS -->
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="border:1px solid #E2E8F0; border-radius:6px; padding:6px 10px; background:#FFF;">
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:7.5pt; color:var(--primary); margin-bottom:4px;">
+                            <span>Lunes: Mis 3 Victorias Reales</span>
+                            <small>Calma: [ ] 1  [ ] 2  [ ] 3  [ ] 4  [ ] 5</small>
+                        </div>
+                        <div class="eisen-line">1. </div><div class="eisen-line">2. </div><div class="eisen-line">3. </div>
+                    </div>
+
+                    <div style="border:1px solid #E2E8F0; border-radius:6px; padding:6px 10px; background:#FFF;">
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:7.5pt; color:var(--primary); margin-bottom:4px;">
+                            <span>Martes: Mis 3 Victorias Reales</span>
+                            <small>Calma: [ ] 1  [ ] 2  [ ] 3  [ ] 4  [ ] 5</small>
+                        </div>
+                        <div class="eisen-line">1. </div><div class="eisen-line">2. </div><div class="eisen-line">3. </div>
+                    </div>
+
+                    <div style="border:1px solid #E2E8F0; border-radius:6px; padding:6px 10px; background:#FFF;">
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:7.5pt; color:var(--primary); margin-bottom:4px;">
+                            <span>Miércoles: Mis 3 Victorias Reales</span>
+                            <small>Calma: [ ] 1  [ ] 2  [ ] 3  [ ] 4  [ ] 5</small>
+                        </div>
+                        <div class="eisen-line">1. </div><div class="eisen-line">2. </div><div class="eisen-line">3. </div>
+                    </div>
+
+                    <div style="border:1px solid #E2E8F0; border-radius:6px; padding:6px 10px; background:#FFF;">
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:7.5pt; color:var(--primary); margin-bottom:4px;">
+                            <span>Jueves: Mis 3 Victorias Reales</span>
+                            <small>Calma: [ ] 1  [ ] 2  [ ] 3  [ ] 4  [ ] 5</small>
+                        </div>
+                        <div class="eisen-line">1. </div><div class="eisen-line">2. </div><div class="eisen-line">3. </div>
+                    </div>
+
+                    <div style="border:1px solid #E2E8F0; border-radius:6px; padding:6px 10px; background:#FFF;">
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:7.5pt; color:var(--primary); margin-bottom:4px;">
+                            <span>Viernes: Mis 3 Victorias Reales</span>
+                            <small>Calma: [ ] 1  [ ] 2  [ ] 3  [ ] 4  [ ] 5</small>
+                        </div>
+                        <div class="eisen-line">1. </div><div class="eisen-line">2. </div><div class="eisen-line">3. </div>
+                    </div>
+
+                    <div style="border:1px solid #E2E8F0; border-radius:6px; padding:6px 10px; background:#FFF;">
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:7.5pt; color:var(--primary); margin-bottom:4px;">
+                            <span>Sábado & Domingo: Registro de Descanso y Goce Familiar</span>
+                            <small>Recarga Biológica: [ ] Lograda</small>
+                        </div>
+                        <div class="eisen-line">Momento de conexión con mis 2 hijos: </div>
+                        <div class="eisen-line">Espacio propio de desconexión sin culpa: </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="page-footer">
+                <span>Administración Humana • Sistema AICC v3.0</span>
+                <span>Ficha Física 5/6 • Hoja 5 Carta</span>
+                <span><strong>Diego González Yáñez</strong> (+56975590132)</span>
+            </footer>
+        </section>
+
+        <!-- ==================================================================== -->
+        <!-- HOJA 6: PLANIFICADOR MENSUAL PANORÁMICO (VISTA MES FÍSICO)            -->
+        <!-- ==================================================================== -->
+        <section class="sheet-page" id="sheet-6">
+            <header class="page-header">
+                <div class="ph-title-group">
+                    <div class="sub">Administración Humana • Plan de Vuelo Físico</div>
+                    <h1>06. Planificador Mensual Panorámico (Visión 360°)</h1>
+                </div>
+                <div class="ph-meta-badge">
+                    <strong>FRANCISCA LISSETTE</strong><br>
+                    <span>Mes: _________________ Año: 2026</span><br>
+                    <span>Monotarea • WIP = 2</span>
+                </div>
+            </header>
+
+            <div class="rule-callout" style="border-left-color: var(--pink); margin-bottom: 0.35rem;">
+                <strong>Instrucción Práctica de Panorámica:</strong> Distribuye aquí las fechas inamovibles (certámenes de Biología, consultas fijas de Nutrición, reuniones escolares y momentos sagrados con tus 2 hijos). Al ver el mes completo en papel, anticipas las semanas de alta demanda y proteges tus descansos sin culpa.
+            </div>
+
+            <!-- TABLA CUADRÍCULA MENSUAL 7 COLUMNAS X 5 FILAS -->
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                <table style="width: 100%; border-collapse: collapse; border: 1.5px solid #0F172A; table-layout: fixed;">
+                    <thead>
+                        <tr style="background: #0F172A; color: #FFF; font-size: 7pt; font-weight: 800; text-transform: uppercase;">
+                            <th style="padding: 4px; border: 1px solid #334155; width: 14.28%;">Lunes</th>
+                            <th style="padding: 4px; border: 1px solid #334155; width: 14.28%;">Martes</th>
+                            <th style="padding: 4px; border: 1px solid #334155; width: 14.28%;">Miércoles</th>
+                            <th style="padding: 4px; border: 1px solid #334155; width: 14.28%;">Jueves</th>
+                            <th style="padding: 4px; border: 1px solid #334155; width: 14.28%;">Viernes</th>
+                            <th style="padding: 4px; border: 1px solid #334155; width: 14.28%;">Sábado</th>
+                            <th style="padding: 4px; border: 1px solid #334155; width: 14.28%;">Domingo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- SEMANA 1 -->
+                        <tr>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">PAZ</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">FAMILIA</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                        </tr>
+                        <!-- SEMANA 2 -->
+                        <tr>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">PAZ</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">FAMILIA</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                        </tr>
+                        <!-- SEMANA 3 -->
+                        <tr>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">PAZ</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">FAMILIA</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                        </tr>
+                        <!-- SEMANA 4 -->
+                        <tr>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">PAZ</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">FAMILIA</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                        </tr>
+                        <!-- SEMANA 5 -->
+                        <tr>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #FFF;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">PAZ</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                            <td style="border: 1px solid #CBD5E1; height: 3.1cm; vertical-align: top; padding: 3px; font-size: 6.8pt; background: #F8FAFC;">
+                                <div style="display:flex; justify-content:space-between; font-weight:800; color:#475569; margin-bottom:2px;"><span style="font-size:7.5pt; color:#0F172A;">__</span><span style="font-size:6pt; color:#94A3B8;">FAMILIA</span></div>
+                                <div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div><div style="border-bottom: 1px dotted #E2E8F0; height: 13px;"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- BLOQUES ESTRATÉGICOS INFERIORES -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 0.35rem;">
+                    <div style="border: 1px solid #CBD5E1; border-top: 2.5px solid var(--rose); border-radius: 4px; padding: 4px 6px; background: #F8FAFC; font-size: 6.8pt;">
+                        <strong style="color: var(--rose); text-transform: uppercase; font-size: 6.8pt;">🎯 Focos del Mes (WIP=2)</strong>
+                        <div class="eisen-line">1. </div>
+                        <div class="eisen-line">2. </div>
+                    </div>
+                    <div style="border: 1px solid #CBD5E1; border-top: 2.5px solid var(--pink); border-radius: 4px; padding: 4px 6px; background: #F8FAFC; font-size: 6.8pt;">
+                        <strong style="color: var(--pink); text-transform: uppercase; font-size: 6.8pt;">👶 Crianza (2 Hijos)</strong>
+                        <div class="eisen-line">[ ] Citas / Escolar: </div>
+                        <div class="eisen-line">[ ] Hitos familiares: </div>
+                    </div>
+                    <div style="border: 1px solid #CBD5E1; border-top: 2.5px solid var(--accent); border-radius: 4px; padding: 4px 6px; background: #F8FAFC; font-size: 6.8pt;">
+                        <strong style="color: var(--accent); text-transform: uppercase; font-size: 6.8pt;">🔬 Pedagogía Biología</strong>
+                        <div class="eisen-line">[ ] Certámenes: </div>
+                        <div class="eisen-line">[ ] Paso Cero (5m): </div>
+                    </div>
+                    <div style="border: 1px solid #CBD5E1; border-top: 2.5px solid var(--forest); border-radius: 4px; padding: 4px 6px; background: #F8FAFC; font-size: 6.8pt;">
+                        <strong style="color: var(--forest); text-transform: uppercase; font-size: 6.8pt;">🥗 Nutri & Dolssett</strong>
+                        <div class="eisen-line">[ ] Bloque consultas: </div>
+                        <div class="eisen-line">[ ] Viernes de entregas: </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="page-footer">
+                <span>Administración Humana • Sistema AICC v3.0</span>
+                <span>Ficha Física 6/6 • Hoja 6 Carta</span>
+                <span><strong>Diego González Yáñez</strong> (+56975590132)</span>
+            </footer>
+        </section>
+
+    </div>
+
+    <!-- SCRIPT DE FILTRADO Y MODO HOJA ÚNICA / CUADERNILLO -->
+    <script>
+        function filterSheet(sheetId) {
+            const pages = document.querySelectorAll('.sheet-page');
+            if (sheetId === 'all') {
+                pages.forEach(p => {
+                    p.style.display = 'flex';
+                    p.classList.remove('hide-in-single-mode');
+                });
+            } else {
+                pages.forEach(p => {
+                    if (p.id === sheetId) {
+                        p.style.display = 'flex';
+                        p.classList.remove('hide-in-single-mode');
+                    } else {
+                        p.style.display = 'none';
+                        p.classList.add('hide-in-single-mode');
+                    }
+                });
+            }
+        }
+
+        function printAllSheets() {
+            document.getElementById('sheetSelector').value = 'all';
+            filterSheet('all');
+            window.print();
+        }
+    </script>
+</body>
+</html>
