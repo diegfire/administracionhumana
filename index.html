@@ -7723,9 +7723,14 @@
 
       <!-- DIRECTORIO DE CLIENTES ACTIVOS -->
       <div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <h3 style="font-family:var(--font-heading); font-size:1.2rem; font-weight:800; color:#fff;">Directorio de Clientes & Planes</h3>
-          <span style="font-size:0.78rem; color:#888;">Las notas privadas se sincronizan automáticamente en tu equipo.</span>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h3 style="font-family:var(--font-heading); font-size:1.2rem; font-weight:800; color:#fff;">Directorio de Clientes & Planes</h3>
+            <span style="font-size:0.78rem; color:#888;">Las notas privadas se sincronizan automáticamente en tu equipo.</span>
+          </div>
+          <button onclick="window.syncDefaultClientsToAdmin()" style="background:rgba(255,255,255,0.06); border:1px solid #333; color:#aaa; font-size:0.75rem; padding:4px 10px; border-radius:6px; cursor:pointer;" title="Sincronizar directorio con los clientes maestros del sistema">
+            🔄 Sincronizar Clientes
+          </button>
         </div>
 
         <div id="admin-clients-container">
@@ -8167,6 +8172,16 @@ window.DEFAULT_ADMIN_CLIENTS = [
     driveUrl: "https://drive.google.com"
   },
   {
+    id: "francisca",
+    name: "Francisca Lissette",
+    username: "francisca.lissette",
+    subtitle: "Nutrición & Pedagogía en Biología • De la Sobrecarga Reactiva a la Soberanía Diaria",
+    status: "🟢 En Acompañamiento",
+    pin: "AH-Lissette2026",
+    planUrl: "planes/francisca/index.html",
+    driveUrl: "https://drive.google.com"
+  },
+  {
     id: "antonia",
     name: "Antonia Jofré",
     username: "antonia.jofre",
@@ -8279,12 +8294,17 @@ window.getAdminClients = function() {
           return c;
         });
         clients = [...upgradedList, ...missing];
+        if (missing.length > 0) {
+          try { localStorage.setItem('ah_admin_clients_custom', JSON.stringify(clients)); } catch(err) {}
+        }
       }
     } catch(e) {}
   }
   if (!clients.length) {
     clients = [...window.DEFAULT_ADMIN_CLIENTS];
   }
+  // Mantener siempre el cliente demo al final de los activos
+  clients.sort((a, b) => (a.id === 'demo' ? 1 : b.id === 'demo' ? -1 : 0));
   return clients.filter(c => !archivedIds.includes(c.id)).map(c => ({
     id: c.id,
     name: c.name || "Cliente Sin Nombre",

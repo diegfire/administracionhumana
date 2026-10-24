@@ -408,6 +408,23 @@
     // GLOBAL CLIENT DATA AND SYNC CONTROLLER
     // GLOBAL CLIENT DATA AND EXPANDED MULTI-CLIENT PORTAL CONTROLLER
     const DEFAULT_CLIENT_DATA = {
+      'user_francisca_lissette': {
+        id: 'francisca',
+        fullName: 'Francisca Lissette',
+        pin: 'AH-Lissette2026',
+        status: '🟢 En Acompañamiento Activo',
+        flightPlanUrl: 'planes/francisca/index.html',
+        flightPlanDesc: 'Nutrición Clínica, Pedagogía en Biología, Crianza Presente (2 hijos), Calendario 360 y Bioimpedancia.',
+        storageKey: 'ah_auth_francisca',
+        driveUrl: 'planes/francisca/index.html#recursos',
+        hubImprimiblesUrl: '04_Imprimibles_Fisicos/Hub_Imprimibles_Francisca_Lissette.html',
+        scores: { 'Propósito': 8, 'Bienestar': 7, 'Tiempo': 6, 'Hábitos': 7, 'Finanzas': 7, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8 },
+        defaultTasks: [
+          { id: 1, text: 'Calendario 360° con certámenes y consultas', done: true },
+          { id: 2, text: 'Mapeador 24H de 5 Ejes (168h)', done: true },
+          { id: 3, text: 'Kanban GTD con límite WIP = 2', done: false }
+        ]
+      },
       'user_rocio_ust': {
         id: 'rocio',
         fullName: 'Rocío',
@@ -556,6 +573,7 @@
         if (norm.includes('anto')) user = { uid: 'user_antonia_jofre', fullName: 'Antonia Jofré', role: 'client', flightPlanUrl: 'planes-antonia.html', storageKey: 'ah_auth_token_antonia' };
         else if (norm.includes('rocio')) user = { uid: 'user_rocio_ust', fullName: 'Rocío', role: 'client', flightPlanUrl: 'planes-rocio.html', storageKey: 'ah_auth_token_rocio' };
         else if (norm.includes('mati')) user = { uid: 'user_matias_gonzalez', fullName: 'Matías González', role: 'client', flightPlanUrl: 'planes-matias.html', storageKey: 'ah_client_auth_matias' };
+        else if (norm.includes('fran') || norm.includes('lissette')) user = { uid: 'user_francisca_lissette', fullName: 'Francisca Lissette', role: 'client', flightPlanUrl: 'planes/francisca/index.html', storageKey: 'ah_auth_francisca' };
         else if (norm.includes('diego')) user = { uid: 'user_admin_diego', fullName: 'Diego (Administrador)', role: 'admin', flightPlanUrl: 'visualizador.html', storageKey: 'ah_auth_token_admin' };
         if (user) {
           localStorage.setItem('ah_current_user', JSON.stringify(user));
