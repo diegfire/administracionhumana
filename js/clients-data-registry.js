@@ -113,13 +113,13 @@ window.CLIENTS_MASTER_DATA = {
       ],
       "amenazas": [
         "Fricción logística y transporte limitado en Talcahuano/Concepción para atenciones a domicilio.",
-        "Movilización estudiantil en UST y dificultades de transporte para compañeras."
+        "Gestión de tiempos y traslados hacia UST (movilización estudiantil formalmente descartada)."
       ]
     },
     "came": {
       "corregir": "Vaciado nocturno físico en papel antes de dormir; agendar 2 pausas de 15 min de Stimming TEA; apartar 10% a cuenta de reserva.",
-      "afrontar": "Zonificar atenciones a domicilio por cuadrantes y coordinar socio de transporte; apoyar petitorio estudiantil UST.",
-      "mantener": "Proteger la rutina de ejercicio corporal; aplicar storytelling en marcas y souvenirs sensoriales (velas); sostener Kanban análogo.",
+      "afrontar": "Zonificar atenciones a domicilio por cuadrantes y coordinar socio de transporte; movilización estudiantil descartada (foco curricular protegido con canceladores Woo).",
+      "mantener": "Proteger la rutina de ejercicio corporal; aplicar storytelling en marcas y souvenirs sensoriales; Nieve a cargo directo (delegando a mamá en visitas); sostener Kanban análogo.",
       "explotar": "Implementar Triangulación de Roles; paquetizar Puya Masajes en planes mensuales; capitalizar cero arriendo."
     },
     "horario_24h": {
@@ -197,8 +197,8 @@ window.CLIENTS_MASTER_DATA = {
         },
         {
           "id": "r9",
-          "text": "UST: Redactar borrador petitorio transporte estudiantil UST",
-          "tag": "UST"
+          "text": "Canto: Coordinar reunión con socia Charlyn para conocer estudio de grabación en su casa",
+          "tag": "Canto"
         }
       ],
       "doing": [
@@ -216,7 +216,7 @@ window.CLIENTS_MASTER_DATA = {
       "done": [
         {
           "id": "r1",
-          "text": "UST: Coordinar materiales y jornada de pintura de lienzos",
+          "text": "UST: Movilización descartada; blindaje sensorial canceladores Woo a fin de mes",
           "tag": "UST"
         },
         {
@@ -226,7 +226,7 @@ window.CLIENTS_MASTER_DATA = {
         },
         {
           "id": "r11",
-          "text": "Delegar formalmente paseo diario de Nieve a papá",
+          "text": "Hogar: Nieve a cargo directo de Rocío (delegar a mamá cuando llega de visita)",
           "tag": "Hogar"
         },
         {
@@ -302,10 +302,10 @@ window.CLIENTS_MASTER_DATA = {
     "plan_24h": {
       "hacer_ya": [
         "1. Retirar parlante a batería esta semana y compartir modelo exacto con Diego.",
-        "2. Probar Guía de Experiencia (Microrrelato 3 líneas) al cerrar la próxima sesión en la playa.",
-        "3. Utilizar El Mapa de la Canción Propia (4 pasos) para estructurar la co-creación musical indoor.",
+        "2. Coordinar reunión con socia Charlyn para conocer estudio de grabación en su casa (Voz Caleidoscopio).",
+        "3. Zanjada compra de canceladores de ruido Woo (llegada a fin de mes); movilización UST descartada.",
         "4. Integrar sección de termoterapia/piedras calientes en ficha de anamnesis física.",
-        "5. Sostener vaciado nocturno en libreta de papel antes de dormir."
+        "5. Cuidado diario de Nieve a cargo directo; delegar en mamá cuando llega de visita."
       ],
       "antipatrones": [
         "🚫 Intentar forzar zonificación territorial si no hay masa crítica suficiente por zona.",
@@ -498,7 +498,8 @@ window.CLIENTS_MASTER_DATA = {
           }
         ]
       }
-    ]
+    ],
+    "status": "active"
   },
   "melissa": {
     "cliente": {
@@ -792,7 +793,8 @@ window.CLIENTS_MASTER_DATA = {
         "id": "espacio_comparsa",
         "acuerdo": "Sábado 11:00 AM: Comparsa de Melissa protegida como espacio no negociable de recreación y goce personal."
       }
-    ]
+    ],
+    "status": "active"
   },
   "matias": {
     "cliente": {
@@ -1124,7 +1126,8 @@ window.CLIENTS_MASTER_DATA = {
           "por_que_encaja": "Trabajo 100% en cancha, dinamismo físico, liderazgo de equipos y cero encierro en oficinas."
         }
       ]
-    }
+    },
+    "status": "active"
   },
   "alejandra": {
     "cliente": {
@@ -1336,7 +1339,8 @@ window.CLIENTS_MASTER_DATA = {
       ],
       "escenario_a": "Beca Doctoral 4 años (dedicación 100% a investigación, ingresos estables de investigación)",
       "escenario_b": "Trabajo 1 año (08:00 a 16:00) + Avance de tesis doctoral en bloque nocturno de 2 horas"
-    }
+    },
+    "status": "active"
   },
   "alvaro": {
     "cliente": {
@@ -1381,7 +1385,8 @@ window.CLIENTS_MASTER_DATA = {
           "sub": "Time boxing estricto"
         }
       ]
-    }
+    },
+    "status": "paused"
   },
   "carlos": {
     "cliente": {
@@ -1403,7 +1408,8 @@ window.CLIENTS_MASTER_DATA = {
       "kanban_gtd",
       "simulador_financiero",
       "plan_24h_antipatrones"
-    ]
+    ],
+    "status": "paused"
   },
   "karina": {
     "cliente": {
@@ -1424,7 +1430,8 @@ window.CLIENTS_MASTER_DATA = {
       "matriz_identidades",
       "simulador_contingencias",
       "plan_24h_antipatrones"
-    ]
+    ],
+    "status": "paused"
   },
   "emi": {
     "cliente": {
@@ -1445,7 +1452,8 @@ window.CLIENTS_MASTER_DATA = {
       "matriz_eisenhower",
       "vaciado_mental_gtd",
       "ventana_johari"
-    ]
+    ],
+    "status": "paused"
   },
   "antonia": {
     "cliente": {
@@ -1633,7 +1641,8 @@ window.CLIENTS_MASTER_DATA = {
           "ingreso": 500000
         }
       }
-    }
+    },
+    "status": "active"
   },
   "diego": {
     "cliente": {
@@ -1716,7 +1725,8 @@ window.CLIENTS_MASTER_DATA = {
       "triangulacion_roles",
       "inventario_cero_culpa",
       "ia_chatgpt_prompts_puente"
-    ]
+    ],
+    "status": "active"
   },
   "francisca": {
     "cliente": {
@@ -2193,6 +2203,7 @@ window.CLIENTS_MASTER_DATA = {
           "meses_retorno_roi": 8.0
         }
       ]
-    }
+    },
+    "status": "active"
   }
 };
