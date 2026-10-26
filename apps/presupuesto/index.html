@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Calculadora de Presupuesto 50/30/20 • Salud Financiera | Administración Humana</title>
+    
+    <!-- Fuentes y Tipografía Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS MAESTRO PRESUPUESTO 50/30/20 (SSOT) -->
+    <link rel="stylesheet" href="../../css/presupuesto.css">
+</head>
+<body class="pr-body">
+
+    <!-- HEADER SUPERIOR STANDALONE -->
+    <header class="pr-header">
+        <a href="../../suite.html" class="pr-brand" title="Volver a la Suite Principal">
+            <div class="pr-logo-badge">📊</div>
+            <div class="pr-title-group">
+                <h1>Presupuesto 50/30/20 <span>(M05)</span></h1>
+                <span class="pr-subtitle">Control de Fugas, Flujo de Caja & Paz Financiera</span>
+            </div>
+        </a>
+
+        <div class="pr-header-actions">
+            <button type="button" class="pr-btn pr-btn-whatsapp" onclick="window.__presupuestoEngine.exportWhatsApp()" title="Enviar resumen financiero a WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> <span>WhatsApp</span>
+            </button>
+            <button type="button" class="pr-btn" onclick="window.__presupuestoEngine.copyToClipboard()" title="Copiar informe de presupuesto">
+                <i class="fa-solid fa-copy"></i> <span>Copiar</span>
+            </button>
+            <button type="button" class="pr-btn" onclick="window.print()" title="Imprimir hoja clínica A4/Carta">
+                <i class="fa-solid fa-print"></i> <span>Imprimir</span>
+            </button>
+            <button type="button" class="pr-btn" onclick="window.__presupuestoEngine.exportJson()" title="Descargar datos en JSON">
+                <i class="fa-solid fa-file-arrow-down"></i> <span>JSON</span>
+            </button>
+            <label class="pr-btn" style="margin:0; cursor:pointer;" title="Importar datos desde archivo JSON">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <input type="file" accept=".json" style="display:none;" onchange="window.__presupuestoEngine.importJson(this)">
+            </label>
+            <a href="../../../../../index.html" class="pr-btn" title="Diego Control Center">
+                <i class="fa-solid fa-house"></i> <span>Control Center</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="pr-main">
+
+        <!-- MOBILE SEGMENTED TABS (VISIBLE EN <= 1024px) -->
+        <nav class="pr-mobile-tabs" aria-label="Navegación Móvil">
+            <button type="button" class="pr-tab-btn active" data-tab="balance">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Balance</span>
+            </button>
+            <button type="button" class="pr-tab-btn" data-tab="add_expense">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span>+ Gasto</span>
+            </button>
+            <button type="button" class="pr-tab-btn" data-tab="ledger">
+                <i class="fa-solid fa-receipt"></i>
+                <span>Bitácora</span>
+            </button>
+            <button type="button" class="pr-tab-btn" data-tab="diagnosis">
+                <i class="fa-solid fa-stethoscope"></i>
+                <span>Diagnóstico</span>
+            </button>
+        </nav>
+
+        <!-- COLUMNA IZQUIERDA: CONFIGURACIÓN, DESVÍOS & PAZ FINANCIERA -->
+        <section class="pr-config-col" id="prConfigCol">
+
+            <!-- CARD DE INGRESO NETO -->
+            <div class="pr-income-card" id="prIncomeCard">
+                <div class="pr-income-header">
+                    <h2 class="pr-income-title">
+                        <i class="fa-solid fa-wallet" style="color:var(--pr-teal-light);"></i> Ingreso Neto Mensual
+                    </h2>
+                </div>
+
+                <div class="pr-income-input-wrap">
+                    <span class="pr-currency-symbol">$</span>
+                    <input type="number" id="prIncomeInput" class="pr-income-input" 
+                        placeholder="Ej: 1500000" 
+                        oninput="window.__presupuestoEngine.setIncome(this.value)"
+                    />
+                </div>
+
+                <div class="pr-presets-bar">
+                    <span style="font-size:0.72rem; color:var(--pr-text-muted); align-self:center; font-weight:600;">Perfiles:</span>
+                    <button type="button" class="pr-preset-btn" onclick="window.__presupuestoEngine.applyPreset('diego')">👤 Diego ($1.5M)</button>
+                    <button type="button" class="pr-preset-btn" onclick="window.__presupuestoEngine.applyPreset('freelancer')">💼 Freelance ($800k)</button>
+                    <button type="button" class="pr-preset-btn" onclick="window.__presupuestoEngine.applyPreset('consolidado')">🏢 Consolidado ($2.5M)</button>
+                    <button type="button" class="pr-preset-btn" onclick="window.__presupuestoEngine.applyPreset('reset')">↺ Vacío</button>
+                </div>
+
+                <!-- METAS OBJETIVO 50/30/20 -->
+                <div class="pr-targets-grid">
+                    <div class="pr-target-card needs">
+                        <span class="pr-target-label">❤️ Necesidades (50%)</span>
+                        <span class="pr-target-amount" id="prTargetNeeds">$0</span>
+                        <span class="pr-target-sub">Techo máximo fijo</span>
+                    </div>
+
+                    <div class="pr-target-card wants">
+                        <span class="pr-target-label">🎨 Deseos (30%)</span>
+                        <span class="pr-target-amount" id="prTargetWants">$0</span>
+                        <span class="pr-target-sub">Estilo de vida & ocio</span>
+                    </div>
+
+                    <div class="pr-target-card savings">
+                        <span class="pr-target-label">🚀 Ahorro / Deuda (20%)</span>
+                        <span class="pr-target-amount" id="prTargetSavings">$0</span>
+                        <span class="pr-target-sub">Paz & Camión de Gira</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD DE CONTROL DE DESVÍOS -->
+            <div class="pr-deviations-card" id="prDeviationsCard">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <h3 style="font-family:var(--font-heading); font-size:1rem; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-chart-column" style="color:var(--pr-teal-light);"></i> Consumo Real vs. Techo de Seguridad
+                    </h3>
+                </div>
+
+                <!-- Desvío Necesidades -->
+                <div class="pr-dev-row">
+                    <div class="pr-dev-meta">
+                        <span class="label">❤️ Necesidades Básicas (50% max)</span>
+                        <span class="numbers" id="prDevNeedsText">$0 de $0 (0%)</span>
+                    </div>
+                    <div class="pr-progress-track">
+                        <div class="pr-progress-fill needs" id="prDevNeedsBar" style="width:0%;"></div>
+                    </div>
+                </div>
+
+                <!-- Desvío Deseos -->
+                <div class="pr-dev-row">
+                    <div class="pr-dev-meta">
+                        <span class="label">🎨 Deseos y Estilo de Vida (30% max)</span>
+                        <span class="numbers" id="prDevWantsText">$0 de $0 (0%)</span>
+                    </div>
+                    <div class="pr-progress-track">
+                        <div class="pr-progress-fill wants" id="prDevWantsBar" style="width:0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INDICADOR DE PAZ FINANCIERA -->
+            <div class="pr-peace-card" id="prPeaceCard">
+                <div class="pr-peace-header">
+                    <h3 class="pr-peace-title">
+                        <i class="fa-solid fa-shield-halved" style="color:var(--pr-teal-light);"></i> Indicador de Paz Financiera
+                    </h3>
+                    <span class="pr-peace-rate" id="prPeaceRate">0%</span>
+                </div>
+                <div class="pr-progress-track">
+                    <div class="pr-progress-fill savings" id="prPeaceBar" style="width:0%;"></div>
+                </div>
+                <div class="pr-peace-desc" id="prPeaceDesc">
+                    Calculando margen de ahorro...
+                </div>
+            </div>
+
+            <!-- TARJETA DE PRESCRIPIÓN CLÍNICA -->
+            <div class="pr-prescription-card" id="prPrescriptionCard">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                    <h3 style="font-family:var(--font-heading); font-size:0.95rem; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-stethoscope" style="color:var(--pr-teal-light);"></i> Prescripción Clínica AICC
+                    </h3>
+                </div>
+                <div class="pr-prescription-body" id="prPrescriptionContent">
+                    Cargando diagnóstico...
+                </div>
+            </div>
+
+        </section>
+
+        <!-- COLUMNA DERECHA: FORMULARIO Y BITÁCORA (LEDGER) -->
+        <section class="pr-ledger-col" id="prLedgerCol">
+
+            <!-- FORMULARIO DE GASTO RÁPIDO -->
+            <div class="pr-form-card" id="prFormCard">
+                <div class="pr-form-title">
+                    <i class="fa-solid fa-circle-plus" style="color:var(--pr-teal-light);"></i> Registrar Transacción
+                </div>
+
+                <div class="pr-form-row">
+                    <div class="pr-input-wrap">
+                        <label class="pr-label">Detalle / Proveedor:</label>
+                        <input type="text" id="prDetailInput" class="pr-input" placeholder="Ej: Arriendo, Supermercado, Netflix">
+                    </div>
+                    <div class="pr-input-wrap">
+                        <label class="pr-label">Monto ($):</label>
+                        <input type="number" id="prAmountInput" class="pr-input" placeholder="Ej: 45000">
+                    </div>
+                </div>
+
+                <div class="pr-input-wrap">
+                    <label class="pr-label">Categoría 50/30/20:</label>
+                    <div class="pr-cat-pills">
+                        <button type="button" class="pr-cat-pill-btn active needs" data-cat="needs">
+                            <span>❤️ Necesidad</span>
+                            <span style="font-size:0.65rem; color:var(--pr-text-muted);">Techo 50%</span>
+                        </button>
+                        <button type="button" class="pr-cat-pill-btn wants" data-cat="wants">
+                            <span>🎨 Deseo</span>
+                            <span style="font-size:0.65rem; color:var(--pr-text-muted);">Techo 30%</span>
+                        </button>
+                        <button type="button" class="pr-cat-pill-btn savings" data-cat="savings">
+                            <span>🚀 Ahorro/Deuda</span>
+                            <span style="font-size:0.65rem; color:var(--pr-text-muted);">Meta 20%</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pr-form-row">
+                    <div class="pr-input-wrap">
+                        <label class="pr-label">Medio de Pago:</label>
+                        <select id="prAccountSelect" class="pr-select">
+                            <option value="Efectivo">💵 Efectivo / Transferencia</option>
+                            <option value="Tarjeta">💳 Tarjeta Débito/Crédito</option>
+                            <option value="Negocio">💼 Cuenta Negocio</option>
+                        </select>
+                    </div>
+                    <div class="pr-input-wrap" style="justify-content: flex-end;">
+                        <button type="button" class="pr-btn pr-btn-primary" style="height: 38px;" onclick="window.__presupuestoEngine.addTransactionFromForm()">
+                            <i class="fa-solid fa-plus"></i> Registrar Gasto
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BITÁCORA DE GASTOS (LEDGER) -->
+            <div class="pr-ledger-card" id="prLedgerCard">
+                <div class="pr-ledger-header">
+                    <h3 style="font-family:var(--font-heading); font-size:1rem; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-receipt" style="color:var(--pr-teal-light);"></i> Bitácora Mensual
+                    </h3>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <div class="pr-filter-pills">
+                            <button type="button" class="pr-filter-btn active" data-filter="all">Todos</button>
+                            <button type="button" class="pr-filter-btn" data-filter="needs">❤️</button>
+                            <button type="button" class="pr-filter-btn" data-filter="wants">🎨</button>
+                            <button type="button" class="pr-filter-btn" data-filter="savings">🚀</button>
+                        </div>
+                        <button type="button" class="pr-btn" style="padding:4px 8px; font-size:0.75rem;" onclick="window.__presupuestoEngine.clearLedger()" title="Reiniciar bitácora">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pr-table-container">
+                    <table class="pr-table">
+                        <thead>
+                            <tr>
+                                <th>Detalle</th>
+                                <th>Categoría</th>
+                                <th>Monto</th>
+                                <th>Medio</th>
+                                <th style="width:30px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="prLedgerBody">
+                            <!-- Inyectado por JS -->
+                        </tbody>
+                    </table>
+                    <div id="prEmptyLedger" style="display:none; text-align:center; padding:2rem; color:var(--pr-text-muted); font-size:0.85rem; font-style:italic;">
+                        No hay transacciones registradas en esta vista.
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- MOTOR MAESTRO PRESUPUESTO (SSOT) -->
+    <script src="../../js/presupuesto-engine.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initPresupuestoEngine({
+                incomeStorageKey: "aicc_budget_income",
+                ledgerStorageKey: "aicc_budget_ledger"
+            });
+        });
+    </script>
+    <div id="prToast" class="pr-toast"></div>
+</body>
+</html>

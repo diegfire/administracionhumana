@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Círculo Dorado de Propósito (M08) • Simon Sinek | Administración Humana</title>
+    
+    <!-- Fuentes y Tipografía Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS MAESTRO CÍRCULO DORADO (SSOT) -->
+    <link rel="stylesheet" href="../../css/circulo-dorado.css">
+</head>
+<body class="cd-body">
+
+    <!-- HEADER SUPERIOR STANDALONE -->
+    <header class="cd-header">
+        <a href="../../suite.html" class="cd-brand" title="Volver a la Suite Principal">
+            <div class="cd-logo-badge">🟡</div>
+            <div class="cd-title-group">
+                <h1>Círculo Dorado <span>(M08)</span></h1>
+                <span class="cd-subtitle">Propósito, Diferenciación & Pitch de Valor (Simon Sinek)</span>
+            </div>
+        </a>
+
+        <div class="cd-header-actions">
+            <button type="button" class="cd-btn cd-btn-whatsapp" onclick="window.__circuloDoradoEngine.exportWhatsApp()" title="Enviar resumen a WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> <span>WhatsApp</span>
+            </button>
+            <button type="button" class="cd-btn" onclick="window.__circuloDoradoEngine.copyPitch()" title="Copiar pitch de valor">
+                <i class="fa-solid fa-copy"></i> <span>Copiar</span>
+            </button>
+            <button type="button" class="cd-btn" onclick="window.print()" title="Imprimir hoja clínica A4/Carta">
+                <i class="fa-solid fa-print"></i> <span>Imprimir</span>
+            </button>
+            <button type="button" class="cd-btn" onclick="window.__circuloDoradoEngine.exportJson()" title="Descargar datos en JSON">
+                <i class="fa-solid fa-file-arrow-down"></i> <span>JSON</span>
+            </button>
+            <label class="cd-btn" style="margin:0; cursor:pointer;" title="Importar datos desde archivo JSON">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <input type="file" accept=".json" style="display:none;" onchange="window.__circuloDoradoEngine.importJson(this)">
+            </label>
+            <a href="../../../../../index.html" class="cd-btn" title="Diego Control Center">
+                <i class="fa-solid fa-house"></i> <span>Control Center</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="cd-main">
+
+        <!-- MOBILE SEGMENTED TABS (VISIBLE EN <= 1024px) -->
+        <nav class="cd-mobile-tabs" aria-label="Navegación Móvil">
+            <button type="button" class="cd-tab-btn active" data-tab="circulos">
+                <i class="fa-solid fa-circle-dot"></i>
+                <span>Círculos</span>
+            </button>
+            <button type="button" class="cd-tab-btn" data-tab="pitch">
+                <i class="fa-solid fa-bullhorn"></i>
+                <span>Discurso</span>
+            </button>
+            <button type="button" class="cd-tab-btn" data-tab="diagnosis">
+                <i class="fa-solid fa-stethoscope"></i>
+                <span>Diagnóstico</span>
+            </button>
+        </nav>
+
+        <!-- COLUMNA IZQUIERDA: GRÁFICO CONCÉNTRICO & ENTRADAS -->
+        <section class="cd-left-col" id="cdLeftCol">
+
+            <!-- CARD VISUAL: CÍRCULOS CONCÉNTRICOS SVG -->
+            <div class="cd-visual-card" id="cdVisualCard">
+                <div class="cd-visual-header">
+                    <h2 class="cd-visual-title">
+                        <i class="fa-solid fa-bullseye" style="color:var(--cd-gold-light);"></i> Mapa de Comunicación Biológica
+                    </h2>
+                    <div class="cd-presets-bar">
+                        <button type="button" class="cd-preset-btn" onclick="window.__circuloDoradoEngine.applyPreset('dondiego')">💨 Don Diego</button>
+                        <button type="button" class="cd-preset-btn" onclick="window.__circuloDoradoEngine.applyPreset('risalfajores')">🍪 Risalfajores</button>
+                        <button type="button" class="cd-preset-btn" onclick="window.__circuloDoradoEngine.applyPreset('administracion')">👤 Admin Humana</button>
+                        <button type="button" class="cd-preset-btn" onclick="window.__circuloDoradoEngine.clearAll()">↺ Vacío</button>
+                    </div>
+                </div>
+
+                <!-- SVG CONCÉNTRICO INTERACTIVO -->
+                <div class="cd-svg-container">
+                    <svg viewBox="0 0 320 320">
+                        <!-- Anillo 3: QUÉ (Exterior / Neocórtex) -->
+                        <circle cx="160" cy="160" r="140" class="cd-ring cd-ring-what" id="cdRingWhat" title="Clic para editar el QUÉ" />
+                        <text x="160" y="44" class="cd-ring-text" fill="var(--cd-indigo-light)" font-size="11">3. EL QUÉ (Neocórtex / Producto)</text>
+
+                        <!-- Anillo 2: CÓMO (Medio / Límbico) -->
+                        <circle cx="160" cy="160" r="95" class="cd-ring cd-ring-how" id="cdRingHow" title="Clic para editar el CÓMO" />
+                        <text x="160" y="88" class="cd-ring-text" fill="var(--cd-teal-light)" font-size="11">2. EL CÓMO (Valores / Diferencial)</text>
+
+                        <!-- Anillo 1: PORQUÉ (Centro / Límbico Profundo) -->
+                        <circle cx="160" cy="160" r="50" class="cd-ring cd-ring-why" id="cdRingWhy" title="Clic para editar el PORQUÉ" />
+                        <text x="160" y="156" class="cd-ring-text" fill="#fff" font-size="11">1. PORQUÉ</text>
+                        <text x="160" y="172" class="cd-ring-text" fill="var(--cd-gold-light)" font-size="9">(El Motor)</text>
+                    </svg>
+                </div>
+
+                <div style="font-size:0.73rem; color:var(--cd-text-muted); text-align:center;">
+                    <i class="fa-solid fa-hand-pointer"></i> <em>Haz clic en cualquier anillo para saltar directamente a su campo de redacción.</em>
+                </div>
+            </div>
+
+            <!-- ENTRADAS DE LOS 3 CÍRCULOS (PORQUÉ, CÓMO, QUÉ) -->
+            <div class="cd-circles-inputs" id="cdInputsGroup">
+
+                <!-- 1. PORQUÉ -->
+                <div class="cd-input-card why" id="cdCardWhy">
+                    <div class="cd-input-top">
+                        <div class="cd-card-badge">
+                            <span class="num-pill">1</span>
+                            <span>El PORQUÉ (El Motor / Cerebro Límbico)</span>
+                        </div>
+                    </div>
+                    <span class="cd-card-guide">
+                        💡 Tu creencia, causa o razón profunda por la que te levantas un lunes. No es ganar dinero (el dinero es combustible).
+                    </span>
+                    <textarea id="cdInputWhy" class="cd-textarea" 
+                        placeholder="Ej: Creemos que una casa limpia no es un lujo, sino el santuario de salud y paz donde una familia descansa tranquila..."
+                        oninput="window.__circuloDoradoEngine.updateWhy(this.value)"
+                    ></textarea>
+                    <div class="cd-example-box">
+                        <strong>Pregunta al hueso:</strong> Si mañana tu servicio fuera gratis, ¿cuál sería la razón por la que seguirías haciéndolo?
+                    </div>
+                </div>
+
+                <!-- 2. CÓMO -->
+                <div class="cd-input-card how" id="cdCardHow">
+                    <div class="cd-input-top">
+                        <div class="cd-card-badge">
+                            <span class="num-pill">2</span>
+                            <span>El CÓMO (El Mapa / Tus Valores en Acción)</span>
+                        </div>
+                    </div>
+                    <span class="cd-card-guide">
+                        💡 Tu proceso especial o ingrediente secreto. Lo que haces con cariño o maña que otros hacen solo por cumplir.
+                    </span>
+                    <textarea id="cdInputHow" class="cd-textarea" 
+                        placeholder="Ej: Con protocolos hospitalarios a 140°C, productos biodegradables inocuos para mascotas y puntualidad estricta..."
+                        oninput="window.__circuloDoradoEngine.updateHow(this.value)"
+                    ></textarea>
+                    <div class="cd-example-box">
+                        <strong>Pregunta al hueso:</strong> ¿Qué detalle innegociable de tu método hace imposible que la competencia te clone?
+                    </div>
+                </div>
+
+                <!-- 3. QUÉ -->
+                <div class="cd-input-card what" id="cdCardWhat">
+                    <div class="cd-input-top">
+                        <div class="cd-card-badge">
+                            <span class="num-pill">3</span>
+                            <span>El QUÉ (El Auto / Entregable Tangible)</span>
+                        </div>
+                    </div>
+                    <span class="cd-card-guide">
+                        💡 El producto o servicio físico que entregas. Es simplemente la prueba visible y tangible de tu propósito.
+                    </span>
+                    <textarea id="cdInputWhat" class="cd-textarea" 
+                        placeholder="Ej: Servicios profesionales de limpieza, sanitización y desmanchado de tapices, alfombras y colchones a vapor..."
+                        oninput="window.__circuloDoradoEngine.updateWhat(this.value)"
+                    ></textarea>
+                    <div class="cd-example-box">
+                        <strong>Pregunta al hueso:</strong> ¿Qué vendes hoy que es la excusa perfecta para cumplir tu propósito?
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- COLUMNA DERECHA: PITCHES RESULTANTES & PRESCRIPIÓN -->
+        <section class="cd-right-col" id="cdRightCol">
+
+            <!-- CARD DEL PITCH RESULTANTE -->
+            <div class="cd-pitch-card" id="cdPitchCard">
+                <div class="cd-pitch-header">
+                    <h3 class="cd-pitch-title">
+                        <i class="fa-solid fa-bullhorn" style="color:var(--cd-gold-light);"></i> Discurso de Valor Generado
+                    </h3>
+                </div>
+
+                <!-- SELECTOR DE FORMATO -->
+                <div class="cd-pitch-mode-tabs">
+                    <button type="button" class="cd-mode-btn active" data-mode="inside_out">🌟 Inside-Out</button>
+                    <button type="button" class="cd-mode-btn" data-mode="elevator">💼 Elevator Pitch</button>
+                    <button type="button" class="cd-mode-btn" data-mode="social">📱 Redes Sociales</button>
+                </div>
+
+                <!-- CAJA DE TEXTO DEL PITCH -->
+                <div class="cd-pitch-box" id="cdPitchBox">
+                    <span class="cd-pitch-placeholder">Cargando discurso de valor...</span>
+                </div>
+
+                <div class="cd-pitch-actions">
+                    <button type="button" class="cd-btn cd-btn-primary" style="flex:2;" onclick="window.__circuloDoradoEngine.copyPitch()">
+                        <i class="fa-solid fa-copy"></i> Copiar Discurso
+                    </button>
+                    <button type="button" class="cd-btn cd-btn-whatsapp" style="flex:1;" onclick="window.__circuloDoradoEngine.exportWhatsApp()">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- DIAGNÓSTICO CLÍNICO DE COHERENCIA -->
+            <div class="cd-diagnosis-card" id="cdDiagnosisCard">
+                <div class="cd-diagnosis-header">
+                    <h4 class="cd-diagnosis-title">
+                        <i class="fa-solid fa-brain" style="color:var(--cd-gold-light);"></i> Diagnóstico de Coherencia Límbica
+                    </h4>
+                </div>
+                <div class="cd-diagnosis-body" id="cdDiagnosisContent">
+                    Analizando propuesta de valor...
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- MOTOR MAESTRO CÍRCULO DORADO (SSOT) -->
+    <script src="../../js/circulo-dorado-engine.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initCirculoDoradoEngine({
+                storageKey: "ah_client_circulo_dorado"
+            });
+        });
+    </script>
+    <div id="cdToast" class="cd-toast"></div>
+</body>
+</html>

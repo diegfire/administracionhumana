@@ -1,5 +1,5 @@
-// ARCHIVO COMPILADO DE FICHAS MAESTRAS (GENERADO AUTOMÁTICAMENTE)
-// Fuente de verdad: Ficha_Maestra.json en la carpeta de cada cliente
+// ARCHIVO COMPILADO DE FICHAS MAESTRAS (GENERADO AUTOMÁTICAMENTE - AICC v4.0)
+// Fuente de verdad: Ficha_Maestra.json + expediente_contrato.json
 window.CLIENTS_MASTER_DATA = {
   "rocio": {
     "cliente": {
@@ -15,294 +15,44 @@ window.CLIENTS_MASTER_DATA = {
       "rol_principal": "Estudiante de Psicopedagogía / Masoterapeuta / Instructora de Canto"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_estructura",
-      "foda_came",
-      "triangulacion_roles",
-      "mapeador_24h",
-      "kanban_gtd_wip2",
-      "time_blocking_flexible",
-      "protocolo_paso_cero",
-      "inventario_sesiones_resultados",
-      "hub_imprimibles_maestro",
-      "whatsapp_directo",
-      "ia_chatgpt_prompts",
-      "antigravity_tips",
-      "finanzas_503020",
-      "fondo_reserva_paz",
-      "calculadora_roi_capacitaciones",
-      "paquetizacion_servicios_mes",
-      "regulacion_corporal_tea",
-      "oceano_azul_diferencial",
-      "vaciado_nocturno_analogo",
-      "cero_pantallas_celular",
-      "pedagogia_quirurgica_bloques",
-      "laboratorio_creativo_composicion",
-      "mochila_operativa_salidas",
       "alianzas_operativas_duetos",
-      "inversion_piedras_calientes",
+      "antigravity_tips",
+      "calculadora_roi_capacitaciones",
+      "cero_pantallas_celular",
+      "diagnostico_estructura",
       "estudio_grabacion_voz",
+      "feedback_sbi_conversaciones",
+      "finanzas_503020",
+      "foda_came",
+      "fondo_reserva_paz",
+      "gtd_vaciado_mental",
+      "hub_imprimibles_maestro",
+      "ia_chatgpt_prompts",
+      "inventario_cero_culpa",
+      "inventario_sesiones_resultados",
+      "inversion_piedras_calientes",
+      "kaizen_mejora_continua",
+      "kanban_gtd_wip2",
+      "laboratorio_creativo_composicion",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "mochila_operativa_salidas",
       "movilizacion_lienzos_ust",
+      "oceano_azul_diferencial",
+      "paquetizacion_servicios_mes",
+      "pedagogia_quirurgica_bloques",
       "plan_estrategico_hitos",
       "principio_pareto_80_20",
-      "kaizen_mejora_continua"
+      "protocolo_paso_cero",
+      "regulacion_corporal_tea",
+      "seguridad_pin",
+      "tecnica_pomodoro_foco",
+      "time_blocking_flexible",
+      "triangulacion_roles",
+      "vaciado_nocturno_analogo",
+      "ventana_johari_puntos_ciegos",
+      "whatsapp_directo"
     ],
-    "herramientas_activas": [
-      {
-            "id": "time_blocking_flexible",
-            "numero": 1,
-            "codigo": "P1-03",
-            "badge": "⏰ Herramienta 1 • P1-03 • Foco & TEA",
-            "color": "#3b82f6",
-            "nombre": "1. Time Blocking + Pausas de Stimming (TEA)",
-            "subtitulo": "Gestión del Tiempo & Protección de Batería Sensorial",
-            "descripcion": "Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa para que los turnos del hotel, las clases de Santo Tomás y el descanso no se solapen.",
-            "img_url": "assets/img/herramientas/Time Blocking.webp",
-            "img_fallback": "assets/img/herramientas/Time Blocking.png",
-            "tutorial_html": "<strong style=\"color:#60a5fa; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para organizar tus semanas cuando trabajas 42 a 49 horas en el hotel (5 a 6h todos los días) y estudias en Santo Tomás de 18:40 a 22:40, sin agotar tu batería sensorial ni descuidar tus emprendimientos:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Ventana de Oro Matutina (60 a 90 min):</strong> Antes de salir al hotel o en tus mañanas libres, ejecutas tareas de alta concentración (estudio UST en papel o preparación técnica de tus cursos).</li>\r\n                                <li><strong style=\"color:#fff;\">Pausas de Stimming No Negociables (10:15 y 16:45):</strong> 15 minutos sagrados para regular tu sistema nervioso (respiración profunda, estiramiento, aislamiento de ruido).</li>\r\n                                <li><strong style=\"color:#fff;\">Agrupación de Domicilios Puya:</strong> Programar atenciones a domicilio únicamente por cuadrantes geográficos (Talcahuano o Collao) para no perder 2 horas en traslados.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Fijar 2 bloques de 90 min de sola-ejecución para lecturas UST en papel.",
-                  "Agrupar domicilios de Puya Masajes por cuadrantes en Talcahuano.",
-                  "Proteger 2 pausas de 15 min de Stimming diario (10:15 y 16:45)."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-1",
-            "imprimible_label": "Ver Imprimible Semanal →",
-            "guia_url": "planes/rocio/guias/guia_time_blocking.html",
-            "guia_key": "time_blocking",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "gtd_vaciado_mental",
-            "numero": 2,
-            "codigo": "P1-04",
-            "badge": "🌙 Herramienta 2 • P1-04 • Sueño & Mente",
-            "color": "#10b981",
-            "nombre": "2. Vaciado Mental Nocturno GTD (Cero Pantallas)",
-            "subtitulo": "Descarga Cognitiva & Conciliación del Sueño",
-            "descripcion": "Sacar los pensamientos giratorios de la cabeza y dejarlos atrapados en el papel antes de dormir para eliminar el ruido mental persistente.",
-            "img_url": "assets/img/herramientas/Getting Things Done (GTD).webp",
-            "img_fallback": "assets/img/herramientas/Getting Things Done (GTD).png",
-            "tutorial_html": "<strong style=\"color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para apagar el cerebro tras salir de Santo Tomás a las 22:40. Evita que llegues a la cama con pensamientos en bucle sobre el hotel, certámenes universitarios o ideas de masajes:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">El Volcado Físico de 5 Minutos:</strong> Libreta y lápiz en tu velador. Escribir todo lo que esté rondando en la cabeza en viñetas rápidas. Regla de oro: <em>La mente es para crear, no para retener</em>.</li>\r\n                                <li><strong style=\"color:#fff;\">Cero Pantallas en la Cama:</strong> Dejar el celular cargando lejos de la cama. La luz azul y los estímulos nocturnos aceleran el sistema nervioso y sabotean el sueño profundo.</li>\r\n                                <li><strong style=\"color:#fff;\">Procesar a la Mañana Siguiente:</strong> Lo escrito en la libreta no se resuelve de noche; se transfiere a tu tablero o lista al despertar con la mente despejada.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Libreta física de vaciado al lado de la cama.",
-                  "10 min antes de acostarse, escribir en viñetas todo pendiente o idea.",
-                  "Cero pantallas de celular en la cama (descanso visual)."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-3",
-            "imprimible_label": "Ver Checklist Rutina Vaciado →",
-            "guia_url": "planes/rocio/guias/guia_gtd.html",
-            "guia_key": "gtd",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "matriz_eisenhower",
-            "numero": 3,
-            "codigo": "P1-06",
-            "badge": "🔥 Herramienta 3 • P1-06 • Priorización",
-            "color": "#ef4444",
-            "nombre": "3. Matriz de Eisenhower (Urgente vs Importante)",
-            "subtitulo": "El Filtro de Fuego • Discriminación de Demandas",
-            "descripcion": "Filtro implacable para separar las demandas urgentes del hotel y la universidad de lo que realmente construye tu negocio propio a largo plazo.",
-            "img_url": "assets/img/herramientas/Matriz de Eisenhower.webp",
-            "img_fallback": "assets/img/herramientas/Matriz de Eisenhower.png",
-            "tutorial_html": "<strong style=\"color:#f87171; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para no quemarte apagando incendios ajenos en el trabajo. Tu energía diaria es limitada y debes destinarla a lo que genera apalancamiento:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Cuadrante 1 (Hacer Ya):</strong> Turnos de hotel (pagan tus cuentas hoy), certámenes finales de UST (cerrar el semestre el 15 dic) y asistencia a tus 3 cursos prácticos.</li>\r\n                                <li><strong style=\"color:#fff;\">Cuadrante 2 (Planificar / Vital):</strong> Preparar los protocolos de masaje de piedras calientes, configurar el parlante Blick Party Voice para Voz Caleidoscopio y armar tu reserva financiera.</li>\r\n                                <li><strong style=\"color:#fff;\">Cuadrante 3 & 4 (Delegar o Eliminar):</strong> Cuidado de Nieve asumido directamente (delegar en mamá cuando llega de visita), rechazar favores no esenciales y eliminar lecturas densas en celular.</li>\r\n                            </ul>",
-            "checklist": [
-                  "HACER YA: Registro de técnicas vocales de canto en cuaderno.",
-                  "PLANIFICAR: Propuesta Plan Terapéutico 1 Mes (Puya Masajes).",
-                  "DELEGAR: Delegar apoyo con Nieve a mamá cuando llega de visita.",
-                  "ELIMINAR: Lecturas densas en pantallas pequeñas de celular."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-2",
-            "imprimible_label": "Ver Matriz Eisenhower Impresa →",
-            "guia_url": "planes/rocio/guias/guia_eisenhower.html",
-            "guia_key": "eisenhower",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "finanzas_503020",
-            "numero": 4,
-            "codigo": "P1-07",
-            "badge": "💰 Herramienta 4 • P1-07 • Finanzas & Reserva",
-            "color": "#10b981",
-            "nombre": "4. Presupuesto 50/30/20 & Paquetización",
-            "subtitulo": "Palanca $0 Arriendo • Fondo de Reserva 3 Meses",
-            "descripcion": "Aprovecha la ventaja del sueldo del hotel y arriendo familiar $0 para financiar tus certificaciones y blindar un colchón financiero antes de febrero.",
-            "img_url": "assets/img/herramientas/La Regla 50 30 20.webp",
-            "img_fallback": "assets/img/herramientas/La Regla 50 30 20.png",
-            "tutorial_html": "<strong style=\"color:#f59e0b; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para monetizar con tranquilidad. Tu costo de vida fijo es bajo gracias al apoyo familiar; el sueldo del hotel no es para sobrevivir, sino para capitalizar tu despegue:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">50% Necesidades & Activos de Formación:</strong> Gastos diarios esenciales + financiar tus 3 cursos prácticos (ej: $75.000 curso piedras calientes con maleta incluida).</li>\r\n                                <li><strong style=\"color:#fff;\">30% Ocio Reparador (Subir de 2/10):</strong> Presupuesto protegido para disfrute personal, salidas a la playa y bienestar sensorial sin culpa.</li>\r\n                                <li><strong style=\"color:#fff;\">20% Fondo de Transición (3 Meses):</strong> Ahorro sagrado acumulado cada mes para que cuando termine el hotel en enero/febrero tengas cobertura total de meses de transición.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Paquetizar Puya Masajes en planes de 4 sesiones mensuales.",
-                  "Aportar el 20% mensual para construir Fondo de Emergencia (3 meses).",
-                  "Reclamar el 30% de ocio y esparcimiento sin culpa (subir de 2/10)."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-4",
-            "imprimible_label": "Ver Planilla 50/30/20 →",
-            "guia_url": "planes/rocio/guias/guia_503020.html",
-            "guia_key": "503020",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "kanban_gtd_wip2",
-            "numero": 5,
-            "codigo": "P1-05",
-            "badge": "📋 Herramienta 5 • P1-05 • Flujo Visual",
-            "color": "#38bdf8",
-            "nombre": "5. Tablero Kanban Visual (Flujo Tres Vías WIP=2)",
-            "subtitulo": "Control de Tareas en Pared • Límite Anti-Abrumo",
-            "descripcion": "Tres columnas con Post-its por color (UST, Puya, Voz, Hogar) con la regla innegociable de máximo 2 tareas activas en ejecución.",
-            "img_url": "assets/img/herramientas/Kanban.webp",
-            "img_fallback": "assets/img/herramientas/Kanban.png",
-            "tutorial_html": "<strong style=\"color:#c084fc; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para erradicar la dispersión. Con jornadas largas en el hotel y clases vespertinas, no puedes tener 10 tareas a medias:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Las 3 Columnas Sagradas:</strong> Por Hacer | En Proceso (Máx 2) | Terminado.</li>\r\n                                <li><strong style=\"color:#fff;\">Límite Estricto WIP=2:</strong> Si estás practicando masaje de piedras y estudiando para un certamen de UST, está prohibido abrir una tercera tarea hasta terminar una de las dos.</li>\r\n                                <li><strong style=\"color:#fff;\">Celebrar el Terminado:</strong> Mover la tarjeta físicamente a \"Terminado\" activa dopamina natural y te da certeza visual de que estás progresando.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Colocar 3 rótulos en pared: POR HACER | EN PROCESO | LISTO.",
-                  "No mover ninguna tarea a EN PROCESO si ya hay 2 activas.",
-                  "Celebrar el traspaso a LISTO al terminar la sesión."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
-            "imprimible_label": "",
-            "guia_url": "planes/rocio/guias/guia_kanban.html",
-            "guia_key": "kanban",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "protocolo_paso_cero",
-            "numero": 6,
-            "codigo": "P1-08",
-            "badge": "🚀 Herramienta 6 • P1-08 • Anti-Parálisis",
-            "color": "#f59e0b",
-            "nombre": "6. Técnica Pomodoro & Protocolo Paso Cero",
-            "subtitulo": "Microdosis de Foco • Superación de la Inercia & Regla del 70%",
-            "descripcion": "Arrancar tareas académicas y prácticas vocales en solo 5 minutos sin exigir perfección, midiendo el éxito por la consistencia sostenida.",
-            "img_url": "assets/img/herramientas/06_Paralisis_por_Analisis.webp",
-            "img_fallback": "assets/img/herramientas/06_Paralisis_por_Analisis.png",
-            "tutorial_html": "<strong style=\"color:#22d3ee; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para romper la parálisis cuando llegas agotada del hotel o de clases. Si te propones una meta gigante, el cerebro huye; con Paso Cero, solo inicias el movimiento:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">El Paso Cero de 2 Minutos:</strong> Para masajes, el paso cero es dejar el maletín de piedras calientes o la toalla estirada; para canto, conectar el micrófono al parlante Blick. Cero fricción de inicio.</li>\r\n                                <li><strong style=\"color:#fff;\">Pomodoros Cortos (15 a 25 min):</strong> Trabajar con cronómetro en una sola cosa sin mirar el celular, seguido de 5 minutos de estiramiento y agua.</li>\r\n                                <li><strong style=\"color:#fff;\">Regla del 70%: Hecho es Mejor que Perfecto:</strong> Entregar un informe universitario o grabar una prueba de voz al 70% de perfección es mil veces mejor que postergarlo por buscar el 100%.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Poner cronómetro de 5 minutos solo para abrir apuntes y leer 1 página.",
-                  "Resúmenes de 5 líneas para evitar fatiga en pantallas de celular.",
-                  "Considerar cumplido el día con 70% de adherencia en días de sobrecarga."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
-            "imprimible_label": "Ver Checklists Maestros Impresos →",
-            "guia_url": "planes/rocio/guias/guia_pomodoro.html",
-            "guia_key": "pomodoro",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "ventana_johari_puntos_ciegos",
-            "numero": 7,
-            "codigo": "P2-01",
-            "badge": "💬 Herramienta 7 • P2-01 • Comunicación & Alianzas",
-            "color": "#8b5cf6",
-            "nombre": "7. La Ventana de Johari & Acuerdos Asertivos",
-            "subtitulo": "El Fin de los Puntos Ciegos • Autoconocimiento & Límites TEA",
-            "descripcion": "Alinear lo que tú ves con lo que otros perciben para construir acuerdos transparentes con tu familia, tu entorno laboral y tus compañeras de UST.",
-            "img_url": "assets/img/herramientas/La Ventana de Johari.webp",
-            "img_fallback": "assets/img/herramientas/La Ventana de Johari.png",
-            "tutorial_html": "<strong style=\"color:#f472b6; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para hacer visibles tus límites y fortalezas sin culpa ni sobrecarga emocional frente a las personas con quienes convives y colaboras:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Área Abierta (Lo que todos ven):</strong> Tu dedicación profesional, tu tacto terapéutico en masaje y tu talento vocal expresivo.</li>\r\n                                <li><strong style=\"color:#fff;\">Área Oculta (Lo que debes comunicar):</strong> Avisar a tu círculo cuándo estás experimentando sobrecarga sensorial para que sepan que necesitas silencio y no se interprete como desinterés.</li>\r\n                                <li><strong style=\"color:#fff;\">Área Ciega (Aprender de otros):</strong> Recibir retroalimentación constructiva de mentores como Danae (masaje tailandés) o docentes de UST para mejorar tu técnica y ergonomía.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Expresar límites de sobrecarga sensorial a familia sin culpa.",
-                  "Coordinar con Danae las sesiones del curso de masaje tailandés con antelación.",
-                  "Canalizar petitorio de transporte estudiantil con argumentos respetuosos."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-7",
-            "imprimible_label": "",
-            "guia_url": "planes/rocio/guias/guia_johari.html",
-            "guia_key": "johari",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "feedback_sbi_conversaciones",
-            "numero": 8,
-            "codigo": "P2-09",
-            "badge": "🧘 Herramienta 8 • P2-09 • Regulación & Pausa",
-            "color": "#10b981",
-            "nombre": "8. Feedback SBI & Protocolo de Acuerdos Claros (Pausa Fija)",
-            "subtitulo": "Precisión en la Comunicación • Desescalamiento Emocional",
-            "descripcion": "Estructurar conversaciones difíciles sin rodeos ni conflicto mediante Situación, Comportamiento e Impacto, asegurando una pausa fija ante la tensión.",
-            "img_url": "assets/img/herramientas/Feedback SBI.webp",
-            "img_fallback": "assets/img/herramientas/Feedback SBI.png",
-            "tutorial_html": "<strong style=\"color:#818cf8; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para resolver roces en el hotel, con clientes de masajes o con tu familia sin caer en discusiones acaloradas ni bloqueos:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Fórmula SBI (Situación + Comportamiento + Impacto):</strong> \"Hoy durante el relevo de turno (S), se me asignó una tarea imprevista fuera de horario (B), lo cual me causó retraso para llegar a mi clase en UST (I). Pido coordinarlo con antelación\".</li>\r\n                                <li><strong style=\"color:#fff;\">Protocolo de Pausa Fija:</strong> Ante cualquier tensión emocional, decir con firmeza: <em>\"Necesito regularme 20 minutos; a las 16:30 retomamos el tema con calma\"</em>.</li>\r\n                                <li><strong style=\"color:#fff;\">Retorno Responsable:</strong> Cumplir puntualmente la hora prometida desactiva el conflicto y te da un oasis de calma garantizado.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Pedir pausa responsable de 20-30 min fijando hora exacta de regreso.",
-                  "Estructurar conversaciones con Situación + Comportamiento + Impacto.",
-                  "Aislarse sensorialmente durante la pausa antes de responder."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-11",
-            "imprimible_label": "",
-            "guia_url": "planes/rocio/guias/guia_feedback_sbi.html",
-            "guia_key": "feedback_sbi",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "plan_estrategico_hitos",
-            "numero": 9,
-            "codigo": "P3-02",
-            "badge": "🧭 Herramienta 9 • P3-02 • Estrategia & Dirección",
-            "color": "#0ea5e9",
-            "nombre": "9. Plan Estratégico Trienal & Roadmap de Transición (3 Fases)",
-            "subtitulo": "El Mapa para Dejar de Correr como Pollo sin Cabeza",
-            "descripcion": "Orquesta la transición desde las 42–49h semanales del hotel y las clases en Santo Tomás hacia la soberanía de Puya Masajes y Voz Caleidoscopio en 3 fases cronológicas bien protegidas.",
-            "img_url": "assets/img/herramientas/Plan Estrategico.webp",
-            "img_fallback": "02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Plan Estrategico/Plan Estrategico.png",
-            "tutorial_html": "<strong style=\"color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para eliminar la angustia de querer vender todo ya mientras estás cumpliendo turnos diarios de hotel (5-6h todos los días) y asistiendo a Santo Tomás de 18:40 a 22:40. El plan te divide la vida en 3 momentos lógicos:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Fase 1 (Octubre a 15 Diciembre) — Blindaje & Cimientos Ocultos:</strong> El hotel paga tus gastos fijos (arriendo $0 familiar), apruebas 1er año de UST y absorbes los 3 cursos de especialización (Piedras calientes intensivo nov, Reestructuración articular, Masaje tailandés con Danae). <em>Cero presión de venta agresiva hoy.</em></li>\r\n                                <li><strong style=\"color:#fff;\">Fase 2 (15 Diciembre a Enero/Febrero) — Preventa Caliente & Verano:</strong> Terminan las clases en la UST y se liberan 20 horas nocturnas. Con el sueldo del hotel aún activo, lanzas la preventa del menú de masajes en gabinete y Canto en la playa.</li>\r\n                                <li><strong style=\"color:#fff;\">Fase 3 (Febrero en adelante) — Soberanía Total:</strong> Se apaga el hotel y entras de lleno a tus emprendimientos con cartera precalentada, clientes fidelizados y reservas pagadas por adelantado.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Declarar Fase 1 activa: cero culpa por no atender masajes masivos antes del 15 dic.",
-                  "Completar los 3 cursos (Piedras, Articular, Tailandés) como activos prémium.",
-                  "Fijar el 15 de diciembre como fecha de apertura de preventas de verano en gabinete Collao/Talcahuano."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-9",
-            "imprimible_label": "",
-            "guia_url": "planes/rocio/guias/guia_plan_estrategico.html",
-            "guia_key": "plan_estrategico",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "principio_pareto_80_20",
-            "numero": 10,
-            "codigo": "P2-18",
-            "badge": "⚖️ Herramienta 10 • P2-18 • Productividad & Tiempo",
-            "color": "#f59e0b",
-            "nombre": "10. Principio de Pareto (Regla del 80/20)",
-            "subtitulo": "La Cura para el Agotamiento por Hacer de Todo",
-            "descripcion": "Identifica el 20% de acciones de alto apalancamiento que producen el 80% de tus ingresos futuros, eliminando el 80% de tareas accesorias que drenan tu batería sensorial.",
-            "img_url": "assets/img/herramientas/Principio de Pareto.webp",
-            "img_fallback": "02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Principio de Pareto/Principio de Pareto.png",
-            "tutorial_html": "<strong style=\"color:#f59e0b; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Con apenas 5 a 8 horas libres a la semana, intentar crear contenido para redes, diseñar afiches, responder estados y hacer de todo te garantiza el colapso. Pareto te exige aislar tus <strong>3 palancas de oro (el 20% vital)</strong>:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">1. Fidelización Directa 1 a 1:</strong> Ofrecer en privado a 3 o 4 pacientes habituales el Plan 1 Mes ($140.000) o los nuevos packs de Piedras/Tailandés. <em>El Estado de WhatsApp es el 80% que no convierte; el mensaje personalizado es el 20% que vende.</em></li>\r\n                                <li><strong style=\"color:#fff;\">2. Cobro Anticipado en Canto:</strong> Cobrar los ciclos de 4 clases a inicio de mes ($32.000 c/u). 4 alumnas fijas = $128.000 asegurados sin perseguir pagos sueltos.</li>\r\n                                <li><strong style=\"color:#fff;\">3. Descarte Sistemático:</strong> Prohibido gastar energía en tareas accesorias de diseño o gestiones complejas hasta después del 15 de diciembre.</li>\r\n                            </ul>",
-            "checklist": [
-                  "Enfocar difusión en mensajes directos 1 a 1 a clientes conocidos (dejar de depender de estados pasivos).",
-                  "Cobrar el 100% de las alumnas de Voz Caleidoscopio el día 1 de cada mes.",
-                  "Eliminar el 80% de tareas no críticas hasta terminar las clases de la universidad."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
-            "imprimible_label": "",
-            "guia_url": "planes/rocio/guias/guia_pareto.html",
-            "guia_key": "pareto",
-            "guia_label": "Ver Guía Completa →"
-      },
-      {
-            "id": "kaizen_mejora_continua",
-            "numero": 11,
-            "codigo": "P2-13",
-            "badge": "🔄 Herramienta 11 • P2-13 • Operaciones & Procesos",
-            "color": "#8b5cf6",
-            "nombre": "11. Filosofía Kaizen (Mejora Continua del 1% Diario) & Banco de los 15 Minutos",
-            "subtitulo": "La Cura para la Parálisis por Perfeccionismo: Micro-Avanzar Sin Traumatismos",
-            "descripcion": "Permite construir la maquinaria completa de tus dos emprendimientos dedicando únicamente 15 minutos cronometrados al día, acumulando más de 60 micro-mejoras antes del 15 de diciembre sin quemar tu batería sensorial TEA.",
-            "img_url": "assets/img/herramientas/Kaizen.webp",
-            "img_fallback": "02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kaizen/Kaizen.png",
-            "tutorial_html": "<strong style=\"color:#a78bfa; font-size:0.84rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.6rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: El Método de los 15 Minutos Explicado a Fondo\r\n                            </strong>\r\n                            <p style=\"font-size:0.82rem; color:#e2e8f0; margin-bottom:0.7rem; line-height:1.5;\">\r\n                                <strong>¿Por qué 60+ micro-mejoras si antes dimos 4 días de ejemplo?</strong><br>\r\n                                Entre el <strong>13 de octubre</strong> y el <strong>15 de diciembre</strong> (fin de clases UST) hay exactamente <strong>63 días consecutivos</strong>. Si intentas hacer sesiones de trabajo de 2 o 3 horas, tu sistema nervioso TEA colapsará por el cansancio del hotel. Kaizen establece una regla sagrada: <strong>1 sola micro-acción de 15 minutos al día</strong>. Al cabo de los 63 días, habrás completado 63 micro-mejoras sin haber sentido sobrecarga en ningún momento.\r\n                            </p>\r\n\r\n                            <!-- GUÍA Y BANCO DE MICRO-ACCIONES DE 15 MINUTOS -->\r\n                            <div style=\"background:#0d0a14; border:1px solid #281e3d; border-radius:8px; padding:1rem; margin-top:0.8rem;\">\r\n                                <h4 style=\"color:#c4b5fd; font-size:0.88rem; margin:0 0 0.6rem 0; display:flex; align-items:center; gap:6px;\">\r\n                                    <i class=\"fa-solid fa-list-check\"></i> Guía Práctica: Banco de Micro-Acciones de 15 Minutos (Elige 1 por día)\r\n                                </h4>\r\n                                <div style=\"display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:0.8rem;\">\r\n                                    <div style=\"background:#151022; border:1px solid #2e2348; border-radius:6px; padding:0.75rem;\">\r\n                                        <strong style=\"color:#10b981; font-size:0.74rem; display:block; margin-bottom:0.35rem; text-transform:uppercase;\">\r\n                                            💆‍♀️ Eje A: Puya Masajes (Piedras, Tailandés, Articular)\r\n                                        </strong>\r\n                                        <ul style=\"font-size:0.73rem; color:#94a3b8; padding-left:1rem; line-height:1.4; margin:0;\">\r\n                                            <li>Día X: Redactar en 15m la descripción del Masaje Tailandés aprendido con Danae.</li>\r\n                                            <li>Día X: Limpiar, inventariar y probar el maletín térmico seco de piedras.</li>\r\n                                            <li>Día X: Imprimir 3 copias físicas de la Ficha de Anamnesis para el gabinete Collao.</li>\r\n                                            <li>Día X: Enviar mensaje a Charli coordinando insumos del próximo dueto 2x1.</li>\r\n                                        </ul>\r\n                                    </div>\r\n\r\n                                    <div style=\"background:#151022; border:1px solid #2e2348; border-radius:6px; padding:0.75rem;\">\r\n                                        <strong style=\"color:#38bdf8; font-size:0.74rem; display:block; margin-bottom:0.35rem; text-transform:uppercase;\">\r\n                                            🎤 Eje B: Voz Caleidoscopio (Audio, Playa, Alumnas)\r\n                                        </strong>\r\n                                        <ul style=\"font-size:0.73rem; color:#94a3b8; padding-left:1rem; line-height:1.4; margin:0;\">\r\n                                            <li>Día X: Probar el parlante Blick Party Voice y cotizar filtro cortaviento (deadcat).</li>\r\n                                            <li>Día X: Enviar 1 audio de retroalimentación a Vicente o alumna de técnica vocal.</li>\r\n                                            <li>Día X: Escribir en libreta un microrrelato de 3 líneas sobre una clase en la playa.</li>\r\n                                            <li>Día X: Coordinar reunión con socia Charlyn para conocer estudio de grabación en su casa.</li>\r\n                                        </ul>\r\n                                    </div>\r\n\r\n                                    <div style=\"background:#151022; border:1px solid #2e2348; border-radius:6px; padding:0.75rem;\">\r\n                                        <strong style=\"color:#f59e0b; font-size:0.74rem; display:block; margin-bottom:0.35rem; text-transform:uppercase;\">\r\n                                            📱 Eje C: WhatsApp Business & Sistema de Bonos\r\n                                        </strong>\r\n                                        <ul style=\"font-size:0.73rem; color:#94a3b8; padding-left:1rem; line-height:1.4; margin:0;\">\r\n                                            <li>Día X: Subir al catálogo de WhatsApp el Plan Terapéutico 1 Mes ($140.000).</li>\r\n                                            <li>Día X: Cargar la respuesta rápida /plan_masajes con los detalles del servicio.</li>\r\n                                            <li>Día X: Redactar plantilla de Bono Regalo (\"Regala una Pausa\") para Navidad.</li>\r\n                                            <li>Día X: Configurar horario comercial y mensaje de bienvenida automático.</li>\r\n                                        </ul>\r\n                                    </div>\r\n\r\n                                    <div style=\"background:#151022; border:1px solid #2e2348; border-radius:6px; padding:0.75rem;\">\r\n                                        <strong style=\"color:#ec4899; font-size:0.74rem; display:block; margin-bottom:0.35rem; text-transform:uppercase;\">\r\n                                            🧘 Eje D: Blindaje Sensorial TEA & Bienestar\r\n                                        </strong>\r\n                                        <ul style=\"font-size:0.73rem; color:#94a3b8; padding-left:1rem; line-height:1.4; margin:0;\">\r\n                                            <li>Día X: Preparar kit sensorial de tapones y botella de agua para traslados.</li>\r\n                                            <li>Día X: Vaciado mental en cuaderno análogo antes de dormir (cero celular).</li>\r\n                                            <li>Día X: Respetar 15m de stimming a las 10:15 o 16:45 sin interrumpir.</li>\r\n                                            <li>Día X: Descanso matutino protegido en la mañana libre sin culpa.</li>\r\n                                        </ul>\r\n                                    </div>\r\n                                </div>\r\n                            </div>",
-            "checklist": [
-                  "Poner cronómetro de 15 minutos exactos al llegar a casa o antes de dormir.",
-                  "Elegir una sola tarea del Banco de Micro-Acciones y ejecutarla sin distracciones.",
-                  "Al sonar la alarma de 15 min, soltar el trabajo y descansar (prohibido seguir trabajando)."
-            ],
-            "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
-            "imprimible_label": "",
-            "guia_url": "planes/rocio/guias/guia_kaizen.html",
-            "guia_key": "kaizen",
-            "guia_label": "Ver Guía Completa →"
-      }
-],
     "diagnostico": {
       "resumen_humano": "Rocío equilibra admirablemente sus estudios universitarios en UST con dos emprendimientos independientes (Puya Masajes y Voz Caleidoscopio) y el cuidado del hogar en Talcahuano con su perrita Nieve. Presenta una disciplina y orden físico excepcionales (10/10 y 1/5 en abandono de sistemas). Su desafío es la fuga por interrupciones constantes (5/5, 21h/sem) y la necesidad innegociable de agendar pausas de autorregulación sensorial (Stimming TEA).",
       "stats": [
@@ -755,7 +505,318 @@ window.CLIENTS_MASTER_DATA = {
         ]
       }
     ],
-    "status": "active"
+    "herramientas_activas": [
+      {
+        "id": "time_blocking_flexible",
+        "numero": 1,
+        "codigo": "P1-03",
+        "badge": "⏰ Herramienta 1 • P1-03 • Foco & TEA",
+        "color": "#3b82f6",
+        "nombre": "1. Time Blocking + Pausas de Stimming (TEA)",
+        "subtitulo": "Gestión del Tiempo & Protección de Batería Sensorial",
+        "descripcion": "Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa para que los turnos del hotel, las clases de Santo Tomás y el descanso no se solapen.",
+        "img_url": "assets/img/herramientas/Time Blocking.webp",
+        "img_fallback": "assets/img/herramientas/Time Blocking.png",
+        "tutorial_html": "<strong style=\"color:#60a5fa; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para organizar tus semanas cuando trabajas 42 a 49 horas en el hotel (5 a 6h todos los días) y estudias en Santo Tomás de 18:40 a 22:40, sin agotar tu batería sensorial ni descuidar tus emprendimientos:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Ventana de Oro Matutina (60 a 90 min):</strong> Antes de salir al hotel o en tus mañanas libres, ejecutas tareas de alta concentración (estudio UST en papel o preparación técnica de tus cursos).</li>\r\n                                <li><strong style=\"color:#fff;\">Pausas de Stimming No Negociables (10:15 y 16:45):</strong> 15 minutos sagrados para regular tu sistema nervioso (respiración profunda, estiramiento, aislamiento de ruido).</li>\r\n                                <li><strong style=\"color:#fff;\">Agrupación de Domicilios Puya:</strong> Programar atenciones a domicilio únicamente por cuadrantes geográficos (Talcahuano o Collao) para no perder 2 horas en traslados.</li>\r\n                            </ul>",
+        "checklist": [
+          "Fijar 2 bloques de 90 min de sola-ejecución para lecturas UST en papel.",
+          "Agrupar domicilios de Puya Masajes por cuadrantes en Talcahuano.",
+          "Proteger 2 pausas de 15 min de Stimming diario (10:15 y 16:45)."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-1",
+        "imprimible_label": "Ver Imprimible Semanal →",
+        "guia_url": "planes/rocio/guias/guia_time_blocking.html",
+        "guia_key": "time_blocking",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "gtd_vaciado_mental",
+        "numero": 2,
+        "codigo": "P1-04",
+        "badge": "🌙 Herramienta 2 • P1-04 • Sueño & Mente",
+        "color": "#10b981",
+        "nombre": "2. Vaciado Mental Nocturno GTD (Cero Pantallas)",
+        "subtitulo": "Descarga Cognitiva & Conciliación del Sueño",
+        "descripcion": "Sacar los pensamientos giratorios de la cabeza y dejarlos atrapados en el papel antes de dormir para eliminar el ruido mental persistente.",
+        "img_url": "assets/img/herramientas/Getting Things Done (GTD).webp",
+        "img_fallback": "assets/img/herramientas/Getting Things Done (GTD).png",
+        "tutorial_html": "<strong style=\"color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para apagar el cerebro tras salir de Santo Tomás a las 22:40. Evita que llegues a la cama con pensamientos en bucle sobre el hotel, certámenes universitarios o ideas de masajes:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">El Volcado Físico de 5 Minutos:</strong> Libreta y lápiz en tu velador. Escribir todo lo que esté rondando en la cabeza en viñetas rápidas. Regla de oro: <em>La mente es para crear, no para retener</em>.</li>\r\n                                <li><strong style=\"color:#fff;\">Cero Pantallas en la Cama:</strong> Dejar el celular cargando lejos de la cama. La luz azul y los estímulos nocturnos aceleran el sistema nervioso y sabotean el sueño profundo.</li>\r\n                                <li><strong style=\"color:#fff;\">Procesar a la Mañana Siguiente:</strong> Lo escrito en la libreta no se resuelve de noche; se transfiere a tu tablero o lista al despertar con la mente despejada.</li>\r\n                            </ul>",
+        "checklist": [
+          "Libreta física de vaciado al lado de la cama.",
+          "10 min antes de acostarse, escribir en viñetas todo pendiente o idea.",
+          "Cero pantallas de celular en la cama (descanso visual)."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-3",
+        "imprimible_label": "Ver Checklist Rutina Vaciado →",
+        "guia_url": "planes/rocio/guias/guia_gtd.html",
+        "guia_key": "gtd",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "matriz_eisenhower",
+        "numero": 3,
+        "codigo": "P1-06",
+        "badge": "🔥 Herramienta 3 • P1-06 • Priorización",
+        "color": "#ef4444",
+        "nombre": "3. Matriz de Eisenhower (Urgente vs Importante)",
+        "subtitulo": "El Filtro de Fuego • Discriminación de Demandas",
+        "descripcion": "Filtro implacable para separar las demandas urgentes del hotel y la universidad de lo que realmente construye tu negocio propio a largo plazo.",
+        "img_url": "assets/img/herramientas/Matriz de Eisenhower.webp",
+        "img_fallback": "assets/img/herramientas/Matriz de Eisenhower.png",
+        "tutorial_html": "<strong style=\"color:#f87171; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para no quemarte apagando incendios ajenos en el trabajo. Tu energía diaria es limitada y debes destinarla a lo que genera apalancamiento:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Cuadrante 1 (Hacer Ya):</strong> Turnos de hotel (pagan tus cuentas hoy), certámenes finales de UST (cerrar el semestre el 15 dic) y asistencia a tus 3 cursos prácticos.</li>\r\n                                <li><strong style=\"color:#fff;\">Cuadrante 2 (Planificar / Vital):</strong> Preparar los protocolos de masaje de piedras calientes, configurar el parlante Blick Party Voice para Voz Caleidoscopio y armar tu reserva financiera.</li>\r\n                                <li><strong style=\"color:#fff;\">Cuadrante 3 & 4 (Delegar o Eliminar):</strong> Cuidado de Nieve asumido directamente (delegar en mamá cuando llega de visita), rechazar favores no esenciales y eliminar lecturas densas en celular.</li>\r\n                            </ul>",
+        "checklist": [
+          "HACER YA: Registro de técnicas vocales de canto en cuaderno.",
+          "PLANIFICAR: Propuesta Plan Terapéutico 1 Mes (Puya Masajes).",
+          "DELEGAR: Delegar apoyo con Nieve a mamá cuando llega de visita.",
+          "ELIMINAR: Lecturas densas en pantallas pequeñas de celular."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-2",
+        "imprimible_label": "Ver Matriz Eisenhower Impresa →",
+        "guia_url": "planes/rocio/guias/guia_eisenhower.html",
+        "guia_key": "eisenhower",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "finanzas_503020",
+        "numero": 4,
+        "codigo": "P1-07",
+        "badge": "💰 Herramienta 4 • P1-07 • Finanzas & Reserva",
+        "color": "#10b981",
+        "nombre": "4. Presupuesto 50/30/20 & Paquetización",
+        "subtitulo": "Palanca $0 Arriendo • Fondo de Reserva 3 Meses",
+        "descripcion": "Aprovecha la ventaja del sueldo del hotel y arriendo familiar $0 para financiar tus certificaciones y blindar un colchón financiero antes de febrero.",
+        "img_url": "assets/img/herramientas/La Regla 50 30 20.webp",
+        "img_fallback": "assets/img/herramientas/La Regla 50 30 20.png",
+        "tutorial_html": "<strong style=\"color:#f59e0b; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para monetizar con tranquilidad. Tu costo de vida fijo es bajo gracias al apoyo familiar; el sueldo del hotel no es para sobrevivir, sino para capitalizar tu despegue:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">50% Necesidades & Activos de Formación:</strong> Gastos diarios esenciales + financiar tus 3 cursos prácticos (ej: $75.000 curso piedras calientes con maleta incluida).</li>\r\n                                <li><strong style=\"color:#fff;\">30% Ocio Reparador (Subir de 2/10):</strong> Presupuesto protegido para disfrute personal, salidas a la playa y bienestar sensorial sin culpa.</li>\r\n                                <li><strong style=\"color:#fff;\">20% Fondo de Transición (3 Meses):</strong> Ahorro sagrado acumulado cada mes para que cuando termine el hotel en enero/febrero tengas cobertura total de meses de transición.</li>\r\n                            </ul>",
+        "checklist": [
+          "Paquetizar Puya Masajes en planes de 4 sesiones mensuales.",
+          "Aportar el 20% mensual para construir Fondo de Emergencia (3 meses).",
+          "Reclamar el 30% de ocio y esparcimiento sin culpa (subir de 2/10)."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-4",
+        "imprimible_label": "Ver Planilla 50/30/20 →",
+        "guia_url": "planes/rocio/guias/guia_503020.html",
+        "guia_key": "503020",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "kanban_gtd_wip2",
+        "numero": 5,
+        "codigo": "P1-05",
+        "badge": "📋 Herramienta 5 • P1-05 • Flujo Visual",
+        "color": "#38bdf8",
+        "nombre": "5. Tablero Kanban Visual (Flujo Tres Vías WIP=2)",
+        "subtitulo": "Control de Tareas en Pared • Límite Anti-Abrumo",
+        "descripcion": "Tres columnas con Post-its por color (UST, Puya, Voz, Hogar) con la regla innegociable de máximo 2 tareas activas en ejecución.",
+        "img_url": "assets/img/herramientas/Kanban.webp",
+        "img_fallback": "assets/img/herramientas/Kanban.png",
+        "tutorial_html": "<strong style=\"color:#c084fc; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para erradicar la dispersión. Con jornadas largas en el hotel y clases vespertinas, no puedes tener 10 tareas a medias:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Las 3 Columnas Sagradas:</strong> Por Hacer | En Proceso (Máx 2) | Terminado.</li>\r\n                                <li><strong style=\"color:#fff;\">Límite Estricto WIP=2:</strong> Si estás practicando masaje de piedras y estudiando para un certamen de UST, está prohibido abrir una tercera tarea hasta terminar una de las dos.</li>\r\n                                <li><strong style=\"color:#fff;\">Celebrar el Terminado:</strong> Mover la tarjeta físicamente a \"Terminado\" activa dopamina natural y te da certeza visual de que estás progresando.</li>\r\n                            </ul>",
+        "checklist": [
+          "Colocar 3 rótulos en pared: POR HACER | EN PROCESO | LISTO.",
+          "No mover ninguna tarea a EN PROCESO si ya hay 2 activas.",
+          "Celebrar el traspaso a LISTO al terminar la sesión."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
+        "imprimible_label": "",
+        "guia_url": "planes/rocio/guias/guia_kanban.html",
+        "guia_key": "kanban",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "protocolo_paso_cero",
+        "numero": 6,
+        "codigo": "P1-08",
+        "badge": "🚀 Herramienta 6 • P1-08 • Anti-Parálisis",
+        "color": "#f59e0b",
+        "nombre": "6. Técnica Pomodoro & Protocolo Paso Cero",
+        "subtitulo": "Microdosis de Foco • Superación de la Inercia & Regla del 70%",
+        "descripcion": "Arrancar tareas académicas y prácticas vocales en solo 5 minutos sin exigir perfección, midiendo el éxito por la consistencia sostenida.",
+        "img_url": "assets/img/herramientas/06_Paralisis_por_Analisis.webp",
+        "img_fallback": "assets/img/herramientas/06_Paralisis_por_Analisis.png",
+        "tutorial_html": "<strong style=\"color:#22d3ee; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para romper la parálisis cuando llegas agotada del hotel o de clases. Si te propones una meta gigante, el cerebro huye; con Paso Cero, solo inicias el movimiento:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">El Paso Cero de 2 Minutos:</strong> Para masajes, el paso cero es dejar el maletín de piedras calientes o la toalla estirada; para canto, conectar el micrófono al parlante Blick. Cero fricción de inicio.</li>\r\n                                <li><strong style=\"color:#fff;\">Pomodoros Cortos (15 a 25 min):</strong> Trabajar con cronómetro en una sola cosa sin mirar el celular, seguido de 5 minutos de estiramiento y agua.</li>\r\n                                <li><strong style=\"color:#fff;\">Regla del 70%: Hecho es Mejor que Perfecto:</strong> Entregar un informe universitario o grabar una prueba de voz al 70% de perfección es mil veces mejor que postergarlo por buscar el 100%.</li>\r\n                            </ul>",
+        "checklist": [
+          "Poner cronómetro de 5 minutos solo para abrir apuntes y leer 1 página.",
+          "Resúmenes de 5 líneas para evitar fatiga en pantallas de celular.",
+          "Considerar cumplido el día con 70% de adherencia en días de sobrecarga."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
+        "imprimible_label": "Ver Checklists Maestros Impresos →",
+        "guia_url": "planes/rocio/guias/guia_pomodoro.html",
+        "guia_key": "pomodoro",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "ventana_johari_puntos_ciegos",
+        "numero": 7,
+        "codigo": "P2-01",
+        "badge": "💬 Herramienta 7 • P2-01 • Comunicación & Alianzas",
+        "color": "#8b5cf6",
+        "nombre": "7. La Ventana de Johari & Acuerdos Asertivos",
+        "subtitulo": "El Fin de los Puntos Ciegos • Autoconocimiento & Límites TEA",
+        "descripcion": "Alinear lo que tú ves con lo que otros perciben para construir acuerdos transparentes con tu familia, tu entorno laboral y tus compañeras de UST.",
+        "img_url": "assets/img/herramientas/La Ventana de Johari.webp",
+        "img_fallback": "assets/img/herramientas/La Ventana de Johari.png",
+        "tutorial_html": "<strong style=\"color:#f472b6; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para hacer visibles tus límites y fortalezas sin culpa ni sobrecarga emocional frente a las personas con quienes convives y colaboras:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Área Abierta (Lo que todos ven):</strong> Tu dedicación profesional, tu tacto terapéutico en masaje y tu talento vocal expresivo.</li>\r\n                                <li><strong style=\"color:#fff;\">Área Oculta (Lo que debes comunicar):</strong> Avisar a tu círculo cuándo estás experimentando sobrecarga sensorial para que sepan que necesitas silencio y no se interprete como desinterés.</li>\r\n                                <li><strong style=\"color:#fff;\">Área Ciega (Aprender de otros):</strong> Recibir retroalimentación constructiva de mentores como Danae (masaje tailandés) o docentes de UST para mejorar tu técnica y ergonomía.</li>\r\n                            </ul>",
+        "checklist": [
+          "Expresar límites de sobrecarga sensorial a familia sin culpa.",
+          "Coordinar con Danae las sesiones del curso de masaje tailandés con antelación.",
+          "Canalizar petitorio de transporte estudiantil con argumentos respetuosos."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-7",
+        "imprimible_label": "",
+        "guia_url": "planes/rocio/guias/guia_johari.html",
+        "guia_key": "johari",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "feedback_sbi_conversaciones",
+        "numero": 8,
+        "codigo": "P2-09",
+        "badge": "🧘 Herramienta 8 • P2-09 • Regulación & Pausa",
+        "color": "#10b981",
+        "nombre": "8. Feedback SBI & Protocolo de Acuerdos Claros (Pausa Fija)",
+        "subtitulo": "Precisión en la Comunicación • Desescalamiento Emocional",
+        "descripcion": "Estructurar conversaciones difíciles sin rodeos ni conflicto mediante Situación, Comportamiento e Impacto, asegurando una pausa fija ante la tensión.",
+        "img_url": "assets/img/herramientas/Feedback SBI.webp",
+        "img_fallback": "assets/img/herramientas/Feedback SBI.png",
+        "tutorial_html": "<strong style=\"color:#818cf8; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para resolver roces en el hotel, con clientes de masajes o con tu familia sin caer en discusiones acaloradas ni bloqueos:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Fórmula SBI (Situación + Comportamiento + Impacto):</strong> \"Hoy durante el relevo de turno (S), se me asignó una tarea imprevista fuera de horario (B), lo cual me causó retraso para llegar a mi clase en UST (I). Pido coordinarlo con antelación\".</li>\r\n                                <li><strong style=\"color:#fff;\">Protocolo de Pausa Fija:</strong> Ante cualquier tensión emocional, decir con firmeza: <em>\"Necesito regularme 20 minutos; a las 16:30 retomamos el tema con calma\"</em>.</li>\r\n                                <li><strong style=\"color:#fff;\">Retorno Responsable:</strong> Cumplir puntualmente la hora prometida desactiva el conflicto y te da un oasis de calma garantizado.</li>\r\n                            </ul>",
+        "checklist": [
+          "Pedir pausa responsable de 20-30 min fijando hora exacta de regreso.",
+          "Estructurar conversaciones con Situación + Comportamiento + Impacto.",
+          "Aislarse sensorialmente durante la pausa antes de responder."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-11",
+        "imprimible_label": "",
+        "guia_url": "planes/rocio/guias/guia_feedback_sbi.html",
+        "guia_key": "feedback_sbi",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "plan_estrategico_hitos",
+        "numero": 9,
+        "codigo": "P3-02",
+        "badge": "🧭 Herramienta 9 • P3-02 • Estrategia & Dirección",
+        "color": "#0ea5e9",
+        "nombre": "9. Plan Estratégico Trienal & Roadmap de Transición (3 Fases)",
+        "subtitulo": "El Mapa para Dejar de Correr como Pollo sin Cabeza",
+        "descripcion": "Orquesta la transición desde las 42–49h semanales del hotel y las clases en Santo Tomás hacia la soberanía de Puya Masajes y Voz Caleidoscopio en 3 fases cronológicas bien protegidas.",
+        "img_url": "assets/img/herramientas/Plan Estrategico.webp",
+        "img_fallback": "02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Plan Estrategico/Plan Estrategico.png",
+        "tutorial_html": "<strong style=\"color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Para eliminar la angustia de querer vender todo ya mientras estás cumpliendo turnos diarios de hotel (5-6h todos los días) y asistiendo a Santo Tomás de 18:40 a 22:40. El plan te divide la vida en 3 momentos lógicos:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">Fase 1 (Octubre a 15 Diciembre) — Blindaje & Cimientos Ocultos:</strong> El hotel paga tus gastos fijos (arriendo $0 familiar), apruebas 1er año de UST y absorbes los 3 cursos de especialización (Piedras calientes intensivo nov, Reestructuración articular, Masaje tailandés con Danae). <em>Cero presión de venta agresiva hoy.</em></li>\r\n                                <li><strong style=\"color:#fff;\">Fase 2 (15 Diciembre a Enero/Febrero) — Preventa Caliente & Verano:</strong> Terminan las clases en la UST y se liberan 20 horas nocturnas. Con el sueldo del hotel aún activo, lanzas la preventa del menú de masajes en gabinete y Canto en la playa.</li>\r\n                                <li><strong style=\"color:#fff;\">Fase 3 (Febrero en adelante) — Soberanía Total:</strong> Se apaga el hotel y entras de lleno a tus emprendimientos con cartera precalentada, clientes fidelizados y reservas pagadas por adelantado.</li>\r\n                            </ul>",
+        "checklist": [
+          "Declarar Fase 1 activa: cero culpa por no atender masajes masivos antes del 15 dic.",
+          "Completar los 3 cursos (Piedras, Articular, Tailandés) como activos prémium.",
+          "Fijar el 15 de diciembre como fecha de apertura de preventas de verano en gabinete Collao/Talcahuano."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-9",
+        "imprimible_label": "",
+        "guia_url": "planes/rocio/guias/guia_plan_estrategico.html",
+        "guia_key": "plan_estrategico",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "principio_pareto_80_20",
+        "numero": 10,
+        "codigo": "P2-18",
+        "badge": "⚖️ Herramienta 10 • P2-18 • Productividad & Tiempo",
+        "color": "#f59e0b",
+        "nombre": "10. Principio de Pareto (Regla del 80/20)",
+        "subtitulo": "La Cura para el Agotamiento por Hacer de Todo",
+        "descripcion": "Identifica el 20% de acciones de alto apalancamiento que producen el 80% de tus ingresos futuros, eliminando el 80% de tareas accesorias que drenan tu batería sensorial.",
+        "img_url": "assets/img/herramientas/Principio de Pareto.webp",
+        "img_fallback": "02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Principio de Pareto/Principio de Pareto.png",
+        "tutorial_html": "<strong style=\"color:#f59e0b; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: ¿Cómo se aplica a tu contexto real?\r\n                            </strong>\r\n                            <p style=\"font-size:0.8rem; color:#cbd5e1; margin-bottom:0.6rem; line-height:1.45;\">\r\n                                <strong>¿Para qué te sirve?</strong> Con apenas 5 a 8 horas libres a la semana, intentar crear contenido para redes, diseñar afiches, responder estados y hacer de todo te garantiza el colapso. Pareto te exige aislar tus <strong>3 palancas de oro (el 20% vital)</strong>:\r\n                            </p>\r\n                            <ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\r\n                                <li><strong style=\"color:#fff;\">1. Fidelización Directa 1 a 1:</strong> Ofrecer en privado a 3 o 4 pacientes habituales el Plan 1 Mes ($140.000) o los nuevos packs de Piedras/Tailandés. <em>El Estado de WhatsApp es el 80% que no convierte; el mensaje personalizado es el 20% que vende.</em></li>\r\n                                <li><strong style=\"color:#fff;\">2. Cobro Anticipado en Canto:</strong> Cobrar los ciclos de 4 clases a inicio de mes ($32.000 c/u). 4 alumnas fijas = $128.000 asegurados sin perseguir pagos sueltos.</li>\r\n                                <li><strong style=\"color:#fff;\">3. Descarte Sistemático:</strong> Prohibido gastar energía en tareas accesorias de diseño o gestiones complejas hasta después del 15 de diciembre.</li>\r\n                            </ul>",
+        "checklist": [
+          "Enfocar difusión en mensajes directos 1 a 1 a clientes conocidos (dejar de depender de estados pasivos).",
+          "Cobrar el 100% de las alumnas de Voz Caleidoscopio el día 1 de cada mes.",
+          "Eliminar el 80% de tareas no críticas hasta terminar las clases de la universidad."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
+        "imprimible_label": "",
+        "guia_url": "planes/rocio/guias/guia_pareto.html",
+        "guia_key": "pareto",
+        "guia_label": "Ver Guía Completa →"
+      },
+      {
+        "id": "kaizen_mejora_continua",
+        "numero": 11,
+        "codigo": "P2-13",
+        "badge": "🔄 Herramienta 11 • P2-13 • Operaciones & Procesos",
+        "color": "#8b5cf6",
+        "nombre": "11. Filosofía Kaizen (Mejora Continua del 1% Diario) & Banco de los 15 Minutos",
+        "subtitulo": "La Cura para la Parálisis por Perfeccionismo: Micro-Avanzar Sin Traumatismos",
+        "descripcion": "Permite construir la maquinaria completa de tus dos emprendimientos dedicando únicamente 15 minutos cronometrados al día, acumulando más de 60 micro-mejoras antes del 15 de diciembre sin quemar tu batería sensorial TEA.",
+        "img_url": "assets/img/herramientas/Kaizen.webp",
+        "img_fallback": "02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kaizen/Kaizen.png",
+        "tutorial_html": "<strong style=\"color:#a78bfa; font-size:0.84rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.6rem;\">\r\n                                <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial: El Método de los 15 Minutos Explicado a Fondo\r\n                            </strong>\r\n                            <p style=\"font-size:0.82rem; color:#e2e8f0; margin-bottom:0.7rem; line-height:1.5;\">\r\n                                <strong>¿Por qué 60+ micro-mejoras si antes dimos 4 días de ejemplo?</strong><br>\r\n                                Entre el <strong>13 de octubre</strong> y el <strong>15 de diciembre</strong> (fin de clases UST) hay exactamente <strong>63 días consecutivos</strong>. Si intentas hacer sesiones de trabajo de 2 o 3 horas, tu sistema nervioso TEA colapsará por el cansancio del hotel. Kaizen establece una regla sagrada: <strong>1 sola micro-acción de 15 minutos al día</strong>. Al cabo de los 63 días, habrás completado 63 micro-mejoras sin haber sentido sobrecarga en ningún momento.\r\n                            </p>\r\n\r\n                            <!-- GUÍA Y BANCO DE MICRO-ACCIONES DE 15 MINUTOS -->\r\n                            <div style=\"background:#0d0a14; border:1px solid #281e3d; border-radius:8px; padding:1rem; margin-top:0.8rem;\">\r\n                                <h4 style=\"color:#c4b5fd; font-size:0.88rem; margin:0 0 0.6rem 0; display:flex; align-items:center; gap:6px;\">\r\n                                    <i class=\"fa-solid fa-list-check\"></i> Guía Práctica: Banco de Micro-Acciones de 15 Minutos (Elige 1 por día)\r\n                                </h4>\r\n                                <div style=\"display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:0.8rem;\">\r\n                                    <div style=\"background:#151022; border:1px solid #2e2348; border-radius:6px; padding:0.75rem;\">\r\n                                        <strong style=\"color:#10b981; font-size:0.74rem; display:block; margin-bottom:0.35rem; text-transform:uppercase;\">\r\n                                            💆‍♀️ Eje A: Puya Masajes (Piedras, Tailandés, Articular)\r\n                                        </strong>\r\n                                        <ul style=\"font-size:0.73rem; color:#94a3b8; padding-left:1rem; line-height:1.4; margin:0;\">\r\n                                            <li>Día X: Redactar en 15m la descripción del Masaje Tailandés aprendido con Danae.</li>\r\n                                            <li>Día X: Limpiar, inventariar y probar el maletín térmico seco de piedras.</li>\r\n                                            <li>Día X: Imprimir 3 copias físicas de la Ficha de Anamnesis para el gabinete Collao.</li>\r\n                                            <li>Día X: Enviar mensaje a Charli coordinando insumos del próximo dueto 2x1.</li>\r\n                                        </ul>\r\n                                    </div>\r\n\r\n                                    <div style=\"background:#151022; border:1px solid #2e2348; border-radius:6px; padding:0.75rem;\">\r\n                                        <strong style=\"color:#38bdf8; font-size:0.74rem; display:block; margin-bottom:0.35rem; text-transform:uppercase;\">\r\n                                            🎤 Eje B: Voz Caleidoscopio (Audio, Playa, Alumnas)\r\n                                        </strong>\r\n                                        <ul style=\"font-size:0.73rem; color:#94a3b8; padding-left:1rem; line-height:1.4; margin:0;\">\r\n                                            <li>Día X: Probar el parlante Blick Party Voice y cotizar filtro cortaviento (deadcat).</li>\r\n                                            <li>Día X: Enviar 1 audio de retroalimentación a Vicente o alumna de técnica vocal.</li>\r\n                                            <li>Día X: Escribir en libreta un microrrelato de 3 líneas sobre una clase en la playa.</li>\r\n                                            <li>Día X: Coordinar reunión con socia Charlyn para conocer estudio de grabación en su casa.</li>\r\n                                        </ul>\r\n                                    </div>\r\n\r\n                                    <div style=\"background:#151022; border:1px solid #2e2348; border-radius:6px; padding:0.75rem;\">\r\n                                        <strong style=\"color:#f59e0b; font-size:0.74rem; display:block; margin-bottom:0.35rem; text-transform:uppercase;\">\r\n                                            📱 Eje C: WhatsApp Business & Sistema de Bonos\r\n                                        </strong>\r\n                                        <ul style=\"font-size:0.73rem; color:#94a3b8; padding-left:1rem; line-height:1.4; margin:0;\">\r\n                                            <li>Día X: Subir al catálogo de WhatsApp el Plan Terapéutico 1 Mes ($140.000).</li>\r\n                                            <li>Día X: Cargar la respuesta rápida /plan_masajes con los detalles del servicio.</li>\r\n                                            <li>Día X: Redactar plantilla de Bono Regalo (\"Regala una Pausa\") para Navidad.</li>\r\n                                            <li>Día X: Configurar horario comercial y mensaje de bienvenida automático.</li>\r\n                                        </ul>\r\n                                    </div>\r\n\r\n                                    <div style=\"background:#151022; border:1px solid #2e2348; border-radius:6px; padding:0.75rem;\">\r\n                                        <strong style=\"color:#ec4899; font-size:0.74rem; display:block; margin-bottom:0.35rem; text-transform:uppercase;\">\r\n                                            🧘 Eje D: Blindaje Sensorial TEA & Bienestar\r\n                                        </strong>\r\n                                        <ul style=\"font-size:0.73rem; color:#94a3b8; padding-left:1rem; line-height:1.4; margin:0;\">\r\n                                            <li>Día X: Preparar kit sensorial de tapones y botella de agua para traslados.</li>\r\n                                            <li>Día X: Vaciado mental en cuaderno análogo antes de dormir (cero celular).</li>\r\n                                            <li>Día X: Respetar 15m de stimming a las 10:15 o 16:45 sin interrumpir.</li>\r\n                                            <li>Día X: Descanso matutino protegido en la mañana libre sin culpa.</li>\r\n                                        </ul>\r\n                                    </div>\r\n                                </div>\r\n                            </div>",
+        "checklist": [
+          "Poner cronómetro de 15 minutos exactos al llegar a casa o antes de dormir.",
+          "Elegir una sola tarea del Banco de Micro-Acciones y ejecutarla sin distracciones.",
+          "Al sonar la alarma de 15 min, soltar el trabajo y descansar (prohibido seguir trabajando)."
+        ],
+        "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
+        "imprimible_label": "",
+        "guia_url": "planes/rocio/guias/guia_kaizen.html",
+        "guia_key": "kaizen",
+        "guia_label": "Ver Guía Completa →"
+      }
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "rocio",
+      "updated_at": "2026-10-26",
+      "nombre": "Rocío",
+      "hub_filename": "Hub_Imprimibles_Rocio.html",
+      "rol_contexto": "Emprendedora & Gestión Operativa Multirrol",
+      "area_critica": "Tiempo, Límites y Estructura Financiera",
+      "saturacion_operativa": 78,
+      "frase_raiz_culpa": "Siento que si no estoy encima de todo, las cosas no avanzan.",
+      "hora_de_oro": "Mañanas 09:00 a 11:00",
+      "valvula_descompresion": "Desconexión digital nocturna y caminata sin teléfono",
+      "numero_paz_financiera": "Presupuesto 50/30/20 + Fondo de Paz",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "finanzas_503020",
+        "tecnica_pomodoro_foco",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "feedback_sbi_conversaciones",
+        "ventana_johari_puntos_ciegos",
+        "kaizen_mejora_continua",
+        "principio_pareto_80_20",
+        "plan_estrategico_hitos"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "gtd_vaciado_mental",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "finanzas_503020",
+      "tecnica_pomodoro_foco",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "feedback_sbi_conversaciones",
+      "ventana_johari_puntos_ciegos",
+      "kaizen_mejora_continua",
+      "principio_pareto_80_20",
+      "plan_estrategico_hitos"
+    ],
+    "rol_contexto": "Emprendedora & Gestión Operativa Multirrol",
+    "area_critica": "Tiempo, Límites y Estructura Financiera",
+    "saturacion_operativa": 78,
+    "frase_raiz_culpa": "Siento que si no estoy encima de todo, las cosas no avanzan.",
+    "hora_de_oro": "Mañanas 09:00 a 11:00",
+    "valvula_descompresion": "Desconexión digital nocturna y caminata sin teléfono",
+    "numero_paz_financiera": "Presupuesto 50/30/20 + Fondo de Paz",
+    "hub_filename": "Hub_Imprimibles_Rocio.html"
   },
   "melissa": {
     "cliente": {
@@ -772,20 +833,23 @@ window.CLIENTS_MASTER_DATA = {
       "ultima_actualizacion": "2026-09-14"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "triangulacion_roles",
+      "alianzas_estrategicas",
       "carta_espacio_foco30m",
-      "protocolo_lavado_diurno",
-      "time_blocking_flexible",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "finanzas_503020",
+      "hub_imprimibles_maestro",
+      "inventario_cero_culpa",
       "inventario_resultados",
       "kanban_gtd_wip2",
-      "matriz_eisenhower",
-      "trafmen_juego_y_movimiento",
-      "finanzas_503020",
-      "alianzas_estrategicas",
       "mapeador_24h",
-      "hub_imprimibles_maestro",
+      "matriz_eisenhower",
+      "protocolo_lavado_diurno",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "time_blocking_flexible",
+      "trafmen_juego_y_movimiento",
+      "triangulacion_roles",
       "whatsapp_directo"
     ],
     "categorias_gestion": [
@@ -1050,7 +1114,44 @@ window.CLIENTS_MASTER_DATA = {
         "acuerdo": "Sábado 11:00 AM: Comparsa de Melissa protegida como espacio no negociable de recreación y goce personal."
       }
     ],
-    "status": "active"
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "melissa",
+      "updated_at": "2026-10-26",
+      "nombre": "Melissa Henríquez Soto",
+      "hub_filename": "Hub_Imprimibles_Melissa.html",
+      "rol_contexto": "Kinesióloga Escolar & Fundadora Trafmen",
+      "area_critica": "Integración Multirrol & Fricción Cero (~14h/sem)",
+      "saturacion_operativa": 70,
+      "frase_raiz_culpa": "Pierdo horas dando vueltas entre tantos roles sin avanzar lo que quiero.",
+      "hora_de_oro": "Tardes protegidas (Martes, Viernes y Sábados)",
+      "valvula_descompresion": "Entrenamiento Karate y juego compartido con Chinito",
+      "numero_paz_financiera": "Presupuesto 50/30/20 con holgura para prototipos Trafmen",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "kanban_gtd_wip2",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Kinesióloga Escolar & Fundadora Trafmen",
+    "area_critica": "Integración Multirrol & Fricción Cero (~14h/sem)",
+    "saturacion_operativa": 70,
+    "frase_raiz_culpa": "Pierdo horas dando vueltas entre tantos roles sin avanzar lo que quiero.",
+    "hora_de_oro": "Tardes protegidas (Martes, Viernes y Sábados)",
+    "valvula_descompresion": "Entrenamiento Karate y juego compartido con Chinito",
+    "numero_paz_financiera": "Presupuesto 50/30/20 con holgura para prototipos Trafmen",
+    "hub_filename": "Hub_Imprimibles_Melissa.html"
   },
   "matias": {
     "cliente": {
@@ -1067,16 +1168,23 @@ window.CLIENTS_MASTER_DATA = {
       "rol_principal": "Estudiante de Enseñanza Media (Colegio Concepción) / Taller de Arte y Vóley"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "foda_personal",
-      "fases_confianza",
-      "mapeador_24h",
-      "kanban_gtd",
       "caja_herramientas",
-      "sacar_la_voz_valentia",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "fases_confianza",
+      "finanzas_503020",
+      "foda_personal",
+      "inventario_cero_culpa",
+      "kanban_gtd",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
       "orientacion_vocacional",
-      "plan_24h_antipatrones"
+      "plan_24h_antipatrones",
+      "protocolo_paso_cero",
+      "sacar_la_voz_valentia",
+      "seguridad_pin",
+      "time_blocking_flexible"
     ],
     "diagnostico": {
       "resumen_humano": "Matías presenta una gran creatividad y talento visual/corporal (dibujo, pintura y vóley). Sin embargo, el uso desregulado de pantallas generó resaca digital, evasión de tareas escolares y tendencia a mentir u ocultar problemas por vergüenza. El acompañamiento de Diego (papá) y Ángela (mamá) busca reconstruir la confianza mediante hitos medibles, reglas claras y el aprendizaje de sacar la voz sin miedo.",
@@ -1383,7 +1491,48 @@ window.CLIENTS_MASTER_DATA = {
         }
       ]
     },
-    "status": "active"
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "matias",
+      "updated_at": "2026-10-26",
+      "nombre": "Matías González",
+      "hub_filename": "Hub_Imprimibles_Matias.html",
+      "rol_contexto": "Profesional & Gestión de Proyectos Técnicos",
+      "area_critica": "Foco Ejecutivo, Priorización y Descanso",
+      "saturacion_operativa": 75,
+      "frase_raiz_culpa": "Tengo demasiados frentes abiertos al mismo tiempo.",
+      "hora_de_oro": "Mañanas 08:30 a 10:30",
+      "valvula_descompresion": "Entrenamiento físico y cierre estricto de jornada",
+      "numero_paz_financiera": "Control de flujo mensual 50/30/20",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "finanzas_503020"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "finanzas_503020"
+    ],
+    "rol_contexto": "Profesional & Gestión de Proyectos Técnicos",
+    "area_critica": "Foco Ejecutivo, Priorización y Descanso",
+    "saturacion_operativa": 75,
+    "frase_raiz_culpa": "Tengo demasiados frentes abiertos al mismo tiempo.",
+    "hora_de_oro": "Mañanas 08:30 a 10:30",
+    "valvula_descompresion": "Entrenamiento físico y cierre estricto de jornada",
+    "numero_paz_financiera": "Control de flujo mensual 50/30/20",
+    "hub_filename": "Hub_Imprimibles_Matias.html"
   },
   "alejandra": {
     "cliente": {
@@ -1401,20 +1550,22 @@ window.CLIENTS_MASTER_DATA = {
       "ultima_actualizacion": "2026-09-15"
     },
     "modulos_activos": [
-      "seguridad_pin",
       "diagnostico_estructura",
-      "triangulacion_roles",
-      "mapeador_24h",
-      "time_blocking_flexible",
-      "kanban_gtd_wip2",
-      "matriz_eisenhower",
+      "finanzas_503020",
+      "gtd_vaciado_mental",
+      "hub_imprimibles_maestro",
+      "inventario_cero_culpa",
       "inventario_resultados",
       "investigacion_doctorado_obra",
+      "kanban_gtd_wip2",
+      "laboratorio_ritma_ah",
       "logistica_familiar_tomas",
-      "finanzas_503020",
-      "hub_imprimibles_maestro",
-      "whatsapp_directo",
-      "laboratorio_ritma_ah"
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "seguridad_pin",
+      "time_blocking_flexible",
+      "triangulacion_roles",
+      "whatsapp_directo"
     ],
     "categorias_gestion": [
       "01_Perfil_y_Diagnostico",
@@ -1596,155 +1747,44 @@ window.CLIENTS_MASTER_DATA = {
       "escenario_a": "Beca Doctoral 4 años (dedicación 100% a investigación, ingresos estables de investigación)",
       "escenario_b": "Trabajo 1 año (08:00 a 16:00) + Avance de tesis doctoral en bloque nocturno de 2 horas"
     },
-    "status": "active"
-  },
-  "alvaro": {
-    "cliente": {
-      "id": "alvaro",
-      "nombre": "Álvaro",
-      "usuario": "@alvaro.operaciones",
-      "avatar": "👓",
-      "pin": "AH-Alvaro4183",
-      "subtitulo": "Del Análisis a la Acción",
-      "tagline": "Comercio & Negocios • Overthinking • Lanzamiento en 7 Días",
-      "edad": 35,
-      "ciudad": "Concepción",
-      "rol_principal": "Emprendedor Comercial & Estratega de Negocios"
-    },
-    "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "matriz_roles_acuerdos",
-      "simulador_decision_rapida",
-      "caja_herramientas",
-      "plan_24h_antipatrones"
-    ],
-    "diagnostico": {
-      "resumen_humano": "Álvaro cuenta con una capacidad analítica sobresaliente pero cae en parálisis por análisis y perfeccionismo extremo, postergando lanzamientos de proyectos por buscar el plan 100% perfecto. El acompañamiento se enfoca en la Regla del 70% de Colin Powell y la Fórmula de Acción Imperfecta.",
-      "stats": [
-        {
-          "valor": "7 Días",
-          "etiqueta": "Ciclo de Lanzamiento",
-          "color": "#10b981",
-          "sub": "De la idea al mercado"
-        },
-        {
-          "valor": "70%",
-          "etiqueta": "Regla de Certeza",
-          "color": "#60a5fa",
-          "sub": "Accionar con info suficiente"
-        },
-        {
-          "valor": "0",
-          "etiqueta": "Overthinking Permitido",
-          "color": "#ef4444",
-          "sub": "Time boxing estricto"
-        }
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "alejandra",
+      "updated_at": "2026-10-26",
+      "nombre": "Alejandra Mattei",
+      "hub_filename": "Hub_Imprimibles_Alejandra.html",
+      "rol_contexto": "Gestión Profesional & Equilibrio Vital",
+      "area_critica": "Fronteras entre Trabajo y Vida Personal",
+      "saturacion_operativa": 72,
+      "frase_raiz_culpa": "Termino el día agotada sintiendo que aún quedaron pendientes.",
+      "hora_de_oro": "Mañanas 09:00 a 11:00",
+      "valvula_descompresion": "Ritual de cierre de tarde y lectura",
+      "numero_paz_financiera": "Presupuesto consciente 50/30/20",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "matriz_eisenhower",
+        "inventario_cero_culpa"
       ]
     },
-    "status": "paused"
-  },
-  "carlos": {
-    "cliente": {
-      "id": "carlos",
-      "nombre": "Carlos Z",
-      "usuario": "@carlos.gestion",
-      "avatar": "🎯",
-      "pin": "AH-Carlos5829",
-      "subtitulo": "De la Reactividad al Flujo de Ejecución y Escala",
-      "tagline": "Paternidad Presente • Gimnasio AM • Trabajo 09:30-13:30 • La Marca 33",
-      "edad": 32,
-      "ciudad": "Concepción",
-      "rol_principal": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo",
-      "ultima_actualizacion": "2026-10-26"
-    },
-    "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
       "mapeador_24h",
-      "kanban_gtd_wip2",
       "time_blocking_flexible",
+      "gtd_vaciado_mental",
       "matriz_eisenhower",
-      "protocolo_paso_cero",
-      "inventario_cero_culpa",
-      "paquetizacion_servicios_mes",
-      "simulador_financiero",
-      "plan_24h_antipatrones"
+      "inventario_cero_culpa"
     ],
-    "status": "active",
-    "diagnostico": {
-      "resumen_humano": "Carlos se encuentra reorganizando su tiempo, finanzas y prioridades vitales tras separarse. Su meta primordial es blindar la tarde para ver y acompañar a su hija pequeña todos los días. Mantiene un trabajo de horario fijo (09:30 a 13:30) y requiere consolidar su rutina de gimnasio matutina (07:30 a 08:45, 3 veces por semana) como 'el arma del día'. En lo empresarial, co-dirige 'La Marca 33' (productora de música electrónica con más de 200 eventos en Concepción). La clave estratégica es estandarizar y paquetizar eventos privados/cumpleaños por cantidad de invitados para asegurar margen neto y evitar ir a pérdida, complementado con una hora diaria de vaciado mental con Diego y el recambio vehicular (auto a furgón de carga).",
-      "stats": [
-        {
-          "valor": "09:30 - 13:30",
-          "etiqueta": "Trabajo Fijo Mañana",
-          "color": "#3b82f6",
-          "sub": "Tarde liberada para crianza y proyectos"
-        },
-        {
-          "valor": "3 Días / Sem",
-          "etiqueta": "Gimnasio 'Arma del Día'",
-          "color": "#10b981",
-          "sub": "07:30 - 08:45 antes de entrar al trabajo"
-        },
-        {
-          "valor": "1 Hora Diaria",
-          "etiqueta": "Vaciado & Coordinación",
-          "color": "#06b6d4",
-          "sub": "Time blocking con Diego para procesar frentes"
-        },
-        {
-          "valor": "WIP = 2",
-          "etiqueta": "Límite Kanban de Foco",
-          "color": "#f59e0b",
-          "sub": "Máximo 2 prioridades en curso a la vez"
-        }
-      ]
-    }
-  },
-  "karina": {
-    "cliente": {
-      "id": "karina",
-      "nombre": "Karina",
-      "usuario": "@karina.sidney",
-      "avatar": "🌏",
-      "pin": "AH-Karina9371",
-      "subtitulo": "Road to Sidney 2.0: Desafío y Soberanía Internacional",
-      "tagline": "Emigración • Gestión de Incertidumbre • Hitos Semanales",
-      "edad": 30,
-      "ciudad": "Sidney / Chile",
-      "rol_principal": "Profesional en Proyecto de Emigración"
-    },
-    "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "matriz_identidades",
-      "simulador_contingencias",
-      "plan_24h_antipatrones"
-    ],
-    "status": "paused"
-  },
-  "emi": {
-    "cliente": {
-      "id": "emi",
-      "nombre": "Emi",
-      "usuario": "@emi.vuelo",
-      "avatar": "💡",
-      "pin": "AH-Emi3628",
-      "subtitulo": "Sistematización de Hábitos & Creatividad",
-      "tagline": "Creatividad • Arquetipos • Hábitos de Cierre",
-      "rol_principal": "Profesional Creativa & Emprendimiento",
-      "estado": "archivado"
-    },
-    "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "time_blocking",
-      "matriz_eisenhower",
-      "vaciado_mental_gtd",
-      "ventana_johari"
-    ],
-    "status": "paused"
+    "rol_contexto": "Gestión Profesional & Equilibrio Vital",
+    "area_critica": "Fronteras entre Trabajo y Vida Personal",
+    "saturacion_operativa": 72,
+    "frase_raiz_culpa": "Termino el día agotada sintiendo que aún quedaron pendientes.",
+    "hora_de_oro": "Mañanas 09:00 a 11:00",
+    "valvula_descompresion": "Ritual de cierre de tarde y lectura",
+    "numero_paz_financiera": "Presupuesto consciente 50/30/20",
+    "hub_filename": "Hub_Imprimibles_Alejandra.html"
   },
   "antonia": {
     "cliente": {
@@ -1761,20 +1801,24 @@ window.CLIENTS_MASTER_DATA = {
       "ultima_actualizacion": "2026-09-11"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "matriz_identidades",
-      "triangulacion_roles",
-      "inventario_cero_culpa",
-      "habitarte_estudio_somatico",
-      "kanban_gtd_wip2",
-      "simulador_financiero",
-      "mapeador_24h",
-      "plan_24h_antipatrones",
       "activador_ia_chatgpt",
-      "tips_antigravity",
       "biblioteca_musical_coreografica",
-      "caja_herramientas"
+      "caja_herramientas",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "habitarte_estudio_somatico",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_identidades",
+      "paquetizacion_servicios_mes",
+      "plan_24h_antipatrones",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "simulador_financiero",
+      "time_blocking_flexible",
+      "tips_antigravity",
+      "triangulacion_roles"
     ],
     "categorias_gestion": [
       "01_Perfil_y_Antecedentes",
@@ -1933,91 +1977,46 @@ window.CLIENTS_MASTER_DATA = {
         }
       }
     },
-    "status": "active"
-  },
-  "diego": {
-    "cliente": {
-      "id": "diego",
-      "nombre": "Diego Alberto González Yáñez",
-      "avatar": "🚀",
-      "usuario": "diego.gonzalez",
-      "pin": "AH-Diego9132",
-      "subtitulo": "Del Perfeccionismo a la Venta Activa y Soberanía Total",
-      "tagline": "Consultor & Estratega • Operaciones & Vida",
-      "rol_principal": "Consultor & Estratega de Operaciones • Fundador de Administración Humana",
-      "whatsapp": "+56975590132",
-      "email": "contacto@administracionhumana.com",
-      "ciudad": "Concepción, Chile",
-      "estado": "Piloto Fundador / Cliente Cero",
-      "fechaInicio": "2026-09-20"
-    },
-    "diagnostico": {
-      "resumen_humano": "Diego sostiene la arquitectura integral de Administración Humana, el marketing y operaciones de Don Diego Vapor y el costeo de Risalfajores, junto a la crianza de Roma Galia y Matías. Su mayor desafío es el cuello de botella por rumiación previa al lanzamiento y la dispersión multipotencial. El Plan de Vuelo 2.0 activa su foco monotarea (WIP=2), blindaje financiero 50/30/20 y venta activa de Sesiones de Despegue a $35k.",
-      "stats": [
-        {
-          "valor": "WIP = 2",
-          "etiqueta": "Límite Monotarea",
-          "color": "#10b981",
-          "sub": "Cero parálisis por análisis"
-        },
-        {
-          "valor": "$813.000",
-          "etiqueta": "Piso Gastos Fijos",
-          "color": "#f59e0b",
-          "sub": "Paz financiera verificada"
-        },
-        {
-          "valor": "4 Frentes",
-          "etiqueta": "Proyectos Clave",
-          "color": "#38bdf8",
-          "sub": "AH • Don Diego • Ris • Crianza"
-        },
-        {
-          "valor": "$35.000",
-          "etiqueta": "Sesión Despegue",
-          "color": "#c084fc",
-          "sub": "Oferta activa de caja"
-        }
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "antonia",
+      "updated_at": "2026-10-26",
+      "nombre": "Antonia Jofré",
+      "hub_filename": "Hub_Imprimibles_Antonia.html",
+      "rol_contexto": "28 años • Terapeuta Holística & Yoga",
+      "area_critica": "Trabajo & Carrera / Cuidado Familiar",
+      "saturacion_operativa": 76,
+      "frase_raiz_culpa": "Tengo miedo de comprometerme y fallar si surge una urgencia familiar.",
+      "hora_de_oro": "Tardes 18:30 a 20:00",
+      "valvula_descompresion": "Siesta diaria de 20 min y descanso nocturno sin pantallas",
+      "numero_paz_financiera": "$160.000 CLP base (8 alumnas x $20k)",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "paquetizacion_servicios_mes"
       ]
     },
-    "diagnostico_inicial": {
-      "dolor_principal": "Cuello de botella por perfeccionismo previo a la venta activa y sobrecarga de frentes multipotenciales.",
-      "frentes_activos": [
-        "Administración Humana (Consultoría 1 a 1, Planes de Vuelo, Sesiones de Despegue)",
-        "Don Diego Vapor y Extracción (Marketing, Ventas, Redes)",
-        "Risalfajores (Costos ManteMagic, Producción)",
-        "Crianza y Cuidados (Roma Galia y Matías)"
-      ],
-      "horas_fuga_estimadas": "12-15 h/sem en rumiación y pulido de herramientas no publicadas",
-      "solucion_inmediata": "Sesión de Despegue a $35.000 CLP como motor de caja rápida y testing de módulos en su propio Plan de Vuelo."
-    },
-    "finanzas": {
-      "arriendo": 504520,
-      "pension_matias": 200000,
-      "cuentas_basicas": 98000,
-      "gastos_fijos_totales": 813000,
-      "meta_semanal_caja": 300000,
-      "ingreso_meta_mensual": 1200000,
-      "distribucion_503020": {
-        "necesidades_50": 600000,
-        "deseos_30": 360000,
-        "ahorro_deuda_20": 240000
-      },
-      "tarifa_minima_hora": 12000
-    },
-    "modulos_activos": [
-      "seguridad_pin",
+    "herramientas_prescritas": [
       "diagnostico_estructura",
       "mapeador_24h",
+      "time_blocking_flexible",
       "kanban_gtd_wip2",
-      "matriz_eisenhower",
-      "foda_came",
-      "finanzas_503020",
-      "triangulacion_roles",
+      "protocolo_paso_cero",
       "inventario_cero_culpa",
-      "ia_chatgpt_prompts_puente"
+      "paquetizacion_servicios_mes"
     ],
-    "status": "active"
+    "rol_contexto": "28 años • Terapeuta Holística & Yoga",
+    "area_critica": "Trabajo & Carrera / Cuidado Familiar",
+    "saturacion_operativa": 76,
+    "frase_raiz_culpa": "Tengo miedo de comprometerme y fallar si surge una urgencia familiar.",
+    "hora_de_oro": "Tardes 18:30 a 20:00",
+    "valvula_descompresion": "Siesta diaria de 20 min y descanso nocturno sin pantallas",
+    "numero_paz_financiera": "$160.000 CLP base (8 alumnas x $20k)",
+    "hub_filename": "Hub_Imprimibles_Antonia.html"
   },
   "francisca": {
     "cliente": {
@@ -2034,20 +2033,23 @@ window.CLIENTS_MASTER_DATA = {
       "ultima_actualizacion": "2026-10-23"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
+      "arquetipos_energia",
       "calendario_centralizado",
-      "mapeador_24h",
-      "matriz_eisenhower",
-      "kanban_gtd_wip2",
-      "protocolo_paso_cero",
-      "tecnica_pomodoro_ajustable",
-      "inventario_cero_culpa",
-      "triangulacion_roles",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "equipamiento_bioimpedancia",
       "finanzas_503020",
       "hub_imprimibles_maestro",
-      "whatsapp_directo",
-      "equipamiento_bioimpedancia"
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "tecnica_pomodoro_ajustable",
+      "time_blocking_flexible",
+      "triangulacion_roles",
+      "whatsapp_directo"
     ],
     "categorias_gestion": [
       "01_Perfil_y_Diagnostico",
@@ -2495,6 +2497,553 @@ window.CLIENTS_MASTER_DATA = {
         }
       ]
     },
-    "status": "active"
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "francisca",
+      "updated_at": "2026-10-26",
+      "nombre": "Francisca Lissette",
+      "hub_filename": "Hub_Imprimibles_Francisca_Lissette.html",
+      "rol_contexto": "Emprendedora Creativa & Servicios Profesionales",
+      "area_critica": "Orden Mental, Rutinas y Soberanía Energética",
+      "saturacion_operativa": 74,
+      "frase_raiz_culpa": "Me cuesta sostener una rutina rígida cuando baja mi energía.",
+      "hora_de_oro": "Media mañana 10:00 a 12:00",
+      "valvula_descompresion": "Espacios creativos libres de culpa",
+      "numero_paz_financiera": "Estabilidad mensual por paquetes",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "arquetipos_energia",
+        "kanban_gtd_wip2"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "arquetipos_energia",
+      "kanban_gtd_wip2"
+    ],
+    "rol_contexto": "Emprendedora Creativa & Servicios Profesionales",
+    "area_critica": "Orden Mental, Rutinas y Soberanía Energética",
+    "saturacion_operativa": 74,
+    "frase_raiz_culpa": "Me cuesta sostener una rutina rígida cuando baja mi energía.",
+    "hora_de_oro": "Media mañana 10:00 a 12:00",
+    "valvula_descompresion": "Espacios creativos libres de culpa",
+    "numero_paz_financiera": "Estabilidad mensual por paquetes",
+    "hub_filename": "Hub_Imprimibles_Francisca_Lissette.html"
+  },
+  "diego": {
+    "cliente": {
+      "id": "diego",
+      "nombre": "Diego Alberto González Yáñez",
+      "avatar": "🚀",
+      "usuario": "diego.gonzalez",
+      "pin": "AH-Diego9132",
+      "subtitulo": "Del Perfeccionismo a la Venta Activa y Soberanía Total",
+      "tagline": "Consultor & Estratega • Operaciones & Vida",
+      "rol_principal": "Consultor & Estratega de Operaciones • Fundador de Administración Humana",
+      "whatsapp": "+56975590132",
+      "email": "contacto@administracionhumana.com",
+      "ciudad": "Concepción, Chile",
+      "estado": "Piloto Fundador / Cliente Cero",
+      "fechaInicio": "2026-09-20"
+    },
+    "diagnostico": {
+      "resumen_humano": "Diego sostiene la arquitectura integral de Administración Humana, el marketing y operaciones de Don Diego Vapor y el costeo de Risalfajores, junto a la crianza de Roma Galia y Matías. Su mayor desafío es el cuello de botella por rumiación previa al lanzamiento y la dispersión multipotencial. El Plan de Vuelo 2.0 activa su foco monotarea (WIP=2), blindaje financiero 50/30/20 y venta activa de Sesiones de Despegue a $35k.",
+      "stats": [
+        {
+          "valor": "WIP = 2",
+          "etiqueta": "Límite Monotarea",
+          "color": "#10b981",
+          "sub": "Cero parálisis por análisis"
+        },
+        {
+          "valor": "$813.000",
+          "etiqueta": "Piso Gastos Fijos",
+          "color": "#f59e0b",
+          "sub": "Paz financiera verificada"
+        },
+        {
+          "valor": "4 Frentes",
+          "etiqueta": "Proyectos Clave",
+          "color": "#38bdf8",
+          "sub": "AH • Don Diego • Ris • Crianza"
+        },
+        {
+          "valor": "$35.000",
+          "etiqueta": "Sesión Despegue",
+          "color": "#c084fc",
+          "sub": "Oferta activa de caja"
+        }
+      ]
+    },
+    "diagnostico_inicial": {
+      "dolor_principal": "Cuello de botella por perfeccionismo previo a la venta activa y sobrecarga de frentes multipotenciales.",
+      "frentes_activos": [
+        "Administración Humana (Consultoría 1 a 1, Planes de Vuelo, Sesiones de Despegue)",
+        "Don Diego Vapor y Extracción (Marketing, Ventas, Redes)",
+        "Risalfajores (Costos ManteMagic, Producción)",
+        "Crianza y Cuidados (Roma Galia y Matías)"
+      ],
+      "horas_fuga_estimadas": "12-15 h/sem en rumiación y pulido de herramientas no publicadas",
+      "solucion_inmediata": "Sesión de Despegue a $35.000 CLP como motor de caja rápida y testing de módulos en su propio Plan de Vuelo."
+    },
+    "finanzas": {
+      "arriendo": 504520,
+      "pension_matias": 200000,
+      "cuentas_basicas": 98000,
+      "gastos_fijos_totales": 813000,
+      "meta_semanal_caja": 300000,
+      "ingreso_meta_mensual": 1200000,
+      "distribucion_503020": {
+        "necesidades_50": 600000,
+        "deseos_30": 360000,
+        "ahorro_deuda_20": 240000
+      },
+      "tarifa_minima_hora": 12000
+    },
+    "modulos_activos": [
+      "diagnostico_estructura",
+      "finanzas_503020",
+      "foda_came",
+      "gtd_vaciado_mental",
+      "ia_chatgpt_prompts_puente",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "principio_pareto_80_20",
+      "seguridad_pin",
+      "time_blocking_flexible",
+      "triangulacion_roles"
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "diego",
+      "updated_at": "2026-10-26",
+      "nombre": "Diego González Yáñez",
+      "hub_filename": "Hub_Imprimibles_Diego.html",
+      "rol_contexto": "Fundador Administración Humana • Risalfajores • Don Diego Vapor • Papá de Roma",
+      "area_critica": "Triangulación de Roles Multipotenciales & Soberanía 168H",
+      "saturacion_operativa": 65,
+      "frase_raiz_culpa": "Un sombrero a la vez: presencia total con Roma y foco quirúrgico en cada bloque.",
+      "hora_de_oro": "Bloques de Trabajo Profundo sin interrupciones",
+      "valvula_descompresion": "Tiempo sagrado con Roma, descanso biológico y deporte",
+      "numero_paz_financiera": "$863.000 CLP piso basal cubierto + Fondo de Paz",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "triangulacion_roles",
+        "principio_pareto_80_20",
+        "finanzas_503020",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "gtd_vaciado_mental",
+      "kanban_gtd_wip2",
+      "triangulacion_roles",
+      "principio_pareto_80_20",
+      "finanzas_503020",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Fundador Administración Humana • Risalfajores • Don Diego Vapor • Papá de Roma",
+    "area_critica": "Triangulación de Roles Multipotenciales & Soberanía 168H",
+    "saturacion_operativa": 65,
+    "frase_raiz_culpa": "Un sombrero a la vez: presencia total con Roma y foco quirúrgico en cada bloque.",
+    "hora_de_oro": "Bloques de Trabajo Profundo sin interrupciones",
+    "valvula_descompresion": "Tiempo sagrado con Roma, descanso biológico y deporte",
+    "numero_paz_financiera": "$863.000 CLP piso basal cubierto + Fondo de Paz",
+    "hub_filename": "Hub_Imprimibles_Diego.html"
+  },
+  "alvaro": {
+    "cliente": {
+      "id": "alvaro",
+      "nombre": "Álvaro",
+      "usuario": "@alvaro.operaciones",
+      "avatar": "👓",
+      "pin": "AH-Alvaro4183",
+      "subtitulo": "Del Análisis a la Acción",
+      "tagline": "Comercio & Negocios • Overthinking • Lanzamiento en 7 Días",
+      "edad": 35,
+      "ciudad": "Concepción",
+      "rol_principal": "Emprendedor Comercial & Estratega de Negocios"
+    },
+    "modulos_activos": [
+      "caja_herramientas",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "matriz_roles_acuerdos",
+      "plan_24h_antipatrones",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "simulador_decision_rapida"
+    ],
+    "diagnostico": {
+      "resumen_humano": "Álvaro cuenta con una capacidad analítica sobresaliente pero cae en parálisis por análisis y perfeccionismo extremo, postergando lanzamientos de proyectos por buscar el plan 100% perfecto. El acompañamiento se enfoca en la Regla del 70% de Colin Powell y la Fórmula de Acción Imperfecta.",
+      "stats": [
+        {
+          "valor": "7 Días",
+          "etiqueta": "Ciclo de Lanzamiento",
+          "color": "#10b981",
+          "sub": "De la idea al mercado"
+        },
+        {
+          "valor": "70%",
+          "etiqueta": "Regla de Certeza",
+          "color": "#60a5fa",
+          "sub": "Accionar con info suficiente"
+        },
+        {
+          "valor": "0",
+          "etiqueta": "Overthinking Permitido",
+          "color": "#ef4444",
+          "sub": "Time boxing estricto"
+        }
+      ]
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "alvaro",
+      "updated_at": "2026-10-26",
+      "nombre": "Álvaro Pincheira",
+      "hub_filename": "Hub_Imprimibles_Alvaro.html",
+      "rol_contexto": "Emprendedor & Ejecución Comercial",
+      "area_critica": "Acción Imperfecta y Consistencia Diaria",
+      "saturacion_operativa": 68,
+      "frase_raiz_culpa": "Postergo por querer tener todo perfecto antes de salir.",
+      "hora_de_oro": "Mañanas 08:30 a 10:30",
+      "valvula_descompresion": "Deporte y cierre nocturno sin pantallas",
+      "numero_paz_financiera": "Flujo comercial semanal activo",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "protocolo_paso_cero",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "protocolo_paso_cero",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Emprendedor & Ejecución Comercial",
+    "area_critica": "Acción Imperfecta y Consistencia Diaria",
+    "saturacion_operativa": 68,
+    "frase_raiz_culpa": "Postergo por querer tener todo perfecto antes de salir.",
+    "hora_de_oro": "Mañanas 08:30 a 10:30",
+    "valvula_descompresion": "Deporte y cierre nocturno sin pantallas",
+    "numero_paz_financiera": "Flujo comercial semanal activo",
+    "hub_filename": "Hub_Imprimibles_Alvaro.html"
+  },
+  "carlos": {
+    "cliente": {
+      "id": "carlos",
+      "nombre": "Carlos Z",
+      "usuario": "@carlos.gestion",
+      "avatar": "🎯",
+      "pin": "AH-Carlos5829",
+      "subtitulo": "De la Reactividad al Flujo de Ejecución y Escala",
+      "tagline": "Paternidad Presente • Gimnasio AM • Trabajo 09:30-13:30 • La Marca 33",
+      "edad": 32,
+      "ciudad": "Concepción",
+      "rol_principal": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo"
+    },
+    "modulos_activos": [
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "paquetizacion_servicios_mes",
+      "plan_24h_antipatrones",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "simulador_financiero",
+      "time_blocking_flexible"
+    ],
+    "diagnostico": {
+      "resumen_humano": "Carlos se encuentra reorganizando su tiempo, finanzas y prioridades vitales tras separarse. Su meta primordial es blindar la tarde para ver y acompañar a su hija pequeña todos los días. Mantiene un trabajo de horario fijo (09:30 a 13:30) y requiere consolidar su rutina de gimnasio matutina (07:30 a 08:45, 3 veces por semana) como 'el arma del día'. En lo empresarial, co-dirige 'La Marca 33' (productora de música electrónica con más de 200 eventos en Concepción). La clave estratégica es estandarizar y paquetizar eventos privados/cumpleaños por cantidad de invitados para asegurar margen neto y evitar ir a pérdida, complementado con una hora diaria de vaciado mental con Diego y el recambio vehicular (auto a furgón de carga).",
+      "stats": [
+        {
+          "valor": "09:30 - 13:30",
+          "etiqueta": "Trabajo Fijo Mañana",
+          "color": "#3b82f6",
+          "sub": "Tarde liberada para crianza y proyectos"
+        },
+        {
+          "valor": "3 Días / Sem",
+          "etiqueta": "Gimnasio 'Arma del Día'",
+          "color": "#10b981",
+          "sub": "07:30 - 08:45 antes de entrar al trabajo"
+        },
+        {
+          "valor": "1 Hora Diaria",
+          "etiqueta": "Vaciado & Coordinación",
+          "color": "#06b6d4",
+          "sub": "Time blocking con Diego para procesar frentes"
+        },
+        {
+          "valor": "WIP = 2",
+          "etiqueta": "Límite Kanban de Foco",
+          "color": "#f59e0b",
+          "sub": "Máximo 2 prioridades en curso a la vez"
+        }
+      ]
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "carlos",
+      "updated_at": "2026-10-26",
+      "nombre": "Carlos Z",
+      "hub_filename": "Hub_Imprimibles_Carlos.html",
+      "rol_contexto": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo",
+      "area_critica": "Gimnasio AM (Arma del Día), Trabajo Fijo (09:30-13:30), Crianza y Escala de Eventos",
+      "saturacion_operativa": 68,
+      "frase_raiz_culpa": "La urgencia del día a día se come el tiempo con mi hija y postergo mis mañanas de entrenamiento.",
+      "hora_de_oro": "Mañanas 07:30 a 08:45 (Gimnasio) & Bloque 1h Coordinación con Diego",
+      "valvula_descompresion": "Tardes blindadas de juego y presencia con mi hija pequeña",
+      "numero_paz_financiera": "Paquetes estandarizados de cumpleaños + Renovación de auto a furgón",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "paquetizacion_servicios_mes",
+        "simulador_financiero"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "paquetizacion_servicios_mes",
+      "simulador_financiero"
+    ],
+    "rol_contexto": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo",
+    "area_critica": "Gimnasio AM (Arma del Día), Trabajo Fijo (09:30-13:30), Crianza y Escala de Eventos",
+    "saturacion_operativa": 68,
+    "frase_raiz_culpa": "La urgencia del día a día se come el tiempo con mi hija y postergo mis mañanas de entrenamiento.",
+    "hora_de_oro": "Mañanas 07:30 a 08:45 (Gimnasio) & Bloque 1h Coordinación con Diego",
+    "valvula_descompresion": "Tardes blindadas de juego y presencia con mi hija pequeña",
+    "numero_paz_financiera": "Paquetes estandarizados de cumpleaños + Renovación de auto a furgón",
+    "hub_filename": "Hub_Imprimibles_Carlos.html"
+  },
+  "karina": {
+    "cliente": {
+      "id": "karina",
+      "nombre": "Karina",
+      "usuario": "@karina.sidney",
+      "avatar": "🌏",
+      "pin": "AH-Karina9371",
+      "subtitulo": "Road to Sidney 2.0: Desafío y Soberanía Internacional",
+      "tagline": "Emigración • Gestión de Incertidumbre • Hitos Semanales",
+      "edad": 30,
+      "ciudad": "Sidney / Chile",
+      "rol_principal": "Profesional en Proyecto de Emigración"
+    },
+    "modulos_activos": [
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "finanzas_503020",
+      "gtd_vaciado_mental",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_identidades",
+      "plan_24h_antipatrones",
+      "seguridad_pin",
+      "simulador_contingencias"
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "karina",
+      "updated_at": "2026-10-26",
+      "nombre": "Karina",
+      "hub_filename": "Hub_Imprimibles_Karina.html",
+      "rol_contexto": "Gestión Profesional & Bienestar",
+      "area_critica": "Claridad de Prioridades y Paz Mental",
+      "saturacion_operativa": 69,
+      "frase_raiz_culpa": "Cargo en la cabeza cosas que deberían estar en un sistema.",
+      "hora_de_oro": "Mañanas 09:00 a 10:30",
+      "valvula_descompresion": "Caminata y desconexión al atardecer",
+      "numero_paz_financiera": "Regla 50/30/20 equilibrada",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "finanzas_503020",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "gtd_vaciado_mental",
+      "kanban_gtd_wip2",
+      "finanzas_503020",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Gestión Profesional & Bienestar",
+    "area_critica": "Claridad de Prioridades y Paz Mental",
+    "saturacion_operativa": 69,
+    "frase_raiz_culpa": "Cargo en la cabeza cosas que deberían estar en un sistema.",
+    "hora_de_oro": "Mañanas 09:00 a 10:30",
+    "valvula_descompresion": "Caminata y desconexión al atardecer",
+    "numero_paz_financiera": "Regla 50/30/20 equilibrada",
+    "hub_filename": "Hub_Imprimibles_Karina.html"
+  },
+  "emi": {
+    "cliente": {
+      "id": "emi",
+      "nombre": "Emi",
+      "usuario": "@emi.vuelo",
+      "avatar": "💡",
+      "pin": "AH-Emi3628",
+      "subtitulo": "Sistematización de Hábitos & Creatividad",
+      "tagline": "Creatividad • Arquetipos • Hábitos de Cierre",
+      "rol_principal": "Profesional Creativa & Emprendimiento",
+      "estado": "archivado"
+    },
+    "modulos_activos": [
+      "arquetipos_energia",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "time_blocking",
+      "vaciado_mental_gtd",
+      "ventana_johari"
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "emi",
+      "updated_at": "2026-10-26",
+      "nombre": "Emi",
+      "hub_filename": "Hub_Imprimibles_Emi.html",
+      "rol_contexto": "Creadora & Gestión Multipotencial",
+      "area_critica": "Batería Energética y Ritmo Sostenible",
+      "saturacion_operativa": 73,
+      "frase_raiz_culpa": "Me exijo como si todos los días tuviera la misma energía.",
+      "hora_de_oro": "Media mañana 10:00 a 11:30",
+      "valvula_descompresion": "Arte, música y pausas sensoriales",
+      "numero_paz_financiera": "Tranquilidad basal mensual",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "protocolo_paso_cero",
+        "arquetipos_energia",
+        "kanban_gtd_wip2",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "protocolo_paso_cero",
+      "arquetipos_energia",
+      "kanban_gtd_wip2",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Creadora & Gestión Multipotencial",
+    "area_critica": "Batería Energética y Ritmo Sostenible",
+    "saturacion_operativa": 73,
+    "frase_raiz_culpa": "Me exijo como si todos los días tuviera la misma energía.",
+    "hora_de_oro": "Media mañana 10:00 a 11:30",
+    "valvula_descompresion": "Arte, música y pausas sensoriales",
+    "numero_paz_financiera": "Tranquilidad basal mensual",
+    "hub_filename": "Hub_Imprimibles_Emi.html"
+  },
+  "demo": {
+    "cliente": {
+      "id": "demo",
+      "nombre": "Cliente Demo AICC",
+      "rol_principal": "Caso Demostrativo • Metodología AICC v4.0",
+      "ciudad": "Chile"
+    },
+    "modulos_activos": [
+      "diagnostico_estructura",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "protocolo_paso_cero",
+      "time_blocking_flexible"
+    ],
+    "diagnostico": {
+      "resumen_humano": "Necesito estructura sin rigidez inhumana.",
+      "stats": []
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "demo",
+      "updated_at": "2026-10-26",
+      "nombre": "Cliente Demo AICC",
+      "hub_filename": "Hub_Imprimibles_Demo.html",
+      "rol_contexto": "Caso Demostrativo • Metodología AICC v4.0",
+      "area_critica": "Cimientos de Tiempo, Energía y Finanzas",
+      "saturacion_operativa": 75,
+      "frase_raiz_culpa": "Necesito estructura sin rigidez inhumana.",
+      "hora_de_oro": "Mañanas 09:00 a 10:30",
+      "valvula_descompresion": "Desconexión digital a las 21:30",
+      "numero_paz_financiera": "Presupuesto 50/30/20 activo",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "kanban_gtd_wip2",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Caso Demostrativo • Metodología AICC v4.0",
+    "area_critica": "Cimientos de Tiempo, Energía y Finanzas",
+    "saturacion_operativa": 75,
+    "frase_raiz_culpa": "Necesito estructura sin rigidez inhumana.",
+    "hora_de_oro": "Mañanas 09:00 a 10:30",
+    "valvula_descompresion": "Desconexión digital a las 21:30",
+    "numero_paz_financiera": "Presupuesto 50/30/20 activo",
+    "hub_filename": "Hub_Imprimibles_Demo.html"
   }
 };

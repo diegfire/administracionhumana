@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Rueda de la Vida (M03) • Diagnóstico de Claridad Sistémica | Administración Humana</title>
+    
+    <!-- Fuentes y Tipografía Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS MAESTRO RUEDA DE LA VIDA (SSOT) -->
+    <link rel="stylesheet" href="../../css/rueda.css">
+</head>
+<body class="rd-body">
+
+    <!-- HEADER SUPERIOR STANDALONE -->
+    <header class="rd-header">
+        <a href="../../suite.html" class="rd-brand" title="Volver a la Suite Principal">
+            <div class="rd-logo-badge">🎯</div>
+            <div class="rd-title-group">
+                <h1>Rueda de la Vida <span>(M03)</span></h1>
+                <span class="rd-subtitle">Auditoría Multidimensional & Claridad Sistémica</span>
+            </div>
+        </a>
+
+        <div class="rd-header-actions">
+            <button type="button" class="rd-btn rd-btn-whatsapp" onclick="window.__ruedaEngine.exportWhatsApp()" title="Enviar resumen a WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> <span>WhatsApp</span>
+            </button>
+            <button type="button" class="rd-btn" onclick="window.__ruedaEngine.copyToClipboard()" title="Copiar informe de diagnóstico">
+                <i class="fa-solid fa-copy"></i> <span>Copiar</span>
+            </button>
+            <button type="button" class="rd-btn" onclick="window.print()" title="Imprimir hoja clínica A4/Carta">
+                <i class="fa-solid fa-print"></i> <span>Imprimir</span>
+            </button>
+            <button type="button" class="rd-btn" onclick="window.__ruedaEngine.exportJson()" title="Descargar datos en JSON">
+                <i class="fa-solid fa-file-arrow-down"></i> <span>JSON</span>
+            </button>
+            <label class="rd-btn" style="margin:0; cursor:pointer;" title="Importar datos desde archivo JSON">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <input type="file" accept=".json" style="display:none;" onchange="window.__ruedaEngine.importJson(this)">
+            </label>
+            <a href="../../../../../index.html" class="rd-btn" title="Diego Control Center">
+                <i class="fa-solid fa-house"></i> <span>Control Center</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="rd-main">
+
+        <!-- MOBILE SEGMENTED TABS (VISIBLE EN <= 1024px) -->
+        <nav class="rd-mobile-tabs" aria-label="Navegación Móvil">
+            <button type="button" class="rd-tab-btn active" data-tab="radar">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Radar</span>
+            </button>
+            <button type="button" class="rd-tab-btn" data-tab="dimensions">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Dimensiones</span>
+            </button>
+            <button type="button" class="rd-tab-btn" data-tab="diagnosis">
+                <i class="fa-solid fa-stethoscope"></i>
+                <span>Diagnóstico</span>
+            </button>
+            <button type="button" class="rd-tab-btn" data-tab="history">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Historial</span>
+            </button>
+        </nav>
+
+        <!-- COLUMNA IZQUIERDA: RADAR SVG & PRESCRIPIÓN -->
+        <section class="rd-visual-col" id="rdVisualCol">
+            
+            <div class="rd-wheel-card">
+                <div class="rd-wheel-card-header">
+                    <h2 class="rd-wheel-title">
+                        <i class="fa-solid fa-compass" style="color:var(--rd-teal-light);"></i> Radar de Estructura
+                    </h2>
+                    <div class="rd-wheel-presets">
+                        <button type="button" class="rd-preset-pill" onclick="window.__ruedaEngine.applyPreset('burnout')">⚡ Burnout</button>
+                        <button type="button" class="rd-preset-pill" onclick="window.__ruedaEngine.applyPreset('piloto')">🔄 Piloto</button>
+                        <button type="button" class="rd-preset-pill" onclick="window.__ruedaEngine.applyPreset('equilibrio')">⚖️ Balance</button>
+                        <button type="button" class="rd-preset-pill" onclick="window.__ruedaEngine.applyPreset('reset')">↺ Neutro</button>
+                    </div>
+                </div>
+
+                <!-- SVG RADAR WHEEL -->
+                <div class="rd-svg-container">
+                    <svg id="wheelSvg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+                        <!-- Capa 1: Círculos concéntricos de escala 1-10 -->
+                        <g id="rdGridGroup"></g>
+
+                        <!-- Capa 2: Líneas de eje radial (8 dimensiones) -->
+                        <g id="rdAxesGroup"></g>
+
+                        <!-- Capa 3: Polígono sombreado interactivo -->
+                        <polygon id="rdPolygon" class="rd-polygon-area" points="" />
+
+                        <!-- Capa 4: Vértices interactivos (touch-drag handles) -->
+                        <g id="rdVerticesGroup"></g>
+
+                        <!-- Capa 5: Etiquetas de texto externas -->
+                        <g id="rdLabelsGroup"></g>
+                    </svg>
+                </div>
+
+                <div style="font-size:0.73rem; color:var(--rd-text-muted); margin-top:8px; text-align:center;">
+                    <i class="fa-solid fa-hand-pointer"></i> <em>Arrastra los puntos en el radar o usa los botones para calibrar tu estado.</em>
+                </div>
+
+                <!-- BARRA DE MÉTRICAS CLÍNICAS -->
+                <div class="rd-metrics-bar">
+                    <div class="rd-metric-card">
+                        <span class="rd-metric-label">Promedio Vital</span>
+                        <span class="rd-metric-val teal" id="rdMetricAvg">6.0/10</span>
+                        <span class="rd-metric-sub">Nivel General</span>
+                    </div>
+
+                    <div class="rd-metric-card">
+                        <span class="rd-metric-label">Fugas Críticas</span>
+                        <span class="rd-metric-val coral" id="rdMetricCrit">0</span>
+                        <span class="rd-metric-sub">Áreas &le; 5/10</span>
+                    </div>
+
+                    <div class="rd-metric-card">
+                        <span class="rd-metric-label">Rodaje Vital</span>
+                        <span class="rd-metric-val teal" id="rdMetricBalance">Fluido</span>
+                        <span class="rd-metric-sub" id="rdMetricBalanceSub">Dispersión: ±0.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TARJETA DE PRESCRIPCIÓN CLÍNICA INTELIGENTE -->
+            <div class="rd-prescription-card" id="rdPrescriptionCard">
+                <div class="rd-prescription-header">
+                    <h3 class="rd-prescription-title">
+                        <i class="fa-solid fa-stethoscope" style="color:var(--rd-teal-light);"></i> Prescripción Clínica AICC
+                    </h3>
+                </div>
+                <div class="rd-prescription-body" id="rdPrescriptionContent">
+                    Cargando diagnóstico...
+                </div>
+            </div>
+
+        </section>
+
+        <!-- COLUMNA DERECHA: TARJETAS DE DIMENSIONES & HISTORIAL -->
+        <section class="rd-dimensions-col" id="rdDimensionsCol">
+            
+            <div class="rd-col-header">
+                <div>
+                    <h2 class="rd-col-title">
+                        <i class="fa-solid fa-sliders" style="color:var(--rd-teal-light);"></i> Evaluación de las 8 Dimensiones
+                    </h2>
+                    <span class="rd-col-subtitle">Diagnóstico cualitativo, fugas de energía y microacciones 24h</span>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR DE TARJETAS GENERADAS DINÁMICAMENTE -->
+            <div id="rdDimensionsContainer" style="display:flex; flex-direction:column; gap:10px;"></div>
+
+            <!-- PANEL DE SNAPSHOTS / HISTORIAL DE EVOLUCIÓN -->
+            <div class="rd-history-panel" id="rdHistoryPanel">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <h3 style="font-family:var(--font-heading); font-size:1rem; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-clock-rotate-left" style="color:var(--rd-teal-light);"></i> Historial de Evaluaciones Mensuales
+                    </h3>
+                </div>
+                <p style="font-size:0.75rem; color:var(--rd-text-secondary); line-height:1.4;">
+                    Guarda una instantánea mensual para monitorear cómo tu rueda se va inflando y equilibrando con el paso de los meses.
+                </p>
+                <div class="rd-history-controls">
+                    <input type="text" id="rdHistoryMonthInput" class="rd-history-input" placeholder="Nombre o Mes (Ej: Marzo 2026)">
+                    <button type="button" class="rd-btn rd-btn-primary" onclick="window.__ruedaEngine.saveSnapshot()">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Mes
+                    </button>
+                </div>
+                <div class="rd-history-controls">
+                    <select id="rdHistorySelect" class="rd-history-select" onchange="window.__ruedaEngine.loadSnapshot(this.value)">
+                        <option value="">-- Cargar mes anterior --</option>
+                    </select>
+                    <button type="button" class="rd-btn" style="color:var(--rd-coral-light); border-color:rgba(225,29,72,0.3);" onclick="window.__ruedaEngine.deleteSelectedSnapshot()" title="Borrar mes seleccionado">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- MOTOR MAESTRO RUEDA DE LA VIDA (SSOT) -->
+    <script src="../../js/rueda-engine.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initRuedaEngine({
+                storageKey: "aicc_rueda_dimensions",
+                historyStorageKey: "aicc_rueda_history"
+            });
+        });
+    </script>
+    <div id="rdToast" class="rd-toast"></div>
+</body>
+</html>

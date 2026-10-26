@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Time Blocker Semanal • Planificador de Energía 30 Min | Administración Humana</title>
+    
+    <!-- Fuentes y Tipografía Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Pro Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS MAESTRO TIME BLOCKER (SSOT) -->
+    <link rel="stylesheet" href="../../css/timeblocker.css">
+
+    <style>
+        body {
+            background-color: var(--tb-bg);
+            color: var(--tb-text);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER SUPERIOR STANDALONE */
+        .app-header {
+            background: rgba(18, 18, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--tb-border);
+            padding: 12px 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 950;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1.1rem;
+            font-weight: 900;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+        }
+
+        .header-title-block h1 {
+            font-family: var(--font-heading);
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.15;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-title-block p {
+            font-size: 0.72rem;
+            color: var(--tb-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--tb-border);
+            color: #e4e4e7;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: #3f3f46;
+        }
+
+        .standalone-main {
+            flex: 1;
+            max-width: 1350px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 5rem 1.25rem;
+        }
+
+        .infographic-card {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(18, 18, 23, 0.8) 100%);
+            border: 1px solid rgba(13, 148, 136, 0.25);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .infographic-info h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .infographic-info p {
+            font-size: 0.78rem;
+            color: #a1a1aa;
+            margin-top: 2px;
+        }
+
+        .quick-preset-strip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .btn-preset {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--tb-border);
+            color: #d4d4d8;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-preset:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        @media (max-width: 640px) {
+            .app-header { padding: 10px 1rem; }
+            .header-title-block p { display: none; }
+            .standalone-main { padding: 1rem 0.85rem 5.5rem 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER SUPERIOR STANDALONE -->
+    <header class="app-header no-print">
+        <a href="../../suite.html" class="header-brand" title="Volver a la Suite Digital">
+            <div class="header-logo-icon">
+                <i class="fa-solid fa-stopwatch-20"></i>
+            </div>
+            <div class="header-title-block">
+                <h1>Time Blocker Semanal <span style="font-size:0.65rem; background:rgba(13,148,136,0.15); color:#2dd4bf; padding:2px 6px; border-radius:4px; border:1px solid rgba(13,148,136,0.3);">SSOT v2</span></h1>
+                <p>Bloques de 30 Min • Foco, Recuperación, Admin & Personal</p>
+            </div>
+        </a>
+
+        <div class="header-actions">
+            <a href="../../suite.html" class="header-btn" title="Suite Digital">
+                <i class="fa-solid fa-layer-group"></i> <span>Suite</span>
+            </a>
+            <a href="../horarios/index.html" class="header-btn" title="Ir a Mapeador 24H">
+                <i class="fa-solid fa-clock"></i> <span>24H</span>
+            </a>
+            <a href="../gtd/index.html" class="header-btn" title="Ir a GTD">
+                <i class="fa-solid fa-bolt"></i> <span>GTD</span>
+            </a>
+            <a href="../eisenhower/index.html" class="header-btn" title="Ir a Eisenhower">
+                <i class="fa-solid fa-table-cells-large"></i> <span>Eisenhower</span>
+            </a>
+            <a href="../../../../../index.html" class="header-btn" title="Diego Control Center">
+                <i class="fa-solid fa-house"></i> <span>Control Center</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- CUERPO PRINCIPAL DE LA HERRAMIENTA -->
+    <main class="standalone-main">
+
+        <!-- BANNER DE ORIENTACIÓN METODOLÓGICA -->
+        <div class="infographic-card no-print">
+            <div class="infographic-info">
+                <h4><i class="fa-solid fa-compass" style="color:#2dd4bf;"></i> Arquitectura Semanal de Bloques de Tiempo (30 Minutos)</h4>
+                <p>Divide tu semana protegiendo las 4 energías esenciales: 40% Foco Profundo, 30% Recuperación y Salud, 15% Tareas Administrativas y 15% Esfera Personal.</p>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="header-btn" onclick="window.copyTimeblockerWhatsApp()" style="background:rgba(13,148,136,0.15); border-color:#0d9488; color:#2dd4bf;">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp Resumen
+                </button>
+                <button class="header-btn" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> Imprimir A4
+                </button>
+            </div>
+        </div>
+
+        <!-- BARRA DE PINCELES ARQUETÍPICOS -->
+        <div class="tb-brush-strip no-print">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:0.75rem; font-weight:800; color:#888; text-transform:uppercase;">Pincel Activo:</span>
+            </div>
+            <div class="tb-brushes-group">
+                <button class="tb-brush-btn b-foco active" data-brush="foco" onclick="window.setTbBrush('foco')">
+                    <span>💻</span> Foco (Deep Work)
+                </button>
+                <button class="tb-brush-btn b-recup" data-brush="recuperacion" onclick="window.setTbBrush('recuperacion')">
+                    <span>🧘</span> Recuperación (Salud)
+                </button>
+                <button class="tb-brush-btn b-admin" data-brush="admin" onclick="window.setTbBrush('admin')">
+                    <span>⚙️</span> Administrativo
+                </button>
+                <button class="tb-brush-btn b-pers" data-brush="personal" onclick="window.setTbBrush('personal')">
+                    <span>🤝</span> Personal / Social
+                </button>
+                <button class="tb-brush-btn b-vacio" data-brush="vacio" onclick="window.setTbBrush('vacio')">
+                    <span>🧹</span> Borrar Bloque
+                </button>
+            </div>
+        </div>
+
+        <!-- PRESETS RÁPIDOS DE 1 TOQUE -->
+        <div class="quick-preset-strip no-print">
+            <span style="font-size:0.72rem; font-weight:700; color:#888; text-transform:uppercase;">⚡ Presets Rápidos:</span>
+            <button class="btn-preset" onclick="window.applyTimeblockerPreset('foco_manana')">
+                <span>💻</span> Foco 09:00 - 13:00 (Lun-Vie)
+            </button>
+            <button class="btn-preset" onclick="window.applyTimeblockerPreset('almuerzo_recup')">
+                <span>🥗</span> Almuerzo 13:00 - 14:30
+            </button>
+            <button class="btn-preset" onclick="window.applyTimeblockerPreset('admin_tarde')">
+                <span>⚙️</span> Admin Batch 16:30 - 18:00
+            </button>
+            <button class="btn-preset" onclick="window.applyTimeblockerPreset('personal_noche')">
+                <span>🤝</span> Personal 19:00 - 22:00
+            </button>
+            <button class="btn-preset" onclick="window.applyTimeblockerPreset('limpiar_todo')" style="color:#f87171; border-color:rgba(239,68,68,0.3);">
+                <span>🧹</span> Limpiar
+            </button>
+        </div>
+
+        <!-- SELECTOR SEGMENTADO DE DÍAS (MOBILE-FIRST) -->
+        <div id="tb-day-tabs-container" class="tb-day-tabs no-print"></div>
+
+        <!-- LAYOUT PRINCIPAL: GRILLA HORARIA + SIDEBAR ANALÍTICO -->
+        <div class="tb-main-grid-layout">
+            
+            <!-- COLUMNA IZQUIERDA: GRILLA 30 MIN -->
+            <div class="tb-grid-wrapper" id="tb-export-container">
+                <div class="tb-grid-table" id="timeGrid"></div>
+            </div>
+
+            <!-- COLUMNA DERECHA: ANALÍTICA Y PRESCRIPCIÓN CLÍNICA -->
+            <aside class="tb-sidebar no-print">
+                
+                <!-- BALANCE SEMANAL & DONUT CHART -->
+                <div class="tb-card">
+                    <div class="tb-card-header">
+                        <span>Balance Semanal</span>
+                        <span style="font-size:0.72rem; color:var(--tb-muted);">4 Arquetipos</span>
+                    </div>
+
+                    <div class="tb-donut-box">
+                        <svg width="150" height="150" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.06)" stroke-width="12"></circle>
+                            <circle id="chartDonut" cx="50" cy="50" r="40" fill="transparent" stroke="#0d9488" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="251.2" transform="rotate(-90 50 50)" style="transition:stroke-dashoffset 0.4s ease;"></circle>
+                            <text x="50" y="52" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="11" id="totalHoursLabel" font-family="'Space Grotesk', sans-serif">0h</text>
+                            <text x="50" y="62" text-anchor="middle" fill="#a1a1aa" font-size="5" font-family="'Plus Jakarta Sans', sans-serif">Planificadas</text>
+                        </svg>
+                    </div>
+
+                    <!-- BARRAS DE PROGRESO POR ARQUETIPO -->
+                    <div class="tb-stat-bar-group">
+                        <div class="tb-bar-row">
+                            <div class="tb-bar-meta">
+                                <span style="color:#2dd4bf;"><i class="fa-solid fa-laptop-code"></i> Foco</span>
+                                <span id="hours-foco" style="color:#fff;">0h / 0% (Meta: 40%)</span>
+                            </div>
+                            <div class="tb-progress-track">
+                                <div class="tb-progress-fill" id="pct-foco" style="width:0%; background:#0d9488;"></div>
+                            </div>
+                        </div>
+
+                        <div class="tb-bar-row">
+                            <div class="tb-bar-meta">
+                                <span style="color:#fb7185;"><i class="fa-solid fa-heart-pulse"></i> Recuperación</span>
+                                <span id="hours-recuperacion" style="color:#fff;">0h / 0% (Meta: 30%)</span>
+                            </div>
+                            <div class="tb-progress-track">
+                                <div class="tb-progress-fill" id="pct-recuperacion" style="width:0%; background:#f43f5e;"></div>
+                            </div>
+                        </div>
+
+                        <div class="tb-bar-row">
+                            <div class="tb-bar-meta">
+                                <span style="color:#fbbf24;"><i class="fa-solid fa-gears"></i> Administrativo</span>
+                                <span id="hours-admin" style="color:#fff;">0h / 0% (Meta: 15%)</span>
+                            </div>
+                            <div class="tb-progress-track">
+                                <div class="tb-progress-fill" id="pct-admin" style="width:0%; background:#f59e0b;"></div>
+                            </div>
+                        </div>
+
+                        <div class="tb-bar-row">
+                            <div class="tb-bar-meta">
+                                <span style="color:#a5b4fc;"><i class="fa-solid fa-users"></i> Personal / Social</span>
+                                <span id="hours-personal" style="color:#fff;">0h / 0% (Meta: 15%)</span>
+                            </div>
+                            <div class="tb-progress-track">
+                                <div class="tb-progress-fill" id="pct-personal" style="width:0%; background:#6366f1;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRESCRIPCIÓN CLÍNICA Y DIAGNÓSTICO -->
+                <div class="tb-advice-card">
+                    <h4><i class="fa-solid fa-stethoscope" style="color:#2dd4bf;"></i> Prescripción Clínica AICC</h4>
+                    <div class="tb-advice-content" id="adviceContainer">
+                        Pinta tus bloques de tiempo en el calendario para recibir tu diagnóstico y recomendaciones clínicas de balance de energía.
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- MOTOR MAESTRO TIME BLOCKER (SSOT) -->
+    <script src="../../js/timeblocker-engine.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initTimeblockerEngine({
+                storageKey: "ah_client_timeblocker"
+            });
+        });
+    </script>
+    <div id="tb-toast" class="tb-toast"></div>
+</body>
+</html>
