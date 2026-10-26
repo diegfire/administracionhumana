@@ -1395,21 +1395,56 @@ window.CLIENTS_MASTER_DATA = {
       "usuario": "@carlos.gestion",
       "avatar": "🎯",
       "pin": "AH-Carlos5829",
-      "subtitulo": "Optimización de Foco y Hábitos de Alto Rendimiento",
-      "tagline": "Productividad • Time Blocking • Presupuesto 50/30/20",
+      "subtitulo": "De la Reactividad al Flujo de Ejecución y Escala",
+      "tagline": "Paternidad Presente • Gimnasio AM • Trabajo 09:30-13:30 • La Marca 33",
       "edad": 32,
-      "ciudad": "Santiago",
-      "rol_principal": "Profesional Independiente"
+      "ciudad": "Concepción",
+      "rol_principal": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo",
+      "ultima_actualizacion": "2026-10-26"
     },
     "modulos_activos": [
       "seguridad_pin",
       "diagnostico_general",
       "mapeador_24h",
-      "kanban_gtd",
+      "kanban_gtd_wip2",
+      "time_blocking_flexible",
+      "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "paquetizacion_servicios_mes",
       "simulador_financiero",
       "plan_24h_antipatrones"
     ],
-    "status": "paused"
+    "status": "active",
+    "diagnostico": {
+      "resumen_humano": "Carlos se encuentra reorganizando su tiempo, finanzas y prioridades vitales tras separarse. Su meta primordial es blindar la tarde para ver y acompañar a su hija pequeña todos los días. Mantiene un trabajo de horario fijo (09:30 a 13:30) y requiere consolidar su rutina de gimnasio matutina (07:30 a 08:45, 3 veces por semana) como 'el arma del día'. En lo empresarial, co-dirige 'La Marca 33' (productora de música electrónica con más de 200 eventos en Concepción). La clave estratégica es estandarizar y paquetizar eventos privados/cumpleaños por cantidad de invitados para asegurar margen neto y evitar ir a pérdida, complementado con una hora diaria de vaciado mental con Diego y el recambio vehicular (auto a furgón de carga).",
+      "stats": [
+        {
+          "valor": "09:30 - 13:30",
+          "etiqueta": "Trabajo Fijo Mañana",
+          "color": "#3b82f6",
+          "sub": "Tarde liberada para crianza y proyectos"
+        },
+        {
+          "valor": "3 Días / Sem",
+          "etiqueta": "Gimnasio 'Arma del Día'",
+          "color": "#10b981",
+          "sub": "07:30 - 08:45 antes de entrar al trabajo"
+        },
+        {
+          "valor": "1 Hora Diaria",
+          "etiqueta": "Vaciado & Coordinación",
+          "color": "#06b6d4",
+          "sub": "Time blocking con Diego para procesar frentes"
+        },
+        {
+          "valor": "WIP = 2",
+          "etiqueta": "Límite Kanban de Foco",
+          "color": "#f59e0b",
+          "sub": "Máximo 2 prioridades en curso a la vez"
+        }
+      ]
+    }
   },
   "karina": {
     "cliente": {

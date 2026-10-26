@@ -4,7 +4,7 @@
     <base href="../../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Vuelo 2.0 • Carlos Z • Administración Humana</title>
+    <title>Plan de Vuelo 2.0 • Carlos Zoñez • Administración Humana</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,10 +14,10 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Modular CSS Core & Components (Cache-Busting v3.2) -->
-    <link rel="stylesheet" href="css/portal-core.css?v=3.2">
-    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.2">
-    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.2">
+    <!-- Modular CSS Core & Components (Cache-Busting v3.3) -->
+    <link rel="stylesheet" href="css/portal-core.css?v=3.3">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.3">
+    <link rel="stylesheet" href="css/kanban-gtd.css?v=3.3">
 
     <!-- Inmersión Visual & Reglas Móviles de Alta Prioridad -->
     <style>
@@ -115,6 +115,40 @@
             margin-bottom: 0.8rem; transition: all 0.2s ease;
         }
         .printable-card:hover { border-color: #444; background: #161616; transform: translateX(4px); }
+
+        .foda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .foda-box {
+            border-radius: 12px;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #262626;
+        }
+        .foda-box.f-box { border-top: 3px solid #10b981; }
+        .foda-box.d-box { border-top: 3px solid #f59e0b; }
+        .foda-box.o-box { border-top: 3px solid #3b82f6; }
+        .foda-box.a-box { border-top: 3px solid #ef4444; }
+        .foda-box h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .foda-box ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.84rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -127,7 +161,7 @@
                 <i class="fa-solid fa-shield-halved"></i> Acceso Privado & Exclusivo
             </div>
             <h2 class="gateway-title">Plan de Vuelo 2.0</h2>
-            <p class="gateway-subtitle">Optimización de Foco y Hábitos de Alto Rendimiento • <strong>Carlos Z</strong></p>
+            <p class="gateway-subtitle">De la Reactividad al Flujo de Ejecución y Escala • <strong>Carlos Zoñez</strong></p>
 
             <form class="gateway-form" onsubmit="handleClientAuth(event)">
                 <div class="gateway-input-group">
@@ -158,15 +192,18 @@
             <div class="brand">
                 <div class="brand-logo">🎯</div>
                 <div class="brand-title">
-                    <h1>Plan de Vuelo 2.0</h1>
-                    <p>Optimización de Foco y Hábitos de Alto Rendimiento • Carlos Z</p>
+                    <h1>Plan de Vuelo 2.0 • Carlos Zoñez</h1>
+                    <p>Co-fundador La Marca 33 • Paternidad Presente • Trabajo Fijo (09:30-13:30)</p>
                 </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                 <div class="meta-badge">
                     <span class="dot"></span>
-                    <span>Productividad • Time Blocking • Presupuesto 50/30/20</span>
+                    <span>Gimnasio AM • Time Blocking • Estandarización Eventos • WIP=2</span>
                 </div>
+                <a href="planes/carlos/04_Imprimibles_Fisicos/Hub_Imprimibles_Carlos.html" target="_blank" class="btn-schedule-action" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); color:#fff; border-color:#444;">
+                    <i class="fa-solid fa-print"></i> Hub Imprimibles
+                </a>
                 <button class="btn-portal-lock" onclick="lockClientPortal()">
                     <i class="fa-solid fa-lock"></i> Bloquear
                 </button>
@@ -178,11 +215,20 @@
             <button class="tab-btn active" onclick="switchTab('tab-overview')">
                 <i class="fa-regular fa-compass"></i> Diagnóstico & Estructura
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-herramientas')">
+            <button class="tab-btn" onclick="switchTab('tab-horario')">
+                <i class="fa-solid fa-clock"></i> Mapeador 24H
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-imprimibles')">
+                <i class="fa-solid fa-file-lines"></i> Imprimibles Físicos
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-kanban')">
+                <i class="fa-solid fa-table-columns"></i> Tablero de Foco (WIP=2)
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-herramientas')">
                 <i class="fa-solid fa-toolbox"></i> Kit de Herramientas
             </button>
-            <button class="tab-btn " onclick="switchTab('tab-accion')">
-                <i class="fa-solid fa-bolt"></i> Plan 24h & Límites
+            <button class="tab-btn" onclick="switchTab('tab-accion')">
+                <i class="fa-solid fa-bolt"></i> Plan 24h & Antipatrones
             </button>
         </nav>
 
@@ -190,41 +236,244 @@
         <div id="tab-overview" class="tab-content active">
             <div class="diagnostic-box">
                 <div class="hero-tea-badge">
-                    <i class="fa-solid fa-dna"></i> Diagnóstico Humano & Estructura Personal
+                    <i class="fa-solid fa-bullseye"></i> Diagnóstico Humano & Estructura Personal
                 </div>
-                <h3><span>El Estado Actual: Soberanía Operativa & Foco</span></h3>
+                <h3><span>El Estado Actual: Soberanía Operativa, Paternidad & Escala</span></h3>
                 <p>
-                    Plan de Vuelo personalizado diseñado para blindar tu tiempo, eliminar la sobrecarga y construir resultados sostenibles.
+                    Carlos, este Plan de Vuelo 2.0 está diseñado para sistematizar tu día a día, equilibrar tu rol como papá, proteger tus mañanas de entrenamiento físico, cumplir con excelencia tu empleo de horario fijo (09:30 a 13:30) y escalar la rentabilidad de <strong>La Marca 33</strong> sin caer en la saturación.
                 </p>
             </div>
 
-            
+            <!-- METRIC STATS -->
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-val" style="color: #3b82f6;">09:30 – 13:30</div>
+                    <div class="stat-lbl">Trabajo Fijo Mañana</div>
+                    <p style="font-size:0.75rem; color:#888;">Ventana matutina estable. Tardes protegidas para crianza y proyectos.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" style="color: #10b981;">3 Días / Sem</div>
+                    <div class="stat-lbl">Gimnasio "Arma del Día"</div>
+                    <p style="font-size:0.75rem; color:#888;">07:30 a 08:45 AM antes del trabajo. Mochila lista la noche anterior.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" style="color: #06b6d4;">1 Hora Diaria</div>
+                    <div class="stat-lbl">Vaciado Mental con Diego</div>
+                    <p style="font-size:0.75rem; color:#888;">Time blocking fijo para descargar ideas, destrabar cuellos de botella y priorizar.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" style="color: #f59e0b;">WIP = 2</div>
+                    <div class="stat-lbl">Límite de Foco Simultáneo</div>
+                    <p style="font-size:0.75rem; color:#888;">Máximo 2 prioridades en ejecución simultánea para eliminar dispersión.</p>
+                </div>
+            </div>
 
+            <!-- CLINICAL OPERATIONAL BREAKDOWN -->
             <div class="grid-2">
-                
+                <div class="card">
+                    <h3 class="section-title"><span>Pilares del Diagnóstico Humano</span></h3>
+                    <ul class="custom-list">
+                        <li><strong>👨‍👧 Paternidad & Contexto Vital:</strong> Vives con tu mamá tras la separación. Tu gran ancla innegociable es compartir y estar presente todos los días posibles con tu hija pequeña, protegiendo las tardes.</li>
+                        <li><strong>⚡ Rutina Mañanera ("Arma del Día"):</strong> Tu trabajo fijo es de 09:30 a 13:30. Para no postergar tu bienestar, el gimnasio se instala antes de entrar (07:30 a 08:45, 3 veces por semana).</li>
+                        <li><strong>🎧 La Marca 33 (>200 Eventos):</strong> Productora y colectivo de música electrónica consolidado en Concepción. Cuentas con activos propios completos (sonido y mezcla). Motor probado con enorme potencial comercial.</li>
+                        <li><strong>🎂 Estandarización de Cumpleaños:</strong> Los cumpleaños y eventos privados son tu producto más paquetizable. Dejar de cotizar al ojo y definir 3 tramos fijos (<50, 50-120, >120 personas) para blindar el margen neto.</li>
+                        <li><strong>🚐 Plan Logístico de Activos:</strong> Hoja de ruta para cotizar reparación del auto actual, venderlo y adquirir un furgón comercial para optimizar la carga y traslado seguro de equipamiento.</li>
+                    </ul>
+                </div>
 
                 <div class="card">
-                    <h3 class="section-title"><span>Diagnóstico Estratégico de Recursos</span></h3>
+                    <h3 class="section-title"><span>Acuerdos de Trabajo Inmediatos</span></h3>
                     <ul class="custom-list">
-                        <li><strong>🎯 Enfoque Central:</strong> Eliminar el cuello de botella principal y proteger la energía biológica.</li>
-                        <li><strong>🛡️ Protección WIP:</strong> Limitar estrictamente las tareas en ejecución a 2 simultáneas para evitar parálisis.</li>
-                        <li><strong>📈 Medición de Avance:</strong> Avance por microacciones diarias sostenidas sin juicio moral.</li>
+                        <li><strong>1. Bloque Diario de Vaciado (1h):</strong> Espacio de descarga mental estructurado con Diego para vaciar frentes abiertos y procesarlos en Kanban.</li>
+                        <li><strong>2. Cero Fricción en el Gimnasio:</strong> Dejar la mochila armada y la ropa lista la noche anterior; levantarse directo a ejecutar.</li>
+                        <li><strong>3. Alianzas Estratégicas:</strong> Integrar productos complementarios en eventos (como alfajores Risalfajores o vitrina de emprendedores) para diversificar ingresos.</li>
+                        <li><strong>4. Cero Compromisos a Pérdida:</strong> Toda fecha debe cubrir costos de traslado, horas hombre y margen operativo mínimo.</li>
                     </ul>
+                </div>
+            </div>
+
+            <!-- FODA PERSONALIZADO -->
+            <div class="card" style="margin-top: 1.5rem;">
+                <h3 class="section-title"><span>Diagnóstico Estratégico FODA Personalizado</span></h3>
+                <div class="foda-grid">
+                    <div class="foda-box f-box">
+                        <h4 style="color:#10b981;"><i class="fa-solid fa-star"></i> Fortalezas (Tus Motores)</h4>
+                        <ul>
+                            <li>• Más de 200 eventos realizados con La Marca 33; reputación y validación comprobada.</li>
+                            <li>• Control total de equipamiento propio de mezcla y amplificación.</li>
+                            <li>• Movilidad autónoma actual para traslado de equipos.</li>
+                            <li>• Resiliencia y alto compromiso en el cumplimiento de fechas.</li>
+                        </ul>
+                    </div>
+                    <div class="foda-box d-box">
+                        <h4 style="color:#f59e0b;"><i class="fa-solid fa-triangle-exclamation"></i> Debilidades (Frenos Internos)</h4>
+                        <ul>
+                            <li>• Dispersión en la mañana y dificultad histórica para sostener el gimnasio temprano.</li>
+                            <li>• Eventos cotizados al ojo que en el pasado terminaron en margen cero o pérdida.</li>
+                            <li>• Dependencia mecánica del automóvil actual antes de migrar al furgón.</li>
+                            <li>• Carga cognitiva al sostener múltiples frentes abiertos en la cabeza.</li>
+                        </ul>
+                    </div>
+                    <div class="foda-box o-box">
+                        <h4 style="color:#3b82f6;"><i class="fa-solid fa-arrow-trend-up"></i> Oportunidades (Palancas)</h4>
+                        <ul>
+                            <li>• Estandarización de paquetes para cumpleaños privados por cantidad de personas.</li>
+                            <li>• Bloque de oro matutino (07:30 - 08:45) como ancla de alta energía para el día.</li>
+                            <li>• Vitrina comercial colaborativa con Risalfajores y otros emprendimientos locales.</li>
+                            <li>• Compra del furgón comercial para triplicar la capacidad logística.</li>
+                        </ul>
+                    </div>
+                    <div class="foda-box a-box">
+                        <h4 style="color:#ef4444;"><i class="fa-solid fa-shield-virus"></i> Amenazas (Riesgos a Blindar)</h4>
+                        <ul>
+                            <li>• Desgaste físico por mala administración del descanso entre trabajo, eventos y familia.</li>
+                            <li>• Fuga de dinero por no calcular costos fijos mínimos de operación y desgaste de sonido.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- TAB CONTENT: HORARIO 24H -->
+        <div id="tab-horario" class="tab-content">
+            <div class="card">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
+                    <span style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff;">
+                        ⏰ Mapeador Semanal 24 Horas • Carlos Zoñez
+                    </span>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right: 4px;">
+                            <i class="fa-solid fa-circle" style="font-size:7px;"></i> Auto-guardado en tu navegador
+                        </span>
+                        <button class="btn-schedule-action" id="btn-manual-save-schedule" onclick="manualSaveSchedule()" style="background: #ffffff; color: #000000; font-weight: 800;">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Horario
+                        </button>
+                        <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
+                        <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG('Carlos Zoñez')">📸 Exportar Imagen (PNG)</button>
+                        <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
+                    </div>
+                </div>
 
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+                    Pinta tus bloques semanales para proteger tu <strong>Gimnasio AM (07:30 - 08:45)</strong>, tu <strong>Trabajo Fijo (09:30 - 13:30)</strong>, las tardes con tu <strong>hija</strong>, la operación de <strong>La Marca 33</strong> y la hora diaria de coordinación con Diego.
+                </p>
 
+                <!-- SELECTOR DESPLEGABLE DE MIS CALENDARIOS GUARDADOS -->
+                <div id="schedule-calendar-bar-container" class="schedule-calendar-bar-container">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; flex:1;">
+                        <span style="font-size:0.82rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-calendar-days" style="color:var(--primary, #10b981);"></i> Mis Calendarios:
+                        </span>
+                        <select id="schedule-calendar-select" class="schedule-calendar-select" onchange="handleCalendarSelectChange(this.value)">
+                        </select>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn-schedule-action" onclick="openSaveAsNewCalendarModal()" style="background:rgba(16,185,129,0.12); color:#10b981; border:1px solid rgba(16,185,129,0.35); font-weight:700;">
+                            <i class="fa-solid fa-folder-plus"></i> + Guardar Semana Actual
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-merge-calendar" onclick="openMergeCalendarsModal()" style="background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.35); font-weight:700;">
+                            <i class="fa-solid fa-layer-group"></i> Solapar / Fusionar
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="openRenameCalendarModal()" style="color:#ccc;">
+                            <i class="fa-solid fa-pen"></i> Renombrar
+                        </button>
+                        <button type="button" class="btn-schedule-action" id="btn-delete-active-calendar" onclick="deleteActiveCalendar()" style="color:#f87171; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);">
+                            <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
 
+                <div class="schedule-controls">
+                    <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
+                    <div class="brush-selector" id="brush-selector-container"></div>
+                </div>
 
+                <div class="schedule-scroll-wrapper" id="schedule-export-container">
+                    <table class="schedule-grid-table" id="schedule-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Hora</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
+        <!-- TAB CONTENT: IMPRIMIBLES FÍSICOS -->
+        <div id="tab-imprimibles" class="tab-content">
+            <div class="diagnostic-box">
+                <div class="hero-tea-badge">
+                    <i class="fa-solid fa-print"></i> Dopamina Analógica & Fichas de Mano
+                </div>
+                <h3><span>Hub Único de Imprimibles Físicos • Carlos Zoñez</span></h3>
+                <p>
+                    Documentos estandarizados en formato Carta/A4 listos para imprimir en 1 solo clic. Mantén tu rutina en papel para blindar tu foco y reducir la dependencia de pantallas.
+                </p>
+            </div>
 
-        
+            <div class="grid-2">
+                <div class="printable-card">
+                    <div>
+                        <h4 style="color:#fff; font-size:1.05rem; font-weight:800; margin-bottom:4px;">
+                            📑 Hub Maestro de Imprimibles (Cuadernillo Completo)
+                        </h4>
+                        <p style="font-size:0.8rem; color:#aaa;">
+                            Consolida todas tus herramientas clínicas y planificadores en un único visor imprimible interactivo con barra de navegación.
+                        </p>
+                    </div>
+                    <a href="planes/carlos/04_Imprimibles_Fisicos/Hub_Imprimibles_Carlos.html" target="_blank" class="btn-schedule-action" style="background:#fff; color:#000; font-weight:800; text-decoration:none; padding:8px 16px; white-space:nowrap;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Hub
+                    </a>
+                </div>
 
-        
+                <div class="printable-card">
+                    <div>
+                        <h4 style="color:#10b981; font-size:1.05rem; font-weight:800; margin-bottom:4px;">
+                            ✅ Checklist de Acción Imperfecta & Rutina Diaria
+                        </h4>
+                        <p style="font-size:0.8rem; color:#aaa;">
+                            Hoja de seguimiento diario: Rutina de Mañana (Gimnasio), Tarde (Hija, Trabajo y La Marca 33) y tabla semanal de hábitos.
+                        </p>
+                    </div>
+                    <a href="planes/carlos/04_Imprimibles_Fisicos/01_Checklist_Rutina_Accion_Imperfecta.html" target="_blank" class="btn-schedule-action" style="background:#10b981; color:#000; font-weight:800; text-decoration:none; padding:8px 16px; white-space:nowrap;">
+                        <i class="fa-solid fa-print"></i> Ver Ficha
+                    </a>
+                </div>
+            </div>
+        </div>
 
+        <!-- TAB CONTENT: KANBAN GTD (WIP=2) -->
+        <div id="tab-kanban" class="tab-content">
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1rem;">
+                    <div>
+                        <h3 style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff; margin:0 0 4px 0;">
+                            📌 Tablero de Foco Kanban GTD (Máximo 2 Tareas a la Vez)
+                        </h3>
+                        <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">
+                            Límite estricto <strong>WIP = 2</strong> en la columna "En Proceso". No puedes tomar otra tarea sin antes terminar o reubicar una activa.
+                        </p>
+                    </div>
+                    <button class="btn-schedule-action" onclick="openNewTaskModal()" style="background:#fff; color:#000; font-weight:800;">
+                        <i class="fa-solid fa-plus"></i> + Nueva Tarea
+                    </button>
+                </div>
 
+                <div class="kanban-board-container" id="kanban-board">
+                    <!-- Las columnas se renderizan dinámicamente con kanban-engine.js -->
+                </div>
+            </div>
+        </div>
 
         <!-- TAB CONTENT: HERRAMIENTAS -->
         <div id="tab-herramientas" class="tab-content">
@@ -237,44 +486,47 @@
             <div class="grid-2">
                 <div class="card">
                     <div class="tool-box">
-                        <h3>1. Time Blocking & Blindaje de Foco</h3>
-                        <p class="tool-meta">Gestión del Tiempo & Protección de Batería</p>
-                        <p class="tool-desc">Delimita ventanas protegidas de trabajo continuo y descansos libres de culpa.</p>
+                        <h3>1. Rutina "Arma del Día" (Time Blocking Matutino)</h3>
+                        <p class="tool-meta">Gimnasio 07:30 a 08:45 AM • Fricción Cero</p>
+                        <p class="tool-desc">Entrenar antes de ingresar a tu trabajo fijo (09:30). La mochila y ropa deben quedar preparadas la noche anterior para levantarte a ejecutar en automático.</p>
                         <div class="image-preview">
                             <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Time Blocking" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="tool-box">
-                        <h3>2. Matriz de Eisenhower (Priorización)</h3>
-                        <p class="tool-meta">Urgente vs Importante</p>
-                        <p class="tool-desc">Filtra las tareas críticas y delega o elimina los falsos incendios que drenan tu día.</p>
-                        <div class="image-preview">
-                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
-                            <p>🔍 Haz clic para ampliar diagrama</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="tool-box">
-                        <h3>3. Vaciado Mental GTD (Cero Pantallas)</h3>
-                        <p class="tool-meta">Descarga Cognitiva & Conciliación del Sueño</p>
-                        <p class="tool-desc">Vaciado análogo nocturno en papel para atrapar pendientes y descansar en paz.</p>
+                        <h3>2. Estandarización de La Marca 33</h3>
+                        <p class="tool-meta">Paquetes de Cumpleaños & Eventos Privados</p>
+                        <p class="tool-desc">Paquetizar servicios de DJ + Sonido por tramos de asistentes (<50, 50-120, >120) para blindar un margen neto mínimo y jamás operar a pérdida.</p>
                         <div class="image-preview">
                             <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="GTD" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="tool-box">
-                        <h3>4. La Ventana de Johari (Alineación)</h3>
-                        <p class="tool-meta">Comunicación & Autopercepción</p>
-                        <p class="tool-desc">Alinea lo que tú ves con lo que otros perciben para construir acuerdos transparentes.</p>
+                        <h3>3. Plan de Renovación de Activo (Logística)</h3>
+                        <p class="tool-meta">Vehículo Comercial para Equipos</p>
+                        <p class="tool-desc">Hoja de ruta para reparar fallas mecánicas del auto actual, venderlo en precio justo y comprar un furgón para facilitar el transporte seguro de sonido.</p>
                         <div class="image-preview">
-                            <img src="assets/img/herramientas/La Ventana de Johari.webp" data-fallback="assets/img/herramientas/La Ventana de Johari.png" alt="Ventana de Johari" onclick="openLightbox(this.src)">
+                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
+                            <p>🔍 Haz clic para ampliar diagrama</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="tool-box">
+                        <h3>4. Matriz de Eisenhower (Foco Ejecutivo)</h3>
+                        <p class="tool-meta">Urgente vs Importante</p>
+                        <p class="tool-desc">Filtra las urgencias del día a día para que no devoren lo realmente importante: la salud, tu hija y el crecimiento estructurado de tu negocio.</p>
+                        <div class="image-preview">
+                            <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz Eisenhower" onclick="openLightbox(this.src)">
                             <p>🔍 Haz clic para ampliar diagrama</p>
                         </div>
                     </div>
@@ -282,21 +534,25 @@
             </div>
         </div>
 
-
-
         <!-- TAB CONTENT: ACTION & ANTIPATTERNS -->
         <div id="tab-accion" class="tab-content">
             <div class="grid-2">
                 <div class="card">
                     <h3 class="section-title"><span>Tu Plan de Acción: Próximas 24 Horas</span></h3>
                     <ul class="custom-list">
-                        <li><strong>1. Ejecutar el Paso Cero de 5 minutos.</strong></li><li><strong>2. Montar tu tablero visual en pared o escritorio.</strong></li><li><strong>3. Bloquear tu Cita Semanal de Gestión.</strong></li>
+                        <li><strong>1. Completar Sondeo Maestro:</strong> Responder el enlace del sondeo enviado por Diego para levantar el diagnóstico cuantitativo detallado.</li>
+                        <li><strong>2. Bloque de Coordinación Diaria:</strong> Agendar 1 hora diaria de time blocking fija para vaciado mental y seguimiento con Diego.</li>
+                        <li><strong>3. Definir los 3 Días de Gimnasio:</strong> Fijar qué 3 mañanas de la semana se bloquearán de 07:30 a 08:45 para el entrenamiento.</li>
+                        <li><strong>4. Listar Pendientes Mecánicos del Auto:</strong> Anotar qué arreglos específicos necesita el vehículo y solicitar cotización.</li>
+                        <li><strong>5. Borrador de Paquetes de Cumpleaños:</strong> Escribir los 3 tramos base de invitados (<50, 50-120, >120) para estandarizar cotizaciones de La Marca 33.</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Foco)</span></h3>
+                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de la Acción)</span></h3>
                     <ul class="custom-list danger-list">
-                        <li>🚫 Multitarea tóxica sin límite WIP.</li><li>🚫 Acostarse con pendientes en la cabeza sin vaciado análogo.</li><li>🚫 Postergar conversaciones difíciles por miedo al conflicto.</li>
+                        <li>🚫 <strong>Entrenar "Cuando Quede Tiempo":</strong> Dejar el gimnasio para la tarde o la noche, donde la energía y el tiempo ya están consumidos por el trabajo y la familia.</li>
+                        <li>🚫 <strong>Cotizar Eventos al Ojo:</strong> Dar precios sin calcular previamente traslados, horas de montaje y margen de seguridad, arriesgando ir a pérdida.</li>
+                        <li>🚫 <strong>Postergar el Arreglo del Auto:</strong> Dejar estar fallas mecánicas hasta que el auto quede inoperable y frene la logística de La Marca 33.</li>
                     </ul>
                 </div>
             </div>
@@ -377,31 +633,35 @@
         window.CLIENT_CONFIG = {
             clientId: "carlos",
             clientUser: "@carlos.gestion",
-            clientName: "Carlos Z",
+            clientName: "Carlos Zoñez",
             clientPIN: "AH-Carlos5829",
-            masterPIN: "AH-Master9132"
+            masterPIN: "AH-Master9132",
+            validPins: ["AH-Carlos5829", "carlos5829", "carlos2026", "2026", "carzonez1992", "AH-Master9132"]
         };
 
-        window.CLIENT_SCHEDULE_CATEGORIES = [];
-        window.CLIENT_KANBAN_DEFAULT = [];
+        window.CLIENT_SCHEDULE_CATEGORIES = [
+            { id: "gimnasio", label: "Gimnasio AM (Arma del Día)", color: "#10b981", tag: "GYM" },
+            { id: "trabajo_fijo", label: "Trabajo Fijo (09:30 - 13:30)", color: "#3b82f6", tag: "LAB" },
+            { id: "almuerzo", label: "Almuerzo & Recarga", color: "#f59e0b", tag: "ALM" },
+            { id: "coordinacion_diego", label: "Vaciado & Coordinación Diego (1h)", color: "#06b6d4", tag: "AH" },
+            { id: "paternidad", label: "Paternidad & Cuidado de Hija", color: "#ec4899", tag: "HIJA" },
+            { id: "marca33", label: "La Marca 33 & Eventos", color: "#8b5cf6", tag: "M33" },
+            { id: "sueno", label: "Sueño & Descanso", color: "#334155", tag: "ZZZ" },
+            { id: "libre", label: "Tiempo Libre / Personal", color: "#64748b", tag: "LIB" }
+        ];
 
-        const voiceScenarios = [];
-        function selectClientVoiceScenario(scId) {
-            const sc = voiceScenarios.find(s => s.id === scId);
-            if (sc) {
-                const p = document.getElementById("voice-guion-text");
-                if (p) p.innerText = sc.guion;
-            }
-        }
-
-        function copyVoiceGuion() {
-            const p = document.getElementById("voice-guion-text");
-            if (p) {
-                navigator.clipboard.writeText(p.innerText).then(() => {
-                    alert("¡Guion copiado al portapapeles!");
-                });
-            }
-        }
+        window.CLIENT_KANBAN_DEFAULT = [
+            { id: 1, text: "Cotizar furgón comercial para traslado de equipos de sonido", column: "backlog", color: "#8b5cf6", clientTag: "M33" },
+            { id: 2, text: "Diseñar vitrina colaborativa para emprendedores en eventos de La Marca 33", column: "backlog", color: "#8b5cf6", clientTag: "M33" },
+            { id: 3, text: "Explorar alianza con Risalfajores para venta en próximas fiestas", column: "backlog", color: "#10b981", clientTag: "M33" },
+            { id: 4, text: "Completar Sondeo Maestro en el portal para diagnóstico cuantitativo", column: "next", color: "#3b82f6", clientTag: "AH" },
+            { id: 5, text: "Listar pendientes mecánicos del auto para cotización de arreglo", column: "next", color: "#f59e0b", clientTag: "LOG" },
+            { id: 6, text: "Definir los 3 días fijos de gimnasio matutino (07:30 - 08:45)", column: "next", color: "#10b981", clientTag: "HAB" },
+            { id: 7, text: "Bloquear 1h diaria fija de vaciado mental con Diego", column: "in-progress", color: "#06b6d4", clientTag: "AH" },
+            { id: 8, text: "Borrador de 3 tramos de paquetes para cumpleaños (<50, 50-120, >120)", column: "in-progress", color: "#8b5cf6", clientTag: "M33" },
+            { id: 9, text: "Fijar horario de empleo de mañana (09:30 - 13:30)", column: "done", color: "#64748b", clientTag: "LAB" },
+            { id: 10, text: "Inventario de equipos propios de sonido y mezcla completo", column: "done", color: "#64748b", clientTag: "M33" }
+        ];
 
         function openLightbox(src) {
             const modal = document.getElementById("lightbox-modal");
@@ -431,9 +691,9 @@
     </script>
 
     <!-- MOTORES MODULARES -->
-    <script src="js/portal-gateway.js?v=3.2"></script>
-    <script src="js/schedule-engine.js?v=3.2"></script>
-    <script src="js/kanban-engine.js?v=3.2"></script>
-    <script src="js/whatsapp-widget.js?v=3.2"></script>
+    <script src="js/portal-gateway.js?v=3.3"></script>
+    <script src="js/schedule-engine.js?v=3.3"></script>
+    <script src="js/kanban-engine.js?v=3.3"></script>
+    <script src="js/whatsapp-widget.js?v=3.3"></script>
 </body>
 </html>

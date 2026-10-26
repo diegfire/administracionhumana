@@ -1,0 +1,1151 @@
+{
+  "schema_version": "4.0.0",
+  "generated_at": "2026-10-26T16:00:08.425097",
+  "total_semillas": 46,
+  "semillas": [
+    {
+      "id": "diagnostico_estructura",
+      "codigo": "P1-01",
+      "piso": 1,
+      "titulo_herramienta": "Auditoría de Estructura 168 Horas & Rueda de la Vida",
+      "metafora_mentor_sultor": "Termómetro de Signos Vitales: La Rueda que No Rueda",
+      "gancho_reel_pregunta": "¿Si tu vida fuera un carruaje y estas 8 dimensiones fueran la rueda de madera, el viaje sería suave o terminarías volcado al primer bache?",
+      "dolor_que_cura": "El agotamiento crónico, la sensación de que el negocio se \"come\" tu vida personal y el abandono de lo que realmente importa.",
+      "elevator_pitch": "¿Te ha pasado que el negocio va como avión pero hace meses que no juegas con tus hijos o que te duele hasta el alma porque no has pisado un gimnasio? La Rueda de la Vida es un chequeo preventivo, como llevar el auto a la revisión técnica antes de que te deje botado en la carretera. Te permite ver, en un dibujo simple, qué áreas de tu vida están 'pinchadas' para que puedas inflarlas antes de que el carro deje de rodar. Es el permiso para ser humano mientras eres jefe.",
+      "red_flags_carrusel": [
+        "Brecha superior a 5 puntos entre trabajo y salud/descanso.",
+        "Sensación de colapso y culpabilidad constante por descuidar áreas esenciales."
+      ],
+      "antipatrones_carrusel": [
+        "La \"Rueda Perfecta\": Intentar que todo sea",
+        "¡Imposible! Ni el Papa tiene todo en",
+        "El objetivo es que la rueda pueda girar , no que sea un círculo perfecto.",
+        "Mentirse en el Examen: Ponerse un 8 en salud porque \"no me he muerto todavía\". Sé sincero, el clown sabe que el primer paso para la gracia es aceptar la propia torpeza.",
+        "Comparar tu Rueda: Mirar la rueda de otro emprendedor en Instagram. Tu rueda es tuya, con tus baches y tus caminos.",
+        "Hacerla y Olvidarla: Es un diagnóstico vivo. Si la haces una vez y la guardas, es como pesarse una vez y pretender que la dieta dure 10 años.",
+        "Parálisis por Análisis: Quedarse sufriendo por el puntaje bajo. El puntaje bajo no es un castigo, es una oportunidad de mejora (un \"gap\" que cerrar)."
+      ],
+      "paso_cero_5min_cta": "Identificar únicamente las dos dimensiones con menor puntaje y definir 1 micro-acción de 5 minutos esta semana para cada una.",
+      "regla_de_oro_cierre": "Una vida armónica no necesita un 10 perfecto en todas las áreas; necesita ser lo bastante redonda para rodar sin golpes traumáticos.",
+      "kpi_promesa": "Brecha de redondez (diferencia max - min) menor a 4 puntos"
+    },
+    {
+      "id": "mapeador_24h",
+      "codigo": "P1-02",
+      "piso": 1,
+      "titulo_herramienta": "Mapeador Semanal de Horarios 24H por Bloques",
+      "metafora_mentor_sultor": "El Tablero Visual de Soberanía del Tiempo (168 Horas)",
+      "gancho_reel_pregunta": "¿Si miramos tu semana como un mosaico de 24 horas, tus horas de descanso y concentración están blindadas en color?",
+      "dolor_que_cura": "Cura la sensación de que \"las horas se escapan entre los dedos\", la ceguera de descanso y la culpa de no saber en qué se fue la semana.",
+      "elevator_pitch": "Tu semana tiene exactamente 168 horas: ni una más, ni una menos. La diferencia entre vivir agobiado o en paz no es tener más tiempo, sino ver tu semana como un mapa de colores donde tú decides la frontera de cada territorio. El Mapeador 24H te devuelve el timón para que dejes de vivir de las sobras de tu propia agenda.",
+      "red_flags_carrusel": [
+        "Días enteros sin hora de inicio ni fin.",
+        "Menos de 6 horas de sueño regular por intentar abarcar pendientes."
+      ],
+      "antipatrones_carrusel": [
+        "El Horario del Robot: Llenar cada minuto de 07:00 a 23:00 con tareas sin dejar margen de maniobra ni imprevistos.",
+        "El Mapeador Decorativo: Pintar un horario ideal perfecto y abandonarlo al primer día de estrés.",
+        "Negociar el Sueño: Recortar horas de descanso para \"alcanzar a hacer más cosas\"."
+      ],
+      "paso_cero_5min_cta": "Pintar únicamente 2 cajitas fijas: Hora de Despertar y Hora Sagrada de Apagar Pantallas.",
+      "regla_de_oro_cierre": "Primero se blindan las horas que te mantienen vivo y en paz; el trabajo se diseña dentro del espacio que queda, nunca al revés.",
+      "kpi_promesa": "Índice de Soberanía Temporal (IST >= 70%)"
+    },
+    {
+      "id": "time_blocking_flexible",
+      "codigo": "P1-03",
+      "piso": 1,
+      "titulo_herramienta": "Time Blocking Flexible & Ventanas de Oro",
+      "metafora_mentor_sultor": "Ventanas de Oro de 45 a 90 Minutos Sin Interrupciones",
+      "gancho_reel_pregunta": "¿Tienes al menos un bloque de 60 minutos al día donde esté prohibido responder llamadas o WhatsApp?",
+      "dolor_que_cura": "La sensación de ser un \"esclavo del imprevisto\", el agotamiento de llegar al viernes sin haber tocado tus proyectos importantes y el estrés de sentir que tu tiempo le pertenece a todos menos a ti. 2.",
+      "elevator_pitch": "Imagina que tu tiempo es como el espacio en una maleta. Si tiras todo adentro al azar, nada cierra y todo se arruga. El Time Blocking es el arte de poner 'cajas' dentro de esa maleta: una caja para trabajar, otra para descansar y otra para crear. Es la herramienta que te permite decir 'ahora no' a las distracciones sin sentir culpa, porque ya decidiste cuándo les vas a decir que sí. Es, sencillamente, recuperar el mando de tu vida.\" 4.",
+      "red_flags_carrusel": [
+        "Días enteros sin un solo bloque de 45 minutos continuos de foco.",
+        "Reescribir listas de pendientes sin asignarles espacio en el calendario."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Efecto Tetris\": Llenar cada minuto del día sin dejar espacios en blanco. La vida pasa, los imprevistos llegan y si no hay aire, la agenda explota.",
+        "\"El Bloque Fantasma\": Poner un bloque que diga \"Trabajar\". ¿En qué",
+        "Si no tiene nombre y apellido, tu cerebro buscará una distracción.",
+        "\"Ser un Robot Rígido\": Frustrarse porque un bloque se movió. El Time Blocking es una guía, no una celda. Si el payaso se cae, se ríe y se reacomoda.",
+        "\"Ignorar tu Energía\": Poner la tarea más difícil cuando sabes que a esa hora te da sueño. Bloquea según tu ritmo biológico.",
+        "\"El Calendario de Mentira\": Llenar el calendario pero seguir respondiendo cada notificación de WhatsApp apenas suena. El bloque requiere fronteras."
+      ],
+      "paso_cero_5min_cta": "Blindar 45 minutos mañana en la mañana para tu tarea más importante en modo avión.",
+      "regla_de_oro_cierre": "Si no asignas un bloque con nombre y apellido en tu calendario para tus metas, la agenda de otros lo ocupará por ti.",
+      "kpi_promesa": "Al menos 8 a 12 Ventanas de Oro completadas por semana"
+    },
+    {
+      "id": "gtd_vaciado_mental",
+      "codigo": "P1-04",
+      "piso": 1,
+      "titulo_herramienta": "Getting Things Done (GTD - Fase Capturar y Procesar)",
+      "metafora_mentor_sultor": "El Cubo de Basura Mental y Vaciado de RAM Cerebral",
+      "gancho_reel_pregunta": "¿Confías en tu memoria biológica para recordar todo lo que tienes pendiente, o tienes un sistema externo 100% confiable donde guardas todo?",
+      "dolor_que_cura": "El insomnio por \"pendientes\" que aparecen a las 3 AM, la sensación de estar siempre \"apagando incendios\" y la angustia de sentir que la vida se te escapa entre listas de tareas infinitas que nunca se terminan. 2.",
+      "elevator_pitch": "¿Alguna vez has sentido que tu cabeza es como una computadora con 50 pestañas abiertas y el ventilador a punto de explotar? GTD es el botón de 'cerrar todo' que te permite guardar cada pestaña en su lugar correcto para que puedas concentrarte solo en una. Es dejar de 'recordar' para empezar a 'hacer'. Te prometo que, cuando vacíes tu mente en este sistema, vas a volver a respirar hondo, sabiendo que nada importante se te va a pasar.\" 4.",
+      "red_flags_carrusel": [
+        "Más de 20 pendientes retenidos en la memoria sin registrar.",
+        "Sensación de parálisis por exceso de frentes abiertos (Efecto Zeigarnik)."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Coleccionista de Listas\": Anotar todo pero nunca Aclarar qué hay que hacer. Tienes mil listas que solo sirven para darte más ansiedad.",
+        "\"La Herramienta de Oro\": Gastar tres semanas buscando la App perfecta antes de empezar. GTD funciona con una servilleta y un lápiz.",
+        "\"Olvidar la Revisión\": Si no revisas tu sistema una vez por semana, dejarás de confiar en él y volverás a usar tu memoria (y a estresarte).",
+        "\"Tareas Elefante\": Escribir \"Hacer el plan de marketing\". Eso no es una tarea, es un proyecto. Si no hay un verbo de acción física, no lo vas a hacer nunca.",
+        "\"La Regla de los 2 Minutos al Revés\": Usar la regla de \"si toma menos de 2 minutos hazlo ya\" para interrumpir tareas importantes todo el día. (¡Usa el Batching para esas!)."
+      ],
+      "paso_cero_5min_cta": "Anotar los 5 pendientes más ruidosos en la bandeja de entrada y ejecutar de inmediato 1 que tome menos de 2 minutos.",
+      "regla_de_oro_cierre": "Tu mente es una fábrica de ideas, no un disco duro de almacenamiento de pendientes.",
+      "kpi_promesa": "Bandeja de entrada a cero (InBox Zero Mental) al menos una vez por semana"
+    },
+    {
+      "id": "kanban_gtd_wip2",
+      "codigo": "P1-05",
+      "piso": 1,
+      "titulo_herramienta": "Kanban Minimalista con Límite WIP=2",
+      "metafora_mentor_sultor": "El Embudo de Sola-Ejecución (Máximo 2 Tareas Activas)",
+      "gancho_reel_pregunta": "¿Cuántas tareas tienes abiertas en este instante y cuál es la ÚNICA que vas a cerrar antes de las 14:00?",
+      "dolor_que_cura": "El agobio de tener mil frentes abiertos y ninguno cerrado, la ceguera operativa (no saber en qué está trabajando tu equipo) y el estrés de los \"cuellos de botella\" que aparecen de sorpresa el viernes por la tarde. 2.",
+      "elevator_pitch": "¿Te has sentido alguna vez como si estuvieras empujando un camión cuesta arriba mientras todos te piden cosas nuevas? El Kanban es la herramienta para dejar de empujar y empezar a fluir. Es sacar el trabajo de tu cabeza y ponerlo en la pared para que todos vean qué se está haciendo, qué está trabado y qué terminamos con éxito. Es la diferencia entre estar 'ocupado' y estar 'avanzando'. Menos estrés, más entregas.\" 4.",
+      "red_flags_carrusel": [
+        "Más de 3 proyectos abiertos a la vez sin poder cerrar ninguno.",
+        "Sensación de parálisis ante listas largas de pendientes."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Tablero Cementerio\": Llenarlo de post-its y no moverlos nunca. El Kanban es para que las cosas se muevan, no para que mueran ahí.",
+        "\"Límites de Adorno\": Decir que el límite es 2 pero tener 15 cosas en \"Haciendo\". Te estás mintiendo a ti mismo (y eso duele más que un tropezón de clown).",
+        "\"Tareas Invisibles\": Hacer cosas que no están en el tablero. Si consume tiempo y energía, tiene que tener un post-it.",
+        "\"El Tablero de Castigo\": Usarlo para ver \"quién trabaja menos\". El Kanban es para mejorar el proceso, no para perseguir personas.",
+        "\"Complejidad Innecesaria\": Poner 20 columnas. Empieza con",
+        "Si el payaso no sabe usar 3 pelotas, ¡que no intente con 20!"
+      ],
+      "paso_cero_5min_cta": "Si tienes más de 2 tareas abiertas, devolver todas a 'Por Hacer' excepto una y terminarla antes de abrir otra.",
+      "regla_de_oro_cierre": "Deja de empezar cosas nuevas y empieza a terminar las que tienes abiertas; el cuello de botella es sagrado.",
+      "kpi_promesa": "Límite WIP estrictamente en <= 2 y Tasa de Cierre Diaria"
+    },
+    {
+      "id": "matriz_eisenhower",
+      "codigo": "P1-06",
+      "piso": 1,
+      "titulo_herramienta": "Matriz de Eisenhower (Urgente vs Importante)",
+      "metafora_mentor_sultor": "La Cura para la Urgentitis Crónica: Diferenciar el Incendio del Ensayo",
+      "gancho_reel_pregunta": "¿Cuántas actividades de ayer hiciste por reacción a otros y cuántas planificaste con calma para tu propio bienestar y futuro?",
+      "dolor_que_cura": "La sensación de estar \"corriendo todo el día sin avanzar nada real\", el agotamiento mental de decidir qué hacer primero y la culpa de postergar lo que de verdad hace crecer tu negocio por atender pequeñeces. 2.",
+      "elevator_pitch": "¿Te has sentido como un malabarista al que le lanzan antorchas encendidas mientras intenta leer un libro? La Matriz de Eisenhower es el filtro que te permite soltar las antorchas que no queman y concentrarte en el libro que te enseñará a no quemarte más. Es la herramienta para dejar de reaccionar a los gritos de los demás y empezar a responder a tus propios sueños. Menos incendios, más progreso real.\" 4.",
+      "red_flags_carrusel": [
+        "Días enteros respondiendo mensajes y apagando fuegos sin tocar proyectos estratégicos.",
+        "Sensación de parálisis y caída en scroll infinito (Q4) por saturación de urgencias."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Adicto a la Adrenalina\": Dejar que todo se vuelva urgente (Cuadrante I) para sentir que \"trabajas mucho\". (Spoiler: Solo te estás quemando).",
+        "\"Confundir Ruido con Importancia\": Pensar que porque alguien te escribe en mayúsculas, la tarea es importante. El volumen del grito no define la calidad del mensaje.",
+        "\"Vivir en el Cuadrante IV\": Pasar todo el día \"organizando el escritorio\" o viendo videitos porque te da miedo enfrentar la tarea importante del Cuadrante II.",
+        "\"Delegar sin Soltar\": Decirle a alguien que haga algo pero estar encima de su hombro cada 2 minutos. Eso no es delegar, es estorbar.",
+        "\"El Tablero Estático\": Hacer la matriz una vez y no volver a mirarla. Las prioridades cambian; el filtro debe estar siempre activo."
+      ],
+      "paso_cero_5min_cta": "Elegir 1 sola tarea para Q2 (Bloque de Oro) y ejecutarla en los primeros 30 minutos del día antes de abrir WhatsApp.",
+      "regla_de_oro_cierre": "Lo que es urgente rara vez es importante, y lo que es importante casi nunca es urgente.",
+      "kpi_promesa": "% de tiempo semanal protegido en Q2 (Bloques de Oro)"
+    },
+    {
+      "id": "finanzas_503020",
+      "codigo": "P1-07",
+      "piso": 1,
+      "titulo_herramienta": "Presupuesto y Distribución 50/30/20",
+      "metafora_mentor_sultor": "Tu Blindaje de Solvencia Estratégica: El Oxígeno Financiero en Tres Baldes",
+      "gancho_reel_pregunta": "¿Si tus ingresos se detuvieran por completo mañana, cuántos días o meses podrías pagar tu techo y comida con total tranquilidad?",
+      "dolor_que_cura": "La angustia de llegar a fin de mes en cero, la culpa por gastar en cosas que te gustan y el miedo constante de no estar ahorrando lo suficiente para el futuro del negocio o de tu familia. 2.",
+      "elevator_pitch": "Imagina que dejas de pelear con tu cuenta bancaria y empiezas a tratarla como a un equipo de trabajo. La regla 50/30/20 es un pacto de paz: te da permiso para gastar en lo que amas, te asegura que tus deudas estén cubiertas y, lo más importante, te garantiza que estás construyendo un colchón para dormir tranquilo. Es dejar de sobrevivir al dinero para empezar a dirigirlo.\" 4.",
+      "red_flags_carrusel": [
+        "Necesidades fijas superan el 65% del ingreso líquido.",
+        "Menos de 30 días de fondo de supervivencia en caso de cese de ingresos.",
+        "Sentimiento de culpa recurrente al comprar gustos personales."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Deseo Disfrazado\": Decir que ese celular de última generación es una \"necesidad\" para el trabajo cuando el antiguo todavía funciona perfecto. ¡Cuidado con el auto-engaño!",
+        "\"El Ahorro del Final\": Esperar a que termine el mes para ver si sobra algo para el 20%. (Spoiler: Nunca sobra). Págate a ti primero.",
+        "\"Vivir en el 90/10/0\": Tener necesidades tan altas que no tienes espacio para disfrutar ni para ahorrar. Si tus necesidades pasan del 60%, es hora de aplicar Kaizen u Eliminar gastos con SCAMPER .",
+        "\"La Dieta Financiera Extrema\": Intentar vivir con 0% en \"Deseos\". Te vas a cansar, te vas a frustrar y vas a mandar todo a la punta del cerro en dos meses. El equilibrio es sagrado.",
+        "\"Ignorar los Impuestos\": Aplicar la regla sobre el sueldo bruto. La regla 50/30/20 se hace con el dinero que realmente llega a tu bolsillo (líquido)."
+      ],
+      "paso_cero_5min_cta": "Anotar tus 3 gastos fijos principales (arriendo/dividendo, súper y cuentas) y transferir hoy mismo una micro-suma a una cuenta sin tarjeta de débito.",
+      "regla_de_oro_cierre": "El presupuesto no es para castigarte ni prohibirte vivir; es para darte permiso consciente de disfrutar sin culpa y ahorrar con serenidad.",
+      "kpi_promesa": "Meses de Fondo de Paz acumulados y Ratio de Necesidades <= 50%"
+    },
+    {
+      "id": "tecnica_pomodoro_foco",
+      "codigo": "P1-08",
+      "piso": 1,
+      "titulo_herramienta": "Técnica Pomodoro (Microdosis de Concentración)",
+      "metafora_mentor_sultor": "Entrenar a tu Mente en Bloques de 25 Minutos",
+      "gancho_reel_pregunta": "¿Eres capaz de apagar tu teléfono y trabajar concentrado en una sola cosa por 25 minutos sin interrupción?",
+      "dolor_que_cura": "La \"procrastinación\" por ver tareas demasiado grandes, el agotamiento al final del día por no haber parado ni a tomar agua, y esa sensación de estar \"haciendo de todo\" pero no terminar nada. 2.",
+      "elevator_pitch": "¿Sientes que el día se te escapa entre los dedos y que siempre dejas lo más difícil para mañana? El Pomodoro es el truco para engañar a tu cerebro perezoso. Le dices: 'Solo vamos a trabajar 25 minutos, socio, y después te regalo un recreo'. Es la herramienta para dejar de correr maratones que no terminas y empezar a ganar carreras cortas, cuidando tu energía para que al llegar a casa todavía tengas ganas de jugar con tus hijos o crear algo propio.\" 4.",
+      "red_flags_carrusel": [
+        "Incapacidad de sostener 20 minutos seguidos sin abrir redes o chats.",
+        "Procrastinación de tareas complejas por percibirlas como 'demasiado grandes'."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Pomodoro Infinito\": Ignorar la alarma porque \"estás inspirado\". Si no descansas, el cansancio te pasará la cuenta en la tarde. ¡Respeta el recreo!",
+        "\"El Recreo de Redes Sociales\": Usar los 5 minutos para ver TikTok. Tu cerebro necesita silencio visual, no más información. Camina, mira por la ventana, bosteza.",
+        "\"El Juez de Hierro\": Castigarte si alguien te interrumpió. Si el payaso se cae, se levanta y sigue. Si te interrumpen, anota el pendiente y vuelve a empezar.",
+        "\"Multitarea Encubierta\": Intentar hacer tres cosas en un solo Pomodoro. Es un tomate, no una ensalada. Una sola cosa a la vez.",
+        "\"Obsesión por el Reloj\": Mirar el cronómetro cada 30 segundos. La idea es que te olvides del tiempo y te concentres en la tarea hasta que suene la alarma."
+      ],
+      "paso_cero_5min_cta": "Elegir 1 micro-tarea y encender el temporizador de 25 minutos con el teléfono en silencio boca abajo.",
+      "regla_de_oro_cierre": "Entrena a tu cerebro a sostener 25 minutos de foco limpio con la promesa inviolable de un descanso sin culpa.",
+      "kpi_promesa": "Ciclos Pomodoro Completados por Día"
+    },
+    {
+      "id": "batching_agrupacion_tareas",
+      "codigo": "P1-09",
+      "piso": 1,
+      "titulo_herramienta": "Batching (Procesamiento por Lotes)",
+      "metafora_mentor_sultor": "Agrupar Tareas Parecidas para no Freír tu Cerebro",
+      "gancho_reel_pregunta": "¿Atiendes cada distracción en el segundo en que aparece, o agrupas tus tareas en bloques lógicos de trabajo?",
+      "dolor_que_cura": "Cura el dolor de la atención fragmentada en spray, el cambio constante de contexto cognitivo y la sensación de cansancio extremo sin haber producido nada sustancial.",
+      "elevator_pitch": "Imagínate que para lavar tu ropa prendieras la lavadora cada vez que te sacas un solo calcetín. Sería ridículo y gastarías una fortuna en agua y luz. En tu día a día haces exactamente eso cuando respondes un correo cada 5 minutos. El Batching es juntar toda la ropa sucia y lavarla en una sola tanda para que tu cerebro descanse el resto del día.",
+      "red_flags_carrusel": [
+        "Responder correos o WhatsApp cada 15 minutos en lugar de en bloques fijos.",
+        "Sensación de fatiga mental por haber cambiado de aplicación más de 30 veces en una mañana."
+      ],
+      "antipatrones_carrusel": [
+        "El Lote Monstruo: Crear un lote de 6 horas de tareas aburridas que nadie puede sostener.",
+        "La Excepción Continua: Romper el lote ante el primer mensaje con tono urgente.",
+        "Mezclar Lotes Incompatibles: Intentar hacer creatividad profunda mezclada con llamadas telefónicas."
+      ],
+      "paso_cero_5min_cta": "Agrupar todas las respuestas de mensajería a las 12:30 y 17:30, desactivando alertas el resto del tiempo.",
+      "regla_de_oro_cierre": "Un cerebro que cambia de tarea cada 3 minutos no es multitarea; es un cerebro que se está quemando en cuotas.",
+      "kpi_promesa": "Máximo 2 ventanas diarias de procesamiento de comunicación no urgente"
+    },
+    {
+      "id": "metodologia_5s_espacio",
+      "codigo": "P1-10",
+      "piso": 1,
+      "titulo_herramienta": "Metodología 5S (Seiri, Seiton, Seiso, Seiketsu, Shitsuke)",
+      "metafora_mentor_sultor": "Ordenar tu Espacio Físico y Digital para Calmar tu Mente",
+      "gancho_reel_pregunta": "¿Cualquier persona externa podría encontrar un archivo en tu computadora o un objeto en tu oficina en menos de 30 segundos?",
+      "dolor_que_cura": "La pérdida de tiempo buscando herramientas, el gasto innecesario comprando cosas que ya tenías (pero no veías), la inseguridad en el lugar de trabajo y la mala imagen frente a los clientes por tener un local \"patas arriba\". 2.",
+      "elevator_pitch": "¿Alguna vez has sentido que trabajas el doble solo porque tu espacio te juega en contra? Las 5S no son solo 'limpiar el local'; es crear un sistema donde cada cosa tiene un lugar lógico y solo lo necesario está a la mano. Es la herramienta para que dejes de pelear con tu entorno y empieces a fluir, recuperando horas de tu semana que hoy pierdes buscando una boleta o un destornillador. Un espacio despejado es el primer paso para una mente que puede crear sin estrés.\" 4.",
+      "red_flags_carrusel": [
+        "Tardar más de 30 segundos en encontrar un documento o archivo esencial.",
+        "Resistencia o desánimo al sentarse a trabajar por desorden visual acumulado."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Limpieza-Tón\": Limpiar todo un domingo y esperar que dure así para siempre. Sin la 4ta y 5ta S, el desorden vuelve el lunes.",
+        "\"Comprar antes de Clasificar\": Ir a comprar cajas organizadoras caras sin haber botado primero lo que no sirve. Solo estarás organizando basura.",
+        "\"Hacerlo solo\": Imponer el orden sin que tu equipo participe. Si no entienden el \"porqué\", volverán al caos apenas te des la vuelta.",
+        "\"Perfeccionismo Paralizante\": No empezar porque \"no tienes tiempo para hacerlo todo\". (En el Clown: si no tienes el disfraz completo, sales con la nariz y ya estás en escena).",
+        "\"Usarlo como Castigo\": Mandar a limpiar como forma de reto. Las 5S deben ser una herramienta de bienestar, no un regaño de escuela."
+      ],
+      "paso_cero_5min_cta": "Tirar 3 papeles inútiles y mover los archivos sueltos del escritorio de la computadora a una sola carpeta de archivo temporal.",
+      "regla_de_oro_cierre": "Un lugar para cada cosa y cada cosa en su lugar; el desorden externo es el espejo del ruido interno.",
+      "kpi_promesa": "Tiempo de búsqueda de recursos menor a 30 segundos"
+    },
+    {
+      "id": "protocolo_paso_cero",
+      "codigo": "P1-10",
+      "piso": 1,
+      "titulo_herramienta": "Protocolo Paso Cero (Micro-compromisos de 5 Minutos)",
+      "metafora_mentor_sultor": "Romper el Hielo sin Sufrir (La Acción Ridículamente Pequeña)",
+      "gancho_reel_pregunta": "Si solo tuvieras 5 minutos de energía hoy, ¿cuál es la acción diminuta y ridículamente fácil que destrabaría ese pendiente?",
+      "dolor_que_cura": "El antídoto definitivo contra la inercia ejecutiva, el perfeccionismo paralizante y esa sensación de mirar una tarea como si fuera el Monte Everest cuando tienes la batería mental en 10%.",
+      "elevator_pitch": "¿Te ha pasado que llevas dos semanas pateando un correo o una planilla, sufriendo todos los días por no hacerla, y cuando por fin te sientas te demoras 8 minutos? Tu cerebro no es flojo; te está protegiendo de algo que siente como un monstruo gigante. El Protocolo Paso Cero es hacerle 'trampa legal' a tu ansiedad: nos prohibimos hacer la tarea completa. Nuestro único trato es trabajar 300 segundos en el paso más ridículamente pequeño posible. Si suena la alarma a los 5 minutos y quieres parar, ganaste el 100% del día sin culpa.",
+      "red_flags_carrusel": [
+        "Pospongo las tareas difíciles porque me parecen un cerro imposible de escalar.",
+        "Siento culpa por no hacer todo perfecto y termino sin hacer nada."
+      ],
+      "antipatrones_carrusel": [
+        "El Falso Paso Cero: Poner como paso de 5 minutos \"Terminar la mitad del informe\". Eso sigue siendo un monstruo disfrazado. Si no puedes hacerlo con 20% de batería mental, aún es demasiado grande.",
+        "Castigarse por Parar a los 5 Minutos: Si cumpliste tus 5 minutos y decidiste parar, ¡prohibido decirte \"qué poco avancé\"! Rompiste el cero y mantuviste vivo el hábito.",
+        "Esperar a \"Tener Ganas\": La motivación no aparece antes de la acción; la motivación es el subproducto químico que libera tu cerebro *después* de los primeros 3 minutos de movimiento."
+      ],
+      "paso_cero_5min_cta": "Abrir el documento y escribir solo el título o la primera línea. Parar de inmediato al cumplir 5 minutos si se desea.",
+      "regla_de_oro_cierre": "Nunca permitas un día de Cero Absoluto: 5 minutos imperfectos derrotan a 10 horas de planificación paralizada.",
+      "kpi_promesa": "Días de Racha Sin Freno Cero (Tareas destrabadas en <= 5 min)"
+    },
+    {
+      "id": "inventario_cero_culpa",
+      "codigo": "P1-12",
+      "piso": 1,
+      "titulo_herramienta": "Inventario Cero Culpa y Registro de Micro-Victorias Nocturnas",
+      "metafora_mentor_sultor": "El Cierre del Día en Paz (Reconocer lo que SÍ Hiciste)",
+      "gancho_reel_pregunta": "¿Por qué le exiges a tu mente que duerma en paz si antes de acostarte solo le pasaste factura por tus pendientes y no le reconociste tus victorias?",
+      "dolor_que_cura": "El interruptor nocturno para apagar al \"jefe tirano interno\" antes de apoyar la cabeza en la almohada, validando el esfuerzo real, el trabajo invisible de cuidados y devolviéndole al cuerpo el derecho sagrado a descansar sin deuda moral.",
+      "elevator_pitch": "Imagina que tienes un trabajador estrella que todo el día apagó incendios, cuidó a tu familia, contestó mensajes y sostuvo la casa, pero a las 10 de la noche tú vas y le gritas porque le faltó barrer un rincón. ¿Con qué ánimo va a trabajar mañana? Bueno, ese trabajador eres tú mismo. El Inventario Cero Culpa toma 2 minutos antes de dormir: anotamos 3 cosas reales que SÍ hiciste hoy —incluyendo cuidarte o sostener la calma— y declaramos por escrito qué pendientes dejamos estacionados sin culpa para mañana. Es tu permiso firmado para dormir en paz.",
+      "red_flags_carrusel": [
+        "Me acuesto y mi mente empieza a repasar todo lo que no alcancé a hacer hoy.",
+        "Siento que no merezco descansar porque no fui lo suficientemente productivo."
+      ],
+      "antipatrones_carrusel": [
+        "Menospreciar tus Victorias (\"Eso era mi obligación\"): Decir *\"hacer almuerzo o atender a un cliente no cuenta porque era mi deber\"*. ¡Todo lo que consumió tu energía vital hoy cuenta en tu contabilidad humana!",
+        "Disfrazar Reproches de Victorias: Escribir *\"Avancé el informe, aunque debería haberlo terminado\"*. Prohibido usar la palabra \"pero\" o \"aunque\" en tus 3 victorias.",
+        "Usar el Cierre para Planificar 20 Tareas de Mañana: El campo \"Lo que suelto\" es para descansar y perdonarse, no para armar una lista intimidante que te vuelva a dar ansiedad."
+      ],
+      "paso_cero_5min_cta": "Escribir en una hoja o en tu bitácora 1 sola cosa buena o de cuidado que sí sostuviste hoy antes de cerrar los ojos.",
+      "regla_de_oro_cierre": "El descanso no es un premio por vaciar una lista infinita; es un derecho biológico innegociable de quien dio lo mejor con la energía que tenía hoy.",
+      "kpi_promesa": "Calidad de Conciliación del Sueño y Paz Nocturna (Escala 1-10)"
+    },
+    {
+      "id": "ventana_johari_puntos_ciegos",
+      "codigo": "P2-01",
+      "piso": 2,
+      "titulo_herramienta": "La Ventana de Johari (Puntos Ciegos y Autoconocimiento)",
+      "metafora_mentor_sultor": "El Fin de los 'No Sabía' y Descubrirte a Través de los Ojos del Otro",
+      "gancho_reel_pregunta": "¿Qué porcentaje de lo que realmente sientes mantienes oculto de las personas más cercanas por miedo a su juicio?",
+      "dolor_que_cura": "La falta de confianza en el equipo, los rumores de pasillo y el no saber por qué los clientes no vuelven.",
+      "elevator_pitch": "¿Te has preguntado alguna vez por qué tu equipo no te dice las cosas a la cara o por qué sientes que escondes demasiado para no parecer débil? La Ventana de Johari es como ponerle espejos a tu comunicación. Te ayuda a descubrir qué ven los demás que tú no ves, y a decidir qué partes de ti mismo te conviene mostrar más para que confíen en ti. Es pasar de ser un jefe 'misterioso' a un líder humano que sabe dónde está parado. Menos secretos, menos errores.",
+      "red_flags_carrusel": [
+        "Vivir con el terror de que descubran que no lo sabes todo.",
+        "Nadie en el equipo se atreve a decirte la verdad por miedo a tu reacción emocional."
+      ],
+      "antipatrones_carrusel": [
+        "El \"Sincericidio\" Brutal: Abrir el Área Oculta y contar problemas personales íntimos que no vienen al caso. No es terapia, es administración integral.",
+        "Pedir Feedback y Enojarse: Si preguntas qué hay en tu Área Ciega y te pones a la defensiva, la ventana se cierra con llave para siempre. ¡Acepta el error como un clown!",
+        "Usar la información como arma: Usar lo que alguien te confió de su \"Sótano\" (Área Oculta) para criticarlo después. Eso mata la confianza.",
+        "La Ventana de Humo: Decir que eres \"transparente\" pero seguir ocultando las cifras o los problemas reales del negocio.",
+        "Olvidar el Área Desconocida: Creer que ya lo sabes todo de ti y de tu equipo. Siempre hay espacio para que aparezca un nuevo \"truco\" bajo la manga."
+      ],
+      "paso_cero_5min_cta": "Preguntarle a una persona de confianza: '¿Hay alguna actitud mía que te genere incomodidad sin darme cuenta?'.",
+      "regla_de_oro_cierre": "A mayor área abierta compartida, menor espacio queda para la paranoia, el rumor y la desconfianza.",
+      "kpi_promesa": "Profundidad de vínculos clave y seguridad psicológica (&ge; 85%)"
+    },
+    {
+      "id": "foda_came",
+      "codigo": "P2-02",
+      "piso": 2,
+      "titulo_herramienta": "Análisis FODA Dinámico & Matriz CAME",
+      "metafora_mentor_sultor": "La Radiografía Realista de tu Negocio y Plan de Maniobra",
+      "gancho_reel_pregunta": "¿Tu FODA es una lista estática de quejas y elogios, o un plan de maniobra activo para Corregir, Afrontar, Mantener y Explotar?",
+      "dolor_que_cura": "La incertidumbre estratégica, el miedo a la competencia y el no saber en qué invertir tu tiempo y dinero.",
+      "elevator_pitch": "¿Sientes que trabajas un montón pero no avanzas, o que cualquier cambio en el mercado te deja tiritando? El FODA es sentarte a tomar un café contigo mismo para ser brutalmente honesto: ¿En qué soy un crack? ¿En qué me mando condoros? ¿Qué oportunidades hay afuera que no estoy viendo? No es un ejercicio aburrido de oficina, es tu seguro de vida para que dejes de reaccionar a los problemas y empieces a anticiparte a ellos. Te da el poder de decir 'no' a lo que te drena y 'sí' a lo que te hace crecer.",
+      "red_flags_carrusel": [
+        "No saber explicar por qué un cliente te elige a ti frente a otros en 1 frase.",
+        "Tener un FODA archivado en un papel que nunca se tradujo en acciones CAME concretas."
+      ],
+      "antipatrones_carrusel": [
+        "El \"FODA de Disney\": Poner puras fortalezas y omitir las debilidades. Si te mientes a ti mismo, el mercado se encargará de decirte la verdad (y duele más).",
+        "Confundir Adentro con Afuera: Poner \"Me falta capital\" como amenaza. ¡No! Eso es una debilidad (interna). Las amenazas vienen de afuera.",
+        "La Lista de Supermercado: Poner 50 puntos en cada cuadro. Si todo es importante, nada es importante. Quédate con los 3 o 4 que mueven la aguja.",
+        "Hacerlo y Archivarlo: El FODA no es un adorno de pared. Si no genera una acción (un cambio en tu agenda), perdiste el tiempo.",
+        "El \"Lamento Boliviano\": Quedarse pegado en las amenazas y debilidades sufriendo. El Clown usa el error para hacer reír y aprender; tú usa la debilidad para crear un proceso mejor."
+      ],
+      "paso_cero_5min_cta": "Escribir en 2 minutos tu mayor fortaleza real y la debilidad interna que más estrés te genera hoy.",
+      "regla_de_oro_cierre": "El FODA sin CAME es parálisis; el CAME convierte la honestidad diagnóstica en libertad operativa.",
+      "kpi_promesa": "4 Acciones CAME activas en ejecución semanal"
+    },
+    {
+      "id": "scamper_rediseno_rutina",
+      "codigo": "P2-03",
+      "piso": 2,
+      "titulo_herramienta": "Técnica SCAMPER de Rediseño Creativo",
+      "metafora_mentor_sultor": "Rediseño Creativo de tu Rutina y Oferta (La Cura para el 'Siempre se ha Hecho Así')",
+      "gancho_reel_pregunta": "En lugar de destruir tu rutina u oferta actual, ¿has probado Sustituir, Combinar o Eliminar elementos sencillos para refrescarla hoy?",
+      "dolor_que_cura": "Cura el aburrimiento operativo, la monotonía de productos y la creencia limitante de que \"para innovar hay que inventar la pólvora\".",
+      "elevator_pitch": "Innovar no es esperar a que baje una musa mágica del cielo. Es tomar lo que ya tienes sobre la mesa y jugar como si fuera un set de Lego: ¿Qué pasa si le sacas una pieza? ¿Qué pasa si lo juntas con algo que nadie junta? SCAMPER es tu caja de herramientas para sacar 5 productos o mejoras nuevas en una sola tarde de café.",
+      "red_flags_carrusel": [
+        "Mis días son una copia exacta del anterior y me siento estancado.",
+        "No sé cómo innovar en mi oferta sin tener que empezar desde cero."
+      ],
+      "antipatrones_carrusel": [
+        "Hacer Tormenta sin Aterrizaje: Llenar una pizarra de ideas raras y no prototipar ninguna.",
+        "Cambiar por Cambiar: Tocar el atributo que los clientes más aman de tu marca."
+      ],
+      "paso_cero_5min_cta": "Cambiar tu desayuno de hoy o eliminar un solo paso innecesario en tu flujo de trabajo.",
+      "regla_de_oro_cierre": "No necesitas una idea millonaria; necesitas la valentía de desarmar una idea conocida y volver a armarla con amor y astucia.",
+      "kpi_promesa": "Al menos 1 experimento SCAMPER lanzado al mes en oferta o rutina"
+    },
+    {
+      "id": "modelo_adkar_autotransformacion",
+      "codigo": "P2-04",
+      "piso": 2,
+      "titulo_herramienta": "Modelo ADKAR (Awareness, Desire, Knowledge, Ability, Reinforcement)",
+      "metafora_mentor_sultor": "La Cura para la Resistencia al Cambio y Detección del Tapón de Hábitos",
+      "gancho_reel_pregunta": "¿En tu intento de cambio, el problema es que te falta conocimiento técnico, o que no has conectado con el deseo profundo de hacerlo?",
+      "dolor_que_cura": "El sentimiento de \"arar en el mar\" cuando intentas implementar algo nuevo en tu negocio, la frustración de ver que tu equipo vuelve a las viejas costumbres y el dinero perdido en herramientas que nadie usa. 2.",
+      "elevator_pitch": "¿Te ha pasado que compras el software más caro o pones la regla más lógica, pero nadie te hace caso? El cambio no es un interruptor de luz, es una escalera de cinco peldaños. Si intentas que alguien salte del suelo al quinto escalón, se va a romper una pierna. El ADKAR te enseña a identificar exactamente en qué peldaño está cada persona para que dejes de dar órdenes y empieces a liderar transformaciones que de verdad se quedan.\" 4.",
+      "red_flags_carrusel": [
+        "Intentar capacitar técnicamente a quien no tiene el deseo o la motivación personal de cambiar.",
+        "Exigir velocidad a quien no ha contado con tiempo protegido para practicar con margen de error."
+      ],
+      "antipatrones_carrusel": [
+        "\"Capacitar al que no quiere\": Intentar dar Conocimiento cuando todavía no hay Deseo . Es como intentar alimentar a alguien que no tiene hambre; solo vas a ensuciar la mesa.",
+        "\"Gritar para crear Conciencia\": Pensar que el miedo es Conciencia . El miedo crea resistencia oculta; la conciencia crea compromiso real.",
+        "\"El Lanzamiento y Olvido\": Hacer un gran evento de lanzamiento y nunca más hablar del tema. Sin Refuerzo , el cambio muere en una semana.",
+        "\"Confundir Saber con Poder\": Pensar que porque alguien leyó el manual ( Conocimiento ) ya puede hacerlo perfecto bajo presión ( Aptitud ). Dale espacio para el error de aprendiz.",
+        "\"El Cambio por Capricho\": Cambiar algo sin explicar el \"por qué\" ( Conciencia ). El equipo sentirá que eres un payaso sin gracia que solo mueve las cosas de lugar por aburrimiento."
+      ],
+      "paso_cero_5min_cta": "Calificar las 5 letras de ADKAR del 1 al 5 y trabajar exclusivamente en la que tenga el puntaje más bajo.",
+      "regla_de_oro_cierre": "Las organizaciones no cambian; cambian las personas individuales una a la vez.",
+      "kpi_promesa": "Identificación del Eslabón Tapón en menos de 7 días"
+    },
+    {
+      "id": "roles_belbin_sombreros",
+      "codigo": "P2-05",
+      "piso": 2,
+      "titulo_herramienta": "Roles de Belbin (Gestión de Sombreros de Equipo)",
+      "metafora_mentor_sultor": "La Cura para el Equipo Copia y Pega • La Orquesta de Sombreros Internos",
+      "gancho_reel_pregunta": "¿En tu día a día, tienes definidos límites para que tus diferentes sombreros internos o los roles del equipo se expresen sin sabotearse?",
+      "dolor_que_cura": "El cansancio de contratar gente que se parece a ti pero no resuelve lo que tú no sabes hacer, las reuniones donde todos hablan y nadie ejecuta, y la frustración de tener un equipo lleno de \"estrellas\" que no saben pasar el balón. 2.",
+      "elevator_pitch": "Imagina que dejas de frustrarte porque tu empleado no es tan 'creativo' como tú o porque tú no eres tan 'ordenado' como el administrador. Con los Roles de Belbin vas a entender que no existe el 'empleado perfecto', pero sí el equipo perfecto . Es la herramienta para dejar de buscar clones y empezar a buscar complementos, permitiéndote a ti y a tu equipo brillar en lo que realmente son buenos, mientras otros cubren sus espaldas.\" 4.",
+      "red_flags_carrusel": [
+        "Equipos donde todos son creativos y nadie revisa los detalles o remata las tareas.",
+        "El líder asume los 9 roles a la vez y colapsa por agotamiento operativo."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Síndrome del Mini-Me\": Contratar gente que sea igualita a ti. ¡Aburridísimo y peligroso! Necesitas a tu opuesto.",
+        "\"La Etiqueta Rígida\": Pensar que porque alguien es \"Cerebro\" no puede lavar una taza. Los roles son comportamientos, no prisiones.",
+        "\"Ignorar al Grillo Pepe\": Silenciar al Monitor Evaluador (el que siempre dice por qué algo puede fallar). No es un pesimista, es tu seguro de vida.",
+        "\"El Equipo de Solistas\": Tener 5 \"Cerebros\" y ningún \"Implementador\". Mucha idea, cero ejecución. (Mucho ruido y pocas nueces).",
+        "\"Castigar la Debilidad Permitida\": Enojarte con el creativo porque no sabe llenar un Excel. ¡Es parte del trato! (Como el Clown que es gracioso pero torpe)."
+      ],
+      "paso_cero_5min_cta": "Identificar cuál de los 3 bloques (Acción, Mente o Social) es tu debilidad dominante para blindarla.",
+      "regla_de_oro_cierre": "Nadie es perfecto, pero un equipo diverso y complementario sí puede serlo.",
+      "kpi_promesa": "Mapeo de roles completado para el 100% de los frentes clave"
+    },
+    {
+      "id": "modelo_tuckman_transicion",
+      "codigo": "P2-06",
+      "piso": 2,
+      "titulo_herramienta": "Modelo de Tuckman (Forming, Storming, Norming, Performing)",
+      "metafora_mentor_sultor": "La Evolución de la Banda • Comprender que el Caos y la Tormenta son Parte Natural de Crecer",
+      "gancho_reel_pregunta": "¿Entiendes la tormenta del inicio de tu equipo o cambio de rutina como un fracaso, o como la etapa obligatoria para forjar normas y alcanzar el alto desempeño?",
+      "dolor_que_cura": "La frustración de sentir que tu equipo no avanza, el miedo a los conflictos internos y la sensación de que \"estarías mejor solo\" cuando las cosas se ponen tensas. 2.",
+      "elevator_pitch": "¿Sientes que tu equipo es una montaña rusa de emociones? El Modelo de Tuckman es el mapa que te dice en qué parte del viaje estás. Te quita la culpa de encima al enseñarte que pelear es parte del proceso y que el orden no llega por arte de magia, sino pasando por el barro. Es la herramienta para dejar de pedir 'buena onda' y empezar a construir resultados reales, entendiendo los tiempos humanos.\" 4.",
+      "red_flags_carrusel": [
+        "Creer que un equipo falló porque surgieron roces tras las primeras semanas de trabajo.",
+        "Intentar saltarse la fase de tormenta barriendo los desacuerdos bajo la alfombra."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Líder Avestruz\": Ignorar el Conflicto esperando que se pase solo. (Spoiler: No se pasa, se pudre).",
+        "\"Positividad Tóxica\": Castigar a quien se queja en la etapa de formación. ¡Las dudas son sanas!",
+        "\"El Salto del Tigre\": Querer que un equipo que se acaba de conocer rinda como si llevaran 10 años juntos ( Desempeño instantáneo).",
+        "\"El Eterno Retorno\": No poner reglas claras ( Normalización ), lo que hace que el equipo vuelva al Conflicto una y otra vez.",
+        "\"Cero Aplausos\": Olvidar la etapa de Disolución . Si no celebras los cierres, el equipo se quema (Burnout)."
+      ],
+      "paso_cero_5min_cta": "Identificar en cuál de las 4 fases se encuentra el equipo hoy y normalizar la tormenta verbalmente.",
+      "regla_de_oro_cierre": "Un equipo no puede saltar de conocerse a rendir al máximo sin pasar por el barro del conflicto honesto.",
+      "kpi_promesa": "Transición exitosa de Storming a Norming en menos de 60 días"
+    },
+    {
+      "id": "dnc_personal_aprendizaje",
+      "codigo": "P2-07",
+      "piso": 2,
+      "titulo_herramienta": "DNC Personal y Organizacional (Diagnóstico de Necesidades de Capacitación)",
+      "metafora_mentor_sultor": "El Mapa del Talento y la Cura para la Infoxicación",
+      "gancho_reel_pregunta": "¿Estás estudiando por ansiedad o tienes identificada la habilidad exacta que necesitas desarrollar para resolver tu principal dolor operativo de hoy?",
+      "dolor_que_cura": "El despilfarro de dinero y tiempo en capacitaciones que nadie aprovecha, la frustración de ver que el equipo comete los mismos errores de siempre y la sensación de que el negocio está \"estancado\" porque no sabemos qué nos falta aprender. 2.",
+      "elevator_pitch": "¿Alguna vez has pagado un curso para tu equipo y a la semana todos volvieron a hacer lo mismo de siempre? El DNC es el filtro que separa los 'caprichos' de las 'necesidades reales'. Es la herramienta para dejar de adivinar y empezar a invertir en las habilidades que van a traer más plata y menos problemas a tu local. Es, básicamente, comprar solo la pieza que le falta a tu rompecabezas, ni una más, ni una menos.\" 4.",
+      "red_flags_carrusel": [
+        "Comprar formaciones impulsivas justificando que 'aún falta saber más'.",
+        "Gastar presupuesto en capacitaciones genéricas que no resuelven cuellos de botella operativos."
+      ],
+      "antipatrones_carrusel": [
+        "\"Curso-itis\": Pensar que la solución a todo es mandar a la gente a un curso. A veces el problema es de actitud o de herramientas, no de conocimiento.",
+        "\"Capacitar al que no quiere\": Gastar recursos en alguien que no tiene la disposición. (En el Clown: No puedes enseñarle a alguien a ser gracioso si no se quiere reír de sí mismo).",
+        "\"La Talla Única\": Hacer la misma capacitación para todos, cuando Juan necesita Excel y Pedro necesita Ventas.",
+        "\"Capacitación de Adorno\": Enseñar algo que no se va a aplicar mañana mismo. El conocimiento que no se usa, se olvida en 48 horas.",
+        "\"El Jefe que sabe todo\": No capacitarse a uno mismo por ego. El líder que deja de aprender, deja de liderar."
+      ],
+      "paso_cero_5min_cta": "Identificar el mayor dolor de tu semana y definir una sola micro-habilidad que lo solucionaría en 15 minutos.",
+      "regla_de_oro_cierre": "No capacites por moda ni por intuición; entrena solo la brecha que frena la operación o la felicidad del equipo.",
+      "kpi_promesa": "Tasa de transferencia formativa (% aplicado a proyectos reales en < 30 días)"
+    },
+    {
+      "id": "triangulacion_roles",
+      "codigo": "P2-08",
+      "piso": 2,
+      "titulo_herramienta": "Triangulación y Compartimentación de Roles Multipotenciales",
+      "metafora_mentor_sultor": "Un Sombrero a la Vez (Separar tus Identidades sin Culpa)",
+      "gancho_reel_pregunta": "¿Tienes un cerco invisible y un ritual claro que proteja cada uno de tus roles para que no se devoren ni se contaminen entre sí?",
+      "dolor_que_cura": "El arte de habitar al 100% el rol que te toca en este bloque, sin que el emprendedor boicotee al artista ni el trabajador invada al padre o madre presente.",
+      "elevator_pitch": "Tu problema no es que tengas tres pasiones o tres responsabilidades grandes; tu problema es que intentas llevar los tres sombreros puestos en el mismo minuto. Eso hace que no disfrutes ninguno y te sientas en deuda con todos. Con la Triangulación de Roles vamos a asignarle a cada identidad su cuota justa de la semana, su frontera prohibida y un pequeño ritual físico para sacarte un sombrero antes de ponerte el otro.",
+      "red_flags_carrusel": [
+        "Tengo tres proyectos distintos y cuando estoy en uno me siento culpable por no avanzar en el otro.",
+        "Se me mezclan los mensajes de clientes con tareas de estudio y asuntos familiares."
+      ],
+      "antipatrones_carrusel": [
+        "Tener 8 Roles Activos en la Misma Semana: La mente humana colapsa si intenta sostener más de 3 o 4 frentes principales. Agrupa tus sub-roles en máximo 4 grandes sombreros.",
+        "Dejar Abiertas las Pestañas del Rol Anterior: Intentar ser \"Artista/Estudiante\" con el correo de \"Gerente/Facturación\" parpadeando en la esquina de la pantalla.",
+        "Cambiar de Rol Sin Transición Corporal: Pasar de una reunión tensa directo a cenar con tu familia en 3 segundos arrastra el cortisol de un rol al otro."
+      ],
+      "paso_cero_5min_cta": "Definir un solo sombrero para el bloque de la tarde y cerrar físicamente los archivos o pestañas de los demás frentes.",
+      "regla_de_oro_cierre": "Nunca uses dos sombreros en la misma cabeza al mismo tiempo: honra el rol que habitas hoy cerrando con llave la puerta del anterior.",
+      "kpi_promesa": "Reducción de Contaminación Cruzada (Horas semanales de trabajo enfocado por rol sin interrupción mutua)"
+    },
+    {
+      "id": "feedback_sbi_conversaciones",
+      "codigo": "P2-09",
+      "piso": 2,
+      "titulo_herramienta": "Feedback SBI (Situación, Comportamiento, Impacto)",
+      "metafora_mentor_sultor": "Decir las Cosas Claras Basados en Hechos, Sin Juicios Morales",
+      "gancho_reel_pregunta": "¿Cuando hablas de lo que te duele o molesta, atacas la identidad de la persona o describes el hecho concreto y su impacto real en ti?",
+      "dolor_que_cura": "para acelerar la corrección de errores y potenciar el rendimiento sin dañar el clima laboral.",
+      "elevator_pitch": "¿Alguna vez has dado feedback y el colaborador salió de la oficina sintiéndose atacado personalmente en lugar de motivado a mejorar? Ese es el costo de la ambigüedad. El modelo SBI es la herramienta definitiva para separar la persona del proceso. Al usarlo, tus líderes dejan de dar opiniones y empiezan a entregar diagnósticos precisos. Esto no solo ahorra horas de malentendidos y conflictos, sino que crea una cultura de transparencia radical donde el error se corrige hoy y la rentabilidad se protege mañana. Si quieres un equipo que ejecute con precisión, necesitas que su feedback sea igual de preciso.\" 3.",
+      "red_flags_carrusel": [
+        "Atacar la identidad del otro diciendo 'eres flojo' o 'no tienes compromiso'.",
+        "Acumular rabia en silencio durante semanas hasta explotar por un detalle mínimo."
+      ],
+      "antipatrones_carrusel": [
+        "y Errores Críticos",
+        "El \"Sandwich de Feedback\": Envolver la crítica entre dos elogios falsos. Impacto: Diluye el mensaje y hace que el colaborador desconfíe de los elogios futuros.",
+        "Uso de Adjetivos Calificativos: Decir \"eres poco profesional\" o \"estás distraído\". Error: Eso no es un comportamiento, es una etiqueta que genera rechazo instantáneo.",
+        "Feedback Retardado: Dar feedback sobre algo que pasó hace tres semanas. Error: La situación ya se enfrió y la precisión del recuerdo se pierde.",
+        "Atribuir Intenciones: \"Hiciste eso para fastidiarme\". Error: No puedes ver la mente de los demás; solo puedes ver sus acciones.",
+        "No pedir una solución: Terminar el SBI sin preguntar \"¿Cómo podemos evitar esto la próxima vez",
+        "\". Error: El feedback sin plan de acción es solo una queja."
+      ],
+      "paso_cero_5min_cta": "Escribir en una hoja el hecho observable y tachar cualquier adjetivo descalificador antes de hablar.",
+      "regla_de_oro_cierre": "Describe hechos que una cámara de video registraría; nunca adivines intenciones ni juzgues el carácter.",
+      "kpi_promesa": "100% de conversaciones difíciles estructuradas en guion SBI previo"
+    },
+    {
+      "id": "matriz_raci_hogar_equipo",
+      "codigo": "P2-10",
+      "piso": 2,
+      "titulo_herramienta": "Matriz RACI (Responsible, Accountable, Consulted, Informed)",
+      "metafora_mentor_sultor": "Rayar la Cancha en el Hogar y Equipo • El Fin del 'Yo Pensé que lo Hacías Tú'",
+      "gancho_reel_pregunta": "¿En tu negocio y hogar, está definido por escrito quién es el responsable final de que cada proceso se ejecute?",
+      "dolor_que_cura": "La confusión de roles, el \"peloteo\" de responsabilidades, el agotamiento del dueño por querer supervisarlo todo y ese silencio incómodo cuando algo sale mal y nadie sabe quién debía apretar el botón. 2.",
+      "elevator_pitch": "¿Te ha pasado que una tarea se queda sin hacer porque todos pensaron que le tocaba a otro? ¿O que terminas haciendo el trabajo de tres personas solo por si acaso? La Matriz RACI es como el guion de una obra de teatro: define exactamente quién sale a escena, quién dirige desde las sombras y quién solo tiene que sentarse a mirar. Es la herramienta para que dejes de ser el 'todólogo' y empieces a ser el director de una orquesta que suena afinada, incluso cuando no estás mirando.\" 4.",
+      "red_flags_carrusel": [
+        "Asumir que un proceso crítico es 'responsabilidad de los dos' sin definir una sola cabeza visible.",
+        "Proyectos paralizados durante días porque nadie sabe a quién le corresponde dar el visto bueno."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Club de la Pelea\": Poner a dos personas como \"A\". Si hay dos dueños, nadie es dueño. ¡Un solo capitán por barco!",
+        "\"Casi-Casi\": Llenar de \"C\" (Consultados) a todo el mundo. Si todos opinan, nadie avanza. Es una matriz, no un foro de debate.",
+        "\"El Silencio de los Inocentes\": Olvidar a los \"I\" (Informados). Nada quema más el clima laboral que enterarte por fuera de algo que cambió en tu trabajo.",
+        "\"La Matriz de Adorno\": Hacerla preciosa en Excel y nunca volver a mirarla. El papel aguanta todo; la realidad requiere que la gente sepa su rol.",
+        "\"El Micro-management\": Si eres la \"A\", deja que la \"R\" haga su trabajo. No seas el payaso que se mete en el acto del malabarista."
+      ],
+      "paso_cero_5min_cta": "Elegir la tarea más confusa de la semana y asignar un solo nombre para la letra 'A' (Dueño final).",
+      "regla_de_oro_cierre": "Si todos son responsables, nadie es responsable; cada fila debe tener una y solo una letra \"A\".",
+      "kpi_promesa": "100% de los procesos críticos mapeados con exactamente un solo 'A'"
+    },
+    {
+      "id": "cinco_porques_raiz",
+      "codigo": "P2-11",
+      "piso": 2,
+      "titulo_herramienta": "Los 5 Porqués (Análisis de Causa Raíz)",
+      "metafora_mentor_sultor": "Ir a la Raíz de lo que te Pasa, Sin Anestesia ni Juicios Morales",
+      "gancho_reel_pregunta": "¿Cuando algo sale mal en tu rutina o negocio, te conformas con la primera excusa o indagas 5 niveles hasta tocar la raíz del sistema?",
+      "dolor_que_cura": "La frustración de apagar el mismo incendio todas las semanas, el gasto inútil de energía en problemas que vuelven a aparecer y la ceguera de no entender por qué el negocio no avanza a pesar del esfuerzo. 2.",
+      "elevator_pitch": "¿Sientes que tu negocio tiene fantasmas que siempre rompen lo mismo? Los 5 Porqués es como tener a un niño preguntón a tu lado que no acepta excusas. Es la herramienta que te lleva del 'se rompió la máquina' al 'no tenemos un plan de mantenimiento' en menos de dos minutos. Es barata, no requiere software y te ahorra años de dolores de cabeza al atacar la raíz y no el síntoma.\" 4.",
+      "red_flags_carrusel": [
+        "Creer que un problema se resuelve poniendo 5 alarmas en el celular o con 'más fuerza de voluntad'.",
+        "Detenerse en la primera explicación superficial sin cuestionar qué fallo de proceso la originó."
+      ],
+      "antipatrones_carrusel": [
+        "\"Los 5 Quiénes\": Usar la técnica para buscar a quién echarle la culpa. El \"porqué\" busca procesos, no personas.",
+        "\"La respuesta floja\": Responder \"porque sí\" o \"porque son flojos\". Eso no es administración, es prejuicio.",
+        "\"Quedarse en el segundo\": Si te detienes muy rápido, solo estás poniendo un parche más caro.",
+        "\"Inventar realidades\": Responder con lo que \"crees\" que pasó sin ir a mirar el local o hablar con la gente. (El Clown no supone que el público se ríe, ¡lo ve!).",
+        "\"No hacer nada\": Encontrar la causa raíz y decir \"qué mal estamos\" sin aplicar una contramedida. El conocimiento sin acción es solo un peso en la espalda."
+      ],
+      "paso_cero_5min_cta": "Hacerse los primeros 2 Porqués de una molestia de hoy en voz alta para desactivar la culpa inmediata.",
+      "regla_de_oro_cierre": "No te detengas en la primera respuesta evidente; pregunta \"por qué\" hasta tocar el acuerdo o proceso invisible que falló.",
+      "kpi_promesa": "100% de incidentes críticos resueltos con contramedida sistémica"
+    },
+    {
+      "id": "diagrama_ishikawa_sistema",
+      "codigo": "P2-12",
+      "piso": 2,
+      "titulo_herramienta": "Diagrama de Ishikawa (Causa-Efecto / Espina de Pescado)",
+      "metafora_mentor_sultor": "La Cura para el Poner Parches Constantes y Culpar Personas",
+      "gancho_reel_pregunta": "¿Cuando cometes un error o un pedido sale mal, te tratas como el culpable indiscutible o investigas con compasión qué variables del sistema fallaron?",
+      "dolor_que_cura": "El sentimiento de estar viviendo en el \"Día de la Marmota\" (cometiendo el mismo error una y otra vez), la pérdida de plata en soluciones temporales que no sirven y la frustración de no saber por dónde empezar a arreglar un problema grande. 2.",
+      "elevator_pitch": "¿Sientes que tu negocio tiene una gotera que nunca se tapa, aunque le pongas cinta todos los días? El Diagrama de Ishikawa es como hacerle una radiografía a ese problema. Te ayuda a separar el caos en categorías claras para que dejes de culpar a la mala suerte y encuentres exactamente qué tornillo hay que apretar. Es la herramienta para pasar de 'creo que es por esto' a 'sé que es por esto y así lo vamos a arreglar'.\" 4.",
+      "red_flags_carrusel": [
+        "Creer que un error operativo se soluciona 'echándole más ganas' o 'poniendo más atención'.",
+        "Falta de un checklist o manual escrito que impida físicamente cometer el mismo error."
+      ],
+      "antipatrones_carrusel": [
+        "\"La Caza de Brujas\": Usar el diagrama para buscar culpables con nombre y apellido. El Ishikawa busca fallas en el sistema , no personas a quién apuntar con el dedo.",
+        "\"El Pescado Flaco\": Quedarse solo con las causas superficiales. Hay que preguntar \"¿Por qué",
+        "\" al menos 5 veces hasta llegar al fondo.",
+        "\"Confundir Síntoma con Causa\": Decir que la causa es \"falta de tiempo\". El tiempo es el síntoma; la causa es \"falta de planificación\" o \"exceso de compromisos\".",
+        "\"Hacerlo solo en el escritorio\": No preguntarle a la gente que está \"en la cancha\". (El payaso que no le pregunta al técnico por qué falló el foco, nunca entenderá la oscuridad).",
+        "\"La Parálisis por Análisis\": Dibujar un pescado gigante con 200 causas y no arreglar ninguna. Elige la espina más gruesa y empieza por ahí."
+      ],
+      "paso_cero_5min_cta": "Escribir el problema y listar al menos 1 causa en el Método o Herramienta antes de emitir cualquier juicio moral.",
+      "regla_de_oro_cierre": "Cuando algo falla en la operación, el 94% de las veces es un defecto del sistema o del proceso; solo el 6% es negligencia humana.",
+      "kpi_promesa": "Tasa de recurrencia de errores operacionales clasificados (&le; 5%)"
+    },
+    {
+      "id": "kaizen_mejora_continua",
+      "codigo": "P2-13",
+      "piso": 2,
+      "titulo_herramienta": "Filosofía Kaizen (Micro-Mejoras del 1%)",
+      "metafora_mentor_sultor": "La Cura para la Parálisis por Perfeccionismo y el Heroísmo Intermitente",
+      "gancho_reel_pregunta": "¿Estás intentando dar un salto imposible que nunca llega, o estás comprometido con mejorar un micro-detalle de tu rutina del 1% cada día?",
+      "dolor_que_cura": "El agobio de sentir que necesitas una \"gran revolución\" para mejorar el negocio, el miedo a los cambios drásticos que paralizan al equipo y la frustración de ver cómo los grandes planes se quedan en el papel por ser inalcanzables. 2.",
+      "elevator_pitch": "¿Y si te dijera que no tienes que dar vuelta tu negocio como un calcetín para que funcione mejor? El Kaizen es la técnica de mejorar un 1% cada día. Parece poco, pero al final del año serás 37 veces mejor que hoy. Es la herramienta para los que quieren resultados reales sin quemar el motor (ni a su equipo). Es dejar de buscar el 'gran salto' para empezar a disfrutar de la caminata.\" 4.",
+      "red_flags_carrusel": [
+        "Postergar el lanzamiento de un servicio porque 'aún falta pulir detalles'.",
+        "Sentirse culpable al final del día por no haber realizado una hazaña heroica imposible."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Efecto Fuegos Artificiales\": Querer cambiar todo de golpe el lunes y que el viernes ya todos hayan vuelto a lo de siempre. El Kaizen es una tortuga, no un conejo.",
+        "\"Culpar al Mensajero\": Si algo falla, el Kaizen dice que el problema es el proceso , no la persona. No seas el jefe que grita, sé el mentor que arregla el sistema.",
+        "\"Olvidar el 'Check'\": Hacer un cambio y nunca volver a mirar si funcionó. Si no mides el resultado, es solo una ocurrencia, no mejora.",
+        "\"Kaizen de Escritorio\": Intentar mejorar el trabajo de tu equipo sin preguntarles a ellos. El que tiene la escoba sabe mejor dónde está la basura.",
+        "\"Perfeccionismo Paralizante\": No aplicar una mejora porque \"no es la solución definitiva\". ¡Hazla igual! Una mejora de un 1% es mejor que una de 0%."
+      ],
+      "paso_cero_5min_cta": "Dedicar 2 minutos a mejorar una sola cosa minúscula de tu escritorio o flujo antes de empezar.",
+      "regla_de_oro_cierre": "Un 1% mejor cada día te hace 37 veces mejor en un año; una revolución violenta te deja agotado en una semana.",
+      "kpi_promesa": "Tasa de días con al menos 1 micro-mejora documentada (&ge; 20 días al mes)"
+    },
+    {
+      "id": "arquetipos_energia",
+      "codigo": "P2-14",
+      "piso": 2,
+      "titulo_herramienta": "Matriz de Arquetipos de Energía Operativa",
+      "metafora_mentor_sultor": "Conocer tu Batería Interna (Qué te Carga y Qué te Drena)",
+      "gancho_reel_pregunta": "¿Cuál de tus 4 cuadrantes de energía está hoy al volante de tu semana y qué tarea generadora tienes lista para recargarte después de un vampiro energético?",
+      "dolor_que_cura": "No todas las horas pesan lo mismo. Una hora haciendo lo que amas en estado de *Flow* te devuelve energía, mientras que veinte minutos peleando con un trámite burocrático o un cliente conflictivo pueden vaciar tu batería del día entero.",
+      "elevator_pitch": "¿Te ha pasado que miras tu agenda, ves que hiciste solo dos cosas en toda la mañana, pero sientes el cerebro frito y con ganas de apagar todo? Eso pasa porque estás midiendo tu día en horas de reloj y no en porcentaje de batería. Hay tareas que son enchufes verdes (te dan vida) y otras que son vampiros rojos (te drenan). En vez de exigirte ser un robot, vamos a separar tu semana en 4 cuadrantes de energía para que después de cada tarea roja tengas recetado tu propio antídoto de recarga.",
+      "red_flags_carrusel": [
+        "Cuando tengo que planificar me pongo a limpiar, y cuando tengo que ejecutar me pongo a soñar.",
+        "Termino el día con la batería en 0% sin haber avanzado en lo importante porque una sola tarea me drenó toda la mañana."
+      ],
+      "antipatrones_carrusel": [
+        "El Maratón de Vampiros: Decir *\"hoy me saco todos los cachos pesados de encima\"* y programar 5 horas seguidas de tareas rojas. Resultado: burnout de 3 días.",
+        "Usar Redes Sociales como \"Recarga\": Creer que scrollear en TikTok o Instagram después de una tarea pesada descansa el cerebro. Eso no es Cuadrante Verde; es dopamina barata que fatiga aún más tu corteza prefrontal.",
+        "Culparse por Drenarse: Decirse *\"no debería cansarme tanto hacer esto\"*. Tu biología no se discute, se gestiona con estrategia."
+      ],
+      "paso_cero_5min_cta": "Nombrar en voz alta qué tarea de hoy te está drenando la batería y emparejarla con 15 minutos de una actividad generadora inmediatamente después.",
+      "regla_de_oro_cierre": "Nunca agendes un Vampiro Energético sin dejar pagada y lista su Recarga Verde inmediatamente después.",
+      "kpi_promesa": "Balance Neto de Batería Semanal (>= +60%) y reducción de episodios de sabotaje por agotamiento"
+    },
+    {
+      "id": "piramide_minto_comunicacion",
+      "codigo": "P2-15",
+      "piso": 2,
+      "titulo_herramienta": "Principio de la Pirámide de Minto (Answer First)",
+      "metafora_mentor_sultor": "El Fin de los Rodeos y los Mensajes Eternos (Ir Directo al Grano)",
+      "gancho_reel_pregunta": "Al comunicarte, ¿entregas tu conclusión y respuesta en la primera frase o la escondes al final de una larga historia que cansa a los demás?",
+      "dolor_que_cura": "La confusión, la pérdida de tiempo en reuniones y que tus clientes (o equipo) no entiendan qué quieres de ellos.",
+      "elevator_pitch": "¿Alguna vez has sentido que después de hablar 10 minutos, la otra persona te mira y te dice: '¿Ya, y...?'. La Pirámide de Minto es como darle la vuelta al calcetín de tu comunicación: en lugar de contar toda la historia para llegar a una idea, lanzas la idea primero y luego la sostienes. Es pasar de ser un 'cuenta-cuentos' a un líder que sabe exactamente hacia dónde va. Te ahorra explicaciones, te ahorra estrés y, sobre todo, te hace ver como un profesional que sabe lo que hace.",
+      "red_flags_carrusel": [
+        "Enviar audios de 5 minutos o correos de 4 párrafos antes de decir el precio o la conclusión.",
+        "Comenzar reuniones contando la historia completa en vez del acuerdo que se necesita tomar."
+      ],
+      "antipatrones_carrusel": [
+        "La Novela de Misterio: Guardar la conclusión para el final después de 20 minutos de charla. ¡No somos Agatha Christie!",
+        "La Pirámide Flotante: Tirar una conclusión fuerte sin tener datos que la sujeten. Eso se llama \"humo\".",
+        "El Laberinto de Ideas: Mezclar argumentos de dinero con argumentos de sentimientos en el mismo pilar. Cada pata de la mesa en su lugar.",
+        "Exceso de Equipaje: Poner 10 pilares. El cerebro ama el",
+        "Si tienes más de 4 razones, probablemente algunas son la misma con distinto disfraz.",
+        "Omitir el Lado Humano: Ser directo no significa ser un robot. Puedes usar la Pirámide y seguir siendo un \"profe bacán\". La estructura da claridad, tu tono da la confianza."
+      ],
+      "paso_cero_5min_cta": "En tu próximo correo o WhatsApp, pon la conclusión y propuesta en la primera línea en negrita.",
+      "regla_de_oro_cierre": "Di primero la conclusión o recomendación; justifica después solo si te lo piden.",
+      "kpi_promesa": "Tasa de respuesta ágil a propuestas y correos (< 2 horas de media)"
+    },
+    {
+      "id": "mind_mapping_visual",
+      "codigo": "P2-16",
+      "piso": 2,
+      "titulo_herramienta": "Mind Mapping (Mapas Mentales Radiales)",
+      "metafora_mentor_sultor": "El GPS para Mentes Creativas (y Saturadas) — Dibujar tus Ideas para Verlas Claras",
+      "gancho_reel_pregunta": "¿Puedes dibujar tu proyecto en una sola hoja usando ramificaciones visuales en lugar de escribir párrafos infinitos que te agobian?",
+      "dolor_que_cura": "La dispersión mental, el olvido de ideas brillantes y la sensación de \"no saber por dónde empezar\".",
+      "elevator_pitch": "Imagínate que tu cabeza es un navegador de internet con 50 pestañas abiertas y música sonando de fondo, pero no sabes de dónde viene. El Mind Mapping es el botón que te permite ver todas las pestañas al mismo tiempo en una sola pantalla. No es dibujar; es volcar tu cerebro al papel para que dejes de gastar energía intentando recordar y empieces a usarla para crear . Es pasar de la neblina a un día despejado en 10 minutos.",
+      "red_flags_carrusel": [
+        "Pasar semanas postergando un proyecto porque 'no sé por dónde empezar'.",
+        "Tener libretas llenas de apuntes desordenados que nunca se convierten en un plan de acción."
+      ],
+      "antipatrones_carrusel": [
+        "La \"Lista Disfrazada\": Escribir frases largas en las ramas. ¡No! Usa palabras sueltas. El cerebro se bloquea con los párrafos.",
+        "El Perfeccionismo Artístico: Perder 2 horas eligiendo colores y plumones. Si el mapa no es rápido, no es productivo. Es una herramienta, no una obra pal Museo de Bellas Artes.",
+        "El Mapa Huérfano: Hacerlo y nunca más mirarlo. El mapa debe estar pegado frente a ti mientras trabajas.",
+        "Miedo al Caos: Tratar de que sea simétrico. Si un lado crece más que el otro, está bien. Tu mente te está diciendo dónde está el peso real.",
+        "Hacerlo en el computador (al principio): Para aprender, usa papel y lápiz. La conexión mano-cerebro es mucho más potente para romper la parálisis."
+      ],
+      "paso_cero_5min_cta": "Tomar una hoja horizontal, dibujar un círculo al centro con el nombre de tu proyecto y sacar 3 ramas principales.",
+      "regla_de_oro_cierre": "Tu cerebro piensa en redes y ramificaciones orgánicas, no en listas rígidas de Word.",
+      "kpi_promesa": "Reducción en tiempo de arranque de proyectos (de 2 semanas a < 48 horas)"
+    },
+    {
+      "id": "fondo_reserva_paz",
+      "codigo": "P2-17",
+      "piso": 2,
+      "titulo_herramienta": "Fondo de Reserva y Tranquilidad (3 Meses de Vida)",
+      "metafora_mentor_sultor": "Tu Colchón de Paz Mental (Dormir Tranquilo pase lo que pase)",
+      "gancho_reel_pregunta": "¿Cuántos meses exactos podrías sostener la paz de tu hogar si mañana tus ingresos se detuvieran por completo?",
+      "dolor_que_cura": "El dinero ahorrado en un Fondo de Paz no es para \"hacerse rico\" ni para comprarse cosas; es para comprar **capacidad de decir que NO** a malos tratos y comprar **sueño profundo** para tu sistema nervioso.",
+      "elevator_pitch": "No hay meditación ni té de hierbas que te quite la ansiedad si el día 28 del mes no sabes cómo vas a pagar las cuentas básicas. El Fondo de Reserva y Paz no es un ahorro aburrido de banco: es tu seguro de dignidad profesional. Primero calculamos cuánto cuesta tu vida básica de paz (hogar, comida, servicios y salud/crianza), y luego construimos tu pista de aterrizaje en tres escalones: 1 mes de Oxígeno, 3 meses de Soberanía y 6 meses de Blindaje Total. Cada peso que entra ahí son horas de libertad compradas.",
+      "red_flags_carrusel": [
+        "Si este mes no vendo o me enfermo dos semanas, no tengo cómo pagar mis gastos básicos.",
+        "Acepto clientes abusivos o proyectos mal pagados por miedo a quedarme sin liquidez."
+      ],
+      "antipatrones_carrusel": [
+        "Dejar el Fondo en la Cuenta Vista Normal: Si el dinero está donde pasas la tarjeta en el supermercado, te lo vas a gastar sin darte cuenta. Debe tener \"fricción positiva\" (estar en otra cuenta).",
+        "Usar el Fondo de Paz para \"Ofertas\" o Vacaciones: Un CyberDay o un viaje NO son emergencias vitales. Para eso existen los sobres de ocio.",
+        "Esperar a que \"Sobre Plata\" a Fin de Mes: Nunca sobra plata por casualidad. El Fondo de Paz se paga primero, apenas entra un ingreso (o todos los viernes como gasto fijo sagrado)."
+      ],
+      "paso_cero_5min_cta": "Calcular la cifra exacta de 1 mes de Costo Basal de Paz Mensual y transferir hoy un primer aporte simbólico a una cuenta intocable.",
+      "regla_de_oro_cierre": "Tu paz mental no se negocia: cada peso en tu Fondo de Reserva no es dinero quieto, son días de libertad y dignidad comprados por adelantado.",
+      "kpi_promesa": "Meses de Reserva Blindados (Fondo Acumulado / Costo Basal Mensual)"
+    },
+    {
+      "id": "principio_pareto_80_20",
+      "codigo": "P2-18",
+      "piso": 2,
+      "titulo_herramienta": "Principio de Pareto (Regla del 80/20)",
+      "metafora_mentor_sultor": "La Cura para el Agotamiento por Intentar Hacer de Todo",
+      "gancho_reel_pregunta": "¿Si una emergencia médica te obligara a trabajar solo 2 horas al día esta semana, cuáles serían las 2 únicas actividades que mantendrían vivo tu negocio?",
+      "dolor_que_cura": "La sensación de estar \"trabajando como chino\" pero ver que la cuenta bancaria no se mueve, el estrés de tener una lista de pendientes infinita y la frustración de dedicarle tiempo a clientes que solo traen problemas. 2.",
+      "elevator_pitch": "¿Te has fijado que usas el mismo par de zapatos el 80% del tiempo aunque tengas diez en el clóset? La vida funciona así: la minoría de lo que haces genera la mayoría de lo que consigues. El Principio de Pareto es tu permiso legal para dejar de hacer el 80% de las cosas que te quitan energía y no te dan un peso, para enfocarte en ese pequeño 20% que de verdad cambia tu vida y la de tus clientes. Es trabajar menos, pero trabajar donde importa.\" 4.",
+      "red_flags_carrusel": [
+        "Dedicar el 80% del tiempo a clientes o tareas que solo generan el 10% del margen o satisfacción.",
+        "Sentir culpa moral por no completar una lista interminable de 40 tareas diarias."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Perfeccionista Matemático\": Intentar que sea exactamente 80 y",
+        "A veces es 70/30 o 90/",
+        "Lo importante es el concepto de desequilibrio.",
+        "\"Despreciar al 80%\": Ignorar totalmente a los clientes pequeños. Hay que gestionarlos, pero no dejar que te quiten el tiempo de los grandes.",
+        "\"La Excusa para la Flojera\": Usar Pareto para no hacer nada del trabajo administrativo aburrido. El 20% es para enfoque, no para evadir responsabilidades básicas.",
+        "\"Olvidar que las cosas cambian\": El 20% de hoy puede no ser el de mañana. Hay que revisar el mapa cada cierto tiempo (como el payaso que revisa si el público se sigue riendo de lo mismo).",
+        "\"Enfoque sin Acción\": Identificar tu 20% pero seguir dedicándole el día entero a las distracciones por miedo a lo importante. 1."
+      ],
+      "paso_cero_5min_cta": "Elegir la ÚNICA tarea de tu jornada que de verdad mueve la aguja financiera y hacerla antes de abrir el correo.",
+      "regla_de_oro_cierre": "El 80% de tus resultados proviene del 20% de tus esfuerzos; todo lo demás es grasa operativa a podar.",
+      "kpi_promesa": "Horas de foco blindadas para el 20% vital (&ge; 4 horas diarias)"
+    },
+    {
+      "id": "inventario_resultados_auditoria",
+      "codigo": "P2-19",
+      "piso": 2,
+      "titulo_herramienta": "Inventario de Resultados y Auditoría de Avance",
+      "metafora_mentor_sultor": "El Espejo Forense del Avance Real y Cura a la Amnesia de Logros",
+      "gancho_reel_pregunta": "¿Si un auditor externo viniera a revisar tu semana con pruebas físicas de avance, le mostrarías una nube de agotamiento o un inventario claro de victorias tangibles?",
+      "dolor_que_cura": "La sensación de estancamiento, la culpa por \"no hacer nada\" y la ceguera ante los propios logros.",
+      "elevator_pitch": "¿Te ha pasado que terminas el día molido, miras tu lista de pendientes y sientes que no avanzaste nada porque todavía quedan cosas por hacer? Eso es una trampa mental. El Inventario de Resultados es como llevar el marcador de un partido: si solo miras el reloj, te estresas; si miras el marcador, te das cuenta de que vas ganando. Es la herramienta que te devuelve la confianza y te permite dormir tranquilo, sabiendo que hoy construiste algo real, aunque no fuera 'perfecto'.",
+      "red_flags_carrusel": [
+        "Llegar al viernes con agotamiento extremo y concluir 'no hice nada esta semana'.",
+        "Incapacidad de enumerar 3 cosas cerradas y terminadas con pruebas físicas."
+      ],
+      "antipatrones_carrusel": [
+        "Confundir \"Estar Ocupado\" con \"Tener Resultados\": Correr todo el día no cuenta si no llegaste a ninguna meta. El payaso que corre en círculos es gracioso, pero el emprendedor que lo hace se quiebra.",
+        "El Inventario de \"Faltas\": Usar este espacio para anotar lo que NO hiciste. ¡Para eso está la lista de pendientes! Aquí solo entran las victorias.",
+        "Despreciar las \"Victorias Pequeñas\": Si hoy solo lograste ordenar tu escritorio, ¡es un resultado! No esperes a ganar un millón de dólares para anotarlo.",
+        "Ser un Juez Cruel: Si un resultado fue \"aprender que ese proveedor no sirve\", ¡es valioso! No te castigues por el proceso.",
+        "Hacerlo \"de memoria\": Si no lo escribes, se te olvida. El cerebro es experto en recordarte lo malo y borrar lo bueno. ¡Anótalo!"
+      ],
+      "paso_cero_5min_cta": "Anotar en una servilleta 3 cosas que hoy están terminadas y que el lunes estaban pendientes.",
+      "regla_de_oro_cierre": "Estar ocupado no es lo mismo que avanzar; mide entregables cerrados, no horas transpiradas.",
+      "kpi_promesa": "Auditoría de resultados ejecutada los viernes en menos de 15 minutos"
+    },
+    {
+      "id": "enps_termometro_lealtad",
+      "codigo": "P2-20",
+      "piso": 2,
+      "titulo_herramienta": "eNPS (Employee Net Promoter Score) — Medición de Clima y Lealtad",
+      "metafora_mentor_sultor": "El Termómetro de la Lealtad y el Clima Real (Seguridad Psicológica)",
+      "gancho_reel_pregunta": "Si tus colaboradores tuvieran que recomendar tu empresa a un amigo íntimo o familiar, ¿lo harían con orgullo o le advertirían que mejor no se meta?",
+      "dolor_que_cura": "La rotación constante de personal, el \"chisme\" de pasillo que envenena el ambiente, y esa duda dolorosa de no saber si tu equipo habla bien de ti cuando no estás delante. 2.",
+      "elevator_pitch": "¿Alguna vez te has preguntado si tus empleados le recomendarían a un buen amigo trabajar contigo? El eNPS es una sola pregunta que te da la verdad sin anestesia. Es la herramienta para dejar de suponer que 'todo está bien' y empezar a construir un lugar donde la gente no solo trabaje por el sueldo, sino porque se siente orgullosa de pertenecer. Es pasar de ser un jefe que manda, a ser un líder que inspira fans internos.\" 4.",
+      "red_flags_carrusel": [
+        "Creer que el equipo está motivado porque 'nadie se queja'.",
+        "Gastar en encuestas engorrosas de 50 preguntas que nadie responde con verdad."
+      ],
+      "antipatrones_carrusel": [
+        "\"Caza de Brujas\": Intentar adivinar quién puso un 4 para ir a reclamarle. ¡El anonimato es sagrado en el eNPS!",
+        "\"Miedo al Espejo\": No hacer la encuesta por miedo a que el resultado sea negativo. (El clown sabe que si la gente no se ríe, ignorarlo no hará que el chiste sea mejor).",
+        "\"Encuesta de Adorno\": Pedir la opinión y no hacer nada con ella. Eso crea más detractores que el problema original.",
+        "\"Obsesión por el 100\": Frustrarse porque no todos son promotores. Siempre habrá pasivos; el juego es escucharlos para que no bajen a detractores.",
+        "\"Preguntar una vez al año\": El clima cambia. Es mejor preguntar poco, pero seguido, que mucho una sola vez al año."
+      ],
+      "paso_cero_5min_cta": "Abrir una papeleta o formulario anónimo de 1 sola pregunta del 0 al 10 con espacio abierto de mejora.",
+      "regla_de_oro_cierre": "Tus clientes externos nunca serán más felices ni estarán mejor tratados que tus colaboradores internos.",
+      "kpi_promesa": "Score eNPS neto (Meta >= +30 puntos)"
+    },
+    {
+      "id": "principio_mece_categorizacion",
+      "codigo": "P2-21",
+      "piso": 2,
+      "titulo_herramienta": "Principio MECE (Mutuamente Excluyentes, Colectivamente Exhaustivos)",
+      "metafora_mentor_sultor": "El Fin de las Tareas Repetidas y los Cabos Sueltos (Delimitación Quirúrgica)",
+      "gancho_reel_pregunta": "Al dividir tu negocio o tus roles de vida, ¿tus categorías están claramente delimitadas sin pisarse, y cubren el 100% de lo importante sin dejar cabos sueltos?",
+      "dolor_que_cura": "La duplicidad de funciones, los vacíos de información y esa sensación de que \"algo se me está escapando\".",
+      "elevator_pitch": "¿Te ha pasado que sientes que estás trabajando el doble porque dos personas hicieron lo mismo, o peor, que algo importante nadie lo hizo porque 'pensaron que le tocaba al otro'? El Principio MECE es como organizar tu ropa: pones los calcetines en un cajón y las poleras en otro (eso es ser Exclusivo ), y te aseguras de que no quede ninguna prenda tirada en el suelo (eso es ser Exhaustivo ). Es la forma más rápida de tener una visión 360 de tu negocio sin volverte loco en el intento.",
+      "red_flags_carrusel": [
+        "Dos personas realizando la misma función operativa sin saberlo.",
+        "Tener una categoría 'Otros' o 'Varios' que supera el 20% del volumen total de tareas."
+      ],
+      "antipatrones_carrusel": [
+        "La Categoría \"Varios\" o \"Etcétera\": Es el basurero de la mente. Si usas \"varios\", es porque no fuiste lo suficientemente claro para definir una categoría real.",
+        "El Solapamiento Rebelde: Crear las categorías \"Marketing\" y \"Redes Sociales\" por separado. ¡Cuidado! Las redes son parte del marketing. Se van a chocar.",
+        "El Agujero Negro: Olvidar una parte del proceso. \"Hice el producto y lo vendí\", ¿y quién lo entrega",
+        "Ahí falló la exhaustividad.",
+        "La Parálisis por Clasificación: Tratar de que todo sea perfecto antes de empezar. El MECE es para dar claridad, no para detener la acción. ¡Equivócate rápido y ajusta la caja!",
+        "Perder la Esencia: Ser tan rígido con las categorías que te olvidas de que trabajas con personas. El orden es para servirte a ti, no tú al orden."
+      ],
+      "paso_cero_5min_cta": "Definir una 'frontera prohibida' entre tus dos frentes principales para evitar la contaminación cruzada.",
+      "regla_de_oro_cierre": "Sin huecos en la cobertura y sin pisarse la manguera entre áreas del negocio.",
+      "kpi_promesa": "Tasa de retrabajos por solapamiento y cabos sueltos olvidados (0 incidentes)"
+    },
+    {
+      "id": "circulo_dorado",
+      "codigo": "P3-01",
+      "piso": 3,
+      "titulo_herramienta": "El Círculo Dorado (Simon Sinek)",
+      "metafora_mentor_sultor": "El Antídoto contra la Guerra de Precios y la Crisis de Identidad",
+      "gancho_reel_pregunta": "¿Tus clientes te compran por lo que haces (un producto sustituible) o por la causa innegociable por la que te levantas cada mañana?",
+      "dolor_que_cura": "La falta de diferenciación, el agotamiento del dueño y los clientes que solo buscan lo más barato.",
+      "elevator_pitch": "¿Sientes que te desvives explicando qué haces y cómo lo haces, pero al final la gente se va con el que cobra mil pesos menos? Eso es porque estás hablando de afuera hacia adentro. La gente no compra lo que haces, compra por qué lo haces. El Círculo Dorado es la herramienta que te ayuda a encontrar ese motor interno que te hace único. Cuando hablas desde tu propósito, dejas de perseguir clientes y empiezas a atraer creyentes. Es pasar de tener un negocio a tener una causa que, de paso, da dinero.",
+      "red_flags_carrusel": [
+        "Clientes que siempre piden descuento y comparan con la opción más barata.",
+        "Presentar el negocio enumerando especificaciones técnicas en vez de significado o impacto."
+      ],
+      "antipatrones_carrusel": [
+        "Confundir el Porqué con el Dinero: Decir \"mi porqué es ser millonario\". El dinero es el combustible, pero nadie viaja solo por comprar bencina; viajas por el destino.",
+        "El Propósito \"Post-it\": Escribir un porqué súper bonito en la web pero tratar mal a los clientes o empleados. El clown que no hace reír no es clown.",
+        "Hablar solo del Qué: Pasar 20 minutos explicando los Watts de potencia de tu máquina y 0 minutos explicando por qué te importa el cliente.",
+        "Copiar el Porqué de otro: El propósito no se inventa, se descubre. Si copias el de Apple, vas a sonar a plástico.",
+        "Olvidar la Coherencia: Si tu porqué es \"la honestidad\" y cobras sobreprecios ocultos, tu círculo dorado se rompe y la confianza muere.",
+        "Design Thinking: La cura para el \"Yo creo que esto les va a gustar\" Título y Subtítulo de Valor Design Thinking: El Lente de la Empatía Radical El dolor que sana: El miedo al fracaso al lanzar algo nuevo, el desperdicio de plata en productos que no se venden y la desconexión total entre lo que el dueño ofrece y lo que el cliente realmente desea.",
+        "Historia y Contexto Aunque parece algo de \"Silicon Valley\", el concepto empezó a cocinarse en los años 60, pero explotó con la consultora IDEO y la Universidad de Stanford. Surgió cuando los ingenieros se dieron cuenta de que para diseñar cosas geniales (como el primer mouse de Apple), no bastaba con saber de circuitos; había que entender cómo se mueve la mano humana y qué siente la persona al usarlo. Hoy es vital porque el mercado ya no compra productos, compra soluciones a sus dolores.",
+        "El \"Elevator Pitch\" Humano \"Imagínate que pudieras leer la mente de tus clientes antes de gastar un solo peso en inventario. El Design Thinking es como tener una primera cita donde, en vez de hablar de ti todo el tiempo, te dedicas a escuchar al otro hasta entender qué le falta para ser feliz. Es la herramienta para fallar rápido y barato, para que cuando aciertes, lo hagas en grande y con la seguridad de que tu negocio está resolviendo algo real.\"",
+        "Desglose para ADMINISTRADORES (Capa Técnica) Desde la consultoría, definimos el Design Thinking como una metodología de Innovación Basada en el Humano (HCD - Human Centered Design) . Su sustento estratégico se basa en el modelo del \"Doble Diamante\" (Divergencia y Convergencia) y gestiona tres variables críticas de control:",
+        "Deseabilidad (Humano): ¿La gente realmente lo quiere/necesita",
+        "(Validación de Mercado).",
+        "Factibilidad (Técnico): ¿Podemos construirlo con la tecnología y recursos actuales",
+        "(Capacidad Operativa).",
+        "Viabilidad (Negocio): ¿Es sostenible financieramente",
+        "(Modelo de Ingresos)."
+      ],
+      "paso_cero_5min_cta": "Completar la frase: 'Creemos que nadie debería tener que sufrir por [problema], y por eso creamos [proyecto]'.",
+      "regla_de_oro_cierre": "La gente no compra lo que haces, compra por qué lo haces; empezar por el Qué es hablarle a una calculadora.",
+      "kpi_promesa": "Pitch de valor Inside-Out estructurado y memorizado por el equipo"
+    },
+    {
+      "id": "plan_estrategico_hitos",
+      "codigo": "P3-02",
+      "piso": 3,
+      "titulo_herramienta": "Plan Estratégico Trienal e Hitos Clave",
+      "metafora_mentor_sultor": "El Mapa para Dejar de Correr como Pollo sin Cabeza (La Película de tus Próximos 3 Años)",
+      "gancho_reel_pregunta": "Si tu vida o tu negocio fuera una película de 3 años, ¿cómo se titula el capítulo de este año y cuáles son los 3 hitos medibles que determinan si pasaste de nivel?",
+      "dolor_que_cura": "La reactividad constante, la sensación de estancamiento y el agotamiento por decidir todo sobre la marcha.",
+      "elevator_pitch": "¿Te ha pasado que terminas la semana agotado pero sientes que no avanzaste nada importante? Eso es porque estás en modo 'supervivencia'. El Plan Estratégico es como dejar de mirar tus pies mientras caminas para levantar la vista y ver la montaña a la que quieres subir. No es un documento aburrido de 50 páginas; es la declaración de guerra contra el caos. Es decidir hoy qué batallas vas a ganar para que mañana tu negocio te dé la libertad que buscabas cuando empezaste.",
+      "red_flags_carrusel": [
+        "Aceptar compromisos improductivos por no tener metas claras a mediano plazo.",
+        "No saber cuáles son los 3 hitos que deben cumplirse en los próximos 90 días."
+      ],
+      "antipatrones_carrusel": [
+        "La Novela de Misterio: Guardar la conclusión para el final después de 20 minutos de charla. ¡No somos Agatha Christie!",
+        "La Pirámide Flotante: Tirar una conclusión fuerte sin tener datos que la sujeten. Eso se llama \"humo\".",
+        "El Laberinto de Ideas: Mezclar argumentos de dinero con argumentos de sentimientos en el mismo pilar. Cada pata de la mesa en su lugar.",
+        "Exceso de Equipaje: Poner 10 pilares. El cerebro ama el",
+        "Si tienes más de 4 razones, probablemente algunas son la misma con distinto disfraz.",
+        "Omitir el Lado Humano: Ser directo no significa ser un robot. Puedes usar la Pirámide y seguir siendo un \"profe bacán\". La estructura da claridad, tu tono da la confianza. Plan Estratégico: El mapa para dejar de \"correr como pollo sin cabeza\""
+      ],
+      "paso_cero_5min_cta": "Escribir el título de tu año actual y fijar una sola meta numérica innegociable para el próximo trimestre.",
+      "regla_de_oro_cierre": "Un plan a 3 años no es una camisa de fuerza inamovible; es el guion de la película para saber qué escena toca rodar hoy.",
+      "kpi_promesa": "Tasa de cumplimiento de hitos trimestrales (>= 75% completados)"
+    },
+    {
+      "id": "metodo_smart_metas",
+      "codigo": "P3-03",
+      "piso": 3,
+      "titulo_herramienta": "Método SMART para Formulación de Metas",
+      "metafora_mentor_sultor": "El Fin de las Metas Humo y Aprender a Pedirle Cosas Claras a la Vida",
+      "gancho_reel_pregunta": "¿Para esa meta que tienes en mente: tienes una fecha de vencimiento exacta y un número que determine si lo lograste o no?",
+      "dolor_que_cura": "a tus sueños: Cómo convertir intenciones vagas en resultados reales.",
+      "elevator_pitch": "¿Te ha pasado que el 1 de enero dices 'este año voy a vender más' y el 31 de diciembre estás igual de cansado y con la misma plata? Eso pasa porque 'vender más' no es una meta, es un deseo. El Método SMART es como ponerle un GPS a tus ganas: te obliga a decir exactamente cuánto, cómo y para cuándo. Es la diferencia entre decir 'quiero estar en forma' y decir 'voy a caminar 20 minutos mañana a las 7 am'. Te cambia la vida porque te quita la culpa de no avanzar y te da la satisfacción de tachar tareas logradas.",
+      "red_flags_carrusel": [
+        "Plantear objetivos con palabras vagas como 'mejorar', 'crecer' o 'intentar'.",
+        "No tener una fecha y hora exacta de corte en el calendario para evaluar el resultado."
+      ],
+      "antipatrones_carrusel": [
+        "La Meta \"Superman\": Ponerse metas imposibles (como \"ser millonario en un mes\") que solo sirven para frustrarte. El payaso se cae, pero se levanta porque la caída es controlada.",
+        "El \"Algún día\": Dejar el tiempo abierto. \"Algún día\" es el sinónimo de \"Nunca\". Si no hay fecha, no hay compromiso.",
+        "La Meta Secreta: No contarle a nadie tu meta. El compromiso público (con tu pareja, socio o equipo) ayuda a que no te hagas \"el larry\".",
+        "Olvidar el \"Para qué\": Ponerse metas porque están de moda. Si tu meta SMART no te emociona ni te ayuda, bórrala.",
+        "Rigidez de Piedra: Si algo falla, no tires la meta a la basura. Ajusta los números o la fecha, ríete un poco del error, ¡y sigue!"
+      ],
+      "paso_cero_5min_cta": "Ponerle a tu mayor deseo actual únicamente dos datos: un número y una fecha de vencimiento.",
+      "regla_de_oro_cierre": "Un objetivo sin fecha y sin número es solo un sueño piadoso que drena energía sin generar resultados.",
+      "kpi_promesa": "100% de proyectos trimestrales formulados con ficha SMART completa"
+    },
+    {
+      "id": "metodo_okr_trimestral",
+      "codigo": "P3-04",
+      "piso": 3,
+      "titulo_herramienta": "Método OKR (Objectives and Key Results)",
+      "metafora_mentor_sultor": "El GPS para no Perderse en la Operatividad Eterna",
+      "gancho_reel_pregunta": "¿Tus metas diarias de esta semana están amarradas matemáticamente a un objetivo de negocio de mediano plazo?",
+      "dolor_que_cura": "La falta de foco, sentir que trabajas mucho pero no avanzas y el agotamiento por \"apagar incendios\" todo el día.",
+      "elevator_pitch": "¿Sientes que tu lista de tareas nunca termina y que al final del día no sabes si realmente hiciste crecer tu negocio? El Método OKR es como dejar de mirar tus pies al caminar para empezar a mirar el horizonte. Te obliga a elegir solo un par de metas que te quiten el sueño y a definir exactamente cómo vas a medir que llegaste ahí. No es más trabajo; es mejor trabajo . Es pasar de estar 'ocupado' a estar 'enfocado' para que te quede tiempo para vivir.",
+      "red_flags_carrusel": [
+        "Trabajar 14 horas al día en tareas secundarias mientras las metas estratégicas se posponen meses.",
+        "Tener más de 5 objetivos abiertos simultáneamente sin métricas de resultado clave."
+      ],
+      "antipatrones_carrusel": [
+        "Hacer una lista de compras: El OKR no es una lista de tareas (hacer esto, llamar a aquel). El OKR es el resultado de esas tareas.",
+        "Poner demasiados OKRs: Si tienes 10 objetivos, no tienes ninguno. El cerebro humano se marea con más de",
+        "Quédate con lo que de verdad importa.",
+        "Hacerlo y olvidarlo: El OKR no es un adorno para el Excel. Si no lo miras todas las semanas, se muere de tristeza.",
+        "Castigar el \"No cumplimiento\": Los OKRs son para estirarse. Si llegas al 70%-80% de un objetivo difícil, ¡celebra! Si siempre llegas al 100%, es que pusiste metas muy fáciles.",
+        "Confundir OKR con KPI: El KPI mide la salud del negocio (cuánta plata hay), el OKR mide el cambio y el crecimiento (hacia dónde vamos a crecer)."
+      ],
+      "paso_cero_5min_cta": "Definir en una servilleta el ÚNICO gran objetivo de los próximos 90 días y 1 resultado numérico verificable.",
+      "regla_de_oro_cierre": "Los Objetivos inspiran hacia dónde vamos; los Resultados Clave miden sin piedad si llegamos o no con números exactos.",
+      "kpi_promesa": "Tasa de cumplimiento trimestral de KRs (&ge; 70% promedio)"
+    },
+    {
+      "id": "design_thinking_prototipado",
+      "codigo": "P3-05",
+      "piso": 3,
+      "titulo_herramienta": "Design Thinking (Prototipado Rápido y Validación Centrada en el Usuario)",
+      "metafora_mentor_sultor": "La Cura para el 'Yo Creo que Esto Les Va a Gustar' (Experimentación de $0)",
+      "gancho_reel_pregunta": "Antes de dar el gran salto e invertir tus ahorros, ¿has creado un pequeño experimento de bajo costo para validar si el cliente de verdad tiene ese dolor y paga por tu solución?",
+      "dolor_que_cura": "Cura el dolor de enamorarse de soluciones que nadie quiere, gastar millones en ideas teóricas y tomar decisiones drásticas basadas en fantasías de escritorio.",
+      "elevator_pitch": "El mayor error del emprendedor es encerrarse en una cueva a diseñar una solución 'perfecta' durante seis meses, para salir y darse cuenta de que nadie la necesita. El Design Thinking es lo opuesto: sales el primer día a escuchar a la gente con empatía brutal, armas un prototipo en cartón o en WhatsApp en 24 horas, y dejas que la realidad te guíe sin arriesgar tu patrimonio.",
+      "red_flags_carrusel": [
+        "Construir una solución completa a puerta cerrada sin haber hablado con 5 clientes reales.",
+        "Gastar presupuesto publicitario antes de tener un prototipo validado por WhatsApp."
+      ],
+      "antipatrones_carrusel": [
+        "Enamorarse de la Idea y no del Problema: Defender tu ocurrencia aunque los clientes digan que no les sirve.",
+        "El Prototipo de Oro: Gastar demasiado dinero en la versión beta en vez de usar papel, fotos o mensajes directos."
+      ],
+      "paso_cero_5min_cta": "Enviar un audio a 2 clientes preguntándoles cuál es su mayor dolor sin intentar venderles nada.",
+      "regla_de_oro_cierre": "Fracasa rápido, fracasa barato y aprende siempre; un error de $5.000 hoy te ahorra una quiebra de $10 millones mañana.",
+      "kpi_promesa": "Tiempo desde la concepción de la idea hasta el primer test con cliente real (<= 7 días)"
+    },
+    {
+      "id": "oceano_azul_diferencial",
+      "codigo": "P3-06",
+      "piso": 3,
+      "titulo_herramienta": "Estrategia del Océano Azul & Factor Diferencial",
+      "metafora_mentor_sultor": "El Fin de la Guerra de Precios y la Competencia Sangrienta (Matriz ERAC)",
+      "gancho_reel_pregunta": "¿Qué es aquello que tú haces con total naturalidad, goce y fluidez que a tu competencia le cuesta muchísimo esfuerzo o dinero hacer?",
+      "dolor_que_cura": "El agotamiento por competir con los precios del vecino y sentir que tu negocio es \"más de lo mismo\".",
+      "elevator_pitch": "¿Te has fijado que cuando todos venden lo mismo, el cliente siempre pide descuento? Eso es porque estás en una pecera llena de pirañas. La Estrategia del Océano Azul es el permiso que te das para dejar de mirar qué hace la competencia y empezar a mirar qué es lo que el cliente realmente necesita pero nadie le está dando. Es pasar de ser una opción más a ser la única opción para un grupo específico de personas. No se trata de ser el mejor, se trata de ser diferente.",
+      "red_flags_carrusel": [
+        "Iniciar ventas rebajando tarifas por miedo a no cerrar el trato.",
+        "Copiar publicaciones o modelos de negocio de la competencia esperando resultados distintos."
+      ],
+      "antipatrones_carrusel": [
+        "Ser \"Raro\" sin Valor: No se trata de ser diferente solo por ser loco. Si eres diferente pero no solucionas nada, eres un payaso sin gracia.",
+        "Obsesionarse con la Tecnología: Creer que necesitas una IA o un robot. A veces el Océano Azul es simplemente atender con una sonrisa y ser puntual cuando nadie más lo es.",
+        "Miedo a Eliminar: Tratar de ser \"bueno en todo\". Si no eliminas algo, no tienes recursos para crear algo nuevo. ¡Suelte el lastre!",
+        "No mirar los costos: Innovar en algo que te sale tan caro que nadie lo puede pagar. El Océano Azul debe ser rentable.",
+        "Dormirse en los laureles: El Océano Azul eventualmente se vuelve rojo porque te van a copiar. Tienes que seguir jugando y explorando siempre. Estrategia del Océano Azul: El fin de la guerra de precios y la competencia sangrienta Cura el dolor de: El agotamiento por competir con los precios del vecino y sentir que tu negocio es \"más de lo mismo\". Historia y Contexto Esta joya fue creada por W. Chan Kim y Renée Mauborgne, profesores de INSEAD, en",
+        "Observaron que las empresas se matan entre sí en \"Océanos Rojos\" (teñidos de sangre por la competencia feroz), peleando por un espacio que ya existe. El Océano Azul, en cambio, es ese espacio donde la competencia es irrelevante porque tú inventaste una nueva forma de entregar valor. Es vital hoy porque en un mundo hiperconectado, si eres igual al resto, solo puedes ser más barato... y ese es un camino directo al estrés. El \"Elevator Pitch\" Humano \"¿Te has fijado que cuando todos venden lo mismo, el cliente siempre pide descuento",
+        "Eso es porque estás en una pecera llena de pirañas. La Estrategia del Océano Azul es el permiso que te das para dejar de mirar qué hace la competencia y empezar a mirar qué es lo que el cliente realmente necesita pero nadie le está dando. Es pasar de ser una opción más a ser la única opción para un grupo específico de personas. No se trata de ser el mejor, se trata de ser diferente.\" Desglose para ADMINISTRADORES (Capa Técnica) Como consultores, sustentamos el Océano Azul bajo la metodología de la Innovación en Valor :",
+        "Innovación en Valor: No es solo tecnología; es lograr que la utilidad para el cliente aumente mientras los costos operativos bajan o se mantienen.",
+        "Matriz de las Cuatro Acciones (ERRC):",
+        "Eliminar: Factores que la industria da por sentados pero no agregan valor real.",
+        "Reducir: Variables que están por encima de lo necesario y elevan costos.",
+        "Incrementar: Elementos que el mercado actual descuida.",
+        "Crear: Factores que la industria nunca ha ofrecido.",
+        "Cuadro Estratégico: Herramienta visual para comparar nuestra curva de valor contra la de la industria.",
+        "Variable de Control: \"Costo de Adquisición de Clientes (CAC) vs. Diferenciación\". En un Océano Azul, el CAC baja porque el cliente te busca por tu valor único. Desglose para NO-ADMINISTRADORES (Capa Didáctica) Concepto Definición Cercana (Analogía) Pregunta de Diagnóstico Océano Rojo Es una micro llena de gente donde todos pelean por un asiento. ¿Sientes que para ganar un cliente tienes que cobrar menos que tu vecino",
+        "Océano Azul Es encontrar una calle nueva, despejada y linda por donde caminar tranquilo. ¿Hay algo que tus clientes odien de tu rubro y que tú podrías solucionar",
+        "Innovación en Valor Es como cocinar algo rico, sano y barato al mismo tiempo: quitas lo que sobra y pones lo que importa. ¿Qué cosas haces hoy 'porque todos las hacen' pero que a tu cliente le dan lo mismo",
+        "Curva de Valor Es como tu 'huella digital' en el negocio; muestra en qué te luces y en qué no. Si comparamos tu negocio con el del frente, ¿en qué eres TOTALMENTE distinto",
+        "Ecosistema: ¿Cómo potencia a otras herramientas",
+        "El Océano Azul es el \"GPS\" que le da dirección a tu estructura:",
+        "Potencia el FODA: Te ayuda a transformar una Oportunidad externa en un modelo de negocio que nadie más tiene.",
+        "Limpia el Mind Mapping: Cuando haces tu mapa mental, el Océano Azul te ayuda a descartar las ramas que son \"basura\" o copia del resto.",
+        "Enfoca el Círculo Dorado: Tu \"Porqué\" se vuelve mucho más potente cuando descubres que estás sirviendo a una necesidad que otros ignoran. Casos de Aplicación \"A ras de suelo\"",
+        "Escenario A (Negocio - Servicio de Limpieza):",
+        "Océano Rojo: Limpiar oficinas de noche como todos, cobrando por hora y peleando por contratos de gobierno.",
+        "Océano Azul: \"Limpieza Express para Departamentos de Solteros\". Eliminamos: contratos largos. Creamos: reserva por app, limpieza en 1 hora, aroma personalizado y dejar una nota de ánimo.",
+        "Resultado: Cobras más por hora porque nadie más ofrece esa \"experiencia\" rápida y emocional.",
+        "Escenario B (Vida Personal - Paternidad / Hogar):",
+        "Océano Rojo: Comprar los mismos juguetes caros que todos para que los niños no se aburran.",
+        "Océano Azul: \"El Club de la Caja de Cartón\". Eliminamos: el gasto en plástico. Creamos: tardes de construcción creativa juntos.",
+        "Resultado: Menos gasto, más conexión real con tus hijos y una casa llena de naves espaciales hechas a mano. Plan de Acción de 24 Horas: El Micro-hábito Tu misión para mañana: Pregúntale a tu cliente más simpático: \"¿Qué es lo que más te molesta de contratar a alguien en mi rubro",
+        "\" . Escucha con orejas de payaso (atento a lo absurdo). Lo que te diga es la semilla de tu Océano Azul. No intentes arreglarlo hoy, solo anótalo . Antipatrones (Lo que NO hay que hacer)",
+        "Ser \"Raro\" sin Valor: No se trata de ser diferente solo por ser loco. Si eres diferente pero no solucionas nada, eres un payaso sin gracia.",
+        "Obsesionarse con la Tecnología: Creer que necesitas una IA o un robot. A veces el Océano Azul es simplemente atender con una sonrisa y ser puntual cuando nadie más lo es.",
+        "Miedo a Eliminar: Tratar de ser \"bueno en todo\". Si no eliminas algo, no tienes recursos para crear algo nuevo. ¡Suelte el lastre!",
+        "No mirar los costos: Innovar en algo que te sale tan caro que nadie lo puede pagar. El Océano Azul debe ser rentable.",
+        "Dormirse en los laureles: El Océano Azul eventualmente se vuelve rojo porque te van a copiar. Tienes que seguir jugando y explorando siempre."
+      ],
+      "paso_cero_5min_cta": "Identificar un requisito o trámite engorroso estándar de tu industria y eliminarlo de tu oferta hoy mismo.",
+      "regla_de_oro_cierre": "No compitas por ser el más barato en un mercado saturado; sé el único en un sendero despejado.",
+      "kpi_promesa": "Tasa de propuestas comerciales cerradas a precio de lista (>= 70% sin descuento)"
+    },
+    {
+      "id": "modelo_grow_coaching",
+      "codigo": "P3-07",
+      "piso": 3,
+      "titulo_herramienta": "Modelo GROW de Coaching (Goal, Reality, Options, Will)",
+      "metafora_mentor_sultor": "Enseñar a Pescar • Ayudar a los Tuyos a Resolver sus Propios Problemas",
+      "gancho_reel_pregunta": "¿Cuando alguien te pide ayuda, le das el pez de inmediato o le haces preguntas para que descubra su propia caña de pescar?",
+      "dolor_que_cura": "por análisis y el estancamiento en el negocio.",
+      "elevator_pitch": "Imagina que vas en un auto: tienes combustible (ganas) y el motor rinde (tu oficio), pero no tienes dirección. El Modelo GROW es el GPS que te obliga a marcar el destino antes de acelerar. No es una charla motivacional; es un método de cuatro pasos que te saca de la cabeza y te pone en la acción. En 15 minutos, este modelo te permite pasar de un \"estoy agobiado\" a un \"mañana a las 10:00 AM voy a hacer exactamente esto\". Es orden para tu mente y paz para tu bolsillo.",
+      "red_flags_carrusel": [
+        "Entregar la solución masticada en 10 segundos en lugar de hacer preguntas reflexivas.",
+        "Quejarse de que 'nadie toma decisiones sin mí' mientras se censura la iniciativa propia."
+      ],
+      "antipatrones_carrusel": [
+        "El \"Optimista Ciego\" (Saltarse la R): Poner una meta gigante sin aceptar que hoy tienes $0 y poco tiempo. El Clown te diría: \"Si te tropiezas, al menos mira con qué\".",
+        "El \"Coleccionista de Opciones\" (Atascarse en la O): Tener 50 ideas y no elegir ninguna. Eso no es ser creativo, es tener miedo a decidir.",
+        "La \"Meta de Algodón\" (G vaga): Decir \"quiero que me vaya bien\". ¿Qué es bien",
+        "¿Un millón",
+        "¿Dos abrazos",
+        "Sé específico.",
+        "El \"Sargento de Hierro\" (W sin corazón): Ponerse tareas imposibles que te quitan las ganas de vivir. Si el plan no te emociona un poquito, no lo vas a hacer.",
+        "Mentirse a uno mismo: El GROW solo funciona si eres honesto. Si dices que tienes tiempo y en verdad estás agotado, el GPS te va a mandar por un barranco."
+      ],
+      "paso_cero_5min_cta": "Morderse la lengua antes de dar un consejo y preguntar: 'Si fueras el dueño de esto, ¿qué primer paso darías hoy?'.",
+      "regla_de_oro_cierre": "No le digas al cliente lo que tiene que hacer; hazle la pregunta que active su propia soberanía y compromiso.",
+      "kpi_promesa": "Reducción del 50% en consultas operativas triviales hacia el líder"
+    },
+    {
+      "id": "cinco_fuerzas_porter",
+      "codigo": "P3-08",
+      "piso": 3,
+      "titulo_herramienta": "Las 5 Fuerzas de Porter & Negociación de Poder",
+      "metafora_mentor_sultor": "Tu Radar Contra los Golpes del Mercado (Quién Tiene la Sartén por el Mango)",
+      "gancho_reel_pregunta": "En tu economía personal, ¿el poder de decisión real lo tienes tú o dependes en un 80% de la buena voluntad de una sola persona o plataforma?",
+      "dolor_que_cura": "La sensación de estar \"atrapado\" por los precios de los proveedores, el miedo a la competencia y la falta de control sobre tus ganancias.",
+      "elevator_pitch": "¿Alguna vez has sentido que trabajas como loco pero al final del mes la plata se te va en pagarle a proveedores caros o en bajar precios porque el vecino lo hizo? Las 5 Fuerzas de Porter son como un radar que te avisa quién tiene la sartén por el mango en tu barrio. Te enseña a dejar de ser una víctima de las circunstancias para convertirte en un estratega que sabe dónde apretar para que el negocio rinda. Es pasar de 'ojalá me vaya bien' a 'sé exactamente cómo protegerme'.",
+      "red_flags_carrusel": [
+        "Un solo cliente representa más del 35% de la facturación mensual.",
+        "Aceptar descuentos abusivos por no tener otras alternativas de venta."
+      ],
+      "antipatrones_carrusel": [
+        "Ignorar al \"Sustituto Silencioso\": Creer que tu competencia es solo el que hace lo mismo que tú. ¡El mayor sustituto de muchos negocios es que el cliente decida no hacer nada!",
+        "Ser el \"Eterno Despistado\": No darte cuenta de que dependes de un solo proveedor hasta que este quiebra o te sube el precio al doble.",
+        "Miedo al Cliente: Dejar que un solo cliente represente el 80% de tus ingresos. Si ese cliente se va, se lleva tu negocio. ¡Diversifica!",
+        "Pensar que las Barreras son Eternas: Creer que porque hoy nadie hace lo que tú haces, mañana será igual. El mundo gira rápido, ¡sigue innovando!",
+        "Tomárselo Personal: Si un competidor baja los precios, no es porque te odie, es porque está sintiendo la misma presión que tú. Usa la cabeza, no el hígado."
+      ],
+      "paso_cero_5min_cta": "Calcular la concentración de tu cliente mayoritario y prospectar 3 clientes alternativos si supera el 30%.",
+      "regla_de_oro_cierre": "Si un solo cliente o proveedor representa más del 40% de tu operación, no eres un dueño libre; eres un empleado sin contrato.",
+      "kpi_promesa": "Concentración máxima por cliente individual (<= 25% de ingresos)"
+    },
+    {
+      "id": "paquetizacion_servicios_mes",
+      "codigo": "P3-09",
+      "piso": 3,
+      "titulo_herramienta": "Paquetización de Servicios en Programas Mensuales",
+      "metafora_mentor_sultor": "Dejar de Vender Horas Sueltas (Crear Ingresos Recurrentes Predecibles)",
+      "gancho_reel_pregunta": "¿Por qué vender 1 sesión aislada cuando el resultado real de tu cliente requiere un programa estructurado de acompañamiento mensual?",
+      "dolor_que_cura": "Salir de la rueda del hámster de cobrar \"por sesión o por hora\" para construir programas mensuales con resultados reales, ingresos predecibles el día 1 de cada mes y paz mental en tu agenda.",
+      "elevator_pitch": "Cuando vendes horas sueltas, te conviertes en rehén de los imprevistos de tus clientes: si llueve o te cancelan, tu cuenta bancaria sufre. Además, nadie transforma su vida, su cuerpo o su negocio en una sola hora. Paquetizar tus servicios significa decirle a tu cliente: 'No te vendo una sesión suelta; te acompaño durante un mes completo con un principio, un método y un resultado claro'. Con 3 planes claros (Esencial, Óptimo y VIP), tú sabes exactamente cuánto vas a facturar a principio de mes y cuántas horas máximas vas a trabajar.",
+      "red_flags_carrusel": [
+        "Cobro por hora suelta y si el cliente cancela a última hora pierdo el ingreso.",
+        "Paso la mitad del mes buscando clientes nuevos en lugar de profundizar procesos reales."
+      ],
+      "antipatrones_carrusel": [
+        "El \"Todo Incluido Ilimitado\" (Suicidio Operativo): Ofrecer *\"soporte 24/7 o revisiones ilimitadas\"* en un plan mensual. Siempre pon un límite saludable de horas o sesiones.",
+        "Hacer un Descuento Gigante por Mes: Paquetizar no es regalar tu trabajo más barato por volumen; es agregar valor estructurado (seguimiento, plantillas, prioridad de agenda) para cobrar lo justo con estabilidad.",
+        "Poner 10 Planes Distintos: Más de 3 opciones confunde al cerebro del cliente y paraliza la compra. Mantén siempre la tríada: Esencial, Óptimo y VIP.",
+        "No Cobrar por Adelantado: Un programa mensual se abona al iniciar el ciclo (del 1 al 5 de cada mes), nunca \"a fin de mes viendo qué pasa\"."
+      ],
+      "paso_cero_5min_cta": "Bautizar tu 'Programa de 1 Mes' en 3 niveles (Esencial, Óptimo Recomendado y VIP Blindado) y fijar el cupo máximo saludable.",
+      "regla_de_oro_cierre": "No vendas horas sueltas de tu reloj vital: vende procesos mensuales de transformación con principio, bordes claros y valor garantizado.",
+      "kpi_promesa": "Multiplicador de Ingreso Recurrente Mensual (MRR) y Valor Hora Efectivo"
+    },
+    {
+      "id": "evaluacion_360_feedback",
+      "codigo": "P3-10",
+      "piso": 3,
+      "titulo_herramienta": "Evaluación 360° Personal y Profesional",
+      "metafora_mentor_sultor": "El Espejo de Feedback Honesto y Radical (La Cura para los Puntos Ciegos)",
+      "gancho_reel_pregunta": "¿Tienes el valor de pedirle a 3 personas de tu entorno que califiquen con honestidad tus fortalezas y fricciones reales, escuchando sin justificarte?",
+      "dolor_que_cura": "La subjetividad de evaluar \"a dedo\", el resentimiento del equipo por sentirse juzgados por alguien que no ve su día a día, y la ceguera del dueño que no sabe por qué su equipo no fluye aunque él cree que lo hace todo bien. 2.",
+      "elevator_pitch": "¿Te has preguntado alguna vez cómo es realmente trabajar contigo o con tu mano derecha? La Evaluación 360 es invitar a todos a la mesa para hablar de cómo mejorar. Es recolectar las perspectivas de jefes, colegas, subordinados y hasta clientes para crear una imagen real de quiénes somos. Es la herramienta para pasar de la 'dedocracia' a la cultura de la verdad, permitiendo que cada uno crezca sabiendo exactamente dónde le aprieta el zapato.\" 4.",
+      "red_flags_carrusel": [
+        "Creer que el equipo está satisfecho mientras crecen las quejas en pasillos.",
+        "Justificar actitudes hirientes o impacientes bajo el argumento de la 'exigencia'."
+      ],
+      "antipatrones_carrusel": [
+        "\"El Juicio Final\": Usar la 360 para despedir gente. Si lo haces, la próxima vez todos se pondrán un 10 por miedo y la herramienta morirá.",
+        "\"La Caza de Brujas\": Tratar de adivinar quién te puso un comentario negativo. (El clown que se enoja con el que no se ríe, pierde la función).",
+        "\"El Cajonazo\": Hacer la evaluación, leer los resultados y no hacer nada. Es la mejor forma de matar la confianza del equipo.",
+        "\"Preguntar por Preguntar\": Evaluar cosas que no se pueden cambiar (como la personalidad). Enfócate en acciones .",
+        "\"Falta de Autocrítica\": El dueño pide evaluar a todos menos a él. Si el capitán no se mira al espejo, el barco sigue a ciegas."
+      ],
+      "paso_cero_5min_cta": "Preguntar a una persona de total confianza qué actitud tuya bajo estrés le genera más fricción y agradecer el dato sin discutir.",
+      "regla_de_oro_cierre": "La retroalimentación no define tu valor como ser humano; solo mide el impacto real de tus conductas en los demás.",
+      "kpi_promesa": "Brecha de percepción promedio entre autoevaluación y evaluadores externos (<= 0.5 puntos)"
+    },
+    {
+      "id": "matriz_9box_talento",
+      "codigo": "P3-11",
+      "piso": 3,
+      "titulo_herramienta": "Matriz 9-Box de Talento y Desempeño (Desempeño vs Potencial)",
+      "metafora_mentor_sultor": "El Mapa del Talento Humano y la Cura para la Culpa del Líder",
+      "gancho_reel_pregunta": "¿En tu equipo, sabes con total precisión quién es tu estrella de futuro, quién es tu motor silencioso y quién está drenando la energía del colectivo sin aportar?",
+      "dolor_que_cura": "El sentimiento de injusticia al evaluar, la parálisis por no saber a quién promover y la culpa de no saber a quién dejar ir (o dónde poner tu energía). 2.",
+      "elevator_pitch": "Imagínate que dejas de adivinar quién merece un bono o a quién tienes que capacitar. La 9-Box es como ponerle un GPS a tu equipo (o a tus proyectos): te dice exactamente quién está rompiéndola hoy y quién tiene el motor listo para correr una maratón mañana. Es la herramienta para dejar de ser un 'jefe bombero' que apaga incendios y empezar a ser un mentor que potencia estrellas, cuidando siempre que nadie se queme en el proceso.\" 4.",
+      "red_flags_carrusel": [
+        "Tratar a todo el equipo con igualitarismo ingenuo esperando idéntica velocidad.",
+        "Perder al mejor talento por no ofrecerle proyectos de autonomía y expansión."
+      ],
+      "antipatrones_carrusel": [
+        "\"La Etiqueta de Cemento\": Creer que si alguien está en el cuadro bajo hoy, se quedará ahí para siempre. ¡La gente cambia y aprende! (Como el Clown que se cae y se levanta).",
+        "\"Evaluar por Vibras\": Poner a alguien en \"Estrella\" solo porque te ríes mucho con él/ella, aunque no llegue a las metas.",
+        "\"Miedo al Vacío\": Querer llenar todos los cuadros. A veces solo tienes Rocas, ¡y está bien!",
+        "\"El Juez de Hierro\": Usar la matriz para castigar. Es una herramienta de desarrollo , no un paredón de ejecución.",
+        "\"Olvidar el Espejo\": No evaluarte a ti mismo como dueño. ¿En qué cuadro estás tú respecto a tu propio negocio",
+        "1."
+      ],
+      "paso_cero_5min_cta": "Ubicar a tu 'Caballo de Batalla' y enviarle un mensaje de agradecimiento genuino por su consistencia operativa.",
+      "regla_de_oro_cierre": "Diferencia con claridad a quien rinde hoy de quien puede crecer mañana; no quemes a tus pilares ni toleres la apatía crónica.",
+      "kpi_promesa": "100% de colaboradores con plan de desarrollo individual alineado a su cuadrante 9-Box"
+    },
+    {
+      "id": "ocho_pasos_kotter_cambio",
+      "codigo": "P3-12",
+      "piso": 3,
+      "titulo_herramienta": "Los 8 Pasos de Kotter para la Gestión del Cambio",
+      "metafora_mentor_sultor": "La Ingeniería del Cambio Sostenible (Transformación Paso a Paso Sin Frustración)",
+      "gancho_reel_pregunta": "¿Cuando intentas transformar un proceso, saltas a dar órdenes sin construir urgencia ni aliados, provocando que la inercia del sistema devore tu esfuerzo en 15 días?",
+      "dolor_que_cura": "en un motor de innovación para asegurar la supervivencia y rentabilidad a largo plazo.",
+      "elevator_pitch": "¿Alguna vez has lanzado una gran iniciativa estratégica solo para ver cómo se desinfla a los tres meses por la resistencia interna o la falta de enfoque? Ese es el costo de la inercia operativa. Implementar los 8 Pasos de Kotter no es solo 'gestionar personas', es asegurar tu inversión. Vamos a dejar de improvisar y vamos a construir un movimiento dentro de tu empresa que elimine los cuellos de botella y acelere los resultados. Si quieres que tu organización sea ágil de verdad y no solo de palabra, necesitamos este sistema para que el cambio sea irreversible.\" 3.",
+      "red_flags_carrusel": [
+        "Imponer cambios por decreto sin comunicar antes una urgencia clara.",
+        "Intentar transformar todo el sistema a la vez sin asegurar un quick win en < 14 días."
+      ],
+      "antipatrones_carrusel": [
+        "y Errores Críticos",
+        "Declarar Victoria Demasiado Pronto: Celebrar el éxito del Paso 6 como si fuera el final. Impacto: La regresión a los hábitos antiguos es inmediata.",
+        "Saltarse Pasos: Intentar comunicar la visión (Paso 4) sin haber creado urgencia (Paso 1). Error: Nadie escucha una solución para un problema que no siente que tiene.",
+        "Coalición Débil: Incluir personas solo por su cargo y no por su compromiso real. Error: La coalición se fragmentará ante la primera crisis de presupuesto.",
+        "Subestimar la Comunicación: Creer que un email masivo es suficiente. Error: La visión debe ser repetida 10 veces más de lo que crees necesario.",
+        "Permitir Obstáculos Visibles: Dejar que un gerente influyente sabotee el proceso públicamente. Error: Envía el mensaje de que el cambio es opcional."
+      ],
+      "paso_cero_5min_cta": "Definir un Quick Win medible que puedas implementar y celebrar con el equipo en menos de 48 horas.",
+      "regla_de_oro_cierre": "No intentes implementar una visión sin antes haber creado una urgencia real y un equipo guía que la sostenga.",
+      "kpi_promesa": "Tasa de adherencia sostenida a nuevas iniciativas organizacionales (>= 80% a los 90 días)"
+    },
+    {
+      "id": "analisis_pestel_macroentorno",
+      "codigo": "P3-13",
+      "piso": 3,
+      "titulo_herramienta": "Análisis PESTEL de Macroentorno (Político, Económico, Social, Tecnológico, Ecológico, Legal)",
+      "metafora_mentor_sultor": "La Cura para la Ceguera de Entorno (Aprender a Leer el Entorno para que no te Tome por Sorpresa)",
+      "gancho_reel_pregunta": "Cuando cambian las leyes, la economía o la tecnología, ¿te congelas en el desconcierto o tienes un radar activo para convertir las amenazas en oportunidades?",
+      "dolor_que_cura": "Análisis PESTEL . Sana el dolor de la incertidumbre externa . Cura esa sensación de estar a merced de la \"mala suerte\" o de los cambios del gobierno, permitiendo que el emprendedor anticipe las movidas del mundo antes de que golpeen su caja o su tranquilidad. 2. Título y Subtítulo de Valor El Radar del Entorno: Mira el horizonte para que nada te pille mal parado. Anticípate a los cambios del mundo y convierte las amenazas externas en tus mejores ventajas competitivas. 3.",
+      "elevator_pitch": "Imagínate que vas a salir de excursión a la montaña. ¿Mirarías el pronóstico del tiempo, si hay caminos cerrados por ley o si el precio de la entrada subió? ¡Obvio! En tu negocio es igual. El Análisis PESTEL es ese pronóstico del tiempo: te ayuda a entender el clima político, económico y social para que decidas si hoy es día de guardar las máquinas o de salir a conquistar el mercado con todo. Es dejar de adivinar y empezar a prevenir para dormir más tranquilo.\" 5.",
+      "red_flags_carrusel": [
+        "Quedarse atrapado en la queja de factores externos sin diseñar un plan B.",
+        "No adaptar ofertas comerciales a los nuevos hábitos de consumo de los clientes."
+      ],
+      "antipatrones_carrusel": [
+        "Parálisis por Análisis: Querer arreglar el mundo entero. No eres el ministro de economía; solo identifica lo que toca directamente tu puerta.",
+        "Ignorar lo \"aburrido\": Pensar que las leyes no te afectan porque eres \"pequeño\". La multa no pregunta el tamaño del negocio antes de llegar.",
+        "Hacerlo una sola vez: El mundo gira. Un PESTEL de hace dos años hoy es un papel viejo que no sirve para decidir.",
+        "Ser pesimista: Ver solo amenazas. Como en el clown, un tropiezo es la oportunidad de inventar un paso de baile nuevo. ¡Busca la oportunidad!",
+        "No anotar nada: Si no lo escribes, se te olvida. Un radar que no tiene pantalla donde ver los puntos no sirve para navegar."
+      ],
+      "paso_cero_5min_cta": "Identificar 1 cambio tecnológico o normativo reciente y redactar en 1 línea cómo aprovecharlo esta semana.",
+      "regla_de_oro_cierre": "No puedes controlar el viento ni la lluvia exterior, pero sí puedes calibrar tus velas antes de que se desate la tormenta.",
+      "kpi_promesa": "1 escaneo PESTEL trimestral realizado con plan de contingencia activo"
+    }
+  ]
+}

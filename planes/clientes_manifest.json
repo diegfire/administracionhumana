@@ -1,0 +1,254 @@
+{
+  "schema_version": "4.0.0",
+  "updated_at": "2026-10-26T16:00:08.423771",
+  "total_clientes": 12,
+  "clientes": [
+    {
+      "slug": "alejandra",
+      "nombre": "Alejandra Mattei",
+      "rol_contexto": "Gestión Profesional & Equilibrio Vital",
+      "area_critica": "Fronteras entre Trabajo y Vida Personal",
+      "saturacion_operativa": 72,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "matriz_eisenhower",
+        "inventario_cero_culpa"
+      ],
+      "contract_path": "planes/alejandra/expediente_contrato.json",
+      "plan_url": "planes/alejandra/index.html",
+      "hub_imprimibles_url": "planes/alejandra/04_Imprimibles_Fisicos/Hub_Imprimibles_Alejandra.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Alejandra.html"
+    },
+    {
+      "slug": "alvaro",
+      "nombre": "Álvaro Pincheira",
+      "rol_contexto": "Emprendedor & Ejecución Comercial",
+      "area_critica": "Acción Imperfecta y Consistencia Diaria",
+      "saturacion_operativa": 68,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "protocolo_paso_cero",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "inventario_cero_culpa"
+      ],
+      "contract_path": "planes/alvaro/expediente_contrato.json",
+      "plan_url": "planes/alvaro/index.html",
+      "hub_imprimibles_url": "planes/alvaro/04_Imprimibles_Fisicos/Hub_Imprimibles_Alvaro.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Alvaro.html"
+    },
+    {
+      "slug": "antonia",
+      "nombre": "Antonia Jofré",
+      "rol_contexto": "28 años • Terapeuta Holística & Yoga",
+      "area_critica": "Trabajo & Carrera / Cuidado Familiar",
+      "saturacion_operativa": 76,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "paquetizacion_servicios_mes"
+      ],
+      "contract_path": "planes/antonia/expediente_contrato.json",
+      "plan_url": "planes/antonia/index.html",
+      "hub_imprimibles_url": "planes/antonia/04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Antonia.html"
+    },
+    {
+      "slug": "carlos",
+      "nombre": "Carlos Z",
+      "rol_contexto": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo",
+      "area_critica": "Gimnasio AM (Arma del Día), Trabajo Fijo (09:30-13:30), Crianza y Escala de Eventos",
+      "saturacion_operativa": 68,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "paquetizacion_servicios_mes",
+        "simulador_financiero"
+      ],
+      "contract_path": "planes/carlos/expediente_contrato.json",
+      "plan_url": "planes/carlos/index.html",
+      "hub_imprimibles_url": "planes/carlos/04_Imprimibles_Fisicos/Hub_Imprimibles_Carlos.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Carlos.html"
+    },
+    {
+      "slug": "demo",
+      "nombre": "Cliente Demo AICC",
+      "rol_contexto": "Caso Demostrativo • Metodología AICC v4.0",
+      "area_critica": "Cimientos de Tiempo, Energía y Finanzas",
+      "saturacion_operativa": 75,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa"
+      ],
+      "contract_path": "planes/demo/expediente_contrato.json",
+      "plan_url": "planes/demo/index.html",
+      "hub_imprimibles_url": "planes/demo/04_Imprimibles_Fisicos/Hub_Imprimibles_Demo.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Demo.html"
+    },
+    {
+      "slug": "diego",
+      "nombre": "Diego González Yáñez",
+      "rol_contexto": "Fundador Administración Humana • Risalfajores • Don Diego Vapor • Papá de Roma",
+      "area_critica": "Triangulación de Roles Multipotenciales & Soberanía 168H",
+      "saturacion_operativa": 65,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "triangulacion_roles",
+        "principio_pareto_80_20",
+        "finanzas_503020",
+        "inventario_cero_culpa"
+      ],
+      "contract_path": "planes/diego/expediente_contrato.json",
+      "plan_url": "planes/diego/index.html",
+      "hub_imprimibles_url": "planes/diego/04_Imprimibles_Fisicos/Hub_Imprimibles_Diego.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Diego.html"
+    },
+    {
+      "slug": "emi",
+      "nombre": "Emi",
+      "rol_contexto": "Creadora & Gestión Multipotencial",
+      "area_critica": "Batería Energética y Ritmo Sostenible",
+      "saturacion_operativa": 73,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "protocolo_paso_cero",
+        "arquetipos_energia",
+        "kanban_gtd_wip2",
+        "inventario_cero_culpa"
+      ],
+      "contract_path": "planes/emi/expediente_contrato.json",
+      "plan_url": "planes/emi/index.html",
+      "hub_imprimibles_url": "planes/emi/04_Imprimibles_Fisicos/Hub_Imprimibles_Emi.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Emi.html"
+    },
+    {
+      "slug": "francisca",
+      "nombre": "Francisca Lissette",
+      "rol_contexto": "Emprendedora Creativa & Servicios Profesionales",
+      "area_critica": "Orden Mental, Rutinas y Soberanía Energética",
+      "saturacion_operativa": 74,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "arquetipos_energia",
+        "kanban_gtd_wip2"
+      ],
+      "contract_path": "planes/francisca/expediente_contrato.json",
+      "plan_url": "planes/francisca/index.html",
+      "hub_imprimibles_url": "planes/francisca/04_Imprimibles_Fisicos/Hub_Imprimibles_Francisca_Lissette.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Francisca_Lissette.html"
+    },
+    {
+      "slug": "karina",
+      "nombre": "Karina",
+      "rol_contexto": "Gestión Profesional & Bienestar",
+      "area_critica": "Claridad de Prioridades y Paz Mental",
+      "saturacion_operativa": 69,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "finanzas_503020",
+        "inventario_cero_culpa"
+      ],
+      "contract_path": "planes/karina/expediente_contrato.json",
+      "plan_url": "planes/karina/index.html",
+      "hub_imprimibles_url": "planes/karina/04_Imprimibles_Fisicos/Hub_Imprimibles_Karina.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Karina.html"
+    },
+    {
+      "slug": "matias",
+      "nombre": "Matías González",
+      "rol_contexto": "Profesional & Gestión de Proyectos Técnicos",
+      "area_critica": "Foco Ejecutivo, Priorización y Descanso",
+      "saturacion_operativa": 75,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "finanzas_503020"
+      ],
+      "contract_path": "planes/matias/expediente_contrato.json",
+      "plan_url": "planes/matias/index.html",
+      "hub_imprimibles_url": "planes/matias/04_Imprimibles_Fisicos/Hub_Imprimibles_Matias.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Matias.html"
+    },
+    {
+      "slug": "melissa",
+      "nombre": "Melissa Henríquez Soto",
+      "rol_contexto": "Kinesióloga Escolar & Fundadora Trafmen",
+      "area_critica": "Integración Multirrol & Fricción Cero (~14h/sem)",
+      "saturacion_operativa": 70,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa"
+      ],
+      "contract_path": "planes/melissa/expediente_contrato.json",
+      "plan_url": "planes/melissa/index.html",
+      "hub_imprimibles_url": "planes/melissa/04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html"
+    },
+    {
+      "slug": "rocio",
+      "nombre": "Rocío",
+      "rol_contexto": "Emprendedora & Gestión Operativa Multirrol",
+      "area_critica": "Tiempo, Límites y Estructura Financiera",
+      "saturacion_operativa": 78,
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "finanzas_503020",
+        "tecnica_pomodoro_foco",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "feedback_sbi_conversaciones",
+        "ventana_johari_puntos_ciegos",
+        "kaizen_mejora_continua",
+        "principio_pareto_80_20",
+        "plan_estrategico_hitos"
+      ],
+      "contract_path": "planes/rocio/expediente_contrato.json",
+      "plan_url": "planes/rocio/index.html",
+      "hub_imprimibles_url": "planes/rocio/04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html",
+      "central_hub_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html"
+    }
+  ]
+}
