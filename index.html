@@ -4221,40 +4221,38 @@
       margin: 0 auto 20px;
     }
 
-    /* Tarjeta de Identidad de Diego: Autonomía y Autoconocimiento */
+    /* Tarjeta de Identidad de Diego: Con Quién Cuentas (Interactiva, Visual y En Cristiano) */
     .diego-identity-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(13, 16, 24, 0.95) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 20px;
-      padding: 26px 30px;
-      margin: 24px auto 0;
-      max-width: 1140px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(9, 11, 17, 0.98) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 22px;
+      padding: 24px 26px;
+      margin: 20px auto 0;
+      max-width: 1180px;
       display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 30px;
-      align-items: center;
+      grid-template-columns: 315px 1fr;
+      gap: 24px;
+      align-items: start;
       text-align: left;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7), 0 0 30px rgba(56, 189, 248, 0.06);
     }
-    @media (max-width: 960px) {
+    @media (max-width: 980px) {
       .diego-identity-card {
         grid-template-columns: 1fr;
-        padding: 22px 20px;
-        gap: 22px;
-        text-align: center;
+        padding: 20px 18px;
+        gap: 20px;
       }
     }
     .diego-profile-left {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
+      gap: 12px;
       border-right: 1px solid rgba(255, 255, 255, 0.08);
-      padding-right: 26px;
+      padding-right: 22px;
     }
-    @media (max-width: 960px) {
+    @media (max-width: 980px) {
       .diego-profile-left {
-        align-items: center;
         border-right: none;
         padding-right: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -4262,100 +4260,256 @@
       }
     }
     .diego-avatar-box {
-      width: 72px;
-      height: 72px;
-      min-width: 72px;
-      border-radius: 20px;
-      border: 2px solid rgba(56, 189, 248, 0.6);
+      width: 84px;
+      height: 84px;
+      min-width: 84px;
+      border-radius: 22px;
+      border: 2px solid rgba(56, 189, 248, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
-      background: #0f172a;
+      box-shadow: 0 0 28px rgba(56, 189, 248, 0.28);
+      background: #ffffff;
     }
     .diego-avatar-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 15%;
+      object-position: center 12%;
       display: block;
     }
     .diego-name-text {
       font-family: var(--font-heading);
-      font-size: 1.18rem;
+      font-size: 1.22rem;
       font-weight: 800;
       color: #ffffff;
-      margin: 0;
+      margin: 0 0 2px 0;
+      line-height: 1.2;
     }
     .diego-role-text {
-      font-size: 0.76rem;
-      font-weight: 700;
+      font-size: 0.74rem;
+      font-weight: 800;
       color: #38bdf8;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin: 0;
+      letter-spacing: 0.05em;
+      margin: 0 0 5px 0;
     }
     .diego-location-pill {
       display: inline-flex;
       align-items: center;
       gap: 4px;
       font-size: 0.72rem;
-      color: #94a3b8;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 3px 9px;
+      color: #e2e8f0;
+      background: rgba(16, 185, 129, 0.14);
+      padding: 3px 10px;
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      font-weight: 700;
     }
-    .diego-soft-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.72rem;
+    .diego-essence-quote {
+      font-size: 0.82rem;
       color: #cbd5e1;
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.22);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-weight: 600;
+      line-height: 1.48;
+      margin: 0;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid #38bdf8;
+      border-radius: 0 10px 10px 0;
+    }
+    .diego-base-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+    .diego-base-check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.77rem;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
+    .diego-base-check-item span.sub {
+      color: #94a3b8;
+      font-size: 0.71rem;
+      margin-left: auto;
     }
 
-    /* 4 Ejes y Habilidades Blandas de Diego (Grilla 2x2 en Desktop) */
-    .diego-pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+    /* Lado Derecho Interactivo: Aportes Clave & Casos en Cristiano */
+    .diego-right-board {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
     }
-    @media (max-width: 680px) {
-      .diego-pillars-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
+    .diego-board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
+    }
+    .diego-mode-tabs {
+      display: flex;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .diego-mode-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .diego-mode-btn.active {
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      color: #000;
+      font-weight: 800;
+      box-shadow: 0 2px 12px rgba(56, 189, 248, 0.3);
+    }
+    .diego-filter-pills {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .diego-filter-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      font-size: 0.71rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .diego-filter-chip:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #fff;
+    }
+    .diego-filter-chip.active {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: #10b981;
+      color: #34d399;
+    }
+    .diego-qualities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+    }
+    @media (max-width: 820px) {
+      .diego-qualities-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
-    .diego-pillar-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 12px 14px;
-      transition: all 0.2s ease;
+    @media (max-width: 540px) {
+      .diego-qualities-grid {
+        grid-template-columns: 1fr;
+      }
     }
-    .diego-pillar-item:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(56, 189, 248, 0.3);
+    .diego-quality-chip {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 9px 11px;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .diego-quality-chip:hover {
+      background: rgba(56, 189, 248, 0.06);
+      border-color: rgba(56, 189, 248, 0.35);
       transform: translateY(-2px);
     }
-    .diego-pillar-item strong {
+    .diego-quality-chip .q-top {
       display: flex;
       align-items: center;
       gap: 6px;
       font-family: var(--font-heading);
-      font-size: 0.86rem;
+      font-size: 0.8rem;
+      font-weight: 800;
       color: #ffffff;
-      margin-bottom: 5px;
     }
-    .diego-pillar-item p {
-      font-size: 0.78rem;
+    .diego-quality-chip .q-desc {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      line-height: 1.35;
+    }
+
+    /* Vista 2: Casos Reales en Cristiano */
+    .diego-cases-selector {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .diego-case-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #cbd5e1;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .diego-case-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+    .diego-case-display {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    @media (max-width: 720px) {
+      .diego-case-display {
+        grid-template-columns: 1fr;
+      }
+    }
+    .diego-case-col {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 11px 12px;
+    }
+    .diego-case-col .c-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+      display: block;
+    }
+    .diego-case-col .c-body {
+      font-size: 0.77rem;
+      color: #e2e8f0;
       line-height: 1.45;
       margin: 0;
     }
@@ -4794,64 +4948,239 @@
         </div>
       </div>
 
-      <!-- TARJETA EJECUTIVA DE IDENTIDAD, HABILIDADES BLANDAS & VISIÓN DE DIEGO -->
+      <!-- TARJETA EJECUTIVA INTERACTIVA: CON QUIÉN CUENTAS (CUALIDADES CLAVE + APORTES EN CRISTIANO) -->
       <div class="diego-identity-card" id="sobre-diego">
         
-        <!-- PERFIL DE DIEGO & VISIÓN HUMANA -->
+        <!-- LADO IZQUIERDO: IDENTIDAD HUMANA Y BASE INNEGOCIABLE -->
         <div class="diego-profile-left">
-          <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
             <div class="diego-avatar-box">
               <img src="assets/img/diego_perfil_camisa_negra.jpg" alt="Diego González Yáñez" id="diego-profile-img">
             </div>
             <div>
               <h3 class="diego-name-text">Diego González Yáñez</h3>
               <div class="diego-role-text">Administrador de Empresas · Sistemas Humanos</div>
+              <span class="diego-location-pill">📍 Concepción · Online & Presencial</span>
             </div>
           </div>
-          <p style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.5; margin: 4px 0 8px;">
-            Me gusta dar y ayudar a desarrollar ideas, dar estructura y buscar soluciones eficientes. Pongo el manejo tecnológico al servicio de tu tranquilidad, con ganas reales de que nos vaya mejor mañana.
+
+          <p class="diego-essence-quote">
+            Una cosa es la infraestructura tecnológica; la otra es <strong>con quién cuentas</strong>: mi mirada y mi mano para detectar tus puntos de fricción y armar <strong>mejoras que tú o tu negocio sí puedan llevar y sostener</strong>.
           </p>
-          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-            <span class="diego-location-pill">📍 Concepción · Online</span>
-            <span class="diego-soft-pill">⚡ Co-diseño en pantalla</span>
-            <span class="diego-soft-pill">🛡️ Tu propio Google Drive</span>
+
+          <div class="diego-base-checklist">
+            <div class="diego-base-check-item">
+              <span>👂</span> <strong>Escucha Activa Cero Juicio</strong> <span class="sub">El error = oportunidad</span>
+            </div>
+            <div class="diego-base-check-item">
+              <span>🏢</span> <strong>Tu Propia Oficina 2.0</strong> <span class="sub">Portal Web + PIN</span>
+            </div>
+            <div class="diego-base-check-item">
+              <span>🖨️</span> <strong>Digital + Papel Físico</strong> <span class="sub">Micro-Apps e Imprimibles</span>
+            </div>
+            <div class="diego-base-check-item">
+              <span>🔄</span> <strong>Seguimiento y Ajuste</strong> <span class="sub">No quedas solo</span>
+            </div>
           </div>
         </div>
 
-        <!-- 4 PILARES: SIMPLES, EFICIENTES Y ACCIONABLES -->
-        <div class="diego-pillars-grid">
+        <!-- LADO DERECHO INTERACTIVO: 12 CUALIDADES CLAVE + CASOS REALES EN CRISTIANO -->
+        <div class="diego-right-board">
           
-          <div class="diego-pillar-item">
-            <strong><span style="color:#38bdf8;">💡</span> Dar Estructura a tus Ideas</strong>
-            <p>
-              Llegas con tu desorden o proyectos en pausa. Te escucho y transformamos cualquier traba o error en un sistema claro y listo para operar.
-            </p>
+          <!-- BARRA SUPERIOR DE MODO -->
+          <div class="diego-board-header">
+            <div class="diego-mode-tabs">
+              <button type="button" class="diego-mode-btn active" id="btn-diego-mode-qualities" onclick="switchDiegoBoardMode('qualities')">
+                <span>⚡</span> <span>Con Qué Cuentas (Mis 12 Aportes Clave)</span>
+              </button>
+              <button type="button" class="diego-mode-btn" id="btn-diego-mode-cases" onclick="switchDiegoBoardMode('cases')">
+                <span>🔍</span> <span>Mis Aportes en Casos Reales (En Cristiano)</span>
+              </button>
+            </div>
+
+            <!-- FILTROS RÁPIDOS DE CUALIDADES -->
+            <div class="diego-filter-pills" id="diego-qualities-filters">
+              <button type="button" class="diego-filter-chip active" onclick="filterDiegoQualities('all', this)">Todos (12)</button>
+              <button type="button" class="diego-filter-chip" onclick="filterDiegoQualities('mirada', this)">🔭 Mirada & Fricción</button>
+              <button type="button" class="diego-filter-chip" onclick="filterDiegoQualities('oficina', this)">🏢 Oficina 2.0 & Apps</button>
+              <button type="button" class="diego-filter-chip" onclick="filterDiegoQualities('acompanamiento', this)">🎓 Enseñanza & Seguimiento</button>
+            </div>
           </div>
 
-          <div class="diego-pillar-item">
-            <strong><span style="color:#10b981;">⚡</span> Soluciones Simples y Eficientes</strong>
-            <p>
-              Simple es mejor. Diseñamos herramientas livianas que resuelven cuellos de botella sin enredos ni plataformas caras.
-            </p>
+          <!-- VISTA 1: GRILLA ESCANEABLE DE 12 CUALIDADES CLAVE (PALABRAS CLAVE) -->
+          <div id="diego-view-qualities" class="diego-qualities-grid">
+            
+            <div class="diego-quality-chip" data-qcat="mirada">
+              <div class="q-top"><span style="color:#38bdf8;">🔍</span> Puntos de Fricción</div>
+              <div class="q-desc">Detecto rápido dónde se tranca tu tiempo, tu energía o tu plata.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="mirada">
+              <div class="q-top"><span style="color:#10b981;">⏱️</span> Saber Dónde Está tu Tiempo</div>
+              <div class="q-desc">Mapeo real de tus 168h para recuperar descanso y bloques de oro.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="mirada">
+              <div class="q-top"><span style="color:#f59e0b;">🔭</span> Visión Base e Integral</div>
+              <div class="q-desc">Ordenamos persona, trabajo, casa y negocio como un solo sistema.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="mirada">
+              <div class="q-top"><span style="color:#a855f7;">💡</span> Soluciones desde la Adm.</div>
+              <div class="q-desc">Si no existe la plantilla para tu nudo, creamos la solución a medida.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="oficina">
+              <div class="q-top"><span style="color:#38bdf8;">🏢</span> Portal & Oficina 2.0</div>
+              <div class="q-desc">Tu propio centro de operaciones web privado con acceso por PIN.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="oficina">
+              <div class="q-top"><span style="color:#10b981;">🧩</span> Micro-Apps en tu Plan</div>
+              <div class="q-desc">Calculadoras, Kanban, Mapeador 24H y finanzas integradas en vivo.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="oficina">
+              <div class="q-top"><span style="color:#fbbf24;">🖨️</span> Imprimibles Físicos</div>
+              <div class="q-desc">Hojas de ruta, checklists de pared y vaciado en papel a 1 clic.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="oficina">
+              <div class="q-top"><span style="color:#ec4899;">🧱</span> +60 Módulos Adaptables</div>
+              <div class="q-desc">Arsenal completo que se personaliza a tu contexto (TDAH/TEA/Negocio).</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="acompanamiento">
+              <div class="q-top"><span style="color:#38bdf8;">🎬</span> Tutoriales & Contexto</div>
+              <div class="q-desc">Cada herramienta incluye explicación y guía paso a paso de uso.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="acompanamiento">
+              <div class="q-top"><span style="color:#10b981;">🎓</span> Técnica en Cristiano</div>
+              <div class="q-desc">Te entrego criterio administrativo real (Pareto, GTD, Costos, ROI).</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="acompanamiento">
+              <div class="q-top"><span style="color:#f59e0b;">🔄</span> Seguimiento Continuo</div>
+              <div class="q-desc">Revisamos qué funcionó en la semana y simplificamos lo que dio roce.</div>
+            </div>
+
+            <div class="diego-quality-chip" data-qcat="acompanamiento">
+              <div class="q-top"><span style="color:#a855f7;">🤝</span> Online y Presencial</div>
+              <div class="q-desc">Co-diseño en pantalla compartida o cara a cara con papel y lápiz.</div>
+            </div>
+
           </div>
 
-          <div class="diego-pillar-item">
-            <strong><span style="color:#fbbf24;">💻</span> Manejo Tecnológico en Pantalla</strong>
-            <p>
-              Tú me cuentas lo que necesitas y yo lo construyo frente a ti. Todo queda en tu propio Google Drive, 100% tuyo y para siempre.
-            </p>
-          </div>
+          <!-- VISTA 2: SELECTOR INTERACTIVO DE CASOS REALES EN CRISTIANO -->
+          <div id="diego-view-cases" style="display: none;">
+            <div class="diego-cases-selector">
+              <button type="button" class="diego-case-btn active" onclick="selectDiegoRealCase(0, this)">💆‍♀️ Masajes, Canto & Energía TEA</button>
+              <button type="button" class="diego-case-btn" onclick="selectDiegoRealCase(1, this)">🧘‍♀️ Clases de Yoga & Meta $160k</button>
+              <button type="button" class="diego-case-btn" onclick="selectDiegoRealCase(2, this)">👩‍👧‍👦 Mamá, Casa & Profesión</button>
+              <button type="button" class="diego-case-btn" onclick="selectDiegoRealCase(3, this)">🎓 Doctorado / Sobreanálisis</button>
+              <button type="button" class="diego-case-btn" onclick="selectDiegoRealCase(4, this)">🎧 Eventos & Cotización Rápida</button>
+            </div>
 
-          <div class="diego-pillar-item">
-            <strong><span style="color:#a855f7;">🌱</span> Que Nos Vaya Mejor Mañana</strong>
-            <p>
-              Ganas genuinas de verte avanzar con calma. Adaptamos tu semana a tu energía biológica para que recuperes tu tiempo y disfrutes tu camino.
-            </p>
+            <div class="diego-case-display" id="diego-case-content">
+              <div class="diego-case-col" style="border-top: 2px solid #ef4444;">
+                <span class="c-label" style="color:#f87171;">🔴 Punto de Fricción Detectado</span>
+                <p class="c-body" id="dcase-friction">Cobraba $2.000 por clase de canto, cargaba ollas pesadas con agua a domicilio para masajes y terminaba drenada sensorialmente.</p>
+              </div>
+              <div class="diego-case-col" style="border-top: 2px solid #38bdf8;">
+                <span class="c-label" style="color:#38bdf8;">🛠️ Mi Aporte & Solución Creada</span>
+                <p class="c-body" id="dcase-solution">Reajuste a ciclos de $32.000/mes, paquetes de masajes ($140k), cambio a maletín térmico en seco (1.2 kg) y cálculo de retorno (ROI) de sus cursos.</p>
+              </div>
+              <div class="diego-case-col" style="border-top: 2px solid #10b981;">
+                <span class="c-label" style="color:#34d399;">🌱 Mejora que Sostiene Hoy</span>
+                <p class="c-body" id="dcase-result">Oficina 2.0 + cuadernillo impreso con pausas TEA blindadas, regla de 1 micro-acción de 15 min al día y fondo de ahorro activo.</p>
+              </div>
+            </div>
           </div>
 
         </div>
 
       </div>
+
+      <script>
+        window.DIEGO_REAL_CASES = [
+          {
+            friction: "Cobraba $2.000 por clase de canto, cargaba ollas pesadas con agua a domicilio para masajes y terminaba drenada sensorialmente.",
+            solution: "Reajuste a ciclos de $32.000/mes, paquetes de masajes ($140k), cambio a maletín térmico en seco (1.2 kg) y cálculo de retorno (ROI) de sus cursos.",
+            result: "Oficina 2.0 + cuadernillo impreso con pausas TEA blindadas, regla de 1 micro-acción de 15 min al día y fondo de ahorro activo."
+          },
+          {
+            friction: "Alta carga de cuidados familiares (21h/sem de fuga) y angustia por necesitar generar $160.000 extra mensuales sin saber por dónde partir.",
+            solution: "Tradujimos la meta a números simples: 'No necesitas 50 clientes, son 8 alumnas con pase fijo de $20.000' + grabar 1 clase comodín para días de cansancio.",
+            result: "Claridad comercial sin abrumo, simulador financiero en su Plan de Vuelo y 2 bloques de oro de 45 min protegidos a la semana."
+          },
+          {
+            friction: "Lavar ropa a medianoche, dormir tarde por el 'segundo aire', 3 roles chocando a la vez y culpa constante al intentar descansar.",
+            solution: "Calendario centralizado de 168h, acuerdo 'Cero lavados nocturnos' (solo martes o sábado de día) y creación de la 'Carta Espacio de 30 min' con su hijo.",
+            result: "Tope de máximo 2 tareas a la vez (Kanban WIP=2), noches recuperadas para dormir a las 23:00 y media hora propia diaria sin culpa."
+          },
+          {
+            friction: "Sentir que 'nunca hace suficiente' pese a sostener doctorado, libros e hijo, o paralizarse por querer tener todo 100% perfecto antes de lanzar.",
+            solution: "Sprint visual de 27 días para su beca, 'Regla del 70%' para lanzar sin trabarse e 'Inventario Diario de Resultados' para que el cerebro vea lo que sí avanzó.",
+            result: "Ventana matutina de foco limpio (08:00 a 14:00), tardes familiares libres de rumiación mental y proyectos saliendo a la luz."
+          },
+          {
+            friction: "Cotizar eventos o sesiones 'al ojo' por WhatsApp, demorar en responder y terminar trabajando el doble con poco margen limpio.",
+            solution: "Estandarización de tarifas por tramos (50 / 100 / 150 personas) y matriz de costo real por sesión lista para copiar y enviar en segundos.",
+            result: "Cero desgaste calculando desde cero cada vez, cobro justo por hora de esfuerzo y control claro de su caja limpia."
+          }
+        ];
+
+        window.switchDiegoBoardMode = function(mode) {
+          var vQual = document.getElementById('diego-view-qualities');
+          var vCases = document.getElementById('diego-view-cases');
+          var fBar = document.getElementById('diego-qualities-filters');
+          var bQual = document.getElementById('btn-diego-mode-qualities');
+          var bCases = document.getElementById('btn-diego-mode-cases');
+          if (!vQual || !vCases) return;
+          if (mode === 'cases') {
+            vQual.style.display = 'none';
+            if (fBar) fBar.style.display = 'none';
+            vCases.style.display = 'block';
+            bQual.classList.remove('active');
+            bCases.classList.add('active');
+          } else {
+            vQual.style.display = 'grid';
+            if (fBar) fBar.style.display = 'flex';
+            vCases.style.display = 'none';
+            bQual.classList.add('active');
+            bCases.classList.remove('active');
+          }
+        };
+
+        window.filterDiegoQualities = function(cat, btnEl) {
+          var chips = document.querySelectorAll('#diego-view-qualities .diego-quality-chip');
+          chips.forEach(function(c) {
+            if (cat === 'all' || c.getAttribute('data-qcat') === cat) {
+              c.style.display = 'flex';
+            } else {
+              c.style.display = 'none';
+            }
+          });
+          var btns = document.querySelectorAll('#diego-qualities-filters .diego-filter-chip');
+          btns.forEach(function(b) { b.classList.remove('active'); });
+          if (btnEl) btnEl.classList.add('active');
+        };
+
+        window.selectDiegoRealCase = function(idx, btnEl) {
+          var data = window.DIEGO_REAL_CASES && window.DIEGO_REAL_CASES[idx];
+          if (!data) return;
+          var fEl = document.getElementById('dcase-friction');
+          var sEl = document.getElementById('dcase-solution');
+          var rEl = document.getElementById('dcase-result');
+          if (fEl) fEl.textContent = data.friction;
+          if (sEl) sEl.textContent = data.solution;
+          if (rEl) rEl.textContent = data.result;
+          var btns = document.querySelectorAll('.diego-cases-selector .diego-case-btn');
+          btns.forEach(function(b) { b.classList.remove('active'); });
+          if (btnEl) btnEl.classList.add('active');
+        };
+      </script>
 
     </div>
   </section>
