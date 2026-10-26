@@ -5754,11 +5754,10 @@
       </button>
 
       <select id="dock-modalidad-select" style="background: #08090d; border: 1px solid rgba(255,255,255,0.18); color: #cbd5e1; padding: 7px 10px; border-radius: 8px; font-size: 0.76rem; outline: none; cursor: pointer; max-width: 240px;" onchange="syncModalidadSelect(this.value)">
-        <option value="Vitrina con Propósito & Co-Marketing (Aporte Voluntario / Canje)">1. Vitrina con Propósito (Aporte Voluntario)</option>
-        <option value="Sesión de Destrabe Puntual & Carpeta Drive ($35.000 CLP)">2. Sesión de Destrabe Puntual & Drive ($35k)</option>
-        <option value="Creación de tu Oficina 2.0 Centralizada ($65.000 CLP)">3. Creación de tu Oficina 2.0 ($65k)</option>
-        <option value="Tu Sistema de Gestión Personalizado (SGP) — Plan de Vuelo ($190.000 CLP)">4. Tu SGP — Plan de Vuelo 4 Semanas ($190k)</option>
-        <option value="Quiero conversarlo en la sesión para ver qué me conviene">5. Por definir en la sesión con Diego</option>
+        <option value="Sesión Base ($35.000 CLP · Online o Presencial) + 1ra Herramienta en Portal">1. Sesión Base ($35.000 · Online o Presencial) + Portal</option>
+        <option value="Plan Personalizado / Plan de Vuelo 2.0 a Medida (Tras Sesión Base)">2. Plan Personalizado / Plan de Vuelo 2.0 a Medida</option>
+        <option value="Sesión de Seguimiento & Nuevos Módulos ($35.000 CLP)">3. Sesión de Seguimiento & Nuevos Módulos ($35.000)</option>
+        <option value="Vitrina con Propósito & Co-Marketing (Aporte Voluntario)">4. Vitrina con Propósito & Co-Marketing</option>
       </select>
 
       <a id="btn-whatsapp-expediente" href="#" target="_blank" rel="noopener noreferrer" style="background: #10b981; color: #000; font-weight: 800; font-size: 0.84rem; padding: 9px 18px; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 20px rgba(16,185,129,0.45); transition: transform 0.2s; white-space: nowrap;">
@@ -6382,7 +6381,7 @@
               <select id="hub-modalidad-select" onchange="syncModalidadSelect(this.value)" style="width:100%; background:#07080d; border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:8px 10px; color:#fff; font-size:0.78rem; outline:none;">
                 <option value="Sesión Base ($35.000 CLP · Online o Presencial) + 1ra Herramienta en Portal">1. Sesión Base ($35.000 · Online o Presencial) + Portal</option>
                 <option value="Plan Personalizado / Plan de Vuelo 2.0 a Medida (Tras Sesión Base)">2. Plan Personalizado / Plan de Vuelo 2.0 a Medida</option>
-                <option value="Sesión de Seguimiento & Nuevos Módulos en mi Portal">3. Sesión de Seguimiento & Nuevos Módulos</option>
+                <option value="Sesión de Seguimiento & Nuevos Módulos ($35.000 CLP)">3. Sesión de Seguimiento & Nuevos Módulos ($35.000)</option>
                 <option value="Vitrina con Propósito & Co-Marketing (Aporte Voluntario)">4. Vitrina con Propósito & Co-Marketing</option>
               </select>
             </div>
@@ -6563,93 +6562,210 @@
     </div>
   </div>
 
-  <section id="productos" class="landing-section" style="padding: 45px 0 40px 0; border-top: 1px solid rgba(255,255,255,0.06);">
+  <section id="productos" class="landing-section" style="padding: 40px 0 36px 0; border-top: 1px solid rgba(255,255,255,0.06);">
     <span id="precios"></span>
 
-    <div class="container" style="max-width: 1200px; padding-top: 20px; padding-bottom: 50px;">
+    <style>
+      /* ── ESTILOS RESPONSIVOS Y SIN HUECOS VACÍOS PARA #PRODUCTOS ── */
+      .sesion-base-hero-card {
+        background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.14) 0%, rgba(12, 15, 24, 0.98) 100%);
+        border: 2px solid #38bdf8;
+        border-radius: 22px;
+        padding: 24px 26px;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(56, 189, 248, 0.16);
+        margin-bottom: 28px;
+        box-sizing: border-box;
+      }
+      .sesion-base-top-grid {
+        display: grid;
+        grid-template-columns: 1fr 270px;
+        gap: 24px;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 18px;
+        margin-bottom: 18px;
+      }
+      @media (max-width: 820px) {
+        .sesion-base-hero-card {
+          padding: 18px 15px;
+          border-radius: 18px;
+        }
+        .sesion-base-top-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+          padding-bottom: 14px;
+          margin-bottom: 14px;
+        }
+      }
+      .sesion-base-price-box {
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        border-radius: 16px;
+        padding: 15px 18px;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      /* Los 4 Hitos en 1 sola fila en PC (4 columnas), 2x2 en Tablet, 1 col en Móvil */
+      .sesion-base-pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+      @media (max-width: 960px) {
+        .sesion-base-pillars-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+      }
+      @media (max-width: 540px) {
+        .sesion-base-pillars-grid {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+      }
+      .sesion-base-pillar-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 13px;
+        padding: 13px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      /* Las 3 Opciones de Continuidad en 1 sola fila en PC (3 columnas iguales) y 1 col en Móvil */
+      .continuidad-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        align-items: stretch;
+      }
+      @media (max-width: 960px) {
+        .continuidad-cards-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+      }
+      .continuidad-card {
+        border-radius: 18px;
+        padding: 20px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+      }
+      .continuidad-badge-pill {
+        font-size: 0.67rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 4px 10px;
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 10px;
+        width: fit-content;
+      }
+      .continuidad-price-strip {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 11px;
+        padding: 10px 12px;
+        margin: 10px 0 12px 0;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+    </style>
+
+    <div class="container" style="max-width: 1160px; padding-top: 12px; padding-bottom: 40px;">
       
-      <!-- CABECERA DE MODALIDADES · MODELO CON GROUNDING (ATERRIZAR PRIMERO, ESCALAR DESPUÉS) -->
-      <div style="text-align: center; max-width: 900px; margin: 0 auto 28px;" id="productos-header">
+      <!-- CABECERA DE MODALIDADES · MODELO CON GROUNDING -->
+      <div style="text-align: center; max-width: 900px; margin: 0 auto 24px;" id="productos-header">
         <span class="journey-step-badge green">
           🚀 ETAPA 4 · MODALIDADES & PRECIOS CLAROS · PRIMERO ATERRIZAMOS TU CASO
         </span>
-        <h2 style="font-family: var(--font-heading); font-size: clamp(1.75rem, 3.8vw, 2.45rem); font-weight: 800; color: #fff; margin-top: 12px; line-height: 1.2;">
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.65rem, 3.5vw, 2.3rem); font-weight: 800; color: #fff; margin-top: 10px; line-height: 1.22;">
           Parte por una Sesión Base ($35.000): Desahógate, Lleva tu 1ra Herramienta en el Portal y Aterricemos tu Plan
         </h2>
-        <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.62; max-width: 850px; margin: 10px auto 0;">
-          No necesitas adivinar ni comprar a ciegas un programa grande antes de conversar. Lo más fácil y honesto es partir con una <b>Sesión Base Online o Presencial ($35.000 CLP)</b>: te escucho, cruzamos lo que tú sientes necesitar con lo que veo yo como administrador, dejamos tu primera herramienta funcionando en el <b>Portal de Clientes</b> y, con suficiente <i>grounding</i> (información aterrizada), te propongo un plan personalizado si quieres seguir escalando.
+        <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.58; max-width: 840px; margin: 8px auto 0;">
+          No necesitas comprar a ciegas un programa grande antes de conversar. Lo más fácil y honesto es partir con una <b>Sesión Base Online o Presencial ($35.000 CLP)</b>: te escucho, cruzamos lo que tú sientes necesitar con lo que veo yo desde la administración, dejamos tu primera herramienta funcionando en el <b>Portal de Clientes</b> y, con suficiente <i>grounding</i> (información aterrizada), armamos tu plan personalizado si quieres escalar.
         </p>
       </div>
 
-      <!-- PASO 1 DESTACADO: LA SESIÓN BASE ($35.000 CLP) COMO PUERTA DE ENTRADA UNIVERSAL -->
-      <div style="background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.14) 0%, rgba(12, 15, 24, 0.98) 100%); border: 2px solid #38bdf8; border-radius: 22px; padding: 28px 28px; box-shadow: 0 18px 50px rgba(0,0,0,0.7), 0 0 35px rgba(56,189,248,0.18); margin-bottom: 28px;">
+      <!-- PASO 1 DESTACADO: LA SESIÓN BASE ($35.000 CLP) CON DISTRIBUCIÓN SIMÉTRICA SIN HUECOS -->
+      <div class="sesion-base-hero-card">
         
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 22px;">
-          <div style="max-width: 720px;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
-              <span style="font-size: 0.72rem; font-weight: 800; color: #000; background: #38bdf8; padding: 4px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.05em;">
+        <!-- FILA SUPERIOR: TÍTULO + DESCRIPCIÓN A LA IZQUIERDA | CAJA DE PRECIO Y BOTÓN A LA DERECHA -->
+        <div class="sesion-base-top-grid">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+              <span style="font-size: 0.7rem; font-weight: 800; color: #000; background: #38bdf8; padding: 4px 11px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.04em;">
                 ★ PUERTA DE ENTRADA RECOMENDADA · PASO 1
               </span>
-              <span style="font-size: 0.75rem; color: #34d399; font-weight: 700; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); padding: 3px 11px; border-radius: 50px;">
+              <span style="font-size: 0.72rem; color: #34d399; font-weight: 700; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); padding: 3px 10px; border-radius: 50px;">
                 📍 Online (Videollamada) o Presencial (Concepción)
               </span>
             </div>
-            <h3 style="font-family: var(--font-heading); font-size: clamp(1.35rem, 2.8vw, 1.8rem); font-weight: 800; color: #fff; margin: 0 0 6px 0; line-height: 1.25;">
+            <h3 style="font-family: var(--font-heading); font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 800; color: #fff; margin: 0 0 6px 0; line-height: 1.24;">
               Sesión Base: Desahogo, Diagnóstico & 1ra Herramienta en tu Portal
             </h3>
-            <p style="font-size: 0.88rem; color: #cbd5e1; margin: 0; line-height: 1.55;">
-              Una sesión completa 1 a 1 donde ordenamos el panorama, resolvemos tu urgencia inmediata con una herramienta real en tu Portal de Clientes y reunimos toda la información aterrizada para saber exactamente qué paso sigue.
+            <p style="font-size: 0.86rem; color: #cbd5e1; margin: 0; line-height: 1.52;">
+              Una sesión completa 1 a 1 donde ordenamos tu panorama, resolvemos tu urgencia inmediata con una herramienta real en tu Portal de Clientes (Usuario + Clave) y reunimos toda la información aterrizada para saber qué paso sigue.
             </p>
           </div>
 
-          <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(56,189,248,0.35); border-radius: 16px; padding: 16px 22px; text-align: center; min-width: 240px;">
-            <div style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em;">Valor Sesión Base</div>
-            <div style="display: flex; align-items: baseline; justify-content: center; gap: 5px; margin: 4px 0 8px;">
-              <span style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #fff;">$35.000</span>
-              <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 800;">CLP</span>
+          <div class="sesion-base-price-box">
+            <div style="font-size: 0.68rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em;">Valor Sesión Base</div>
+            <div style="display: flex; align-items: baseline; justify-content: center; gap: 5px; margin: 3px 0 8px;">
+              <span style="font-family: var(--font-heading); font-size: 2.1rem; font-weight: 800; color: #fff;">$35.000</span>
+              <span style="font-size: 0.82rem; color: #38bdf8; font-weight: 800;">CLP</span>
             </div>
-            <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20Base%20($35.000%20CLP)%20para%20conversar%20mi%20caso%20y%20activar%20mi%20primera%20herramienta%20en%20el%20Portal." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 11px 18px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: linear-gradient(135deg, #38bdf8, #0284c7); color: #000; border: none; font-size: 0.84rem; box-shadow: 0 0 20px rgba(56,189,248,0.4);">
+            <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20Base%20($35.000%20CLP)%20para%20conversar%20mi%20caso%20y%20activar%20mi%20primera%20herramienta%20en%20el%20Portal." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px 14px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: linear-gradient(135deg, #38bdf8, #0284c7); color: #000; border: none; font-size: 0.82rem; box-shadow: 0 0 18px rgba(56,189,248,0.38); box-sizing: border-box;">
               💬 Agendar Sesión Base ($35k) →
             </a>
           </div>
         </div>
 
-        <!-- LOS 4 HITOS QUE TE LLEVAS EN LA SESIÓN BASE DE $35.000 -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+        <!-- FILA INFERIOR: LOS 4 HITOS ALINEADOS EN 1 SOLA FILA EN PC (4 COLUMNAS IGUALES) -->
+        <div class="sesion-base-pillars-grid">
           
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px;">
-            <div style="font-size: 0.72rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 5px;">
-              🎙️ 1. Desahogo y Escucha Activa
+          <div class="sesion-base-pillar-card" style="border-top: 2px solid #38bdf8;">
+            <div style="font-size: 0.71rem; font-weight: 800; color: #38bdf8; text-transform: uppercase;">
+              🎙️ 1. Desahogo y Escucha
             </div>
-            <p style="font-size: 0.8rem; color: #e2e8f0; line-height: 1.48; margin: 0;">
-              Llegas sin preparar nada. Descargas tus ideas, enredos o pendientes en un espacio humano y 100% libre de juicio.
+            <p style="font-size: 0.77rem; color: #e2e8f0; line-height: 1.44; margin: 0;">
+              Llegas sin preparar nada. Descargas tus ideas, enredos o pendientes en un espacio humano y libre de juicio.
             </p>
           </div>
 
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px;">
-            <div style="font-size: 0.72rem; font-weight: 800; color: #10b981; text-transform: uppercase; margin-bottom: 5px;">
-              🔭 2. Lo que Tú Ves + Lo que Veo Yo
+          <div class="sesion-base-pillar-card" style="border-top: 2px solid #10b981;">
+            <div style="font-size: 0.71rem; font-weight: 800; color: #10b981; text-transform: uppercase;">
+              🔭 2. Lo que Ves + Veo Yo
             </div>
-            <p style="font-size: 0.8rem; color: #e2e8f0; line-height: 1.48; margin: 0;">
-              Juntamos lo que tú sientes necesitar con mi mirada de administrador (y aplicamos sondeo en vivo si necesitamos enfocar prioridades).
+            <p style="font-size: 0.77rem; color: #e2e8f0; line-height: 1.44; margin: 0;">
+              Juntamos lo que tú sientes necesitar con mi mirada desde la ciencia de la administración para enfocar prioridades.
             </p>
           </div>
 
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px;">
-            <div style="font-size: 0.72rem; font-weight: 800; color: #fbbf24; text-transform: uppercase; margin-bottom: 5px;">
-              🔑 3. Herramienta Clave en tu Portal
+          <div class="sesion-base-pillar-card" style="border-top: 2px solid #fbbf24;">
+            <div style="font-size: 0.71rem; font-weight: 800; color: #fbbf24; text-transform: uppercase;">
+              🔑 3. Herramienta en Portal
             </div>
-            <p style="font-size: 0.8rem; color: #e2e8f0; line-height: 1.48; margin: 0;">
-              Activamos tu <b>Usuario y Clave (PIN)</b> en el Portal de Clientes con 1 herramienta clave digitalizada (e imprimible) lista en la palma de tu mano.
+            <p style="font-size: 0.77rem; color: #e2e8f0; line-height: 1.44; margin: 0;">
+              Activamos tu <b>Usuario y Clave (PIN)</b> con 1 herramienta clave digitalizada e imprimible en la palma de tu mano.
             </p>
           </div>
 
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px;">
-            <div style="font-size: 0.72rem; font-weight: 800; color: #c084fc; text-transform: uppercase; margin-bottom: 5px;">
-              🧭 4. Grounding para tu Plan a Medida
+          <div class="sesion-base-pillar-card" style="border-top: 2px solid #c084fc;">
+            <div style="font-size: 0.71rem; font-weight: 800; color: #c084fc; text-transform: uppercase;">
+              🧭 4. Grounding & Plan
             </div>
-            <p style="font-size: 0.8rem; color: #e2e8f0; line-height: 1.48; margin: 0;">
-              Ya con información real y aterrizada (grounding), si quieres seguir profundizando te armo una propuesta de Plan Personalizado exacto para ti.
+            <p style="font-size: 0.77rem; color: #e2e8f0; line-height: 1.44; margin: 0;">
+              Ya con información aterrizada (grounding), si quieres profundizar te propongo un Plan Personalizado exacto para ti.
             </p>
           </div>
 
@@ -6657,94 +6773,104 @@
       </div>
 
       <!-- PASO 2: CAMINOS DE CONTINUIDAD CON INFORMACIÓN YA ATERRIZADA -->
-      <div style="text-align: center; margin: 32px auto 18px;">
-        <span style="font-size: 0.74rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em;">
+      <div style="text-align: center; margin: 26px auto 16px;">
+        <span style="font-size: 0.72rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em;">
           ↓ ¿Y DESPUÉS DE LA SESIÓN BASE (O SI BUSCAS OTRO FORMATO)? ↓
         </span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 6px 0 0;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff; margin: 4px 0 0;">
           Opciones de Continuidad & Planes Personalizados tras Aterrizar tu Caso
         </h3>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; max-width: 1200px; margin: 0 auto;">
+      <!-- GRILLA DE 3 TARJETAS SIMÉTRICAS (3 COLUMNAS EN PC, 1 EN MÓVIL) -->
+      <div class="continuidad-cards-grid">
         
         <!-- OPCIÓN A: PLAN PERSONALIZADO / PLAN DE VUELO INTEGRAL -->
-        <div style="background: radial-gradient(circle at top right, rgba(16,185,129,0.1) 0%, #0d0e14 100%); border: 1.5px solid rgba(16,185,129,0.5); border-radius: 18px; padding: 22px 20px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="continuidad-card" style="background: radial-gradient(circle at top right, rgba(16,185,129,0.1) 0%, #0d0e14 100%); border: 1.5px solid rgba(16,185,129,0.5);">
           <div>
-            <span style="font-size: 0.68rem; font-weight: 800; color: #10b981; text-transform: uppercase; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">
-              ✦ DISEÑADO CON GROUNDING REAL · A TU MEDIDA ✦
+            <span class="continuidad-badge-pill" style="color: #10b981; background: rgba(16,185,129,0.14); border: 1px solid rgba(16,185,129,0.38);">
+              ✦ DISEÑADO CON GROUNDING REAL
             </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+            <h4 style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: #fff; margin: 0 0 6px 0; line-height: 1.25;">
               Plan de Vuelo 2.0 & Oficina Personalizada
             </h4>
-            <p style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 12px;">
-              Una vez que sabemos exactamente qué necesitas, construimos tu ecosistema completo de módulos, microaplicaciones, finanzas e imprimibles con acompañamiento sesión a sesión.
+            <p style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.48; margin: 0;">
+              Cuando ya sabemos qué necesitas, construimos tu ecosistema completo de módulos, micro-apps, finanzas e imprimibles con acompañamiento.
             </p>
-            <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #34d399; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
-              Cotizado a medida <span style="font-size: 0.76rem; color: #94a3b8; font-weight: 600;">(Planes desde $65k a $190k)</span>
+            
+            <div class="continuidad-price-strip" style="border-color: rgba(16,185,129,0.28);">
+              <span style="font-family: var(--font-heading); font-size: 1.18rem; font-weight: 800; color: #34d399;">Cotizado a medida</span>
+              <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 700;">Planes $65k a $190k</span>
             </div>
-            <ul style="list-style: none; font-size: 0.78rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; padding: 0;">
-              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Oficina 2.0 completa</b> en el Portal con tus módulos activos.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Microaplicaciones y calculadoras</b> para tu vida o negocio.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Hub Maestro de Imprimibles Físicos</b> + tutoriales de uso.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#10b981;">✓</span> <span><b>Seguimiento continuo</b> para sostener y ajustar los hábitos.</span></li>
+
+            <ul style="list-style: none; font-size: 0.76rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 6px; margin: 0 0 16px 0; padding: 0;">
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#10b981; font-weight:800;">✓</span> <span><b>Oficina 2.0 completa</b> en tu Portal con Usuario y Clave.</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#10b981; font-weight:800;">✓</span> <span><b>Microaplicaciones y calculadoras</b> adaptadas a tu caso.</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#10b981; font-weight:800;">✓</span> <span><b>Hub de Imprimibles Físicos</b> + tutoriales paso a paso.</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#10b981; font-weight:800;">✓</span> <span><b>Acompañamiento sesión a sesión</b> para sostener mejoras.</span></li>
             </ul>
           </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20me%20interesa%20conversar%20sobre%20un%20Plan%20Personalizado%20/%20Plan%20de%20Vuelo%20a%20medida." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px; font-weight: 800; background: #10b981; color: #000; border-radius: 50px; text-decoration: none; display: block; font-size: 0.8rem;">
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20me%20interesa%20conversar%20sobre%20un%20Plan%20Personalizado%20/%20Plan%20de%20Vuelo%20a%20medida." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px; font-weight: 800; background: #10b981; color: #000; border-radius: 50px; text-decoration: none; display: block; font-size: 0.79rem; box-sizing: border-box;">
             Consultar por Plan a Medida →
           </a>
         </div>
 
-        <!-- OPCIÓN B: SESIONES DE SEGUIMIENTO & EVOLUCIÓN -->
-        <div style="background: #0c0c0f; border: 1px solid rgba(168,85,247,0.35); border-radius: 18px; padding: 22px 20px; display: flex; flex-direction: column; justify-content: space-between;">
+        <!-- OPCIÓN B: SESIONES DE SEGUIMIENTO & EVOLUCIÓN (PRECIO FIJO $35.000 CLP) -->
+        <div class="continuidad-card" style="background: #0c0c10; border: 1px solid rgba(168,85,247,0.4);">
           <div>
-            <span style="font-size: 0.68rem; font-weight: 800; color: #c084fc; text-transform: uppercase; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">
-              ✦ CONTINUIDAD FLEXIBLE · A TU RITMO ✦
+            <span class="continuidad-badge-pill" style="color: #c084fc; background: rgba(168,85,247,0.14); border: 1px solid rgba(168,85,247,0.38);">
+              ✦ CONTINUIDAD A TU RITMO
             </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+            <h4 style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: #fff; margin: 0 0 6px 0; line-height: 1.25;">
               Sesiones de Seguimiento & Nuevos Módulos
             </h4>
-            <p style="font-size: 0.8rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 12px;">
-              Para quienes ya partieron con su Sesión Base y quieren ir sumando nuevas herramientas a su Portal, revisar cómo anduvo el mes o destrabar nuevos frentes a su propio ritmo.
+            <p style="font-size: 0.78rem; color: #a1a1aa; line-height: 1.48; margin: 0;">
+              Para quienes ya tuvieron su Sesión Base y quieren sumar nuevas herramientas a su Portal, calibrar el mes o destrabar nuevos frentes.
             </p>
-            <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
-              $30.000 – $35.000 <span style="font-size: 0.76rem; color: #94a3b8; font-weight: 600;">CLP por sesión</span>
+            
+            <div class="continuidad-price-strip" style="border-color: rgba(168,85,247,0.28);">
+              <span style="font-family: var(--font-heading); font-size: 1.28rem; font-weight: 800; color: #fff;">$35.000 <span style="font-size: 0.76rem; color: #c084fc;">CLP</span></span>
+              <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 700;">Valor fijo por sesión</span>
             </div>
-            <ul style="list-style: none; font-size: 0.78rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; padding: 0;">
-              <li style="display:flex; gap:6px;"><span style="color:#c084fc;">✓</span> <span>Auditoría de qué funcionó y qué dio fricción en tu semana.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#c084fc;">✓</span> <span>Actualización en vivo de tu Portal de Clientes e imprimibles.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#c084fc;">✓</span> <span>Incorporación de nuevos módulos (+60 disponibles).</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#c084fc;">✓</span> <span>Sin amarras mensuales obligatorias.</span></li>
+
+            <ul style="list-style: none; font-size: 0.76rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 6px; margin: 0 0 16px 0; padding: 0;">
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#c084fc; font-weight:800;">✓</span> <span>Auditoría de qué funcionó y qué dio fricción en tu semana.</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#c084fc; font-weight:800;">✓</span> <span>Actualización en vivo de tu Portal de Clientes e imprimibles.</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#c084fc; font-weight:800;">✓</span> <span>Activación de nuevos módulos del arsenal (+60 disponibles).</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#c084fc; font-weight:800;">✓</span> <span>100% flexible, sin amarras mensuales obligatorias.</span></li>
             </ul>
           </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20consultar%20por%20Sesiones%20de%20Seguimiento%20y%20actualizaci%C3%B3n%20de%20mi%20Portal." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px; font-weight: 800; background: #a855f7; color: #000; border-radius: 50px; text-decoration: none; display: block; font-size: 0.8rem;">
-            Agendar Seguimiento →
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20una%20Sesi%C3%B3n%20de%20Seguimiento%20($35.000%20CLP)%20y%20actualizar%20mi%20Portal." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px; font-weight: 800; background: #a855f7; color: #000; border-radius: 50px; text-decoration: none; display: block; font-size: 0.79rem; box-sizing: border-box;">
+            Agendar Seguimiento ($35k) →
           </a>
         </div>
 
         <!-- OPCIÓN C: VITRINA CON PROPÓSITO & CO-MARKETING -->
-        <div style="background: #0c0c0f; border: 1px solid rgba(245,158,11,0.35); border-radius: 18px; padding: 22px 20px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="continuidad-card" style="background: #0c0c10; border: 1px solid rgba(245,158,11,0.4);">
           <div>
-            <span style="font-size: 0.68rem; font-weight: 800; color: #fbbf24; text-transform: uppercase; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">
-              ✦ CO-MARKETING · EN TERRENO U ONLINE ✦
+            <span class="continuidad-badge-pill" style="color: #fbbf24; background: rgba(245,158,11,0.14); border: 1px solid rgba(245,158,11,0.38);">
+              ✦ CO-MARKETING · TERRENO U ONLINE
             </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px;">
+            <h4 style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: #fff; margin: 0 0 6px 0; line-height: 1.25;">
               Vitrina con Propósito & Co-Marketing
             </h4>
-            <p style="font-size: 0.8rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 12px;">
-              Para emprendedores y oficios con excelentes productos que buscan visibilidad auténtica: destrabamos un nudo administrativo en vivo y mostramos tu trabajo en redes.
+            <p style="font-size: 0.78rem; color: #a1a1aa; line-height: 1.48; margin: 0;">
+              Para emprendedores y oficios con grandes productos que buscan visibilidad auténtica: destrabamos un nudo en vivo y mostramos tu trabajo.
             </p>
-            <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fbbf24; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
-              Aporte Voluntario / Canje
+            
+            <div class="continuidad-price-strip" style="border-color: rgba(245,158,11,0.28);">
+              <span style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: #fbbf24;">Aporte Voluntario / Canje</span>
+              <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 700;">Cupos por postulación</span>
             </div>
-            <ul style="list-style: none; font-size: 0.78rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; padding: 0;">
-              <li style="display:flex; gap:6px;"><span style="color:#fbbf24;">✓</span> <span>Visita presencial a tu taller/local o sesión online.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#fbbf24;">✓</span> <span>Diagnóstico y solución de 1 problema operativo en vivo.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#fbbf24;">✓</span> <span>Grabación de cápsula mostrando tu historia y propuesta.</span></li>
-              <li style="display:flex; gap:6px;"><span style="color:#fbbf24;">✓</span> <span>Difusión conjunta en redes sociales.</span></li>
+
+            <ul style="list-style: none; font-size: 0.76rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 6px; margin: 0 0 16px 0; padding: 0;">
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fbbf24; font-weight:800;">✓</span> <span>Visita presencial a tu taller/local o sesión online.</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fbbf24; font-weight:800;">✓</span> <span>Diagnóstico y solución de 1 problema operativo en vivo.</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fbbf24; font-weight:800;">✓</span> <span>Grabación de cápsula mostrando tu historia y propuesta.</span></li>
+              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fbbf24; font-weight:800;">✓</span> <span>Difusión conjunta en redes sociales.</span></li>
             </ul>
           </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20tengo%20un%20emprendimiento%20y%20me%20gustar%C3%ADa%20postular%20a%20Vitrina%20con%20Prop%C3%B3sito%20y%20Co-Marketing." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #f59e0b; color: #000; border: none; font-size: 0.8rem;">
+          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20tengo%20un%20emprendimiento%20y%20me%20gustar%C3%ADa%20postular%20a%20Vitrina%20con%20Prop%C3%B3sito%20y%20Co-Marketing." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px; font-weight: 800; border-radius: 50px; text-decoration: none; display: block; background: #f59e0b; color: #000; border: none; font-size: 0.79rem; box-sizing: border-box;">
             Postular a Vitrina con Propósito →
           </a>
         </div>
