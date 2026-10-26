@@ -4262,16 +4262,24 @@
       }
     }
     .diego-avatar-box {
-      width: 58px;
-      height: 58px;
-      border-radius: 16px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      width: 72px;
+      height: 72px;
+      min-width: 72px;
+      border-radius: 20px;
+      border: 2px solid rgba(56, 189, 248, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+      background: #0f172a;
+    }
+    .diego-avatar-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
     }
     .diego-name-text {
       font-family: var(--font-heading);
@@ -4792,7 +4800,9 @@
         <!-- PERFIL DE DIEGO & VISIÓN HUMANA -->
         <div class="diego-profile-left">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div class="diego-avatar-box">🧭</div>
+            <div class="diego-avatar-box">
+              <img src="assets/img/diego_perfil_camisa_negra.jpg" alt="Diego González Yáñez" id="diego-profile-img">
+            </div>
             <div>
               <h3 class="diego-name-text">Diego González Yáñez</h3>
               <div class="diego-role-text">Administrador de Empresas · Sistemas Humanos</div>
