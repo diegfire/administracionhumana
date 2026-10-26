@@ -1304,7 +1304,47 @@
                         </p>
                     </div>
                 </div>
-                <div id="herramientas-cards-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:1.25rem;"></div>
+
+                <!-- MASTER CHECKLIST CONTEXTUALIZADO -->
+                <div id="checklist-master-box" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.05) 0%, rgba(16, 185, 129, 0.03) 100%); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 1.3rem 1.5rem; margin-bottom: 2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:0.8rem;">
+                        <div>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span style="background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:50px; text-transform:uppercase;">
+                                    <i class="fa-solid fa-clipboard-check"></i> Checklist Clínico-Operativo Semanal
+                                </span>
+                                <span id="checklist-progress-badge" style="font-family:var(--font-mono); font-size:0.78rem; color:#10b981; font-weight:800;">
+                                    0 / 0 completados (0%)
+                                </span>
+                            </div>
+                            <h4 id="checklist-title-client" style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; color:#fff; margin:0.35rem 0 0 0;">
+                                Micro-compromisos Paso Cero & Acuerdos Semanales
+                            </h4>
+                        </div>
+                        <div style="display:flex; gap:8px; align-items:center;">
+                            <button onclick="resetMasterChecklist()" class="btn-schedule-action" style="color:#f87171; font-size:0.75rem; padding:6px 12px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:6px; cursor:pointer;">
+                                <i class="fa-solid fa-rotate-left"></i> Reiniciar Semana
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Barra de progreso -->
+                    <div style="width:100%; height:7px; background:rgba(255,255,255,0.08); border-radius:10px; overflow:hidden; margin-bottom:1.2rem;">
+                        <div id="checklist-progress-bar" style="height:100%; width:0%; background:linear-gradient(90deg, #38bdf8 0%, #10b981 100%); transition:width 0.3s ease;"></div>
+                    </div>
+
+                    <!-- Contenedor dinámico de checklist en 2 columnas -->
+                    <div id="master-checklist-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.2rem;">
+                        <!-- Inyectado por renderMasterChecklist() -->
+                    </div>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:1rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:1.2rem;">
+                    <span style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; color:#fff;">
+                        🏛️ Arsenal Canónico de Herramientas Prescritas
+                    </span>
+                    <span id="badge-tools-count" style="background:rgba(96,165,250,0.15); color:#60a5fa; border:1px solid rgba(96,165,250,0.3); font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:50px;">0 Módulos</span>
+                </div>
             </div>
         </div>
 
@@ -1436,6 +1476,44 @@
                 return;
             }
 
+            // Enriquecer en vivo con expediente_contrato.json si existe
+            if (window.location.protocol.startsWith("http")) {
+                try {
+                    const contratoResp = await fetch(`planes/${cid}/expediente_contrato.json?t=` + Date.now());
+                    if (contratoResp.ok) {
+                        const contratoJson = await contratoResp.json();
+                        data.contrato = contratoJson;
+                        if (!data.herramientas_prescritas && contratoJson.herramientas_prescritas) {
+                            data.herramientas_prescritas = contratoJson.herramientas_prescritas;
+                        }
+                        if (contratoJson.rol_contexto && data.cliente) {
+                            data.cliente.rol_contexto = contratoJson.rol_contexto;
+                            if (cid === "melissa") data.cliente.rol_principal = contratoJson.rol_contexto;
+                        }
+                    }
+                } catch(e) {}
+            }
+
+            // Enriquecer con registro precompilado si aporta campos canónicos
+            if (window.CLIENTS_MASTER_DATA && window.CLIENTS_MASTER_DATA[cid]) {
+                const precomp = window.CLIENTS_MASTER_DATA[cid];
+                if (!data.herramientas_prescritas && precomp.herramientas_prescritas) {
+                    data.herramientas_prescritas = precomp.herramientas_prescritas;
+                }
+                if (!data.contrato && precomp.contrato) {
+                    data.contrato = precomp.contrato;
+                }
+                if (precomp.cliente && data.cliente) {
+                    if (precomp.cliente.rol_contexto) data.cliente.rol_contexto = precomp.cliente.rol_contexto;
+                    if (cid === "melissa" && precomp.cliente.rol_principal) data.cliente.rol_principal = precomp.cliente.rol_principal;
+                }
+            }
+
+            // Identidad canónica garantizada para Melissa
+            if (cid === "melissa" && data.cliente) {
+                data.cliente.rol_principal = "Kinesióloga Escolar & Fundadora Trafmen";
+            }
+
             activeClientData = data;
             renderFlightPlan(data);
         }
@@ -1523,20 +1601,8 @@
                 `;
             }
 
-            // Contexto específico en Tutoriales
-            if (c.id === "melissa") {
-                document.getElementById("tut-horario-p1").innerText = "Sostienes 40.5 horas fijas en el colegio en Pueblo Seco. Tu mayor fuga eran ~14 horas/semana dando vueltas al pasar de un rol a otro sin un mapa claro de navegación.";
-                document.getElementById("tut-horario-p2").innerText = "Para blindar tus 2 Ventanas de Oro (Diplomado el martes 16:30 y Träfmen el sábado 10:00) y tu Franja Sagrada con Chinito (18:00–20:30) sin sentir culpa de estar descuidando tus metas.";
-                document.getElementById("lbl-inv-1").innerText = "1. 🏫 Victoria en el Colegio (40h):";
-                document.getElementById("lbl-inv-2").innerText = "2. 👶 Victoria con Chinito / Crianza:";
-                document.getElementById("lbl-inv-3").innerText = "3. 🧸 Victoria Träfmen / Personal / Diplomado:";
-            } else if (c.id === "rocio") {
-                document.getElementById("tut-horario-p1").innerText = "Equilibras Psicopedagogía en UST, Puya Masajes, Voz Caleidoscopio y el cuidado del hogar con Nieve en Talcahuano.";
-                document.getElementById("tut-horario-p2").innerText = "Para blindar tus 4 frentes soberanos y agendar 2 pausas de 15 min innegociables de regulación sensorial y stimming TEA.";
-                document.getElementById("lbl-inv-1").innerText = "1. 🎓 Victoria en Universidad UST:";
-                document.getElementById("lbl-inv-2").innerText = "2. 💆‍♀️ Victoria en Puya Masajes / Canto:";
-                document.getElementById("lbl-inv-3").innerText = "3. 🧘 Victoria en Autocuidado & Stimming TEA:";
-            }
+            // Contextualización clínica y humana de tutoriales para todos los clientes
+            contextualizeAllTutorials(data, c, d);
 
             // Inicializar Mapeador 24H
             let scheduleCats = (data.horario_24h && data.horario_24h.categorias) 
@@ -1874,36 +1940,31 @@
             const btnTab = document.getElementById("tab-btn-herramientas");
             if (!container) return;
             
-            // Mapeo de alias comunes de modulos_activos a IDs del catálogo
-            const ALIASES = {
-                'foda_came': 'foda_y_came',
-                'foda_personal': 'foda_y_came',
-                'foda': 'foda_y_came',
-                'mapeador_24h': 'mapeador_horarios_24h',
-                'horario_24h': 'mapeador_horarios_24h',
-                'kanban_gtd_wip2': 'tablero_gtd_vaciado',
-                'kanban_gtd': 'tablero_gtd_vaciado',
-                'gtd': 'tablero_gtd_vaciado',
-                'gtd_vaciado_mental': 'tablero_gtd_vaciado',
-                'time_blocking_flexible': 'time_blocking',
-                'finanzas_503020': 'regla_50_30_20',
-                'simulador_financiero': 'regla_50_30_20',
-                'oceano_azul_diferencial': 'estrategia_oceano_azul',
-                'matriz_eisenhower': 'matriz_de_eisenhower',
-                'inventario_sesiones_resultados': 'inventario_de_resultados',
-                'inventario_resultados': 'inventario_de_resultados',
-                'inventario_cero_culpa': 'inventario_de_resultados',
-                'tecnica_pomodoro_foco': 'tecnica_pomodoro_paso_cero',
-                'protocolo_paso_cero': 'tecnica_pomodoro_paso_cero',
-                'ventana_johari_puntos_ciegos': 'la_ventana_de_johari',
-                'feedback_sbi_conversaciones': 'feedback_sbi_acuerdos',
-                'kaizen_mejora_continua': 'filosofia_kaizen_15min',
-                'principio_pareto_80_20': 'principio_de_pareto',
-                'plan_estrategico_hitos': 'plan_estrategico_roadmap',
-                'matriz_raci': 'matriz_raci',
-                'raci': 'matriz_raci',
-                'metodo_smart': 'metodo_smart',
-                'metodo_okr': 'metodo_okr'
+            // Mapeo inverso de alias históricos hacia IDs canónicos v4.0
+            const CANONICAL_ALIASES = {
+                'foda_y_came': 'foda_came',
+                'foda_personal': 'foda_came',
+                'foda': 'foda_came',
+                'mapeador_horarios_24h': 'mapeador_24h',
+                'horario_24h': 'mapeador_24h',
+                'tablero_gtd_vaciado': 'kanban_gtd_wip2',
+                'kanban_gtd': 'kanban_gtd_wip2',
+                'gtd': 'gtd_vaciado_mental',
+                'time_blocking': 'time_blocking_flexible',
+                'regla_50_30_20': 'finanzas_503020',
+                'simulador_financiero': 'finanzas_503020',
+                'estrategia_oceano_azul': 'oceano_azul_diferencial',
+                'matriz_de_eisenhower': 'matriz_eisenhower',
+                'inventario_de_resultados': 'inventario_cero_culpa',
+                'inventario_sesiones_resultados': 'inventario_cero_culpa',
+                'inventario_resultados': 'inventario_cero_culpa',
+                'tecnica_pomodoro_paso_cero': 'protocolo_paso_cero',
+                'la_ventana_de_johari': 'ventana_johari_puntos_ciegos',
+                'feedback_sbi_acuerdos': 'feedback_sbi_conversaciones',
+                'filosofia_kaizen_15min': 'kaizen_mejora_continua',
+                'principio_de_pareto': 'principio_pareto_80_20',
+                'plan_estrategico_roadmap': 'plan_estrategico_hitos',
+                'raci': 'matriz_raci'
             };
 
             const catalog = window.AICC_CATALOGO_60_HERRAMIENTAS || window.AICC_CATALOGO_40_HERRAMIENTAS || window.AICC_40_TOOLS || [];
@@ -1918,11 +1979,11 @@
             const seenCodes = new Set();
             const clientId = currentClientId || "cliente";
 
-            // 1. Herramientas explícitas preconfiguradas con tutoriales y checklists
+            // 1. Herramientas explícitas preconfiguradas
             if (Array.isArray(data.herramientas_activas) && data.herramientas_activas.length > 0) {
                 data.herramientas_activas.forEach(h => {
-                    const lookup = ALIASES[h.id] || h.id || h.nombre;
-                    const matched = catalogMap[lookup] || catalogMap[(h.codigo || '').toLowerCase()];
+                    const canonicalKey = CANONICAL_ALIASES[h.id] || h.id;
+                    const matched = catalogMap[canonicalKey] || catalogMap[h.id] || catalogMap[(h.codigo || '').toLowerCase()];
                     resolvedTools.push({
                         id: h.id || (matched ? matched.id : 'tool_' + Math.random()),
                         numero: h.numero,
@@ -1931,10 +1992,10 @@
                         color: h.color || '#10b981',
                         nombre: h.nombre || (matched ? matched.nombre_oficial : 'Herramienta'),
                         subtitulo: h.subtitulo || (matched ? matched.nombre_humano : ''),
-                        descripcion: h.descripcion || (matched ? matched.pregunta_diagnostica : ''),
+                        descripcion: h.descripcion || (matched ? (matched.intencion_clinica ? matched.intencion_clinica.que_cura : matched.pregunta_diagnostica) : ''),
                         img_url: h.img_url || (matched ? matched.img_url : ''),
                         img_fallback: h.img_fallback || (matched ? matched.img_url : ''),
-                        tutorial_html: h.tutorial_html || (matched ? `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;"><i class="fa-solid fa-graduation-cap"></i> Intención Clínica:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${matched.pregunta_diagnostica || ''}</p>` : ''),
+                        tutorial_html: h.tutorial_html || (matched ? `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;"><i class="fa-solid fa-graduation-cap"></i> ¿Qué cura en tu día a día?:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${(matched.intencion_clinica && matched.intencion_clinica.que_cura) || matched.pregunta_diagnostica || ''}</p>` : ''),
                         checklist: h.checklist || (matched && matched.protocolo_paso_cero ? [matched.protocolo_paso_cero] : []),
                         app_url: h.app_url || (matched ? matched.app_url : ''),
                         imprimible_url: h.imprimible_url || h.print_url || (matched ? matched.print_url : ''),
@@ -1948,25 +2009,82 @@
                 });
             }
 
-            // 2. Resolver automáticamente a partir de modulos_activos de la Ficha Maestra si faltan
+            // 2. Unificar herramientas desde contrato y modulos_activos
+            const poolMods = [];
+            if (Array.isArray(data.herramientas_prescritas)) {
+                poolMods.push(...data.herramientas_prescritas);
+            }
+            if (data.contrato && Array.isArray(data.contrato.herramientas_prescritas)) {
+                poolMods.push(...data.contrato.herramientas_prescritas);
+            }
             if (Array.isArray(data.modulos_activos)) {
-                data.modulos_activos.forEach(modId => {
-                    const lookup = ALIASES[modId] || modId;
-                    const tool = catalogMap[lookup] || catalogMap[modId];
+                poolMods.push(...data.modulos_activos);
+            }
+
+            poolMods.forEach(modId => {
+                const canonicalKey = CANONICAL_ALIASES[modId] || modId;
+                const tool = catalogMap[canonicalKey] || catalogMap[modId];
+                if (tool && !seenCodes.has(tool.codigo)) {
+                    seenCodes.add(tool.codigo);
+                    const queCura = (tool.intencion_clinica && tool.intencion_clinica.que_cura) ? tool.intencion_clinica.que_cura : (tool.pregunta_diagnostica || tool.protocolo_paso_cero || "Herramienta clínica prescrita para tu plan de vuelo.");
+                    const pasoCero = tool.protocolo_paso_cero || "Implementar 1 micro-acción de 5 minutos.";
+                    const toolChecklist = [
+                        `Paso Cero: ${pasoCero}`,
+                        `Aplicación: Completar la matriz o plantilla física de ${tool.nombre_humano}.`,
+                        `Cierre: Registrar la victoria y aprendizaje en el Inventario Cero Culpa.`
+                    ];
+                    let extraTutorial = '';
+                    if (tool.pregunta_diagnostica) {
+                        extraTutorial += `<p style="font-size:0.78rem; color:#93c5fd; margin:0.4rem 0 0 0; line-height:1.4;"><i class="fa-solid fa-circle-question"></i> <strong>Pregunta Diagnóstica:</strong> ${escapeHtml(tool.pregunta_diagnostica)}</p>`;
+                    }
+                    if (tool.intencion_clinica && tool.intencion_clinica.contraindicado_si) {
+                        extraTutorial += `<p style="font-size:0.75rem; color:#fca5a5; margin:0.35rem 0 0 0; line-height:1.4;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Contraindicado si:</strong> ${escapeHtml(tool.intencion_clinica.contraindicado_si)}</p>`;
+                    }
+                    resolvedTools.push({
+                        id: tool.id,
+                        codigo: tool.codigo,
+                        badge: `${tool.codigo} • ${tool.pilar || ''}`,
+                        color: tool.piso_numero === 1 ? '#10b981' : (tool.piso_numero === 2 ? '#3b82f6' : '#8b5cf6'),
+                        nombre: tool.nombre_oficial,
+                        subtitulo: tool.nombre_humano,
+                        descripcion: queCura,
+                        img_url: tool.img_url,
+                        img_fallback: tool.img_url,
+                        tutorial_html: `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.4rem;"><i class="fa-solid fa-graduation-cap"></i> ¿Qué cura en tu día a día?:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${escapeHtml(queCura)}</p>${extraTutorial}`,
+                        checklist: toolChecklist,
+                        app_url: tool.app_url,
+                        imprimible_url: tool.print_url,
+                        imprimible_label: 'Ver Imprimible →',
+                        guia_url: tool.guide_url,
+                        guia_label: 'Ver Guía Completa →'
+                    });
+                }
+            });
+
+            // Respaldo canónico si ninguna herramienta resolvió
+            if (resolvedTools.length === 0) {
+                const defaultModules = ['mapeador_24h', 'kanban_gtd_wip2', 'matriz_eisenhower', 'inventario_cero_culpa', 'finanzas_503020'];
+                defaultModules.forEach(modId => {
+                    const tool = catalogMap[modId];
                     if (tool && !seenCodes.has(tool.codigo)) {
                         seenCodes.add(tool.codigo);
+                        const queCura = (tool.intencion_clinica && tool.intencion_clinica.que_cura) ? tool.intencion_clinica.que_cura : (tool.pregunta_diagnostica || tool.protocolo_paso_cero || "Herramienta clínica prescrita.");
                         resolvedTools.push({
                             id: tool.id,
                             codigo: tool.codigo,
                             badge: `${tool.codigo} • ${tool.pilar || ''}`,
-                            color: '#10b981',
+                            color: tool.piso_numero === 1 ? '#10b981' : (tool.piso_numero === 2 ? '#3b82f6' : '#8b5cf6'),
                             nombre: tool.nombre_oficial,
                             subtitulo: tool.nombre_humano,
-                            descripcion: tool.pregunta_diagnostica || tool.protocolo_paso_cero || "Herramienta clínica prescrita para tu plan de vuelo.",
+                            descripcion: queCura,
                             img_url: tool.img_url,
                             img_fallback: tool.img_url,
-                            tutorial_html: `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;"><i class="fa-solid fa-graduation-cap"></i> Intención Clínica:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${tool.pregunta_diagnostica || ''}</p>`,
-                            checklist: tool.protocolo_paso_cero ? [tool.protocolo_paso_cero] : [],
+                            tutorial_html: `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.4rem;"><i class="fa-solid fa-graduation-cap"></i> ¿Qué cura en tu día a día?:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${escapeHtml(queCura)}</p>`,
+                            checklist: [
+                                `Paso Cero: ${tool.protocolo_paso_cero || 'Implementar 1 micro-acción de 5 minutos.'}`,
+                                `Aplicación: Completar la matriz o plantilla de ${tool.nombre_humano}.`,
+                                `Cierre: Registrar la victoria en el Inventario Cero Culpa.`
+                            ],
                             app_url: tool.app_url,
                             imprimible_url: tool.print_url,
                             imprimible_label: 'Ver Imprimible →',
@@ -1977,11 +2095,14 @@
                 });
             }
 
-            if (resolvedTools.length === 0) {
-                if (btnTab) btnTab.style.display = "none";
-                return;
-            }
+            // Siempre mostrar la pestaña para dar acceso al arsenal
             if (btnTab) btnTab.style.display = "flex";
+
+            const countBadge = document.getElementById("badge-tools-count");
+            if (countBadge) countBadge.innerText = `${resolvedTools.length} Módulos`;
+
+            // Renderizar Master Checklist en la parte superior
+            renderMasterChecklist(data, resolvedTools, clientId);
 
             container.innerHTML = resolvedTools.map((h, toolIdx) => {
                 const borderColor = h.color ? h.color + '44' : 'rgba(255,255,255,0.1)';
@@ -2098,6 +2219,331 @@
                 span.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
                 checkbox.parentElement.style.color = checkbox.checked ? '#64748b' : '#cbd5e1';
             }
+        }
+
+        // =========================================================================
+        // 9A. MASTER CHECKLIST CONTEXTUALIZADO & PROGRESO SEMANAL
+        // =========================================================================
+        function renderMasterChecklist(data, resolvedTools, clientId) {
+            const container = document.getElementById("master-checklist-container");
+            const titleEl = document.getElementById("checklist-title-client");
+            const cName = (data.cliente && data.cliente.nombre) ? data.cliente.nombre : "Cliente";
+            
+            if (titleEl) {
+                titleEl.innerText = `Micro-compromisos & Acuerdos Clínicos de ${cName}`;
+            }
+            if (!container) return;
+
+            // Columna 1: Micro-acciones Paso Cero (5 Minutos) derivadas de las herramientas prescritas
+            const toolActions = [];
+            resolvedTools.forEach((tool, tIdx) => {
+                let actionText = "";
+                if (tool.checklist && tool.checklist.length > 0) {
+                    const firstChk = tool.checklist[0];
+                    actionText = typeof firstChk === 'object' ? (firstChk.texto || firstChk.text || '') : firstChk;
+                }
+                if (!actionText && tool.descripcion) {
+                    actionText = tool.descripcion.length > 110 ? tool.descripcion.substring(0, 110) + "..." : tool.descripcion;
+                }
+                if (actionText) {
+                    toolActions.push({
+                        id: `chk_tool_${tool.id || tIdx}`,
+                        toolCode: tool.codigo || `M0${tIdx+1}`,
+                        toolName: tool.nombre || 'Herramienta',
+                        text: actionText,
+                        badgeColor: tool.color || '#38bdf8'
+                    });
+                }
+            });
+
+            // Columna 2: Acuerdos Clínicos y Hábitos Innegociables
+            const agreements = [];
+            const rawAcuerdos = data.acuerdos_clinicos_operativos || (data.contrato && data.contrato.compromisos_innegociables) || [];
+            if (Array.isArray(rawAcuerdos) && rawAcuerdos.length > 0) {
+                rawAcuerdos.forEach((ac, aIdx) => {
+                    const txt = typeof ac === 'object' ? (ac.acuerdo || ac.texto || '') : ac;
+                    if (txt) {
+                        agreements.push({
+                            id: `chk_acuerdo_${aIdx}`,
+                            tag: `#0${aIdx + 1}`,
+                            text: txt,
+                            badgeColor: '#f59e0b'
+                        });
+                    }
+                });
+            } else {
+                agreements.push({ id: `chk_acuerdo_0`, tag: '#01', text: 'Respetar la Ventana de Oro de 30-45 min sin interrupciones ni pantallas secundarias.', badgeColor: '#f59e0b' });
+                agreements.push({ id: `chk_acuerdo_1`, tag: '#02', text: 'Vaciado mental y WIP=2: No iniciar un nuevo frente sin cerrar el anterior.', badgeColor: '#f59e0b' });
+                agreements.push({ id: `chk_acuerdo_2`, tag: '#03', text: 'Cierre del día con 3 victorias concretas en el Inventario Cero Culpa.', badgeColor: '#f59e0b' });
+            }
+
+            // HTML Columna 1
+            const col1Items = toolActions.map(item => {
+                const storageKey = `ah_mchk_${clientId}_${item.id}`;
+                const isChecked = localStorage.getItem(storageKey) === 'true';
+                return `
+                    <div style="background:#0f141c; border:1px solid ${isChecked ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.08)'}; border-radius:8px; padding:0.65rem 0.85rem; display:flex; align-items:flex-start; gap:10px; transition:border-color 0.2s ease;">
+                        <input type="checkbox" id="${storageKey}" onchange="toggleMasterChecklistItem('${storageKey}', this)" ${isChecked ? 'checked' : ''} style="margin-top:3px; accent-color:#10b981; cursor:pointer; width:16px; height:16px; flex-shrink:0;">
+                        <label for="${storageKey}" style="cursor:pointer; flex:1;">
+                            <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
+                                <span style="font-family:var(--font-mono); font-size:0.68rem; font-weight:800; color:${item.badgeColor}; background:${item.badgeColor}22; padding:1px 6px; border-radius:4px; border:1px solid ${item.badgeColor}44;">${item.toolCode}</span>
+                                <span style="font-size:0.75rem; font-weight:700; color:#fff;">${escapeHtml(item.toolName)}</span>
+                            </div>
+                            <span class="mchk-text" style="font-size:0.79rem; line-height:1.4; color:${isChecked ? '#64748b' : '#cbd5e1'}; ${isChecked ? 'text-decoration:line-through;' : ''}">${escapeHtml(item.text)}</span>
+                        </label>
+                    </div>
+                `;
+            }).join('');
+
+            // HTML Columna 2
+            const col2Items = agreements.map(item => {
+                const storageKey = `ah_mchk_${clientId}_${item.id}`;
+                const isChecked = localStorage.getItem(storageKey) === 'true';
+                return `
+                    <div style="background:#131210; border:1px solid ${isChecked ? 'rgba(16,185,129,0.3)' : 'rgba(245,158,11,0.2)'}; border-radius:8px; padding:0.65rem 0.85rem; display:flex; align-items:flex-start; gap:10px; transition:border-color 0.2s ease;">
+                        <input type="checkbox" id="${storageKey}" onchange="toggleMasterChecklistItem('${storageKey}', this)" ${isChecked ? 'checked' : ''} style="margin-top:3px; accent-color:#f59e0b; cursor:pointer; width:16px; height:16px; flex-shrink:0;">
+                        <label for="${storageKey}" style="cursor:pointer; flex:1;">
+                            <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
+                                <span style="font-family:var(--font-mono); font-size:0.68rem; font-weight:800; color:#f59e0b; background:rgba(245,158,11,0.15); padding:1px 6px; border-radius:4px; border:1px solid rgba(245,158,11,0.3);">${item.tag}</span>
+                                <span style="font-size:0.75rem; font-weight:700; color:#fbbf24;">Acuerdo Innegociable</span>
+                            </div>
+                            <span class="mchk-text" style="font-size:0.79rem; line-height:1.4; color:${isChecked ? '#64748b' : '#cbd5e1'}; ${isChecked ? 'text-decoration:line-through;' : ''}">${escapeHtml(item.text)}</span>
+                        </label>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:0.2rem;">
+                        <span style="font-size:0.8rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.5px;">
+                            🚀 Micro-acciones Paso Cero (5 Min)
+                        </span>
+                        <span style="font-size:0.7rem; color:#64748b;">(${toolActions.length} tareas)</span>
+                    </div>
+                    ${col1Items}
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:0.2rem;">
+                        <span style="font-size:0.8rem; font-weight:800; color:#f59e0b; text-transform:uppercase; letter-spacing:0.5px;">
+                            🤝 Acuerdos & Hábitos del Caso
+                        </span>
+                        <span style="font-size:0.7rem; color:#64748b;">(${agreements.length} compromisos)</span>
+                    </div>
+                    ${col2Items}
+                </div>
+            `;
+
+            updateMasterChecklistProgress();
+        }
+
+        function toggleMasterChecklistItem(key, checkbox) {
+            localStorage.setItem(key, checkbox.checked ? 'true' : 'false');
+            const parent = checkbox.closest('div');
+            const textSpan = parent ? parent.querySelector('.mchk-text') : null;
+            if (textSpan) {
+                textSpan.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
+                textSpan.style.color = checkbox.checked ? '#64748b' : '#cbd5e1';
+            }
+            if (parent) {
+                parent.style.borderColor = checkbox.checked ? 'rgba(16,185,129,0.35)' : 'rgba(255,255,255,0.08)';
+            }
+            updateMasterChecklistProgress();
+        }
+
+        function updateMasterChecklistProgress() {
+            const container = document.getElementById("master-checklist-container");
+            const progressBar = document.getElementById("checklist-progress-bar");
+            const badge = document.getElementById("checklist-progress-badge");
+            if (!container) return;
+
+            const checkboxes = container.querySelectorAll("input[type='checkbox']");
+            const total = checkboxes.length;
+            let checked = 0;
+            checkboxes.forEach(cb => { if (cb.checked) checked++; });
+
+            const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+            if (progressBar) progressBar.style.width = `${pct}%`;
+            if (badge) {
+                badge.innerText = `${checked} / ${total} completados (${pct}%)`;
+                badge.style.color = pct === 100 ? '#10b981' : (pct > 50 ? '#38bdf8' : '#94a3b8');
+            }
+        }
+
+        function resetMasterChecklist() {
+            if (!confirm("¿Deseas reiniciar todas las casillas del checklist semanal?")) return;
+            const container = document.getElementById("master-checklist-container");
+            if (!container) return;
+            const prefix = `ah_mchk_${currentClientId}_`;
+            Object.keys(localStorage).forEach(k => {
+                if (k.startsWith(prefix)) {
+                    localStorage.removeItem(k);
+                }
+            });
+            const checkboxes = container.querySelectorAll("input[type='checkbox']");
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                const parent = cb.closest('div');
+                const textSpan = parent ? parent.querySelector('.mchk-text') : null;
+                if (textSpan) {
+                    textSpan.style.textDecoration = 'none';
+                    textSpan.style.color = '#cbd5e1';
+                }
+                if (parent) {
+                    parent.style.borderColor = 'rgba(255,255,255,0.08)';
+                }
+            });
+            updateMasterChecklistProgress();
+            showToast("🔄 Checklist semanal reiniciado.");
+        }
+
+        // =========================================================================
+        // 9B. CONTEXTUALIZACIÓN CLÍNICA DE TUTORIALES POR CLIENTE
+        // =========================================================================
+        function contextualizeAllTutorials(data, c, d) {
+            const cid = (c.id || currentClientId || "").toLowerCase();
+            const cName = c.nombre || "Cliente";
+            const role = c.rol_principal || c.rol_contexto || "Profesional Independiente";
+
+            const CLIENT_TUTORIALS = {
+                melissa: {
+                    horario_p1: `Melissa, entre tus jornadas de kinesiología escolar en San Bernardo, la crianza de Chinito (6 años), el taller de carpintería Träfmen y tu diplomado, tu energía se fragmenta. Sin un mapa visual 24H, la rumiación de <em>"debería estar produciendo juguetes"</em> te roba la presencia con tu hijo y te deja en deuda permanente.`,
+                    horario_p2: `Para blindar tus Ventanas de Oro de 30 minutos (Misión Foco Chinito) y tu descanso de fin de semana. Al ver en bloques de color tu semana escolar vs. taller Träfmen vs. maternidad, tu mente descansa sabiendo que cada rol tiene su momento legítimo.`,
+                    kanban_p1: `En Träfmen la tentación constante es diseñar 5 juguetes nuevos a la vez (torres, encajes, pizarras) mientras redactas fichas kinésicas escolares. La dispersión agota tu foco y te deja con decenas de prototipos incompletos en el taller.`,
+                    kanban_p2: `<strong>WIP=2</strong> es tu salvavidas de artesana y terapeuta: máximo 2 entregables en <strong>"En Proceso"</strong> (ej. 1 lote de corte de madera y 1 informe escolar). Te obliga a terminar y pulir antes de abrir cualquier nueva idea.`,
+                    eisenhower_p1: `Las demandas urgentes escolares o familiares te arrastran fácilmente en el día a día. Si operas en modo reactivo, la consolidación comercial de Träfmen y tus proyectos terapéuticos propios siempre quedan postergados.`,
+                    eisenhower_p2: `Tu <strong>Cuadrante Q2 (Lo Importante No Urgente)</strong> es la matricería de juguetes, el catálogo de Träfmen y tu salud postural. Nadie te va a apurar con eso desde afuera; debes blindarlo tú misma en tu agenda semanal.`,
+                    inventario_p1: `Llegas a la noche sintiendo culpa: <em>"hoy no avancé nada en Träfmen"</em> porque la jornada escolar fue demandante o Chinito necesitó contención. Esa culpa invisible sabotea tu descanso reparador.`,
+                    inventario_p2: `Para cerrar el día demostrándole a tu mente con <strong>evidencia empírica diaria</strong>: 1 avance kinésico, 1 momento de crianza amorosa y 1 micro-avance en madera. Te vas a dormir en paz, con la certeza de haber sostenido lo esencial.`,
+                    fin_p1: `Separar con nitidez tu sueldo kinésico escolar de los flujos de Träfmen es crítico para que las compras de madera, fresas y barnices no asfixien tu economía doméstica.`,
+                    fin_p2: `<strong>50% Hogar y Familia:</strong> Sustento de Chinito y hogar base.<br><strong>30% Estilo de Vida:</strong> Pausas de bienestar, salidas y descanso sin culpa.<br><strong>20% Reinversión:</strong> Herramientas Träfmen y tu formación profesional.`
+                },
+                rocio: {
+                    horario_p1: `Rocío, equilibrar la carrera en UST con Puya Masajes, Voz Caleidoscopio y el cuidado del hogar en Talcahuano con Nieve te expone a una fuga masiva por interrupciones constantes (~21h/sem).`,
+                    horario_p2: `Para blindar pausas innegociables de autorregulación sensorial (Stimming TEA), proteger tus bloques de estudio en UST y cerrar tus atenciones de masajes a domicilio sin terminar con fatiga por sobreestímulo.`,
+                    kanban_p1: `Llevar simultáneamente entregas universitarias, agendas de masoterapia y clases de canto satura la memoria de trabajo y genera ansiedad de dispersión.`,
+                    kanban_p2: `<strong>WIP=2</strong> limita tus frentes abiertos: máximo 2 tareas activas en paralelo (ej. 1 informe de carrera y la coordinación de 1 sesión de canto). Cerrar antes de abrir te da paz mental.`,
+                    eisenhower_p1: `Los recados de última hora y las demandas ajenas te arrastran si no marcas límites firmes, postergando la consolidación de tus emprendimientos propios.`,
+                    eisenhower_p2: `Tu <strong>Q2 (Estratégico)</strong> es el diseño de tus propios paquetes terapéuticos, tu avance curricular en UST y tu bienestar sensorial con Nieve.`,
+                    inventario_p1: `Al final del día es común sentir que la jornada no rindió por el tiempo invertido en responder mensajes o resolver imprevistos.`,
+                    inventario_p2: `Para cerrar el día registrando tus <strong>3 victorias concretas</strong>: 1 académica en UST, 1 en masajes/canto y 1 de autocuidado y regulación sensorial.`,
+                    fin_p1: `Estructurar tarifas claras para Puya Masajes y Voz Caleidoscopio te permite costear tus estudios y generar holgura financiera real.`,
+                    fin_p2: `<strong>50% Sustento y Estudio:</strong> Arriendo, alimentación y gastos UST.<br><strong>30% Bienestar y Disfrute:</strong> Esparcimiento, cuidados y paseos con Nieve.<br><strong>20% Fondo de Tranquilidad:</strong> Equipamiento para masoterapia y fondo de libertad.`
+                },
+                matias: {
+                    horario_p1: `Matías, entre las exigencias académicas del Colegio Concepción, tus entrenamientos de vóley y tus proyectos creativos de dibujo y cómic, el uso desregulado de pantallas genera resaca digital y procrastinación.`,
+                    horario_p2: `Para blindar bloques de estudio concentrado de 45 minutos ("Ventanas de Oro") y reservar tiempo sagrado para entrenar vóley y dibujar sin culpa ni pantallas de por medio.`,
+                    kanban_p1: `Tener trabajos escolares atrasados, proyectos de dibujo a medias y mensajes sin responder colapsa la mente y tienta a evadir la realidad en el celular.`,
+                    kanban_p2: `<strong>WIP=2</strong>: Solo dos tareas en "En Proceso" (ej. 1 guía escolar de matemáticas y 1 avance en cómic). Terminar una antes de abrir otra te devuelve la confianza y la satisfacción de avanzar.`,
+                    eisenhower_p1: `Dejar los deberes para la noche por jugar o navegar en el teléfono convierte todo en una emergencia estresante con Diego y Ángela.`,
+                    eisenhower_p2: `Tu <strong>Q2</strong> es estudiar con tiempo para tus certámenes escolares y entrenar vóley con energía alta, sacando la voz a tiempo si algo te cuesta.`,
+                    inventario_p1: `Irte a dormir con culpa por haber estado horas pegado al teléfono sintiendo que <em>"hoy no alcancé a hacer nada"</em>.`,
+                    inventario_p2: `Para registrar <strong>3 victorias reales cada noche</strong>: 1 meta escolar cumplida, 1 sesión de entrenamiento/dibujo y 1 momento de comunicación transparente.`,
+                    fin_p1: `Aprender a gestionar tu mesada o ingresos de proyectos para comprar tus propios materiales de arte y equipamiento deportivo.`,
+                    fin_p2: `<strong>50% Compromisos Esenciales:</strong> Materiales escolares y colaciones.<br><strong>30% Ocio y Salidas:</strong> Tiempo libre con amigos sin excesos de pantalla.<br><strong>20% Ahorro Futuro:</strong> Fondo personal para materiales de arte y tecnología.`
+                },
+                antonia: {
+                    horario_p1: `Antonia, sostener la carga de cuidados médicos y familiares de Mateo y Roma mientras impartes yoga somático y clases de baile te llevó al Síndrome de Saturación Sistémica Quíntuple.`,
+                    horario_p2: `Para marcar límites firmes de descanso, evitar la búsqueda reactiva de estímulo constante y blindar tus horas de clases de yoga online ("Cuerpos Cansados") sin interferencias.`,
+                    kanban_p1: `Intentar resolver temas de salud familiar, preparar coreografías y gestionar mensajes de alumnas al mismo tiempo genera parálisis por sobrecarga.`,
+                    kanban_p2: `<strong>WIP=2</strong>: Solo 2 focos activos simultáneos. Te protege de la saturación y te ayuda a cerrar la planificación de tus clases antes de atender recados familiares.`,
+                    eisenhower_p1: `Las urgencias médicas y las demandas de terceros amenazan constantemente con postergar tu independencia económica.`,
+                    eisenhower_p2: `Tu <strong>Q2 (Innegociable)</strong> es el Hito Santiago: consolidar tus 8 alumnas con pase mensual prepagado ($160.000/mes) para tener un piso de tranquilidad financiera.`,
+                    inventario_p1: `Llegar a la noche agotada sintiendo que estuviste al servicio de todos menos de ti misma.`,
+                    inventario_p2: `Para validar que sostener un día difícil, cuidar a los tuyos y hacer tu propia pausa de yoga son <strong>victorias de alto impacto</strong>.`,
+                    fin_p1: `Transicionar de clases sueltas al modelo de pase mensual prepagado para eliminar la incertidumbre financiera.`,
+                    fin_p2: `<strong>50% Sustento y Salud:</strong> Medicamentos, tratamientos y gastos fijos.<br><strong>30% Espacio Propio:</strong> Autocuidado, masajes y disfrute personal.<br><strong>20% Hito Santiago:</strong> Fondo de autonomía y expansión de tus talleres.`
+                },
+                alejandra: {
+                    horario_p1: `Alejandra, siendo madre de Tomás, investigadora doctoral admitida en Filosofía de la Ciencia (U. de Oviedo), psicopedagoga y escritora, la <em>"falsa insuficiencia"</em> te hace sentir que nunca haces lo suficiente a pesar de tu gigantesco volumen de trabajo.`,
+                    horario_p2: `Para delimitar bloques de tiempo quirúrgicos (Time Blocking): tus horas de escritura doctoral matutina, tus atenciones psicopedagógicas y tus momentos de presencia con Tomás, marcando el fin de jornada a las 19:30.`,
+                    kanban_p1: `Tener la postulación a la beca doctoral, capítulos de tu libro, informes psicopedagógicos y trámites domésticos abiertos al mismo tiempo satura tu corteza prefrontal.`,
+                    kanban_p2: `<strong>WIP=2</strong>: Máximo 2 entregables en curso (ej. 1 sección del proyecto de investigación y 1 informe psicopedagógico). Desactiva la necesidad compulsiva de abarcarlo todo.`,
+                    eisenhower_p1: `Las microdemandas cotidianas amenazan con robarte el sprint crítico de postulación a tu beca doctoral y trabajo de 1 año.`,
+                    eisenhower_p2: `Tu <strong>Cuadrante Q2</strong> es tu tesis doctoral, tus publicaciones y tu bienestar físico. Nadie te apura en el día a día con tu obra intelectual; tú debes protegerla como un templo.`,
+                    inventario_p1: `Irte a la cama con el reproche de <em>"me faltó escribir más"</em> o <em>"no rendí lo suficiente"</em>, saboteando tu sueño con autoexigencia estéril.`,
+                    inventario_p2: `Para darle a tu mente <strong>evidencia empírica irrefutable</strong>: 1 avance doctoral/intelectual, 1 momento de crianza con Tomás y 1 aporte psicopedagógico. Duermes en paz y sin culpa.`,
+                    fin_p1: `Estructurar tus honorarios profesionales y los estipendios de investigación para garantizar estabilidad familiar durante tu doctorado.`,
+                    fin_p2: `<strong>50% Hogar y Crianza:</strong> Sustento de Tomás y compromisos base.<br><strong>30% Disfrute y Cultura:</strong> Libros, salidas y enriquecimiento personal.<br><strong>20% Fondo Doctoral:</strong> Publicaciones, congresos internacionales y resguardo.`
+                },
+                francisca: {
+                    horario_p1: `Francisca Lissette, ser nutricionista clínica, madre de dos pequeños y estudiante de Pedagogía en Biología genera una sobrecarga que detona el mecanismo biológico de parálisis defensiva ("autosabotaje por sobrecarga").`,
+                    horario_p2: `Para centralizar tu vida en la Regla del Calendario Único: bloques claros para laboratorios de biología, consultas nutricionales y crianza, eliminando la dispersión en múltiples listas sueltas.`,
+                    kanban_p1: `Acumular pautas nutricionales pendientes, certámenes de pedagogía y tareas de los niños en multitarea reactiva colapsa tu memoria de trabajo.`,
+                    kanban_p2: `<strong>WIP=2</strong>: Solo dos frentes abiertos a la vez. Si surge una demanda urgente de los niños, se pausa la tarea académica y se retoma después sin culpa ni autoflagelación.`,
+                    eisenhower_p1: `El impulso de postergar o evadir cuando la lista de pendientes parece infinita.`,
+                    eisenhower_p2: `Tu <strong>Q2</strong> es titularte de Pedagogía en Biología y estructurar tus consultas nutricionales con pautas estandarizadas de alta calidad.`,
+                    inventario_p1: `La sensación de haber estado todo el día corriendo sin lograr nada concreto para ti.`,
+                    inventario_p2: `Para registrar tus <strong>3 victorias diarias</strong>: 1 avance académico en biología, 1 pauta nutricional entregada y 1 momento de presencia amorosa con tus hijos.`,
+                    fin_p1: `Valorar tu consulta nutricional y proyectar tus futuros ingresos pedagógicos para dar estabilidad a tu hogar.`,
+                    fin_p2: `<strong>50% Sustento Familiar:</strong> Crianza y necesidades básicas de tus dos pequeños.<br><strong>30% Calidad de Vida:</strong> Descanso, recreación y bienestar.<br><strong>20% Fondo Profesional:</strong> Materiales pedagógicos y equipamiento de consulta.`
+                },
+                alvaro: {
+                    horario_p1: `Álvaro, tu sobresaliente capacidad analítica y estratégica corre el riesgo constante de quedar atrapada en parálisis por análisis si no aterrizas en un mapa 24H estricto.`,
+                    horario_p2: `Para definir bloques de ejecución fija de 45 minutos ("hacer sin sobrepensar") y bloques de revisión reflexiva sin que el diseño teórico retrase la venta real.`,
+                    kanban_p1: `Diseñar modelos comerciales gigantescos en papel sin validar en la calle produce frustración silenciosa y pérdida de momentum.`,
+                    kanban_p2: `<strong>WIP=2</strong> te fuerza a lanzar 1 propuesta comercial y hacer las llamadas clave antes de rediseñar cualquier planilla.`,
+                    eisenhower_p1: `Perfeccionar detalles irrelevantes de presentaciones para posponer el riesgo de la prospección comercial directa.`,
+                    eisenhower_p2: `Tu <strong>Q2</strong> son las conversaciones de venta cara a cara, el cierre de acuerdos comerciales y la toma de decisiones con información imperfecta.`,
+                    inventario_p1: `Irte a dormir sintiendo que "sólo planificaste" sin victorias tangibles en el mercado.`,
+                    inventario_p2: `Para registrar <strong>3 acciones de validación empírica diaria</strong>: propuestas enviadas, llamadas de cierre y decisiones tomadas.`,
+                    fin_p1: `Invertir en validación comercial y prototipos en vez de consultorías teóricas prolongadas.`,
+                    fin_p2: `<strong>50% Tranquilidad Base:</strong> Costos fijos cubiertos.<br><strong>30% Esparcimiento:</strong> Desconexión y deporte sin culpa.<br><strong>20% Fondo de Validación:</strong> Capital para pilotos comerciales y crecimiento.`
+                },
+                carlos: {
+                    horario_p1: `Carlos, reorganizar tu vida tras la separación implica equilibrar tu trabajo de horario fijo (09:30 a 13:30), la dirección de La Marca 33 y la presencia diaria innegociable con tu hija pequeña.`,
+                    horario_p2: `Para blindar tu rutina de gimnasio matutina (07:30 a 08:45 como "el arma del día"), tus tardes con tu hija y tus bloques nocturnos para La Marca 33 sin traslaparse.`,
+                    kanban_p1: `Gestionar más de 200 eventos con La Marca 33 mientras atiendes tu empleo fijo genera reactividad y desgaste si no hay foco claro.`,
+                    kanban_p2: `<strong>WIP=2</strong>: Estandarizar 1 paquete de eventos privados y cerrar el recambio a furgón de carga antes de abrir nuevos frentes comerciales.`,
+                    eisenhower_p1: `Resolver urgencias operativas menores de producción que te quitan las horas sagradas con tu hija.`,
+                    eisenhower_p2: `Tu <strong>Q2</strong> es paquetizar los eventos privados de La Marca 33 para asegurar margen neto y tu propia estabilidad financiera post-separación.`,
+                    inventario_p1: `Terminar la semana agotado como un "bombero de emergencias" sin sentir avance de fondo.`,
+                    inventario_p2: `Para registrar <strong>3 victorias de impacto</strong>: 1 momento de conexión con tu hija, 1 hito de producción en La Marca 33 y tus 3 sesiones de gimnasio cumplidas.`,
+                    fin_p1: `Paquetizar eventos por cantidad de invitados para asegurar margen neto real y renovar el vehículo hacia furgón de carga.`,
+                    fin_p2: `<strong>50% Sustento y Paternidad:</strong> Pensión, arriendo y sustento de tu hija.<br><strong>30% Estilo de Vida:</strong> Deporte, alimentación sana y bienestar.<br><strong>20% Fondo de Escala:</strong> Inversión en La Marca 33 y recambio vehicular.`
+                },
+                diego: {
+                    horario_p1: `Diego, sostener la consultoría clínica de múltiples clientes mientras desarrollas la arquitectura de software AICC y operas Don Diego requiere blindar tu energía ejecutiva.`,
+                    horario_p2: `Para proteger tus mañanas de desarrollo y diseño profundo, dejando las sesiones de consultoría y operaciones agrupadas por las tardes, con tiempo sagrado para Roma.`,
+                    kanban_p1: `La tentación de refactorizar todo el ecosistema al mismo tiempo induce sobrecarga cognitiva y frentes inconclusos.`,
+                    kanban_p2: `<strong>WIP=2</strong> estricto: 1 sprint de consultoría clínica y 1 sprint de código/producto a la vez, garantizando entregables limpios.`,
+                    eisenhower_p1: `Responder consultas menores de soporte te aleja de la expansión estratégica de Administración Humana y Don Diego.`,
+                    eisenhower_p2: `Tu <strong>Q2</strong> es la consolidación del motor v4.0, la automatización agéntica y tu propia calidad de vida y salud con Roma.`,
+                    inventario_p1: `La autoexigencia interna de perfeccionismo técnico que minimiza los grandes avances logrados en la jornada.`,
+                    inventario_p2: `Para registrar <strong>3 victorias de impacto real</strong>: contratos emitidos, clientes acompañados y pausas respetadas.`,
+                    fin_p1: `Mantener el presupuesto maestro mensual (~$813k - $863k CLP) con liquidez óptima y reinversión controlada.`,
+                    fin_p2: `<strong>50% Gastos Esenciales:</strong> Presupuesto base y compromisos fijos.<br><strong>30% Calidad de Vida:</strong> Bienestar personal y familia con Roma.<br><strong>20% Reinversión:</strong> Equipamiento tecnológico y crecimiento.`
+                }
+            };
+
+            const tut = CLIENT_TUTORIALS[cid] || {
+                horario_p1: `${cName}, como ${role}, sostener múltiples frentes simultáneos sin un mapa visual 24H fragmenta tu energía y expone tus descansos a ser colonizados por pendientes.`,
+                horario_p2: `Para blindar tus Ventanas de Oro de concentración profunda y momentos sagrados personales/familiares, eliminando la culpa de no estar trabajando mientras descansas.`,
+                kanban_p1: `Cuando intentas avanzar en 4 o 5 iniciativas a la vez, el cerebro colapsa por sobrecarga cognitiva, perdiendo tiempo valioso en decidir qué hacer en lugar de ejecutar.`,
+                kanban_p2: `<strong>WIP=2</strong> limita tu trabajo en proceso a máximo 2 tareas activas en la columna central, forzándote a terminar antes de abrir frentes nuevos.`,
+                eisenhower_p1: `Las demandas urgentes de último minuto y los requerimientos reactivos postergan indefinidamente tus verdaderas metas de crecimiento y bienestar.`,
+                eisenhower_p2: `Tu <strong>Cuadrante Q2 (Lo Importante No Urgente)</strong> es donde construyes tu autonomía futura. Como nadie te apura desde afuera con tus metas estratégicas, debes blindarlas tú en tu agenda.`,
+                inventario_p1: `Al final del día es frecuente acostarse pensando: <em>"hoy no alcancé a hacer nada"</em>. Ese sesgo cognitivo sabotea tu sueño y te carga de culpa injustificada.`,
+                inventario_p2: `Para demostrarle a tu mente con <strong>evidencia empírica diaria</strong> que sí avanzaste, registrando tus 3 victorias concretas antes de dormir.`,
+                fin_p1: `Tener una estructura nítida para que tus ingresos cubran el sustento esencial y a la vez impulsen tus proyectos personales sin estrés financiero.`,
+                fin_p2: `<strong>50% Necesidades:</strong> Sustento esencial e innegociable.<br><strong>30% Estilo de Vida:</strong> Ocio, salidas y bienestar sin culpa.<br><strong>20% Reinversión:</strong> Fondo de libertad, formación y proyectos futuros.`
+            };
+
+            const setEl = (id, html) => {
+                const el = document.getElementById(id);
+                if (el) el.innerHTML = html;
+            };
+
+            setEl("tut-horario-p1", tut.horario_p1);
+            setEl("tut-horario-p2", tut.horario_p2);
+            setEl("tut-kanban-p1", tut.kanban_p1);
+            setEl("tut-kanban-p2", tut.kanban_p2);
+            setEl("tut-eisenhower-p1", tut.eisenhower_p1);
+            setEl("tut-eisenhower-p2", tut.eisenhower_p2);
+            setEl("tut-inventario-p1", tut.inventario_p1);
+            setEl("tut-inventario-p2", tut.inventario_p2);
+            setEl("tut-fin-p1", tut.fin_p1);
+            setEl("tut-fin-p2", tut.fin_p2);
         }
 
         // LIGHTBOX
