@@ -1489,6 +1489,38 @@
         }
       ]
     },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "finanzas_503020"
+    ],
+    "acuerdos_clinicos_operativos": [
+      {
+        "id": "ac_1",
+        "acuerdo": "Paso Cero Escolar: Trabajar 5 minutos cronometrados en un deber antes de cualquier pantalla o distracción."
+      },
+      {
+        "id": "ac_2",
+        "acuerdo": "Límite Kanban WIP=2: Máximo 2 tareas activas (1 escolar + 1 personal/dibujo). No abrir frentes nuevos sin terminar."
+      },
+      {
+        "id": "ac_3",
+        "acuerdo": "Ventana de Oro: 45 min diarios de estudio concentrado con el celular en otra habitación."
+      },
+      {
+        "id": "ac_4",
+        "acuerdo": "Dopamina Saludable: 15-30 min diarios protegidos para dibujo, pintura y entrenamientos de vóley."
+      },
+      {
+        "id": "ac_5",
+        "acuerdo": "Apagado Nocturno (21:30): Entrega de dispositivos móviles para blindar 8 horas de sueño reparador."
+      }
+    ],
     "contrato": {
       "schema_version": "4.0.0",
       "client_slug": "matias",
@@ -1511,18 +1543,15 @@
         "protocolo_paso_cero",
         "inventario_cero_culpa",
         "finanzas_503020"
+      ],
+      "compromisos_innegociables": [
+        "Paso Cero Escolar: Trabajar 5 minutos cronometrados en un deber antes de cualquier pantalla o distracción.",
+        "Límite Kanban WIP=2: Máximo 2 tareas activas (1 escolar + 1 personal/dibujo). No abrir frentes nuevos sin terminar.",
+        "Ventana de Oro: 45 min diarios de estudio concentrado con el celular en otra habitación.",
+        "Dopamina Saludable: 15-30 min diarios protegidos para dibujo, pintura y entrenamientos de vóley.",
+        "Apagado Nocturno (21:30): Entrega de dispositivos móviles para blindar 8 horas de sueño reparador."
       ]
     },
-    "herramientas_prescritas": [
-      "diagnostico_estructura",
-      "mapeador_24h",
-      "time_blocking_flexible",
-      "kanban_gtd_wip2",
-      "matriz_eisenhower",
-      "protocolo_paso_cero",
-      "inventario_cero_culpa",
-      "finanzas_503020"
-    ],
     "rol_contexto": "Profesional & Gestión de Proyectos Técnicos",
     "area_critica": "Foco Ejecutivo, Priorización y Descanso",
     "saturacion_operativa": 75,
@@ -1792,11 +1821,11 @@
       "usuario": "antonia.jofre",
       "pin": "AH-Antonia5924",
       "subtitulo": "De la Carga Mental y Fricción a la Soberanía Operativa",
-      "tagline": "Cuidados Familiares • Clases de Yoga & Zumba • Hito Santiago ($160k)",
+      "tagline": "Cuidados Familiares • Clases de Yoga & Living • Colchón de Tranquilidad ($160k-$180k)",
       "edad": 28,
       "ciudad": "Concepción",
       "rol_principal": "Instructora de Yoga Somático & Clases de Zumba / Baile",
-      "ultima_actualizacion": "2026-09-11"
+      "ultima_actualizacion": "2026-10-26"
     },
     "modulos_activos": [
       "activador_ia_chatgpt",
@@ -1827,7 +1856,7 @@
       "06_Bitacora_y_Multimedia"
     ],
     "diagnostico": {
-      "resumen_humano": "Antonia sostiene una alta carga de cuidados médicos y familiares de Mateo y Roma, experimentando el Síndrome de Saturación Sistémica Quíntuple (marcó los 5 cuellos de botella en su sondeo con ~21h/sem de fricción). Está en proceso terapéutico y requiere estructura contenedora para calmar la búsqueda de estímulo constante y recuperar el control. Su gran meta es consolidar sus clases de yoga online ('Cuerpos Cansados') con pase mensual prepagado para cubrir el Hito Santiago de $160.000 mensuales (8 alumnas a $20k).",
+      "resumen_humano": "Antonia sostiene una alta carga de cuidados médicos y familiares de Mateo y Roma, experimentando el Síndrome de Saturación Sistémica Quíntuple. Al 26 de octubre de 2026, se confirma un hito de alivio crucial: Antonia ya no debe viajar a Santiago, eliminando el desgaste físico y la fuga forzada de dinero en pasajes. Con su living desocupado en Concepción, activa 2 cupos de clases personalizadas presenciales para su círculo cercano de confianza ($50k / $90k prepago), canalizando entre $100k y $180k mensuales directos a un colchón de tranquilidad, ahorro y soberanía personal.",
       "stats": [
         {
           "valor": "~21 Horas / Sem",
@@ -1839,13 +1868,13 @@
           "valor": "2 Bloques (4h)",
           "etiqueta": "Bloques de Oro Semanales",
           "color": "#10b981",
-          "sub": "Lun 10–12 & Vie 09–11 (Yoga Online)"
+          "sub": "Lun 10–12 & Vie 09–11 (Yoga)"
         },
         {
-          "valor": "8 Alumnas",
-          "etiqueta": "Meta Pasajes ($160k)",
+          "valor": "2 Cupos Living",
+          "etiqueta": "Colchón de Paz ($100k-$180k)",
           "color": "#60a5fa",
-          "sub": "Pase prepagado del 1 al 5"
+          "sub": "Caja limpia sin viajes a Santiago"
         },
         {
           "valor": "3 min",
@@ -1927,22 +1956,32 @@
         },
         {
           "id": "a2",
-          "text": "Calcular costo exacto de arriendo compartido en Santiago",
-          "tag": "Finanzas"
+          "text": "Enviar invitación WhatsApp a 3-4 alumnas del círculo cercano",
+          "tag": "Personalizadas"
         }
       ],
       "doing": [
         {
           "id": "a3",
-          "text": "Proteger 2 Bloques de Oro de 45 min esta semana",
-          "tag": "Yoga"
+          "text": "Lanzar 2 cupos de personalizadas en living a círculo cercano",
+          "tag": "Personalizadas"
         }
       ],
       "done": [
         {
           "id": "a4",
-          "text": "Definir meta matemática de 8 alumnas para pasajes",
+          "text": "Definir modalidades de $50k y $90k prepagadas",
           "tag": "Finanzas"
+        },
+        {
+          "id": "a5",
+          "text": "Desocupar y acondicionar living de la casa para clases",
+          "tag": "Espacio Físico"
+        },
+        {
+          "id": "a6",
+          "text": "Liberación de viajes a Santiago: reenfocar fondos a Colchón de Tranquilidad",
+          "tag": "Soberanía"
         }
       ]
     },
@@ -1957,13 +1996,23 @@
         "Fuerza Isométrica"
       ],
       "rango_etareo": "18 a 70+ años",
-      "arancel_mensual": 20000,
+      "servicio_living_presencial": {
+        "estado": "Validado por Antonia (26 Oct 2026)",
+        "espacio": "Living casa Concepción",
+        "cupos": 2,
+        "filtro": "Círculo de confianza / Ex-alumnas",
+        "modalidad_1x_sem": 50000,
+        "modalidad_2x_sem": 90000,
+        "duracion_minutos": 50
+      },
+      "arancel_mensual_online": 20000,
       "clases_semana": 2,
       "duracion_minutos": 45,
       "metas_financieras": {
-        "hito_1_santiago": {
-          "alumnas": 8,
-          "ingreso": 160000
+        "hito_1_colchon_paz": {
+          "alumnas": 2,
+          "ingreso": 180000,
+          "nota": "Caja limpia personal sin gastos de traslado a Santiago"
         },
         "hito_2_tranquilidad": {
           "alumnas": 15,
@@ -1987,7 +2036,7 @@
       "frase_raiz_culpa": "Tengo miedo de comprometerme y fallar si surge una urgencia familiar.",
       "hora_de_oro": "Tardes 18:30 a 20:00",
       "valvula_descompresion": "Siesta diaria de 20 min y descanso nocturno sin pantallas",
-      "numero_paz_financiera": "$160.000 CLP base (8 alumnas x $20k)",
+      "numero_paz_financiera": "$160.000 - $180.000 CLP (2 cupos living prepago • Colchón de Tranquilidad)",
       "herramientas_prescritas": [
         "diagnostico_estructura",
         "mapeador_24h",
@@ -2013,7 +2062,7 @@
     "frase_raiz_culpa": "Tengo miedo de comprometerme y fallar si surge una urgencia familiar.",
     "hora_de_oro": "Tardes 18:30 a 20:00",
     "valvula_descompresion": "Siesta diaria de 20 min y descanso nocturno sin pantallas",
-    "numero_paz_financiera": "$160.000 CLP base (8 alumnas x $20k)",
+    "numero_paz_financiera": "$160.000 - $180.000 CLP (2 cupos living prepago • Colchón de Tranquilidad)",
     "hub_filename": "Hub_Imprimibles_Antonia.html"
   },
   "francisca": {

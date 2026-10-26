@@ -20,5 +20,12 @@
     "protocolo_paso_cero",
     "inventario_cero_culpa",
     "finanzas_503020"
+  ],
+  "compromisos_innegociables": [
+    "Paso Cero Escolar: Trabajar 5 minutos cronometrados en un deber antes de cualquier pantalla o distracción.",
+    "Límite Kanban WIP=2: Máximo 2 tareas activas (1 escolar + 1 personal/dibujo). No abrir frentes nuevos sin terminar.",
+    "Ventana de Oro: 45 min diarios de estudio concentrado con el celular en otra habitación.",
+    "Dopamina Saludable: 15-30 min diarios protegidos para dibujo, pintura y entrenamientos de vóley.",
+    "Apagado Nocturno (21:30): Entrega de dispositivos móviles para blindar 8 horas de sueño reparador."
   ]
 }

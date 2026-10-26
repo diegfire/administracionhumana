@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afiche Digital: Clases Personalizadas en Living • Antonia Jofré</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.85);
+      --sage-primary: #10b981;
+      --sage-glow: rgba(16, 185, 129, 0.25);
+      --warm-gold: #f59e0b;
+      --rose-accent: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e293b, #0f172a 70%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* BARRA SUPERIOR DE ACCIONES (NO-PRINT) */
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      max-width: 580px;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: #1e293b;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-action:hover {
+      background: var(--sage-primary);
+      color: #0f172a;
+      border-color: var(--sage-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-action.highlight {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-action.highlight:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px var(--sage-glow);
+    }
+
+    /* CONTENEDOR DEL AFICHE (PROPORCIONES DE AFICHE CARTA / STORY / FLYER) */
+    .poster-card {
+      max-width: 540px;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px var(--sage-glow);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+
+    .poster-card::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, var(--sage-glow) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* BADGE EXCLUSIVO */
+    .badge-exclusive {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    /* ENCABEZADO */
+    .poster-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .poster-sub {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--sage-primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .poster-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      line-height: 1.15;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .poster-lead {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* PILARES DEL SERVICIO */
+    .service-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .pillar-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+
+    .pillar-item:hover {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .pillar-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--sage-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .pillar-text h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .pillar-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* CAJA DE CUPOS Y MODALIDADES */
+    .plans-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px dashed rgba(16, 185, 129, 0.4);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+
+    .plans-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #cbd5e1;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .plan-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .plan-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .plan-info h5 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .plan-info span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .plan-price {
+      text-align: right;
+    }
+
+    .price-value {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--sage-primary);
+    }
+
+    .price-note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER DEL AFICHE */
+    .poster-footer {
+      text-align: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+
+    .instructor-sig {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .instructor-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981, #065f46);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .instructor-meta {
+      text-align: left;
+    }
+
+    .instructor-meta strong {
+      font-size: 0.95rem;
+      display: block;
+      color: #fff;
+    }
+
+    .instructor-meta small {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .notice-friendly {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      color: #7dd3fc;
+      line-height: 1.4;
+    }
+
+    /* MODAL COPIAR MENSAJE */
+    .copy-toast {
+      position: fixed;
+      bottom: 24px;
+      background: #10b981;
+      color: #0f172a;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: none;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MODO IMPRESIÓN */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        padding: 0;
+      }
+      .top-actions, .copy-toast {
+        display: none !important;
+      }
+      .poster-card {
+        border: 2px solid #000 !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        color: #000 !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+        padding: 30px !important;
+      }
+      .poster-card * {
+        color: #000 !important;
+        background: transparent !important;
+        border-color: #ccc !important;
+      }
+      .price-value, .poster-sub {
+        color: #047857 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE ACCIONES SUPERIOR -->
+  <div class="top-actions">
+    <button class="btn-action highlight" onclick="copiarMensajeWhatsApp()">
+      <i class="fa-brands fa-whatsapp"></i> Copiar Mensaje para WhatsApp
+    </button>
+    <button class="btn-action" onclick="window.print()">
+      <i class="fa-solid fa-print"></i> Imprimir / Guardar PDF
+    </button>
+    <a href="01_Diseno_Servicio_Personalizadas_Living.md" class="btn-action">
+      <i class="fa-solid fa-file-lines"></i> Ver Documento Técnico
+    </a>
+  </div>
+
+  <!-- AFICHE / FLYER VISUAL -->
+  <div class="poster-card" id="afiche">
+    <div style="text-align: center;">
+      <div class="badge-exclusive">
+        <i class="fa-solid fa-shield-heart"></i> Solo 2 Cupos • Círculo Cercano
+      </div>
+    </div>
+
+    <div class="poster-header">
+      <p class="poster-sub">Habitarte • Espacio Somático</p>
+      <h1 class="poster-title">Clases Personalizadas en Living</h1>
+      <p class="poster-lead">
+        Un espacio íntimo, cálido y sin prisas para desestresar el cuerpo, aliviar dolores posturales y recuperar movilidad consciente.
+      </p>
+    </div>
+
+    <!-- 4 PILARES DE LA SESIÓN -->
+    <div class="service-pillars">
+      <div class="pillar-item">
+        <div class="pillar-icon"><i class="fa-solid fa-ear-listen"></i></div>
+        <div class="pillar-text">
+          <h4>Escucha Previa</h4>
+          <p>Revisión corporal y dolores del día</p>
+        </div>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-icon"><i class="fa-solid fa-wind"></i></div>
+        <div class="pillar-text">
+          <h4>Descompresión</h4>
+          <p>Bajar estrés y liberar cuello/espalda</p>
+        </div>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-icon"><i class="fa-solid fa-person-walking"></i></div>
+        <div class="pillar-text">
+          <h4>Pilates Somático</h4>
+          <p>Centro profundo sin impacto lesivo</p>
+        </div>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-icon"><i class="fa-solid fa-spa"></i></div>
+        <div class="pillar-text">
+          <h4>Fascia & Relax</h4>
+          <p>Elongación suave y calma total</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODALIDADES & ARANCELES PREPAGADOS -->
+    <div class="plans-box">
+      <div class="plans-title">
+        <i class="fa-solid fa-calendar-check"></i> Modalidades Mensuales Prepagadas
+      </div>
+
+      <div class="plan-row">
+        <div class="plan-info">
+          <h5>Plan 1 Vez por Semana</h5>
+          <span>4 sesiones personalizadas al mes (50 min)</span>
+        </div>
+        <div class="plan-price">
+          <div class="price-value">$50.000</div>
+          <div class="price-note">CLP / mes prepago</div>
+        </div>
+      </div>
+
+      <div class="plan-row">
+        <div class="plan-info">
+          <h5>Plan 2 Veces por Semana</h5>
+          <span>8 sesiones personalizadas al mes (50 min)</span>
+        </div>
+        <div class="plan-price">
+          <div class="price-value">$90.000</div>
+          <div class="price-note">CLP / mes prepago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTA DE TRANQUILIDAD -->
+    <div class="notice-friendly">
+      <i class="fa-solid fa-house-chimney-user"></i> <strong>Exclusivo en mi casa (Concepción):</strong> Sesiones 1 a 1 adaptadas 100% a tus ritmos y necesidades. Ambiente aromatizado, colchoneta y elementos incluidos.
+    </div>
+
+    <!-- FOOTER / FIRMA -->
+    <div class="poster-footer" style="margin-top: 24px;">
+      <div class="instructor-sig">
+        <div class="instructor-avatar">🧘‍♀️</div>
+        <div class="instructor-meta">
+          <strong>Antonia Jofré</strong>
+          <small>Instructora de Yoga Somático & Movimiento Consciente</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST DE COPIADO -->
+  <div class="copy-toast" id="toast">
+    <i class="fa-solid fa-check-circle"></i> ¡Texto copiado al portapapeles! Listo para enviar por WhatsApp.
+  </div>
+
+  <script>
+    const mensajeTexto = `¡Hola querida! Te escribo con una noticia muy linda y especial 🌿✨
+
+Por fin logré desocupar y preparar mi living para abrir un espacio súper cuidado de clases personalizadas presenciales acá en mi casa 🧘‍♀️.
+
+Como es mi hogar, no lo abriré a público masivo: solo quiero trabajar con personas de mi confianza que ya conocen mi forma de enseñar. Voy a abrir únicamente 2 cupos para partir, enfocados en movimiento somático, movilidad articular, fuerza sin impacto y descompresión de dolores posturales.
+
+La idea es armar un plan mensual (1 o 2 veces por semana) hecho 100% a la medida de tu cuerpo:
+• Plan 1 vez por semana (4 sesiones al mes): $50.000 prepago.
+• Plan 2 veces por semana (8 sesiones al mes): $90.000 prepago.
+
+Te escribo primero a ti por el cariño de siempre. ¿Te gustaría que te reserve uno de los 2 cupos para partir este mes? Te mando un abrazo gigante ✨`;
+
+    function copiarMensajeWhatsApp() {
+      navigator.clipboard.writeText(mensajeTexto).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'flex';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 3500);
+      }).catch(err => {
+        alert("Copia el texto manualmente desde el documento técnico.");
+      });
+    }
+  </script>
+</body>
+</html>

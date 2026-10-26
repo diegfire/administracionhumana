@@ -1,0 +1,371 @@
+{
+  "cliente": {
+    "id": "matias",
+    "nombre": "Matías González",
+    "avatar": "🤹",
+    "usuario": "matias.gonzalez",
+    "pin": "AH-Matias7315",
+    "subtitulo": "De la Resaca Digital a la Autonomía",
+    "tagline": "TDAH • Acompañamiento Escolar • Comunicación & Valentía",
+    "fecha_nacimiento": "2009-09-08",
+    "edad": 17,
+    "ciudad": "Concepción",
+    "rol_principal": "Estudiante de Enseñanza Media (Colegio Concepción) / Taller de Arte y Vóley"
+  },
+  "modulos_activos": [
+    "seguridad_pin",
+    "diagnostico_estructura",
+    "diagnostico_general",
+    "foda_personal",
+    "fases_confianza",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "kanban_gtd",
+    "kanban_gtd_wip2",
+    "matriz_eisenhower",
+    "protocolo_paso_cero",
+    "inventario_cero_culpa",
+    "finanzas_503020",
+    "caja_herramientas",
+    "sacar_la_voz_valentia",
+    "orientacion_vocacional",
+    "plan_24h_antipatrones"
+  ],
+  "diagnostico": {
+    "resumen_humano": "Matías presenta una gran creatividad y talento visual/corporal (dibujo, pintura y vóley). Sin embargo, el uso desregulado de pantallas generó resaca digital, evasión de tareas escolares y tendencia a mentir u ocultar problemas por vergüenza. El acompañamiento de Diego (papá) y Ángela (mamá) busca reconstruir la confianza mediante hitos medibles, reglas claras y el aprendizaje de sacar la voz sin miedo.",
+    "stats": [
+      {
+        "valor": "Fase 1",
+        "etiqueta": "Estado de Confianza",
+        "color": "#ef4444",
+        "sub": "Desintoxicación y Contención"
+      },
+      {
+        "valor": "5 min",
+        "etiqueta": "Regla Paso Cero",
+        "color": "#60a5fa",
+        "sub": "Vencer la parálisis inicial"
+      },
+      {
+        "valor": "WIP = 2",
+        "etiqueta": "Límite Kanban",
+        "color": "#f59e0b",
+        "sub": "Máximo 2 tareas activas"
+      },
+      {
+        "valor": "100%",
+        "etiqueta": "Cero Bucles",
+        "color": "#10b981",
+        "sub": "Cerrar conversaciones"
+      }
+    ],
+    "balance_168h": {
+      "sueno": 56,
+      "familia_hogar": 42,
+      "colegio_estudio": 35,
+      "arte_deporte": 14,
+      "fuga_pantallas_evasion": 21
+    }
+  },
+  "foda": {
+    "fortalezas": [
+      "Gran sensibilidad artística, talento para el dibujo y la pintura.",
+      "Habilidad atlética y motivación en el entrenamiento de vóley.",
+      "Excelente capacidad de concentración cuando el entorno es de bajo roce.",
+      "Respaldo y amor incondicional de sus padres (Diego y Ángela)."
+    ],
+    "debilidades": [
+      "Tendencia a evadir conversaciones difíciles y ocultar errores por vergüenza.",
+      "Dependencia del empuje externo para iniciar tareas escolares.",
+      "Planificación de pánico: postergar deberes hasta el último minuto.",
+      "Pseudo-estudio: ver videos pasivamente sin ejercitar en papel."
+    ],
+    "oportunidades": [
+      "Soporte parental unificado y consistente en ambos hogares.",
+      "Estrategia de Apuntes Mínimos Viables (Regla del 70%) con profesores.",
+      "Canalizar dopamina sana mediante el taller de arte y el vóley.",
+      "Uso de Copiloto IA (Antigravity) para aprender programación y autonomía."
+    ],
+    "amenazas": [
+      "Búsqueda de pantallas alternativas o dispositivos antiguos en secreto.",
+      "Parálisis por acumulación de materias escolares pendientes.",
+      "Aislamiento defensivo o reactividad hacia los padres ante límites."
+    ]
+  },
+  "fases_confianza": [
+    {
+      "fase": "F1",
+      "titulo": "Desintoxicación y Contención (Actual)",
+      "req": "Cero pantallas no supervisadas, entrega de dispositivos en la noche y reporte diario de 5 min.",
+      "color": "#ef4444"
+    },
+    {
+      "fase": "F2",
+      "titulo": "Supervisión Guiada",
+      "req": "Cumplimiento del 80% de tareas en Kanban y 2 semanas consecutivas sin mentiras ni evasión.",
+      "color": "#f59e0b"
+    },
+    {
+      "fase": "F3",
+      "titulo": "Autonomía y Soberanía",
+      "req": "Manejo independiente de horarios, notas escolares sobre el promedio y comunicación proactiva.",
+      "color": "#10b981"
+    }
+  ],
+  "horario_24h": {
+    "categorias": [
+      {
+        "id": "sueno",
+        "nombre": "😴 Sueño & Recuperación",
+        "color": "#1e293b",
+        "tag": "SUEÑO"
+      },
+      {
+        "id": "colegio",
+        "nombre": "🏫 Colegio & Clases",
+        "color": "#2563eb",
+        "tag": "COLEGIO"
+      },
+      {
+        "id": "estudio",
+        "nombre": "📚 Estudio Autónomo (Paso Cero)",
+        "color": "#0d9488",
+        "tag": "ESTUDIO"
+      },
+      {
+        "id": "arte",
+        "nombre": "🎨 Arte, Pintura & Dibujo",
+        "color": "#7c3aed",
+        "tag": "ARTE"
+      },
+      {
+        "id": "voley",
+        "nombre": "🏐 Vóley & Deporte",
+        "color": "#ea580c",
+        "tag": "VOLEY"
+      },
+      {
+        "id": "familia",
+        "nombre": "🏡 Familia & Cita Semanal",
+        "color": "#059669",
+        "tag": "FAMILIA"
+      },
+      {
+        "id": "libre",
+        "nombre": "🌱 Tiempo Libre Regulado",
+        "color": "#db2777",
+        "tag": "LIBRE"
+      }
+    ]
+  },
+  "kanban_gtd": {
+    "todo": [
+      {
+        "id": "m1",
+        "text": "Vaciado escolar inicial en Excel con papá",
+        "tag": "Colegio"
+      },
+      {
+        "id": "m2",
+        "text": "Montar rótulos Kanban físicos en la pared del cuarto",
+        "tag": "Hogar"
+      },
+      {
+        "id": "m3",
+        "text": "Pegar Planificador de Hábitos detrás de la puerta",
+        "tag": "Hábitos"
+      }
+    ],
+    "doing": [
+      {
+        "id": "m4",
+        "text": "Resumen de 5 líneas de Historia (Regla del 70%)",
+        "tag": "Colegio"
+      },
+      {
+        "id": "m5",
+        "text": "15 minutos de avance en proyecto de pintura",
+        "tag": "Arte"
+      }
+    ],
+    "done": [
+      {
+        "id": "m6",
+        "text": "Entrega voluntaria de dispositivos para resguardo nocturno",
+        "tag": "Confianza"
+      }
+    ]
+  },
+  "sacar_la_voz": {
+    "reglas_oro": [
+      {
+        "num": 1,
+        "titulo": "La Verdad en 5 Segundos",
+        "desc": "Decir la verdad al instante te ahorra 2 semanas de culpa, castigos y tensión familiar."
+      },
+      {
+        "num": 2,
+        "titulo": "Prohibido el 'No Sé'",
+        "desc": "Si te cuesta responder, di: 'Dame 1 minuto para pensar bien y te lo digo'."
+      },
+      {
+        "num": 3,
+        "titulo": "Cero Bucles Abiertos (Efecto Zeigarnik)",
+        "desc": "Si pides una pausa en una conversación difícil, fija la hora exacta y retoma tú la conversación."
+      }
+    ],
+    "escenarios": [
+      {
+        "id": "error",
+        "titulo": "Cometí un error o me equivoqué",
+        "guion": "«Papá / Mamá: me equivoqué en esto y no supe cómo resolverlo a tiempo. Quería decírtelo de frente antes de que sea más grande. ¿Cómo lo solucionamos?»"
+      },
+      {
+        "id": "atraso",
+        "titulo": "Me atrasé con una tarea escolar",
+        "guion": "«Me confié con los tiempos y tengo este deber pendiente para mañana. Necesito tu ayuda 10 minutos para ordenar qué hago primero.»"
+      },
+      {
+        "id": "abrumado",
+        "titulo": "Me siento abrumado o bloqueado",
+        "guion": "«Siento que tengo demasiadas cosas encima y me estoy bloqueando. Voy a aplicar la regla de los 5 minutos con una sola tarea ahora.»"
+      },
+      {
+        "id": "pausa",
+        "titulo": "Pausa responsable (Protocolo Zeigarnik)",
+        "guion": "«En este momento me siento tenso y no quiero responder mal. Por favor dame 20 minutos para respirar y a las [Hora exacta] retomamos la conversación.»"
+      },
+      {
+        "id": "mentira",
+        "titulo": "Rectificar una mentira u omisión",
+        "guion": "«Antes te dije algo que no era 100% exacto por miedo a tu reacción. La verdad real es esta [...]. Prefiero ser honesto ahora.»"
+      },
+      {
+        "id": "opinion",
+        "titulo": "Expresar desacuerdo con respeto",
+        "guion": "«Entiendo tu punto de vista, pero desde mi perspectiva me pasa esto [...]. ¿Podemos buscar un punto medio?»"
+      }
+    ]
+  },
+  "plan_24h": {
+    "hacer_ya": [
+      "1. Vaciado Escolar Inicial: Abrir Excel [GTD Colegio Maty] con papá.",
+      "2. Montaje del Centro de Operaciones en el dormitorio con Post-its.",
+      "3. Paso Cero: Trabajar 5 minutos cronometrados en un deber escolar.",
+      "4. Dopamina Sana: 15 minutos continuos de dibujo/pintura en el cuarto.",
+      "5. Cita de Crecimiento Personal Semanal agendada con papá."
+    ],
+    "antipatrones": [
+      "🚫 El Teléfono Fantasma: Intentar encender dispositivos antiguos en secreto.",
+      "🚫 Pseudo-Estudio: Mirar videos pasivos sin rayar el papel.",
+      "🚫 Planificación de Pánico: Ignorar entregas de semanas y estresarse el día previo.",
+      "🚫 El Bloqueo del Orgullo: Discutir en lugar de pedir feedback con humildad.",
+      "🚫 Esperar la Interrogación: Quedarse inactivo esperando que los padres manden estudiar."
+    ]
+  },
+  "orientacion_vocacional": {
+    "titulo": "Orientación Vocacional & Mapeo de Carreras en Concepción",
+    "subtitulo": "Canalización de Talentos Creativos, Deportivos y Tecnológicos",
+    "fecha_nacimiento": "2009-09-08",
+    "edad": 17,
+    "colegio": "Colegio Concepción",
+    "pilares_interes": [
+      {
+        "id": "arte_digital",
+        "pilar": "Arte Visual, Animación Digital & Diseño Multimedia",
+        "descripcion": "Ilustración digital, modelado 3D, diseño de personajes y animación."
+      },
+      {
+        "id": "tecnologia_juegos",
+        "pilar": "Tecnología, Programación & Videojuegos",
+        "descripcion": "Desarrollo de software, lógica interactiva, diseño de videojuegos y hardware."
+      },
+      {
+        "id": "kinesico_deporte",
+        "pilar": "Vóleibol Competitivo, Kinesiología & Alto Rendimiento",
+        "descripcion": "Entrenamiento físico, biomecánica deportiva, rendimiento en cancha y rehabilitación."
+      },
+      {
+        "id": "arquitectura_espacio",
+        "pilar": "Arquitectura & Diseño Espacial",
+        "descripcion": "Maquetas 3D, dibujo técnico, diseño ambiental y transformación urbana en Concepción."
+      }
+    ],
+    "carreras_concepcion": [
+      {
+        "nombre": "Animación Digital & Efectos Visuales",
+        "institucion": "Duoc UC Sede San Andrés / USS Campus Tres Pascualas",
+        "duracion": "4 - 5 años",
+        "tipo": "Profesional",
+        "por_que_encaja": "Canaliza su hiperfoco artístico en dibujo de personajes y proyectos visuales prácticos sin teoría abstracta."
+      },
+      {
+        "nombre": "Diseño Gráfico & Multimedia",
+        "institucion": "Universidad del Bío-Bío (UBB) / Inacap",
+        "duracion": "4 - 5 años",
+        "tipo": "Universitaria / Profesional",
+        "por_que_encaja": "Combina talleres de creación gráfica, identidad visual y creatividad proyectual de alto estímulo."
+      },
+      {
+        "nombre": "Ingeniería Civil Informática / Desarrollo de Software",
+        "institucion": "Universidad de Concepción (UdeC) / UBB / UNAB",
+        "duracion": "5 - 5.5 años",
+        "tipo": "Universitaria",
+        "por_que_encaja": "Ideal para la mente con TDAH que disfruta de la lógica de programación y la creación de juegos o sistemas interactivos."
+      },
+      {
+        "nombre": "Arquitectura",
+        "institucion": "Universidad del Bío-Bío (UBB) / Universidad de Concepción (UdeC)",
+        "duracion": "5.5 - 6 años",
+        "tipo": "Universitaria",
+        "por_que_encaja": "Enfoque en dibujo técnico, maquetas tridimensionales y proyección espacial con alto prestigio en la región."
+      },
+      {
+        "nombre": "Kinesiología & Rehabilitación Deportiva",
+        "institucion": "Universidad de Concepción (UdeC) / UNAB / USS",
+        "duracion": "5 años",
+        "tipo": "Universitaria",
+        "por_que_encaja": "Conecta con su pasión kinésica por el vóley para acompañar a atletas y optimizar la salud corporal."
+      },
+      {
+        "nombre": "Entrenador Deportivo / Preparación Física",
+        "institucion": "Universidad Andrés Bello (UNAB) / Duoc UC / UdeC",
+        "duracion": "2.5 - 4 años",
+        "tipo": "Técnica / Profesional",
+        "por_que_encaja": "Trabajo 100% en cancha, dinamismo físico, liderazgo de equipos y cero encierro en oficinas."
+      }
+    ]
+  },
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "kanban_gtd_wip2",
+    "matriz_eisenhower",
+    "protocolo_paso_cero",
+    "inventario_cero_culpa",
+    "finanzas_503020"
+  ],
+  "acuerdos_clinicos_operativos": [
+    {
+      "id": "ac_1",
+      "acuerdo": "Paso Cero Escolar: Trabajar 5 minutos cronometrados en un deber antes de cualquier pantalla o distracción."
+    },
+    {
+      "id": "ac_2",
+      "acuerdo": "Límite Kanban WIP=2: Máximo 2 tareas activas (1 escolar + 1 personal/dibujo). No abrir frentes nuevos sin terminar."
+    },
+    {
+      "id": "ac_3",
+      "acuerdo": "Ventana de Oro: 45 min diarios de estudio concentrado con el celular en otra habitación."
+    },
+    {
+      "id": "ac_4",
+      "acuerdo": "Dopamina Saludable: 15-30 min diarios protegidos para dibujo, pintura y entrenamientos de vóley."
+    },
+    {
+      "id": "ac_5",
+      "acuerdo": "Apagado Nocturno (21:30): Entrega de dispositivos móviles para blindar 8 horas de sueño reparador."
+    }
+  ]
+}

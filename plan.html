@@ -1345,6 +1345,9 @@
                     </span>
                     <span id="badge-tools-count" style="background:rgba(96,165,250,0.15); color:#60a5fa; border:1px solid rgba(96,165,250,0.3); font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:50px;">0 Módulos</span>
                 </div>
+
+                <!-- CONTENEDOR DINÁMICO DE TARJETAS DE HERRAMIENTAS -->
+                <div id="herramientas-cards-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(350px, 1fr)); gap:1.25rem;"></div>
             </div>
         </div>
 
@@ -1585,20 +1588,41 @@
                     </div>
                 `).join("");
             } else if (data.foda) {
-                identidadesContainer.innerHTML = `
+                let fodaHtml = `
                     <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1.1rem;">
                         <h4 style="color:#10b981; margin:0 0 6px 0;">💪 Fortalezas Clave</h4>
                         <ul style="font-size:0.8rem; color:#ccc; margin:0; padding-left:1.1rem; line-height:1.5;">
-                            ${(data.foda.fortalezas || []).map(f => `<li>${f}</li>`).join('')}
+                            ${(data.foda.fortalezas || []).map(f => `<li>${escapeHtml(f)}</li>`).join('')}
                         </ul>
                     </div>
                     <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1.1rem;">
                         <h4 style="color:#ef4444; margin:0 0 6px 0;">⚠️ Fricciones & Cuellos de Botella</h4>
                         <ul style="font-size:0.8rem; color:#ccc; margin:0; padding-left:1.1rem; line-height:1.5;">
-                            ${(data.foda.debilidades || []).map(d => `<li>${d}</li>`).join('')}
+                            ${(data.foda.debilidades || []).map(d => `<li>${escapeHtml(d)}</li>`).join('')}
                         </ul>
                     </div>
                 `;
+                if (data.foda.oportunidades && data.foda.oportunidades.length > 0) {
+                    fodaHtml += `
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1.1rem;">
+                        <h4 style="color:#38bdf8; margin:0 0 6px 0;">🚀 Oportunidades & Palancas</h4>
+                        <ul style="font-size:0.8rem; color:#ccc; margin:0; padding-left:1.1rem; line-height:1.5;">
+                            ${(data.foda.oportunidades || []).map(o => `<li>${escapeHtml(o)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    `;
+                }
+                if (data.foda.amenazas && data.foda.amenazas.length > 0) {
+                    fodaHtml += `
+                    <div style="background:#111; border:1px solid #222; border-radius:10px; padding:1.1rem;">
+                        <h4 style="color:#f59e0b; margin:0 0 6px 0;">🚨 Amenazas & Riesgos</h4>
+                        <ul style="font-size:0.8rem; color:#ccc; margin:0; padding-left:1.1rem; line-height:1.5;">
+                            ${(data.foda.amenazas || []).map(a => `<li>${escapeHtml(a)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    `;
+                }
+                identidadesContainer.innerHTML = fodaHtml;
             }
 
             // Contextualización clínica y humana de tutoriales para todos los clientes
@@ -1938,7 +1962,6 @@
         function renderDynamicHerramientas(data) {
             const container = document.getElementById("herramientas-cards-container");
             const btnTab = document.getElementById("tab-btn-herramientas");
-            if (!container) return;
             
             // Mapeo inverso de alias históricos hacia IDs canónicos v4.0
             const CANONICAL_ALIASES = {
@@ -1964,7 +1987,12 @@
                 'filosofia_kaizen_15min': 'kaizen_mejora_continua',
                 'principio_de_pareto': 'principio_pareto_80_20',
                 'plan_estrategico_roadmap': 'plan_estrategico_hitos',
-                'raci': 'matriz_raci'
+                'raci': 'matriz_raci',
+                'sacar_la_voz_valentia': 'ventana_johari_puntos_ciegos',
+                'sacar_la_voz': 'ventana_johari_puntos_ciegos',
+                'tecnica_pomodoro': 'tecnica_pomodoro_foco',
+                'pomodoro': 'tecnica_pomodoro_foco',
+                'paso_cero': 'protocolo_paso_cero'
             };
 
             const catalog = window.AICC_CATALOGO_60_HERRAMIENTAS || window.AICC_CATALOGO_40_HERRAMIENTAS || window.AICC_40_TOOLS || [];
@@ -2104,7 +2132,8 @@
             // Renderizar Master Checklist en la parte superior
             renderMasterChecklist(data, resolvedTools, clientId);
 
-            container.innerHTML = resolvedTools.map((h, toolIdx) => {
+            if (container) {
+                container.innerHTML = resolvedTools.map((h, toolIdx) => {
                 const borderColor = h.color ? h.color + '44' : 'rgba(255,255,255,0.1)';
                 const badgeColor = h.color || '#10b981';
                 
@@ -2209,7 +2238,8 @@
                         </div>
                     </div>
                 `;
-            }).join("");
+                }).join("");
+            }
         }
 
         function toggleDynamicChecklist(key, checkbox) {
@@ -2597,20 +2627,28 @@
         function renderDynamicAcuerdos(data) {
             const container = document.getElementById("acuerdos-cards-container");
             const btnTab = document.getElementById("tab-btn-acuerdos");
-            const list = data.acuerdos_clinicos_operativos || [];
+            let list = data.acuerdos_clinicos_operativos || (data.contrato && data.contrato.compromisos_innegociables) || [];
 
-            if (list.length === 0) {
-                if (btnTab) btnTab.style.display = "none";
-                return;
+            if (!list || list.length === 0) {
+                list = [
+                    { acuerdo: "Respetar la Ventana de Oro de concentración sin interrupciones ni pantallas secundarias." },
+                    { acuerdo: "Límite Kanban WIP=2: No iniciar un nuevo frente de trabajo sin cerrar el anterior." },
+                    { acuerdo: "Cierre de jornada con 3 victorias concretas registradas en el Inventario Cero Culpa." }
+                ];
             }
             if (btnTab) btnTab.style.display = "flex";
 
-            container.innerHTML = list.map((a, idx) => `
-                <div style="background:#111; border:1px solid #222; border-left:3px solid #f59e0b; border-radius:8px; padding:0.9rem 1.2rem; display:flex; align-items:center; gap:12px;">
-                    <span style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; color:#f59e0b;">#0${idx + 1}</span>
-                    <span style="font-size:0.86rem; color:#eee; line-height:1.45;">${a.acuerdo}</span>
-                </div>
-            `).join("");
+            if (container) {
+                container.innerHTML = list.map((a, idx) => {
+                    const text = typeof a === 'object' ? (a.acuerdo || a.texto || '') : a;
+                    return `
+                    <div style="background:#111; border:1px solid #222; border-left:3px solid #f59e0b; border-radius:8px; padding:0.9rem 1.2rem; display:flex; align-items:center; gap:12px;">
+                        <span style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; color:#f59e0b;">#0${idx + 1}</span>
+                        <span style="font-size:0.86rem; color:#eee; line-height:1.45;">${escapeHtml(text)}</span>
+                    </div>
+                    `;
+                }).join("");
+            }
         }
 
         // =========================================================================
