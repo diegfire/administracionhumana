@@ -4218,16 +4218,16 @@
       margin: 0 auto 20px;
     }
 
-    /* Tarjeta de Identidad de Diego: Con Quién Cuentas (Interactiva, Visual y En Cristiano) */
+    /* Tarjeta de Identidad de Diego: Con Quién Cuentas (Mobile-First, Limpia y En Cristiano) */
     .diego-identity-card {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(9, 11, 17, 0.98) 100%);
-      border: 1px solid rgba(56, 189, 248, 0.22);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(9, 11, 17, 0.98) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       border-radius: 22px;
-      padding: 24px 26px;
-      margin: 20px auto 0;
+      padding: 22px 24px;
+      margin: 18px auto 0;
       max-width: 1180px;
       display: grid;
-      grid-template-columns: 315px 1fr;
+      grid-template-columns: 330px 1fr;
       gap: 24px;
       align-items: start;
       text-align: left;
@@ -4236,8 +4236,9 @@
     @media (max-width: 980px) {
       .diego-identity-card {
         grid-template-columns: 1fr;
-        padding: 20px 18px;
-        gap: 20px;
+        padding: 18px 14px;
+        gap: 16px;
+        border-radius: 18px;
       }
     }
     .diego-profile-left {
@@ -4246,27 +4247,28 @@
       align-items: flex-start;
       gap: 12px;
       border-right: 1px solid rgba(255, 255, 255, 0.08);
-      padding-right: 22px;
+      padding-right: 20px;
     }
     @media (max-width: 980px) {
       .diego-profile-left {
         border-right: none;
         padding-right: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding-bottom: 18px;
+        padding-bottom: 14px;
+        gap: 10px;
       }
     }
     .diego-avatar-box {
-      width: 84px;
-      height: 84px;
-      min-width: 84px;
-      border-radius: 22px;
-      border: 2px solid rgba(56, 189, 248, 0.7);
+      width: 78px;
+      height: 78px;
+      min-width: 78px;
+      border-radius: 20px;
+      border: 2px solid rgba(56, 189, 248, 0.75);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 0 0 28px rgba(56, 189, 248, 0.28);
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.25);
       background: #ffffff;
     }
     .diego-avatar-box img {
@@ -4278,88 +4280,92 @@
     }
     .diego-name-text {
       font-family: var(--font-heading);
-      font-size: 1.22rem;
+      font-size: 1.18rem;
       font-weight: 800;
       color: #ffffff;
-      margin: 0 0 2px 0;
-      line-height: 1.2;
+      margin: 0 0 3px 0;
+      line-height: 1.18;
     }
     .diego-role-text {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 800;
       color: #38bdf8;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin: 0 0 5px 0;
+      letter-spacing: 0.04em;
+      margin: 0 0 6px 0;
+      line-height: 1.3;
     }
     .diego-location-pill {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: #e2e8f0;
       background: rgba(16, 185, 129, 0.14);
-      padding: 3px 10px;
+      padding: 3px 9px;
       border-radius: 20px;
       border: 1px solid rgba(16, 185, 129, 0.35);
       font-weight: 700;
+      white-space: nowrap;
     }
     .diego-essence-quote {
-      font-size: 0.82rem;
+      font-size: 0.81rem;
       color: #cbd5e1;
-      line-height: 1.48;
+      line-height: 1.52;
       margin: 0;
-      padding: 10px 12px;
+      padding: 11px 13px;
       background: rgba(255, 255, 255, 0.03);
       border-left: 3px solid #38bdf8;
-      border-radius: 0 10px 10px 0;
+      border-radius: 0 12px 12px 0;
     }
-    .diego-base-checklist {
+    .diego-essence-quote strong {
+      color: #ffffff;
+    }
+    .diego-essence-quote span.hl-cyan {
+      color: #7dd3fc;
+      font-weight: 700;
+    }
+    .diego-essence-quote span.hl-green {
+      color: #6ee7b7;
+      font-weight: 700;
+    }
+    .diego-pillars-mini-row {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 6px;
       width: 100%;
     }
-    .diego-base-check-item {
-      display: flex;
+    .diego-pillar-mini-tag {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 0.77rem;
+      gap: 5px;
+      font-size: 0.7rem;
+      font-weight: 700;
       color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 6px 10px;
-      border-radius: 10px;
-    }
-    .diego-base-check-item span.sub {
-      color: #94a3b8;
-      font-size: 0.71rem;
-      margin-left: auto;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 4px 9px;
+      border-radius: 8px;
     }
 
-    /* Lado Derecho Interactivo: Aportes Clave & Casos en Cristiano */
+    /* Lado Derecho Interactivo: Barra Única de 3 Pestañas (Sin Botones Extra) */
     .diego-right-board {
       display: flex;
       flex-direction: column;
       gap: 12px;
       width: 100%;
-    }
-    .diego-board-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 10px;
+      min-width: 0;
     }
     .diego-mode-tabs {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 6px;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 4px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.45);
+      padding: 5px;
+      border-radius: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      width: 100%;
+      box-sizing: border-box;
     }
     .diego-mode-btn {
       background: transparent;
@@ -4368,56 +4374,57 @@
       font-family: var(--font-heading);
       font-size: 0.78rem;
       font-weight: 700;
-      padding: 7px 13px;
+      padding: 8px 10px;
       border-radius: 9px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .diego-mode-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
     }
     .diego-mode-btn.active {
       background: linear-gradient(135deg, #38bdf8, #0284c7);
-      color: #000;
+      color: #000000;
       font-weight: 800;
       box-shadow: 0 2px 12px rgba(56, 189, 248, 0.3);
     }
-    .diego-filter-pills {
-      display: flex;
-      gap: 5px;
-      flex-wrap: wrap;
+    .dmode-label-short {
+      display: none;
     }
-    .diego-filter-chip {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #cbd5e1;
-      font-size: 0.71rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.18s ease;
+    @media (max-width: 640px) {
+      .dmode-label-full {
+        display: none;
+      }
+      .dmode-label-short {
+        display: inline;
+      }
+      .diego-mode-btn {
+        font-size: 0.72rem;
+        padding: 7px 6px;
+        gap: 4px;
+      }
     }
-    .diego-filter-chip:hover {
-      border-color: rgba(56, 189, 248, 0.4);
-      color: #fff;
-    }
-    .diego-filter-chip.active {
-      background: rgba(16, 185, 129, 0.16);
-      border-color: #10b981;
-      color: #34d399;
-    }
+
+    /* Grilla de 12 Cualidades: 3 col en Desktop, 2 col en Móvil para lectura compacta */
     .diego-qualities-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 9px;
     }
-    @media (max-width: 820px) {
+    @media (max-width: 780px) {
       .diego-qualities-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
       }
     }
-    @media (max-width: 540px) {
+    @media (max-width: 350px) {
       .diego-qualities-grid {
         grid-template-columns: 1fr;
       }
@@ -4442,30 +4449,57 @@
       align-items: center;
       gap: 6px;
       font-family: var(--font-heading);
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       font-weight: 800;
       color: #ffffff;
+      line-height: 1.25;
     }
     .diego-quality-chip .q-desc {
-      font-size: 0.72rem;
+      font-size: 0.71rem;
       color: #94a3b8;
       line-height: 1.35;
     }
+    @media (max-width: 640px) {
+      .diego-quality-chip {
+        padding: 8px 9px;
+        border-radius: 10px;
+      }
+      .diego-quality-chip .q-top {
+        font-size: 0.74rem;
+        gap: 5px;
+      }
+      .diego-quality-chip .q-desc {
+        font-size: 0.67rem;
+        line-height: 1.3;
+      }
+    }
 
-    /* Vista 2: Casos Reales en Cristiano */
+    /* Vista 3: Casos Reales en Cristiano */
     .diego-cases-selector {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
       margin-bottom: 10px;
     }
+    @media (max-width: 640px) {
+      .diego-cases-selector {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .diego-case-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+    }
     .diego-case-btn {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.1);
       color: #cbd5e1;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 700;
-      padding: 6px 12px;
+      padding: 6px 11px;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.18s ease;
@@ -4488,6 +4522,8 @@
     @media (max-width: 720px) {
       .diego-case-display {
         grid-template-columns: 1fr;
+        padding: 10px;
+        gap: 8px;
       }
     }
     .diego-case-col {
@@ -4947,13 +4983,13 @@
       <span id="capacidades"></span>
       <div class="diego-identity-card" id="sobre-diego">
         
-        <!-- LADO IZQUIERDO: IDENTIDAD HUMANA Y BASE INNEGOCIABLE -->
+        <!-- LADO IZQUIERDO: IDENTIDAD HUMANA, MIRADA ADMINISTRATIVA Y ESCUCHA ACTIVA -->
         <div class="diego-profile-left">
-          <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 13px; width: 100%;">
             <div class="diego-avatar-box">
               <img src="assets/img/diego_perfil_camisa_negra.jpg" alt="Diego González Yáñez" id="diego-profile-img">
             </div>
-            <div>
+            <div style="min-width: 0; flex: 1;">
               <h3 class="diego-name-text">Diego González Yáñez</h3>
               <div class="diego-role-text">Administrador de Empresas · Sistemas Humanos</div>
               <span class="diego-location-pill">📍 Concepción · Online & Presencial</span>
@@ -4961,184 +4997,172 @@
           </div>
 
           <p class="diego-essence-quote">
-            Una cosa es la infraestructura tecnológica; la otra es <strong>con quién cuentas</strong>: mi mirada y mi mano para escuchar tu realidad, pillar tus puntos de fricción y entregarte <strong>tu propio Usuario y Clave con soluciones digitalizadas en la palma de tu mano</strong> que sí puedas llevar y sostener.
+            Una cosa es la infraestructura tecnológica; la otra es <strong>con quién cuentas</strong>: <span class="hl-cyan">mi mirada desde la ciencia de la administración</span> y <span class="hl-green">mi oído para escuchar tu realidad y aterrizar toda la información que hoy te abruma</span> para darle <strong>desarrollo con acompañamiento</strong>, entregándote tu propio <strong>Usuario y Clave</strong> con soluciones digitalizadas en la palma de tu mano que sí puedas llevar y sostener.
           </p>
 
-          <div class="diego-base-checklist">
-            <div class="diego-base-check-item">
-              <span>👂</span> <strong>Escucha Activa Cero Juicio</strong> <span class="sub">El error = oportunidad</span>
-            </div>
-            <div class="diego-base-check-item">
-              <span>🔑</span> <strong>Usuario + Clave en tu Mano</strong> <span class="sub">Portal de Clientes</span>
-            </div>
-            <div class="diego-base-check-item">
-              <span>🖨️</span> <strong>Digital + Papel Físico</strong> <span class="sub">Micro-Apps e Imprimibles</span>
-            </div>
-            <div class="diego-base-check-item">
-              <span>🔄</span> <strong>Seguimiento y Ajuste</strong> <span class="sub">No quedas solo</span>
-            </div>
+          <div class="diego-pillars-mini-row">
+            <span class="diego-pillar-mini-tag">🏛️ Ciencia Administrativa</span>
+            <span class="diego-pillar-mini-tag">👂 Escucha Cero Juicio</span>
+            <span class="diego-pillar-mini-tag">🔑 Usuario + Clave en tu Mano</span>
+            <span class="diego-pillar-mini-tag">🖨️ Digital + Papel</span>
           </div>
         </div>
 
-        <!-- LADO DERECHO INTERACTIVO: 1. MIS 12 APORTES | 2. MI FORMA DE TRABAJAR | 3. CASOS EN CRISTIANO -->
+        <!-- LADO DERECHO INTERACTIVO: BARRA ÚNICA DE 3 MODOS (CERO EXCESO DE BOTONES) -->
         <div class="diego-right-board">
           
-          <!-- BARRA SUPERIOR DE 3 MODOS -->
-          <div class="diego-board-header">
-            <div class="diego-mode-tabs" style="flex-wrap: wrap;">
-              <button type="button" class="diego-mode-btn active" id="btn-diego-mode-qualities" onclick="switchDiegoBoardMode('qualities')">
-                <span>⚡</span> <span>1. Con Qué Cuentas (12 Aportes)</span>
-              </button>
-              <button type="button" class="diego-mode-btn" id="btn-diego-mode-method" onclick="switchDiegoBoardMode('method')">
-                <span>🎙️</span> <span>2. Mi Forma de Trabajar (3 Pasos)</span>
-              </button>
-              <button type="button" class="diego-mode-btn" id="btn-diego-mode-cases" onclick="switchDiegoBoardMode('cases')">
-                <span>🔍</span> <span>3. Aportes en Casos Reales</span>
-              </button>
-            </div>
-
-            <!-- FILTROS RÁPIDOS DE CUALIDADES -->
-            <div class="diego-filter-pills" id="diego-qualities-filters">
-              <button type="button" class="diego-filter-chip active" onclick="filterDiegoQualities('all', this)">Todos (12)</button>
-              <button type="button" class="diego-filter-chip" onclick="filterDiegoQualities('mirada', this)">🔭 Mirada & Fricción</button>
-              <button type="button" class="diego-filter-chip" onclick="filterDiegoQualities('oficina', this)">🏢 Oficina 2.0 & Apps</button>
-              <button type="button" class="diego-filter-chip" onclick="filterDiegoQualities('acompanamiento', this)">🎓 Enseñanza & Seguimiento</button>
-            </div>
+          <!-- BARRA SEGMENTADA DE 3 PESTAÑAS (1 SOLA FILA EN PC Y TELÉFONO) -->
+          <div class="diego-mode-tabs" role="tablist">
+            <button type="button" class="diego-mode-btn active" id="btn-diego-mode-qualities" onclick="switchDiegoBoardMode('qualities')">
+              <span>⚡</span>
+              <span class="dmode-label-full">1. Con Qué Cuentas (12 Aportes)</span>
+              <span class="dmode-label-short">1. Mis 12 Aportes</span>
+            </button>
+            <button type="button" class="diego-mode-btn" id="btn-diego-mode-method" onclick="switchDiegoBoardMode('method')">
+              <span>🎙️</span>
+              <span class="dmode-label-full">2. Mi Forma de Trabajar (3 Pasos)</span>
+              <span class="dmode-label-short">2. Cómo Trabajamos</span>
+            </button>
+            <button type="button" class="diego-mode-btn" id="btn-diego-mode-cases" onclick="switchDiegoBoardMode('cases')">
+              <span>🔍</span>
+              <span class="dmode-label-full">3. Aportes en Casos Reales</span>
+              <span class="dmode-label-short">3. Casos Reales</span>
+            </button>
           </div>
 
-          <!-- VISTA 1: GRILLA ESCANEABLE DE 12 CUALIDADES CLAVE (PALABRAS CLAVE) -->
+          <!-- VISTA 1: LAS 12 CAJITAS PRÁCTICAS DE VALOR Y APORTES -->
           <div id="diego-view-qualities" class="diego-qualities-grid">
             
-            <div class="diego-quality-chip" data-qcat="mirada">
-              <div class="q-top"><span style="color:#38bdf8;">🔍</span> Puntos de Fricción</div>
-              <div class="q-desc">Detecto rápido dónde se tranca tu tiempo, tu energía o tu plata.</div>
+            <div class="diego-quality-chip">
+              <div class="q-top"><span style="color:#38bdf8;">🏛️</span> Mirada Administrativa</div>
+              <div class="q-desc">Planificar, organizar, dirigir y controlar adaptado a tu vida o negocio.</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="mirada">
-              <div class="q-top"><span style="color:#10b981;">⏱️</span> Saber Dónde Está tu Tiempo</div>
-              <div class="q-desc">Mapeo real de tus 168h para recuperar descanso y bloques de oro.</div>
+            <div class="diego-quality-chip">
+              <div class="q-top"><span style="color:#10b981;">👂</span> Oído & Aterrizaje</div>
+              <div class="q-desc">Escucho tu realidad sin juicio y bajo a tierra todo lo que hoy te abruma.</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="mirada">
-              <div class="q-top"><span style="color:#f59e0b;">🔭</span> Visión Base e Integral</div>
-              <div class="q-desc">Ordenamos persona, trabajo, casa y negocio como un solo sistema.</div>
+            <div class="diego-quality-chip">
+              <div class="q-top"><span style="color:#f59e0b;">🔍</span> Puntos de Fricción</div>
+              <div class="q-desc">Pillo rápido dónde se tranca tu tiempo, tu energía, tus cobros o tu día.</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="mirada">
-              <div class="q-top"><span style="color:#a855f7;">💡</span> Soluciones desde la Adm.</div>
-              <div class="q-desc">Si no existe la plantilla para tu nudo, creamos la solución a medida.</div>
+            <div class="diego-quality-chip">
+              <div class="q-top"><span style="color:#38bdf8;">⏱️</span> Dónde Está tu Tiempo</div>
+              <div class="q-desc">Mapeo real de tus 168h para recuperar descanso y bloques de foco.</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="oficina">
-              <div class="q-top"><span style="color:#38bdf8;">🔑</span> Portal con Usuario y Clave</div>
+            <div class="diego-quality-chip">
+              <div class="q-top"><span style="color:#a855f7;">💡</span> Soluciones a Medida</div>
+              <div class="q-desc">Si no existe plantilla para tu nudo, creamos la solución exacta para ti.</div>
+            </div>
+
+            <div class="diego-quality-chip">
+              <div class="q-top"><span style="color:#10b981;">🔑</span> Portal Usuario y Clave</div>
               <div class="q-desc">Tu Oficina 2.0 digitalizada en la palma de tu mano con PIN privado.</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="oficina">
-              <div class="q-top"><span style="color:#10b981;">🧩</span> Micro-Apps Integradas</div>
-              <div class="q-desc">Calculadoras, Kanban, Mapeador 24H y finanzas dentro de tu portal.</div>
+            <div class="diego-quality-chip">
+              <div class="q-top"><span style="color:#38bdf8;">🧩</span> Micro-Apps Integradas</div>
+              <div class="q-desc">Calculadoras, Kanban (WIP=2), Mapeador 24H y finanzas en tu portal.</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="oficina">
+            <div class="diego-quality-chip">
               <div class="q-top"><span style="color:#fbbf24;">🖨️</span> Imprimibles Físicos</div>
-              <div class="q-desc">Hojas de ruta, checklists de pared y vaciado en papel a 1 clic.</div>
+              <div class="q-desc">Hojas de ruta, checklists de pared y vaciado en papel listos a 1 clic.</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="oficina">
+            <div class="diego-quality-chip">
               <div class="q-top"><span style="color:#ec4899;">🧱</span> +60 Módulos Adaptables</div>
-              <div class="q-desc">Arsenal completo que se personaliza a tu contexto (TDAH/TEA/Negocio).</div>
+              <div class="q-desc">Arsenal completo que se personaliza a tu contexto (TDAH, casa o pyme).</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="acompanamiento">
+            <div class="diego-quality-chip">
               <div class="q-top"><span style="color:#38bdf8;">🎬</span> Tutoriales & Contexto</div>
-              <div class="q-desc">Cada herramienta incluye explicación y guía paso a paso de uso.</div>
+              <div class="q-desc">Cada herramienta incluye explicación clara y guía paso a paso de uso.</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="acompanamiento">
+            <div class="diego-quality-chip">
               <div class="q-top"><span style="color:#10b981;">🎓</span> Técnica en Cristiano</div>
-              <div class="q-desc">Te entrego criterio administrativo real (Pareto, GTD, Costos, ROI).</div>
+              <div class="q-desc">Te transfiero criterio administrativo real (Pareto, GTD, costos y ROI).</div>
             </div>
 
-            <div class="diego-quality-chip" data-qcat="acompanamiento">
-              <div class="q-top"><span style="color:#f59e0b;">🔄</span> Seguimiento Continuo</div>
-              <div class="q-desc">Revisamos qué funcionó en la semana y simplificamos lo que dio roce.</div>
-            </div>
-
-            <div class="diego-quality-chip" data-qcat="acompanamiento">
-              <div class="q-top"><span style="color:#a855f7;">🤝</span> Online y Presencial</div>
-              <div class="q-desc">Co-diseño en pantalla compartida o cara a cara con papel y lápiz.</div>
+            <div class="diego-quality-chip">
+              <div class="q-top"><span style="color:#f59e0b;">🔄</span> Desarrollo Acompañado</div>
+              <div class="q-desc">Seguimiento online o presencial para ajustar y sostener tus mejoras.</div>
             </div>
 
           </div>
 
           <!-- VISTA 2: MI FORMA DE TRABAJAR (LOS 3 PASOS INTEGRADOS) -->
           <div id="diego-view-method" style="display: none;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 10px;">
               
               <!-- PASO 1 -->
-              <div style="background: rgba(13,15,23,0.9); border: 1px solid rgba(56,189,248,0.28); border-top: 3px solid #38bdf8; border-radius: 12px; padding: 14px 15px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="background: rgba(13,15,23,0.9); border: 1px solid rgba(56,189,248,0.28); border-top: 3px solid #38bdf8; border-radius: 12px; padding: 13px 14px; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
-                  <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 6px;">
-                    <span style="font-size: 1.25rem;">🎙️</span>
+                  <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 5px;">
+                    <span style="font-size: 1.15rem;">🎙️</span>
                     <span style="font-size: 0.68rem; font-weight: 800; color: #38bdf8; text-transform: uppercase;">Paso 1 · Desahogo & Grounding</span>
                   </div>
-                  <h4 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800; color: #fff; margin: 0 0 6px 0;">
+                  <h4 style="font-family: var(--font-heading); font-size: 0.92rem; font-weight: 800; color: #fff; margin: 0 0 5px 0;">
                     Lo que Tú Ves + Lo que Veo Yo
                   </h4>
-                  <p style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.48; margin: 0;">
-                    Nos sentamos online o presencial. Te desahogas sin ordenar nada antes y cruzamos <b>lo que tú sientes necesitar</b> con <b>los puntos de fricción que veo yo</b> (aplicando sondeo si hace falta enfocar).
+                  <p style="font-size: 0.76rem; color: #cbd5e1; line-height: 1.46; margin: 0;">
+                    Nos sentamos online o presencial. Te desahogas sin ordenar nada antes y cruzamos <b>lo que tú sientes necesitar</b> con <b>los puntos de fricción que veo yo</b> desde la administración.
                   </p>
                 </div>
-                <div style="margin-top: 10px; font-size: 0.71rem; color: #38bdf8; font-weight: 700;">
-                  ✓ Espacio 100% libre de juicio o culpa
+                <div style="margin-top: 8px; font-size: 0.7rem; color: #38bdf8; font-weight: 700;">
+                  ✓ Aterrizaje del abrumo sin juicio
                 </div>
               </div>
 
               <!-- PASO 2 -->
-              <div style="background: rgba(13,15,23,0.9); border: 1px solid rgba(16,185,129,0.28); border-top: 3px solid #10b981; border-radius: 12px; padding: 14px 15px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="background: rgba(13,15,23,0.9); border: 1px solid rgba(16,185,129,0.28); border-top: 3px solid #10b981; border-radius: 12px; padding: 13px 14px; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
-                  <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 6px;">
-                    <span style="font-size: 1.25rem;">💻</span>
+                  <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 5px;">
+                    <span style="font-size: 1.15rem;">💻</span>
                     <span style="font-size: 0.68rem; font-weight: 800; color: #10b981; text-transform: uppercase;">Paso 2 · Co-Diseño a Medida</span>
                   </div>
-                  <h4 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800; color: #fff; margin: 0 0 6px 0;">
+                  <h4 style="font-family: var(--font-heading); font-size: 0.92rem; font-weight: 800; color: #fff; margin: 0 0 5px 0;">
                     Construcción y Adaptación
                   </h4>
-                  <p style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.48; margin: 0;">
-                    Diseño y programo las herramientas administrativas adaptadas a tu contexto (horario, calculadora, flujo o checklist). Yo hago todo el trabajo técnico pesado por ti.
+                  <p style="font-size: 0.76rem; color: #cbd5e1; line-height: 1.46; margin: 0;">
+                    Diseño y programo las soluciones administrativas adaptadas a tu contexto (horario 24H, calculadora, flujo o checklist). Yo hago todo el trabajo técnico pesado por ti.
                   </p>
                 </div>
-                <div style="margin-top: 10px; font-size: 0.71rem; color: #34d399; font-weight: 700;">
+                <div style="margin-top: 8px; font-size: 0.7rem; color: #34d399; font-weight: 700;">
                   ✓ Con tutoriales y contexto paso a paso
                 </div>
               </div>
 
               <!-- PASO 3 -->
-              <div style="background: rgba(13,15,23,0.9); border: 1px solid rgba(245,158,11,0.28); border-top: 3px solid #f59e0b; border-radius: 12px; padding: 14px 15px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="background: rgba(13,15,23,0.9); border: 1px solid rgba(245,158,11,0.28); border-top: 3px solid #f59e0b; border-radius: 12px; padding: 13px 14px; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
-                  <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 6px;">
-                    <span style="font-size: 1.25rem;">📱</span>
+                  <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 5px;">
+                    <span style="font-size: 1.15rem;">📱</span>
                     <span style="font-size: 0.68rem; font-weight: 800; color: #f59e0b; text-transform: uppercase;">Paso 3 · En la Palma de tu Mano</span>
                   </div>
-                  <h4 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800; color: #fff; margin: 0 0 6px 0;">
+                  <h4 style="font-family: var(--font-heading); font-size: 0.92rem; font-weight: 800; color: #fff; margin: 0 0 5px 0;">
                     Tu Portal con Usuario y Clave + Plan
                   </h4>
-                  <p style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.48; margin: 0;">
-                    Quedas con tu <b>Usuario y Clave (PIN)</b> en el Portal de Clientes con tus herramientas digitalizadas e imprimibles listos. Con esa base aterrizada, armamos tu Plan Personalizado si quieres escalar.
+                  <p style="font-size: 0.76rem; color: #cbd5e1; line-height: 1.46; margin: 0;">
+                    Quedas con tu <b>Usuario y Clave (PIN)</b> en el Portal de Clientes con tus sesiones y herramientas digitalizadas. Con esa base aterrizada, armamos tu Plan Personalizado si quieres escalar.
                   </p>
                 </div>
-                <div style="margin-top: 10px; font-size: 0.71rem; color: #fbbf24; font-weight: 700;">
+                <div style="margin-top: 8px; font-size: 0.7rem; color: #fbbf24; font-weight: 700;">
                   ✓ Lista para usar en celular, PC o papel
                 </div>
               </div>
 
             </div>
 
-            <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 12px; padding: 11px 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
-              <div style="font-size: 0.78rem; color: #e2e8f0;">
-                🔑 <b>Mi Carta Ganadora para Ti:</b> No te llevas consejos al aire; te llevas tu propio acceso privado (Usuario + PIN) con tus herramientas vivas en la palma de tu mano.
+            <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 12px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+              <div style="font-size: 0.76rem; color: #e2e8f0;">
+                🔑 <b>Mi Carta Ganadora para Ti:</b> Te llevas tu propio acceso privado (Usuario + PIN) con el trabajo hecho y digitalizado en la palma de tu mano.
               </div>
-              <button type="button" onclick="scrollToSection('productos')" style="background: #10b981; color: #000; font-weight: 800; font-size: 0.75rem; padding: 7px 14px; border-radius: 50px; border: none; cursor: pointer;">
+              <button type="button" onclick="scrollToSection('productos')" style="background: #10b981; color: #000; font-weight: 800; font-size: 0.74rem; padding: 6px 13px; border-radius: 50px; border: none; cursor: pointer;">
                 Ver Sesión Base ($35.000) →
               </button>
             </div>
@@ -5207,7 +5231,6 @@
           var vQual = document.getElementById('diego-view-qualities');
           var vMeth = document.getElementById('diego-view-method');
           var vCases = document.getElementById('diego-view-cases');
-          var fBar = document.getElementById('diego-qualities-filters');
           var bQual = document.getElementById('btn-diego-mode-qualities');
           var bMeth = document.getElementById('btn-diego-mode-method');
           var bCases = document.getElementById('btn-diego-mode-cases');
@@ -5216,7 +5239,6 @@
           vQual.style.display = 'none';
           vMeth.style.display = 'none';
           vCases.style.display = 'none';
-          if (fBar) fBar.style.display = 'none';
           if (bQual) bQual.classList.remove('active');
           if (bMeth) bMeth.classList.remove('active');
           if (bCases) bCases.classList.remove('active');
@@ -5229,23 +5251,8 @@
             if (bCases) bCases.classList.add('active');
           } else {
             vQual.style.display = 'grid';
-            if (fBar) fBar.style.display = 'flex';
             if (bQual) bQual.classList.add('active');
           }
-        };
-
-        window.filterDiegoQualities = function(cat, btnEl) {
-          var chips = document.querySelectorAll('#diego-view-qualities .diego-quality-chip');
-          chips.forEach(function(c) {
-            if (cat === 'all' || c.getAttribute('data-qcat') === cat) {
-              c.style.display = 'flex';
-            } else {
-              c.style.display = 'none';
-            }
-          });
-          var btns = document.querySelectorAll('#diego-qualities-filters .diego-filter-chip');
-          btns.forEach(function(b) { b.classList.remove('active'); });
-          if (btnEl) btnEl.classList.add('active');
         };
 
         window.selectDiegoRealCase = function(idx, btnEl) {
@@ -5267,58 +5274,46 @@
   </section>
 
   <!-- 2. PORTAL EN LA PALMA DE TU MANO & PLAN DE VUELO INTERACTIVO EN VIVO -->
-  <section id="arsenal" class="landing-section" style="padding: 40px 0 40px 0; border-top: 1px solid rgba(255,255,255,0.06);">
+  <section id="arsenal" class="landing-section" style="padding: 36px 0 36px 0; border-top: 1px solid rgba(255,255,255,0.06);">
     <span id="casos"></span>
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
       
-      <!-- ENCABEZADO DE ETAPA 2 · LA CARTA GANADORA: USUARIO, CLAVE Y DIGITALIZACIÓN EN LA PALMA DE TU MANO -->
-      <div style="text-align: center; max-width: 900px; margin: 0 auto 24px;">
+      <!-- ENCABEZADO DE ETAPA 2 · CÓMO DIGITALIZO LAS SESIONES Y EL TRABAJO HECHO -->
+      <div style="text-align: center; max-width: 880px; margin: 0 auto 20px;">
         <span class="journey-step-badge cyan">
-          📱 ETAPA 2 · LA CARTA GANADORA · TU PORTAL PERSONALIZADO EN LA PALMA DE TU MANO
+          📱 ETAPA 2 · EJEMPLO CLIENTE EN VIVO · ASÍ DIGITALIZO NUESTRAS SESIONES
         </span>
-        <h2 style="font-family: var(--font-heading); font-size: clamp(1.65rem, 3.6vw, 2.3rem); font-weight: 800; color: #fff; margin-top: 12px; line-height: 1.25;">
-          Tu Propio Usuario, Clave (PIN) y tus Soluciones Digitalizadas en Vivo
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.55rem, 3.4vw, 2.2rem); font-weight: 800; color: #fff; margin-top: 10px; line-height: 1.25;">
+          Tu Propio Usuario y Clave con el Trabajo Hecho en la Palma de tu Mano
         </h2>
-        <p style="font-size: 0.94rem; color: #cbd5e1; max-width: 820px; margin: 10px auto 0; line-height: 1.6;">
-          A veces no necesitas un sistema gigante de entrada; lo que marca la diferencia es <b>entregarte tu propio Usuario y Clave con lo que creamos para ti en la palma de tu mano</b> (ya sea 1 herramienta clave tras nuestra primera sesión o tu Plan de Vuelo completo). <b>Navega libremente aquí abajo por la plataforma demostrativa en vivo:</b> toca sus pestañas y mira cómo cada módulo explica paso a paso cómo funciona.
+        <p style="font-size: 0.92rem; color: #cbd5e1; max-width: 790px; margin: 8px auto 0; line-height: 1.58;">
+          Aquí puedes tocar y recorrer un <b>Ejemplo Cliente real (Sofía)</b> tal como queda digitalizado dentro del Portal de Clientes: navega por sus pestañas para ver su <b>Mapeador 24H</b>, su <b>Kanban GTD (máx. 2 tareas)</b>, sus <b>Arquetipos de Energía</b> y el <b>Tutorial paso a paso</b> de cada herramienta.
         </p>
       </div>
 
-      <!-- VENTANA EMBEBIDA INTERACTIVA DEL PLAN DE VUELO 2.0 EN VIVO -->
-      <div style="background: #090a0f; border: 1.5px solid rgba(56,189,248,0.4); border-radius: 20px; overflow: hidden; box-shadow: 0 16px 50px rgba(0,0,0,0.75), 0 0 35px rgba(56,189,248,0.12); margin-bottom: 34px;">
+      <!-- VENTANA EMBEBIDA LIMPIA DEL EJEMPLO CLIENTE (SIN BOTONES DISTRACTORES) -->
+      <div style="background: #090a0f; border: 1.5px solid rgba(56,189,248,0.38); border-radius: 18px; overflow: hidden; box-shadow: 0 16px 50px rgba(0,0,0,0.75), 0 0 30px rgba(56,189,248,0.1); margin-bottom: 30px;">
         
-        <!-- BARRA DE CONTROL DEL VISOR EN VIVO -->
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 12px 18px; background: #0f131f; border-bottom: 1px solid rgba(255,255,255,0.1);">
-          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <!-- BARRA SUPERIOR MINIMALISTA -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 9px 16px; background: #0f131f; border-bottom: 1px solid rgba(255,255,255,0.08);">
+          <div style="display: flex; align-items: center; gap: 9px; flex-wrap: wrap;">
             <div style="display: flex; gap: 5px;">
-              <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
-              <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
-              <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+              <span style="width: 9px; height: 9px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+              <span style="width: 9px; height: 9px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
+              <span style="width: 9px; height: 9px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
             </div>
-            <strong style="color: #fff; font-size: 0.92rem; font-family: var(--font-heading);">
-              🖥️ Plan de Vuelo & Portal Demo 2.0 (Interactivo aquí mismo)
+            <strong style="color: #e2e8f0; font-size: 0.82rem; font-family: var(--font-heading);">
+              👤 Ejemplo Cliente • Sofía (Interactivo: haz clic en las pestañas del plan)
             </strong>
-            <span style="font-size: 0.7rem; color: #34d399; background: rgba(16,185,129,0.14); border: 1px solid rgba(16,185,129,0.35); padding: 2px 9px; border-radius: 50px; font-weight: 700;">
-              ● Navega los Módulos, Tutoriales e Imprimibles
-            </span>
           </div>
-
-          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-            <button type="button" onclick="var f=document.getElementById('live-demo-iframe'); if(f) f.src=f.src;" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); color: #cbd5e1; font-size: 0.75rem; font-weight: 700; padding: 7px 12px; border-radius: 50px; cursor: pointer;">
-              🔄 Reiniciar Vista
-            </button>
-            <button type="button" onclick="window.openAuthModal();" style="background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.4); color: #38bdf8; font-size: 0.76rem; font-weight: 800; padding: 7px 14px; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
-              <span>🔒</span> ¿Ya tienes tu PIN? Ingresar al Portal
-            </button>
-            <a href="planes-demo.html" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; font-weight: 800; font-size: 0.78rem; padding: 8px 16px; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 18px rgba(59,130,246,0.4);">
-              <span>🚀</span> Abrir en Pantalla Completa ↗
-            </a>
-          </div>
+          <span style="font-size: 0.69rem; color: #34d399; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); padding: 2px 9px; border-radius: 50px; font-weight: 700;">
+            ● Vista Real del Portal de Clientes
+          </span>
         </div>
 
         <!-- IFRAME EN VIVO DE PLANES-DEMO.HTML -->
-        <div style="width: 100%; height: 670px; background: #07080d; position: relative;">
-          <iframe id="live-demo-iframe" src="planes-demo.html" title="Plan de Vuelo 2.0 en Vivo" style="width: 100%; height: 100%; border: none; display: block;" loading="lazy"></iframe>
+        <div style="width: 100%; height: 680px; background: #07080d; position: relative;">
+          <iframe id="live-demo-iframe" src="planes-demo.html?v=ejemplo_cliente" title="Ejemplo Cliente en Vivo" style="width: 100%; height: 100%; border: none; display: block;" loading="lazy"></iframe>
         </div>
 
       </div>

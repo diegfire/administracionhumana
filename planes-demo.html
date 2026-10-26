@@ -567,73 +567,7 @@
 </head>
 <body>
 
-    <!-- 1. BARRA SUPERIOR FIJA: NAVEGACIÓN Y SELECTOR DE 5 CASOS REALES -->
-    <aside class="case-selector-bar" aria-label="Selector de Casos">
-        <div class="case-selector-container">
-            <!-- FILA 1: BRANDING & ACCIONES PRINCIPALES -->
-            <div class="case-top-row">
-                <!-- Izquierda: Brand / Logo -->
-                <div class="case-brand-group">
-                    <a href="index.html" class="case-brand-link" title="Volver al Inicio • Administración Humana">
-                        <img src="logo_oficial.png" alt="Logo AH" class="case-brand-logo">
-                        <span class="case-brand-name">AH • PLAN DE VUELO 2.0</span>
-                    </a>
-                    <span class="case-brand-pill">
-                        Casos Reales en Vivo
-                    </span>
-                </div>
-
-                <!-- Derecha: Acciones / CTAs -->
-                <div class="case-actions-group">
-                    <button id="btn-toggle-consultor" class="consultor-toggle-btn" onclick="toggleConsultorMode()" title="Cambiar entre Vista Cliente y Modo Consultor">
-                        <i class="fa-solid fa-lock" id="consultor-toggle-icon"></i>
-                        <span id="consultor-toggle-label">Vista Cliente</span>
-                    </button>
-                    
-                    <a href="sondeo.html" class="btn-cta-sondeo" title="Hacer Sondeo Express de 90 segundos">
-                        <span>⚡ Sondeo Express (90s) →</span>
-                    </a>
-                    
-                    <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estoy%20revisando%20el%20Plan%20de%20Vuelo%202.0%20y%20quiero%20crear%20el%20m%C3%ADo." target="_blank" rel="noopener noreferrer" class="btn-cta-whatsapp" title="Hablar directamente con Diego">
-                        <i class="fa-brands fa-whatsapp"></i> Hablar con Diego
-                    </a>
-                </div>
-            </div>
-
-            <!-- FILA 2: SELECTOR DE LOS 5 CASOS DE EJEMPLO -->
-            <div class="case-bottom-row">
-                <div class="cases-selector-heading">
-                    <i class="fa-solid fa-layer-group" style="color: var(--color-accent-blue); font-size: 0.95rem;"></i>
-                    <span class="cases-label-main">5 CASOS REALES:</span>
-                    <span class="cases-label-hint">Selecciona un ejemplo →</span>
-                </div>
-
-                <!-- CHIPS SELECTORES DE CASOS (MÁS GRANDES Y LEGIBLES) -->
-                <div class="case-chips-group" role="tablist" aria-label="Casos de ejemplo">
-                    <button class="case-chip active" id="chip-caso_a" onclick="handleCaseSelect('caso_a')" role="tab" aria-selected="true">
-                        <span class="chip-icon">🧘‍♀️</span>
-                        <span class="chip-text"><b>1.</b> Sofía (Cuidados)</span>
-                    </button>
-                    <button class="case-chip" id="chip-caso_b" onclick="handleCaseSelect('caso_b')" role="tab" aria-selected="false">
-                        <span class="chip-icon">💆‍♀️</span>
-                        <span class="chip-text"><b>2.</b> Camila (Sensorial)</span>
-                    </button>
-                    <button class="case-chip" id="chip-caso_c" onclick="handleCaseSelect('caso_c')" role="tab" aria-selected="false">
-                        <span class="chip-icon">🎒</span>
-                        <span class="chip-text"><b>3.</b> Lucas (TDAH)</span>
-                    </button>
-                    <button class="case-chip" id="chip-caso_d" onclick="handleCaseSelect('caso_d')" role="tab" aria-selected="false">
-                        <span class="chip-icon">👓</span>
-                        <span class="chip-text"><b>4.</b> Gabriel (Comercio)</span>
-                    </button>
-                    <button class="case-chip" id="chip-caso_e" onclick="handleCaseSelect('caso_e')" role="tab" aria-selected="false">
-                        <span class="chip-icon">🌏</span>
-                        <span class="chip-text"><b>5.</b> Valeria (Carrera)</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </aside>
+    <!-- VISOR DIRECTO EJEMPLO CLIENTE (SOFÍA) -->
 
     <!-- LIGHTBOX MODAL PARA DIAGRAMAS -->
     <div id="lightbox-modal" onclick="closeLightbox()" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 999999; display: none; align-items: center; justify-content: center; padding: 2rem; cursor: zoom-out;">
@@ -648,7 +582,7 @@
     </div>
 
     <!-- CONTENEDOR MAESTRO -->
-    <main class="container" style="max-width: 1300px; margin: 0 auto; padding: 20px 20px 80px;">
+    <main class="container" style="max-width: 1300px; margin: 0 auto; padding: 14px 18px 40px;">
 
         <!-- 2. HEADER DINÁMICO DEL CASO ACTIVO -->
         <header style="margin-bottom: 1.5rem;">
@@ -659,7 +593,7 @@
                 <div class="brand-title" style="flex: 1; min-width: 280px;">
                     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
                         <span class="hero-tea-badge" id="case-header-tag" style="margin: 0; padding: 3px 10px; font-size: 0.72rem;">
-                            Caso 01 • Cuidados Familiares & Servicios
+                            👤 Ejemplo Cliente • Cuidados Familiares & Servicios
                         </span>
                         <span style="font-size: 0.7rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); padding: 2px 8px; border-radius: 20px;">
                             ✅ 100% Calibrado • Administración Humana
@@ -1097,15 +1031,7 @@
                 </div>
             </div>
 
-            <div class="card" style="margin-top: 1.5rem; border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(0,0,0,0.4));">
-                <h3 class="section-title" style="color: #10b981;"><span>💬 ¿Quieres un Plan de Vuelo como este?</span></h3>
-                <p style="font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; margin-bottom: 14px;">
-                    Coordinemos una sesión diagnóstica 1 a 1 para evaluar tus cuellos de botella y configurar tu propio cockpit operativo modular.
-                </p>
-                <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estuve%20revisando%20los%20casos%20reales%20del%20Plan%20de%20Vuelo%20y%20quiero%20agendar%20mi%20sesi%C3%B3n%20diagn%C3%B3stica." target="_blank" class="btn-primary" style="background: #10b981; color: #000; font-weight: 800; font-size: 0.88rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 0 16px rgba(16,185,129,0.35);">
-                    <i class="fa-brands fa-whatsapp"></i> Hablar directamente con Diego
-                </a>
-            </div>
+
         </div>
 
         <!-- CONTENEDOR DE PESTAÑAS DINÁMICAS AGREGADAS DESDE EL CATÁLOGO -->
@@ -1361,7 +1287,7 @@
             // 3. Renderizar Header
             const p = activeCaseData.profile;
             document.getElementById("case-header-avatar").innerText = p.avatar;
-            document.getElementById("case-header-tag").innerText = p.demoTag;
+            document.getElementById("case-header-tag").innerText = "👤 Ejemplo Cliente • Cuidados Familiares & Servicios";
             document.getElementById("case-header-name").innerText = `Dossier & Plan de Vuelo 2.0 • ${p.shortName}`;
             document.getElementById("case-header-role").innerText = p.role;
             document.title = `Plan de Vuelo 2.0 • ${p.shortName} • Administración Humana`;
@@ -2093,10 +2019,9 @@
             if (modal) modal.style.display = "none";
         }
 
-        // INICIALIZACIÓN
+        // INICIALIZACIÓN (EJEMPLO CLIENTE SOFÍA)
         window.addEventListener("DOMContentLoaded", () => {
-            const hash = window.location.hash ? window.location.hash.replace("#", "") : "";
-            const initialCase = (window.CASOS_PLAN_VUELO_DATA && window.CASOS_PLAN_VUELO_DATA[hash]) ? hash : "caso_a";
+            const initialCase = "caso_a";
             markCaseAsUnlocked(initialCase);
             updateConsultorModeUI();
             switchCase(initialCase);
