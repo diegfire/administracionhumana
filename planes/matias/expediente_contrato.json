@@ -1,0 +1,24 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "matias",
+  "updated_at": "2026-10-26",
+  "nombre": "Matías González",
+  "hub_filename": "Hub_Imprimibles_Matias.html",
+  "rol_contexto": "Profesional & Gestión de Proyectos Técnicos",
+  "area_critica": "Foco Ejecutivo, Priorización y Descanso",
+  "saturacion_operativa": 75,
+  "frase_raiz_culpa": "Tengo demasiados frentes abiertos al mismo tiempo.",
+  "hora_de_oro": "Mañanas 08:30 a 10:30",
+  "valvula_descompresion": "Entrenamiento físico y cierre estricto de jornada",
+  "numero_paz_financiera": "Control de flujo mensual 50/30/20",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "kanban_gtd_wip2",
+    "matriz_eisenhower",
+    "protocolo_paso_cero",
+    "inventario_cero_culpa",
+    "finanzas_503020"
+  ]
+}

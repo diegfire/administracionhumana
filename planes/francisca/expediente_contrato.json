@@ -1,0 +1,23 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "francisca",
+  "updated_at": "2026-10-26",
+  "nombre": "Francisca Lissette",
+  "hub_filename": "Hub_Imprimibles_Francisca_Lissette.html",
+  "rol_contexto": "Emprendedora Creativa & Servicios Profesionales",
+  "area_critica": "Orden Mental, Rutinas y Soberanía Energética",
+  "saturacion_operativa": 74,
+  "frase_raiz_culpa": "Me cuesta sostener una rutina rígida cuando baja mi energía.",
+  "hora_de_oro": "Media mañana 10:00 a 12:00",
+  "valvula_descompresion": "Espacios creativos libres de culpa",
+  "numero_paz_financiera": "Estabilidad mensual por paquetes",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "protocolo_paso_cero",
+    "inventario_cero_culpa",
+    "arquetipos_energia",
+    "kanban_gtd_wip2"
+  ]
+}

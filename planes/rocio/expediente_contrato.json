@@ -1,0 +1,31 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "rocio",
+  "updated_at": "2026-10-26",
+  "nombre": "Rocío",
+  "hub_filename": "Hub_Imprimibles_Rocio.html",
+  "rol_contexto": "Emprendedora & Gestión Operativa Multirrol",
+  "area_critica": "Tiempo, Límites y Estructura Financiera",
+  "saturacion_operativa": 78,
+  "frase_raiz_culpa": "Siento que si no estoy encima de todo, las cosas no avanzan.",
+  "hora_de_oro": "Mañanas 09:00 a 11:00",
+  "valvula_descompresion": "Desconexión digital nocturna y caminata sin teléfono",
+  "numero_paz_financiera": "Presupuesto 50/30/20 + Fondo de Paz",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "gtd_vaciado_mental",
+    "kanban_gtd_wip2",
+    "matriz_eisenhower",
+    "finanzas_503020",
+    "tecnica_pomodoro_foco",
+    "protocolo_paso_cero",
+    "inventario_cero_culpa",
+    "feedback_sbi_conversaciones",
+    "ventana_johari_puntos_ciegos",
+    "kaizen_mejora_continua",
+    "principio_pareto_80_20",
+    "plan_estrategico_hitos"
+  ]
+}

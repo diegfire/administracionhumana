@@ -1,0 +1,22 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "karina",
+  "updated_at": "2026-10-26",
+  "nombre": "Karina",
+  "hub_filename": "Hub_Imprimibles_Karina.html",
+  "rol_contexto": "Gestión Profesional & Bienestar",
+  "area_critica": "Claridad de Prioridades y Paz Mental",
+  "saturacion_operativa": 69,
+  "frase_raiz_culpa": "Cargo en la cabeza cosas que deberían estar en un sistema.",
+  "hora_de_oro": "Mañanas 09:00 a 10:30",
+  "valvula_descompresion": "Caminata y desconexión al atardecer",
+  "numero_paz_financiera": "Regla 50/30/20 equilibrada",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "gtd_vaciado_mental",
+    "kanban_gtd_wip2",
+    "finanzas_503020",
+    "inventario_cero_culpa"
+  ]
+}

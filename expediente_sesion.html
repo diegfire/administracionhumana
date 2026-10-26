@@ -741,19 +741,28 @@
     </div>
 
     <!-- ══════════════════════════════════════════════════════════ -->
-    <!-- FASE 4: PRESCRIPCIÓN DE HERRAMIENTAS                      -->
+    <!-- FASE 4: PRESCRIPCIÓN DE HERRAMIENTAS (46 CAJAS CANÓNICAS) -->
     <!-- ══════════════════════════════════════════════════════════ -->
     <div id="stage4" class="stage-view">
       <div class="card">
         <div class="card-header">
           <div>
-            <div class="card-title"><i class="fa-solid fa-kit-medical"></i> Botiquín de Prescripción Quirúrgica</div>
-            <div class="card-subtitle">Haz clic para recetar las 3 a 5 herramientas exactas de <code>HERRAMIENTAS FULL.pdf</code></div>
+            <div class="card-title"><i class="fa-solid fa-kit-medical"></i> Botiquín de Prescripción Quirúrgica (46 Cajas Canónicas AICC v4.0)</div>
+            <div class="card-subtitle">Selecciona las herramientas del Catálogo Maestro en 3 Pisos • Semáforo clínico de contraindicaciones en vivo (ADR-001)</div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;" id="pisoFilterBar">
+            <button class="btn-header btn-header-primary" onclick="filterToolsByPiso('all', this)">Todas (46)</button>
+            <button class="btn-header" onclick="filterToolsByPiso(1, this)">🧱 Piso 1 (12)</button>
+            <button class="btn-header" onclick="filterToolsByPiso(2, this)">⚙️ Piso 2 (21)</button>
+            <button class="btn-header" onclick="filterToolsByPiso(3, this)">🚀 Piso 3 (13)</button>
           </div>
         </div>
 
+        <!-- Semáforo Clínico de Gobernanza Agéntica -->
+        <div id="clinicalGovernanceBanner" style="display:none; margin-bottom:16px; padding:12px 16px; border-radius:10px; border:1px solid rgba(245, 158, 11, 0.45); background:rgba(245, 158, 11, 0.12); color:#fde68a; font-size:0.84rem; line-height:1.5;"></div>
+
         <div class="tool-select-grid" id="toolsCatalogGrid">
-          <!-- Herramientas generadas por JS -->
+          <!-- 46 Herramientas generadas por JS -->
         </div>
 
         <div class="form-group" style="margin-top:20px;">
@@ -764,23 +773,31 @@
     </div>
 
     <!-- ══════════════════════════════════════════════════════════ -->
-    <!-- FASE 5: EXPEDIENTE CONSOLIDADO                            -->
+    <!-- FASE 5: EXPEDIENTE CONSOLIDADO & CONTRATO AGÉNTICO        -->
     <!-- ══════════════════════════════════════════════════════════ -->
     <div id="stage5" class="stage-view">
       <div class="card">
         <div class="card-header">
           <div>
-            <div class="card-title"><i class="fa-solid fa-file-lines"></i> Expediente Clínico-Operativo Generado</div>
-            <div class="card-subtitle">Vista previa lista para exportar a Markdown o entregar al cliente</div>
+            <div class="card-title"><i class="fa-solid fa-file-lines"></i> Expediente Clínico-Operativo & Contrato Agéntico v4.0</div>
+            <div class="card-subtitle">Human-in-the-Loop: Exporta el Expediente (.md) o el Contrato Máquina (<code>expediente_contrato.json</code>) para los Emitters</div>
           </div>
-          <div style="display:flex; gap:8px;">
-            <button class="btn-header btn-header-primary" onclick="copyMarkdownToClipboard()">
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn-header btn-header-primary" onclick="downloadContractJson()">
+              <i class="fa-solid fa-code"></i> ⚡ Descargar Contrato (.json)
+            </button>
+            <button class="btn-header" onclick="copyMarkdownToClipboard()">
               <i class="fa-solid fa-copy"></i> Copiar Markdown
             </button>
             <button class="btn-header" onclick="downloadMarkdownFile()">
               <i class="fa-solid fa-download"></i> Descargar .md
             </button>
           </div>
+        </div>
+
+        <div style="margin-bottom:12px; padding:10px 14px; background:rgba(56, 189, 248, 0.08); border:1px solid rgba(56, 189, 248, 0.25); border-radius:8px; font-size:0.8rem; color:#bae6fd; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <span><i class="fa-solid fa-terminal"></i> <strong>Comando Emitter para compilar Hub de Imprimibles Carta:</strong></span>
+          <code id="emitterCliCmd" style="background:#000; padding:4px 10px; border-radius:6px; color:#38bdf8; font-weight:700;">python _devtools/core/emit_system.py --client antonia --force-hub</code>
         </div>
 
         <pre id="markdownOutputPre" style="background:#090909; border:1px solid #222; padding:20px; border-radius:var(--radius-sm); font-family:monospace; font-size:0.82rem; color:#86efac; overflow-x:auto; white-space:pre-wrap; max-height:480px;"></pre>
@@ -798,56 +815,650 @@
   </footer>
 
   <script>
-    // ── HERRAMIENTAS Y PÍLDORAS DEL CATÁLOGO OFICIAL ──
+    // ── CATÁLOGO CANÓNICO DE 46 HERRAMIENTAS EN 3 PISOS (EMITIDO DESDE MODULOS_DB v4.0) ──
     const MASTER_TOOLS_CATALOG = [
-      { id: "time_blocking", name: "Bloque de Oro Flexible", tag: "Tiempo", hook: "Protege 2 ventanas de 45 min innegociables con comodín de respaldo." },
-      { id: "inventario_victorias", name: "Inventario Cero Culpa", tag: "Psicología", hook: "2 min cada noche para registrar 3 micro-victorias y apagar la rumiación." },
-      { id: "paso_cero", name: "Protocolo Paso Cero (5 min)", tag: "Acción", hook: "Temporizador de 5 min para romper la inercia del TDAH sin forzar 2 horas." },
-      { id: "kanban_wip2", name: "Tablero Kanban (Máximo 2 Tareas a la Vez)", tag: "Operación", hook: "Límite superior estricto de 2 tareas en ejecución a la vez para no saturar la RAM." },
-      { id: "paquetes_4x", name: "Paquetización de Servicios (4x)", tag: "Finanzas", hook: "Elimina la negociación sesión a sesión y asegura cobro mensual anticipado." },
-      { id: "eisenhower", name: "Matriz Eisenhower Inmediata", tag: "Priorización", hook: "Separa lo que da caja hoy de las distracciones de perfeccionismo estético." },
-      { id: "embudo_7dias", name: "Embudo Mínimo de 7 Días", tag: "Comercial", hook: "Rompe la parálisis por análisis pasando de la idea a la primera venta en 1 semana." },
-      { id: "fases_vuelo", name: "Roadmap por Fases de Vuelo", tag: "Estrategia", hook: "Divide proyectos gigantes en trimestres cerrados sin sobrecargar el presente." },
-      { id: "vaciado_papel", name: "Vaciado Mental en Papel", tag: "Descarga", hook: "Protocolo análogo antes de apagar la luz para blindar el descanso y evitar interrupciones (Ley de Carlson)." }
-    ];
+      {
+            "id": "diagnostico_estructura",
+            "codigo": "P1-01",
+            "piso": 1,
+            "name": "Auditoría de Estructura 168 Horas & Rueda de la Vida",
+            "humanName": "Termómetro de Signos Vitales: La Rueda que No Rueda",
+            "tag": "P1-01 • Piso 1",
+            "hook": "Identificar únicamente las dos dimensiones con menor puntaje y definir 1 micro-acción de 5 minutos esta semana para cada una.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "mapeador_24h",
+            "codigo": "P1-02",
+            "piso": 1,
+            "name": "Mapeador Semanal de Horarios 24H por Bloques",
+            "humanName": "El Tablero Visual de Soberanía del Tiempo (168 Horas)",
+            "tag": "P1-02 • Piso 1",
+            "hook": "Pintar únicamente 2 cajitas fijas: Hora de Despertar y Hora Sagrada de Apagar Pantallas.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "time_blocking_flexible",
+            "codigo": "P1-03",
+            "piso": 1,
+            "name": "Time Blocking Flexible & Ventanas de Oro",
+            "humanName": "Ventanas de Oro de 45 a 90 Minutos Sin Interrupciones",
+            "tag": "P1-03 • Piso 1",
+            "hook": "Blindar 45 minutos mañana en la mañana para tu tarea más importante en modo avión.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "gtd_vaciado_mental",
+            "codigo": "P1-04",
+            "piso": 1,
+            "name": "Getting Things Done (GTD - Fase Capturar y Procesar)",
+            "humanName": "El Cubo de Basura Mental y Vaciado de RAM Cerebral",
+            "tag": "P1-04 • Piso 1",
+            "hook": "Anotar los 5 pendientes más ruidosos en la bandeja de entrada y ejecutar de inmediato 1 que tome menos de 2 minutos.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "kanban_gtd_wip2",
+            "codigo": "P1-05",
+            "piso": 1,
+            "name": "Kanban Minimalista con Límite WIP=2",
+            "humanName": "El Embudo de Sola-Ejecución (Máximo 2 Tareas Activas)",
+            "tag": "P1-05 • Piso 1",
+            "hook": "Si tienes más de 2 tareas abiertas, devolver todas a 'Por Hacer' excepto una y terminarla antes de abrir otra.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "matriz_eisenhower",
+            "codigo": "P1-06",
+            "piso": 1,
+            "name": "Matriz de Eisenhower (Urgente vs Importante)",
+            "humanName": "La Cura para la Urgentitis Crónica: Diferenciar el Incendio del Ensayo",
+            "tag": "P1-06 • Piso 1",
+            "hook": "Elegir 1 sola tarea para Q2 (Bloque de Oro) y ejecutarla en los primeros 30 minutos del día antes de abrir WhatsApp.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "finanzas_503020",
+            "codigo": "P1-07",
+            "piso": 1,
+            "name": "Presupuesto y Distribución 50/30/20",
+            "humanName": "Tu Blindaje de Solvencia Estratégica: El Oxígeno Financiero en Tres Baldes",
+            "tag": "P1-07 • Piso 1",
+            "hook": "Anotar tus 3 gastos fijos principales (arriendo/dividendo, súper y cuentas) y transferir hoy mismo una micro-suma a una cuenta sin tarjeta de débito.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "tecnica_pomodoro_foco",
+            "codigo": "P1-08",
+            "piso": 1,
+            "name": "Técnica Pomodoro (Microdosis de Concentración)",
+            "humanName": "Entrenar a tu Mente en Bloques de 25 Minutos",
+            "tag": "P1-08 • Piso 1",
+            "hook": "Elegir 1 micro-tarea y encender el temporizador de 25 minutos con el teléfono en silencio boca abajo.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "batching_agrupacion_tareas",
+            "codigo": "P1-09",
+            "piso": 1,
+            "name": "Batching (Procesamiento por Lotes)",
+            "humanName": "Agrupar Tareas Parecidas para no Freír tu Cerebro",
+            "tag": "P1-09 • Piso 1",
+            "hook": "Agrupar todas las respuestas de mensajería a las 12:30 y 17:30, desactivando alertas el resto del tiempo.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "metodologia_5s_espacio",
+            "codigo": "P1-10",
+            "piso": 1,
+            "name": "Metodología 5S (Seiri, Seiton, Seiso, Seiketsu, Shitsuke)",
+            "humanName": "Ordenar tu Espacio Físico y Digital para Calmar tu Mente",
+            "tag": "P1-10 • Piso 1",
+            "hook": "Tirar 3 papeles inútiles y mover los archivos sueltos del escritorio de la computadora a una sola carpeta de archivo temporal.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "protocolo_paso_cero",
+            "codigo": "P1-10",
+            "piso": 1,
+            "name": "Protocolo Paso Cero (Micro-compromisos de 5 Minutos)",
+            "humanName": "Romper el Hielo sin Sufrir (La Acción Ridículamente Pequeña)",
+            "tag": "P1-10 • Piso 1",
+            "hook": "Abrir el documento y escribir solo el título o la primera línea. Parar de inmediato al cumplir 5 minutos si se desea.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "inventario_cero_culpa",
+            "codigo": "P1-12",
+            "piso": 1,
+            "name": "Inventario Cero Culpa y Registro de Micro-Victorias Nocturnas",
+            "humanName": "El Cierre del Día en Paz (Reconocer lo que SÍ Hiciste)",
+            "tag": "P1-12 • Piso 1",
+            "hook": "Escribir en una hoja o en tu bitácora 1 sola cosa buena o de cuidado que sí sostuviste hoy antes de cerrar los ojos.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "ventana_johari_puntos_ciegos",
+            "codigo": "P2-01",
+            "piso": 2,
+            "name": "La Ventana de Johari (Puntos Ciegos y Autoconocimiento)",
+            "humanName": "El Fin de los 'No Sabía' y Descubrirte a Través de los Ojos del Otro",
+            "tag": "P2-01 • Piso 2",
+            "hook": "Preguntarle a una persona de confianza: '¿Hay alguna actitud mía que te genere incomodidad sin darme cuenta?'.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "foda_came",
+            "codigo": "P2-02",
+            "piso": 2,
+            "name": "Análisis FODA Dinámico & Matriz CAME",
+            "humanName": "La Radiografía Realista de tu Negocio y Plan de Maniobra",
+            "tag": "P2-02 • Piso 2",
+            "hook": "Escribir en 2 minutos tu mayor fortaleza real y la debilidad interna que más estrés te genera hoy.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "scamper_rediseno_rutina",
+            "codigo": "P2-03",
+            "piso": 2,
+            "name": "Técnica SCAMPER de Rediseño Creativo",
+            "humanName": "Rediseño Creativo de tu Rutina y Oferta (La Cura para el 'Siempre se ha Hecho Así')",
+            "tag": "P2-03 • Piso 2",
+            "hook": "Cambiar tu desayuno de hoy o eliminar un solo paso innecesario en tu flujo de trabajo.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "modelo_adkar_autotransformacion",
+            "codigo": "P2-04",
+            "piso": 2,
+            "name": "Modelo ADKAR (Awareness, Desire, Knowledge, Ability, Reinforcement)",
+            "humanName": "La Cura para la Resistencia al Cambio y Detección del Tapón de Hábitos",
+            "tag": "P2-04 • Piso 2",
+            "hook": "Calificar las 5 letras de ADKAR del 1 al 5 y trabajar exclusivamente en la que tenga el puntaje más bajo.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "roles_belbin_sombreros",
+            "codigo": "P2-05",
+            "piso": 2,
+            "name": "Roles de Belbin (Gestión de Sombreros de Equipo)",
+            "humanName": "La Cura para el Equipo Copia y Pega • La Orquesta de Sombreros Internos",
+            "tag": "P2-05 • Piso 2",
+            "hook": "Identificar cuál de los 3 bloques (Acción, Mente o Social) es tu debilidad dominante para blindarla.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "modelo_tuckman_transicion",
+            "codigo": "P2-06",
+            "piso": 2,
+            "name": "Modelo de Tuckman (Forming, Storming, Norming, Performing)",
+            "humanName": "La Evolución de la Banda • Comprender que el Caos y la Tormenta son Parte Natural de Crecer",
+            "tag": "P2-06 • Piso 2",
+            "hook": "Identificar en cuál de las 4 fases se encuentra el equipo hoy y normalizar la tormenta verbalmente.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "dnc_personal_aprendizaje",
+            "codigo": "P2-07",
+            "piso": 2,
+            "name": "DNC Personal y Organizacional (Diagnóstico de Necesidades de Capacitación)",
+            "humanName": "El Mapa del Talento y la Cura para la Infoxicación",
+            "tag": "P2-07 • Piso 2",
+            "hook": "Identificar el mayor dolor de tu semana y definir una sola micro-habilidad que lo solucionaría en 15 minutos.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "triangulacion_roles",
+            "codigo": "P2-08",
+            "piso": 2,
+            "name": "Triangulación y Compartimentación de Roles Multipotenciales",
+            "humanName": "Un Sombrero a la Vez (Separar tus Identidades sin Culpa)",
+            "tag": "P2-08 • Piso 2",
+            "hook": "Definir un solo sombrero para el bloque de la tarde y cerrar físicamente los archivos o pestañas de los demás frentes.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "feedback_sbi_conversaciones",
+            "codigo": "P2-09",
+            "piso": 2,
+            "name": "Feedback SBI (Situación, Comportamiento, Impacto)",
+            "humanName": "Decir las Cosas Claras Basados en Hechos, Sin Juicios Morales",
+            "tag": "P2-09 • Piso 2",
+            "hook": "Escribir en una hoja el hecho observable y tachar cualquier adjetivo descalificador antes de hablar.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "matriz_raci_hogar_equipo",
+            "codigo": "P2-10",
+            "piso": 2,
+            "name": "Matriz RACI (Responsible, Accountable, Consulted, Informed)",
+            "humanName": "Rayar la Cancha en el Hogar y Equipo • El Fin del 'Yo Pensé que lo Hacías Tú'",
+            "tag": "P2-10 • Piso 2",
+            "hook": "Elegir la tarea más confusa de la semana y asignar un solo nombre para la letra 'A' (Dueño final).",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "cinco_porques_raiz",
+            "codigo": "P2-11",
+            "piso": 2,
+            "name": "Los 5 Porqués (Análisis de Causa Raíz)",
+            "humanName": "Ir a la Raíz de lo que te Pasa, Sin Anestesia ni Juicios Morales",
+            "tag": "P2-11 • Piso 2",
+            "hook": "Hacerse los primeros 2 Porqués de una molestia de hoy en voz alta para desactivar la culpa inmediata.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "diagrama_ishikawa_sistema",
+            "codigo": "P2-12",
+            "piso": 2,
+            "name": "Diagrama de Ishikawa (Causa-Efecto / Espina de Pescado)",
+            "humanName": "La Cura para el Poner Parches Constantes y Culpar Personas",
+            "tag": "P2-12 • Piso 2",
+            "hook": "Escribir el problema y listar al menos 1 causa en el Método o Herramienta antes de emitir cualquier juicio moral.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "kaizen_mejora_continua",
+            "codigo": "P2-13",
+            "piso": 2,
+            "name": "Filosofía Kaizen (Micro-Mejoras del 1%)",
+            "humanName": "La Cura para la Parálisis por Perfeccionismo y el Heroísmo Intermitente",
+            "tag": "P2-13 • Piso 2",
+            "hook": "Dedicar 2 minutos a mejorar una sola cosa minúscula de tu escritorio o flujo antes de empezar.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "arquetipos_energia",
+            "codigo": "P2-14",
+            "piso": 2,
+            "name": "Matriz de Arquetipos de Energía Operativa",
+            "humanName": "Conocer tu Batería Interna (Qué te Carga y Qué te Drena)",
+            "tag": "P2-14 • Piso 2",
+            "hook": "Nombrar en voz alta qué tarea de hoy te está drenando la batería y emparejarla con 15 minutos de una actividad generadora inmediatamente después.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "piramide_minto_comunicacion",
+            "codigo": "P2-15",
+            "piso": 2,
+            "name": "Principio de la Pirámide de Minto (Answer First)",
+            "humanName": "El Fin de los Rodeos y los Mensajes Eternos (Ir Directo al Grano)",
+            "tag": "P2-15 • Piso 2",
+            "hook": "En tu próximo correo o WhatsApp, pon la conclusión y propuesta en la primera línea en negrita.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "mind_mapping_visual",
+            "codigo": "P2-16",
+            "piso": 2,
+            "name": "Mind Mapping (Mapas Mentales Radiales)",
+            "humanName": "El GPS para Mentes Creativas (y Saturadas) — Dibujar tus Ideas para Verlas Claras",
+            "tag": "P2-16 • Piso 2",
+            "hook": "Tomar una hoja horizontal, dibujar un círculo al centro con el nombre de tu proyecto y sacar 3 ramas principales.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "fondo_reserva_paz",
+            "codigo": "P2-17",
+            "piso": 2,
+            "name": "Fondo de Reserva y Tranquilidad (3 Meses de Vida)",
+            "humanName": "Tu Colchón de Paz Mental (Dormir Tranquilo pase lo que pase)",
+            "tag": "P2-17 • Piso 2",
+            "hook": "Calcular la cifra exacta de 1 mes de Costo Basal de Paz Mensual y transferir hoy un primer aporte simbólico a una cuenta intocable.",
+            "contraindicado_si": []
+      },
+      {
+            "id": "principio_pareto_80_20",
+            "codigo": "P2-18",
+            "piso": 2,
+            "name": "Principio de Pareto (Regla del 80/20)",
+            "humanName": "La Cura para el Agotamiento por Intentar Hacer de Todo",
+            "tag": "P2-18 • Piso 2",
+            "hook": "Elegir la ÚNICA tarea de tu jornada que de verdad mueve la aguja financiera y hacerla antes de abrir el correo.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "inventario_resultados_auditoria",
+            "codigo": "P2-19",
+            "piso": 2,
+            "name": "Inventario de Resultados y Auditoría de Avance",
+            "humanName": "El Espejo Forense del Avance Real y Cura a la Amnesia de Logros",
+            "tag": "P2-19 • Piso 2",
+            "hook": "Anotar en una servilleta 3 cosas que hoy están terminadas y que el lunes estaban pendientes.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "enps_termometro_lealtad",
+            "codigo": "P2-20",
+            "piso": 2,
+            "name": "eNPS (Employee Net Promoter Score) — Medición de Clima y Lealtad",
+            "humanName": "El Termómetro de la Lealtad y el Clima Real (Seguridad Psicológica)",
+            "tag": "P2-20 • Piso 2",
+            "hook": "Abrir una papeleta o formulario anónimo de 1 sola pregunta del 0 al 10 con espacio abierto de mejora.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "principio_mece_categorizacion",
+            "codigo": "P2-21",
+            "piso": 2,
+            "name": "Principio MECE (Mutuamente Excluyentes, Colectivamente Exhaustivos)",
+            "humanName": "El Fin de las Tareas Repetidas y los Cabos Sueltos (Delimitación Quirúrgica)",
+            "tag": "P2-21 • Piso 2",
+            "hook": "Definir una 'frontera prohibida' entre tus dos frentes principales para evitar la contaminación cruzada.",
+            "contraindicado_si": [
+                  "bloqueo_ejecutivo_total (activar primero P1-10 Protocolo Paso Cero de 5 minutos)"
+            ]
+      },
+      {
+            "id": "circulo_dorado",
+            "codigo": "P3-01",
+            "piso": 3,
+            "name": "El Círculo Dorado (Simon Sinek)",
+            "humanName": "El Antídoto contra la Guerra de Precios y la Crisis de Identidad",
+            "tag": "P3-01 • Piso 3",
+            "hook": "Completar la frase: 'Creemos que nadie debería tener que sufrir por [problema], y por eso creamos [proyecto]'.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "plan_estrategico_hitos",
+            "codigo": "P3-02",
+            "piso": 3,
+            "name": "Plan Estratégico Trienal e Hitos Clave",
+            "humanName": "El Mapa para Dejar de Correr como Pollo sin Cabeza (La Película de tus Próximos 3 Años)",
+            "tag": "P3-02 • Piso 3",
+            "hook": "Escribir el título de tu año actual y fijar una sola meta numérica innegociable para el próximo trimestre.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "metodo_smart_metas",
+            "codigo": "P3-03",
+            "piso": 3,
+            "name": "Método SMART para Formulación de Metas",
+            "humanName": "El Fin de las Metas Humo y Aprender a Pedirle Cosas Claras a la Vida",
+            "tag": "P3-03 • Piso 3",
+            "hook": "Ponerle a tu mayor deseo actual únicamente dos datos: un número y una fecha de vencimiento.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "metodo_okr_trimestral",
+            "codigo": "P3-04",
+            "piso": 3,
+            "name": "Método OKR (Objectives and Key Results)",
+            "humanName": "El GPS para no Perderse en la Operatividad Eterna",
+            "tag": "P3-04 • Piso 3",
+            "hook": "Definir en una servilleta el ÚNICO gran objetivo de los próximos 90 días y 1 resultado numérico verificable.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "design_thinking_prototipado",
+            "codigo": "P3-05",
+            "piso": 3,
+            "name": "Design Thinking (Prototipado Rápido y Validación Centrada en el Usuario)",
+            "humanName": "La Cura para el 'Yo Creo que Esto Les Va a Gustar' (Experimentación de $0)",
+            "tag": "P3-05 • Piso 3",
+            "hook": "Enviar un audio a 2 clientes preguntándoles cuál es su mayor dolor sin intentar venderles nada.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "oceano_azul_diferencial",
+            "codigo": "P3-06",
+            "piso": 3,
+            "name": "Estrategia del Océano Azul & Factor Diferencial",
+            "humanName": "El Fin de la Guerra de Precios y la Competencia Sangrienta (Matriz ERAC)",
+            "tag": "P3-06 • Piso 3",
+            "hook": "Identificar un requisito o trámite engorroso estándar de tu industria y eliminarlo de tu oferta hoy mismo.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "modelo_grow_coaching",
+            "codigo": "P3-07",
+            "piso": 3,
+            "name": "Modelo GROW de Coaching (Goal, Reality, Options, Will)",
+            "humanName": "Enseñar a Pescar • Ayudar a los Tuyos a Resolver sus Propios Problemas",
+            "tag": "P3-07 • Piso 3",
+            "hook": "Morderse la lengua antes de dar un consejo y preguntar: 'Si fueras el dueño de esto, ¿qué primer paso darías hoy?'.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "cinco_fuerzas_porter",
+            "codigo": "P3-08",
+            "piso": 3,
+            "name": "Las 5 Fuerzas de Porter & Negociación de Poder",
+            "humanName": "Tu Radar Contra los Golpes del Mercado (Quién Tiene la Sartén por el Mango)",
+            "tag": "P3-08 • Piso 3",
+            "hook": "Calcular la concentración de tu cliente mayoritario y prospectar 3 clientes alternativos si supera el 30%.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "paquetizacion_servicios_mes",
+            "codigo": "P3-09",
+            "piso": 3,
+            "name": "Paquetización de Servicios en Programas Mensuales",
+            "humanName": "Dejar de Vender Horas Sueltas (Crear Ingresos Recurrentes Predecibles)",
+            "tag": "P3-09 • Piso 3",
+            "hook": "Bautizar tu 'Programa de 1 Mes' en 3 niveles (Esencial, Óptimo Recomendado y VIP Blindado) y fijar el cupo máximo saludable.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "evaluacion_360_feedback",
+            "codigo": "P3-10",
+            "piso": 3,
+            "name": "Evaluación 360° Personal y Profesional",
+            "humanName": "El Espejo de Feedback Honesto y Radical (La Cura para los Puntos Ciegos)",
+            "tag": "P3-10 • Piso 3",
+            "hook": "Preguntar a una persona de total confianza qué actitud tuya bajo estrés le genera más fricción y agradecer el dato sin discutir.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "matriz_9box_talento",
+            "codigo": "P3-11",
+            "piso": 3,
+            "name": "Matriz 9-Box de Talento y Desempeño (Desempeño vs Potencial)",
+            "humanName": "El Mapa del Talento Humano y la Cura para la Culpa del Líder",
+            "tag": "P3-11 • Piso 3",
+            "hook": "Ubicar a tu 'Caballo de Batalla' y enviarle un mensaje de agradecimiento genuino por su consistencia operativa.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "ocho_pasos_kotter_cambio",
+            "codigo": "P3-12",
+            "piso": 3,
+            "name": "Los 8 Pasos de Kotter para la Gestión del Cambio",
+            "humanName": "La Ingeniería del Cambio Sostenible (Transformación Paso a Paso Sin Frustración)",
+            "tag": "P3-12 • Piso 3",
+            "hook": "Definir un Quick Win medible que puedas implementar y celebrar con el equipo en menos de 48 horas.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      },
+      {
+            "id": "analisis_pestel_macroentorno",
+            "codigo": "P3-13",
+            "piso": 3,
+            "name": "Análisis PESTEL de Macroentorno (Político, Económico, Social, Tecnológico, Ecológico, Legal)",
+            "humanName": "La Cura para la Ceguera de Entorno (Aprender a Leer el Entorno para que no te Tome por Sorpresa)",
+            "tag": "P3-13 • Piso 3",
+            "hook": "Identificar 1 cambio tecnológico o normativo reciente y redactar en 1 línea cómo aprovecharlo esta semana.",
+            "contraindicado_si": [
+                  "colapso_sueno_agudo (<6h diarias sin estabilizar)",
+                  "saturacion_operativa_critica (>=80% sin vaciado mental P1-04 ni Paso Cero P1-10)",
+                  "crisis_liquidez_inmediata (priorizar P1-07 Regla 50/30/20 antes de escalar)"
+            ]
+      }
+];
 
-    let selectedTools = ["time_blocking", "inventario_victorias", "kanban_wip2"];
+    const LEGACY_ID_MAP = {
+      "time_blocking": "time_blocking_flexible",
+      "inventario_victorias": "inventario_cero_culpa",
+      "paso_cero": "protocolo_paso_cero",
+      "kanban_wip2": "kanban_gtd_wip2",
+      "paquetes_4x": "paquetizacion_servicios_mes",
+      "eisenhower": "matriz_eisenhower",
+      "vaciado_papel": "gtd_vaciado_mental"
+    };
+
+    let selectedTools = ["diagnostico_estructura", "mapeador_24h", "time_blocking_flexible", "protocolo_paso_cero", "inventario_cero_culpa"];
+    let currentPisoFilter = "all";
     let customQuestions = [];
 
-    // ── STAGE NAVIGATION ──
+    function normalizeToolIds(ids) {
+      if (!Array.isArray(ids)) return ["diagnostico_estructura", "mapeador_24h", "protocolo_paso_cero"];
+      return ids.map(id => LEGACY_ID_MAP[id] || id);
+    }
+
     function showStage(stageId, btnEl) {
       document.querySelectorAll(".stage-view").forEach(v => v.classList.remove("active"));
       document.querySelectorAll(".stage-tab").forEach(t => t.classList.remove("active"));
-      
       const target = document.getElementById(stageId);
       if (target) target.classList.add("active");
       if (btnEl) btnEl.classList.add("active");
+      if (stageId === "stage4") evaluateClinicalGovernance();
+      if (stageId === "stage5") updateMarkdownPreview();
+    }
 
-      if (stageId === "stage5") {
-        updateMarkdownPreview();
+    function filterToolsByPiso(piso, btnEl) {
+      currentPisoFilter = piso;
+      if (btnEl && btnEl.parentElement) {
+        btnEl.parentElement.querySelectorAll(".btn-header").forEach(b => b.classList.remove("btn-header-primary"));
+        btnEl.classList.add("btn-header-primary");
+      }
+      renderToolsCatalog();
+    }
+
+    function evaluateClinicalGovernance() {
+      const banner = document.getElementById("clinicalGovernanceBanner");
+      if (!banner) return;
+
+      const sat = parseInt(document.getElementById("score_saturation")?.value || "0", 10);
+      const chosenObjs = selectedTools.map(id => MASTER_TOOLS_CATALOG.find(t => t.id === id)).filter(Boolean);
+      const hasPiso1Anchor = chosenObjs.some(t => t.piso === 1);
+      const piso3Tools = chosenObjs.filter(t => t.piso === 3);
+
+      const warnings = [];
+      if (piso3Tools.length > 0 && !hasPiso1Anchor) {
+        warnings.push(`⚠️ <strong>Alerta de Contraindicación Clínica (ADR-001):</strong> Has seleccionado herramientas de <strong>Piso 3 (Escala)</strong> (${piso3Tools.map(t => t.codigo).join(", ")}) sin incluir ningún cimiento estabilizador del <strong>Piso 1</strong> (ej. <em>Protocolo Paso Cero P1-10</em> o <em>Mapeador 24H P1-02</em>).`);
+      }
+      if (sat >= 75 && piso3Tools.length > 0) {
+        warnings.push(`🚨 <strong>Saturación Operativa Alta (${sat}%):</strong> El cliente presenta sobrecarga aguda. Prioriza detener la hemorragia de tiempo en Piso 1 antes de exigir planeación estratégica.`);
+      }
+      if (chosenObjs.length > 7) {
+        warnings.push(`💡 <strong>Dosis Operativa (${chosenObjs.length} herramientas activas):</strong> Para evitar parálisis por análisis en las primeras 2 semanas, se recomienda enfatizar de 3 a 6 herramientas nucleares.`);
+      }
+
+      if (warnings.length > 0) {
+        banner.style.display = "block";
+        banner.innerHTML = warnings.join("<br>");
+      } else {
+        banner.style.display = "block";
+        banner.style.borderColor = "rgba(16, 185, 129, 0.4)";
+        banner.style.background = "rgba(16, 185, 129, 0.1)";
+        banner.style.color = "#6ee7b7";
+        banner.innerHTML = `✅ <strong>Gobernanza Clínica Validada (ADR-001):</strong> ${chosenObjs.length} herramientas seleccionadas con base de Piso 1 sólida y sin contraindicaciones activas.`;
       }
     }
 
-    // ── RENDER TOOLS CATALOG ──
     function renderToolsCatalog() {
       const grid = document.getElementById("toolsCatalogGrid");
       if (!grid) return;
 
-      grid.innerHTML = MASTER_TOOLS_CATALOG.map(t => {
+      const filtered = MASTER_TOOLS_CATALOG.filter(t => currentPisoFilter === "all" || t.piso === currentPisoFilter);
+
+      grid.innerHTML = filtered.map(t => {
         const isSelected = selectedTools.includes(t.id);
         return `
-          <div class="tool-card-item ${isSelected ? 'selected' : ''}" onclick="toggleToolSelection('${t.id}', this)">
+          <div class="tool-card-item ${isSelected ? 'selected' : ''}" onclick="toggleToolSelection('${t.id}')">
             <div class="tool-card-header">
               <span class="tool-card-title">${isSelected ? '✅ ' : ''}${t.name}</span>
               <span class="tool-card-tag">${t.tag}</span>
             </div>
-            <div class="tool-card-hook">"${t.hook}"</div>
+            <div style="font-size:0.75rem; color:#38bdf8; margin-bottom:4px; font-weight:600;">${t.humanName}</div>
+            <div class="tool-card-hook"><strong>Paso Cero:</strong> "${t.hook}"</div>
           </div>
         `;
       }).join("");
+
+      evaluateClinicalGovernance();
     }
 
-    function toggleToolSelection(toolId, el) {
+    function toggleToolSelection(toolId) {
       if (selectedTools.includes(toolId)) {
         selectedTools = selectedTools.filter(id => id !== toolId);
       } else {
@@ -865,7 +1476,6 @@
       }
     }
 
-    // ── CUSTOM QUESTIONS ADDER ──
     function addCustomQuestionPrompt() {
       const q = prompt("Escribe la nueva pregunta clave o aspecto a indagar en la sesión:");
       if (q && q.trim()) {
@@ -892,9 +1502,13 @@
       saveCurrentData();
     }
 
-    // ── AUTOSAVE & STATE MANAGEMENT ──
     function getCurrentClientId() {
-      return document.getElementById("clientSelect").value;
+      return document.getElementById("clientSelect")?.value || "antonia_jofre";
+    }
+
+    function getClientSlug() {
+      const cid = getCurrentClientId();
+      return cid.split("_")[0].toLowerCase();
     }
 
     function saveCurrentData() {
@@ -930,13 +1544,13 @@
       };
 
       localStorage.setItem(`ah_session_${cid}`, JSON.stringify(data));
+      evaluateClinicalGovernance();
       flashAutoSave();
     }
 
     function loadClientData(cid) {
       const raw = localStorage.getItem(`ah_session_${cid}`);
       if (!raw) {
-        // Cargar perfiles predeterminados si existen
         if (cid === "antonia_jofre") {
           setFormValues({
             name: "Antonia Jofré",
@@ -949,7 +1563,7 @@
             financialPeaceNumber: "$160.000 CLP (8 alumnas x $20k)",
             goldenHour: "Tardes 18:30 a 20:00",
             decompressionValve: "Siesta diaria de 20 min y descanso nocturno sin pantallas",
-            selectedTools: ["time_blocking", "inventario_victorias", "kanban_wip2"]
+            selectedTools: ["diagnostico_estructura", "mapeador_24h", "time_blocking_flexible", "kanban_gtd_wip2", "protocolo_paso_cero", "inventario_cero_culpa", "paquetizacion_servicios_mes"]
           });
           return;
         }
@@ -994,7 +1608,7 @@
         if (document.getElementById("chk_shame_pricing")) document.getElementById("chk_shame_pricing").checked = !!data.checks.shamePricing;
       }
 
-      selectedTools = Array.isArray(data.selectedTools) ? data.selectedTools : ["time_blocking", "inventario_victorias", "kanban_wip2"];
+      selectedTools = normalizeToolIds(data.selectedTools);
       customQuestions = Array.isArray(data.customQuestions) ? data.customQuestions : [];
       renderToolsCatalog();
       renderCustomQuestions();
@@ -1003,7 +1617,7 @@
     function clearForm() {
       document.querySelectorAll(".form-input, .form-textarea").forEach(i => i.value = "");
       document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
-      selectedTools = ["time_blocking", "inventario_victorias", "kanban_wip2"];
+      selectedTools = ["diagnostico_estructura", "mapeador_24h", "protocolo_paso_cero", "inventario_cero_culpa"];
       customQuestions = [];
       renderToolsCatalog();
       renderCustomQuestions();
@@ -1011,6 +1625,10 @@
 
     function switchClient(cid) {
       loadClientData(cid);
+      const cmdEl = document.getElementById("emitterCliCmd");
+      if (cmdEl) {
+        cmdEl.textContent = `python _devtools/core/emit_system.py --client ${getClientSlug()} --force-hub`;
+      }
     }
 
     function flashAutoSave() {
@@ -1021,7 +1639,37 @@
       }
     }
 
-    // ── MARKDOWN EXPORTER ──
+    function buildClientContractObject() {
+      const name = document.getElementById("client_name")?.value || "Cliente";
+      const slug = getClientSlug();
+      const capSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+      return {
+        schema_version: "4.0.0",
+        client_slug: slug,
+        updated_at: new Date().toISOString().split("T")[0],
+        nombre: name,
+        hub_filename: `Hub_Imprimibles_${capSlug}.html`,
+        rol_contexto: document.getElementById("client_role")?.value || "",
+        area_critica: document.getElementById("critical_area")?.value || "General",
+        saturacion_operativa: parseInt(document.getElementById("score_saturation")?.value || "70", 10),
+        frase_raiz_culpa: document.getElementById("moral_judgment_phrase")?.value || "",
+        hora_de_oro: document.getElementById("golden_hour")?.value || "",
+        valvula_descompresion: document.getElementById("decompression_valve")?.value || "",
+        numero_paz_financiera: document.getElementById("financial_peace_number")?.value || "",
+        dosis_adaptacion: document.getElementById("prescription_dosage_notes")?.value || "",
+        herramientas_prescritas: selectedTools
+      };
+    }
+
+    function downloadContractJson() {
+      const contract = buildClientContractObject();
+      const blob = new Blob([JSON.stringify(contract, null, 2)], { type: "application/json;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "expediente_contrato.json";
+      a.click();
+    }
+
     function generateMarkdownText() {
       const name = document.getElementById("client_name")?.value || "Cliente Sin Nombre";
       const role = document.getElementById("client_role")?.value || "Sin especificar";
@@ -1037,11 +1685,11 @@
 
       const prescribedList = selectedTools.map(id => {
         const t = MASTER_TOOLS_CATALOG.find(x => x.id === id);
-        return t ? `* **${t.name}** (${t.tag}): ${t.hook}` : `* ${id}`;
+        return t ? `* **[${t.codigo}] ${t.name}** (*${t.humanName}*): ${t.hook}` : `* ${id}`;
       }).join("\n");
 
       return `# Expediente Clínico-Operativo: ${name} 🎯
-**Administración Humana • Metodología AICC**
+**Administración Humana • Metodología AICC v4.0 (Sistema Agéntico)**
 **Consultor:** Diego González Yáñez (WhatsApp: +56975590132)
 
 ---
@@ -1055,7 +1703,7 @@
 
 ---
 
-## 2. Escucha Activa & Juicio Moral
+## 2. Escucha Activa & Juicio Moral (Decisión Humana)
 * **Frase Raíz de Culpa:** «${moral}»
 * **Notas de Desahogo Textual:**
 > ${notes}
@@ -1069,7 +1717,7 @@
 
 ---
 
-## 4. Prescripción Quirúrgica de Herramientas
+## 4. Prescripción Quirúrgica de Cajas Canónicas (${selectedTools.length} seleccionadas)
 ${prescribedList}
 
 * **Dosis & Adaptación:**
@@ -1077,14 +1725,17 @@ ${dosage}
 
 ---
 
-## 5. Próximo Paso: Plan de Vuelo 2.0
-Generar el archivo \`Plan_de_Vuelo_${name.replace(/\s+/g, '_')}.html\` con su Horario Semanal 24H y Tablero Kanban (Máximo 2 Tareas).
+## 5. Emisión Agéntica (Contrato → Emitters)
+1. Guarda el contrato con el botón **⚡ Descargar Contrato (.json)** en \`planes/${getClientSlug()}/expediente_contrato.json\`.
+2. Ejecuta: \`python _devtools/core/emit_system.py --client ${getClientSlug()} --force-hub\` para compilar su \`Hub_Imprimibles\` en tamaño Carta.
 `;
     }
 
     function updateMarkdownPreview() {
       const pre = document.getElementById("markdownOutputPre");
       if (pre) pre.textContent = generateMarkdownText();
+      const cmdEl = document.getElementById("emitterCliCmd");
+      if (cmdEl) cmdEl.textContent = `python _devtools/core/emit_system.py --client ${getClientSlug()} --force-hub`;
     }
 
     function copyMarkdownToClipboard() {
@@ -1100,7 +1751,7 @@ Generar el archivo \`Plan_de_Vuelo_${name.replace(/\s+/g, '_')}.html\` con su Ho
       const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = `Expediente_${name.replace(/\s+/g, '_')}.md`;
+      a.download = `Expediente_${name.replace(/\s+/g, '_')}_.md`;
       a.click();
     }
 
@@ -1131,7 +1782,6 @@ Generar el archivo \`Plan_de_Vuelo_${name.replace(/\s+/g, '_')}.html\` con su Ho
       }
     }
 
-    // Initialize
     window.addEventListener("DOMContentLoaded", () => {
       renderToolsCatalog();
       loadClientData("antonia_jofre");

@@ -1,0 +1,22 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "alejandra",
+  "updated_at": "2026-10-26",
+  "nombre": "Alejandra Mattei",
+  "hub_filename": "Hub_Imprimibles_Alejandra.html",
+  "rol_contexto": "Gestión Profesional & Equilibrio Vital",
+  "area_critica": "Fronteras entre Trabajo y Vida Personal",
+  "saturacion_operativa": 72,
+  "frase_raiz_culpa": "Termino el día agotada sintiendo que aún quedaron pendientes.",
+  "hora_de_oro": "Mañanas 09:00 a 11:00",
+  "valvula_descompresion": "Ritual de cierre de tarde y lectura",
+  "numero_paz_financiera": "Presupuesto consciente 50/30/20",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "gtd_vaciado_mental",
+    "matriz_eisenhower",
+    "inventario_cero_culpa"
+  ]
+}

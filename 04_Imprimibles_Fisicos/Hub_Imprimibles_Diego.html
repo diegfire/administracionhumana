@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Maestro de Imprimibles Físicos — Diego González Yáñez • Administración Humana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #0284C7;
+            --purple: #7C3AED;
+            --teal: #0D9488;
+            --amber: #D97706;
+            --emerald: #059669;
+            --rose: #E11D48;
+            --border: #CBD5E1;
+            --bg-card: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        @page {
+            size: letter portrait;
+            margin: 0.6cm 0.7cm 0.5cm 0.7cm;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background: #0B0F17;
+            padding: 0;
+            margin: 0;
+            font-size: 8.5pt;
+            line-height: 1.25;
+        }
+
+        .hub-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #0F172A;
+            border-bottom: 2px solid var(--accent);
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .hub-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #FFF;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .hub-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .select-sheet {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btn-hub {
+            background: var(--accent);
+            color: #FFF;
+            border: none;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-hub:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-hub-secondary { background: #334155; color: #FFF; }
+        .btn-hub-emerald { background: var(--emerald); }
+
+        .hub-container {
+            max-width: 900px;
+            margin: 1.5rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sheet-page {
+            background: #FFF;
+            padding: 1.1rem 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+            page-break-after: always;
+            break-after: page;
+            min-height: 10.1in;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sheet-page:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .sheet-page.hidden-sheet {
+            display: none !important;
+        }
+
+        header.sheet-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-block { display: flex; align-items: center; gap: 0.55rem; }
+        .badge-code {
+            background: var(--primary);
+            color: #38BDF8;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.78rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+        }
+        h1.sheet-h1 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--primary); font-weight: 800; }
+        .subtitle { font-size: 0.72rem; color: #64748B; font-weight: 600; }
+
+        .meta-fields {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .meta-line {
+            border-bottom: 1px solid var(--primary);
+            width: 70px;
+            display: inline-block;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .card-box {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.55rem 0.65rem;
+            background: var(--bg-card);
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 0.25rem;
+        }
+
+        .chk-list { list-style: none; }
+        .chk-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 0.75rem;
+        }
+        .chk-item:last-child { border-bottom: none; }
+
+        .chk-box {
+            width: 12px;
+            height: 12px;
+            min-width: 12px;
+            border: 1.5px solid var(--primary);
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 2px;
+            background: #FFF;
+        }
+
+        .table-mini {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.74rem;
+            margin-top: 0.25rem;
+        }
+        .table-mini th {
+            background: #EDE9FE;
+            color: #5B21B6;
+            text-align: left;
+            padding: 4px 6px;
+            font-weight: 700;
+            border: 1px solid var(--border);
+        }
+        .table-mini td {
+            padding: 4px 6px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        footer.sheet-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 0.35rem;
+            margin-top: 0.4rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.68rem;
+            color: #64748B;
+        }
+
+        @media print {
+            body { background: #FFF; }
+            .no-print, .hub-toolbar { display: none !important; }
+            .hub-container { margin: 0; max-width: 100%; gap: 0; }
+            .sheet-page {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                min-height: 9.8in;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- BARRA DE CONTROL SUPERIOR (NO-PRINT) -->
+    <nav class="hub-toolbar no-print">
+        <div class="hub-title">
+            <i class="fa-solid fa-print" style="color: #38BDF8;"></i>
+            <span>Hub Maestro de Imprimibles — Diego González Yáñez (9 Fichas Carta)</span>
+        </div>
+        <div class="hub-controls">
+            <select id="sheetSelector" class="select-sheet" onchange="filterSheets(this.value)">
+                <option value="all">📚 Ver Todas las Hojas (Cuadernillo Completo)</option><option value="sheet-01-diagnostico_estructura">Hoja 01 • [P1-01] Auditoría de Estructura 168 Horas & Rueda de la Vida</option><option value="sheet-02-mapeador_24h">Hoja 02 • [P1-02] Mapeador Semanal de Horarios 24H por Bloques</option><option value="sheet-03-time_blocking_flexible">Hoja 03 • [P1-03] Time Blocking Flexible & Ventanas de Oro</option><option value="sheet-04-gtd_vaciado_mental">Hoja 04 • [P1-04] Getting Things Done (GTD - Fase Capturar y Procesar)</option><option value="sheet-05-kanban_gtd_wip2">Hoja 05 • [P1-05] Kanban Minimalista con Límite WIP=2</option><option value="sheet-06-triangulacion_roles">Hoja 06 • [P2-08] Triangulación y Compartimentación de Roles Multipotenciales</option><option value="sheet-07-principio_pareto_80_20">Hoja 07 • [P2-18] Principio de Pareto (Regla del 80/20)</option><option value="sheet-08-finanzas_503020">Hoja 08 • [P1-07] Presupuesto y Distribución 50/30/20</option><option value="sheet-09-inventario_cero_culpa">Hoja 09 • [P1-12] Inventario Cero Culpa y Registro de Micro-Victorias Nocturnas</option>
+            </select>
+            <button class="btn-hub" onclick="printSelectedSheet()">
+                <i class="fa-solid fa-file-pdf"></i> Imprimir Vista Actual
+            </button>
+            <button class="btn-hub btn-hub-emerald" onclick="printFullBooklet()">
+                <i class="fa-solid fa-book-open"></i> Imprimir Cuadernillo Completo
+            </button>
+            <a href="../index.html" class="btn-hub btn-hub-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Vuelo
+            </a>
+        </div>
+    </nav>
+
+    <main class="hub-container" id="hubSheetsContainer">
+        
+        <!-- HOJA 01: P1-01 - Auditoría de Estructura 168 Horas & Rueda de la Vida -->
+        <section class="sheet-page" id="sheet-01-diagnostico_estructura" data-sheet-index="1">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P1-01</span>
+                        <div>
+                            <h1 class="sheet-h1">Auditoría de Estructura 168 Horas & Rueda de la Vida</h1>
+                            <div class="subtitle">Termómetro de Signos Vitales: La Rueda que No Rueda • Piso 1: Cimientos, Estabilización & Fricción Cero</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Si tu vida fuera un carruaje y estas 8 dimensiones fueran la rueda de madera, el viaje sería suave o terminarías volcado al primer bache?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Identificar únicamente las dos dimensiones con menor puntaje y definir 1 micro-acción de 5 minutos esta semana para cada una.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Mover los 8 deslizadores en la microapp móvil y registrar el puntaje promedio vital.
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Brecha superior a 5 puntos entre trabajo y salud/descanso.</span></li><li class="chk-item"><span class="chk-box"></span><span>Sensación de colapso y culpabilidad constante por descuidar áreas esenciales.</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>La "Rueda Perfecta": Intentar que todo sea</span></li><li class="chk-item"><span class="chk-box"></span><span>¡Imposible! Ni el Papa tiene todo en</span></li><li class="chk-item"><span class="chk-box"></span><span>El objetivo es que la rueda pueda girar , no que sea un círculo perfecto.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Auditoría de Estructura 168 Horas & Rueda de la Vida</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Brecha de redondez (diferencia max - min) menor a 4 puntos</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> Promedio vital superior a 7.0/10 sin dimensiones en zona roja (<4)
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «Una vida armónica no necesita un 10 perfecto en todas las áreas; necesita ser lo bastante redonda para rodar sin golpes traumáticos.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 01 de 09</div>
+            </footer>
+        </section>
+        
+        <!-- HOJA 02: P1-02 - Mapeador Semanal de Horarios 24H por Bloques -->
+        <section class="sheet-page" id="sheet-02-mapeador_24h" data-sheet-index="2">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P1-02</span>
+                        <div>
+                            <h1 class="sheet-h1">Mapeador Semanal de Horarios 24H por Bloques</h1>
+                            <div class="subtitle">El Tablero Visual de Soberanía del Tiempo (168 Horas) • Piso 1: Cimientos, Estabilización & Fricción Cero</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Si miramos tu semana como un mosaico de 24 horas, tus horas de descanso y concentración están blindadas en color?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Pintar únicamente 2 cajitas fijas: Hora de Despertar y Hora Sagrada de Apagar Pantallas.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Pintar la plantilla de lunes a domingo con los 4 colores base (Sueño, Trabajo Profundo, Ocio y Traslados).
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Días enteros sin hora de inicio ni fin.</span></li><li class="chk-item"><span class="chk-box"></span><span>Menos de 6 horas de sueño regular por intentar abarcar pendientes.</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>El Horario del Robot: Llenar cada minuto de 07:00 a 23:00 con tareas sin dejar margen de maniobra ni imprevistos.</span></li><li class="chk-item"><span class="chk-box"></span><span>El Mapeador Decorativo: Pintar un horario ideal perfecto y abandonarlo al primer día de estrés.</span></li><li class="chk-item"><span class="chk-box"></span><span>Negociar el Sueño: Recortar horas de descanso para "alcanzar a hacer más cosas".</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Mapeador Semanal de Horarios 24H por Bloques</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Índice de Soberanía Temporal (IST >= 70%)</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> Más de 115 horas semanales con destino consciente
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «Primero se blindan las horas que te mantienen vivo y en paz; el trabajo se diseña dentro del espacio que queda, nunca al revés.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 02 de 09</div>
+            </footer>
+        </section>
+        
+        <!-- HOJA 03: P1-03 - Time Blocking Flexible & Ventanas de Oro -->
+        <section class="sheet-page" id="sheet-03-time_blocking_flexible" data-sheet-index="3">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P1-03</span>
+                        <div>
+                            <h1 class="sheet-h1">Time Blocking Flexible & Ventanas de Oro</h1>
+                            <div class="subtitle">Ventanas de Oro de 45 a 90 Minutos Sin Interrupciones • Piso 1: Cimientos, Estabilización & Fricción Cero</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Tienes al menos un bloque de 60 minutos al día donde esté prohibido responder llamadas o WhatsApp?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Blindar 45 minutos mañana en la mañana para tu tarea más importante en modo avión.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Definir 2 Ventanas de Oro en el planificador y ejecutar un bloque de 45 minutos con el temporizador.
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Días enteros sin un solo bloque de 45 minutos continuos de foco.</span></li><li class="chk-item"><span class="chk-box"></span><span>Reescribir listas de pendientes sin asignarles espacio en el calendario.</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>"El Efecto Tetris": Llenar cada minuto del día sin dejar espacios en blanco. La vida pasa, los imprevistos llegan y si no hay aire, la agenda explota.</span></li><li class="chk-item"><span class="chk-box"></span><span>"El Bloque Fantasma": Poner un bloque que diga "Trabajar". ¿En qué</span></li><li class="chk-item"><span class="chk-box"></span><span>Si no tiene nombre y apellido, tu cerebro buscará una distracción.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Time Blocking Flexible & Ventanas de Oro</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Al menos 8 a 12 Ventanas de Oro completadas por semana</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> 90 minutos diarios de trabajo profundo protegido
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «Si no asignas un bloque con nombre y apellido en tu calendario para tus metas, la agenda de otros lo ocupará por ti.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 03 de 09</div>
+            </footer>
+        </section>
+        
+        <!-- HOJA 04: P1-04 - Getting Things Done (GTD - Fase Capturar y Procesar) -->
+        <section class="sheet-page" id="sheet-04-gtd_vaciado_mental" data-sheet-index="4">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P1-04</span>
+                        <div>
+                            <h1 class="sheet-h1">Getting Things Done (GTD - Fase Capturar y Procesar)</h1>
+                            <div class="subtitle">El Cubo de Basura Mental y Vaciado de RAM Cerebral • Piso 1: Cimientos, Estabilización & Fricción Cero</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Confías en tu memoria biológica para recordar todo lo que tienes pendiente, o tienes un sistema externo 100% confiable donde guardas todo?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Anotar los 5 pendientes más ruidosos en la bandeja de entrada y ejecutar de inmediato 1 que tome menos de 2 minutos.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Hacer un vaciado mental nocturno de 5 minutos antes de dormir.
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Más de 20 pendientes retenidos en la memoria sin registrar.</span></li><li class="chk-item"><span class="chk-box"></span><span>Sensación de parálisis por exceso de frentes abiertos (Efecto Zeigarnik).</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>"El Coleccionista de Listas": Anotar todo pero nunca Aclarar qué hay que hacer. Tienes mil listas que solo sirven para darte más ansiedad.</span></li><li class="chk-item"><span class="chk-box"></span><span>"La Herramienta de Oro": Gastar tres semanas buscando la App perfecta antes de empezar. GTD funciona con una servilleta y un lápiz.</span></li><li class="chk-item"><span class="chk-box"></span><span>"Olvidar la Revisión": Si no revisas tu sistema una vez por semana, dejarás de confiar en él y volverás a usar tu memoria (y a estresarte).</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Getting Things Done (GTD - Fase Capturar y Procesar)</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Bandeja de entrada a cero (InBox Zero Mental) al menos una vez por semana</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> Cero pendientes flotantes en la memoria biológica
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «Tu mente es una fábrica de ideas, no un disco duro de almacenamiento de pendientes.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 04 de 09</div>
+            </footer>
+        </section>
+        
+        <!-- HOJA 05: P1-05 - Kanban Minimalista con Límite WIP=2 -->
+        <section class="sheet-page" id="sheet-05-kanban_gtd_wip2" data-sheet-index="5">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P1-05</span>
+                        <div>
+                            <h1 class="sheet-h1">Kanban Minimalista con Límite WIP=2</h1>
+                            <div class="subtitle">El Embudo de Sola-Ejecución (Máximo 2 Tareas Activas) • Piso 1: Cimientos, Estabilización & Fricción Cero</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Cuántas tareas tienes abiertas en este instante y cuál es la ÚNICA que vas a cerrar antes de las 14:00?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Si tienes más de 2 tareas abiertas, devolver todas a 'Por Hacer' excepto una y terminarla antes de abrir otra.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Configurar el tablero Kanban y mantener estrictamente el límite WIP=2 durante toda la jornada.
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Más de 3 proyectos abiertos a la vez sin poder cerrar ninguno.</span></li><li class="chk-item"><span class="chk-box"></span><span>Sensación de parálisis ante listas largas de pendientes.</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>"El Tablero Cementerio": Llenarlo de post-its y no moverlos nunca. El Kanban es para que las cosas se muevan, no para que mueran ahí.</span></li><li class="chk-item"><span class="chk-box"></span><span>"Límites de Adorno": Decir que el límite es 2 pero tener 15 cosas en "Haciendo". Te estás mintiendo a ti mismo (y eso duele más que un tropezón de clown).</span></li><li class="chk-item"><span class="chk-box"></span><span>"Tareas Invisibles": Hacer cosas que no están en el tablero. Si consume tiempo y energía, tiene que tener un post-it.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Kanban Minimalista con Límite WIP=2</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Límite WIP estrictamente en <= 2 y Tasa de Cierre Diaria</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> Cerrar al menos 2 tareas críticas diarias completas
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «Deja de empezar cosas nuevas y empieza a terminar las que tienes abiertas; el cuello de botella es sagrado.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 05 de 09</div>
+            </footer>
+        </section>
+        
+        <!-- HOJA 06: P2-08 - Triangulación y Compartimentación de Roles Multipotenciales -->
+        <section class="sheet-page" id="sheet-06-triangulacion_roles" data-sheet-index="6">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P2-08</span>
+                        <div>
+                            <h1 class="sheet-h1">Triangulación y Compartimentación de Roles Multipotenciales</h1>
+                            <div class="subtitle">Un Sombrero a la Vez (Separar tus Identidades sin Culpa) • Piso 2: Optimización, Operación & Relacional</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Tienes un cerco invisible y un ritual claro que proteja cada uno de tus roles para que no se devoren ni se contaminen entre sí?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Definir un solo sombrero para el bloque de la tarde y cerrar físicamente los archivos o pestañas de los demás frentes.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Configurar tus 3 a 4 roles vitales en la Matriz de Triangulación con su porcentaje de dedicación, Ritual de Cambio de Sombrero y Frontera Prohibida.
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Tengo tres proyectos distintos y cuando estoy en uno me siento culpable por no avanzar en el otro.</span></li><li class="chk-item"><span class="chk-box"></span><span>Se me mezclan los mensajes de clientes con tareas de estudio y asuntos familiares.</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>Tener 8 Roles Activos en la Misma Semana: La mente humana colapsa si intenta sostener más de 3 o 4 frentes principales. Agrupa tus sub-roles en máximo 4 grandes sombreros.</span></li><li class="chk-item"><span class="chk-box"></span><span>Dejar Abiertas las Pestañas del Rol Anterior: Intentar ser "Artista/Estudiante" con el correo de "Gerente/Facturación" parpadeando en la esquina de la pantalla.</span></li><li class="chk-item"><span class="chk-box"></span><span>Cambiar de Rol Sin Transición Corporal: Pasar de una reunión tensa directo a cenar con tu familia en 3 segundos arrastra el cortisol de un rol al otro.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Triangulación y Compartimentación de Roles Multipotenciales</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Reducción de Contaminación Cruzada (Horas semanales de trabajo enfocado por rol sin interrupción mutua)</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> 100% de roles delimitados con frontera prohibida y ritual de transición activo
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «Nunca uses dos sombreros en la misma cabeza al mismo tiempo: honra el rol que habitas hoy cerrando con llave la puerta del anterior.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 06 de 09</div>
+            </footer>
+        </section>
+        
+        <!-- HOJA 07: P2-18 - Principio de Pareto (Regla del 80/20) -->
+        <section class="sheet-page" id="sheet-07-principio_pareto_80_20" data-sheet-index="7">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P2-18</span>
+                        <div>
+                            <h1 class="sheet-h1">Principio de Pareto (Regla del 80/20)</h1>
+                            <div class="subtitle">La Cura para el Agotamiento por Intentar Hacer de Todo • Piso 2: Optimización, Operación & Relacional</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Si una emergencia médica te obligara a trabajar solo 2 horas al día esta semana, cuáles serían las 2 únicas actividades que mantendrían vivo tu negocio?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Elegir la ÚNICA tarea de tu jornada que de verdad mueve la aguja financiera y hacerla antes de abrir el correo.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Clasificar tus tareas en el 20% Vital y 80% Trivial en la microapp, y podar al menos 2 distracciones hoy.
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Dedicar el 80% del tiempo a clientes o tareas que solo generan el 10% del margen o satisfacción.</span></li><li class="chk-item"><span class="chk-box"></span><span>Sentir culpa moral por no completar una lista interminable de 40 tareas diarias.</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>"El Perfeccionista Matemático": Intentar que sea exactamente 80 y</span></li><li class="chk-item"><span class="chk-box"></span><span>A veces es 70/30 o 90/</span></li><li class="chk-item"><span class="chk-box"></span><span>Lo importante es el concepto de desequilibrio.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Principio de Pareto (Regla del 80/20)</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Horas de foco blindadas para el 20% vital (&ge; 4 horas diarias)</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> Reducción del 50% en tiempo dedicado a tareas triviales delegables o prescindibles
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «El 80% de tus resultados proviene del 20% de tus esfuerzos; todo lo demás es grasa operativa a podar.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 07 de 09</div>
+            </footer>
+        </section>
+        
+        <!-- HOJA 08: P1-07 - Presupuesto y Distribución 50/30/20 -->
+        <section class="sheet-page" id="sheet-08-finanzas_503020" data-sheet-index="8">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P1-07</span>
+                        <div>
+                            <h1 class="sheet-h1">Presupuesto y Distribución 50/30/20</h1>
+                            <div class="subtitle">Tu Blindaje de Solvencia Estratégica: El Oxígeno Financiero en Tres Baldes • Piso 1: Cimientos, Estabilización & Fricción Cero</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Si tus ingresos se detuvieran por completo mañana, cuántos días o meses podrías pagar tu techo y comida con total tranquilidad?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Anotar tus 3 gastos fijos principales (arriendo/dividendo, súper y cuentas) y transferir hoy mismo una micro-suma a una cuenta sin tarjeta de débito.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Ingresar tu ingreso neto en la microapp y verificar si tu piso de necesidades está por encima o por debajo del 50%.
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Necesidades fijas superan el 65% del ingreso líquido.</span></li><li class="chk-item"><span class="chk-box"></span><span>Menos de 30 días de fondo de supervivencia en caso de cese de ingresos.</span></li><li class="chk-item"><span class="chk-box"></span><span>Sentimiento de culpa recurrente al comprar gustos personales.</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>"El Deseo Disfrazado": Decir que ese celular de última generación es una "necesidad" para el trabajo cuando el antiguo todavía funciona perfecto. ¡Cuidado con el auto-engaño!</span></li><li class="chk-item"><span class="chk-box"></span><span>"El Ahorro del Final": Esperar a que termine el mes para ver si sobra algo para el 20%. (Spoiler: Nunca sobra). Págate a ti primero.</span></li><li class="chk-item"><span class="chk-box"></span><span>"Vivir en el 90/10/0": Tener necesidades tan altas que no tienes espacio para disfrutar ni para ahorrar. Si tus necesidades pasan del 60%, es hora de aplicar Kaizen u Eliminar gastos con SCAMPER .</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Presupuesto y Distribución 50/30/20</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Meses de Fondo de Paz acumulados y Ratio de Necesidades <= 50%</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> Mínimo 1 mes de subsistencia acumulado
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «El presupuesto no es para castigarte ni prohibirte vivir; es para darte permiso consciente de disfrutar sin culpa y ahorrar con serenidad.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 08 de 09</div>
+            </footer>
+        </section>
+        
+        <!-- HOJA 09: P1-12 - Inventario Cero Culpa y Registro de Micro-Victorias Nocturnas -->
+        <section class="sheet-page" id="sheet-09-inventario_cero_culpa" data-sheet-index="9">
+            <div>
+                <header class="sheet-header">
+                    <div class="title-block">
+                        <span class="badge-code">P1-12</span>
+                        <div>
+                            <h1 class="sheet-h1">Inventario Cero Culpa y Registro de Micro-Victorias Nocturnas</h1>
+                            <div class="subtitle">El Cierre del Día en Paz (Reconocer lo que SÍ Hiciste) • Piso 1: Cimientos, Estabilización & Fricción Cero</div>
+                        </div>
+                    </div>
+                    <div class="meta-fields">
+                        <span>Cliente: <strong>Diego González Yáñez</strong></span>
+                        <span>Fecha: <span class="meta-line"></span></span>
+                    </div>
+                </header>
+
+                <!-- Bloque Clínico Personalizado -->
+                <div class="card-box" style="margin-bottom: 0.65rem; background: #F0F9FF; border-color: #BAE6FD;">
+                    <div class="card-title" style="color: #0369A1; border-bottom-color: #BAE6FD;">
+                        <span><i class="fa-solid fa-compass"></i> Pregunta Diagnóstica & Enfoque para Diego González Yáñez</span>
+                        <span style="font-size: 0.72rem; font-weight: 700;">Foco: Triangulación de Roles Multipotenciales & Soberanía 168H</span>
+                    </div>
+                    <p style="font-size: 0.82rem; font-style: italic; color: #0F172A; margin-bottom: 0.35rem;">
+                        «¿Por qué le exiges a tu mente que duerma en paz si antes de acostarte solo le pasaste factura por tus pendientes y no le reconociste tus victorias?»
+                    </p>
+                    <div style="font-size: 0.75rem; color: #334155; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <span><strong>Hora de Oro:</strong> Bloques de Trabajo Profundo sin interrupciones</span>
+                        <span><strong>Meta de Paz:</strong> $863.000 CLP piso basal cubierto + Fondo de Paz</span>
+                    </div>
+                </div>
+
+                <!-- Grid 2 Columnas: Paso Cero + Antipatrones -->
+                <div class="grid-2col" style="margin-bottom: 0.65rem;">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Protocolo Paso Cero (5 Minutos)</span>
+                            <span style="font-size: 0.68rem; color: var(--emerald);">Fricción Cero</span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: #1E293B; margin-bottom: 0.45rem;">
+                            <strong>Acción Inmediata:</strong> Escribir en una hoja o en tu bitácora 1 sola cosa buena o de cuidado que sí sostuviste hoy antes de cerrar los ojos.
+                        </p>
+                        <p style="font-size: 0.76rem; color: #475569;">
+                            <strong>Microdosis 24H:</strong> Anotar 3 micro-victorias reales del día (incluyendo trabajo invisible/cuidados) y declarar qué sueltas sin culpa para mañana.
+                        </p>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-heart" style="color: var(--rose);"></i> Señales de Alerta & Antipatrones</span>
+                            <span style="font-size: 0.68rem; color: var(--rose);">Cero Culpa</span>
+                        </div>
+                        <ul class="chk-list">
+                            <li class="chk-item"><span class="chk-box"></span><span>Me acuesto y mi mente empieza a repasar todo lo que no alcancé a hacer hoy.</span></li><li class="chk-item"><span class="chk-box"></span><span>Siento que no merezco descansar porque no fui lo suficientemente productivo.</span></li>
+                            <li class="chk-item"><span class="chk-box"></span><span>Menospreciar tus Victorias ("Eso era mi obligación"): Decir *"hacer almuerzo o atender a un cliente no cuenta porque era mi deber"*. ¡Todo lo que consumió tu energía vital hoy cuenta en tu contabilidad humana!</span></li><li class="chk-item"><span class="chk-box"></span><span>Disfrazar Reproches de Victorias: Escribir *"Avancé el informe, aunque debería haberlo terminado"*. Prohibido usar la palabra "pero" o "aunque" en tus 3 victorias.</span></li><li class="chk-item"><span class="chk-box"></span><span>Usar el Cierre para Planificar 20 Tareas de Mañana: El campo "Lo que suelto" es para descansar y perdonarse, no para armar una lista intimidante que te vuelva a dar ansiedad.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lienzo de Trabajo Físico (Escritura a Mano) -->
+                <div class="card-box" style="margin-bottom: 0.65rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-pen-to-square" style="color: var(--purple);"></i> Bitácora de Aplicación Práctica (Llenar a Mano)</span>
+                        <span style="font-size: 0.7rem; color: #64748B;">Aterrizaje Semanal</span>
+                    </div>
+                    <table class="table-mini">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Situación / Pendiente Actual</th>
+                                <th style="width: 36%;">Aplicación de Inventario Cero Culpa y Registro de Micro-Victorias Nocturnas</th>
+                                <th style="width: 22%;">Micro-Compromiso (Fecha/Hora)</th>
+                                <th style="width: 14%;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                            <tr><td style="height: 1.55in;"></td><td></td><td></td><td>[ ] Listo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Notas de Reflexión y Victoria -->
+                <div class="card-box" style="margin-bottom: 0.5rem;">
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-star" style="color: var(--teal);"></i> Registro de Micro-Victorias & Aprendizaje Sin Juicio Moral</span>
+                        <span style="font-size: 0.7rem; color: #0D9488;">KPI: Calidad de Conciliación del Sueño y Paz Nocturna (Escala 1-10)</span>
+                    </div>
+                    <div style="height: 0.85in; border-bottom: 1px dashed #CBD5E1; margin-bottom: 0.35rem; font-size: 0.74rem; color: #64748B;">
+                        ¿Qué destrabé hoy aplicando esta herramienta durante 5 minutos?:
+                    </div>
+                    <div style="font-size: 0.74rem; color: #334155;">
+                        <strong>Meta esperada:</strong> Conciliar el sueño en < 25 min con nivel de paz mental >= 8/10 durante 14 noches
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sheet-footer">
+                <div><strong>Regla de Oro AICC:</strong> «El descanso no es un premio por vaciar una lista infinita; es un derecho biológico innegociable de quien dio lo mejor con la energía que tenía hoy.»</div>
+                <div>Administración Humana • Diego González Yáñez (+56975590132) • Hoja 09 de 09</div>
+            </footer>
+        </section>
+        
+    </main>
+
+    <script>
+        function filterSheets(targetId) {
+            const pages = document.querySelectorAll('.sheet-page');
+            pages.forEach(page => {
+                if (targetId === 'all' || page.id === targetId) {
+                    page.classList.remove('hidden-sheet');
+                } else {
+                    page.classList.add('hidden-sheet');
+                }
+            });
+        }
+
+        function printSelectedSheet() {
+            window.print();
+        }
+
+        function printFullBooklet() {
+            const selector = document.getElementById('sheetSelector');
+            if (selector) selector.value = 'all';
+            filterSheets('all');
+            window.print();
+        }
+    </script>
+</body>
+</html>

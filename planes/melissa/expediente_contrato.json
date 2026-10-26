@@ -1,0 +1,22 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "melissa",
+  "updated_at": "2026-10-26",
+  "nombre": "Melissa Henríquez Soto",
+  "hub_filename": "Hub_Imprimibles_Melissa.html",
+  "rol_contexto": "Kinesióloga Escolar & Fundadora Trafmen",
+  "area_critica": "Integración Multirrol & Fricción Cero (~14h/sem)",
+  "saturacion_operativa": 70,
+  "frase_raiz_culpa": "Pierdo horas dando vueltas entre tantos roles sin avanzar lo que quiero.",
+  "hora_de_oro": "Tardes protegidas (Martes, Viernes y Sábados)",
+  "valvula_descompresion": "Entrenamiento Karate y juego compartido con Chinito",
+  "numero_paz_financiera": "Presupuesto 50/30/20 con holgura para prototipos Trafmen",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "kanban_gtd_wip2",
+    "protocolo_paso_cero",
+    "inventario_cero_culpa"
+  ]
+}

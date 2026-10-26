@@ -20,6 +20,7 @@
     
     <!-- Catálogo Canónico de 40 Herramientas AICC -->
     <script src="../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/catalogo_40_herramientas.js"></script>
+    <script src="js/aicc-guides-data.js?v=3.5"></script>
 
     <style>
         :root {
@@ -378,6 +379,112 @@
             gap: 10px;
             z-index: 999999;
             animation: fadeIn 0.3s ease;
+        }
+
+        /* LIGHTBOX MODAL PARA DIAGRAMAS */
+        #lightbox-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+        #lightbox-modal.active { display: flex; animation: fadeIn 0.25s ease; }
+        #lightbox-img {
+            max-width: 92vw; max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.1);
+            border: 1px solid #333;
+        }
+        #lightbox-close {
+            position: absolute; top: 20px; right: 25px;
+            color: #ffffff; font-size: 2.2rem;
+            background: transparent; border: none;
+            cursor: pointer; line-height: 1;
+        }
+
+        /* GUIDE MODAL PARA LECTURA DE GUÍAS CLÍNICAS */
+        .guide-modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 9999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+        }
+        .guide-modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
+        .guide-modal-box {
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 18px;
+            max-width: 860px;
+            width: 100%;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+            overflow: hidden;
+        }
+        .guide-modal-header {
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111624;
+        }
+        .guide-modal-body {
+            padding: 1.8rem;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .guide-modal-body h2 {
+            color: #fff;
+            font-size: 1.15rem;
+            margin: 1.2rem 0 0.5rem 0;
+            font-family: var(--font-display, sans-serif);
+        }
+        .guide-modal-body h3 {
+            color: #38bdf8;
+            font-size: 0.98rem;
+            margin: 1rem 0 0.4rem 0;
+        }
+        .guide-modal-body blockquote {
+            border-left: 3px solid #10b981;
+            padding-left: 1rem;
+            margin: 0.8rem 0;
+            color: #94a3b8;
+            font-style: italic;
+        }
+        .guide-modal-body ul {
+            padding-left: 1.2rem;
+            margin: 0.5rem 0 1rem 0;
+        }
+        .guide-modal-body li {
+            margin-bottom: 0.35rem;
+        }
+        .guide-modal-close {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 5px;
         }
     </style>
 </head>
@@ -1184,13 +1291,20 @@
              ========================================================================= -->
         <div id="tab-herramientas" class="tab-content">
             <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
-                <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin:0 0 0.4rem 0;">
-                    🛠️ Kit de Herramientas Operativas Activas
-                </h3>
-                <p style="color:var(--secondary); font-size:0.82rem; margin:0 0 1rem 0;">
-                    Módulos y protocolos activados para este expediente.
-                </p>
-                <div id="herramientas-cards-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;"></div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:1.2rem;">
+                    <div>
+                        <div class="hero-tea-badge" style="display:inline-flex; align-items:center; gap:6px; color:#60a5fa; background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.25); padding:4px 10px; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:0.5rem;">
+                            <i class="fa-solid fa-toolbox"></i> Suite Prescrita de Herramientas Canónicas AICC
+                        </div>
+                        <h3 style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; margin:0 0 0.4rem 0; color:#fff;">
+                            🛠️ Kit de Herramientas Maestras, Checklists & Tutoriales
+                        </h3>
+                        <p style="color:var(--secondary); font-size:0.85rem; margin:0; max-width:820px; line-height:1.5;">
+                            Módulos y protocolos activados para este expediente. Cada herramienta incluye su tutorial contextualizado a tu realidad cotidiana, diagrama didáctico y checklist interactivo con guardado automático.
+                        </p>
+                    </div>
+                </div>
+                <div id="herramientas-cards-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:1.25rem;"></div>
             </div>
         </div>
 
@@ -1209,6 +1323,36 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- LIGHTBOX MODAL PARA DIAGRAMAS -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <button id="lightbox-close">&times;</button>
+        <img id="lightbox-img" src="" alt="Ampliación Diagrama">
+    </div>
+
+    <!-- GUIDE MODAL PARA LECTURA DE GUÍAS CLÍNICAS -->
+    <div id="guide-modal" class="guide-modal-overlay" onclick="closeGuideModal(event)">
+        <div class="guide-modal-box" onclick="event.stopPropagation()">
+            <div class="guide-modal-header">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span id="guide-modal-badge" style="background:rgba(16,185,129,0.15); color:#10b981; border:1px solid #10b98144; font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:800; padding:3px 8px; border-radius:6px;">AICC</span>
+                    <div>
+                        <h3 id="guide-modal-title" style="margin:0; font-size:1.05rem; color:#fff; font-family:'Space Grotesk', sans-serif;">Guía Canónica</h3>
+                        <p id="guide-modal-subtitle" style="margin:0; font-size:0.75rem; color:#10b981; font-weight:600;"></p>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <a id="guide-modal-external" href="#" target="_blank" style="color:#cbd5e1; font-size:0.75rem; text-decoration:none; padding:5px 10px; border-radius:6px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); display:flex; align-items:center; gap:5px;" title="Abrir en pestaña nueva">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Nueva Pestaña
+                    </a>
+                    <button class="guide-modal-close" onclick="closeGuideModal()">&times;</button>
+                </div>
+            </div>
+            <div id="guide-modal-body" class="guide-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
     </div>
 
     <!-- SCRIPTS MODULARES & REGISTRO DE DATOS -->
@@ -1261,16 +1405,23 @@
         async function loadAndRenderClient(cid) {
             let data = null;
 
-            // Intento 1: Fetch a Ficha_Maestra.json física en disco
-            if (window.location.protocol.startsWith("http") && CLIENT_JSON_PATHS[cid]) {
-                try {
-                    const resp = await fetch(CLIENT_JSON_PATHS[cid] + "?t=" + Date.now());
-                    if (resp.ok) {
-                        data = await resp.json();
-                        console.log(`[Motor Dinámico] Ficha_Maestra.json cargada en vivo para '${cid}' vía fetch`);
+            // Intento 1: Fetch a Ficha_Maestra.json física en disco o dentro del repo
+            if (window.location.protocol.startsWith("http")) {
+                const candidatePaths = [
+                    CLIENT_JSON_PATHS[cid],
+                    `planes/${cid}/Ficha_Maestra.json`
+                ].filter(Boolean);
+                for (const path of candidatePaths) {
+                    try {
+                        const resp = await fetch(path + "?t=" + Date.now());
+                        if (resp.ok) {
+                            data = await resp.json();
+                            console.log(`[Motor Dinámico] Ficha_Maestra.json cargada en vivo para '${cid}' desde ${path}`);
+                            break;
+                        }
+                    } catch(e) {
+                        // continuar al siguiente fallback
                     }
-                } catch(e) {
-                    console.warn(`[Motor Dinámico] No se pudo hacer fetch para '${cid}', usando fallback:`, e);
                 }
             }
 
@@ -1721,6 +1872,7 @@
         function renderDynamicHerramientas(data) {
             const container = document.getElementById("herramientas-cards-container");
             const btnTab = document.getElementById("tab-btn-herramientas");
+            if (!container) return;
             
             // Mapeo de alias comunes de modulos_activos a IDs del catálogo
             const ALIASES = {
@@ -1732,6 +1884,7 @@
                 'kanban_gtd_wip2': 'tablero_gtd_vaciado',
                 'kanban_gtd': 'tablero_gtd_vaciado',
                 'gtd': 'tablero_gtd_vaciado',
+                'gtd_vaciado_mental': 'tablero_gtd_vaciado',
                 'time_blocking_flexible': 'time_blocking',
                 'finanzas_503020': 'regla_50_30_20',
                 'simulador_financiero': 'regla_50_30_20',
@@ -1739,44 +1892,63 @@
                 'matriz_eisenhower': 'matriz_de_eisenhower',
                 'inventario_sesiones_resultados': 'inventario_de_resultados',
                 'inventario_resultados': 'inventario_de_resultados',
+                'inventario_cero_culpa': 'inventario_de_resultados',
+                'tecnica_pomodoro_foco': 'tecnica_pomodoro_paso_cero',
+                'protocolo_paso_cero': 'tecnica_pomodoro_paso_cero',
+                'ventana_johari_puntos_ciegos': 'la_ventana_de_johari',
+                'feedback_sbi_conversaciones': 'feedback_sbi_acuerdos',
+                'kaizen_mejora_continua': 'filosofia_kaizen_15min',
+                'principio_pareto_80_20': 'principio_de_pareto',
+                'plan_estrategico_hitos': 'plan_estrategico_roadmap',
                 'matriz_raci': 'matriz_raci',
                 'raci': 'matriz_raci',
                 'metodo_smart': 'metodo_smart',
                 'metodo_okr': 'metodo_okr'
             };
 
-            const catalog = window.AICC_40_TOOLS || [];
+            const catalog = window.AICC_CATALOGO_60_HERRAMIENTAS || window.AICC_CATALOGO_40_HERRAMIENTAS || window.AICC_40_TOOLS || [];
             const catalogMap = {};
             catalog.forEach(t => {
-                catalogMap[t.id] = t;
-                catalogMap[t.codigo.toLowerCase()] = t;
-                catalogMap[t.carpeta.toLowerCase()] = t;
+                if (t.id) catalogMap[t.id] = t;
+                if (t.codigo) catalogMap[t.codigo.toLowerCase()] = t;
+                if (t.carpeta) catalogMap[t.carpeta.toLowerCase()] = t;
             });
 
             let resolvedTools = [];
             const seenCodes = new Set();
+            const clientId = currentClientId || "cliente";
 
-            // 1. Herramientas explícitas preconfiguradas
-            if (Array.isArray(data.herramientas_activas)) {
+            // 1. Herramientas explícitas preconfiguradas con tutoriales y checklists
+            if (Array.isArray(data.herramientas_activas) && data.herramientas_activas.length > 0) {
                 data.herramientas_activas.forEach(h => {
                     const lookup = ALIASES[h.id] || h.id || h.nombre;
                     const matched = catalogMap[lookup] || catalogMap[(h.codigo || '').toLowerCase()];
                     resolvedTools.push({
+                        id: h.id || (matched ? matched.id : 'tool_' + Math.random()),
+                        numero: h.numero,
                         codigo: h.codigo || (matched ? matched.codigo : ''),
+                        badge: h.badge || (matched ? `${matched.codigo} • ${matched.piso || ''}` : ''),
+                        color: h.color || '#10b981',
                         nombre: h.nombre || (matched ? matched.nombre_oficial : 'Herramienta'),
                         subtitulo: h.subtitulo || (matched ? matched.nombre_humano : ''),
-                        pilar: h.pilar || (matched ? matched.pilar : ''),
                         descripcion: h.descripcion || (matched ? matched.pregunta_diagnostica : ''),
-                        app_url: matched ? matched.app_url : (h.app_url || ''),
-                        print_url: matched ? matched.print_url : (h.print_url || ''),
-                        guide_url: matched ? matched.guide_url : (h.guide_url || '')
+                        img_url: h.img_url || (matched ? matched.img_url : ''),
+                        img_fallback: h.img_fallback || (matched ? matched.img_url : ''),
+                        tutorial_html: h.tutorial_html || (matched ? `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;"><i class="fa-solid fa-graduation-cap"></i> Intención Clínica:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${matched.pregunta_diagnostica || ''}</p>` : ''),
+                        checklist: h.checklist || (matched && matched.protocolo_paso_cero ? [matched.protocolo_paso_cero] : []),
+                        app_url: h.app_url || (matched ? matched.app_url : ''),
+                        imprimible_url: h.imprimible_url || h.print_url || (matched ? matched.print_url : ''),
+                        imprimible_label: h.imprimible_label || 'Ver Imprimible →',
+                        guia_url: h.guia_url || h.guide_url || (matched ? matched.guide_url : ''),
+                        guia_key: h.guia_key || '',
+                        guia_label: h.guia_label || 'Ver Guía Completa →'
                     });
                     if (h.codigo) seenCodes.add(h.codigo);
                     if (matched) seenCodes.add(matched.codigo);
                 });
             }
 
-            // 2. Resolver automáticamente a partir de modulos_activos de la Ficha Maestra
+            // 2. Resolver automáticamente a partir de modulos_activos de la Ficha Maestra si faltan
             if (Array.isArray(data.modulos_activos)) {
                 data.modulos_activos.forEach(modId => {
                     const lookup = ALIASES[modId] || modId;
@@ -1784,14 +1956,22 @@
                     if (tool && !seenCodes.has(tool.codigo)) {
                         seenCodes.add(tool.codigo);
                         resolvedTools.push({
+                            id: tool.id,
                             codigo: tool.codigo,
+                            badge: `${tool.codigo} • ${tool.pilar || ''}`,
+                            color: '#10b981',
                             nombre: tool.nombre_oficial,
                             subtitulo: tool.nombre_humano,
-                            pilar: tool.pilar,
                             descripcion: tool.pregunta_diagnostica || tool.protocolo_paso_cero || "Herramienta clínica prescrita para tu plan de vuelo.",
+                            img_url: tool.img_url,
+                            img_fallback: tool.img_url,
+                            tutorial_html: `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;"><i class="fa-solid fa-graduation-cap"></i> Intención Clínica:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${tool.pregunta_diagnostica || ''}</p>`,
+                            checklist: tool.protocolo_paso_cero ? [tool.protocolo_paso_cero] : [],
                             app_url: tool.app_url,
-                            print_url: tool.print_url,
-                            guide_url: tool.guide_url
+                            imprimible_url: tool.print_url,
+                            imprimible_label: 'Ver Imprimible →',
+                            guia_url: tool.guide_url,
+                            guia_label: 'Ver Guía Completa →'
                         });
                     }
                 });
@@ -1803,42 +1983,169 @@
             }
             if (btnTab) btnTab.style.display = "flex";
 
-            container.innerHTML = resolvedTools.map(h => {
-                const codeBadge = h.codigo ? `<span style="background:rgba(16,185,129,0.15); color:#10b981; font-family:var(--font-mono); font-size:0.7rem; font-weight:800; padding:3px 8px; border-radius:6px; border:1px solid rgba(16,185,129,0.3);">${h.codigo}</span>` : '';
-                const pilarBadge = h.pilar ? `<span style="font-size:0.68rem; color:#888; text-transform:uppercase; font-weight:700;">${h.pilar.replace(/Pilar \d+:\s*/i, '')}</span>` : '';
+            container.innerHTML = resolvedTools.map((h, toolIdx) => {
+                const borderColor = h.color ? h.color + '44' : 'rgba(255,255,255,0.1)';
+                const badgeColor = h.color || '#10b981';
                 
-                return `
-                <div style="background:#0f141c; border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between; gap:1rem;">
-                    <div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-                            ${codeBadge}
-                            ${pilarBadge}
-                        </div>
-                        <h4 style="font-size:1.02rem; font-weight:800; color:#fff; margin:0 0 4px 0; line-height:1.3;">${h.nombre}</h4>
-                        ${h.subtitulo ? `<div style="font-size:0.75rem; color:#10b981; font-weight:600; margin-bottom:8px;">${h.subtitulo}</div>` : ''}
-                        <p style="font-size:0.8rem; color:#94a3b8; margin:0; line-height:1.45;">${h.descripcion}</p>
-                    </div>
+                // Checklist items with persistent state
+                let checklistHtml = '';
+                if (Array.isArray(h.checklist) && h.checklist.length > 0) {
+                    const listItems = h.checklist.map((item, itemIdx) => {
+                        const itemText = typeof item === 'object' ? (item.texto || item.text || '') : item;
+                        const storageKey = `ah_chk_${clientId}_${h.id || toolIdx}_${itemIdx}`;
+                        const isChecked = localStorage.getItem(storageKey) === 'true';
+                        return `
+                            <li style="margin-bottom:0.4rem;">
+                                <label style="display:flex; align-items:flex-start; gap:8px; cursor:pointer; font-size:0.8rem; line-height:1.4; color:${isChecked ? '#64748b' : '#cbd5e1'}; ${isChecked ? 'text-decoration:line-through;' : ''}">
+                                    <input type="checkbox" onchange="toggleDynamicChecklist('${storageKey}', this)" ${isChecked ? 'checked' : ''} style="margin-top:3px; accent-color:${badgeColor}; cursor:pointer; width:15px; height:15px;">
+                                    <span>${itemText}</span>
+                                </label>
+                            </li>
+                        `;
+                    }).join('');
 
-                    <div style="display:flex; flex-wrap:wrap; gap:8px; padding-top:0.8rem; border-top:1px solid rgba(255,255,255,0.06);">
-                        ${h.app_url ? `
-                            <a href="${h.app_url}" target="_blank" style="flex:1; min-width:130px; display:inline-flex; align-items:center; justify-content:center; gap:6px; background:#10b981; color:#052e16; font-size:0.78rem; font-weight:800; padding:8px 12px; border-radius:8px; text-decoration:none;">
-                                <i class="fa-solid fa-mobile-screen-button"></i> Abrir Microapp
-                            </a>
-                        ` : ''}
-                        ${h.print_url ? `
-                            <a href="${h.print_url}" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; gap:5px; background:rgba(255,255,255,0.06); color:#cbd5e1; font-size:0.75rem; font-weight:600; padding:8px 10px; border-radius:8px; text-decoration:none; border:1px solid rgba(255,255,255,0.1);">
-                                <i class="fa-solid fa-print"></i> Ficha
-                            </a>
-                        ` : ''}
-                        ${h.guide_url ? `
-                            <a href="${h.guide_url}" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; gap:5px; background:rgba(255,255,255,0.06); color:#cbd5e1; font-size:0.75rem; font-weight:600; padding:8px 10px; border-radius:8px; text-decoration:none; border:1px solid rgba(255,255,255,0.1);">
-                                <i class="fa-solid fa-book-open"></i> Guía
-                            </a>
-                        ` : ''}
+                    checklistHtml = `
+                        <div style="background:#121212; border:1px solid #282828; border-radius:8px; padding:0.9rem; margin-top:0.8rem;">
+                            <strong style="color:${badgeColor}; font-size:0.78rem; text-transform:uppercase; display:block; margin-bottom:0.5rem; letter-spacing:0.5px;">
+                                📋 Checklist Contextual para ${(data.cliente && data.cliente.nombre) || 'el Cliente'}:
+                            </strong>
+                            <ul style="list-style:none; padding:0; margin:0;">
+                                ${listItems}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Tutorial block
+                let tutorialHtml = '';
+                if (h.tutorial_html) {
+                    tutorialHtml = `
+                        <div style="background:#151821; border:1px solid #232b3e; border-radius:10px; padding:0.95rem; margin-top:0.9rem;">
+                            ${h.tutorial_html}
+                        </div>
+                    `;
+                }
+
+                // Image preview with lightbox
+                let imageHtml = '';
+                if (h.img_url) {
+                    const fallbackAttr = h.img_fallback ? `data-fallback="${h.img_fallback}"` : '';
+                    imageHtml = `
+                        <div class="image-preview" style="background:#111; border:1px solid #222; border-radius:8px; padding:0.6rem; text-align:center; margin-top:0.8rem;">
+                            <img src="${h.img_url}" ${fallbackAttr} alt="${escapeHtml(h.nombre)}" onclick="openLightbox(this.src)" onerror="this.onerror=null; if(this.getAttribute('data-fallback')) this.src=this.getAttribute('data-fallback');" style="max-height:220px; max-width:100%; border-radius:6px; cursor:zoom-in; transition:transform 0.2s ease;">
+                            <p style="font-size:0.72rem; color:#888; margin:0.4rem 0 0 0;"><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama didáctico</p>
+                        </div>
+                    `;
+                }
+
+                // Action buttons
+                let actions = [];
+                if (h.imprimible_url) {
+                    actions.push(`
+                        <a href="${h.imprimible_url}" target="_blank" style="display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.06); color:#cbd5e1; font-size:0.75rem; font-weight:600; padding:7px 10px; border-radius:6px; text-decoration:none; border:1px solid rgba(255,255,255,0.1);">
+                            <i class="fa-solid fa-print"></i> ${h.imprimible_label || 'Ver Imprimible →'}
+                        </a>
+                    `);
+                }
+                if (h.guia_key) {
+                    actions.push(`
+                        <a href="${h.guia_url || '#'}" onclick="openGuideModal('${h.guia_key}'); return false;" style="display:inline-flex; align-items:center; gap:5px; background:${badgeColor}22; color:${badgeColor}; font-size:0.75rem; font-weight:700; padding:7px 10px; border-radius:6px; text-decoration:none; border:1px solid ${badgeColor}44; cursor:pointer;">
+                            <i class="fa-solid fa-book-open"></i> ${h.guia_label || 'Ver Guía Completa →'}
+                        </a>
+                    `);
+                } else if (h.guia_url) {
+                    actions.push(`
+                        <a href="${h.guia_url}" target="_blank" style="display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.06); color:#cbd5e1; font-size:0.75rem; font-weight:600; padding:7px 10px; border-radius:6px; text-decoration:none; border:1px solid rgba(255,255,255,0.1);">
+                            <i class="fa-solid fa-book-open"></i> ${h.guia_label || 'Ver Guía Completa →'}
+                        </a>
+                    `);
+                }
+                if (h.app_url) {
+                    actions.push(`
+                        <a href="${h.app_url}" target="_blank" style="display:inline-flex; align-items:center; gap:5px; background:#10b981; color:#052e16; font-size:0.75rem; font-weight:800; padding:7px 12px; border-radius:6px; text-decoration:none;">
+                            <i class="fa-solid fa-mobile-screen-button"></i> Abrir Microapp
+                        </a>
+                    `);
+                }
+
+                return `
+                    <div class="card" style="background:#0c0f17; border:1px solid ${borderColor}; border-radius:14px; padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:6px;">
+                                <span style="background:${badgeColor}22; color:${badgeColor}; border:1px solid ${badgeColor}55; font-size:0.72rem; font-weight:800; padding:3px 8px; border-radius:6px;">
+                                    ${h.badge || h.codigo}
+                                </span>
+                            </div>
+                            <h3 style="font-size:1.1rem; font-weight:800; color:#fff; margin:0 0 4px 0; line-height:1.3;">${h.nombre}</h3>
+                            ${h.subtitulo ? `<p style="font-size:0.78rem; color:${badgeColor}; font-weight:600; margin:0 0 6px 0;">${h.subtitulo}</p>` : ''}
+                            <p style="font-size:0.83rem; color:#94a3b8; margin:0; line-height:1.45;">${h.descripcion}</p>
+                            ${imageHtml}
+                            ${tutorialHtml}
+                            ${checklistHtml}
+                        </div>
+                        <div style="margin-top:1rem; padding-top:0.8rem; border-top:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                            ${actions.join('')}
+                        </div>
                     </div>
-                </div>
                 `;
             }).join("");
+        }
+
+        function toggleDynamicChecklist(key, checkbox) {
+            localStorage.setItem(key, checkbox.checked ? 'true' : 'false');
+            const span = checkbox.parentElement.querySelector('span');
+            if (span) {
+                span.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
+                checkbox.parentElement.style.color = checkbox.checked ? '#64748b' : '#cbd5e1';
+            }
+        }
+
+        // LIGHTBOX
+        function openLightbox(src) {
+            const modal = document.getElementById("lightbox-modal");
+            const img = document.getElementById("lightbox-img");
+            if (modal && img) {
+                img.src = src;
+                modal.classList.add("active");
+            }
+        }
+        function closeLightbox() {
+            const modal = document.getElementById("lightbox-modal");
+            if (modal) modal.classList.remove("active");
+        }
+
+        // GUIDE MODAL
+        function openGuideModal(guideKey) {
+            const guides = window.AICC_GUIDES_DATA || {};
+            const guide = guides[guideKey];
+            if (!guide) {
+                console.warn(`Guía no encontrada: ${guideKey}`);
+                return;
+            }
+            const modal = document.getElementById("guide-modal");
+            const badge = document.getElementById("guide-modal-badge");
+            const title = document.getElementById("guide-modal-title");
+            const subtitle = document.getElementById("guide-modal-subtitle");
+            const body = document.getElementById("guide-modal-body");
+            const extLink = document.getElementById("guide-modal-external");
+
+            if (badge) {
+                badge.innerText = guide.code || "AICC";
+                badge.style.color = guide.color || "#10b981";
+                badge.style.borderColor = (guide.color || "#10b981") + "66";
+                badge.style.background = (guide.color || "#10b981") + "22";
+            }
+            if (title) title.innerText = guide.title || "Guía Canónica";
+            if (subtitle) subtitle.innerText = guide.subtitle || "";
+            if (body) body.innerHTML = guide.body || "<p>Contenido no disponible.</p>";
+            if (extLink) extLink.href = guide.url || "#";
+            if (modal) modal.classList.add("active");
+        }
+
+        function closeGuideModal(event) {
+            if (event && event.target && event.target.closest && event.target.closest('.guide-modal-box')) return;
+            const modal = document.getElementById("guide-modal");
+            if (modal) modal.classList.remove("active");
         }
 
         function renderDynamicAcuerdos(data) {

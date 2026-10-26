@@ -1,0 +1,22 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "demo",
+  "updated_at": "2026-10-26",
+  "nombre": "Cliente Demo AICC",
+  "hub_filename": "Hub_Imprimibles_Demo.html",
+  "rol_contexto": "Caso Demostrativo • Metodología AICC v4.0",
+  "area_critica": "Cimientos de Tiempo, Energía y Finanzas",
+  "saturacion_operativa": 75,
+  "frase_raiz_culpa": "Necesito estructura sin rigidez inhumana.",
+  "hora_de_oro": "Mañanas 09:00 a 10:30",
+  "valvula_descompresion": "Desconexión digital a las 21:30",
+  "numero_paz_financiera": "Presupuesto 50/30/20 activo",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "kanban_gtd_wip2",
+    "protocolo_paso_cero",
+    "inventario_cero_culpa"
+  ]
+}

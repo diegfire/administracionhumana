@@ -1,0 +1,22 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "emi",
+  "updated_at": "2026-10-26",
+  "nombre": "Emi",
+  "hub_filename": "Hub_Imprimibles_Emi.html",
+  "rol_contexto": "Creadora & Gestión Multipotencial",
+  "area_critica": "Batería Energética y Ritmo Sostenible",
+  "saturacion_operativa": 73,
+  "frase_raiz_culpa": "Me exijo como si todos los días tuviera la misma energía.",
+  "hora_de_oro": "Media mañana 10:00 a 11:30",
+  "valvula_descompresion": "Arte, música y pausas sensoriales",
+  "numero_paz_financiera": "Tranquilidad basal mensual",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "protocolo_paso_cero",
+    "arquetipos_energia",
+    "kanban_gtd_wip2",
+    "inventario_cero_culpa"
+  ]
+}

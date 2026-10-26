@@ -1,0 +1,23 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "antonia",
+  "updated_at": "2026-10-26",
+  "nombre": "Antonia Jofré",
+  "hub_filename": "Hub_Imprimibles_Antonia.html",
+  "rol_contexto": "28 años • Terapeuta Holística & Yoga",
+  "area_critica": "Trabajo & Carrera / Cuidado Familiar",
+  "saturacion_operativa": 76,
+  "frase_raiz_culpa": "Tengo miedo de comprometerme y fallar si surge una urgencia familiar.",
+  "hora_de_oro": "Tardes 18:30 a 20:00",
+  "valvula_descompresion": "Siesta diaria de 20 min y descanso nocturno sin pantallas",
+  "numero_paz_financiera": "$160.000 CLP base (8 alumnas x $20k)",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "kanban_gtd_wip2",
+    "protocolo_paso_cero",
+    "inventario_cero_culpa",
+    "paquetizacion_servicios_mes"
+  ]
+}

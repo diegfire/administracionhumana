@@ -1,0 +1,22 @@
+{
+  "schema_version": "4.0.0",
+  "client_slug": "alvaro",
+  "updated_at": "2026-10-26",
+  "nombre": "Álvaro Pincheira",
+  "hub_filename": "Hub_Imprimibles_Alvaro.html",
+  "rol_contexto": "Emprendedor & Ejecución Comercial",
+  "area_critica": "Acción Imperfecta y Consistencia Diaria",
+  "saturacion_operativa": 68,
+  "frase_raiz_culpa": "Postergo por querer tener todo perfecto antes de salir.",
+  "hora_de_oro": "Mañanas 08:30 a 10:30",
+  "valvula_descompresion": "Deporte y cierre nocturno sin pantallas",
+  "numero_paz_financiera": "Flujo comercial semanal activo",
+  "herramientas_prescritas": [
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "protocolo_paso_cero",
+    "kanban_gtd_wip2",
+    "matriz_eisenhower",
+    "inventario_cero_culpa"
+  ]
+}
