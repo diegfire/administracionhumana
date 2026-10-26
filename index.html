@@ -5331,10 +5331,21 @@
           </span>
         </div>
 
-        <!-- IFRAME EN VIVO DE PLANES-DEMO.HTML -->
-        <div style="width: 100%; height: 680px; background: #07080d; position: relative;">
-          <iframe id="live-demo-iframe" src="planes-demo.html?v=ejemplo_cliente" title="Ejemplo Cliente en Vivo" style="width: 100%; height: 100%; border: none; display: block;" loading="lazy"></iframe>
+        <!-- IFRAME EN VIVO DE PLANES-DEMO.HTML (ALTURA AUTO-AJUSTABLE PC & MÓVIL) -->
+        <div id="live-demo-iframe-wrap" style="width: 100%; height: 690px; min-height: 620px; background: #08090d; position: relative; transition: height 0.25s ease;">
+          <iframe id="live-demo-iframe" src="planes-demo.html?v=ejemplo_cliente_v2" title="Ejemplo Cliente en Vivo" style="width: 100%; height: 100%; border: none; display: block;" loading="lazy"></iframe>
         </div>
+        <script>
+          window.addEventListener("message", function(ev) {
+            if (ev && ev.data && ev.data.type === "ah-demo-iframe-height") {
+              var wrap = document.getElementById("live-demo-iframe-wrap");
+              if (wrap && typeof ev.data.height === "number") {
+                var targetH = Math.min(Math.max(ev.data.height, 620), 1150);
+                wrap.style.height = targetH + "px";
+              }
+            }
+          });
+        </script>
 
       </div>
 

@@ -563,6 +563,342 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* ══════════════════════════════════════════════════════════════════
+           OPTIMIZACIÓN RESPONSIVA PC & MÓVIL (MODO EJEMPLO CLIENTE EMBEBIDO)
+           ══════════════════════════════════════════════════════════════════ */
+        html, body {
+            scrollbar-width: thin;
+            scrollbar-color: #2d3748 #08090d;
+            background: #08090d;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #08090d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283142;
+            border-radius: 8px;
+            border: 2px solid #08090d;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+
+        main.container {
+            max-width: 1260px !important;
+            margin: 0 auto !important;
+            padding: 10px 14px 20px !important;
+        }
+
+        /* Header Ejecutivo Compacto */
+        .demo-compact-header {
+            background: linear-gradient(135deg, rgba(17, 20, 30, 0.95), rgba(10, 12, 18, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 14px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .demo-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 240px;
+            flex: 1;
+        }
+        .demo-avatar-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.65rem;
+            flex-shrink: 0;
+        }
+        .demo-title-wrap {
+            min-width: 0;
+            flex: 1;
+        }
+        .demo-badges-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+        .demo-header-h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.05rem, 2.2vw, 1.32rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .demo-header-role {
+            color: #38bdf8;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin: 2px 0 0 0;
+            line-height: 1.3;
+        }
+        .demo-pills-row {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        /* Barra de 6 Pestañas en Grilla Simétrica (Sin Botón Huérfano) */
+        #main-tabs-nav.tabs {
+            display: grid !important;
+            grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+            gap: 6px !important;
+            margin-bottom: 10px !important;
+            padding: 5px !important;
+            background: #0d1017 !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 12px !important;
+        }
+        #main-tabs-nav .tab-btn {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 8px 6px !important;
+            font-size: 0.76rem !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 5px !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            text-align: center !important;
+            line-height: 1.2 !important;
+        }
+        #main-tabs-nav .tab-btn i {
+            font-size: 0.82rem !important;
+            flex-shrink: 0 !important;
+        }
+        #dynamic-tabs-container {
+            grid-column: 1 / -1;
+        }
+        #dynamic-tabs-container:empty {
+            display: none !important;
+        }
+        #btn-add-module-tab {
+            grid-column: 1 / -1;
+        }
+
+        /* Compactación del Mapeador 24H para visualización inmediata de la tabla */
+        #schedule-calendar-bar-container {
+            display: none !important;
+        }
+        #tab-horario .card {
+            padding: 12px 14px !important;
+            margin-bottom: 0 !important;
+        }
+        .schedule-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .schedule-top-title-group {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .schedule-actions-group {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .schedule-actions-group .btn-schedule-action {
+            padding: 5px 9px !important;
+            font-size: 0.72rem !important;
+            border-radius: 7px !important;
+        }
+        .schedule-controls {
+            padding: 7px 10px !important;
+            margin-bottom: 6px !important;
+            background: rgba(255, 255, 255, 0.025) !important;
+            border: 1px solid rgba(255, 255, 255, 0.07) !important;
+            border-radius: 10px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            flex-wrap: wrap !important;
+        }
+        .brush-selector {
+            gap: 5px !important;
+        }
+        .brush-btn {
+            padding: 4px 9px !important;
+            font-size: 0.72rem !important;
+            border-radius: 6px !important;
+        }
+        .schedule-day-tabs {
+            margin-bottom: 6px !important;
+            padding: 4px 6px !important;
+            gap: 4px !important;
+        }
+        .day-tab-btn {
+            padding: 4px 8px !important;
+            font-size: 0.71rem !important;
+        }
+
+        /* Contenedor de Tabla 24H con Sticky Header y Altura Equilibrada */
+        .schedule-scroll-wrapper {
+            max-height: 410px !important;
+            overflow-y: auto !important;
+            overflow-x: auto !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            border-radius: 10px !important;
+            background: #0a0b10 !important;
+            position: relative !important;
+        }
+        .schedule-grid-table thead th {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 20 !important;
+            background: #121521 !important;
+            color: #e2e8f0 !important;
+            font-size: 0.75rem !important;
+            padding: 7px 6px !important;
+            border-bottom: 1px solid #2e364f !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+        }
+        .schedule-grid-table td {
+            height: 26px !important;
+            padding: 2px 4px !important;
+            font-size: 0.72rem !important;
+        }
+        .schedule-stats-bar {
+            margin-top: 8px !important;
+            gap: 6px !important;
+        }
+        .stat-pill {
+            padding: 4px 9px !important;
+            font-size: 0.72rem !important;
+        }
+
+        /* Responsividad Tablet (3x2 pestañas) */
+        @media (max-width: 980px) {
+            #main-tabs-nav.tabs {
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            }
+            .demo-pills-row {
+                justify-content: flex-start;
+                width: 100%;
+            }
+        }
+
+        /* Responsividad Móvil (2x3 pestañas + vista compacta limpia) */
+        @media (max-width: 640px) {
+            main.container {
+                padding: 8px 8px 16px !important;
+            }
+            .demo-compact-header {
+                padding: 9px 11px !important;
+                gap: 8px !important;
+            }
+            .demo-avatar-box {
+                width: 38px !important;
+                height: 38px !important;
+                font-size: 1.35rem !important;
+            }
+            .demo-header-h1 {
+                font-size: 0.98rem !important;
+            }
+            .demo-header-role {
+                font-size: 0.73rem !important;
+            }
+            .demo-pills-row {
+                display: flex !important;
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                padding-bottom: 2px !important;
+                max-width: 100% !important;
+                scrollbar-width: none;
+            }
+            .demo-pills-row::-webkit-scrollbar {
+                display: none;
+            }
+            .demo-pills-row span {
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+                font-size: 0.67rem !important;
+                padding: 2px 7px !important;
+            }
+            #main-tabs-nav.tabs {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 5px !important;
+                padding: 5px !important;
+            }
+            #main-tabs-nav .tab-btn {
+                padding: 8px 6px !important;
+                font-size: 0.73rem !important;
+                justify-content: flex-start !important;
+                padding-left: 10px !important;
+            }
+            #tab-horario .card {
+                padding: 10px 9px !important;
+            }
+            .schedule-top-bar {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 6px !important;
+            }
+            .schedule-actions-group {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 4px !important;
+            }
+            .schedule-actions-group .btn-schedule-action {
+                padding: 4px 7px !important;
+                font-size: 0.68rem !important;
+            }
+            .schedule-controls {
+                padding: 6px 8px !important;
+                gap: 5px !important;
+            }
+            .brush-selector {
+                display: flex !important;
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                width: 100% !important;
+                padding-bottom: 3px !important;
+            }
+            .brush-btn {
+                flex-shrink: 0 !important;
+                font-size: 0.69rem !important;
+                padding: 4px 8px !important;
+            }
+            .schedule-scroll-wrapper {
+                max-height: 360px !important;
+            }
+            .grid-2, .kanban-grid {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -584,56 +920,56 @@
     <!-- CONTENEDOR MAESTRO -->
     <main class="container" style="max-width: 1300px; margin: 0 auto; padding: 14px 18px 40px;">
 
-        <!-- 2. HEADER DINÁMICO DEL CASO ACTIVO -->
-        <header style="margin-bottom: 1.5rem;">
-            <div class="brand" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-                <div class="brand-logo" id="case-header-avatar" style="font-size: 2.6rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); width: 68px; height: 68px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+        <!-- 2. HEADER EJECUTIVO COMPACTO DEL EJEMPLO CLIENTE -->
+        <header class="demo-compact-header">
+            <div class="demo-header-left">
+                <div class="demo-avatar-box" id="case-header-avatar">
                     🧘‍♀️
                 </div>
-                <div class="brand-title" style="flex: 1; min-width: 280px;">
-                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
-                        <span class="hero-tea-badge" id="case-header-tag" style="margin: 0; padding: 3px 10px; font-size: 0.72rem;">
-                            👤 Ejemplo Cliente • Cuidados Familiares & Servicios
+                <div class="demo-title-wrap">
+                    <div class="demo-badges-row">
+                        <span class="hero-tea-badge" id="case-header-tag" style="margin: 0; padding: 2px 8px; font-size: 0.67rem;">
+                            👤 Ejemplo Cliente • Cuidados & Servicios
                         </span>
-                        <span style="font-size: 0.7rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); padding: 2px 8px; border-radius: 20px;">
-                            ✅ 100% Calibrado • Administración Humana
+                        <span style="font-size: 0.66rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); padding: 2px 7px; border-radius: 20px;">
+                            ✅ 100% Calibrado
                         </span>
-                        <span id="consultor-badge-indicator" style="display: none; font-size: 0.7rem; color: #f59e0b; font-weight: 800; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); padding: 2px 8px; border-radius: 20px;">
-                            🛠️ Modo Consultor • Activación Habilitada
+                        <span id="consultor-badge-indicator" style="display: none; font-size: 0.66rem; color: #f59e0b; font-weight: 800; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); padding: 2px 7px; border-radius: 20px;">
+                            🛠️ Modo Consultor
                         </span>
                     </div>
-                    <h1 id="case-header-name" style="font-family: var(--font-heading); font-size: clamp(1.4rem, 3.5vw, 1.85rem); font-weight: 800; color: #fff; margin: 2px 0;">
+                    <h1 id="case-header-name" class="demo-header-h1">
                         Dossier & Plan de Vuelo 2.0 • Sofía Valenzuela
                     </h1>
-                    <p id="case-header-role" style="color: var(--color-accent-blue); font-size: 0.92rem; font-weight: 600;">
+                    <p id="case-header-role" class="demo-header-role">
                         Yoga Somático para Cuerpos Cansados & Acompañamiento Familiar
                     </p>
                 </div>
             </div>
 
             <!-- PILLS RESUMEN DEL CASO -->
-            <div id="case-header-pills" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;"></div>
+            <div id="case-header-pills" class="demo-pills-row"></div>
         </header>
 
-        <!-- 3. HUB DE PESTAÑAS MODULARES DEMOSTRATIVAS (ELEMENTOS PRECISOS Y VIVOS) -->
+        <!-- 3. HUB DE 6 PESTAÑAS MODULARES EN GRILLA SIMÉTRICA (6 EN PC / 3x2 TABLET / 2x3 MÓVIL) -->
         <nav class="tabs" id="main-tabs-nav" aria-label="Navegación de Módulos">
             <button class="tab-btn active" id="tab-btn-horario" onclick="switchTab('tab-horario')">
-                <i class="fa-regular fa-clock"></i> Mapeador 24H
+                <i class="fa-regular fa-clock"></i> <span>1. Mapeador 24H</span>
             </button>
             <button class="tab-btn" id="tab-btn-kanban" onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns"></i> Kanban GTD (WIP=2)
+                <i class="fa-solid fa-table-columns"></i> <span>2. Kanban (WIP=2)</span>
             </button>
             <button class="tab-btn" id="tab-btn-identidades" onclick="switchTab('tab-identidades')">
-                <i class="fa-solid fa-masks-theater"></i> 4 Arquetipos Energía
+                <i class="fa-solid fa-masks-theater"></i> <span>3. 4 Arquetipos</span>
             </button>
             <button class="tab-btn" id="tab-btn-herramientas" onclick="switchTab('tab-herramientas')">
-                <i class="fa-solid fa-toolbox"></i> Herramienta: Time Blocking & Foco
+                <i class="fa-solid fa-toolbox"></i> <span>4. Time Blocking</span>
             </button>
             <button class="tab-btn" id="tab-btn-resultados" onclick="switchTab('tab-resultados')">
-                <i class="fa-solid fa-trophy" style="color: #10b981;"></i> Resultados & Calibración
+                <i class="fa-solid fa-trophy" style="color: #10b981;"></i> <span>5. Resultados</span>
             </button>
             <button class="tab-btn" id="tab-btn-accion" onclick="switchTab('tab-accion')">
-                <i class="fa-solid fa-bolt"></i> Plan 24h & Límites
+                <i class="fa-solid fa-bolt"></i> <span>6. Plan 24h & Límites</span>
             </button>
 
             <!-- PESTAÑAS DINÁMICAS DE MÓDULOS AGREGADOS DEL CATÁLOGO -->
@@ -646,35 +982,36 @@
         </nav>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 2: 4 ARQUETIPOS DE ENERGÍA PERSONAL (EN 2 COLUMNAS)      -->
+        <!-- PESTAÑA 1: MAPEADOR SEMANAL 24 HORAS (COMPACTO Y VISIBLE)        -->
         <!-- ════════════════════════════════════════════════════════════════ -->
         <div id="tab-horario" class="tab-content active">
             <div class="card">
-                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
-                    <span style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:#fff;" id="m2-schedule-title">
-                        ⏰ Mapeador Semanal 24 Horas
-                    </span>
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-                        <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#10B981; font-weight:600; margin-right: 4px;">
-                            <i class="fa-solid fa-circle" style="font-size:7px;"></i> Auto-guardado activo
+                <div class="schedule-top-bar">
+                    <div class="schedule-top-title-group">
+                        <span style="font-family:var(--font-heading); font-size:1.08rem; font-weight:800; color:#fff;" id="m2-schedule-title">
+                            ⏰ Mapeador Semanal 24 Horas (Sofía)
+                        </span>
+                        <span style="font-size: 0.76rem; color: #94a3b8;">
+                            Haz clic en un pincel y toca cualquier bloque horario para pintar o editar:
+                        </span>
+                    </div>
+                    <div class="schedule-actions-group">
+                        <span style="display:inline-flex; align-items:center; gap:4px; font-size:0.7rem; color:#10B981; font-weight:700; margin-right: 2px;">
+                            <i class="fa-solid fa-circle" style="font-size:6px;"></i> Auto-guardado
                         </span>
                         <button class="btn-schedule-action" id="btn-manual-save-schedule" onclick="manualSaveSchedule()" style="background: #ffffff; color: #000000; font-weight: 800;">
-                            <i class="fa-solid fa-floppy-disk"></i> Guardar Horario
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar
                         </button>
-                        <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar por Rango</button>
+                        <button class="btn-schedule-action" onclick="openRangeFillModal()">⚡ Rellenar Rango</button>
                         <button class="btn-schedule-action btn-manage-cat" onclick="openCategoryManagerModal()">⚙️ + Categoría / Editar</button>
-                        <button class="btn-schedule-action" onclick="exportSchedulePNG(activeCaseData?.profile?.shortName || 'Horario')">📸 Exportar PNG</button>
-                        <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Restablecer</button>
+                        <button class="btn-schedule-action" onclick="exportSchedulePNG(activeCaseData?.profile?.shortName || 'Horario')">📸 PNG</button>
+                        <button class="btn-schedule-action" onclick="resetScheduleToDefault()" style="color:#f87171;">🔄 Reset</button>
                     </div>
                 </div>
 
-                <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.2rem;">
-                    Pinta tus bloques semanales para proteger tus <strong>Bloques de Oro</strong>, tus ventanas de trabajo enfocado y tus horas de descanso libre de culpa.
-                </p>
-
                 <!-- SELECTOR DE PINCELES -->
                 <div class="schedule-controls">
-                    <div style="font-size:0.75rem; font-weight:700; color:#888; text-transform:uppercase;">Pincel Activo:</div>
+                    <div style="font-size:0.7rem; font-weight:800; color:#94a3b8; text-transform:uppercase; white-space:nowrap;">🎨 Pincel:</div>
                     <div class="brush-selector" id="brush-selector-container"></div>
                 </div>
 
@@ -1198,7 +1535,6 @@
     <script src="js/portal-gateway.js?v=3.5"></script>
     <script src="js/schedule-engine.js?v=3.5"></script>
     <script src="js/kanban-engine.js?v=3.5"></script>
-    <script src="js/whatsapp-widget.js?v=3.5"></script>
 
     <script>
         // ESTADO GLOBAL
@@ -1228,11 +1564,34 @@
             if (targetContent) targetContent.classList.add("active");
 
             if (tabId === "tab-horario" && typeof renderScheduleGrid === "function") {
-                setTimeout(renderScheduleGrid, 40);
+                setTimeout(() => {
+                    renderScheduleGrid();
+                    scrollScheduleToMorning();
+                }, 40);
             }
             if (tabId === "tab-herramientas" && typeof initToolTimeBlockingChecklist === "function") {
                 initToolTimeBlockingChecklist();
             }
+            setTimeout(notifyParentIframeHeight, 80);
+        }
+
+        function scrollScheduleToMorning() {
+            const wrap = document.getElementById("schedule-export-container");
+            if (wrap && !wrap.dataset.scrolledInit) {
+                wrap.scrollTop = 175;
+                wrap.dataset.scrolledInit = "1";
+            }
+        }
+
+        function notifyParentIframeHeight() {
+            try {
+                if (window.parent && window.parent !== window) {
+                    const mainEl = document.querySelector("main.container");
+                    if (!mainEl) return;
+                    const h = Math.max(620, Math.ceil(mainEl.getBoundingClientRect().height + 24));
+                    window.parent.postMessage({ type: "ah-demo-iframe-height", height: h }, "*");
+                }
+            } catch (e) {}
         }
 
         function setSimState(state) {
@@ -1294,8 +1653,8 @@
 
             const pillsContainer = document.getElementById("case-header-pills");
             if (pillsContainer && p.pills) {
-                pillsContainer.innerHTML = p.pills.map(tag => `
-                    <span style="font-size:0.72rem; color:#aaa; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:3px 8px; border-radius:20px;">
+                pillsContainer.innerHTML = p.pills.slice(0, 4).map(tag => `
+                    <span style="font-size:0.7rem; color:#cbd5e1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:2px 8px; border-radius:20px;">
                         ${tag}
                     </span>
                 `).join("");
@@ -2025,6 +2384,16 @@
             markCaseAsUnlocked(initialCase);
             updateConsultorModeUI();
             switchCase(initialCase);
+
+            // En pantallas móviles (<= 640px), iniciar el Mapeador 24H en vista de día (Lunes) para lectura 100% cómoda
+            if (window.innerWidth <= 640 && typeof window.setScheduleDayFilter === "function") {
+                window.setScheduleDayFilter(0);
+            }
+            setTimeout(scrollScheduleToMorning, 120);
+            setTimeout(notifyParentIframeHeight, 180);
+            window.addEventListener("resize", () => {
+                setTimeout(notifyParentIframeHeight, 100);
+            });
         });
     </script>
 </body>
