@@ -815,6 +815,318 @@
         <!-- =========================================================================
              TAB 5: MATRIZ DE EISENHOWER QUIRÚRGICA
              ========================================================================= -->
+        
+        <!-- =========================================================================
+             TAB CONTENT: BATCHING POR LOTES (AICC P1-09)
+             ========================================================================= -->
+        <div id="tab-batching" class="tab-content">
+            <div class="card" style="border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(135deg, rgba(245, 158, 11, 0.04) 0%, rgba(10, 10, 10, 0.95) 100%);">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div>
+                            <span class="role-badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); font-size: 0.72rem;">
+                                P1-09 • 02 Productividad & Tiempo • Cimientos AICC
+                            </span>
+                            <h2 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; color: #fff; margin: 3px 0 0 0;">
+                                Batching • Procesamiento por Lotes: La Lavadora de Ropa
+                            </h2>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button type="button" class="btn-schedule-action" onclick="resetClientBatching('alejandra')" style="color: #f87171; border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.08); font-size:0.78rem;">
+                            <i class="fa-solid fa-rotate-left"></i> Restablecer Lotes
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="sendBatchingWhatsApp('Alejandra Mattei', 'alejandra')" style="background: #25D366; color: #000; font-weight: 800; border: none; font-size:0.78rem;">
+                            <i class="fa-brands fa-whatsapp"></i> Reportar a Diego
+                        </button>
+                    </div>
+                </div>
+
+                <!-- METÁFORA & PASO CERO -->
+                <div style="background: rgba(0, 0, 0, 0.45); border-left: 4px solid #f59e0b; border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1.4rem;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #f59e0b; font-weight: 800; font-size: 0.88rem; margin-bottom: 0.3rem;">
+                        <i class="fa-solid fa-jug-detergent"></i>
+                        <span>Metáfora Clínica: Nadie enciende la lavadora para lavar una sola prenda</span>
+                    </div>
+                    <p style="color: #ccc; font-size: 0.85rem; line-height: 1.5; margin: 0 0 0.5rem 0;">
+                        Alejandra, la trampa de la 'falsa insuficiencia' te hace sentir que nunca haces lo suficiente a pesar de tu gigantesco volumen intelectual y clínico. El Batching blinda tus mañanas como un templo de silencio para la redacción de tu tesis doctoral en Filosofía de la Ciencia (U. de Oviedo) y agrupa los informes psicopedagógicos y recados familiares en la tarde, marcando el fin de jornada a las 19:30.
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 6px; color: #fbbf24; font-size: 0.8rem; font-weight: 700; background: rgba(245, 158, 11, 0.1); padding: 5px 10px; border-radius: 6px;">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Paso Cero Hoy: Dedica tu primer bloque de 90 minutos de la mañana exclusivamente a escribir tu proyecto doctoral, con el celular en otra habitación y sin revisar correos hasta las 12:30.</span>
+                    </div>
+                </div>
+
+                <!-- LOTES INTERACTIVOS (GRID) -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; margin-bottom: 0.5rem;" id="batching-grid-alejandra">
+                    
+            <div class="batch-box-card" style="background:#0f0f0f; border:1px solid #38bdf844; border-radius:10px; display:flex; flex-direction:column; overflow:hidden;">
+                <div class="batch-box-head" style="padding:12px 14px; border-bottom:1px solid #222; background:rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <div style="font-family:var(--font-display); font-size:0.95rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-graduation-cap" style="color:#38bdf8;"></i> 📚 Lote Escritura Doctoral Oviedo
+                        </div>
+                        <div style="font-size:0.75rem; color:#38bdf8; font-weight:700; margin-top:2px;">
+                            ⏱️ Ventana: Mañanas 08:30 a 11:30 (Foco)
+                        </div>
+                    </div>
+                    <span class="badge" style="background:#38bdf822; color:#38bdf8; border:1px solid #38bdf844; font-size:0.7rem; font-weight:800; padding:2px 6px; border-radius:4px;" id="badge-count-alejandra-0">3</span>
+                </div>
+                <div class="batch-items-list" id="batch-list-alejandra-0" style="padding:10px; display:flex; flex-direction:column; gap:6px; flex:1; min-height:140px;">
+                    
+                <div class="batch-item-row" id="item-alejandra-0-0" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="0" data-idx="0" onchange="toggleClientBatchItem('alejandra', 0, 0, this.checked)" style="accent-color:#38bdf8; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Redacción de capítulos del proyecto de investigación doctoral</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 0, 0)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-alejandra-0-1" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="0" data-idx="1" onchange="toggleClientBatchItem('alejandra', 0, 1, this.checked)" style="accent-color:#38bdf8; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Fichaje y lectura analítica de bibliografía filosófica</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 0, 1)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-alejandra-0-2" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="0" data-idx="2" onchange="toggleClientBatchItem('alejandra', 0, 2, this.checked)" style="accent-color:#38bdf8; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Revisión de requisitos de beca y cronograma de entrega</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 0, 2)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                </div>
+                <div style="padding:0 10px 10px 10px; display:flex; gap:6px;">
+                    <input type="text" id="input-batch-alejandra-0" placeholder="+ Nueva tarea al lote..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addClientBatchItem('alejandra', 0)">
+                    <button type="button" onclick="addClientBatchItem('alejandra', 0)" style="background:#38bdf8; color:#000; font-weight:800; border:none; padding:0 10px; border-radius:6px; cursor:pointer; font-size:0.85rem;">+</button>
+                </div>
+            </div>
+        
+            <div class="batch-box-card" style="background:#0f0f0f; border:1px solid #10b98144; border-radius:10px; display:flex; flex-direction:column; overflow:hidden;">
+                <div class="batch-box-head" style="padding:12px 14px; border-bottom:1px solid #222; background:rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <div style="font-family:var(--font-display); font-size:0.95rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-brain" style="color:#10b981;"></i> 🧠 Lote Psicopedagogía & Ritma
+                        </div>
+                        <div style="font-size:0.75rem; color:#10b981; font-weight:700; margin-top:2px;">
+                            ⏱️ Ventana: 12:30 & 18:30 (30 min)
+                        </div>
+                    </div>
+                    <span class="badge" style="background:#10b98122; color:#10b981; border:1px solid #10b98144; font-size:0.7rem; font-weight:800; padding:2px 6px; border-radius:4px;" id="badge-count-alejandra-1">3</span>
+                </div>
+                <div class="batch-items-list" id="batch-list-alejandra-1" style="padding:10px; display:flex; flex-direction:column; gap:6px; flex:1; min-height:140px;">
+                    
+                <div class="batch-item-row" id="item-alejandra-1-0" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="1" data-idx="0" onchange="toggleClientBatchItem('alejandra', 1, 0, this.checked)" style="accent-color:#10b981; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Redacción concentrada de informes de evaluación</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 1, 0)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-alejandra-1-1" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="1" data-idx="1" onchange="toggleClientBatchItem('alejandra', 1, 1, this.checked)" style="accent-color:#10b981; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Respuesta asíncrona a consultas de apoderados y colegios</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 1, 1)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-alejandra-1-2" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="1" data-idx="2" onchange="toggleClientBatchItem('alejandra', 1, 2, this.checked)" style="accent-color:#10b981; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Organización de materiales didácticos y fichas Ritma</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 1, 2)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                </div>
+                <div style="padding:0 10px 10px 10px; display:flex; gap:6px;">
+                    <input type="text" id="input-batch-alejandra-1" placeholder="+ Nueva tarea al lote..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addClientBatchItem('alejandra', 1)">
+                    <button type="button" onclick="addClientBatchItem('alejandra', 1)" style="background:#10b981; color:#000; font-weight:800; border:none; padding:0 10px; border-radius:6px; cursor:pointer; font-size:0.85rem;">+</button>
+                </div>
+            </div>
+        
+            <div class="batch-box-card" style="background:#0f0f0f; border:1px solid #c084fc44; border-radius:10px; display:flex; flex-direction:column; overflow:hidden;">
+                <div class="batch-box-head" style="padding:12px 14px; border-bottom:1px solid #222; background:rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <div style="font-family:var(--font-display); font-size:0.95rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-house-heart" style="color:#c084fc;"></i> 👨‍👦 Lote Presencia Tomás & Cierre
+                        </div>
+                        <div style="font-size:0.75rem; color:#c084fc; font-weight:700; margin-top:2px;">
+                            ⏱️ Ventana: 19:30 en adelante (Soberanía)
+                        </div>
+                    </div>
+                    <span class="badge" style="background:#c084fc22; color:#c084fc; border:1px solid #c084fc44; font-size:0.7rem; font-weight:800; padding:2px 6px; border-radius:4px;" id="badge-count-alejandra-2">3</span>
+                </div>
+                <div class="batch-items-list" id="batch-list-alejandra-2" style="padding:10px; display:flex; flex-direction:column; gap:6px; flex:1; min-height:140px;">
+                    
+                <div class="batch-item-row" id="item-alejandra-2-0" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="2" data-idx="0" onchange="toggleClientBatchItem('alejandra', 2, 0, this.checked)" style="accent-color:#c084fc; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Apagado innegociable de computador y fin de jornada laboral</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 2, 0)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-alejandra-2-1" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="2" data-idx="1" onchange="toggleClientBatchItem('alejandra', 2, 1, this.checked)" style="accent-color:#c084fc; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Cena y tiempo de calidad exclusivo con Tomás</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 2, 1)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-alejandra-2-2" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-alejandra" data-lote="2" data-idx="2" onchange="toggleClientBatchItem('alejandra', 2, 2, this.checked)" style="accent-color:#c084fc; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Lectura literaria libre para descompresión cognitiva</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('alejandra', 2, 2)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                </div>
+                <div style="padding:0 10px 10px 10px; display:flex; gap:6px;">
+                    <input type="text" id="input-batch-alejandra-2" placeholder="+ Nueva tarea al lote..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addClientBatchItem('alejandra', 2)">
+                    <button type="button" onclick="addClientBatchItem('alejandra', 2)" style="background:#c084fc; color:#000; font-weight:800; border:none; padding:0 10px; border-radius:6px; cursor:pointer; font-size:0.85rem;">+</button>
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        </div>
+        
+    <script>
+    (function() {
+        const cid = 'alejandra';
+        const storageKey = 'ah_batching_' + cid;
+        const initialLotes = [{'title': '📚 Lote Escritura Doctoral Oviedo', 'window': 'Mañanas 08:30 a 11:30 (Foco)', 'color': '#38bdf8', 'icon': 'fa-solid fa-graduation-cap', 'items': ['Redacción de capítulos del proyecto de investigación doctoral', 'Fichaje y lectura analítica de bibliografía filosófica', 'Revisión de requisitos de beca y cronograma de entrega']}, {'title': '🧠 Lote Psicopedagogía & Ritma', 'window': '12:30 & 18:30 (30 min)', 'color': '#10b981', 'icon': 'fa-solid fa-brain', 'items': ['Redacción concentrada de informes de evaluación', 'Respuesta asíncrona a consultas de apoderados y colegios', 'Organización de materiales didácticos y fichas Ritma']}, {'title': '👨\u200d👦 Lote Presencia Tomás & Cierre', 'window': '19:30 en adelante (Soberanía)', 'color': '#c084fc', 'icon': 'fa-solid fa-house-heart', 'items': ['Apagado innegociable de computador y fin de jornada laboral', 'Cena y tiempo de calidad exclusivo con Tomás', 'Lectura literaria libre para descompresión cognitiva']}];
+
+        function getLotes() {
+            try {
+                const raw = localStorage.getItem(storageKey);
+                if (raw) return JSON.parse(raw);
+            } catch(e) {}
+            return initialLotes;
+        }
+
+        function saveLotes(lotes) {
+            localStorage.setItem(storageKey, JSON.stringify(lotes));
+        }
+
+        window.renderClientBatching_alejandra = function() {
+            const lotes = getLotes();
+            lotes.forEach((l, lIdx) => {
+                const list = document.getElementById(`batch-list-${cid}-${lIdx}`);
+                const badge = document.getElementById(`badge-count-${cid}-${lIdx}`);
+                if (!list) return;
+                list.innerHTML = '';
+                const items = l.items || [];
+                if (badge) badge.innerText = items.length;
+                items.forEach((item, iIdx) => {
+                    const isDone = typeof item === 'object' ? item.done : false;
+                    const text = typeof item === 'object' ? item.text : item;
+                    const div = document.createElement('div');
+                    div.className = 'batch-item-row';
+                    div.id = `item-${cid}-${lIdx}-${iIdx}`;
+                    div.style.cssText = 'background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;' + (isDone ? ' opacity:0.55; text-decoration:line-through;' : '');
+                    div.innerHTML = `
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                            <input type="checkbox" class="batch-check-${cid}" data-lote="${lIdx}" data-idx="${iIdx}" ${isDone ? 'checked' : ''} onchange="toggleClientBatchItem('${cid}', ${lIdx}, ${iIdx}, this.checked)" style="accent-color:${l.color || '#f59e0b'}; width:16px; height:16px; cursor:pointer;">
+                            <span class="batch-text">${text}</span>
+                        </label>
+                        <button type="button" onclick="deleteClientBatchItem('${cid}', ${lIdx}, ${iIdx})" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                    `;
+                    list.appendChild(div);
+                });
+            });
+        };
+
+        window.toggleClientBatchItem = function(c, lIdx, iIdx, checked) {
+            const lotes = getLotes();
+            if (lotes[lIdx] && lotes[lIdx].items && lotes[lIdx].items[iIdx] !== undefined) {
+                let it = lotes[lIdx].items[iIdx];
+                if (typeof it === 'string') {
+                    it = { text: it, done: checked };
+                } else {
+                    it.done = checked;
+                }
+                lotes[lIdx].items[iIdx] = it;
+                saveLotes(lotes);
+                const row = document.getElementById(`item-${cid}-${lIdx}-${iIdx}`);
+                if (row) {
+                    if (checked) {
+                        row.style.opacity = '0.55';
+                        row.style.textDecoration = 'line-through';
+                    } else {
+                        row.style.opacity = '1';
+                        row.style.textDecoration = 'none';
+                    }
+                }
+            }
+        };
+
+        window.addClientBatchItem = function(c, lIdx) {
+            const input = document.getElementById(`input-batch-${cid}-${lIdx}`);
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) return;
+            const lotes = getLotes();
+            if (lotes[lIdx]) {
+                if (!Array.isArray(lotes[lIdx].items)) lotes[lIdx].items = [];
+                lotes[lIdx].items.push({ text: text, done: false });
+                saveLotes(lotes);
+                input.value = '';
+                window.renderClientBatching_alejandra();
+            }
+        };
+
+        window.deleteClientBatchItem = function(c, lIdx, iIdx) {
+            const lotes = getLotes();
+            if (lotes[lIdx] && lotes[lIdx].items) {
+                lotes[lIdx].items.splice(iIdx, 1);
+                saveLotes(lotes);
+                window.renderClientBatching_alejandra();
+            }
+        };
+
+        window.resetClientBatching = function(c) {
+            if (confirm("¿Deseas restablecer los lotes predeterminados de Batching?")) {
+                localStorage.removeItem(storageKey);
+                window.renderClientBatching_alejandra();
+            }
+        };
+
+        window.sendBatchingWhatsApp = function(clientName, c) {
+            const lotes = getLotes();
+            let msg = `*Reporte de Batching (Lotes) - ${clientName}*%0A`;
+            lotes.forEach(l => {
+                msg += `%0A*${l.title}* (Ventana: ${l.window}):%0A`;
+                (l.items || []).forEach(it => {
+                    const isDone = typeof it === 'object' ? it.done : false;
+                    const text = typeof it === 'object' ? it.text : it;
+                    msg += `${isDone ? '✅' : '⏳'} ${text}%0A`;
+                });
+            });
+            window.open(`https://wa.me/56975590132?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => window.renderClientBatching_alejandra());
+        } else {
+            window.renderClientBatching_alejandra();
+        }
+    })();
+    </script>
+    
+    
+
         <div id="tab-eisenhower" class="tab-content">
             <div class="diagnostic-box" style="border-left-color:var(--rose); background:linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(15,23,42,0.7) 100%);">
                 <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
@@ -1706,11 +2018,16 @@ A partir de la web de Administración Humana y de mi contexto específico:
 
     <!-- CONFIGURACIÓN GLOBAL JAVASCRIPT DE ALEJANDRA -->
     <script>
-        window.CLIENT_CONFIG = {
+                window.CLIENT_CONFIG = {
             clientId: "alejandra",
-            clientUser: "@alejandra.mattei",
+            clientUser: "alejandra.mattei",
             clientName: "Alejandra Mattei",
             clientPIN: "AH-Mattei6251",
+            validPins: [
+                "ah-mattei6251", "ah-mattei-6251", "mattei6251", "juanamattei",
+                "alejandra.mattei", "alejandra", "mattei", "alejandra2026", "2026",
+                "diego_ah_master", "diegop1990", "ah-master9132"
+            ],
             masterPIN: "AH-Master9132"
         };
 

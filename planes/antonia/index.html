@@ -2390,6 +2390,318 @@ Ajusta mi Mapeador 24 Horas para proteger mis horas fijadas de Habitarte (ejerce
         </div>
 
         <!-- TAB CONTENT: HERRAMIENTAS -->
+        
+        <!-- =========================================================================
+             TAB CONTENT: BATCHING POR LOTES (AICC P1-09)
+             ========================================================================= -->
+        <div id="tab-batching" class="tab-content">
+            <div class="card" style="border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(135deg, rgba(245, 158, 11, 0.04) 0%, rgba(10, 10, 10, 0.95) 100%);">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div>
+                            <span class="role-badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); font-size: 0.72rem;">
+                                P1-09 • 02 Productividad & Tiempo • Cimientos AICC
+                            </span>
+                            <h2 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; color: #fff; margin: 3px 0 0 0;">
+                                Batching • Procesamiento por Lotes: La Lavadora de Ropa
+                            </h2>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button type="button" class="btn-schedule-action" onclick="resetClientBatching('antonia')" style="color: #f87171; border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.08); font-size:0.78rem;">
+                            <i class="fa-solid fa-rotate-left"></i> Restablecer Lotes
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="sendBatchingWhatsApp('Antonia Jofré', 'antonia')" style="background: #25D366; color: #000; font-weight: 800; border: none; font-size:0.78rem;">
+                            <i class="fa-brands fa-whatsapp"></i> Reportar a Diego
+                        </button>
+                    </div>
+                </div>
+
+                <!-- METÁFORA & PASO CERO -->
+                <div style="background: rgba(0, 0, 0, 0.45); border-left: 4px solid #f59e0b; border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1.4rem;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #f59e0b; font-weight: 800; font-size: 0.88rem; margin-bottom: 0.3rem;">
+                        <i class="fa-solid fa-jug-detergent"></i>
+                        <span>Metáfora Clínica: Nadie enciende la lavadora para lavar una sola prenda</span>
+                    </div>
+                    <p style="color: #ccc; font-size: 0.85rem; line-height: 1.5; margin: 0 0 0.5rem 0;">
+                        Antonia, gestionar al mismo tiempo clases de yoga somático, cuidados familiares de Mateo y Roma, y finanzas para el Hito Santiago te arrastra al Síndrome de Saturación Sistémica Quíntuple. El Batching agrupa la logística de insumos y los mensajes de alumnas en tandas concentradas para que no invadan tu práctica somática personal ni tus horas de descanso.
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 6px; color: #fbbf24; font-size: 0.8rem; font-weight: 700; background: rgba(245, 158, 11, 0.1); padding: 5px 10px; border-radius: 6px;">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Paso Cero Hoy: Define un solo momento después del almuerzo (13:00 a 13:30) para enviar enlaces Zoom y contestar al grupo de WhatsApp de 'Cuerpos Cansados', sin revisar el chat durante la mañana.</span>
+                    </div>
+                </div>
+
+                <!-- LOTES INTERACTIVOS (GRID) -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; margin-bottom: 0.5rem;" id="batching-grid-antonia">
+                    
+            <div class="batch-box-card" style="background:#0f0f0f; border:1px solid #38bdf844; border-radius:10px; display:flex; flex-direction:column; overflow:hidden;">
+                <div class="batch-box-head" style="padding:12px 14px; border-bottom:1px solid #222; background:rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <div style="font-family:var(--font-display); font-size:0.95rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-users" style="color:#38bdf8;"></i> 🧘 Lote Habitarte & Alumnas
+                        </div>
+                        <div style="font-size:0.75rem; color:#38bdf8; font-weight:700; margin-top:2px;">
+                            ⏱️ Ventana: Lun y Mié 13:00 (30 min)
+                        </div>
+                    </div>
+                    <span class="badge" style="background:#38bdf822; color:#38bdf8; border:1px solid #38bdf844; font-size:0.7rem; font-weight:800; padding:2px 6px; border-radius:4px;" id="badge-count-antonia-0">3</span>
+                </div>
+                <div class="batch-items-list" id="batch-list-antonia-0" style="padding:10px; display:flex; flex-direction:column; gap:6px; flex:1; min-height:140px;">
+                    
+                <div class="batch-item-row" id="item-antonia-0-0" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="0" data-idx="0" onchange="toggleClientBatchItem('antonia', 0, 0, this.checked)" style="accent-color:#38bdf8; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Enviar enlaces y recordatorios Zoom para Cuerpos Cansados</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 0, 0)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-antonia-0-1" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="0" data-idx="1" onchange="toggleClientBatchItem('antonia', 0, 1, this.checked)" style="accent-color:#38bdf8; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Registrar pagos de pases mensuales ($160.000)</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 0, 1)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-antonia-0-2" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="0" data-idx="2" onchange="toggleClientBatchItem('antonia', 0, 2, this.checked)" style="accent-color:#38bdf8; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Responder consultas somáticas de alumnas en WhatsApp</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 0, 2)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                </div>
+                <div style="padding:0 10px 10px 10px; display:flex; gap:6px;">
+                    <input type="text" id="input-batch-antonia-0" placeholder="+ Nueva tarea al lote..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addClientBatchItem('antonia', 0)">
+                    <button type="button" onclick="addClientBatchItem('antonia', 0)" style="background:#38bdf8; color:#000; font-weight:800; border:none; padding:0 10px; border-radius:6px; cursor:pointer; font-size:0.85rem;">+</button>
+                </div>
+            </div>
+        
+            <div class="batch-box-card" style="background:#0f0f0f; border:1px solid #10b98144; border-radius:10px; display:flex; flex-direction:column; overflow:hidden;">
+                <div class="batch-box-head" style="padding:12px 14px; border-bottom:1px solid #222; background:rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <div style="font-family:var(--font-display); font-size:0.95rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-kit-medical" style="color:#10b981;"></i> 🧾 Lote Logística Médica & Roma
+                        </div>
+                        <div style="font-size:0.75rem; color:#10b981; font-weight:700; margin-top:2px;">
+                            ⏱️ Ventana: Mar y Jue 11:30 (45 min)
+                        </div>
+                    </div>
+                    <span class="badge" style="background:#10b98122; color:#10b981; border:1px solid #10b98144; font-size:0.7rem; font-weight:800; padding:2px 6px; border-radius:4px;" id="badge-count-antonia-1">3</span>
+                </div>
+                <div class="batch-items-list" id="batch-list-antonia-1" style="padding:10px; display:flex; flex-direction:column; gap:6px; flex:1; min-height:140px;">
+                    
+                <div class="batch-item-row" id="item-antonia-1-0" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="1" data-idx="0" onchange="toggleClientBatchItem('antonia', 1, 0, this.checked)" style="accent-color:#10b981; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Compra y reposición agrupada en farmacia</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 1, 0)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-antonia-1-1" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="1" data-idx="1" onchange="toggleClientBatchItem('antonia', 1, 1, this.checked)" style="accent-color:#10b981; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Coordinación de citas y controles médicos familiares</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 1, 1)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-antonia-1-2" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="1" data-idx="2" onchange="toggleClientBatchItem('antonia', 1, 2, this.checked)" style="accent-color:#10b981; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Compras de víveres esenciales en una sola salida</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 1, 2)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                </div>
+                <div style="padding:0 10px 10px 10px; display:flex; gap:6px;">
+                    <input type="text" id="input-batch-antonia-1" placeholder="+ Nueva tarea al lote..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addClientBatchItem('antonia', 1)">
+                    <button type="button" onclick="addClientBatchItem('antonia', 1)" style="background:#10b981; color:#000; font-weight:800; border:none; padding:0 10px; border-radius:6px; cursor:pointer; font-size:0.85rem;">+</button>
+                </div>
+            </div>
+        
+            <div class="batch-box-card" style="background:#0f0f0f; border:1px solid #ec489944; border-radius:10px; display:flex; flex-direction:column; overflow:hidden;">
+                <div class="batch-box-head" style="padding:12px 14px; border-bottom:1px solid #222; background:rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <div style="font-family:var(--font-display); font-size:0.95rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-spa" style="color:#ec4899;"></i> ✨ Lote Diseño Somático & Práctica
+                        </div>
+                        <div style="font-size:0.75rem; color:#ec4899; font-weight:700; margin-top:2px;">
+                            ⏱️ Ventana: Mañanas 08:30 (45 min)
+                        </div>
+                    </div>
+                    <span class="badge" style="background:#ec489922; color:#ec4899; border:1px solid #ec489944; font-size:0.7rem; font-weight:800; padding:2px 6px; border-radius:4px;" id="badge-count-antonia-2">3</span>
+                </div>
+                <div class="batch-items-list" id="batch-list-antonia-2" style="padding:10px; display:flex; flex-direction:column; gap:6px; flex:1; min-height:140px;">
+                    
+                <div class="batch-item-row" id="item-antonia-2-0" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="2" data-idx="0" onchange="toggleClientBatchItem('antonia', 2, 0, this.checked)" style="accent-color:#ec4899; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Estructurar playlist y secuencia de Habitarte</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 2, 0)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-antonia-2-1" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="2" data-idx="1" onchange="toggleClientBatchItem('antonia', 2, 1, this.checked)" style="accent-color:#ec4899; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Práctica personal de yoga y movimiento sin pantallas</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 2, 1)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                <div class="batch-item-row" id="item-antonia-2-2" style="background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                        <input type="checkbox" class="batch-check-antonia" data-lote="2" data-idx="2" onchange="toggleClientBatchItem('antonia', 2, 2, this.checked)" style="accent-color:#ec4899; width:16px; height:16px; cursor:pointer;">
+                        <span class="batch-text">Bitácora breve de sensaciones y regulación nerviosa</span>
+                    </label>
+                    <button type="button" onclick="deleteClientBatchItem('antonia', 2, 2)" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                </div>
+            
+                </div>
+                <div style="padding:0 10px 10px 10px; display:flex; gap:6px;">
+                    <input type="text" id="input-batch-antonia-2" placeholder="+ Nueva tarea al lote..." style="flex:1; background:#181818; border:1px solid #333; color:#fff; padding:6px 10px; border-radius:6px; font-size:0.78rem; outline:none;" onkeypress="if(event.key==='Enter') addClientBatchItem('antonia', 2)">
+                    <button type="button" onclick="addClientBatchItem('antonia', 2)" style="background:#ec4899; color:#000; font-weight:800; border:none; padding:0 10px; border-radius:6px; cursor:pointer; font-size:0.85rem;">+</button>
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        </div>
+        
+    <script>
+    (function() {
+        const cid = 'antonia';
+        const storageKey = 'ah_batching_' + cid;
+        const initialLotes = [{'title': '🧘 Lote Habitarte & Alumnas', 'window': 'Lun y Mié 13:00 (30 min)', 'color': '#38bdf8', 'icon': 'fa-solid fa-users', 'items': ['Enviar enlaces y recordatorios Zoom para Cuerpos Cansados', 'Registrar pagos de pases mensuales ($160.000)', 'Responder consultas somáticas de alumnas en WhatsApp']}, {'title': '🧾 Lote Logística Médica & Roma', 'window': 'Mar y Jue 11:30 (45 min)', 'color': '#10b981', 'icon': 'fa-solid fa-kit-medical', 'items': ['Compra y reposición agrupada en farmacia', 'Coordinación de citas y controles médicos familiares', 'Compras de víveres esenciales en una sola salida']}, {'title': '✨ Lote Diseño Somático & Práctica', 'window': 'Mañanas 08:30 (45 min)', 'color': '#ec4899', 'icon': 'fa-solid fa-spa', 'items': ['Estructurar playlist y secuencia de Habitarte', 'Práctica personal de yoga y movimiento sin pantallas', 'Bitácora breve de sensaciones y regulación nerviosa']}];
+
+        function getLotes() {
+            try {
+                const raw = localStorage.getItem(storageKey);
+                if (raw) return JSON.parse(raw);
+            } catch(e) {}
+            return initialLotes;
+        }
+
+        function saveLotes(lotes) {
+            localStorage.setItem(storageKey, JSON.stringify(lotes));
+        }
+
+        window.renderClientBatching_antonia = function() {
+            const lotes = getLotes();
+            lotes.forEach((l, lIdx) => {
+                const list = document.getElementById(`batch-list-${cid}-${lIdx}`);
+                const badge = document.getElementById(`badge-count-${cid}-${lIdx}`);
+                if (!list) return;
+                list.innerHTML = '';
+                const items = l.items || [];
+                if (badge) badge.innerText = items.length;
+                items.forEach((item, iIdx) => {
+                    const isDone = typeof item === 'object' ? item.done : false;
+                    const text = typeof item === 'object' ? item.text : item;
+                    const div = document.createElement('div');
+                    div.className = 'batch-item-row';
+                    div.id = `item-${cid}-${lIdx}-${iIdx}`;
+                    div.style.cssText = 'background:#141414; border:1px solid #282828; border-radius:6px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;' + (isDone ? ' opacity:0.55; text-decoration:line-through;' : '');
+                    div.innerHTML = `
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1; font-size:0.83rem; color:#ddd; margin:0;">
+                            <input type="checkbox" class="batch-check-${cid}" data-lote="${lIdx}" data-idx="${iIdx}" ${isDone ? 'checked' : ''} onchange="toggleClientBatchItem('${cid}', ${lIdx}, ${iIdx}, this.checked)" style="accent-color:${l.color || '#f59e0b'}; width:16px; height:16px; cursor:pointer;">
+                            <span class="batch-text">${text}</span>
+                        </label>
+                        <button type="button" onclick="deleteClientBatchItem('${cid}', ${lIdx}, ${iIdx})" style="background:transparent; border:none; color:#666; cursor:pointer; font-size:0.8rem; padding:2px 6px;" title="Eliminar">&times;</button>
+                    `;
+                    list.appendChild(div);
+                });
+            });
+        };
+
+        window.toggleClientBatchItem = function(c, lIdx, iIdx, checked) {
+            const lotes = getLotes();
+            if (lotes[lIdx] && lotes[lIdx].items && lotes[lIdx].items[iIdx] !== undefined) {
+                let it = lotes[lIdx].items[iIdx];
+                if (typeof it === 'string') {
+                    it = { text: it, done: checked };
+                } else {
+                    it.done = checked;
+                }
+                lotes[lIdx].items[iIdx] = it;
+                saveLotes(lotes);
+                const row = document.getElementById(`item-${cid}-${lIdx}-${iIdx}`);
+                if (row) {
+                    if (checked) {
+                        row.style.opacity = '0.55';
+                        row.style.textDecoration = 'line-through';
+                    } else {
+                        row.style.opacity = '1';
+                        row.style.textDecoration = 'none';
+                    }
+                }
+            }
+        };
+
+        window.addClientBatchItem = function(c, lIdx) {
+            const input = document.getElementById(`input-batch-${cid}-${lIdx}`);
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) return;
+            const lotes = getLotes();
+            if (lotes[lIdx]) {
+                if (!Array.isArray(lotes[lIdx].items)) lotes[lIdx].items = [];
+                lotes[lIdx].items.push({ text: text, done: false });
+                saveLotes(lotes);
+                input.value = '';
+                window.renderClientBatching_antonia();
+            }
+        };
+
+        window.deleteClientBatchItem = function(c, lIdx, iIdx) {
+            const lotes = getLotes();
+            if (lotes[lIdx] && lotes[lIdx].items) {
+                lotes[lIdx].items.splice(iIdx, 1);
+                saveLotes(lotes);
+                window.renderClientBatching_antonia();
+            }
+        };
+
+        window.resetClientBatching = function(c) {
+            if (confirm("¿Deseas restablecer los lotes predeterminados de Batching?")) {
+                localStorage.removeItem(storageKey);
+                window.renderClientBatching_antonia();
+            }
+        };
+
+        window.sendBatchingWhatsApp = function(clientName, c) {
+            const lotes = getLotes();
+            let msg = `*Reporte de Batching (Lotes) - ${clientName}*%0A`;
+            lotes.forEach(l => {
+                msg += `%0A*${l.title}* (Ventana: ${l.window}):%0A`;
+                (l.items || []).forEach(it => {
+                    const isDone = typeof it === 'object' ? it.done : false;
+                    const text = typeof it === 'object' ? it.text : it;
+                    msg += `${isDone ? '✅' : '⏳'} ${text}%0A`;
+                });
+            });
+            window.open(`https://wa.me/56975590132?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => window.renderClientBatching_antonia());
+        } else {
+            window.renderClientBatching_antonia();
+        }
+    })();
+    </script>
+    
+    
+
         <div id="tab-herramientas" class="tab-content">
             <div class="diagnostic-box" style="border-left: 4px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%); margin-bottom: 1.5rem;">
                 <div class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #10b981;">
@@ -3020,12 +3332,16 @@ Ajusta mi Mapeador 24 Horas para proteger mis horas fijadas de Habitarte (ejerce
 
     <!-- CONFIGURACIÓN DEL CLIENTE EN JAVASCRIPT -->
     <script>
-        window.CLIENT_CONFIG = {
+                window.CLIENT_CONFIG = {
             clientId: "antonia",
-            clientUser: "@antonia.jofre",
+            clientUser: "antonia.jofre",
             clientName: "Antonia Jofré",
             clientPIN: "AH-Antonia5924",
-            validPins: ["ah-antonia5924", "ah-antonia-5924", "ah-master9132", "antonia2026", "antojofre23091995", "antojofre1995", "antojofre", "2026", "admin2026", "diego_ah_master", "diegop1990"],
+            validPins: [
+                "ah-antonia5924", "ah-antonia-5924", "antonia5924", "antojofre23091995",
+                "antojofre1995", "antojofre2309", "antojofre", "antonia.jofre", "antonia",
+                "antonia2026", "2026", "1995", "diego_ah_master", "diegop1990", "ah-master9132"
+            ],
             masterPIN: "AH-Master9132"
         };
 

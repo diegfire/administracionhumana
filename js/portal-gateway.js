@@ -8,6 +8,131 @@ const DEFAULT_CLIENT_CONFIG = {
     clientName: "Cliente AICC"
 };
 
+const CLIENT_ACCOUNTS = [
+    {
+        id: "rocio",
+        name: "Rocío",
+        subtitle: "Puya Masajes & Canto",
+        usernames: ["rocio.puya", "rocio", "rocior", "puya", "puyamasajes", "@rocio.puya", "rocio@administracionhumana.com"],
+        passwords: ["ah-puya9842", "ah-puya-9842", "puya9842", "rocior1998", "rocio1998", "rocio2026", "puya2026", "2026", "1998"],
+        url: "planes-rocio.html",
+        storageKey: "ah_auth_rocio"
+    },
+    {
+        id: "matias",
+        name: "Matías González",
+        subtitle: "Ingeniería & Voleibol",
+        usernames: ["matias.gonzalez", "matias", "matiasg", "matigonzalez", "matiasgonzalez", "mati", "mati@email.com", "matias@administracionhumana.com"],
+        passwords: ["ah-matias7315", "ah-matias-7315", "matias7315", "matigonzalez2009", "matias2009", "mati2009", "matigonzalez2008", "matias2026", "2026", "2009", "2008"],
+        url: "planes-matias.html",
+        storageKey: "ah_auth_matias"
+    },
+    {
+        id: "antonia",
+        name: "Antonia Jofré",
+        subtitle: "Habitarte & Movimiento",
+        usernames: ["antonia.jofre", "antonia", "antojofre", "antoniajofre", "@antonia.jofre", "antonia@administracionhumana.com"],
+        passwords: ["ah-antonia5924", "ah-antonia-5924", "antonia5924", "antojofre23091995", "antojofre1995", "antojofre2309", "antonia2026", "2026", "1995"],
+        url: "planes-antonia.html",
+        storageKey: "ah_auth_antonia"
+    },
+    {
+        id: "alejandra",
+        name: "Alejandra Mattei",
+        subtitle: "Acompañamiento Integral & Filosofía",
+        usernames: ["alejandra.mattei", "alejandra", "juanamattei", "mattei", "@alejandra.mattei", "alejandra@administracionhumana.com"],
+        passwords: ["ah-mattei6251", "ah-mattei-6251", "mattei6251", "juanamattei", "alejandra2026", "2026"],
+        url: "planes-alejandra.html",
+        storageKey: "ah_auth_alejandra"
+    },
+    {
+        id: "melissa",
+        name: "Melissa Henríquez",
+        subtitle: "Educación & Gestión Träfmen",
+        usernames: ["melissa.trafmen", "melissa", "trafmen", "melissatrafmen", "@melissa.trafmen", "melissa@administracionhumana.com"],
+        passwords: ["ah-trafmen8416", "ah-trafmen-8416", "trafmen8416", "melissa2026", "2026"],
+        url: "plan.html?cliente=melissa",
+        storageKey: "ah_auth_melissa"
+    },
+    {
+        id: "francisca",
+        name: "Francisca Lissette",
+        subtitle: "Nutrición & Pedagogía en Biología",
+        usernames: ["francisca.lissette", "francisca", "lissette", "franciscalissette", "lizeth", "@francisca.lissette", "francisca@administracionhumana.com"],
+        passwords: ["ah-lissette2026", "ah-lissette-2026", "lissette2026", "francisca2026", "1234", "ah-lizeth2026", "lizeth2026", "2026"],
+        url: "planes-francisca.html",
+        storageKey: "ah_auth_francisca"
+    },
+    {
+        id: "diego",
+        name: "Diego González (Consultor)",
+        subtitle: "Administrador & Director AICC",
+        usernames: ["diego.gonzalez", "diegop", "diego", "admin", "diego.consultor", "consultor", "diego@administracionhumana.cl"],
+        passwords: ["ah-diego9132", "ah-diego-9132", "diego9132", "diegop1990", "diego1990", "admin2026", "diego2026", "ah-master9132", "ah-master-9132", "diego_ah_master", "master2026", "2026"],
+        isMaster: true,
+        url: "plan.html?cliente=diego",
+        storageKey: "ah_auth_diego"
+    },
+    {
+        id: "alvaro",
+        name: "Álvaro",
+        subtitle: "Operaciones & Análisis • En Pausa",
+        archived: true,
+        usernames: ["alvaro.operaciones", "alvaro", "alvaro@administracionhumana.com"],
+        passwords: ["ah-alvaro4183", "ah-alvaro-4183", "alvaro4183", "alvaro2026", "2026"],
+        url: "plan.html?cliente=alvaro",
+        storageKey: "ah_auth_alvaro"
+    },
+    {
+        id: "carlos",
+        name: "Carlos Z",
+        subtitle: "Gestión Estratégica • En Pausa",
+        archived: true,
+        usernames: ["carlos.gestion", "carlos", "carlos@administracionhumana.com"],
+        passwords: ["ah-carlos5829", "ah-carlos-5829", "carlos5829", "carlos2026", "2026"],
+        url: "plan.html?cliente=carlos",
+        storageKey: "ah_auth_carlos"
+    },
+    {
+        id: "karina",
+        name: "Karina",
+        subtitle: "Road to Sidney • En Pausa",
+        archived: true,
+        usernames: ["karina.sidney", "karina", "karina@administracionhumana.com"],
+        passwords: ["ah-karina9371", "ah-karina-9371", "karina9371", "karina2026", "2026"],
+        url: "plan.html?cliente=karina",
+        storageKey: "ah_auth_karina"
+    },
+    {
+        id: "emi",
+        name: "Emi",
+        subtitle: "Plan de Vuelo • En Pausa",
+        archived: true,
+        usernames: ["emi.vuelo", "emi", "emi@administracionhumana.com"],
+        passwords: ["ah-emi3628", "ah-emi-3628", "emi3628", "emi2026", "2026"],
+        url: "plan.html?cliente=emi",
+        storageKey: "ah_auth_emi"
+    },
+    {
+        id: "demo",
+        name: "Caso Demostrativo",
+        subtitle: "Prototipo 2.0",
+        usernames: ["demo.explorador", "demo", "invitado", "demo@administracionhumana.com"],
+        passwords: ["ah-demo2026", "ah-demo-2026", "demo2026", "invitado2026", "demo", "2026"],
+        url: "planes-demo.html",
+        storageKey: "ah_auth_demo"
+    },
+    {
+        id: "admin",
+        name: "Diego González (Consultor)",
+        subtitle: "Administrador Maestro",
+        usernames: ["diego.consultor", "admin", "diego", "consultor", "diego@administracionhumana.com"],
+        passwords: ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026", "2026"],
+        isMaster: true,
+        url: "visualizador.html"
+    }
+];
+
 let currentClientConfig = { ...DEFAULT_CLIENT_CONFIG };
 
 function initClientAuth(config) {
@@ -88,22 +213,38 @@ function handleClientAuth(e) {
     }
 
     // Match against CLIENT_ACCOUNTS
+    let matchedAccount = null;
     if (typeof CLIENT_ACCOUNTS !== 'undefined') {
         const acc = CLIENT_ACCOUNTS.find(a => a.id === storageId);
         if (acc) {
-            if (Array.isArray(acc.passwords)) acc.passwords.forEach(pw => allowed.push(String(pw).trim().toLowerCase().replace(/[@\s]/g, '')));
-            if (Array.isArray(acc.usernames)) acc.usernames.forEach(u => allowed.push(String(u).trim().toLowerCase().replace(/[@\s]/g, '')));
+            matchedAccount = acc;
+            if (Array.isArray(acc.passwords)) acc.passwords.forEach(pw => {
+                allowed.push(String(pw).trim().toLowerCase());
+                allowed.push(String(pw).trim().toLowerCase().replace(/[@\s]/g, ''));
+            });
+            if (Array.isArray(acc.usernames)) acc.usernames.forEach(u => {
+                allowed.push(String(u).trim().toLowerCase());
+                allowed.push(String(u).trim().toLowerCase().replace(/[@\s]/g, ''));
+            });
             if (acc.id) allowed.push(acc.id.toLowerCase());
         }
     }
 
-    // Specific aliases for Matias
+    // Comprehensive client-specific aliases
     if (storageId === 'matias' || storageId.includes('mati')) {
-        allowed.push(
-            'matigonzalez2009', 'matigonzalez', 'matias.gonzalez', 'matiasgonzalez',
-            'matias', 'mati', 'matias2009', 'matias2026', 'ah-matias7315', 'ah-matias-7315',
-            'matias7315', 'matigonzalez2008', '2009', '2008'
-        );
+        allowed.push('matigonzalez2009', 'matigonzalez', 'matias.gonzalez', 'matiasgonzalez', 'matias', 'mati', 'matias2009', 'matias2026', 'ah-matias7315', 'ah-matias-7315', 'matias7315', 'matigonzalez2008', '2009', '2008');
+    } else if (storageId === 'rocio') {
+        allowed.push('rocio.puya', 'rocior', 'puya', 'puyamasajes', 'rocio', 'ah-puya9842', 'ah-puya-9842', 'puya9842', 'rocior1998', 'rocio1998', 'rocio2026', 'puya2026', '1998');
+    } else if (storageId === 'antonia') {
+        allowed.push('antonia.jofre', 'antojofre', 'antonia', 'antoniajofre', 'ah-antonia5924', 'ah-antonia-5924', 'antonia5924', 'antojofre23091995', 'antojofre1995', 'antojofre2309', 'antonia2026', '1995');
+    } else if (storageId === 'alejandra') {
+        allowed.push('alejandra.mattei', 'alejandra', 'juanamattei', 'mattei', 'ah-mattei6251', 'ah-mattei-6251', 'mattei6251', 'alejandra2026');
+    } else if (storageId === 'francisca') {
+        allowed.push('francisca.lissette', 'francisca', 'lissette', 'franciscalissette', 'lizeth', 'ah-lissette2026', 'ah-lissette-2026', 'lissette2026', 'francisca2026', '1234', 'ah-lizeth2026', 'lizeth2026');
+    } else if (storageId === 'melissa') {
+        allowed.push('melissa.trafmen', 'melissa', 'trafmen', 'melissatrafmen', 'ah-trafmen8416', 'ah-trafmen-8416', 'trafmen8416', 'melissa2026');
+    } else if (storageId === 'diego') {
+        allowed.push('diego.gonzalez', 'diegop', 'diego', 'admin', 'diego.consultor', 'ah-diego9132', 'diego9132', 'diegop1990', 'diego1990', '1990');
     }
 
     if (allowed.includes(enteredPin) || allowed.includes(rawVal)) {
@@ -113,8 +254,10 @@ function handleClientAuth(e) {
         }
         localStorage.setItem('ah_auth_' + storageId, "authenticated_ok");
         localStorage.setItem('ah_client_auth_' + storageId, "authenticated_ok");
+        localStorage.setItem('ah_auth_token_' + storageId, "authenticated_ok");
         localStorage.setItem('client_authenticated_' + storageId, "true");
         sessionStorage.setItem('client_authenticated_' + storageId, "true");
+        sessionStorage.setItem('ah_auth_' + storageId, "true");
         localStorage.setItem('ah_auth_session', "authenticated_ok");
         
         if (errorMsg) errorMsg.style.display = "none";
@@ -125,8 +268,10 @@ function handleClientAuth(e) {
         }
     } else {
         if (errorMsg) {
+            const hintUser = (config.clientUser || (matchedAccount && matchedAccount.usernames ? matchedAccount.usernames[0] : storageId)).replace(/^@/, '');
+            const hintPin = config.clientPIN || (matchedAccount && matchedAccount.passwords ? matchedAccount.passwords[0] : "tu PIN");
             errorMsg.style.display = "block";
-            errorMsg.innerText = "⚠️ Clave o usuario incorrecto. Puedes usar: matigonzalez2009 o matigonzalez";
+            errorMsg.innerText = `⚠️ Clave o usuario no reconocido. Puedes ingresar con tu usuario (@${hintUser}) o tu clave (${hintPin}).`;
         }
         pinInput.focus();
         pinInput.select();
@@ -240,120 +385,7 @@ document.addEventListener('click', (e) => {
  * Cada persona cuenta con su usuario específico y clave/contraseña específica.
  * Sin sugerencias públicas ni filtración de credenciales.
  */
-const CLIENT_ACCOUNTS = [
-    {
-        id: "rocio",
-        name: "Rocío",
-        subtitle: "Puya Masajes & Canto",
-        usernames: ["rocio.puya", "rocio", "rocior", "puya", "puyamasajes", "rocio@administracionhumana.com"],
-        passwords: ["ah-puya9842", "ah-puya-9842", "puya9842", "rocior1998", "rocio2026", "puya2026"],
-        url: "planes/rocio/index.html",
-        storageKey: "ah_auth_rocio"
-    },
-    {
-        id: "matias",
-        name: "Matías González",
-        subtitle: "Ingeniería & Voleibol",
-        usernames: ["matias.gonzalez", "matias", "matiasg", "matigonzalez", "matiasgonzalez", "mati", "mati@email.com", "matias@administracionhumana.com"],
-        passwords: ["ah-matias7315", "ah-matias-7315", "matias7315", "matigonzalez2009", "matias2009", "mati2009", "matigonzalez2008", "matias2026", "2026"],
-        url: "planes-matias.html",
-        storageKey: "ah_auth_matias"
-    },
-    {
-        id: "antonia",
-        name: "Antonia Jofré",
-        subtitle: "Habitarte & Movimiento",
-        usernames: ["antonia.jofre", "antonia", "antojofre", "antonia@administracionhumana.com"],
-        passwords: ["ah-antonia5924", "ah-antonia-5924", "antonia5924", "antojofre1995", "antonia2026"],
-        url: "plan.html?cliente=antonia",
-        storageKey: "ah_auth_antonia"
-    },
-    {
-        id: "alejandra",
-        name: "Alejandra Mattei",
-        subtitle: "Acompañamiento Integral",
-        usernames: ["alejandra.mattei", "alejandra", "juanamattei", "alejandra@administracionhumana.com"],
-        passwords: ["ah-mattei6251", "ah-mattei-6251", "mattei6251", "alejandra2026"],
-        url: "plan.html?cliente=alejandra",
-        storageKey: "ah_auth_alejandra"
-    },
-    {
-        id: "melissa",
-        name: "Melissa Henríquez",
-        subtitle: "Educación & Gestión",
-        usernames: ["melissa.trafmen", "melissa", "trafmen", "melissa@administracionhumana.com"],
-        passwords: ["ah-trafmen8416", "ah-trafmen-8416", "trafmen8416", "melissa2026"],
-        url: "plan.html?cliente=melissa",
-        storageKey: "ah_auth_melissa"
-    },
-    {
-        id: "francisca",
-        name: "Francisca Lissette",
-        subtitle: "Nutrición & Pedagogía en Biología",
-        usernames: ["francisca.lissette", "francisca", "lissette", "francisca@administracionhumana.com", "francisca.lizeth"],
-        passwords: ["ah-lissette2026", "ah-lissette-2026", "lissette2026", "francisca2026", "1234", "ah-lizeth2026", "lizeth2026"],
-        url: "plan.html?cliente=francisca",
-        storageKey: "ah_auth_francisca"
-    },
-    {
-        id: "alvaro",
-        name: "Álvaro",
-        subtitle: "Operaciones & Análisis • En Pausa",
-        archived: true,
-        usernames: ["alvaro.operaciones", "alvaro", "alvaro@administracionhumana.com"],
-        passwords: ["ah-alvaro4183", "ah-alvaro-4183", "alvaro4183", "alvaro2026"],
-        url: "plan.html?cliente=alvaro",
-        storageKey: "ah_auth_alvaro"
-    },
-    {
-        id: "carlos",
-        name: "Carlos Z",
-        subtitle: "Gestión Estratégica • En Pausa",
-        archived: true,
-        usernames: ["carlos.gestion", "carlos", "carlos@administracionhumana.com"],
-        passwords: ["ah-carlos5829", "ah-carlos-5829", "carlos5829", "carlos2026"],
-        url: "plan.html?cliente=carlos",
-        storageKey: "ah_auth_carlos"
-    },
-    {
-        id: "karina",
-        name: "Karina",
-        subtitle: "Road to Sidney • En Pausa",
-        archived: true,
-        usernames: ["karina.sidney", "karina", "karina@administracionhumana.com"],
-        passwords: ["ah-karina9371", "ah-karina-9371", "karina9371", "karina2026"],
-        url: "plan.html?cliente=karina",
-        storageKey: "ah_auth_karina"
-    },
-    {
-        id: "emi",
-        name: "Emi",
-        subtitle: "Plan de Vuelo • En Pausa",
-        archived: true,
-        usernames: ["emi.vuelo", "emi", "emi@administracionhumana.com"],
-        passwords: ["ah-emi3628", "ah-emi-3628", "emi3628", "emi2026"],
-        url: "plan.html?cliente=emi",
-        storageKey: "ah_auth_emi"
-    },
-    {
-        id: "demo",
-        name: "Caso Demostrativo",
-        subtitle: "Prototipo 2.0",
-        usernames: ["demo.explorador", "demo", "invitado", "demo@administracionhumana.com"],
-        passwords: ["ah-demo2026", "ah-demo-2026", "demo2026", "invitado2026", "demo"],
-        url: "planes-demo.html",
-        storageKey: "ah_auth_demo"
-    },
-    {
-        id: "admin",
-        name: "Diego González (Consultor)",
-        subtitle: "Administrador Maestro",
-        usernames: ["diego.consultor", "admin", "diego", "consultor", "diego@administracionhumana.com"],
-        passwords: ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026"],
-        isMaster: true,
-        url: "visualizador.html"
-    }
-];
+
 
 function getAllClientAccounts() {
     let accounts = CLIENT_ACCOUNTS.map(a => ({ ...a, usernames: [...a.usernames], passwords: [...a.passwords] }));
@@ -450,8 +482,12 @@ function grantAccessSession(account) {
     if (account.storageKey) {
         localStorage.setItem(account.storageKey, "authenticated_ok");
     }
+    localStorage.setItem(`ah_auth_${account.id}`, "authenticated_ok");
+    localStorage.setItem(`ah_client_auth_${account.id}`, "authenticated_ok");
+    localStorage.setItem(`ah_auth_token_${account.id}`, "authenticated_ok");
     localStorage.setItem(`client_authenticated_${account.id}`, "true");
     sessionStorage.setItem(`client_authenticated_${account.id}`, "true");
+    sessionStorage.setItem(`ah_auth_${account.id}`, "true");
     localStorage.setItem("ah_client_auth_session", "authenticated_ok");
     localStorage.setItem("ah_current_user", JSON.stringify({
         uid: `user_${account.id}`,
