@@ -486,6 +486,275 @@
             cursor: pointer;
             padding: 0 5px;
         }
+
+        /* =========================================================================
+           ESTILOS PESTAÑA: VÓLEY & RENDIMIENTO DEPORTIVO (MATÍAS)
+           ========================================================================= */
+        .voley-hero-box {
+            background: linear-gradient(135deg, rgba(194, 65, 12, 0.38) 0%, rgba(15, 23, 42, 0.95) 55%, rgba(67, 20, 7, 0.3) 100%);
+            border: 1px solid rgba(249, 115, 22, 0.45);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .voley-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem;
+            margin-top: 1.3rem;
+        }
+        .voley-stat-card {
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            border-radius: 12px;
+            padding: 1rem 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .voley-stat-card .v-val {
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #fb923c;
+        }
+        .voley-stat-card .v-lbl {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: #cbd5e1;
+        }
+        .voley-stat-card .v-sub {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            line-height: 1.35;
+        }
+        .voley-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .voley-section-title i {
+            color: #ea580c;
+        }
+        .voley-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 820px) {
+            .voley-grid-2 { grid-template-columns: 1fr; }
+        }
+        .voley-card {
+            background: rgba(18, 18, 24, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        .voley-card:hover {
+            border-color: rgba(249, 115, 22, 0.4);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+        }
+        .voley-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .voley-badge-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(234, 88, 12, 0.16);
+            border: 1px solid rgba(249, 115, 22, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fb923c;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+        .voley-card-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+        .voley-card-body {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.55;
+        }
+        .voley-card-body strong {
+            color: #f8fafc;
+        }
+        .voley-court-board {
+            background: linear-gradient(180deg, rgba(12, 74, 110, 0.35) 0%, rgba(15, 23, 42, 0.96) 100%);
+            border: 2px solid rgba(56, 189, 248, 0.35);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.8rem;
+        }
+        .voley-court-net {
+            border-top: 3px dashed #38bdf8;
+            position: relative;
+            margin: 1.6rem 0;
+            text-align: center;
+        }
+        .voley-court-net span {
+            background: #0284c7;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 14px;
+            border-radius: 50px;
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .voley-zones-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .voley-zone-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 10px;
+            padding: 0.9rem 0.7rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .voley-zone-box:hover {
+            border-color: #f97316;
+            background: rgba(234, 88, 12, 0.2);
+            transform: translateY(-2px);
+        }
+        .voley-zone-tag {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fb923c;
+            display: block;
+        }
+        .voley-zone-role {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 2px 0;
+            display: block;
+        }
+        .voley-zone-sub {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            line-height: 1.25;
+            display: block;
+        }
+        .voley-attack-line {
+            border-top: 1px dashed rgba(245, 158, 11, 0.55);
+            position: relative;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .voley-attack-line span {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fcd34d;
+            font-size: 0.68rem;
+            padding: 2px 10px;
+            border-radius: 4px;
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            font-weight: 600;
+        }
+        .voley-roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+        .voley-role-card {
+            background: rgba(18, 18, 24, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            transition: all 0.22s ease;
+        }
+        .voley-role-card:hover {
+            border-color: rgba(249, 115, 22, 0.45);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        .voley-tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+        .voley-tip-box {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.92) 100%);
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: all 0.2s ease;
+        }
+        .voley-tip-box:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        .voley-tip-ico {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(234, 88, 12, 0.2);
+            border: 1px solid rgba(249, 115, 22, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fb923c;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+        .voley-tip-title {
+            font-family: var(--font-display);
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 0.35rem 0;
+        }
+        .voley-tip-text {
+            font-size: 0.83rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+            margin: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -623,7 +892,10 @@
             <button class="tab-btn" onclick="switchDynamicTab('tab-herramientas')" id="tab-btn-herramientas" style="display:none;">
                 <i class="fa-solid fa-toolbox" style="color: #60a5fa;"></i> Herramientas & Checklists
             </button>
-            <button class="tab-btn" onclick="switchDynamicTab('tab-acuerdos')" id="tab-btn-acuerdos">
+                        <button class="tab-btn" onclick="switchDynamicTab('tab-voley')" id="tab-btn-voley" style="display:none; border: 1px solid rgba(234, 88, 12, 0.45); background: rgba(234, 88, 12, 0.1);">
+                <i class="fa-solid fa-volleyball" style="color: #ea580c;"></i> 🏐 Volei
+            </button>
+<button class="tab-btn" onclick="switchDynamicTab('tab-acuerdos')" id="tab-btn-acuerdos">
                 <i class="fa-solid fa-handshake" style="color: #f59e0b;"></i> Acuerdos de Sesión
             </button>
         </nav>
@@ -1354,7 +1626,491 @@
         <!-- =========================================================================
              TAB 8: ACUERDOS CLÍNICOS OPERATIVOS
              ========================================================================= -->
-        <div id="tab-acuerdos" class="tab-content">
+        
+        <!-- =========================================================================
+             TAB: VÓLEY & RENDIMIENTO DEPORTIVO (MATÍAS)
+             ========================================================================= -->
+        <div id="tab-voley" class="tab-content">
+            <!-- HERO HEADER VOLEY -->
+            <div class="voley-hero-box">
+                <div class="hero-tea-badge" style="background:rgba(234, 88, 12, 0.12); border-color:rgba(234, 88, 12, 0.4); color:#fb923c;">
+                    <i class="fa-solid fa-volleyball"></i> Disciplina Kinésica, Dopamina Limpia & Salud Deportiva
+                </div>
+                <h3 style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: #fff; margin: 0.2rem 0 0.6rem 0;">
+                    Voleibol Competitivo • Reglas, Táctica, Posiciones & Tips Pro
+                </h3>
+                <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin: 0; max-width: 950px;">
+                    Matías: el vóley no solo es tu deporte favorito, sino tu mayor canal de <strong>dopamina sana, regulación sensorial y desconexión total de pantallas</strong>. En la cancha entrenas visión periférica, salto vertical explosivo, valentía para sacar la voz y resiliencia ante el error. Aquí tienes tu guía táctica completa para rendir al 100% en tus entrenamientos y partidos del colegio.
+                </p>
+
+                <div class="voley-stat-grid">
+                    <div class="voley-stat-card">
+                        <span class="v-val">18m × 9m</span>
+                        <span class="v-lbl">Cancha Oficial</span>
+                        <span class="v-sub">Red a 2.43m (Varones) • Línea 3m de ataque</span>
+                    </div>
+                    <div class="voley-stat-card">
+                        <span class="v-val">6 vs 6</span>
+                        <span class="v-lbl">Formato en Cancha</span>
+                        <span class="v-sub">Rotación en sentido horario tras recuperar saque</span>
+                    </div>
+                    <div class="voley-stat-card">
+                        <span class="v-val">3 Toques</span>
+                        <span class="v-lbl">Límite por Equipo</span>
+                        <span class="v-sub">Recepción ➔ Armado ➔ Remate (Bloqueo no cuenta)</span>
+                    </div>
+                    <div class="voley-stat-card">
+                        <span class="v-val">25 / 15 Pts</span>
+                        <span class="v-lbl">Rally Point System</span>
+                        <span class="v-sub">Sets 1-4 a 25 pts • 5º set decisivo a 15 pts (dif. 2)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 1: REGLAS OFICIALES Y DINÁMICA DE JUEGO -->
+            <div class="voley-section-title">
+                <i class="fa-solid fa-book-open"></i> 1. Reglas Oficiales & Dinámica de Juego (FIVB / Escolar)
+            </div>
+            <div class="voley-grid-2">
+                <div class="voley-card">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon"><i class="fa-solid fa-trophy"></i></div>
+                        <h4 class="voley-card-title">Sistema de Puntuación (Rally Point)</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        <strong>Cada jugada otorga 1 punto inmediato</strong>, sin importar qué equipo sacó. Se juega al mejor de 5 sets (el primero en ganar 3 sets gana el partido).
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Sets 1 al 4:</strong> Se juegan a <strong>25 puntos</strong> con diferencia obligatoria de al menos 2 puntos (sin techo máximo; ej. 26-24, 28-26).</li>
+                            <li><strong>5to Set (Tie-Break):</strong> Si empatan 2-2 en sets, el set decisivo se juega a <strong>15 puntos</strong> (con diferencia de 2). A los 8 puntos se cambia de lado de cancha.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="voley-card">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon"><i class="fa-solid fa-hand-fist"></i></div>
+                        <h4 class="voley-card-title">Toques por Equipo & Doble Golpe</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        Cada equipo tiene un <strong>máximo de 3 toques</strong> para devolver el balón al campo rival.
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Regla de oro del Bloqueo:</strong> El contacto del balón en el bloqueo <em>NO se cuenta</em> dentro de los 3 toques reglamentarios. Tras el bloqueo, el equipo sigue teniendo 3 toques disponibles.</li>
+                            <li><strong>Doble Contacto:</strong> Un mismo jugador no puede golpear el balón dos veces consecutivas (salvo si el primer contacto fue en acción de bloqueo).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="voley-card">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon"><i class="fa-solid fa-rotate"></i></div>
+                        <h4 class="voley-card-title">Rotación & Faltas de Posición</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        Cuando el equipo que recibe gana el rally (*side-out*), recupera el saque y <strong>todos sus jugadores rotan 1 puesto en sentido horario</strong> (Zona 2 pasa a 1 a sacar, 1 pasa a 6, 6 a 5, etc.).
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Falta de Posición:</strong> En el milisegundo exacto en que el sacador golpea el balón, cada jugador debe estar en su posición relativa reglamentaria.</li>
+                            <li><strong>Permutas:</strong> Apenas el balón es impactado en el saque, los jugadores pueden correr libremente a su puesto táctico asignado.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="voley-card">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon"><i class="fa-solid fa-ban"></i></div>
+                        <h4 class="voley-card-title">Red, Invasión & Balón Retenido (Carry)</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        El vóley exige contactos limpios, secos y sin infracciones espaciales:
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Contacto con la Red:</strong> Tocar la malla en una acción de jugar el balón es falta inmediata.</li>
+                            <li><strong>Invasión por Debajo:</strong> Se permite pisar la línea central siempre que una parte del pie mantenga contacto con ella o su proyección vertical y no interfiera al rival.</li>
+                            <li><strong>Balón Sostenido:</strong> No se puede empujar, atrapar ni acompañar el balón. El golpe de dedos debe ser simultáneo y explosivo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="voley-card">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon"><i class="fa-solid fa-arrows-split-up-and-left"></i></div>
+                        <h4 class="voley-card-title">Línea de 3 Metros: Delanteros vs Zagueros</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        La línea de ataque (a 3m de la red) define las posibilidades de remate según tu zona:
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Delanteros (Zonas 4, 3, 2):</strong> Pueden atacar y bloquear a cualquier altura dentro de la zona de frente.</li>
+                            <li><strong>Zagueros (Zonas 5, 6, 1):</strong> <em>NO pueden rematar</em> un balón que esté por encima de la red si saltan pisando o por delante de la línea de 3 metros. Para atacar deben despegar detrás de dicha línea (pueden caer adelante tras golpear). Tampoco pueden participar en el bloqueo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="voley-card">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h4 class="voley-card-title">Saque, Líneas & Balón en Juego</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        Detalles técnicos de arbitraje para no regalar puntos fáciles:
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Balón en la Línea:</strong> Si el balón toca cualquier milímetro de las líneas limítrofes (de fondo o laterales), es <strong>DENTRO (*in*)</strong>.</li>
+                            <li><strong>Regla de los 8 Segundos:</strong> Tras el pitazo del árbitro, el sacador tiene 8 segundos para ejecutar el saque.</li>
+                            <li><strong>Falta de pie en el saque:</strong> No puedes pisar la línea de fondo antes ni durante el impacto del saque; solo puedes caer dentro del campo después de haber golpeado la pelota.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: POSICIONES EN CANCHA & ROLES TÁCTICOS -->
+            <div class="voley-section-title">
+                <i class="fa-solid fa-street-view"></i> 2. Posiciones en Cancha & Roles Tácticos Especializados
+            </div>
+
+            <!-- PIZARRA TÁCTICA DE CANCHA -->
+            <div class="voley-court-board">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom: 1rem;">
+                    <div>
+                        <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; color:#38bdf8; font-weight:800;">Pizarra Táctica Canónica</span>
+                        <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:2px 0 0 0;">Esquema de las 6 Zonas de Cancha (Vista de Tu Equipo)</h4>
+                    </div>
+                    <span style="font-size:0.75rem; color:#94a3b8; background:rgba(0,0,0,0.4); padding:4px 10px; border-radius:6px; border:1px solid #334155;">
+                        <i class="fa-solid fa-arrows-rotate"></i> Rotación Horaria: 1 ➔ 6 ➔ 5 ➔ 4 ➔ 3 ➔ 2 ➔ 1
+                    </span>
+                </div>
+
+                <!-- RED -->
+                <div class="voley-court-net">
+                    <span><i class="fa-solid fa-border-all"></i> RED DE VOLEIBOL (2.43m) • CAMPO RIVAL AL FRENTE</span>
+                </div>
+
+                <!-- ZONA DE DELANTEROS (FRENTE) -->
+                <div style="text-align:center; font-size:0.72rem; color:#7dd3fc; margin-bottom:6px; font-weight:700; text-transform:uppercase;">
+                    ▼ Zona Delantera (Ataque y Bloqueo en la Red) ▼
+                </div>
+                <div class="voley-zones-grid">
+                    <div class="voley-zone-box" style="border-color:#38bdf8;">
+                        <span class="voley-zone-tag">ZONA 4</span>
+                        <span class="voley-zone-role">Delantero Izquierdo</span>
+                        <span class="voley-zone-sub">Punta Receptor (Outside Hitter) • Ataque de banda exterior</span>
+                    </div>
+                    <div class="voley-zone-box" style="border-color:#38bdf8;">
+                        <span class="voley-zone-tag">ZONA 3</span>
+                        <span class="voley-zone-role">Delantero Centro</span>
+                        <span class="voley-zone-sub">Central (Middle Blocker) • Bloqueo y ataques rápidos de 1º tiempo</span>
+                    </div>
+                    <div class="voley-zone-box" style="border-color:#38bdf8;">
+                        <span class="voley-zone-tag">ZONA 2</span>
+                        <span class="voley-zone-role">Delantero Derecho</span>
+                        <span class="voley-zone-sub">Opuesto / Armador delantero • Ataque por derecha y bloqueo clave</span>
+                    </div>
+                </div>
+
+                <!-- LÍNEA DE 3 METROS -->
+                <div class="voley-attack-line">
+                    <span>LÍNEA DE ATAQUE (3 METROS)</span>
+                </div>
+
+                <!-- ZONA DE ZAGUEROS (FONDO) -->
+                <div style="text-align:center; font-size:0.72rem; color:#fb923c; margin-bottom:6px; font-weight:700; text-transform:uppercase;">
+                    ▲ Zona Zaguera (Defensa, Pase y Ataque de Segunda Línea) ▲
+                </div>
+                <div class="voley-zones-grid">
+                    <div class="voley-zone-box">
+                        <span class="voley-zone-tag">ZONA 5</span>
+                        <span class="voley-zone-role">Zaguero Izquierdo</span>
+                        <span class="voley-zone-sub">Defensa en diagonal • Cobertura de remate y apoyo corto</span>
+                    </div>
+                    <div class="voley-zone-box">
+                        <span class="voley-zone-tag">ZONA 6</span>
+                        <span class="voley-zone-role">Zaguero Centro</span>
+                        <span class="voley-zone-sub">Defensa profunda • Posición natural del Líbero en recepción</span>
+                    </div>
+                    <div class="voley-zone-box" style="border-color:#ea580c;">
+                        <span class="voley-zone-tag">ZONA 1</span>
+                        <span class="voley-zone-role">Zaguero Derecho</span>
+                        <span class="voley-zone-sub">Zona de Saque • Defensa de línea • Ataque zaguero (Pipe/Back)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TARJETAS DE LOS 5 ROLES ESPECIALIZADOS -->
+            <div class="voley-roles-grid">
+                <!-- ARMADOR -->
+                <div class="voley-role-card" style="border-left: 3px solid #38bdf8;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div>
+                            <span style="font-size:0.72rem; color:#38bdf8; font-weight:800; text-transform:uppercase;">Puesto 1 • El Estratega</span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:2px 0 0 0;">Armador / Colocador (Setter)</h4>
+                        </div>
+                        <div class="voley-badge-icon" style="background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.4); color:#38bdf8;"><i class="fa-solid fa-brain"></i></div>
+                    </div>
+                    <p style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; margin:0;">
+                        <strong>Misión:</strong> Es el cerebro táctico del equipo. Toca el 2º balón y decide en fracciones de segundo a qué atacante habilitar, a qué altura y con qué velocidad, desarticulando el bloqueo rival.
+                    </p>
+                    <div style="background:rgba(0,0,0,0.35); padding:8px 10px; border-radius:8px; font-size:0.78rem; color:#94a3b8;">
+                        <strong style="color:#e2e8f0;">Virtudes clave:</strong> Manos suaves en diamante, agilidad de pies para llegar bajo el balón y liderazgo sereno para ordenar el juego.
+                    </div>
+                </div>
+
+                <!-- PUNTA RECEPTOR -->
+                <div class="voley-role-card" style="border-left: 3px solid #10b981;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div>
+                            <span style="font-size:0.72rem; color:#10b981; font-weight:800; text-transform:uppercase;">Puesto 2 • El Todoterreno</span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:2px 0 0 0;">Punta Receptor (Outside Hitter)</h4>
+                        </div>
+                        <div class="voley-badge-icon" style="background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.4); color:#10b981;"><i class="fa-solid fa-shield-halved"></i></div>
+                    </div>
+                    <p style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; margin:0;">
+                        <strong>Misión:</strong> El jugador de mayor desgaste y volumen. Recibe el saque rival con antebrazos y ataca por la banda izquierda (Zona 4) tanto pelotas rápidas como balones forzados de emergencia.
+                    </p>
+                    <div style="background:rgba(0,0,0,0.35); padding:8px 10px; border-radius:8px; font-size:0.78rem; color:#94a3b8;">
+                        <strong style="color:#e2e8f0;">Virtudes clave:</strong> Pase consistente y amortiguado, salto potente y capacidad de definir pelotas incómodas con toques inteligentes o remates diagonales.
+                    </div>
+                </div>
+
+                <!-- CENTRAL -->
+                <div class="voley-role-card" style="border-left: 3px solid #f59e0b;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div>
+                            <span style="font-size:0.72rem; color:#f59e0b; font-weight:800; text-transform:uppercase;">Puesto 3 • La Muralla Aérea</span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:2px 0 0 0;">Central (Middle Blocker)</h4>
+                        </div>
+                        <div class="voley-badge-icon" style="background:rgba(245,158,11,0.15); border-color:rgba(245,158,11,0.4); color:#f59e0b;"><i class="fa-solid fa-dungeon"></i></div>
+                    </div>
+                    <p style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; margin:0;">
+                        <strong>Misión:</strong> El dueño de la red. Bloquea en el centro, se desplaza a las bandas para armar bloqueo doble y ataca balones de 1er tiempo ("cortas") para obligar al central rival a saltar con él.
+                    </p>
+                    <div style="background:rgba(0,0,0,0.35); padding:8px 10px; border-radius:8px; font-size:0.78rem; color:#94a3b8;">
+                        <strong style="color:#e2e8f0;">Virtudes clave:</strong> Lectura visual del armador contrario, desplazamiento lateral explosivo (*cross-step*) y penetración de manos sobre la red.
+                    </div>
+                </div>
+
+                <!-- OPUESTO -->
+                <div class="voley-role-card" style="border-left: 3px solid #ea580c;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div>
+                            <span style="font-size:0.72rem; color:#ea580c; font-weight:800; text-transform:uppercase;">Puesto 4 • El Cañón Ofensivo</span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:2px 0 0 0;">Opuesto (Opposite Hitter)</h4>
+                        </div>
+                        <div class="voley-badge-icon" style="background:rgba(234,88,12,0.15); border-color:rgba(234,88,12,0.4); color:#ea580c;"><i class="fa-solid fa-fire"></i></div>
+                    </div>
+                    <p style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; margin:0;">
+                        <strong>Misión:</strong> Juega en posición diagonal al armador. No suele recibir saque para enfocar su energía en remates de máxima potencia desde Zona 2 adelante o desde Zona 1 como zaguero (ataque de zaguero / *pipe*).
+                    </p>
+                    <div style="background:rgba(0,0,0,0.35); padding:8px 10px; border-radius:8px; font-size:0.78rem; color:#94a3b8;">
+                        <strong style="color:#e2e8f0;">Virtudes clave:</strong> Máxima potencia de despegue y brazo, frialdad para cerrar puntos decisivos y bloqueo pesado contra el punta rival.
+                    </div>
+                </div>
+
+                <!-- LÍBERO -->
+                <div class="voley-role-card" style="border-left: 3px solid #ec4899;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div>
+                            <span style="font-size:0.72rem; color:#ec4899; font-weight:800; text-transform:uppercase;">Puesto 5 • El Guardián del Suelo</span>
+                            <h4 style="font-family:var(--font-display); font-size:1.15rem; color:#fff; margin:2px 0 0 0;">Líbero (Defensive Specialist)</h4>
+                        </div>
+                        <div class="voley-badge-icon" style="background:rgba(236,72,153,0.15); border-color:rgba(236,72,153,0.4); color:#ec4899;"><i class="fa-solid fa-person-falling"></i></div>
+                    </div>
+                    <p style="font-size:0.84rem; color:#cbd5e1; line-height:1.55; margin:0;">
+                        <strong>Misión:</strong> Viste camiseta de color diferente. Entra y sale sin pedir sustitución para reemplazar a los centrales en la 2ª línea. No puede sacar, bloquear ni rematar balones por encima de la red.
+                    </p>
+                    <div style="background:rgba(0,0,0,0.35); padding:8px 10px; border-radius:8px; font-size:0.78rem; color:#94a3b8;">
+                        <strong style="color:#e2e8f0;">Virtudes clave:</strong> Reflejos inmediatos, postura corporal ultrabaja, lectura de la mano del rematador rival y entrega limpia al armador.
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: COSAS A CONSIDERAR (PREPARACIÓN FÍSICA, TÁCTICA & EMOCIONAL) -->
+            <div class="voley-section-title">
+                <i class="fa-solid fa-triangle-exclamation"></i> 3. Cosas a Considerar (Preparación Kinésica, Táctica & Fortaleza Mental)
+            </div>
+            <div class="voley-grid-2">
+                <div class="voley-card" style="border-color: rgba(234, 88, 12, 0.3);">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <h4 class="voley-card-title">Prevención Kinésica & Articular</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        Tu cuerpo es tu herramienta deportiva más valiosa. El vóley exige saltos e impactos intensos:
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Manguito Rotador & Hombros:</strong> Jamás comiences a rematar con el hombro frío. Realiza 5 minutos de rotaciones con bandas elásticas y movilidad escapular previa.</li>
+                            <li><strong>Aterrizaje Bipodal Amortiguado:</strong> Al caer tras un remate o bloqueo, <strong>cae siempre con ambas piernas flexionadas y sobre los metatarsos</strong>. Caer sobre una sola pierna o con rodillas rígidas causa tendinitis rotuliana y lesiones de menisco.</li>
+                            <li><strong>Agarre y Calzado:</strong> Usa zapatillas con suela de goma limpia para evitar resbalones y esguinces en cambios de dirección rápidos.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="voley-card" style="border-color: rgba(56, 189, 248, 0.3);">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon" style="color:#38bdf8; background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.4);"><i class="fa-solid fa-bullhorn"></i></div>
+                        <h4 class="voley-card-title">Comunicación Valiente: "El Silencio Pierde Puntos"</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        En una cancha de 9x9m con 6 personas y un balón volando a 80 km/h, una duda de 0.2 segundos es punto para el rival:
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Cantar el Balón con Fuerza:</strong> Grita con convicción: <em>"¡MÍA!"</em>, <em>"¡VOY!"</em>, <em>"¡DÉJALA!"</em> o <em>"¡FUERA!"</em> antes de tocar la pelota.</li>
+                            <li><strong>Cero Vergüenza:</strong> Sacar la voz en la cancha te ayuda directamente a vencer la timidez en el colegio y en la vida. El compañero necesita escuchar tu voz con seguridad.</li>
+                            <li><strong>Cantar el Bloqueo:</strong> Ayuda a tu rematador avisándole desde atrás: <em>"¡LÍNEA LIBRE!"</em> o <em>"¡DIAGONAL!"</em>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="voley-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon" style="color:#10b981; background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.4);"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <h4 class="voley-card-title">Gestión del Error: Protocolo de Reseteo en 3 Segundos</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        Clave para la mente con TDAH y la autorregulación deportiva:
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>El error es parte del juego:</strong> Si tiras un saque a la red o te bloquean un remate, <strong>no te castigues mentalmente ni agaches la cabeza</strong>.</li>
+                            <li><strong>Protocolo de 3 Segundos:</strong> 1 inhalación profunda diafragmática (4 seg) ➔ Chocar puños con el equipo ➔ Ojos al frente en posición básica.</li>
+                            <li><strong>Mentalidad de "Siguiente Punto":</strong> En el vóley cada jugada dura pocos segundos; quien se queda rumiando el punto pasado pierde los 3 siguientes.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="voley-card" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <div class="voley-card-header">
+                        <div class="voley-badge-icon" style="color:#fbbf24; background:rgba(245,158,11,0.15); border-color:rgba(245,158,11,0.4);"><i class="fa-solid fa-person-running"></i></div>
+                        <h4 class="voley-card-title">Transición Continua: "Cero Modo Espectador"</h4>
+                    </div>
+                    <div class="voley-card-body">
+                        El error táctico más común en jugadores juveniles es quedarse mirando el balón tras golpearlo:
+                        <ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Pies activos siempre:</strong> Apenas rematas, retrocede 3 pasos para estar listo para bloquear o defender el contraataque rival.</li>
+                            <li><strong>Cobertura de Ataque:</strong> Cuando un compañero va a rematar, acércate en posición baja detrás de él para levantar cualquier rebote en el bloqueo rival.</li>
+                            <li><strong>Hidratación y Energía:</strong> Bebe agua en sorbos pequeños durante cada tiempo muerto para mantener la velocidad de reacción neurológica.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 4: TIPS PRO DE CANCHA (TÉCNICA & RENDIMIENTO) -->
+            <div class="voley-section-title">
+                <i class="fa-solid fa-lightbulb"></i> 4. Tips Pro de Cancha (Secretos Técnicos de Alto Rendimiento)
+            </div>
+            <div class="voley-tips-container">
+                <div class="voley-tip-box">
+                    <div class="voley-tip-ico"><i class="fa-solid fa-crosshairs"></i></div>
+                    <div>
+                        <h5 class="voley-tip-title">Tip 1: El Saque con Ancla de Concentración</h5>
+                        <p class="voley-tip-text">
+                            Antes de sacar, haz <strong>siempre la misma rutina idéntica</strong>: da 3 botes en el suelo, mira el punto débil de la cancha rival (espacio entre dos receptores), respira hondo y lanza el balón 1 metro hacia adelante. Golpea en el punto más alto con la palma firme. Esa rutina le ordena a tu cerebro entrar en calma.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="voley-tip-box">
+                    <div class="voley-tip-ico"><i class="fa-solid fa-hands"></i></div>
+                    <div>
+                        <h5 class="voley-tip-title">Tip 2: Plataforma de Antebrazos Inmóvil</h5>
+                        <p class="voley-tip-text">
+                            En la recepción, <strong>no muevas los hombros hacia arriba como si fuera un bate</strong>. Bloquea los codos, junta las muñecas apuntando al suelo y crea una "tabla" firme con tus antebrazos. La dirección la dan los hombros y la altura la dan la extensión suave de tus piernas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="voley-tip-box">
+                    <div class="voley-tip-ico"><i class="fa-solid fa-gem"></i></div>
+                    <div>
+                        <h5 class="voley-tip-title">Tip 3: Toque de Dedos en "Diamante"</h5>
+                        <p class="voley-tip-text">
+                            Forma un triángulo/diamante entre tus pulgares e índices justo arriba de tu frente. <strong>Entra con los pies debajo del balón antes de tocarlo</strong>. Toca el balón solo con las yemas blandas de los dedos y empuja coordinando muñecas y piernas en un solo movimiento fluido.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="voley-tip-box">
+                    <div class="voley-tip-ico"><i class="fa-solid fa-forward-fast"></i></div>
+                    <div>
+                        <h5 class="voley-tip-title">Tip 4: Carrera de Salto en 3 Pasos (Ataque)</h5>
+                        <p class="voley-tip-text">
+                            Si eres diestro: <strong>Paso Izquierdo</strong> (ajuste de distancia) ➔ <strong>Paso Derecho largo y explosivo</strong> (freno talón-punta para transformar la velocidad horizontal en impulso vertical) ➔ <strong>Paso Izquierdo de cierre</strong> ➔ Salto vertical llevando ambos brazos atrás y arriba ➔ Impacto en máxima altura con latigazo de muñeca (*wrist snap*).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="voley-tip-box">
+                    <div class="voley-tip-ico"><i class="fa-solid fa-hand"></i></div>
+                    <div>
+                        <h5 class="voley-tip-title">Tip 5: Penetración Agresiva en el Bloqueo</h5>
+                        <p class="voley-tip-text">
+                            No saltes hacia arriba como una pared plana. <strong>Pasa tus manos y antebrazos por encima de la red invadiendo el campo contrario ("penetrar")</strong>, con los dedos rígidos, abiertos como palas y orientados hacia abajo hacia el centro de la cancha rival. Eso sella los remates y anula el rebote hacia afuera.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="voley-tip-box">
+                    <div class="voley-tip-ico"><i class="fa-solid fa-shoe-prints"></i></div>
+                    <div>
+                        <h5 class="voley-tip-title">Tip 6: Postura Básica Defensiva "Al Acecho"</h5>
+                        <p class="voley-tip-text">
+                            Pies más anchos que tus hombros, rodillas flexionadas a 45°, peso en los metatarsos (talones casi en el aire), torso inclinado hacia adelante y brazos preparados al frente sin entrelazar las manos todavía. Estar apoyado en los talones te hace reaccionar medio segundo tarde.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHECKLIST INTERACTIVO DE ENTRENAMIENTO & PARTIDO (PERSISTENTE) -->
+            <div class="tool-card-rich" style="border-color: rgba(234, 88, 12, 0.4); margin-top: 1.5rem;">
+                <div class="tool-header-rich">
+                    <div class="tool-title-group">
+                        <span class="tool-id-pill" style="color:#fb923c; border-color:rgba(234,88,12,0.4); background:rgba(234,88,12,0.1);">
+                            CHECKLIST DEPORTIVO MATÍAS
+                        </span>
+                        <h3 style="color:#fff; margin-top:4px;"><i class="fa-solid fa-clipboard-check" style="color:#ea580c;"></i> Checklist de Preparación & Partido de Vóley</h3>
+                        <p style="color:#94a3b8; font-size:0.85rem; margin:2px 0 0 0;">
+                            Marca tus 6 hábitos clave antes de salir a entrenar o disputar un partido escolar. Tus avances se guardan automáticamente en tu dispositivo.
+                        </p>
+                    </div>
+                    <div class="tool-progress-wrap">
+                        <span class="tool-progress-lbl">Completitud del Checklist</span>
+                        <div class="tool-progress-bar">
+                            <div id="progress-fill-voley" class="tool-progress-fill" style="width: 0%; background: linear-gradient(90deg, #ea580c 0%, #f97316 100%);"></div>
+                        </div>
+                        <span id="progress-text-voley" class="tool-progress-pct" style="color: #fb923c;">0/6 (0%)</span>
+                    </div>
+                </div>
+
+                <div class="tool-checklist-content">
+                    <div class="tool-checklist-items">
+                        <label class="tool-check-item">
+                            <input type="checkbox" data-tool-id="voley" data-tool-check="voley_1" onchange="toggleToolCheck(this)">
+                            <span><strong>Equipamiento Deportivo:</strong> Zapatillas de indoor limpias con buen agarre, rodilleras acolchadas y camiseta oficial en la mochila.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" data-tool-id="voley" data-tool-check="voley_2" onchange="toggleToolCheck(this)">
+                            <span><strong>Hidratación & Nutrición:</strong> Botella de agua (1L+) lista y colación ligera (fruta o frutos secos) consumida 45 min antes.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" data-tool-id="voley" data-tool-check="voley_3" onchange="toggleToolCheck(this)">
+                            <span><strong>Calentamiento Articular Kinésico:</strong> 10 minutos de movilidad de manguito rotador con elásticos, saltos progresivos y calentamiento de tobillos.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" data-tool-id="voley" data-tool-check="voley_4" onchange="toggleToolCheck(this)">
+                            <span><strong>Sacar la Voz en Cada Jugada:</strong> Compromiso de cantar cada balón ("¡Mía!", "¡Voy!", "¡Bloqueo!") con voz firme y clara para evitar dudas.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" data-tool-id="voley" data-tool-check="voley_5" onchange="toggleToolCheck(this)">
+                            <span><strong>Protocolo de Reseteo Mental en 3 Segundos:</strong> Si cometo un error, respiro hondo, choco las manos con el equipo y me concentro 100% en el siguiente rally.</span>
+                        </label>
+                        <label class="tool-check-item">
+                            <input type="checkbox" data-tool-id="voley" data-tool-check="voley_6" onchange="toggleToolCheck(this)">
+                            <span><strong>Aterrizaje Seguro & Prevención de Lesiones:</strong> Caer siempre con ambas piernas flexionadas amortiguando desde metatarsos tras cada remate o bloqueo.</span>
+                        </label>
+                    </div>
+
+                    <div class="tool-checklist-footer">
+                        <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado automático en tu teléfono</span>
+                        <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('voley')">
+                            <i class="fa-solid fa-rotate-left"></i> Restablecer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="tab-acuerdos" class="tab-content">
             <div class="card-custom" style="background:#0a0a0a; border:1px solid #262626; border-radius:var(--radius-lg); padding:1.5rem;">
                 <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800; margin:0 0 0.4rem 0;">
                     🤝 Acuerdos Clínico-Operativos Sesión a Sesión
@@ -1680,6 +2436,15 @@
                 initCartaEspacio(data, c.id);
             } else {
                 if (btnCartaEspacio) btnCartaEspacio.style.display = "none";
+            }
+
+            // Renderizar pestaña Volei para Matías
+            const btnVoley = document.getElementById("tab-btn-voley");
+            if (c.id === "matias") {
+                if (btnVoley) btnVoley.style.display = "flex";
+                if (typeof updateToolProgress === 'function') updateToolProgress('voley');
+            } else {
+                if (btnVoley) btnVoley.style.display = "none";
             }
         }
 
@@ -2872,6 +3637,17 @@
                 setTimeout(() => { t.style.display = "none"; }, 3200);
             }
         }
+    </script>
+    <!-- Widget Universal de Voz & Soporte WhatsApp v4.0 -->
+    <script src="js/whatsapp-widget.js?v=4.0"></script>
+    <script>
+        // Auto-switch to voley tab if hash or query is set
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash === 'voley' || hash === 'tab-voley') {
+                setTimeout(() => switchDynamicTab('tab-voley'), 300);
+            }
+        });
     </script>
 </body>
 </html>

@@ -113,15 +113,15 @@ const AHAuth = {
         email: 'matigonzalez@email.com',
         username: 'matigonzalez',
         birthDate: '2009',
-        aliases: ['matigonzalez', 'matias', 'matías', 'matiasgonzalez', 'matías gonzález', 'mati@email.com', 'matias@email.com'],
+        aliases: ['matigonzalez', 'matias', 'matías', 'matiasgonzalez', 'matías gonzález', 'mati@email.com', 'matias@email.com', 'matias.gonzalez', 'mati'],
         password: 'matigonzalez2009',
-        validPins: ['matigonzalez2009', 'matigonzalez2008', 'matias2009', 'matias2026', '2026', 'diego_ah_master'],
+        validPins: ['matigonzalez2009', 'matigonzalez2008', 'matias2009', 'matias2026', '2026', 'diego_ah_master', 'ah-matias7315', 'matias7315'],
         fullName: 'Matías González',
         role: 'client',
         status: 'En Acompañamiento (Fase 1)',
         driveUrl: '',
         flightPlanUrl: 'planes-matias.html',
-        storageKey: 'ah_client_auth_matias',
+        storageKey: 'ah_auth_matias',
         notes: 'Desintoxicación Digital, Fases de Confianza, Apuntes Bajo Roce, Taller de Arte y Vóley.',
         createdAt: new Date().toISOString()
       },
@@ -406,6 +406,11 @@ const AHAuth = {
 
     if (found.storageKey) {
       localStorage.setItem(found.storageKey, 'authenticated_ok');
+      if (found.storageKey === 'ah_auth_matias' || found.uid === 'user_matias_gonzalez') {
+        localStorage.setItem('ah_client_auth_matias', 'authenticated_ok');
+        localStorage.setItem('client_authenticated_matias', 'true');
+        sessionStorage.setItem('client_authenticated_matias', 'true');
+      }
     }
     if (found.role === 'admin') {
       localStorage.setItem('ah_auth_token_antonia', 'authenticated_ok');

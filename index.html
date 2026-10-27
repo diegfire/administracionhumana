@@ -8763,9 +8763,12 @@ Una vez dentro, haz clic en "Mi Plan de Vuelo" en la barra superior o utiliza el
       localStorage.setItem('ah_current_user', JSON.stringify({ uid: 'user_rocio_ust', username: 'rocior', fullName: 'Rocío', role: 'client', flightPlanUrl: 'planes-rocio.html' }));
       window.location.href = 'portal_cliente.html';
     } else if (norm.includes('mati') || norm.includes('gonzalez') || email === 'matigonzalez') {
-      localStorage.setItem('ah_client_auth_matias', 'ah_client_auth_matias');
+      localStorage.setItem('ah_auth_matias', 'authenticated_ok');
+      localStorage.setItem('ah_client_auth_matias', 'authenticated_ok');
+      localStorage.setItem('client_authenticated_matias', 'true');
+      sessionStorage.setItem('client_authenticated_matias', 'true');
       localStorage.setItem('ah_current_user', JSON.stringify({ uid: 'user_matias_gonzalez', username: 'matigonzalez', fullName: 'Matías González', role: 'client', flightPlanUrl: 'planes-matias.html' }));
-      window.location.href = 'portal_cliente.html';
+      window.location.href = 'planes-matias.html';
     } else {
       if (loginError) {
         loginError.innerText = 'Usuario o contraseña incorrectos. Revisa tus datos o usa tu PIN.';

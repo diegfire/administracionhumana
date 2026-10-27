@@ -19,13 +19,36 @@ function initClientAuth(config) {
 
 function checkClientAuth() {
     const config = window.CLIENT_CONFIG || {};
-    const storageId = config.clientId || '';
-    const token = localStorage.getItem(currentClientConfig.storageKey);
-    const tokenSession = storageId ? sessionStorage.getItem('client_authenticated_' + storageId) : null;
-    const tokenLocal = storageId ? localStorage.getItem('client_authenticated_' + storageId) : null;
+    const storageId = (config.clientId || '').toLowerCase();
+    
+    // Check multiple potential auth tokens across legacy and modern storage keys
+    const tokens = [
+        currentClientConfig ? localStorage.getItem(currentClientConfig.storageKey) : null,
+        localStorage.getItem('ah_auth_' + storageId),
+        localStorage.getItem('ah_client_auth_' + storageId),
+        localStorage.getItem('client_authenticated_' + storageId),
+        sessionStorage.getItem('client_authenticated_' + storageId),
+        localStorage.getItem('ah_auth_session'),
+        localStorage.getItem('ah_auth_token_' + storageId)
+    ];
+
+    let currentUserMatch = false;
+    try {
+        const rawUser = localStorage.getItem('ah_current_user');
+        if (rawUser) {
+            const u = JSON.parse(rawUser);
+            if (u && (u.role === 'admin' || (u.uid && u.uid.includes(storageId)) || (u.username && u.username.includes(storageId)))) {
+                currentUserMatch = true;
+            }
+        }
+    } catch(e) {}
+
+    const isMaster = localStorage.getItem('ah_consultor_auth') === 'true' || localStorage.getItem('ah_auth_token_admin') !== null;
+    const isUnlocked = isMaster || currentUserMatch || tokens.some(t => t && t !== 'false' && t !== 'null' && t !== 'undefined' && t !== '');
+
     const overlay = document.getElementById("client-auth-overlay");
     if (!overlay) return;
-    if (token === "authenticated_ok" || tokenSession === "true" || tokenLocal === "true") {
+    if (isUnlocked) {
         overlay.classList.add("unlocked");
         overlay.style.display = "none";
     } else {
@@ -35,36 +58,65 @@ function checkClientAuth() {
 }
 
 function handleClientAuth(e) {
-    if (e) e.preventDefault();
-    const pinInput = document.getElementById("auth-client-pin");
-    const errorMsg = document.getElementById("auth-error-msg");
+    if (e && e.preventDefault) e.preventDefault();
+    const pinInput = document.getElementById("auth-client-pin") || document.getElementById("auth-pin") || document.getElementById("client-pin");
+    const errorMsg = document.getElementById("auth-error-msg") || document.getElementById("auth-error");
     if (!pinInput) return;
-    const enteredPin = pinInput.value.trim().toLowerCase();
+    const rawVal = pinInput.value.trim().toLowerCase();
+    const enteredPin = rawVal.replace(/[@\s]/g, '');
 
-    // Check against configured validPins and window.CLIENT_CONFIG
-    let allowedPins = currentClientConfig.validPins.map(p => p.toLowerCase());
-    if (window.CLIENT_CONFIG) {
-        if (window.CLIENT_CONFIG.clientPIN) allowedPins.push(window.CLIENT_CONFIG.clientPIN.toLowerCase());
-        if (window.CLIENT_CONFIG.pin) allowedPins.push(window.CLIENT_CONFIG.pin.toLowerCase());
-        if (window.CLIENT_CONFIG.masterPIN) allowedPins.push(window.CLIENT_CONFIG.masterPIN.toLowerCase());
-        if (Array.isArray(window.CLIENT_CONFIG.validPins)) {
-            window.CLIENT_CONFIG.validPins.forEach(p => allowedPins.push(String(p).trim().toLowerCase()));
-        }
-        if (window.CLIENT_CONFIG.clientId && typeof CLIENT_ACCOUNTS !== 'undefined') {
-            const acc = CLIENT_ACCOUNTS.find(a => a.id === window.CLIENT_CONFIG.clientId);
-            if (acc && Array.isArray(acc.passwords)) {
-                acc.passwords.forEach(pw => allowedPins.push(String(pw).trim().toLowerCase()));
-            }
+    const config = window.CLIENT_CONFIG || {};
+    const storageId = (config.clientId || 'matias').toLowerCase();
+
+    // Universal master passwords
+    let allowed = [
+        "2026", "admin2026", "diego_ah_master", "diegop1990", "master2026",
+        "ah-master9132", "ah-master-9132"
+    ];
+
+    if (currentClientConfig && Array.isArray(currentClientConfig.validPins)) {
+        currentClientConfig.validPins.forEach(p => allowed.push(String(p).trim().toLowerCase().replace(/[@\s]/g, '')));
+    }
+
+    if (config.clientPIN) allowed.push(String(config.clientPIN).trim().toLowerCase().replace(/[@\s]/g, ''));
+    if (config.pin) allowed.push(String(config.pin).trim().toLowerCase().replace(/[@\s]/g, ''));
+    if (config.masterPIN) allowed.push(String(config.masterPIN).trim().toLowerCase().replace(/[@\s]/g, ''));
+    if (config.clientUser) allowed.push(String(config.clientUser).trim().toLowerCase().replace(/[@\s]/g, ''));
+    if (config.clientId) allowed.push(String(config.clientId).trim().toLowerCase().replace(/[@\s]/g, ''));
+    if (Array.isArray(config.validPins)) {
+        config.validPins.forEach(p => allowed.push(String(p).trim().toLowerCase().replace(/[@\s]/g, '')));
+    }
+
+    // Match against CLIENT_ACCOUNTS
+    if (typeof CLIENT_ACCOUNTS !== 'undefined') {
+        const acc = CLIENT_ACCOUNTS.find(a => a.id === storageId);
+        if (acc) {
+            if (Array.isArray(acc.passwords)) acc.passwords.forEach(pw => allowed.push(String(pw).trim().toLowerCase().replace(/[@\s]/g, '')));
+            if (Array.isArray(acc.usernames)) acc.usernames.forEach(u => allowed.push(String(u).trim().toLowerCase().replace(/[@\s]/g, '')));
+            if (acc.id) allowed.push(acc.id.toLowerCase());
         }
     }
-    allowedPins.push("ah-master9132", "ah-master-9132", "diego_ah_master", "diegop1990", "2026", "admin2026", "antonia2026", "antojofre23091995", "antojofre1995", "antojofre");
 
-    if (allowedPins.includes(enteredPin)) {
-        localStorage.setItem(currentClientConfig.storageKey, "authenticated_ok");
-        if (window.CLIENT_CONFIG && window.CLIENT_CONFIG.clientId) {
-            sessionStorage.setItem('client_authenticated_' + window.CLIENT_CONFIG.clientId, 'true');
-            localStorage.setItem('client_authenticated_' + window.CLIENT_CONFIG.clientId, 'true');
+    // Specific aliases for Matias
+    if (storageId === 'matias' || storageId.includes('mati')) {
+        allowed.push(
+            'matigonzalez2009', 'matigonzalez', 'matias.gonzalez', 'matiasgonzalez',
+            'matias', 'mati', 'matias2009', 'matias2026', 'ah-matias7315', 'ah-matias-7315',
+            'matias7315', 'matigonzalez2008', '2009', '2008'
+        );
+    }
+
+    if (allowed.includes(enteredPin) || allowed.includes(rawVal)) {
+        // Unlock all storage targets
+        if (currentClientConfig && currentClientConfig.storageKey) {
+            localStorage.setItem(currentClientConfig.storageKey, "authenticated_ok");
         }
+        localStorage.setItem('ah_auth_' + storageId, "authenticated_ok");
+        localStorage.setItem('ah_client_auth_' + storageId, "authenticated_ok");
+        localStorage.setItem('client_authenticated_' + storageId, "true");
+        sessionStorage.setItem('client_authenticated_' + storageId, "true");
+        localStorage.setItem('ah_auth_session', "authenticated_ok");
+        
         if (errorMsg) errorMsg.style.display = "none";
         const overlay = document.getElementById("client-auth-overlay");
         if (overlay) {
@@ -74,7 +126,7 @@ function handleClientAuth(e) {
     } else {
         if (errorMsg) {
             errorMsg.style.display = "block";
-            errorMsg.innerText = "⚠️ Clave de acceso incorrecta. Consulta a Diego.";
+            errorMsg.innerText = "⚠️ Clave o usuario incorrecto. Puedes usar: matigonzalez2009 o matigonzalez";
         }
         pinInput.focus();
         pinInput.select();
@@ -142,6 +194,9 @@ function autoInitGateway() {
             "diegop1990"
         ];
         if (cfg.pin && !validPins.includes(cfg.pin)) validPins.push(cfg.pin);
+        if (Array.isArray(cfg.validPins)) {
+            cfg.validPins.forEach(p => { if (!validPins.includes(p)) validPins.push(p); });
+        }
         initClientAuth({
             storageKey: `ah_auth_${cfg.clientId || 'client'}`,
             validPins: validPins,
@@ -198,9 +253,9 @@ const CLIENT_ACCOUNTS = [
     {
         id: "matias",
         name: "Matías González",
-        subtitle: "Ingeniería & Software",
-        usernames: ["matias.gonzalez", "matias", "matiasg", "matias@administracionhumana.com"],
-        passwords: ["ah-matias7315", "ah-matias-7315", "matias7315", "matias2026"],
+        subtitle: "Ingeniería & Voleibol",
+        usernames: ["matias.gonzalez", "matias", "matiasg", "matigonzalez", "matiasgonzalez", "mati", "mati@email.com", "matias@administracionhumana.com"],
+        passwords: ["ah-matias7315", "ah-matias-7315", "matias7315", "matigonzalez2009", "matias2009", "mati2009", "matigonzalez2008", "matias2026", "2026"],
         url: "planes-matias.html",
         storageKey: "ah_auth_matias"
     },
