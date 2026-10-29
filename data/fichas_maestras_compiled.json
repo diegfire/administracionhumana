@@ -13,37 +13,43 @@
       "rol_principal": "Estudiante de Psicopedagogía / Masoterapeuta / Instructora de Canto"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_estructura",
-      "foda_came",
-      "triangulacion_roles",
-      "mapeador_24h",
-      "kanban_gtd_wip2",
-      "time_blocking_flexible",
-      "protocolo_paso_cero",
-      "inventario_sesiones_resultados",
-      "hub_imprimibles_maestro",
-      "whatsapp_directo",
-      "ia_chatgpt_prompts",
-      "antigravity_tips",
-      "finanzas_503020",
-      "fondo_reserva_paz",
-      "calculadora_roi_capacitaciones",
-      "paquetizacion_servicios_mes",
-      "regulacion_corporal_tea",
-      "oceano_azul_diferencial",
-      "vaciado_nocturno_analogo",
-      "cero_pantallas_celular",
-      "pedagogia_quirurgica_bloques",
-      "laboratorio_creativo_composicion",
-      "mochila_operativa_salidas",
       "alianzas_operativas_duetos",
-      "inversion_piedras_calientes",
+      "antigravity_tips",
+      "calculadora_roi_capacitaciones",
+      "cero_pantallas_celular",
+      "diagnostico_estructura",
       "estudio_grabacion_voz",
+      "feedback_sbi_conversaciones",
+      "finanzas_503020",
+      "foda_came",
+      "fondo_reserva_paz",
+      "gtd_vaciado_mental",
+      "hub_imprimibles_maestro",
+      "ia_chatgpt_prompts",
+      "inventario_cero_culpa",
+      "inventario_sesiones_resultados",
+      "inversion_piedras_calientes",
+      "kaizen_mejora_continua",
+      "kanban_gtd_wip2",
+      "laboratorio_creativo_composicion",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "mochila_operativa_salidas",
       "movilizacion_lienzos_ust",
+      "oceano_azul_diferencial",
+      "paquetizacion_servicios_mes",
+      "pedagogia_quirurgica_bloques",
       "plan_estrategico_hitos",
       "principio_pareto_80_20",
-      "kaizen_mejora_continua"
+      "protocolo_paso_cero",
+      "regulacion_corporal_tea",
+      "seguridad_pin",
+      "tecnica_pomodoro_foco",
+      "time_blocking_flexible",
+      "triangulacion_roles",
+      "vaciado_nocturno_analogo",
+      "ventana_johari_puntos_ciegos",
+      "whatsapp_directo"
     ],
     "diagnostico": {
       "resumen_humano": "Rocío equilibra admirablemente sus estudios universitarios en UST con dos emprendimientos independientes (Puya Masajes y Voz Caleidoscopio) y el cuidado del hogar en Talcahuano con su perrita Nieve. Presenta una disciplina y orden físico excepcionales (10/10 y 1/5 en abandono de sistemas). Su desafío es la fuga por interrupciones constantes (5/5, 21h/sem) y la necesidad innegociable de agendar pausas de autorregulación sensorial (Stimming TEA).",
@@ -752,7 +758,63 @@
         "guia_key": "kaizen",
         "guia_label": "Ver Guía Completa →"
       }
-    ]
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "rocio",
+      "updated_at": "2026-10-26",
+      "nombre": "Rocío",
+      "hub_filename": "Hub_Imprimibles_Rocio.html",
+      "rol_contexto": "Emprendedora & Gestión Operativa Multirrol",
+      "area_critica": "Tiempo, Límites y Estructura Financiera",
+      "saturacion_operativa": 78,
+      "frase_raiz_culpa": "Siento que si no estoy encima de todo, las cosas no avanzan.",
+      "hora_de_oro": "Mañanas 09:00 a 11:00",
+      "valvula_descompresion": "Desconexión digital nocturna y caminata sin teléfono",
+      "numero_paz_financiera": "Presupuesto 50/30/20 + Fondo de Paz",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "finanzas_503020",
+        "tecnica_pomodoro_foco",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "feedback_sbi_conversaciones",
+        "ventana_johari_puntos_ciegos",
+        "kaizen_mejora_continua",
+        "principio_pareto_80_20",
+        "plan_estrategico_hitos"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "gtd_vaciado_mental",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "finanzas_503020",
+      "tecnica_pomodoro_foco",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "feedback_sbi_conversaciones",
+      "ventana_johari_puntos_ciegos",
+      "kaizen_mejora_continua",
+      "principio_pareto_80_20",
+      "plan_estrategico_hitos"
+    ],
+    "rol_contexto": "Emprendedora & Gestión Operativa Multirrol",
+    "area_critica": "Tiempo, Límites y Estructura Financiera",
+    "saturacion_operativa": 78,
+    "frase_raiz_culpa": "Siento que si no estoy encima de todo, las cosas no avanzan.",
+    "hora_de_oro": "Mañanas 09:00 a 11:00",
+    "valvula_descompresion": "Desconexión digital nocturna y caminata sin teléfono",
+    "numero_paz_financiera": "Presupuesto 50/30/20 + Fondo de Paz",
+    "hub_filename": "Hub_Imprimibles_Rocio.html"
   },
   "melissa": {
     "cliente": {
@@ -769,20 +831,23 @@
       "ultima_actualizacion": "2026-09-14"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "triangulacion_roles",
+      "alianzas_estrategicas",
       "carta_espacio_foco30m",
-      "protocolo_lavado_diurno",
-      "time_blocking_flexible",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "finanzas_503020",
+      "hub_imprimibles_maestro",
+      "inventario_cero_culpa",
       "inventario_resultados",
       "kanban_gtd_wip2",
-      "matriz_eisenhower",
-      "trafmen_juego_y_movimiento",
-      "finanzas_503020",
-      "alianzas_estrategicas",
       "mapeador_24h",
-      "hub_imprimibles_maestro",
+      "matriz_eisenhower",
+      "protocolo_lavado_diurno",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "time_blocking_flexible",
+      "trafmen_juego_y_movimiento",
+      "triangulacion_roles",
       "whatsapp_directo"
     ],
     "categorias_gestion": [
@@ -1046,7 +1111,45 @@
         "id": "espacio_comparsa",
         "acuerdo": "Sábado 11:00 AM: Comparsa de Melissa protegida como espacio no negociable de recreación y goce personal."
       }
-    ]
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "melissa",
+      "updated_at": "2026-10-26",
+      "nombre": "Melissa Henríquez Soto",
+      "hub_filename": "Hub_Imprimibles_Melissa.html",
+      "rol_contexto": "Kinesióloga Escolar & Fundadora Trafmen",
+      "area_critica": "Integración Multirrol & Fricción Cero (~14h/sem)",
+      "saturacion_operativa": 70,
+      "frase_raiz_culpa": "Pierdo horas dando vueltas entre tantos roles sin avanzar lo que quiero.",
+      "hora_de_oro": "Tardes protegidas (Martes, Viernes y Sábados)",
+      "valvula_descompresion": "Entrenamiento Karate y juego compartido con Chinito",
+      "numero_paz_financiera": "Presupuesto 50/30/20 con holgura para prototipos Trafmen",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "kanban_gtd_wip2",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Kinesióloga Escolar & Fundadora Trafmen",
+    "area_critica": "Integración Multirrol & Fricción Cero (~14h/sem)",
+    "saturacion_operativa": 70,
+    "frase_raiz_culpa": "Pierdo horas dando vueltas entre tantos roles sin avanzar lo que quiero.",
+    "hora_de_oro": "Tardes protegidas (Martes, Viernes y Sábados)",
+    "valvula_descompresion": "Entrenamiento Karate y juego compartido con Chinito",
+    "numero_paz_financiera": "Presupuesto 50/30/20 con holgura para prototipos Trafmen",
+    "hub_filename": "Hub_Imprimibles_Melissa.html"
   },
   "matias": {
     "cliente": {
@@ -1063,23 +1166,23 @@
       "rol_principal": "Estudiante de Enseñanza Media (Colegio Concepción) / Taller de Arte y Vóley"
     },
     "modulos_activos": [
-      "seguridad_pin",
+      "caja_herramientas",
       "diagnostico_estructura",
       "diagnostico_general",
-      "foda_personal",
       "fases_confianza",
-      "mapeador_24h",
-      "time_blocking_flexible",
+      "finanzas_503020",
+      "foda_personal",
+      "inventario_cero_culpa",
       "kanban_gtd",
       "kanban_gtd_wip2",
+      "mapeador_24h",
       "matriz_eisenhower",
-      "protocolo_paso_cero",
-      "inventario_cero_culpa",
-      "finanzas_503020",
-      "caja_herramientas",
-      "sacar_la_voz_valentia",
       "orientacion_vocacional",
-      "plan_24h_antipatrones"
+      "plan_24h_antipatrones",
+      "protocolo_paso_cero",
+      "sacar_la_voz_valentia",
+      "seguridad_pin",
+      "time_blocking_flexible"
     ],
     "diagnostico": {
       "resumen_humano": "Matías presenta una gran creatividad y talento visual/corporal (dibujo, pintura y vóley). Sin embargo, el uso desregulado de pantallas generó resaca digital, evasión de tareas escolares y tendencia a mentir u ocultar problemas por vergüenza. El acompañamiento de Diego (papá) y Ángela (mamá) busca reconstruir la confianza mediante hitos medibles, reglas claras y el aprendizaje de sacar la voz sin miedo.",
@@ -1445,7 +1548,46 @@
         "Sacar la voz en cada jugada (¡Mía!, ¡Voy!, ¡Bloqueo!)",
         "Protocolo de reseteo mental en 3 segundos tras cada error"
       ]
-    }
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "matias",
+      "updated_at": "2026-10-26",
+      "nombre": "Matías González",
+      "hub_filename": "Hub_Imprimibles_Matias.html",
+      "rol_contexto": "Profesional & Gestión de Proyectos Técnicos",
+      "area_critica": "Foco Ejecutivo, Priorización y Descanso",
+      "saturacion_operativa": 75,
+      "frase_raiz_culpa": "Tengo demasiados frentes abiertos al mismo tiempo.",
+      "hora_de_oro": "Mañanas 08:30 a 10:30",
+      "valvula_descompresion": "Entrenamiento físico y cierre estricto de jornada",
+      "numero_paz_financiera": "Control de flujo mensual 50/30/20",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "finanzas_503020"
+      ],
+      "compromisos_innegociables": [
+        "Paso Cero Escolar: Trabajar 5 minutos cronometrados en un deber antes de cualquier pantalla o distracción.",
+        "Límite Kanban WIP=2: Máximo 2 tareas activas (1 escolar + 1 personal/dibujo). No abrir frentes nuevos sin terminar.",
+        "Ventana de Oro: 45 min diarios de estudio concentrado con el celular en otra habitación.",
+        "Dopamina Saludable: 15-30 min diarios protegidos para dibujo, pintura y entrenamientos de vóley.",
+        "Apagado Nocturno (21:30): Entrega de dispositivos móviles para blindar 8 horas de sueño reparador."
+      ]
+    },
+    "rol_contexto": "Profesional & Gestión de Proyectos Técnicos",
+    "area_critica": "Foco Ejecutivo, Priorización y Descanso",
+    "saturacion_operativa": 75,
+    "frase_raiz_culpa": "Tengo demasiados frentes abiertos al mismo tiempo.",
+    "hora_de_oro": "Mañanas 08:30 a 10:30",
+    "valvula_descompresion": "Entrenamiento físico y cierre estricto de jornada",
+    "numero_paz_financiera": "Control de flujo mensual 50/30/20",
+    "hub_filename": "Hub_Imprimibles_Matias.html"
   },
   "alejandra": {
     "cliente": {
@@ -1463,20 +1605,22 @@
       "ultima_actualizacion": "2026-09-15"
     },
     "modulos_activos": [
-      "seguridad_pin",
       "diagnostico_estructura",
-      "triangulacion_roles",
-      "mapeador_24h",
-      "time_blocking_flexible",
-      "kanban_gtd_wip2",
-      "matriz_eisenhower",
+      "finanzas_503020",
+      "gtd_vaciado_mental",
+      "hub_imprimibles_maestro",
+      "inventario_cero_culpa",
       "inventario_resultados",
       "investigacion_doctorado_obra",
+      "kanban_gtd_wip2",
+      "laboratorio_ritma_ah",
       "logistica_familiar_tomas",
-      "finanzas_503020",
-      "hub_imprimibles_maestro",
-      "whatsapp_directo",
-      "laboratorio_ritma_ah"
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "seguridad_pin",
+      "time_blocking_flexible",
+      "triangulacion_roles",
+      "whatsapp_directo"
     ],
     "categorias_gestion": [
       "01_Perfil_y_Diagnostico",
@@ -1657,7 +1801,45 @@
       ],
       "escenario_a": "Beca Doctoral 4 años (dedicación 100% a investigación, ingresos estables de investigación)",
       "escenario_b": "Trabajo 1 año (08:00 a 16:00) + Avance de tesis doctoral en bloque nocturno de 2 horas"
-    }
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "alejandra",
+      "updated_at": "2026-10-26",
+      "nombre": "Alejandra Mattei",
+      "hub_filename": "Hub_Imprimibles_Alejandra.html",
+      "rol_contexto": "Gestión Profesional & Equilibrio Vital",
+      "area_critica": "Fronteras entre Trabajo y Vida Personal",
+      "saturacion_operativa": 72,
+      "frase_raiz_culpa": "Termino el día agotada sintiendo que aún quedaron pendientes.",
+      "hora_de_oro": "Mañanas 09:00 a 11:00",
+      "valvula_descompresion": "Ritual de cierre de tarde y lectura",
+      "numero_paz_financiera": "Presupuesto consciente 50/30/20",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "matriz_eisenhower",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "gtd_vaciado_mental",
+      "matriz_eisenhower",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Gestión Profesional & Equilibrio Vital",
+    "area_critica": "Fronteras entre Trabajo y Vida Personal",
+    "saturacion_operativa": 72,
+    "frase_raiz_culpa": "Termino el día agotada sintiendo que aún quedaron pendientes.",
+    "hora_de_oro": "Mañanas 09:00 a 11:00",
+    "valvula_descompresion": "Ritual de cierre de tarde y lectura",
+    "numero_paz_financiera": "Presupuesto consciente 50/30/20",
+    "hub_filename": "Hub_Imprimibles_Alejandra.html"
   },
   "antonia": {
     "cliente": {
@@ -1674,20 +1856,24 @@
       "ultima_actualizacion": "2026-10-26"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "matriz_identidades",
-      "triangulacion_roles",
-      "inventario_cero_culpa",
-      "habitarte_estudio_somatico",
-      "kanban_gtd_wip2",
-      "simulador_financiero",
-      "mapeador_24h",
-      "plan_24h_antipatrones",
       "activador_ia_chatgpt",
-      "tips_antigravity",
       "biblioteca_musical_coreografica",
-      "caja_herramientas"
+      "caja_herramientas",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "habitarte_estudio_somatico",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_identidades",
+      "paquetizacion_servicios_mes",
+      "plan_24h_antipatrones",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "simulador_financiero",
+      "time_blocking_flexible",
+      "tips_antigravity",
+      "triangulacion_roles"
     ],
     "categorias_gestion": [
       "01_Perfil_y_Antecedentes",
@@ -1865,7 +2051,47 @@
           "ingreso": 500000
         }
       }
-    }
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "antonia",
+      "updated_at": "2026-10-26",
+      "nombre": "Antonia Jofré",
+      "hub_filename": "Hub_Imprimibles_Antonia.html",
+      "rol_contexto": "28 años • Terapeuta Holística & Yoga",
+      "area_critica": "Trabajo & Carrera / Cuidado Familiar",
+      "saturacion_operativa": 76,
+      "frase_raiz_culpa": "Tengo miedo de comprometerme y fallar si surge una urgencia familiar.",
+      "hora_de_oro": "Tardes 18:30 a 20:00",
+      "valvula_descompresion": "Siesta diaria de 20 min y descanso nocturno sin pantallas",
+      "numero_paz_financiera": "$160.000 - $180.000 CLP (2 cupos living prepago • Colchón de Tranquilidad)",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "paquetizacion_servicios_mes"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "kanban_gtd_wip2",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "paquetizacion_servicios_mes"
+    ],
+    "rol_contexto": "28 años • Terapeuta Holística & Yoga",
+    "area_critica": "Trabajo & Carrera / Cuidado Familiar",
+    "saturacion_operativa": 76,
+    "frase_raiz_culpa": "Tengo miedo de comprometerme y fallar si surge una urgencia familiar.",
+    "hora_de_oro": "Tardes 18:30 a 20:00",
+    "valvula_descompresion": "Siesta diaria de 20 min y descanso nocturno sin pantallas",
+    "numero_paz_financiera": "$160.000 - $180.000 CLP (2 cupos living prepago • Colchón de Tranquilidad)",
+    "hub_filename": "Hub_Imprimibles_Antonia.html"
   },
   "francisca": {
     "cliente": {
@@ -1882,20 +2108,23 @@
       "ultima_actualizacion": "2026-10-23"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
+      "arquetipos_energia",
       "calendario_centralizado",
-      "mapeador_24h",
-      "matriz_eisenhower",
-      "kanban_gtd_wip2",
-      "protocolo_paso_cero",
-      "tecnica_pomodoro_ajustable",
-      "inventario_cero_culpa",
-      "triangulacion_roles",
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "equipamiento_bioimpedancia",
       "finanzas_503020",
       "hub_imprimibles_maestro",
-      "whatsapp_directo",
-      "equipamiento_bioimpedancia"
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "tecnica_pomodoro_ajustable",
+      "time_blocking_flexible",
+      "triangulacion_roles",
+      "whatsapp_directo"
     ],
     "categorias_gestion": [
       "01_Perfil_y_Diagnostico",
@@ -2342,7 +2571,47 @@
           "meses_retorno_roi": 8.0
         }
       ]
-    }
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "francisca",
+      "updated_at": "2026-10-26",
+      "nombre": "Francisca Lissette",
+      "hub_filename": "Hub_Imprimibles_Francisca_Lissette.html",
+      "rol_contexto": "Emprendedora Creativa & Servicios Profesionales",
+      "area_critica": "Orden Mental, Rutinas y Soberanía Energética",
+      "saturacion_operativa": 74,
+      "frase_raiz_culpa": "Me cuesta sostener una rutina rígida cuando baja mi energía.",
+      "hora_de_oro": "Media mañana 10:00 a 12:00",
+      "valvula_descompresion": "Espacios creativos libres de culpa",
+      "numero_paz_financiera": "Estabilidad mensual por paquetes",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "arquetipos_energia",
+        "kanban_gtd_wip2"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "arquetipos_energia",
+      "kanban_gtd_wip2"
+    ],
+    "rol_contexto": "Emprendedora Creativa & Servicios Profesionales",
+    "area_critica": "Orden Mental, Rutinas y Soberanía Energética",
+    "saturacion_operativa": 74,
+    "frase_raiz_culpa": "Me cuesta sostener una rutina rígida cuando baja mi energía.",
+    "hora_de_oro": "Media mañana 10:00 a 12:00",
+    "valvula_descompresion": "Espacios creativos libres de culpa",
+    "numero_paz_financiera": "Estabilidad mensual por paquetes",
+    "hub_filename": "Hub_Imprimibles_Francisca_Lissette.html"
   },
   "diego": {
     "cliente": {
@@ -2415,17 +2684,64 @@
       "tarifa_minima_hora": 12000
     },
     "modulos_activos": [
+      "diagnostico_estructura",
+      "finanzas_503020",
+      "foda_came",
+      "gtd_vaciado_mental",
+      "ia_chatgpt_prompts_puente",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "principio_pareto_80_20",
       "seguridad_pin",
+      "time_blocking_flexible",
+      "triangulacion_roles"
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "diego",
+      "updated_at": "2026-10-26",
+      "nombre": "Diego González Yáñez",
+      "hub_filename": "Hub_Imprimibles_Diego.html",
+      "rol_contexto": "Fundador Administración Humana • Risalfajores • Don Diego Vapor • Papá de Roma",
+      "area_critica": "Triangulación de Roles Multipotenciales & Soberanía 168H",
+      "saturacion_operativa": 65,
+      "frase_raiz_culpa": "Un sombrero a la vez: presencia total con Roma y foco quirúrgico en cada bloque.",
+      "hora_de_oro": "Bloques de Trabajo Profundo sin interrupciones",
+      "valvula_descompresion": "Tiempo sagrado con Roma, descanso biológico y deporte",
+      "numero_paz_financiera": "$863.000 CLP piso basal cubierto + Fondo de Paz",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "triangulacion_roles",
+        "principio_pareto_80_20",
+        "finanzas_503020",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
       "diagnostico_estructura",
       "mapeador_24h",
+      "time_blocking_flexible",
+      "gtd_vaciado_mental",
       "kanban_gtd_wip2",
-      "matriz_eisenhower",
-      "foda_came",
-      "finanzas_503020",
       "triangulacion_roles",
-      "inventario_cero_culpa",
-      "ia_chatgpt_prompts_puente"
-    ]
+      "principio_pareto_80_20",
+      "finanzas_503020",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Fundador Administración Humana • Risalfajores • Don Diego Vapor • Papá de Roma",
+    "area_critica": "Triangulación de Roles Multipotenciales & Soberanía 168H",
+    "saturacion_operativa": 65,
+    "frase_raiz_culpa": "Un sombrero a la vez: presencia total con Roma y foco quirúrgico en cada bloque.",
+    "hora_de_oro": "Bloques de Trabajo Profundo sin interrupciones",
+    "valvula_descompresion": "Tiempo sagrado con Roma, descanso biológico y deporte",
+    "numero_paz_financiera": "$863.000 CLP piso basal cubierto + Fondo de Paz",
+    "hub_filename": "Hub_Imprimibles_Diego.html"
   },
   "alvaro": {
     "cliente": {
@@ -2441,12 +2757,18 @@
       "rol_principal": "Emprendedor Comercial & Estratega de Negocios"
     },
     "modulos_activos": [
-      "seguridad_pin",
-      "diagnostico_general",
-      "matriz_roles_acuerdos",
-      "simulador_decision_rapida",
       "caja_herramientas",
-      "plan_24h_antipatrones"
+      "diagnostico_estructura",
+      "diagnostico_general",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
+      "matriz_roles_acuerdos",
+      "plan_24h_antipatrones",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "simulador_decision_rapida"
     ],
     "diagnostico": {
       "resumen_humano": "Álvaro cuenta con una capacidad analítica sobresaliente pero cae en parálisis por análisis y perfeccionismo extremo, postergando lanzamientos de proyectos por buscar el plan 100% perfecto. El acompañamiento se enfoca en la Regla del 70% de Colin Powell y la Fórmula de Acción Imperfecta.",
@@ -2470,7 +2792,45 @@
           "sub": "Time boxing estricto"
         }
       ]
-    }
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "alvaro",
+      "updated_at": "2026-10-26",
+      "nombre": "Álvaro Pincheira",
+      "hub_filename": "Hub_Imprimibles_Alvaro.html",
+      "rol_contexto": "Emprendedor & Ejecución Comercial",
+      "area_critica": "Acción Imperfecta y Consistencia Diaria",
+      "saturacion_operativa": 68,
+      "frase_raiz_culpa": "Postergo por querer tener todo perfecto antes de salir.",
+      "hora_de_oro": "Mañanas 08:30 a 10:30",
+      "valvula_descompresion": "Deporte y cierre nocturno sin pantallas",
+      "numero_paz_financiera": "Flujo comercial semanal activo",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "protocolo_paso_cero",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "protocolo_paso_cero",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Emprendedor & Ejecución Comercial",
+    "area_critica": "Acción Imperfecta y Consistencia Diaria",
+    "saturacion_operativa": 68,
+    "frase_raiz_culpa": "Postergo por querer tener todo perfecto antes de salir.",
+    "hora_de_oro": "Mañanas 08:30 a 10:30",
+    "valvula_descompresion": "Deporte y cierre nocturno sin pantallas",
+    "numero_paz_financiera": "Flujo comercial semanal activo",
+    "hub_filename": "Hub_Imprimibles_Alvaro.html"
   },
   "carlos": {
     "cliente": {
@@ -2486,17 +2846,18 @@
       "rol_principal": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo"
     },
     "modulos_activos": [
-      "seguridad_pin",
+      "diagnostico_estructura",
       "diagnostico_general",
-      "mapeador_24h",
-      "kanban_gtd_wip2",
-      "time_blocking_flexible",
-      "matriz_eisenhower",
-      "protocolo_paso_cero",
       "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
+      "matriz_eisenhower",
       "paquetizacion_servicios_mes",
+      "plan_24h_antipatrones",
+      "protocolo_paso_cero",
+      "seguridad_pin",
       "simulador_financiero",
-      "plan_24h_antipatrones"
+      "time_blocking_flexible"
     ],
     "diagnostico": {
       "resumen_humano": "Carlos se encuentra reorganizando su tiempo, finanzas y prioridades vitales tras separarse. Su meta primordial es blindar la tarde para ver y acompañar a su hija pequeña todos los días. Mantiene un trabajo de horario fijo (09:30 a 13:30) y requiere consolidar su rutina de gimnasio matutina (07:30 a 08:45, 3 veces por semana) como 'el arma del día'. En lo empresarial, co-dirige 'La Marca 33' (productora de música electrónica con más de 200 eventos en Concepción). La clave estratégica es estandarizar y paquetizar eventos privados/cumpleaños por cantidad de invitados para asegurar margen neto y evitar ir a pérdida, complementado con una hora diaria de vaciado mental con Diego y el recambio vehicular (auto a furgón de carga).",
@@ -2526,7 +2887,51 @@
           "sub": "Máximo 2 prioridades en curso a la vez"
         }
       ]
-    }
+    },
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "carlos",
+      "updated_at": "2026-10-26",
+      "nombre": "Carlos Z",
+      "hub_filename": "Hub_Imprimibles_Carlos.html",
+      "rol_contexto": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo",
+      "area_critica": "Gimnasio AM (Arma del Día), Trabajo Fijo (09:30-13:30), Crianza y Escala de Eventos",
+      "saturacion_operativa": 68,
+      "frase_raiz_culpa": "La urgencia del día a día se come el tiempo con mi hija y postergo mis mañanas de entrenamiento.",
+      "hora_de_oro": "Mañanas 07:30 a 08:45 (Gimnasio) & Bloque 1h Coordinación con Diego",
+      "valvula_descompresion": "Tardes blindadas de juego y presencia con mi hija pequeña",
+      "numero_paz_financiera": "Paquetes estandarizados de cumpleaños + Renovación de auto a furgón",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "time_blocking_flexible",
+        "kanban_gtd_wip2",
+        "matriz_eisenhower",
+        "protocolo_paso_cero",
+        "inventario_cero_culpa",
+        "paquetizacion_servicios_mes",
+        "simulador_financiero"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "time_blocking_flexible",
+      "kanban_gtd_wip2",
+      "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "inventario_cero_culpa",
+      "paquetizacion_servicios_mes",
+      "simulador_financiero"
+    ],
+    "rol_contexto": "Co-fundador La Marca 33 • Paternidad Presente & Empleo Fijo",
+    "area_critica": "Gimnasio AM (Arma del Día), Trabajo Fijo (09:30-13:30), Crianza y Escala de Eventos",
+    "saturacion_operativa": 68,
+    "frase_raiz_culpa": "La urgencia del día a día se come el tiempo con mi hija y postergo mis mañanas de entrenamiento.",
+    "hora_de_oro": "Mañanas 07:30 a 08:45 (Gimnasio) & Bloque 1h Coordinación con Diego",
+    "valvula_descompresion": "Tardes blindadas de juego y presencia con mi hija pequeña",
+    "numero_paz_financiera": "Paquetes estandarizados de cumpleaños + Renovación de auto a furgón",
+    "hub_filename": "Hub_Imprimibles_Carlos.html"
   },
   "karina": {
     "cliente": {
@@ -2542,12 +2947,56 @@
       "rol_principal": "Profesional en Proyecto de Emigración"
     },
     "modulos_activos": [
-      "seguridad_pin",
+      "diagnostico_estructura",
       "diagnostico_general",
+      "finanzas_503020",
+      "gtd_vaciado_mental",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
       "matriz_identidades",
-      "simulador_contingencias",
-      "plan_24h_antipatrones"
-    ]
+      "plan_24h_antipatrones",
+      "seguridad_pin",
+      "simulador_contingencias"
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "karina",
+      "updated_at": "2026-10-26",
+      "nombre": "Karina",
+      "hub_filename": "Hub_Imprimibles_Karina.html",
+      "rol_contexto": "Gestión Profesional & Bienestar",
+      "area_critica": "Claridad de Prioridades y Paz Mental",
+      "saturacion_operativa": 69,
+      "frase_raiz_culpa": "Cargo en la cabeza cosas que deberían estar en un sistema.",
+      "hora_de_oro": "Mañanas 09:00 a 10:30",
+      "valvula_descompresion": "Caminata y desconexión al atardecer",
+      "numero_paz_financiera": "Regla 50/30/20 equilibrada",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "gtd_vaciado_mental",
+        "kanban_gtd_wip2",
+        "finanzas_503020",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "gtd_vaciado_mental",
+      "kanban_gtd_wip2",
+      "finanzas_503020",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Gestión Profesional & Bienestar",
+    "area_critica": "Claridad de Prioridades y Paz Mental",
+    "saturacion_operativa": 69,
+    "frase_raiz_culpa": "Cargo en la cabeza cosas que deberían estar en un sistema.",
+    "hora_de_oro": "Mañanas 09:00 a 10:30",
+    "valvula_descompresion": "Caminata y desconexión al atardecer",
+    "numero_paz_financiera": "Regla 50/30/20 equilibrada",
+    "hub_filename": "Hub_Imprimibles_Karina.html"
   },
   "emi": {
     "cliente": {
@@ -2562,13 +3011,57 @@
       "estado": "archivado"
     },
     "modulos_activos": [
-      "seguridad_pin",
+      "arquetipos_energia",
+      "diagnostico_estructura",
       "diagnostico_general",
-      "time_blocking",
+      "inventario_cero_culpa",
+      "kanban_gtd_wip2",
+      "mapeador_24h",
       "matriz_eisenhower",
+      "protocolo_paso_cero",
+      "seguridad_pin",
+      "time_blocking",
       "vaciado_mental_gtd",
       "ventana_johari"
-    ]
+    ],
+    "contrato": {
+      "schema_version": "4.0.0",
+      "client_slug": "emi",
+      "updated_at": "2026-10-26",
+      "nombre": "Emi",
+      "hub_filename": "Hub_Imprimibles_Emi.html",
+      "rol_contexto": "Creadora & Gestión Multipotencial",
+      "area_critica": "Batería Energética y Ritmo Sostenible",
+      "saturacion_operativa": 73,
+      "frase_raiz_culpa": "Me exijo como si todos los días tuviera la misma energía.",
+      "hora_de_oro": "Media mañana 10:00 a 11:30",
+      "valvula_descompresion": "Arte, música y pausas sensoriales",
+      "numero_paz_financiera": "Tranquilidad basal mensual",
+      "herramientas_prescritas": [
+        "diagnostico_estructura",
+        "mapeador_24h",
+        "protocolo_paso_cero",
+        "arquetipos_energia",
+        "kanban_gtd_wip2",
+        "inventario_cero_culpa"
+      ]
+    },
+    "herramientas_prescritas": [
+      "diagnostico_estructura",
+      "mapeador_24h",
+      "protocolo_paso_cero",
+      "arquetipos_energia",
+      "kanban_gtd_wip2",
+      "inventario_cero_culpa"
+    ],
+    "rol_contexto": "Creadora & Gestión Multipotencial",
+    "area_critica": "Batería Energética y Ritmo Sostenible",
+    "saturacion_operativa": 73,
+    "frase_raiz_culpa": "Me exijo como si todos los días tuviera la misma energía.",
+    "hora_de_oro": "Media mañana 10:00 a 11:30",
+    "valvula_descompresion": "Arte, música y pausas sensoriales",
+    "numero_paz_financiera": "Tranquilidad basal mensual",
+    "hub_filename": "Hub_Imprimibles_Emi.html"
   },
   "demo": {
     "cliente": {

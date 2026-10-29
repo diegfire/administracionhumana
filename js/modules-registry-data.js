@@ -1,4 +1,4 @@
-// REGISTRO MAESTRO CANÓNICO DE LAS 60 HERRAMIENTAS EN 3 PISOS (AICC v3.0)
+// REGISTRO MAESTRO CANÓNICO DE LAS HERRAMIENTAS EN 3 PISOS (AICC v4.0)
 // Generado automáticamente desde PILARES/ y modulos_db.json
 window.MODULES_REGISTRY_60 = [
   {
@@ -1333,6 +1333,35 @@ window.MODULES_REGISTRY_60 = [
     "sondeo_print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/PESTEL/imprimible.html",
     "sondeo_guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/PESTEL/guia_humana.md",
     "sondeo_img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/PESTEL/PESTEL.png",
+    "isPreRendered": false
+  },
+  {
+    "id": "mod-las-4p-marketing",
+    "raw_id": "las_4p_marketing",
+    "code": "p3_14",
+    "codigo_oficial": "P3-14",
+    "block": "p3",
+    "piso": 3,
+    "pilar": "Pilar 1: Estrategia & Dirección",
+    "pilar_directorio": "01_ESTRATEGIA_Y_DIRECCION",
+    "carpeta": "Las 4P del Marketing",
+    "title": "P3-14. Las 4P del Marketing (Marketing Mix: Producto, Precio, Plaza y Promoción)",
+    "humano": "La Mesa de 4 Patas de tu Oferta: Vender sin rogar, cobrar sin culpa y entregar sin fricción",
+    "icon": "fa-solid fa-compass",
+    "color": "#f59e0b",
+    "desc": "Si tu oferta actual fuera una mesa de cuatro patas —lo que entregas (Producto), lo que cobras y te deja de margen (Precio), qué tan fácil es comprarte en 3 clics (Plaza) y cómo haces que te conozcan (Promoción)—, ¿cuál de esas cuatro patas está hoy más corta y hace que todo tu esfuerzo se tambalee?",
+    "trigger": "coherencia_4p, margen_neto_unitario, friccion_plaza_whatsapp",
+    "step0": "La Auditoría del Cliente Misterioso en 15 Minutos: Toma tu teléfono hoy mismo y haz el recorrido exacto que haría un desconocido que quiere comprarte tu servicio o producto principal. Evalúa del 1 al 5 cada P y corrige hoy mismo la fricción más obvia de tu Plaza o Promoción.",
+    "microdosis": "Calibrar del 1 al 5 las 4P en la microapp interactiva y reparar hoy la pata más corta de tu oferta.",
+    "output": "MicroApp Web: Las 4P del Marketing/app.html | Imprimible Carta: Las 4P del Marketing/imprimible.html | Infografía HD: Las 4P del Marketing.png",
+    "app_url": "PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 4P del Marketing/app.html",
+    "print_url": "PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 4P del Marketing/imprimible.html",
+    "guide_url": "PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 4P del Marketing/guia_humana.md",
+    "img_url": "PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 4P del Marketing/Las 4P del Marketing.png",
+    "sondeo_app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 4P del Marketing/app.html",
+    "sondeo_print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 4P del Marketing/imprimible.html",
+    "sondeo_guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 4P del Marketing/guia_humana.md",
+    "sondeo_img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 4P del Marketing/Las 4P del Marketing.png",
     "isPreRendered": false
   }
 ];

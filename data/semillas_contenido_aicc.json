@@ -1,7 +1,7 @@
 {
   "schema_version": "4.0.0",
-  "generated_at": "2026-10-26T17:48:13.171000",
-  "total_semillas": 46,
+  "generated_at": "2026-10-28T21:52:32.591549",
+  "total_semillas": 47,
   "semillas": [
     {
       "id": "diagnostico_estructura",
@@ -1146,6 +1146,29 @@
       "paso_cero_5min_cta": "Identificar 1 cambio tecnológico o normativo reciente y redactar en 1 línea cómo aprovecharlo esta semana.",
       "regla_de_oro_cierre": "No puedes controlar el viento ni la lluvia exterior, pero sí puedes calibrar tus velas antes de que se desate la tormenta.",
       "kpi_promesa": "1 escaneo PESTEL trimestral realizado con plan de contingencia activo"
+    },
+    {
+      "id": "las_4p_marketing",
+      "codigo": "P3-14",
+      "piso": 3,
+      "titulo_herramienta": "Las 4P del Marketing (Marketing Mix: Producto, Precio, Plaza y Promoción)",
+      "metafora_mentor_sultor": "La Mesa de 4 Patas de tu Oferta: Vender sin rogar, cobrar sin culpa y entregar sin fricción",
+      "gancho_reel_pregunta": "Si tu oferta actual fuera una mesa de cuatro patas —lo que entregas (Producto), lo que cobras y te deja de margen (Precio), qué tan fácil es comprarte en 3 clics (Plaza) y cómo haces que te conozcan (Promoción)—, ¿cuál de esas cuatro patas está hoy más corta y hace que todo tu esfuerzo se tambalee?",
+      "dolor_que_cura": "Cura el dolor de tener un gran talento, producto o servicio que nadie compra (o que se vende a precios de supervivencia) porque la oferta está coja: o no se entiende qué resuelve (Producto), o está mal cobrado (Precio), o es difícil de comprar (Plaza), o nadie se entera de que existe (Promoción). En la vida real y en los negocios pequeños, la mayoría de los emprendedores y profesionales sufren el **\"Síndrome del Secreto Mejor Guardado\"**: son extraordinarios haciendo su oficio, pero su mesa comercial tiene una o dos patas quebradas. Las 4P transforman una habilidad artesanal o profesional en una oferta equilibrada, deseable, accesible y rentable.",
+      "elevator_pitch": "Imagina que cocinas el mejor pan amasado de la ciudad. Si el pan es delicioso (Producto), pero lo vendes a pérdida por miedo al qué dirán (Precio), tu local queda en un callejón sin timbre ni cartel (Plaza) y nunca le avisas a los vecinos cuando sale del horno (Promoción), vas a quebrar pensando que 'la gente no valora lo bueno'. Las 4P son el chequeo mecánico de tu oferta: alinean qué entregas, cuánto vale tu energía, por dónde te encuentran sin trabas y cómo invitas a tu mesa con orgullo y claridad.",
+      "red_flags_carrusel": [
+        "Tener excelente calidad técnica pero sufrir para cerrar clientes nuevos.",
+        "Cobrar barato por miedo al rechazo y terminar agotado sin margen limpio.",
+        "Recibir consultas por WhatsApp o Instagram que quedan en visto por exceso de fricción."
+      ],
+      "antipatrones_carrusel": [
+        "Meterle más leña a la Promoción cuando la Plaza o el Precio están rotos: Hacer publicidad pagada o volverse viral cuando tu proceso de respuesta es lento o tu margen de ganancia es negativo solo acelerará tu agotamiento financiero y mental.",
+        "Competir por Precio cuando tu Producto es Artesanal o Personalizado: Bajar el precio para igualar a cadenas masivas destruye tu posicionamiento y atrae al perfil de cliente más demandante.",
+        "Explicar las características técnicas en lugar del alivio humano: Vender \"grados de temperatura de la máquina\" o \"horas de sesión\" en vez de vender \"un hogar libre de ácaros para tus hijos\" o \"recuperar el control de tu semana\"."
+      ],
+      "paso_cero_5min_cta": "La Auditoría del Cliente Misterioso en 15 Minutos: Toma tu teléfono hoy mismo y haz el recorrido exacto que haría un desconocido que quiere comprarte tu servicio o producto principal. Evalúa del 1 al 5 cada P y corrige hoy mismo la fricción más obvia de tu Plaza o Promoción.",
+      "regla_de_oro_cierre": "Una oferta extraordinaria no es la que grita más fuerte en redes sociales, sino una mesa de cuatro patas firmes: un Producto que alivia de verdad, un Precio que respeta tu vida, una Plaza sin laberintos y una Promoción honesta que educa y genera confianza.",
+      "kpi_promesa": "Tasa de conversión de consultas a ventas cerradas (%) y Margen Neto por unidad vendida"
     }
   ]
 }
