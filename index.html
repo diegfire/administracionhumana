@@ -69,13 +69,14 @@
       overflow-x: clip;
     }
     .nav-platform-container {
-      max-width: 1400px;
+      max-width: 1220px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 6px 16px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 6px 12px;
       width: 100%;
       box-sizing: border-box;
     }
@@ -86,9 +87,10 @@
       text-decoration: none;
       flex-shrink: 0;
       cursor: pointer;
+      order: 1;
     }
     .nav-brand-img {
-      height: 36px;
+      height: 32px;
       width: auto;
       object-fit: contain;
       border-radius: 8px;
@@ -96,50 +98,53 @@
     .nav-brand-text {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 0.96rem;
       color: #ffffff;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
-    /* PESTAÑAS CENTRALES DE NAVEGACIÓN */
+    /* PESTAÑAS CENTRALES DE NAVEGACIÓN (SIN RECORTE NI SCROLL HORIZONTAL) */
     .nav-tab-full { display: inline; }
     .nav-tab-short { display: none; }
 
     .platform-nav-tabs {
-      display: flex;
-      gap: 5px;
+      order: 3;
+      flex: 0 0 100%;
+      width: 100%;
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
       align-items: center;
-      flex: 1 1 auto;
       min-width: 0;
-      justify-content: safe center;
-      white-space: nowrap;
-      padding: 2px 4px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      -webkit-overflow-scrolling: touch;
+      padding: 2px 0 1px;
+      overflow: visible;
     }
-    .platform-nav-tabs::-webkit-scrollbar { display: none; }
     
     .plat-tab-btn {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.12);
       color: #a1a1aa;
-      padding: 7px 13px;
-      border-radius: 50px;
-      font-size: 0.8rem;
+      padding: 7px 11px;
+      border-radius: 10px;
+      font-size: 0.78rem;
       font-weight: 700;
       font-family: var(--font-sans);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 5px;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      flex-shrink: 0;
+      width: 100%;
+      min-width: 0;
+      white-space: nowrap;
       outline: none;
       text-decoration: none;
+      text-align: center;
+      box-sizing: border-box;
     }
     .plat-tab-btn:hover {
       color: #ffffff;
@@ -158,6 +163,8 @@
       background: rgba(56, 189, 248, 0.08);
       border-color: rgba(56, 189, 248, 0.25);
       color: #38bdf8;
+      width: auto;
+      border-radius: 50px;
     }
     .plat-tab-btn.plat-admin-tab:hover {
       background: rgba(56, 189, 248, 0.2);
@@ -175,6 +182,8 @@
 
     /* ACCIONES Y ACCESOS DERECHA */
     .nav-actions-group {
+      order: 2;
+      margin-left: auto;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -229,25 +238,12 @@
     .nav-pin-full { display: inline; }
     .nav-pin-short { display: none; }
 
-    /* RESPONSIVE NAVBAR CALIBRATION - ANTI-CLIPPING & ADAPTIVE LABELS */
-    @media (max-width: 1450px) {
-      .plat-tab-btn { padding: 6px 10px; font-size: 0.77rem; }
-      .nav-platform-container { gap: 8px; padding: 0 12px; }
-    }
-    @media (max-width: 1260px) {
-      .nav-tab-full { display: none; }
-      .nav-tab-short { display: inline; }
-      .nav-ig-text { display: none; }
-      .nav-brand-text { font-size: 0.9rem; }
-      .plat-tab-btn { padding: 6px 9px; font-size: 0.75rem; }
-      .nav-platform-container { gap: 6px; padding: 0 10px; }
-      .platform-nav-tabs { justify-content: safe center; }
-    }
-    @media (max-width: 1040px) {
+    /* RESPONSIVE NAVBAR CALIBRATION - CERO RECORTE DE INFORMACIÓN (GRILLA 4 COL EN LAPTOP, 2x2 EN MÓVIL) */
+    @media (max-width: 1420px) {
       .nav-platform-container {
         flex-wrap: wrap;
-        padding: 8px 14px;
-        gap: 8px 12px;
+        padding: 7px 14px;
+        gap: 6px 12px;
       }
       .nav-brand-group {
         order: 1;
@@ -261,20 +257,23 @@
         flex: 0 0 100% !important;
         width: 100%;
         max-width: 100%;
-        padding-top: 4px;
-        padding-bottom: 3px;
-        justify-content: center;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+        padding: 2px 0 1px;
+        overflow: visible;
+      }
+      .plat-tab-btn {
+        padding: 7px 10px;
+        font-size: 0.77rem;
       }
     }
-    @media (max-width: 650px) {
+    @media (max-width: 768px) {
       nav.master-platform-nav {
-        padding: 4px 0 3px;
+        padding: 5px 0 4px;
       }
       .nav-platform-container {
-        padding: 4px 8px;
-        gap: 4px 6px;
+        padding: 4px 10px;
+        gap: 5px 6px;
       }
       .nav-brand-group {
         gap: 6px;
@@ -287,6 +286,7 @@
         letter-spacing: 0.02em;
       }
       .nav-brand-img { height: 26px; }
+      .nav-ig-text { display: none; }
       .nav-pin-full { display: none; }
       .nav-pin-short { display: inline; }
       .nav-actions-group {
@@ -294,12 +294,20 @@
       }
       .nav-btn-pin { padding: 4px 9px; font-size: 0.72rem; gap: 3px; }
       .nav-ig-btn { padding: 4px 7px; font-size: 0.72rem; }
+      .plat-tab-btn.plat-admin-tab { padding: 4px 9px; font-size: 0.72rem; }
+      .nav-tab-full { display: none; }
+      .nav-tab-short { display: inline; }
       .platform-nav-tabs {
-        justify-content: flex-start;
-        padding: 2px 0 3px;
-        gap: 4px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+        padding: 2px 0;
       }
-      .plat-tab-btn { padding: 4px 9px; font-size: 0.72rem; gap: 3px; }
+      .plat-tab-btn {
+        padding: 6px 8px;
+        font-size: 0.73rem;
+        gap: 4px;
+        border-radius: 8px;
+      }
     }
     @media (max-width: 340px) {
       .nav-brand-text { display: none; }
@@ -4218,16 +4226,16 @@
         <!-- Pestañas Centrales de Plataforma: Enlaces de Salto Rápido en Página Continua -->
         <div class="platform-nav-tabs">
       <button class="plat-tab-btn active" data-anchor="sobre-diego" onclick="scrollToSection('sobre-diego')" title="Etapa 1: Con quién cuentas, mis 12 aportes clave, cómo trabajamos y casos reales">
-        <span>👤</span> <span class="nav-tab-full">1. Con Quién Cuentas</span><span class="nav-tab-short">Diego</span>
+        <span>👤</span> <span class="nav-tab-full">1. Con Quién Cuentas</span><span class="nav-tab-short">1. Con Quién Cuentas</span>
       </button>
       <button class="plat-tab-btn" data-anchor="arsenal" onclick="scrollToSection('arsenal')" title="Etapa 2: Navega en vivo el Plan de Vuelo y conoce el Portal de Clientes con Usuario y Clave">
-        <span>📱</span> <span class="nav-tab-full">2. Portal & Demo en Vivo</span><span class="nav-tab-short">Demo Vivo</span>
+        <span>📱</span> <span class="nav-tab-full">2. Portal & Demo en Vivo</span><span class="nav-tab-short">2. Portal & Demo Vivo</span>
       </button>
       <button class="plat-tab-btn" data-anchor="sondeos" onclick="scrollToSection('sondeos')" title="Etapa 3: Sondeo interactivo de dolores operativos en 6 áreas">
-        <span>⚡</span> <span class="nav-tab-full">3. Sondeo Dolores</span><span class="nav-tab-short">Sondeo</span>
+        <span>⚡</span> <span class="nav-tab-full">3. Sondeo Dolores</span><span class="nav-tab-short">3. Sondeo 6 Áreas</span>
       </button>
       <button class="plat-tab-btn" data-anchor="productos" onclick="scrollToSection('productos')" title="Etapa 4: Sesión Base ($35.000) con herramienta en tu Portal y Planes Personalizados">
-        <span>🚀</span> <span class="nav-tab-full">4. Sesión Base ($35k) & Planes</span><span class="nav-tab-short">Modalidades</span>
+        <span>🚀</span> <span class="nav-tab-full">4. Sesión Base ($35k) & Planes</span><span class="nav-tab-short">4. Sesión ($35k) & Planes</span>
       </button>
     </div>
 
@@ -4637,24 +4645,12 @@
       }
     }
 
-    /* Vista 3: Casos Reales en Cristiano */
+    /* Vista 3: Casos Reales en Cristiano (Grilla sin recorte ni scroll horizontal) */
     .diego-cases-selector {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 6px;
-      flex-wrap: wrap;
       margin-bottom: 8px;
-    }
-    @media (max-width: 680px) {
-      .diego-cases-selector {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        -webkit-overflow-scrolling: touch;
-      }
-      .diego-case-btn {
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
     }
     .diego-case-btn {
       background: #050507;
@@ -4662,16 +4658,40 @@
       color: #a1a1aa;
       font-size: 0.74rem;
       font-weight: 700;
-      padding: 6px 11px;
+      padding: 7px 10px;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.18s ease;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.25;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .diego-case-btn:hover {
+      border-color: #3f3f46;
+      color: #ffffff;
     }
     .diego-case-btn.active {
       background: #ffffff;
       border-color: #ffffff;
       color: #000000;
       font-weight: 800;
+    }
+    @media (max-width: 680px) {
+      .diego-cases-selector {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+      }
+      .diego-case-btn {
+        font-size: 0.7rem;
+        padding: 7px 6px;
+      }
+      .diego-case-btn:last-child {
+        grid-column: 1 / -1;
+      }
     }
     .diego-case-display {
       display: grid;
@@ -5474,7 +5494,7 @@
       <div style="background: #000000; border: 1px solid #222228; border-radius: 14px; overflow: hidden; margin-bottom: 20px;">
         <!-- IFRAME EN VIVO DE PLANES-DEMO.HTML (ALTURA AUTO-AJUSTABLE PC & MÓVIL) -->
         <div id="live-demo-iframe-wrap" style="width: 100%; height: 820px; min-height: 640px; background: #000000; position: relative; transition: height 0.25s ease;">
-          <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_minimal_v4" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block;" loading="lazy"></iframe>
+          <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_minimal_v5" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block;" loading="lazy"></iframe>
         </div>
         <script>
           window.addEventListener("message", function(ev) {
@@ -5498,7 +5518,7 @@
     <span id="diagnostico-guiado-se-busca"></span>
 
     <style>
-      /* ── HUB INTERACTIVO DE LAS 6 ÁREAS (DISEÑO MINIMALISTA SOBRE NEGRO) ── */
+      /* ── HUB INTERACTIVO DE LAS 6 ÁREAS (GRILLA EN COLUMNAS 3x2 PC / 2x3 MÓVIL SIN PERDER INFO) ── */
       .hub-6areas-shell {
         background: #0a0a0c;
         border: 1px solid #1f1f24;
@@ -5507,28 +5527,31 @@
         position: relative;
       }
       .hub-stations-nav {
-        display: flex;
-        gap: 7px;
-        overflow-x: auto;
-        padding-bottom: 8px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        overflow: visible;
+        padding-bottom: 0;
         margin-bottom: 12px;
-        scrollbar-width: thin;
       }
       .hub-station-tab {
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid rgba(255, 255, 255, 0.1);
         color: #cbd5e1;
-        border-radius: 12px;
-        padding: 8px 13px;
-        font-size: 0.76rem;
+        border-radius: 10px;
+        padding: 9px 12px;
+        font-size: 0.78rem;
         font-weight: 700;
         cursor: pointer;
         transition: all 0.2s ease;
         display: inline-flex;
         align-items: center;
-        gap: 7px;
-        white-space: nowrap;
-        flex-shrink: 0;
+        justify-content: space-between;
+        gap: 6px;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        line-height: 1.2;
       }
       .hub-station-tab:hover {
         background: rgba(255, 255, 255, 0.09);
@@ -5543,16 +5566,33 @@
         box-shadow: 0 0 20px rgba(56, 189, 248, 0.28);
       }
       .hub-station-tab.is-metrics-tab {
-        margin-left: auto;
+        grid-column: 1 / -1;
+        margin-left: 0;
+        justify-content: center;
+        gap: 10px;
         border-color: rgba(16, 185, 129, 0.45);
         background: rgba(16, 185, 129, 0.12);
         color: #34d399;
+        padding: 9px 14px;
       }
       .hub-station-tab.is-metrics-tab.is-active {
         background: #10b981;
         color: #000000;
         border-color: #10b981;
         box-shadow: 0 0 22px rgba(16, 185, 129, 0.4);
+      }
+      @media (max-width: 680px) {
+        .hub-stations-nav {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 6px;
+          margin-bottom: 10px;
+        }
+        .hub-station-tab {
+          padding: 8px 8px;
+          font-size: 0.72rem;
+          gap: 4px;
+          border-radius: 9px;
+        }
       }
 
       .hub-progress-strip {
@@ -6165,8 +6205,8 @@
         const badgeText = st.markedCount > 0 ? `${st.markedCount} ✓ (${st.saturationPct}%)` : (isVisited ? '0 ✓' : '0');
 
         btn.innerHTML = `
-          <span>0${ar.num} ${ar.short_label}</span>
-          <span style="font-size: 0.66rem; font-weight: 800; background: ${badgeBg}; color: ${badgeColor}; padding: 1px 6px; border-radius: 8px;">
+          <span style="min-width: 0; text-align: left;">0${ar.num} ${ar.short_label}</span>
+          <span style="font-size: 0.65rem; font-weight: 800; background: ${badgeBg}; color: ${badgeColor}; padding: 2px 6px; border-radius: 7px; flex-shrink: 0; white-space: nowrap;">
             ${badgeText}
           </span>
         `;
