@@ -660,6 +660,175 @@
             justify-content: flex-end;
         }
 
+        /* ══════════════════════════════════════════════════════════════════
+           BANNER PUBLICITARIO & GUÍA INTERACTIVA PASO A PASO (BAJA FRICCIÓN)
+           ══════════════════════════════════════════════════════════════════ */
+        .sgp-tour-banner {
+            background: linear-gradient(135deg, rgba(14, 21, 38, 0.96) 0%, rgba(10, 14, 24, 0.98) 100%);
+            border: 1.5px solid rgba(56, 189, 248, 0.42);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 24px rgba(56, 189, 248, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .sgp-tour-progress-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .sgp-tour-progress-fill {
+            height: 100%;
+            width: 16.66%;
+            background: linear-gradient(90deg, #38bdf8, #10b981);
+            transition: width 0.35s ease;
+        }
+        .sgp-tour-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            padding-top: 2px;
+        }
+        .sgp-tour-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex: 1;
+            min-width: 240px;
+        }
+        .sgp-step-pill {
+            background: rgba(56, 189, 248, 0.16);
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            color: #38bdf8;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 50px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .sgp-category-pill {
+            background: rgba(16, 185, 129, 0.13);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34d399;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+        .sgp-tour-main-title {
+            font-family: var(--font-heading);
+            font-size: clamp(0.95rem, 1.9vw, 1.14rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.25;
+        }
+        .sgp-tour-nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+        .sgp-next-hint {
+            font-size: 0.72rem;
+            color: #fcd34d;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px dashed rgba(245, 158, 11, 0.4);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-tour-prev {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #cbd5e1;
+            padding: 7px 11px;
+            border-radius: 9px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-tour-prev:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+        }
+        @keyframes pulseTourNext {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.55), 0 4px 14px rgba(16, 185, 129, 0.35); }
+            50% { box-shadow: 0 0 0 6px rgba(56, 189, 248, 0), 0 6px 20px rgba(56, 189, 248, 0.5); }
+        }
+        .btn-tour-next {
+            background: linear-gradient(135deg, #38bdf8 0%, #10b981 100%);
+            border: none;
+            color: #041019;
+            padding: 8px 15px;
+            border-radius: 9px;
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            animation: pulseTourNext 2.4s infinite;
+            transition: filter 0.2s ease;
+            white-space: nowrap;
+        }
+        .btn-tour-next:hover {
+            filter: brightness(1.1);
+        }
+        .sgp-tour-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .sgp-tour-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 8px 11px;
+            font-size: 0.77rem;
+            line-height: 1.42;
+            color: #cbd5e1;
+        }
+        .sgp-tour-card strong.sgp-card-kicker {
+            display: block;
+            font-size: 0.69rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 3px;
+            font-weight: 800;
+        }
+        .sgp-bottom-next-bar {
+            margin-top: 12px;
+            background: linear-gradient(90deg, rgba(14, 21, 38, 0.95), rgba(16, 185, 129, 0.12));
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         /* Barra de 6 Pestañas en Grilla Simétrica (Sin Botón Huérfano) */
         #main-tabs-nav.tabs {
             display: grid !important;
@@ -808,6 +977,10 @@
                 justify-content: flex-start;
                 width: 100%;
             }
+            .sgp-tour-grid {
+                grid-template-columns: 1fr !important;
+                gap: 6px !important;
+            }
         }
 
         /* Responsividad Móvil (2x3 pestañas + vista compacta limpia) */
@@ -951,25 +1124,25 @@
             <div id="case-header-pills" class="demo-pills-row"></div>
         </header>
 
-        <!-- 3. HUB DE 6 PESTAÑAS MODULARES EN GRILLA SIMÉTRICA (6 EN PC / 3x2 TABLET / 2x3 MÓVIL) -->
+        <!-- 3. HUB DE 6 MICRO-APPS & MÓDULOS ESCOGIDOS CON PINZA (6 EN PC / 3x2 TABLET / 2x3 MÓVIL) -->
         <nav class="tabs" id="main-tabs-nav" aria-label="Navegación de Módulos">
             <button class="tab-btn active" id="tab-btn-horario" onclick="switchTab('tab-horario')">
-                <i class="fa-regular fa-clock"></i> <span>1. Mapeador 24H</span>
+                <i class="fa-regular fa-clock"></i> <span>1. App Horario 24H</span>
             </button>
             <button class="tab-btn" id="tab-btn-kanban" onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns"></i> <span>2. Kanban (WIP=2)</span>
-            </button>
-            <button class="tab-btn" id="tab-btn-identidades" onclick="switchTab('tab-identidades')">
-                <i class="fa-solid fa-masks-theater"></i> <span>3. 4 Arquetipos</span>
-            </button>
-            <button class="tab-btn" id="tab-btn-herramientas" onclick="switchTab('tab-herramientas')">
-                <i class="fa-solid fa-toolbox"></i> <span>4. Time Blocking</span>
-            </button>
-            <button class="tab-btn" id="tab-btn-resultados" onclick="switchTab('tab-resultados')">
-                <i class="fa-solid fa-trophy" style="color: #10b981;"></i> <span>5. Resultados</span>
+                <i class="fa-solid fa-table-columns"></i> <span>2. App Kanban WIP=2</span>
             </button>
             <button class="tab-btn" id="tab-btn-accion" onclick="switchTab('tab-accion')">
-                <i class="fa-solid fa-bolt"></i> <span>6. Plan 24h & Límites</span>
+                <i class="fa-solid fa-calculator" style="color: #fbbf24;"></i> <span>3. App Negocio & Metas</span>
+            </button>
+            <button class="tab-btn" id="tab-btn-identidades" onclick="switchTab('tab-identidades')">
+                <i class="fa-solid fa-stopwatch" style="color: #38bdf8;"></i> <span>4. App Foco & Energía</span>
+            </button>
+            <button class="tab-btn" id="tab-btn-herramientas" onclick="switchTab('tab-herramientas')">
+                <i class="fa-solid fa-graduation-cap" style="color: #a78bfa;"></i> <span>5. Tutorial & Papel</span>
+            </button>
+            <button class="tab-btn" id="tab-btn-resultados" onclick="switchTab('tab-resultados')">
+                <i class="fa-solid fa-trophy" style="color: #10b981;"></i> <span>6. Bitácora & Logros</span>
             </button>
 
             <!-- PESTAÑAS DINÁMICAS DE MÓDULOS AGREGADOS DEL CATÁLOGO -->
@@ -981,8 +1154,56 @@
             </button>
         </nav>
 
+        <!-- 3B. BANNER PUBLICITARIO & GUÍA INTERACTIVA PASO A PASO (SE EXPLICA SOLO + BOTÓN SIGUIENTE) -->
+        <section class="sgp-tour-banner" id="sgp-tour-banner" aria-label="Guía paso a paso del módulo activo">
+            <div class="sgp-tour-progress-track">
+                <div class="sgp-tour-progress-fill" id="tour-progress-fill" style="width: 16.66%;"></div>
+            </div>
+            <div class="sgp-tour-top">
+                <div class="sgp-tour-title-wrap">
+                    <span class="sgp-step-pill" id="tour-step-pill">🧭 MÓDULO 1 DE 6</span>
+                    <span class="sgp-category-pill" id="tour-category-pill">🏠 App de Vida & Rutina</span>
+                    <h2 class="sgp-tour-main-title" id="tour-main-title">
+                        Mapeador Semanal 24H: Soberanía de Tiempo sin Culpa
+                    </h2>
+                </div>
+                <div class="sgp-tour-nav-controls">
+                    <span class="sgp-next-hint" id="tour-next-hint">
+                        👆 Presiona «Siguiente» para recorrer cómo funciona
+                    </span>
+                    <button type="button" class="btn-tour-prev" id="btn-tour-prev" onclick="prevTourStep()" title="Módulo anterior">
+                        <i class="fa-solid fa-arrow-left"></i> Anterior
+                    </button>
+                    <button type="button" class="btn-tour-next" id="btn-tour-next" onclick="nextTourStep()">
+                        <span id="btn-tour-next-label">Siguiente: 2. App Kanban WIP=2</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="sgp-tour-grid">
+                <div class="sgp-tour-card">
+                    <strong class="sgp-card-kicker" style="color: #38bdf8;">📌 ¿Qué es este Módulo / App?</strong>
+                    <div id="tour-col-what">
+                        Una app interactiva de tus 168 horas semanales donde pintas tus bloques reales (sueño, trabajo profundo, cuidados familiares y descanso libre de culpa).
+                    </div>
+                </div>
+                <div class="sgp-tour-card">
+                    <strong class="sgp-card-kicker" style="color: #fbbf24;">🤝 Acompañamiento Administrativo & Qué Aprendes</strong>
+                    <div id="tour-col-how">
+                        Aterrizamos tus fugas de tiempo, te enseño la técnica de <b>Presupuesto Energético 24H</b> y te acompaño en la gestión ajustando las categorías a tu vida real.
+                    </div>
+                </div>
+                <div class="sgp-tour-card">
+                    <strong class="sgp-card-kicker" style="color: #34d399;">📲 ¿Cómo queda en la palma de tu mano?</strong>
+                    <div id="tour-col-palm">
+                        Lo editas en vivo desde tu celular o PC con auto-guardado, creas nuevas categorías cuando quieras y lo descargas en PNG o en tu Hoja Carta imprimible.
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 1: MAPEADOR SEMANAL 24 HORAS (COMPACTO Y VISIBLE)        -->
+        <!-- MÓDULO 1: MAPEADOR SEMANAL 24 HORAS (APP DE VIDA & RUTINA)       -->
         <!-- ════════════════════════════════════════════════════════════════ -->
         <div id="tab-horario" class="tab-content active">
             <div class="card">
@@ -992,7 +1213,7 @@
                             ⏰ Mapeador Semanal 24 Horas (Sofía)
                         </span>
                         <span style="font-size: 0.76rem; color: #94a3b8;">
-                            Haz clic en un pincel y toca cualquier bloque horario para pintar o editar:
+                             Prueba la app en vivo: elige un pincel abajo y haz clic en cualquier casilla horaria para pintar:
                         </span>
                     </div>
                     <div class="schedule-actions-group">
@@ -1040,26 +1261,26 @@
         </div>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 4: KANBAN GTD (MÁXIMO 2 TAREAS A LA VEZ)                -->
+        <!-- MÓDULO 2: KANBAN GTD (MÁXIMO 2 TAREAS A LA VEZ)                  -->
         <!-- ════════════════════════════════════════════════════════════════ -->
         <div id="tab-kanban" class="tab-content">
-            <div class="card" style="margin-bottom: 1.5rem;">
-                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.8rem;">
-                    <span style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-table-columns"></i> Tablero de Foco (Máximo 2 Tareas a la Vez)
+            <div class="card" style="margin-bottom: 1.2rem;">
+                <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 0.6rem;">
+                    <span style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800; color:#fff; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-table-columns" style="color: #f59e0b;"></i> App Kanban GTD • Regla WIP=2 (Máximo 2 Tareas en Foco)
                     </span>
                     <button class="btn-schedule-action" onclick="resetKanbanDefault()" style="color:#aaa;">
                         <i class="fa-solid fa-rotate-left"></i> Restaurar Tablero
                     </button>
                 </div>
-                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.4rem; line-height: 1.5;">
-                    El sistema nervioso colapsa cuando el cerebro sostiene más de 2 frentes abiertos. Este tablero bloquea la multitarea y asegura el destrabe de tareas con auto-guardado en tiempo real.
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.1rem; line-height: 1.5;">
+                    <strong>¿Por qué funciona?</strong> Cuando sostienes 10 frentes abiertos, tu sistema nervioso entra en parálisis. Esta micro-app <strong>bloquea automáticamente la 3ª tarea en ejecución</strong>: para abrir algo nuevo, primero debes terminar o devolver una tarea a "Por Hacer". ¡Pruébalo agregando o moviendo una tarjeta!
                 </p>
 
                 <div class="kanban-grid">
                     <div class="kanban-col">
                         <div class="kanban-col-header">
-                            <div class="kanban-col-title"><i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> 📥 Por Hacer</div>
+                            <div class="kanban-col-title"><i class="fa-regular fa-circle-dot" style="color: #60a5fa;"></i> 📥 Por Hacer (Bandeja)</div>
                             <span id="count-todo" class="wip-limit-pill" style="border-color:#555; color:#aaa;">0</span>
                         </div>
                         <div style="display: flex; gap: 6px; margin-bottom: 0.5rem;">
@@ -1101,88 +1322,288 @@
                     <h3 class="section-title" style="margin: 0;">
                         <span>📋 Checklist Diario de Operaciones & Micro-Hábitos</span>
                     </h3>
-                    <span style="font-size: 0.74rem; color: #888;">Tilda para registrar cumplimiento</span>
+                    <span style="font-size: 0.74rem; color: #888;">Haz clic en cada hábito para marcar tu avance del día</span>
                 </div>
                 <div class="checklist-group" id="m3-checklist-container"></div>
             </div>
         </div>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA: HERRAMIENTA DEMOSTRATIVA • TIME BLOCKING & BLINDAJE   -->
+        <!-- MÓDULO 3: MICRO-APP DE NEGOCIO, METAS & FINANZAS 50/30/20        -->
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-identidades" class="tab-content">
-            <div class="section-title">
-                <span>Matriz de los 4 Arquetipos de Energía Personal</span>
-            </div>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.92rem;">
-                Comprender qué identidad está activa en cada momento te permite neutralizar el auto-sabotaje y activar tu foco operativo.
-            </p>
-            <div class="grid-2" id="identidades-grid">
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> 1. La Estratega
+        <div id="tab-accion" class="tab-content">
+            <div class="grid-2" style="align-items: start; gap: 1.2rem;">
+                
+                <!-- COLUMNA 1: SIMULADOR INTERACTIVO DE METAS & EMPAQUETADO COMERCIAL -->
+                <div class="card" style="border-color: rgba(245, 158, 11, 0.38); background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(10, 12, 18, 0.95));">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+                        <span class="hero-tea-badge" style="margin: 0; background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">
+                            💼 Micro-App de Negocio a Medida
+                        </span>
+                        <span style="font-size: 0.72rem; color: #34d399; font-weight: 700;">
+                            ⚡ Interactiva: cambia los valores abajo
+                        </span>
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0 0 6px;">
+                        Calculadora de Metas Comerciales & Packs Mensuales
                     </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-estratega-desc"><strong>Rol / Función:</strong> Diseña programas y calcula metas financieras</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Alta / Foco</span>
+                    <p style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 14px; line-height: 1.45;">
+                        En vez de vender horas sueltas agotadoras, diseñamos una app para tu negocio que traduce tu meta financiera en <strong>cupos o paquetes fijos</strong> compatibles con tu energía:
+                    </p>
+
+                    <!-- BOTONES RÁPIDOS DE ESCENARIO -->
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
+                        <button type="button" class="btn-schedule-action" onclick="setBizPreset(640000, 40000, 4)" style="font-size: 0.72rem; border-color: rgba(56,189,248,0.4); color: #38bdf8;">
+                            🧘‍♀️ Caso Sofía ($640k / Pack $40k)
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="setBizPreset(960000, 80000, 4)" style="font-size: 0.72rem;">
+                            💆‍♀️ Consulta / Terapia ($960k / Pack $80k)
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="setBizPreset(1500000, 125000, 6)" style="font-size: 0.72rem;">
+                            🚀 Servicio B2B / Freelance ($1.5M)
+                        </button>
+                    </div>
+
+                    <!-- CONTROLES INTERACTIVOS -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; margin-bottom: 14px;">
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 9px 11px; border-radius: 9px;">
+                            <label style="font-size: 0.7rem; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">🎯 Meta Mensual ($ CLP)</label>
+                            <input type="number" id="biz-input-goal" value="640000" step="20000" min="100000" oninput="recalcBizApp()" style="width: 100%; background: #141824; border: 1px solid #334155; color: #fff; font-family: var(--font-heading); font-size: 0.98rem; font-weight: 800; padding: 6px 8px; border-radius: 6px; outline: none;">
+                        </div>
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 9px 11px; border-radius: 9px;">
+                            <label style="font-size: 0.7rem; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">📦 Valor Pack Mensual ($)</label>
+                            <input type="number" id="biz-input-pack" value="40000" step="5000" min="5000" oninput="recalcBizApp()" style="width: 100%; background: #141824; border: 1px solid #334155; color: #fbbf24; font-family: var(--font-heading); font-size: 0.98rem; font-weight: 800; padding: 6px 8px; border-radius: 6px; outline: none;">
+                        </div>
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 9px 11px; border-radius: 9px;">
+                            <label style="font-size: 0.7rem; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">⏱️ Hrs al Mes por Cliente</label>
+                            <input type="number" id="biz-input-hours" value="4" step="1" min="1" max="40" oninput="recalcBizApp()" style="width: 100%; background: #141824; border: 1px solid #334155; color: #38bdf8; font-family: var(--font-heading); font-size: 0.98rem; font-weight: 800; padding: 6px 8px; border-radius: 6px; outline: none;">
+                        </div>
+                    </div>
+
+                    <!-- RESULTADOS EN TIEMPO REAL -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px;">
+                        <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); border-radius: 10px; padding: 10px; text-align: center;">
+                            <div style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; color: #10b981;" id="biz-out-clients">16</div>
+                            <div style="font-size: 0.69rem; color: #cbd5e1; font-weight: 700;">Clientes / Cupos Fijos</div>
+                        </div>
+                        <div style="background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.3); border-radius: 10px; padding: 10px; text-align: center;">
+                            <div style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; color: #38bdf8;" id="biz-out-weekly-hrs">16h</div>
+                            <div style="font-size: 0.69rem; color: #cbd5e1; font-weight: 700;">Carga Semanal Atención</div>
+                        </div>
+                        <div style="background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.3); border-radius: 10px; padding: 10px; text-align: center;">
+                            <div style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; color: #fbbf24;" id="biz-out-hourly">$10.000</div>
+                            <div style="font-size: 0.69rem; color: #cbd5e1; font-weight: 700;">Valor Hora Efectiva</div>
+                        </div>
+                    </div>
+
+                    <div id="biz-out-diagnosis" style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 9px 12px; border-radius: 0 8px 8px 0; font-size: 0.8rem; color: #e2e8f0; line-height: 1.45;">
+                        ✅ <strong>Diagnóstico de Viabilidad:</strong> Con solo <strong>16 clientes de Pack Mensual</strong> cubres el 100% de tu meta dedicando <strong>16 hrs/semana</strong>, dejando tu agenda libre para cuidados familiares y descanso.
+                    </div>
                 </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-bolt" style="color: #10b981;"></i> 2. La Ejecutora
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-ejecutora-desc"><strong>Rol / Función:</strong> Entrega el servicio y atiende clientes con calidad</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Presente / Somática</span>
-                </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-heart" style="color: #ec4899;"></i> 3. La Nutricia
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-nutricia-desc"><strong>Rol / Función:</strong> Acompaña a su entorno, sostiene la familia y el autocuidado</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Empática / Emocional</span>
-                </div>
-                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-shield-halved" style="color: #f59e0b;"></i> 4. La Saboteadora
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-saboteadora-desc"><strong>Rol / Función:</strong> Genera culpa nocturna por tareas pendientes o perfeccionismo</p>
-                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Rumiación / Freno</span>
+
+                <!-- COLUMNA 2: DISTRIBUCIÓN FINANCIERA 50/30/20 + GUION COMERCIAL WHATSAPP -->
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    
+                    <div class="card" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <h3 style="font-family: var(--font-heading); font-size: 1.08rem; font-weight: 800; color: #fff; margin: 0 0 6px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-chart-pie" style="color: #10b981;"></i> Distribución Automática 50 / 30 / 20 (Vida + Negocio)
+                        </h3>
+                        <p style="font-size: 0.79rem; color: #94a3b8; margin-bottom: 10px; line-height: 1.4;">
+                            Separar tu plata en 3 bolsillos simples elimina la angustia de mezclar gastos de casa con el negocio:
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px;">
+                                <div>
+                                    <strong style="color: #38bdf8; font-size: 0.82rem;">🏠 50% Base Vital & Gastos Fijos</strong>
+                                    <div style="font-size: 0.72rem; color: #888;">Hogar, alimentación, servicios básicos y tranquilidad base</div>
+                                </div>
+                                <span id="biz-split-50" style="font-family: var(--font-heading); font-weight: 800; font-size: 0.98rem; color: #fff;">$320.000</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px;">
+                                <div>
+                                    <strong style="color: #10b981; font-size: 0.82rem;">🚀 30% Reinversión, Colchón & Metas</strong>
+                                    <div style="font-size: 0.72rem; color: #888;">Insumos del negocio, fondo de imprevistos y proyectos</div>
+                                </div>
+                                <span id="biz-split-30" style="font-family: var(--font-heading); font-weight: 800; font-size: 0.98rem; color: #10b981;">$192.000</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px;">
+                                <div>
+                                    <strong style="color: #fbbf24; font-size: 0.82rem;">🌿 20% Disfrute Personal Cero Culpa</strong>
+                                    <div style="font-size: 0.72rem; color: #888;">Recompensa personal asegurada para que trabajar tenga sentido</div>
+                                </div>
+                                <span id="biz-split-20" style="font-family: var(--font-heading); font-weight: 800; font-size: 0.98rem; color: #fbbf24;">$128.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GUION COMERCIAL WHATSAPP 1-CLIC -->
+                    <div class="card" style="border-color: rgba(56, 189, 248, 0.28);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+                            <h4 style="font-family: var(--font-heading); font-size: 0.96rem; font-weight: 800; color: #fff; margin: 0;">
+                                💬 Guion de Cierre WhatsApp (Listo para Copiar)
+                            </h4>
+                            <button type="button" class="btn-schedule-action" onclick="copyPromptText('biz-wa-script', this)" style="background: #10b981; color: #000; font-weight: 800; border: none;">
+                                <i class="fa-regular fa-copy"></i> Copiar Guion
+                            </button>
+                        </div>
+                        <div id="biz-wa-script" style="background: #0d111a; border: 1px solid rgba(255,255,255,0.09); border-radius: 8px; padding: 9px 11px; font-size: 0.78rem; color: #cbd5e1; line-height: 1.45; font-style: italic;">
+                            "¡Hola! 🌟 Para acompañarte con foco real, trabajo mediante el Pack Mensual de 4 sesiones ($40.000) con horario fijo reservado para ti. Así aseguramos continuidad real semana a semana. ¿Te acomoda más el bloque de martes o jueves?"
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 3: MAPEADOR SEMANAL 24 HORAS                            -->
+        <!-- MÓDULO 4: MICRO-APP DE FOCO (TIMER PASO CERO) + 4 ARQUETIPOS      -->
+        <!-- ════════════════════════════════════════════════════════════════ -->
+        <div id="tab-identidades" class="tab-content">
+            <div class="grid-2" style="align-items: start; gap: 1.2rem; margin-bottom: 1.2rem;">
+                
+                <!-- MICRO-APP INTERACTIVA: TIMER PASO CERO (5 MIN) & POMODORO -->
+                <div class="card" style="border-color: rgba(56, 189, 248, 0.4); background: linear-gradient(135deg, rgba(56, 189, 248, 0.06), rgba(10, 12, 18, 0.95));">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 6px;">
+                        <span class="hero-tea-badge" style="margin: 0; background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
+                            ⏱️ Micro-App Antiprocrastinación
+                        </span>
+                        <span style="font-size: 0.72rem; color: #fcd34d; font-weight: 700;">
+                            ⚡ Regla de los 5 Minutos
+                        </span>
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.18rem; font-weight: 800; color: #fff; margin: 0 0 6px;">
+                        Reloj de Destrabe «Paso Cero» & Bloques de Foco
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 10px; line-height: 1.45;">
+                        Cuando una tarea da ansiedad o pereza, tu cerebro bloquea el inicio. Con el <strong>Protocolo Paso Cero</strong> solo te comprometes a avanzar durante <strong>5 minutos con reloj</strong>. Roto el roce inicial, el foco fluye solo:
+                    </p>
+
+                    <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px;">
+                        <button type="button" class="btn-schedule-action" onclick="setFocusTimerMode(300, '⚡ Paso Cero (5 min): Romper la inercia sin presión')" style="border-color: #f59e0b; color: #fbbf24; font-weight: 800;">
+                            ⚡ Paso Cero (5 min)
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="setFocusTimerMode(1500, '🍅 Pomodoro (25 min): 1 sola tarea del Kanban')">
+                            🍅 Foco Corto (25 min)
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="setFocusTimerMode(3000, '🛡️ Bloque Dorado (50 min): Trabajo profundo sin WhatsApp')">
+                            🛡️ Bloque Dorado (50 min)
+                        </button>
+                    </div>
+
+                    <div id="focus-timer-mode-label" style="text-align: center; font-size: 0.76rem; color: #94a3b8; font-weight: 700;">
+                        ⚡ Paso Cero (5 min): Romper la inercia sin presión
+                    </div>
+                    <div class="timer-display" id="focus-timer-display" style="margin: 0.4rem 0;">05:00</div>
+                    <div class="timer-progress-bar">
+                        <div class="timer-progress-fill" id="focus-timer-bar" style="width: 100%;"></div>
+                    </div>
+
+                    <div style="display: flex; gap: 8px; justify-content: center;">
+                        <button type="button" class="btn-schedule-action" id="btn-focus-timer-start" onclick="toggleFocusTimer()" style="background: #f59e0b; color: #000; font-weight: 800; padding: 8px 18px !important; font-size: 0.82rem !important;">
+                            <i class="fa-solid fa-play"></i> Iniciar Reloj
+                        </button>
+                        <button type="button" class="btn-schedule-action" onclick="resetFocusTimer()" style="padding: 8px 14px !important; font-size: 0.8rem !important;">
+                            <i class="fa-solid fa-rotate-left"></i> Reiniciar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- GUARDIANES DE TU FOCO & PROTOCOLO DE EMERGENCIA -->
+                <div class="card" style="border-color: rgba(239, 68, 68, 0.28);">
+                    <h3 class="section-title" style="margin-bottom: 0.6rem;">
+                        <span style="color: #f87171;">🛡️ Límites Sagrados & Antipatrones (Lo que Bloqueamos)</span>
+                    </h3>
+                    <p style="font-size: 0.81rem; color: #94a3b8; margin-bottom: 10px; line-height: 1.45;">
+                        En nuestras sesiones definimos tus <strong>Reglas de Blindaje Personalizadas</strong> para detectar a tiempo cuándo estás cayendo en desgaste:
+                    </p>
+                    <ul class="custom-list danger-list" style="font-size: 0.82rem; margin-bottom: 12px;">
+                        <li>🚫 <strong>Multitarea tóxica:</strong> Abrir más de 2 tareas en "En Ejecución" al mismo tiempo.</li>
+                        <li>🚫 <strong>Rumiación nocturna:</strong> Acostarse repasando pendientes mentalmente sin vaciarlos en tu libreta de cierre.</li>
+                        <li>🚫 <strong>Culpa por horarios ajenos:</strong> Castigarse por no rendir como oficina tradicional cuando tu vida incluye cuidados o ritmos propios.</li>
+                    </ul>
+                    <div style="background: rgba(16, 185, 129, 0.08); border-left: 3px solid #10b981; padding: 9px 12px; border-radius: 0 8px 8px 0; font-size: 0.79rem; color: #d1fae5;">
+                        <strong>💡 Botón de Emergencia Operativa:</strong> Si un día tu energía cae al 30%, activas el <em>"Día Mínimo Viable"</em> (1 Paso Cero de 5 min + 1 prioridad crítica + descanso protegido).
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section-title" style="margin-bottom: 0.6rem;">
+                <span>🎭 Matriz de los 4 Arquetipos de Energía Personal</span>
+            </div>
+            <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.85rem;">
+                Aprender a reconocer cuál de tus 4 identidades está al volante en cada bloque del día te permite ordenar tus tareas según tu energía biológica real:
+            </p>
+            <div class="grid-2" id="identidades-grid">
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.08rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-user-astronaut" style="color: #60a5fa;"></i> 1. La Estratega (Dirección)
+                    </h3>
+                    <p style="font-size: 0.83rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-estratega-desc"><strong>Rol / Función:</strong> Diseña programas y calcula metas financieras</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Alta / Foco Matutino</span>
+                </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.08rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-bolt" style="color: #10b981;"></i> 2. La Ejecutora (Acción)
+                    </h3>
+                    <p style="font-size: 0.83rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-ejecutora-desc"><strong>Rol / Función:</strong> Entrega el servicio y atiende clientes con calidad</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Presente / Operativa</span>
+                </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.08rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-heart" style="color: #ec4899;"></i> 3. La Nutricia (Sostén & Vida)
+                    </h3>
+                    <p style="font-size: 0.83rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-nutricia-desc"><strong>Rol / Función:</strong> Acompaña a su entorno, sostiene la familia y el autocuidado</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Energía: Empática / Cuidado</span>
+                </div>
+                <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.08rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-shield-halved" style="color: #f59e0b;"></i> 4. La Saboteadora (Alerta de Fuga)
+                    </h3>
+                    <p style="font-size: 0.83rem; color: #aaa; margin-bottom: 0.5rem;" id="arq-saboteadora-desc"><strong>Rol / Función:</strong> Genera culpa nocturna por tareas pendientes o perfeccionismo</p>
+                    <span class="wip-limit-pill" style="border-color: #333; color: #fff;">Antídoto: Cierre Análogo + Paso Cero</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════════════════════════ -->
+        <!-- MÓDULO 5: CÓMO TE ENSEÑO LA HERRAMIENTA + IMPRIMIBLE EN PAPEL     -->
         <!-- ════════════════════════════════════════════════════════════════ -->
         <div id="tab-herramientas" class="tab-content">
-            <div class="card" style="border-color: rgba(56, 189, 248, 0.35); background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(0, 0, 0, 0.4)); margin-bottom: 1.5rem;">
-                <div class="hero-tea-badge" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8;">
-                    <i class="fa-solid fa-toolbox"></i> Herramienta Maestra del Kit • Demostración Práctica
+            <div class="card" style="border-color: rgba(56, 189, 248, 0.35); background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(0, 0, 0, 0.4)); margin-bottom: 1.2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <div class="hero-tea-badge" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin: 0;">
+                        <i class="fa-solid fa-graduation-cap"></i> Así te Enseño cada Herramienta Administrativa • Criterio + Práctica
+                    </div>
+                    <span style="font-size: 0.74rem; color: #34d399; font-weight: 700;">
+                        🖨️ Incluye Salida en Papel Físico (1 Hoja Carta)
+                    </span>
                 </div>
-                <h2 style="font-family: var(--font-heading); font-size: clamp(1.25rem, 3vw, 1.6rem); font-weight: 800; color: #fff; margin: 4px 0 8px;">
-                    Time Blocking & Blindaje de Foco
+                <h2 style="font-family: var(--font-heading); font-size: clamp(1.2rem, 2.8vw, 1.5rem); font-weight: 800; color: #fff; margin: 6px 0 6px;">
+                    Ejemplo de Cápsula Metodológica: Time Blocking & Blindaje de Foco
                 </h2>
-                <p style="font-size: 0.92rem; color: #e2e8f0; line-height: 1.6; max-width: 950px; margin: 0;">
-                    El multitasking drena hasta un 40% de tu energía diaria por fragmentación atencional (<em>Task-Switching</em>). 
-                    <strong>Time Blocking</strong> no es llenar tu agenda de obligaciones: es delimitar ventanas protegidas de trabajo profundo (<em>Deep Work</em>), intercalar amortiguadores de imprevistos y asegurar descansos libres de culpa.
+                <p style="font-size: 0.88rem; color: #e2e8f0; line-height: 1.55; max-width: 980px; margin: 0;">
+                    No solo te entrego la aplicación lista: en cada módulo <strong>te enseño el porqué y el cómo administrativo</strong> con infografías claras, reglas de bolsillo y un tutorial paso a paso que queda guardado en tu Portal y en tu Cuadernillo Imprimible.
                 </p>
             </div>
 
             <!-- DOS COLUMNAS: DIAGRAMA DIDÁCTICO + TUTORIAL & CHECKLIST -->
-            <div class="grid-2" style="align-items: start; gap: 1.5rem;">
+            <div class="grid-2" style="align-items: start; gap: 1.2rem;">
                 
                 <!-- COLUMNA 1: DIAGRAMA LIGHTBOX & 3 PRINCIPIOS INQUEBRANTABLES -->
-                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
                     
                     <!-- CAJA DEL DIAGRAMA CON LIGHTBOX -->
-                    <div class="card" style="padding: 1.2rem; text-align: center; border-color: rgba(255, 255, 255, 0.12);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span style="font-size: 0.76rem; font-weight: 800; text-transform: uppercase; color: #38bdf8; letter-spacing: 0.5px;">
-                                <i class="fa-solid fa-image"></i> Diagrama de Arquitectura
+                    <div class="card" style="padding: 1.1rem; text-align: center; border-color: rgba(255, 255, 255, 0.12);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #38bdf8; letter-spacing: 0.5px;">
+                                <i class="fa-solid fa-image"></i> Lámina Visual de Aprendizaje
                             </span>
-                            <span style="font-size: 0.72rem; color: #aaa; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 12px;">
+                            <span style="font-size: 0.71rem; color: #aaa; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 12px;">
                                 Clic para Zoom 🔍
                             </span>
                         </div>
-                        <div class="image-preview" style="background: #0d0d0d; border-radius: 10px; padding: 10px; border: 1px solid rgba(255,255,255,0.06);">
+                        <div class="image-preview" style="background: #0d0d0d; border-radius: 10px; padding: 8px; border: 1px solid rgba(255,255,255,0.06);">
                             <img src="assets/img/herramientas/Time Blocking.webp" 
                                  data-fallback="assets/img/herramientas/Time Blocking.png" 
                                  alt="Diagrama Time Blocking" 
@@ -1190,70 +1611,63 @@
                                  style="cursor: zoom-in; max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); transition: transform 0.25s ease;"
                                  onmouseover="this.style.transform='scale(1.02)'"
                                  onmouseout="this.style.transform='scale(1)'">
-                            <p style="font-size: 0.76rem; color: #888; margin-top: 10px;">
-                                <i class="fa-solid fa-expand"></i> Haz clic en la imagen para abrir en pantalla completa
+                            <p style="font-size: 0.74rem; color: #888; margin-top: 8px;">
+                                <i class="fa-solid fa-expand"></i> Toca la lámina para verla en pantalla completa
                             </p>
                         </div>
                     </div>
 
                     <!-- 3 PRINCIPIOS INQUEBRANTABLES -->
                     <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;">
-                            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Los 3 Principios de Blindaje Operativo
+                        <h4 style="font-family: var(--font-heading); font-size: 1.02rem; font-weight: 800; color: #fff; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Los 3 Principios que Aprendes a Dominar
                         </h4>
-                        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.86rem; line-height: 1.5;">
-                            <div style="background: rgba(16, 185, 129, 0.05); border-left: 3px solid #10b981; padding: 10px 12px; border-radius: 0 6px 6px 0;">
+                        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.83rem; line-height: 1.45;">
+                            <div style="background: rgba(16, 185, 129, 0.05); border-left: 3px solid #10b981; padding: 8px 11px; border-radius: 0 6px 6px 0;">
                                 <strong style="color: #34d399;">1. El Bloque Dorado (90 a 120 min):</strong>
-                                <div style="color: #ccc; margin-top: 2px;">Una sola prioridad ejecutada en tu horario de máxima energía biológica, antes de abrir WhatsApp o correos.</div>
+                                <div style="color: #ccc; margin-top: 2px;">Una sola prioridad ejecutada en tu horario de máxima energía biológica, antes de abrir WhatsApp.</div>
                             </div>
-                            <div style="background: rgba(56, 189, 248, 0.05); border-left: 3px solid #38bdf8; padding: 10px 12px; border-radius: 0 6px 6px 0;">
+                            <div style="background: rgba(56, 189, 248, 0.05); border-left: 3px solid #38bdf8; padding: 8px 11px; border-radius: 0 6px 6px 0;">
                                 <strong style="color: #7dd3fc;">2. Amortiguador Buffer (30 min):</strong>
-                                <div style="color: #ccc; margin-top: 2px;">Colchón de seguridad entre reuniones o bloques. Si surge un imprevisto, absorbe el golpe sin robarle tiempo a tu vida personal.</div>
+                                <div style="color: #ccc; margin-top: 2px;">Colchón de seguridad entre bloques. Si surge un imprevisto, absorbe el golpe sin destruir tu tarde.</div>
                             </div>
-                            <div style="background: rgba(245, 158, 11, 0.05); border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 0 6px 6px 0;">
+                            <div style="background: rgba(245, 158, 11, 0.05); border-left: 3px solid #f59e0b; padding: 8px 11px; border-radius: 0 6px 6px 0;">
                                 <strong style="color: #fcd34d;">3. Ritual de Cierre Sagrado (10 min):</strong>
-                                <div style="color: #ccc; margin-top: 2px;">Vaciado de pendientes en papel análogo al finalizar la jornada. Corta el efecto Zeigarnik y evita la rumiación nocturna en la cama.</div>
+                                <div style="color: #ccc; margin-top: 2px;">Vaciado de pendientes en papel al terminar la jornada para apagar la mente y descansar de verdad.</div>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- COLUMNA 2: TUTORIAL PASO A PASO + CHECKLIST INTERACTIVO -->
-                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                <!-- COLUMNA 2: TUTORIAL PASO A PASO + CHECKLIST + SALIDA IMPRIMIBLE -->
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
                     
                     <!-- TUTORIAL PASO A PASO -->
                     <div class="card" style="border-color: rgba(255, 255, 255, 0.1);">
-                        <div class="section-title" style="margin-bottom: 0.8rem;">
-                            <span>📖 Tutorial Práctico: Cómo Aplicarlo en tu Mapeador 24H</span>
+                        <div class="section-title" style="margin-bottom: 0.7rem;">
+                            <span>📖 Paso a Paso: Cómo lo Instalamos Juntos</span>
                         </div>
-                        <div style="display: flex; flex-direction: column; gap: 12px;">
-                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;">1</div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; flex-shrink: 0;">1</div>
                                 <div>
-                                    <strong style="color: #fff; font-size: 0.9rem;">Auditoría de Energía Biológica:</strong>
-                                    <p style="font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; margin: 2px 0 0;">Identifica en qué franja horaria tu mente está más despierta (generalmente entre 9:00 y 11:30) y dónde cae tu energía (siesta o tarde).</p>
+                                    <strong style="color: #fff; font-size: 0.86rem;">Auditoría de Energía Real:</strong>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin: 2px 0 0;">Detectamos tu ventana biológica de mayor claridad mental y tus horas de baja energía.</p>
                                 </div>
                             </div>
-                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;">2</div>
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; flex-shrink: 0;">2</div>
                                 <div>
-                                    <strong style="color: #fff; font-size: 0.9rem;">Pintar el Bloque en el Mapeador:</strong>
-                                    <p style="font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; margin: 2px 0 0;">Ve a la pestaña <strong>Mapeador 24H</strong> y pinta ese intervalo con la categoría de trabajo estratégico. Ese bloque queda blindado en tu calendario.</p>
+                                    <strong style="color: #fff; font-size: 0.86rem;">Calibración en tu Mapeador 24H:</strong>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin: 2px 0 0;">Pintamos tu Bloque Dorado y tus descansos protegidos directamente en la Pestaña 1.</p>
                                 </div>
                             </div>
-                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;">3</div>
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; flex-shrink: 0;">3</div>
                                 <div>
-                                    <strong style="color: #fff; font-size: 0.9rem;">Aislamiento Atencional:</strong>
-                                    <p style="font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; margin: 2px 0 0;">Activa el modo 'No Molestar' en tu teléfono o colócalo boca abajo fuera de tu alcance durante esos 90 minutos.</p>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                <div style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;">4</div>
-                                <div>
-                                    <strong style="color: #fff; font-size: 0.9rem;">Checklist y Cierre Análogo:</strong>
-                                    <p style="font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; margin: 2px 0 0;">Al sonar la alarma de término, detén la tarea sin culpa, anota en tu libreta el punto exacto donde retomarás mañana y descansa.</p>
+                                    <strong style="color: #fff; font-size: 0.86rem;">Doble Salida (App Web + Hoja Carta Física):</strong>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin: 2px 0 0;">Te queda activo en tu celular y además en tu <strong>Hub Único de Imprimibles Físicos</strong> (1 hoja Carta por herramienta) para tu escritorio.</p>
                                 </div>
                             </div>
                         </div>
@@ -1261,55 +1675,58 @@
 
                     <!-- CHECKLIST INTERACTIVO CON BARRA DE PROGRESO Y PERSISTENCIA -->
                     <div class="card" style="border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, rgba(16, 185, 129, 0.04), rgba(0, 0, 0, 0.3));">
-                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 0.6rem;">
-                            <h4 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-list-check" style="color: #10b981;"></i> Checklist de Blindaje Semanal
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 0.5rem;">
+                            <h4 style="font-family: var(--font-heading); font-size: 1.02rem; font-weight: 800; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-list-check" style="color: #10b981;"></i> Autoevaluación de Dominio del Módulo
                             </h4>
-                            <span id="tool-progress-pct" style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #10b981;">0%</span>
+                            <span id="tool-progress-pct" style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #10b981;">0%</span>
                         </div>
 
                         <!-- BARRA DE PROGRESO DINÁMICA -->
-                        <div style="width: 100%; height: 8px; background: #1a1a1a; border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; border: 1px solid #333;">
+                        <div style="width: 100%; height: 8px; background: #1a1a1a; border-radius: 10px; overflow: hidden; margin-bottom: 0.6rem; border: 1px solid #333;">
                             <div id="tool-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981, #38bdf8); transition: width 0.35s ease; border-radius: 10px;"></div>
                         </div>
-                        <div id="tool-progress-status" style="font-size: 0.8rem; margin-bottom: 1rem;">
+                        <div id="tool-progress-status" style="font-size: 0.78rem; margin-bottom: 0.8rem;">
                             <span style="color: #888;">⚪ Sin iniciar (0/4 completados)</span>
                         </div>
 
                         <!-- LISTA DE CHECKBOXES INTERACTIVOS -->
-                        <div style="display: flex; flex-direction: column; gap: 10px;" id="tool-checklist-items">
-                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
-                                <input type="checkbox" class="tool-chk-step" data-index="0" style="margin-top: 3px; accent-color: #10b981; width: 17px; height: 17px; cursor: pointer;">
-                                <span style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.45;">
-                                    <strong>Bloque Dorado (90m) agendado:</strong> Reservado e innegociable en el Mapeador 24H antes del mediodía.
+                        <div style="display: flex; flex-direction: column; gap: 8px;" id="tool-checklist-items">
+                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 11px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+                                <input type="checkbox" class="tool-chk-step" data-index="0" style="margin-top: 3px; accent-color: #10b981; width: 16px; height: 16px; cursor: pointer;">
+                                <span style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.4;">
+                                    <strong>Bloque Dorado (90m) agendado:</strong> Reservado en el Mapeador 24H antes del mediodía.
                                 </span>
                             </label>
 
-                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
-                                <input type="checkbox" class="tool-chk-step" data-index="1" style="margin-top: 3px; accent-color: #10b981; width: 17px; height: 17px; cursor: pointer;">
-                                <span style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.45;">
-                                    <strong>Blindaje de notificaciones:</strong> Teléfono en silencio y WhatsApp Web cerrado durante el bloque.
+                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 11px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+                                <input type="checkbox" class="tool-chk-step" data-index="1" style="margin-top: 3px; accent-color: #10b981; width: 16px; height: 16px; cursor: pointer;">
+                                <span style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.4;">
+                                    <strong>Blindaje de notificaciones:</strong> Teléfono en silencio y WhatsApp cerrado durante el bloque.
                                 </span>
                             </label>
 
-                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
-                                <input type="checkbox" class="tool-chk-step" data-index="2" style="margin-top: 3px; accent-color: #10b981; width: 17px; height: 17px; cursor: pointer;">
-                                <span style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.45;">
-                                    <strong>Colchón Buffer (30m) activo:</strong> Margen de seguridad reservado entre compromisos para absorber imprevistos.
+                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 11px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+                                <input type="checkbox" class="tool-chk-step" data-index="2" style="margin-top: 3px; accent-color: #10b981; width: 16px; height: 16px; cursor: pointer;">
+                                <span style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.4;">
+                                    <strong>Colchón Buffer (30m) activo:</strong> Margen reservado entre compromisos para imprevistos.
                                 </span>
                             </label>
 
-                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
-                                <input type="checkbox" class="tool-chk-step" data-index="3" style="margin-top: 3px; accent-color: #10b981; width: 17px; height: 17px; cursor: pointer;">
-                                <span style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.45;">
-                                    <strong>Ritual de Cierre Sagrado (10m):</strong> Vaciado en libreta de pendientes y apagado de pantallas de trabajo.
+                            <label class="tool-chk-item" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 11px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+                                <input type="checkbox" class="tool-chk-step" data-index="3" style="margin-top: 3px; accent-color: #10b981; width: 16px; height: 16px; cursor: pointer;">
+                                <span style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.4;">
+                                    <strong>Ritual de Cierre Sagrado (10m):</strong> Vaciado en papel y desconexión sin culpa.
                                 </span>
                             </label>
                         </div>
 
-                        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 1rem;">
-                            <button class="btn-schedule-action" onclick="resetToolTimeBlockingChecklist()" style="color: #aaa; font-size: 0.78rem;">
-                                <i class="fa-solid fa-rotate-left"></i> Restablecer Checklist
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 0.8rem;">
+                            <span style="font-size: 0.74rem; color: #94a3b8;">
+                                📄 También disponible en versión <strong>Ficha Imprimible Carta</strong>
+                            </span>
+                            <button class="btn-schedule-action" onclick="resetToolTimeBlockingChecklist()" style="color: #aaa; font-size: 0.74rem;">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
                             </button>
                         </div>
                     </div>
@@ -1320,59 +1737,101 @@
         </div>
 
         <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 9: RESULTADOS & CALIBRACIÓN                              -->
+        <!-- MÓDULO 6: BITÁCORA SESIÓN A SESIÓN & RESULTADOS CONSOLIDADOS     -->
         <!-- ════════════════════════════════════════════════════════════════ -->
         <div id="tab-resultados" class="tab-content">
-            <div class="card" style="border-color: rgba(16, 185, 129, 0.3); margin-bottom: 1.5rem;">
-                <div class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.35); color: #10b981;">
-                    <i class="fa-solid fa-trophy"></i> Transformación Sostenible • Semana 4 y Más Allá
+            
+            <!-- INVENTARIO ACUMULATIVO SESIÓN A SESIÓN -->
+            <div class="card" style="border-color: rgba(56, 189, 248, 0.35); margin-bottom: 1.2rem;">
+                <div class="hero-tea-badge" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8;">
+                    <i class="fa-solid fa-layer-group"></i> Trazabilidad Total • Nada se Pierde en el Aire
                 </div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #fff; margin: 6px 0 10px;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff; margin: 4px 0 6px;">
+                    Inventario Acumulativo Sesión a Sesión: Cómo Evoluciona tu Sistema
+                </h3>
+                <p style="font-size: 0.84rem; color: #cbd5e1; margin-bottom: 12px; line-height: 1.5;">
+                    Cada sesión que trabajamos queda documentada en tu Portal con los acuerdos, la herramienta administrativa enseñada y la micro-app instalada:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+                    <div style="background: rgba(255,255,255,0.025); border: 1px solid rgba(56,189,248,0.28); border-radius: 10px; padding: 11px 13px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <span style="font-size: 0.7rem; font-weight: 800; color: #38bdf8; background: rgba(56,189,248,0.12); padding: 2px 8px; border-radius: 20px;">SESIÓN 1 • CIMIENTOS</span>
+                            <span style="font-size: 0.7rem; color: #10b981; font-weight: 700;">✓ Instalada</span>
+                        </div>
+                        <strong style="color: #fff; font-size: 0.88rem; display: block; margin-bottom: 4px;">Diagnóstico & Soberanía 24H</strong>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0; line-height: 1.42;">
+                            <strong>Herramienta enseñada:</strong> Presupuesto de 168h y separación de roles.<br>
+                            <strong>App entregada:</strong> Mapeador 24H calibrado con bloques de cuidado y descanso sin culpa.
+                        </p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.025); border: 1px solid rgba(245,158,11,0.28); border-radius: 10px; padding: 11px 13px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <span style="font-size: 0.7rem; font-weight: 800; color: #fbbf24; background: rgba(245,158,11,0.12); padding: 2px 8px; border-radius: 20px;">SESIÓN 2 • FOCO & NEGOCIO</span>
+                            <span style="font-size: 0.7rem; color: #10b981; font-weight: 700;">✓ Instalada</span>
+                        </div>
+                        <strong style="color: #fff; font-size: 0.88rem; display: block; margin-bottom: 4px;">Kanban WIP=2 & Empaquetado Comercial</strong>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0; line-height: 1.42;">
+                            <strong>Herramienta enseñada:</strong> Límite WIP=2 e Ingeniería de Packs Mensuales.<br>
+                            <strong>App entregada:</strong> Tablero Kanban + Calculadora de Metas ($640k) y Guion WhatsApp.
+                        </p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.025); border: 1px solid rgba(16,185,129,0.28); border-radius: 10px; padding: 11px 13px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <span style="font-size: 0.7rem; font-weight: 800; color: #34d399; background: rgba(16,185,129,0.12); padding: 2px 8px; border-radius: 20px;">SESIÓN 3 • BLINDAJE & SGP</span>
+                            <span style="font-size: 0.7rem; color: #10b981; font-weight: 700;">✓ Consolidada</span>
+                        </div>
+                        <strong style="color: #fff; font-size: 0.88rem; display: block; margin-bottom: 4px;">Regulación de Energía & Autonomía</strong>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin: 0; line-height: 1.42;">
+                            <strong>Herramienta enseñada:</strong> Protocolo Paso Cero (5m) y 4 Arquetipos.<br>
+                            <strong>App entregada:</strong> Reloj de Destrabe + Cuadernillo de Imprimibles Físicos Carta.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: rgba(16, 185, 129, 0.3); margin-bottom: 1.2rem;">
+                <div class="hero-tea-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.35); color: #10b981;">
+                    <i class="fa-solid fa-trophy"></i> Impacto Medible • Antes vs. Después
+                </div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff; margin: 6px 0 8px;">
                     Resultados Tangibles y Paz Mental
                 </h3>
-                <p id="m5-summary-text" style="font-size: 0.92rem; color: #e2e8f0; line-height: 1.6; margin-bottom: 1.4rem;"></p>
+                <p id="m5-summary-text" style="font-size: 0.88rem; color: #e2e8f0; line-height: 1.55; margin-bottom: 1.1rem;"></p>
                 <div class="stat-grid" id="m5-metrics-grid" style="margin-bottom: 0;"></div>
             </div>
 
             <div class="card">
                 <h3 class="section-title">
-                    <span>🔄 Bitácora de Calibración & Ajustes: Cómo se Eliminó el Roce Operativo</span>
+                    <span>🔄 Bitácora de Calibración: Cómo Adaptamos el Sistema a la Vida Real</span>
                 </h3>
-                <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
-                    Ningún sistema funciona a la perfección en la semana 1. La metodología de Administración Humana calibra semana a semana hasta que el sistema se adapta a la vida real:
+                <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+                    Ningún sistema funciona por imposición rígida. Así calibramos cada roce operativo hasta lograr que el traje quede hecho a medida:
                 </p>
                 <div class="calibration-table" id="m5-calibration-container"></div>
             </div>
         </div>
 
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <!-- PESTAÑA 10: PLAN 24H & LÍMITES (EN 2 COLUMNAS)                  -->
-        <!-- ════════════════════════════════════════════════════════════════ -->
-        <div id="tab-accion" class="tab-content">
-            <div class="grid-2">
-                <div class="card">
-                    <h3 class="section-title"><span>Tu Plan de Acción: Próximas 24 Horas</span></h3>
-                    <ul class="custom-list">
-                        <li><strong>1. Ejecutar el Paso Cero de 5 minutos:</strong> Sentarse con cronómetro sin compromiso de terminar la tarea completa.</li>
-                        <li><strong>2. Proteger el Bloque de Oro:</strong> Agendar ventana protegida en el Mapeador 24H sin interrupciones.</li>
-                        <li><strong>3. Cierre Nocturno Cero Culpa:</strong> Registrar 3 micro-victorias y desconectar pantallas 1 hora antes de dormir.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 class="section-title"><span style="color:var(--danger)">Antipatrones (Los Guardianes de tu Foco)</span></h3>
-                    <ul class="custom-list danger-list">
-                        <li>🚫 <strong>Multitarea tóxica:</strong> Abrir más de 2 tareas en "En Ejecución" a la vez.</li>
-                        <li>🚫 <strong>Rumiación nocturna:</strong> Acostarse repasando listas de pendientes sin vaciado análogo en papel.</li>
-                        <li>🚫 <strong>Juicio moral:</strong> Castigarse por no cumplir un horario rígido de 8 horas ante urgencias de cuidado familiar.</li>
-                    </ul>
-                </div>
-            </div>
-
-
-        </div>
-
         <!-- CONTENEDOR DE PESTAÑAS DINÁMICAS AGREGADAS DESDE EL CATÁLOGO -->
         <div id="dynamic-tab-contents"></div>
+
+        <!-- BARRA INFERIOR DE NAVEGACIÓN GUIADA (BAJA FRICCIÓN AL TERMINAR DE VER UN MÓDULO) -->
+        <div class="sgp-bottom-next-bar" id="sgp-bottom-bar">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <span class="sgp-step-pill" id="tour-bottom-step-pill">🧭 MÓDULO 1 DE 6</span>
+                <span style="font-size: 0.82rem; color: #e2e8f0; font-weight: 600;" id="tour-bottom-prompt">
+                    ¿Ya probaste el Mapeador 24H? Avanza al siguiente módulo para ver cómo controlamos las tareas:
+                </span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <button type="button" class="btn-tour-prev" onclick="prevTourStep()">
+                    <i class="fa-solid fa-arrow-left"></i> Anterior
+                </button>
+                <button type="button" class="btn-tour-next" onclick="nextTourStep()">
+                    <span id="btn-tour-bottom-next-label">Siguiente: 2. App Kanban WIP=2</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
 
     </main>
 
@@ -1546,10 +2005,264 @@
         // Auto-desbloqueo demo
         localStorage.setItem("ah_client_auth_session", "authenticated_ok");
 
-        // TEMPORIZADOR PASO CERO (LUCAS)
+        // ══════════════════════════════════════════════════════════════════════
+        // MOTOR DEL RECORRIDO GUIADO AUTO-EXPLICATIVO (BANNER + BOTÓN SIGUIENTE)
+        // ══════════════════════════════════════════════════════════════════════
+        const SGP_TOUR_ORDER = [
+            "tab-horario",
+            "tab-kanban",
+            "tab-accion",
+            "tab-identidades",
+            "tab-herramientas",
+            "tab-resultados"
+        ];
+
+        const SGP_TOUR_DATA = {
+            "tab-horario": {
+                stepNum: 1,
+                category: "🏠 App de Vida & Rutina",
+                title: "1. Mapeador Semanal 24H: Soberanía de Tiempo sin Culpa",
+                what: "Una app interactiva de tus 168 horas semanales donde pintas tus bloques reales (sueño, trabajo profundo, cuidados familiares y descanso libre de culpa).",
+                how: "Aterrizamos tus fugas de tiempo, te enseño la técnica de <b>Presupuesto Energético 24H</b> y te acompaño en la gestión ajustando las categorías a tu vida real.",
+                palm: "Lo editas en vivo desde tu celular o PC con auto-guardado, agregas o editas categorías cuando quieras y lo descargas en PNG o en tu Hoja Carta imprimible.",
+                nextBtn: "Siguiente: 2. App Kanban WIP=2",
+                bottomPrompt: "¿Ya probaste los pinceles del Mapeador 24H? Avanza al Módulo 2 para ver cómo bloqueamos la saturación de tareas:"
+            },
+            "tab-kanban": {
+                stepNum: 2,
+                category: "⚡ App de Foco & Pendientes",
+                title: "2. Tablero Kanban GTD con Límite WIP=2: Fin a la Multitarea",
+                what: "Un gestor visual de tareas que protege tu sistema nervioso bloqueando la apertura de un 3er frente hasta que cierres o pauses uno de los 2 activos.",
+                how: "Aterrizamos el ruido mental de tu cabeza, te doy apoyo en gestión con el criterio <b>WIP=2 (Work In Progress)</b> y priorizamos tus micro-hábitos diarios.",
+                palm: "En tu celular tienes tu bandeja limpia para mover tareas en 1 toque y tildar tu checklist diario sin sentirte abrumado.",
+                nextBtn: "Siguiente: 3. App Negocio & Metas",
+                bottomPrompt: "¿Viste cómo el límite WIP=2 protege tu foco? Pasa al Módulo 3 para probar una Micro-App de Negocio y Finanzas:"
+            },
+            "tab-accion": {
+                stepNum: 3,
+                category: "💼 Micro-App de Negocio & Finanzas",
+                title: "3. Calculadora de Metas Comerciales, Packs & Regla 50/30/20",
+                what: "Una micro-app financiera y comercial hecha a medida para calcular cuántos clientes o paquetes necesitas vender para cubrir tu meta trabajando horas sanas.",
+                how: "Te acompaño administrativamente a ordenar tus números: te enseño a <b>empaquetar servicios/productos</b>, separar cuentas (50/30/20) y cerrar ventas.",
+                palm: "Simulas escenarios en segundos desde tu teléfono, ves cuánto va a cada bolsillo y copias tu guion de WhatsApp en 1 clic.",
+                nextBtn: "Siguiente: 4. App Foco & Energía",
+                bottomPrompt: "¿Probaste cambiar la meta mensual en la calculadora? Avanza al Módulo 4 para ver cómo destrabamos la procrastinación:"
+            },
+            "tab-identidades": {
+                stepNum: 4,
+                category: "🧠 Micro-App de Regulación & Foco",
+                title: "4. Reloj «Paso Cero (5 min)» & Matriz de los 4 Arquetipos",
+                what: "Un cronómetro interactivo de destrabe (5m / 25m / 50m) unido al mapa de tus 4 identidades de energía y tus reglas de límites sagrados.",
+                how: "Identificamos qué te frena y, mediante acompañamiento real, instalamos el <b>Protocolo Paso Cero</b> para que retomes tracción sin presión.",
+                palm: "Cuando te sientes bloqueado, abres tu Portal desde el móvil, presionas «Iniciar 5 min» y rompes la inercia de inmediato.",
+                nextBtn: "Siguiente: 5. Tutorial & Papel",
+                bottomPrompt: "¿Viste cómo regulamos tu energía real? Pasa al Módulo 5 para ver cómo te enseño cada herramienta paso a paso:"
+            },
+            "tab-herramientas": {
+                stepNum: 5,
+                category: "🎓 Escuela Práctica + Imprimible",
+                title: "5. Cómo te Enseño cada Herramienta + Tu Hoja Física Carta",
+                what: "La cápsula formativa de cada módulo: incluye infografía de arquitectura, los 3 principios inquebrantables, tutorial paso a paso y autoevaluación.",
+                how: "Mi apoyo en gestión incluye enseñarte la lógica detrás de cada método en simple, para que desarrolles autonomía y criterio administrativo propio.",
+                palm: "Queda en tu Portal web para consulta rápida y se compila en tu <b>Hub Único de Imprimibles Físicos (1 hoja Carta)</b> para tu escritorio.",
+                nextBtn: "Siguiente: 6. Bitácora & Logros",
+                bottomPrompt: "Por último, avanza al Módulo 6 para ver cómo queda registrado el acompañamiento sesión a sesión y la evolución lograda:"
+            },
+            "tab-resultados": {
+                stepNum: 6,
+                category: "📈 Trazabilidad & Apoyo en Gestión",
+                title: "6. Inventario Sesión a Sesión, Calibración & Resultados",
+                what: "El historial vivo de nuestro acompañamiento administrativo: qué destrabamos en cada sesión, cómo ajustamos el sistema a tus imprevistos y qué lograste.",
+                how: "Semana a semana te apoyo en la gestión calibrando lo que no funcionó sin culpa moral, hasta consolidar tu <b>Sistema de Gestión Personalizado</b>.",
+                palm: "Tienes la película completa de tu evolución en un solo lugar. ¡Puedes volver al Módulo 1 cuando quieras o bajar a agendar tu Sesión Base!",
+                nextBtn: "🔄 Volver al Módulo 1 (Horario 24H)",
+                bottomPrompt: "¡Recorrido completado! Así funciona nuestro acompañamiento y tu Sistema de Gestión Personalizado:"
+            }
+        };
+
+        function updateTourBanner(tabId) {
+            const info = SGP_TOUR_DATA[tabId] || SGP_TOUR_DATA["tab-horario"];
+            const stepPct = Math.round((info.stepNum / 6) * 100);
+
+            const fillEl = document.getElementById("tour-progress-fill");
+            if (fillEl) fillEl.style.width = stepPct + "%";
+
+            const stepPill = document.getElementById("tour-step-pill");
+            if (stepPill) stepPill.innerText = `🧭 MÓDULO ${info.stepNum} DE 6`;
+
+            const catPill = document.getElementById("tour-category-pill");
+            if (catPill) catPill.innerText = info.category;
+
+            const titleEl = document.getElementById("tour-main-title");
+            if (titleEl) titleEl.innerText = info.title;
+
+            const whatEl = document.getElementById("tour-col-what");
+            if (whatEl) whatEl.innerHTML = info.what;
+
+            const howEl = document.getElementById("tour-col-how");
+            if (howEl) howEl.innerHTML = info.how;
+
+            const palmEl = document.getElementById("tour-col-palm");
+            if (palmEl) palmEl.innerHTML = info.palm;
+
+            const nextLbl = document.getElementById("btn-tour-next-label");
+            if (nextLbl) nextLbl.innerText = info.nextBtn;
+
+            const bottomStep = document.getElementById("tour-bottom-step-pill");
+            if (bottomStep) bottomStep.innerText = `🧭 MÓDULO ${info.stepNum} DE 6`;
+
+            const bottomPrompt = document.getElementById("tour-bottom-prompt");
+            if (bottomPrompt) bottomPrompt.innerText = info.bottomPrompt;
+
+            const bottomNextLbl = document.getElementById("btn-tour-bottom-next-label");
+            if (bottomNextLbl) bottomNextLbl.innerText = info.nextBtn;
+        }
+
+        function nextTourStep() {
+            const idx = SGP_TOUR_ORDER.indexOf(activeTabId);
+            const nextIdx = (idx === -1 || idx >= SGP_TOUR_ORDER.length - 1) ? 0 : idx + 1;
+            switchTab(SGP_TOUR_ORDER[nextIdx]);
+        }
+
+        function prevTourStep() {
+            const idx = SGP_TOUR_ORDER.indexOf(activeTabId);
+            const prevIdx = (idx <= 0) ? SGP_TOUR_ORDER.length - 1 : idx - 1;
+            switchTab(SGP_TOUR_ORDER[prevIdx]);
+        }
+
+        // ══════════════════════════════════════════════════════════════════════
+        // MICRO-APP 3: CALCULADORA INTERACTIVA DE METAS & FINANZAS 50/30/20
+        // ══════════════════════════════════════════════════════════════════════
+        function formatCLP(num) {
+            return "$" + Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function setBizPreset(goal, pack, hours) {
+            const gEl = document.getElementById("biz-input-goal");
+            const pEl = document.getElementById("biz-input-pack");
+            const hEl = document.getElementById("biz-input-hours");
+            if (gEl) gEl.value = goal;
+            if (pEl) pEl.value = pack;
+            if (hEl) hEl.value = hours;
+            recalcBizApp();
+            showToast("⚡ Escenario comercial cargado en la calculadora.");
+        }
+
+        function recalcBizApp() {
+            const goal = Math.max(50000, parseInt(document.getElementById("biz-input-goal")?.value || "640000", 10));
+            const pack = Math.max(5000, parseInt(document.getElementById("biz-input-pack")?.value || "40000", 10));
+            const hrsPerClientMonth = Math.max(1, parseFloat(document.getElementById("biz-input-hours")?.value || "4"));
+
+            const clientsNeeded = Math.ceil(goal / pack);
+            const totalMonthlyHrs = clientsNeeded * hrsPerClientMonth;
+            const weeklyHrs = Math.round((totalMonthlyHrs / 4) * 10) / 10;
+            const hourlyRate = Math.round(pack / hrsPerClientMonth);
+
+            const cEl = document.getElementById("biz-out-clients");
+            const wEl = document.getElementById("biz-out-weekly-hrs");
+            const rEl = document.getElementById("biz-out-hourly");
+            if (cEl) cEl.innerText = clientsNeeded;
+            if (wEl) wEl.innerText = weeklyHrs + "h";
+            if (rEl) rEl.innerText = formatCLP(hourlyRate);
+
+            const s50 = document.getElementById("biz-split-50");
+            const s30 = document.getElementById("biz-split-30");
+            const s20 = document.getElementById("biz-split-20");
+            if (s50) s50.innerText = formatCLP(goal * 0.5);
+            if (s30) s30.innerText = formatCLP(goal * 0.3);
+            if (s20) s20.innerText = formatCLP(goal * 0.2);
+
+            const diagEl = document.getElementById("biz-out-diagnosis");
+            if (diagEl) {
+                if (weeklyHrs <= 22) {
+                    diagEl.style.borderLeftColor = "#10b981";
+                    diagEl.style.background = "rgba(16, 185, 129, 0.1)";
+                    diagEl.innerHTML = `✅ <strong>Meta 100% Sostenible:</strong> Con <strong>${clientsNeeded} clientes de Pack (${formatCLP(pack)})</strong> alcanzas <strong>${formatCLP(goal)}/mes</strong> dedicando solo <strong>${weeklyHrs} hrs/semana</strong> en tu Mapeador 24H.`;
+                } else {
+                    diagEl.style.borderLeftColor = "#f59e0b";
+                    diagEl.style.background = "rgba(245, 158, 11, 0.1)";
+                    diagEl.innerHTML = `💡 <strong>Ajuste Administrativo Sugerido:</strong> ${weeklyHrs} hrs/semana es una carga alta. En sesión ajustaríamos el valor o formato grupal del Pack para bajar tus horas a menos de 20h semanales.`;
+                }
+            }
+
+            const waEl = document.getElementById("biz-wa-script");
+            if (waEl) {
+                waEl.innerText = `"¡Hola! 🌟 Para acompañarte con foco real, trabajo mediante el Pack Mensual (${formatCLP(pack)}) con cupo y horario fijo reservado para ti. Así aseguramos continuidad y resultados semana a semana. ¿Te acomoda más el bloque de martes o jueves?"`;
+            }
+        }
+
+        // ══════════════════════════════════════════════════════════════════════
+        // MICRO-APP 4: RELOJ INTERACTIVO PASO CERO (5M) & POMODORO
+        // ══════════════════════════════════════════════════════════════════════
+        let focusTimerTotal = 300;
         let timerInterval = null;
         let timerSecondsRemaining = 300;
         let timerRunning = false;
+
+        function setFocusTimerMode(seconds, labelText) {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timerRunning = false;
+            focusTimerTotal = seconds;
+            timerSecondsRemaining = seconds;
+            const lbl = document.getElementById("focus-timer-mode-label");
+            if (lbl && labelText) lbl.innerText = labelText;
+            updateFocusTimerUI();
+        }
+
+        function updateFocusTimerUI() {
+            const disp = document.getElementById("focus-timer-display");
+            const bar = document.getElementById("focus-timer-bar");
+            const btn = document.getElementById("btn-focus-timer-start");
+            const mins = String(Math.floor(timerSecondsRemaining / 60)).padStart(2, "0");
+            const secs = String(timerSecondsRemaining % 60).padStart(2, "0");
+            if (disp) disp.innerText = `${mins}:${secs}`;
+            if (bar) {
+                const pct = Math.max(0, Math.min(100, (timerSecondsRemaining / focusTimerTotal) * 100));
+                bar.style.width = pct + "%";
+            }
+            if (btn) {
+                btn.innerHTML = timerRunning
+                    ? '<i class="fa-solid fa-pause"></i> Pausar Reloj'
+                    : '<i class="fa-solid fa-play"></i> Iniciar Reloj';
+            }
+        }
+
+        function toggleFocusTimer() {
+            if (timerRunning) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                timerRunning = false;
+                updateFocusTimerUI();
+            } else {
+                timerRunning = true;
+                updateFocusTimerUI();
+                timerInterval = setInterval(() => {
+                    if (timerSecondsRemaining > 0) {
+                        timerSecondsRemaining--;
+                        updateFocusTimerUI();
+                    } else {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                        timerRunning = false;
+                        updateFocusTimerUI();
+                        showToast("🎉 ¡Bloque completado! Inercia vencida con éxito.");
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetFocusTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timerRunning = false;
+            timerSecondsRemaining = focusTimerTotal;
+            updateFocusTimerUI();
+        }
 
         // CAMBIO DE PESTAÑAS (SWITCH TAB)
         function switchTab(tabId) {
@@ -1563,11 +2276,16 @@
             const targetContent = document.getElementById(tabId);
             if (targetContent) targetContent.classList.add("active");
 
+            updateTourBanner(tabId);
+
             if (tabId === "tab-horario" && typeof renderScheduleGrid === "function") {
                 setTimeout(() => {
                     renderScheduleGrid();
                     scrollScheduleToMorning();
                 }, 40);
+            }
+            if (tabId === "tab-accion" && typeof recalcBizApp === "function") {
+                recalcBizApp();
             }
             if (tabId === "tab-herramientas" && typeof initToolTimeBlockingChecklist === "function") {
                 initToolTimeBlockingChecklist();
