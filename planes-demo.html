@@ -565,65 +565,74 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           OPTIMIZACIÓN RESPONSIVA PC & MÓVIL (MODO EJEMPLO CLIENTE EMBEBIDO)
+           ESTÉTICA NEGRO PURO MINIMALISTA & INTERACCIÓN SGP INTUITIVA
            ══════════════════════════════════════════════════════════════════ */
         html, body {
             scrollbar-width: thin;
-            scrollbar-color: #2d3748 #08090d;
-            background: #08090d;
+            scrollbar-color: #27272a #000000;
+            background: #000000 !important;
+            color: #f4f4f5;
         }
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #08090d;
+            background: #000000;
         }
         ::-webkit-scrollbar-thumb {
-            background: #283142;
+            background: #27272a;
             border-radius: 8px;
-            border: 2px solid #08090d;
+            border: 2px solid #000000;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #38bdf8;
+            background: #52525b;
         }
 
         main.container {
             max-width: 1260px !important;
             margin: 0 auto !important;
-            padding: 10px 14px 20px !important;
+            padding: 10px 12px 18px !important;
         }
 
-        /* Header Ejecutivo Compacto */
+        /* Cajas minimalistas y prácticas en todas las secciones del SGP */
+        .card, .diagnostic-box {
+            background: #0a0a0c !important;
+            border: 1px solid #1f1f24 !important;
+            border-radius: 14px !important;
+            box-shadow: none !important;
+        }
+
+        /* Header Ejecutivo Minimalista (1 línea limpia sin ruido) */
         .demo-compact-header {
-            background: linear-gradient(135deg, rgba(17, 20, 30, 0.95), rgba(10, 12, 18, 0.98));
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            border-radius: 14px;
-            padding: 10px 14px;
-            margin-bottom: 10px;
+            background: #0a0a0c;
+            border: 1px solid #1f1f24;
+            border-radius: 12px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
         }
         .demo-header-left {
             display: flex;
             align-items: center;
-            gap: 12px;
-            min-width: 240px;
+            gap: 10px;
+            min-width: 220px;
             flex: 1;
         }
         .demo-avatar-box {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            background: rgba(56, 189, 248, 0.08);
-            border: 1px solid rgba(56, 189, 248, 0.28);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #121216;
+            border: 1px solid #27272a;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.65rem;
+            font-size: 1.35rem;
             flex-shrink: 0;
         }
         .demo-title-wrap {
@@ -635,22 +644,22 @@
             align-items: center;
             gap: 6px;
             flex-wrap: wrap;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
         .demo-header-h1 {
             font-family: var(--font-heading);
-            font-size: clamp(1.05rem, 2.2vw, 1.32rem);
+            font-size: clamp(0.95rem, 1.8vw, 1.12rem);
             font-weight: 800;
             color: #ffffff;
             margin: 0;
             line-height: 1.2;
         }
         .demo-header-role {
-            color: #38bdf8;
-            font-size: 0.78rem;
-            font-weight: 600;
-            margin: 2px 0 0 0;
-            line-height: 1.3;
+            color: #a1a1aa;
+            font-size: 0.74rem;
+            font-weight: 500;
+            margin: 1px 0 0 0;
+            line-height: 1.25;
         }
         .demo-pills-row {
             display: flex;
@@ -661,15 +670,14 @@
         }
 
         /* ══════════════════════════════════════════════════════════════════
-           BANNER PUBLICITARIO & GUÍA INTERACTIVA PASO A PASO (BAJA FRICCIÓN)
+           PANEL UNIFICADO DE CONTROL & GUÍA SGP (MÁS INTUITIVO Y MINIMALISTA)
            ══════════════════════════════════════════════════════════════════ */
         .sgp-tour-banner {
-            background: linear-gradient(135deg, rgba(14, 21, 38, 0.96) 0%, rgba(10, 14, 24, 0.98) 100%);
-            border: 1.5px solid rgba(56, 189, 248, 0.42);
+            background: #0a0a0c;
+            border: 1px solid #27272a;
             border-radius: 14px;
             padding: 12px 14px;
             margin-bottom: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 24px rgba(56, 189, 248, 0.08);
             position: relative;
             overflow: hidden;
         }
@@ -678,14 +686,14 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.07);
+            height: 3px;
+            background: #18181b;
         }
         .sgp-tour-progress-fill {
             height: 100%;
             width: 16.66%;
-            background: linear-gradient(90deg, #38bdf8, #10b981);
-            transition: width 0.35s ease;
+            background: #ffffff;
+            transition: width 0.3s ease;
         }
         .sgp-tour-top {
             display: flex;
@@ -702,33 +710,32 @@
             gap: 8px;
             flex-wrap: wrap;
             flex: 1;
-            min-width: 240px;
+            min-width: 220px;
         }
         .sgp-step-pill {
-            background: rgba(56, 189, 248, 0.16);
-            border: 1px solid rgba(56, 189, 248, 0.45);
-            color: #38bdf8;
-            font-size: 0.7rem;
+            background: #ffffff;
+            color: #000000;
+            font-size: 0.68rem;
             font-weight: 800;
-            padding: 3px 9px;
-            border-radius: 50px;
-            letter-spacing: 0.4px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
             white-space: nowrap;
         }
         .sgp-category-pill {
-            background: rgba(16, 185, 129, 0.13);
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            color: #34d399;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 3px 9px;
-            border-radius: 50px;
+            background: #121216;
+            border: 1px solid #27272a;
+            color: #d4d4d8;
+            font-size: 0.69rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
             white-space: nowrap;
         }
         .sgp-tour-main-title {
             font-family: var(--font-heading);
-            font-size: clamp(0.95rem, 1.9vw, 1.14rem);
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
             font-weight: 800;
             color: #ffffff;
             margin: 0;
@@ -737,89 +744,92 @@
         .sgp-tour-nav-controls {
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 6px;
             flex-wrap: wrap;
         }
-        .sgp-next-hint {
-            font-size: 0.72rem;
-            color: #fcd34d;
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px dashed rgba(245, 158, 11, 0.4);
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
         .btn-tour-prev {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            color: #cbd5e1;
+            background: #121216;
+            border: 1px solid #27272a;
+            color: #d4d4d8;
             padding: 7px 11px;
-            border-radius: 9px;
-            font-size: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.74rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.18s ease;
             display: inline-flex;
             align-items: center;
             gap: 5px;
         }
         .btn-tour-prev:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: #1f1f26;
             color: #ffffff;
         }
-        @keyframes pulseTourNext {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.55), 0 4px 14px rgba(16, 185, 129, 0.35); }
-            50% { box-shadow: 0 0 0 6px rgba(56, 189, 248, 0), 0 6px 20px rgba(56, 189, 248, 0.5); }
-        }
         .btn-tour-next {
-            background: linear-gradient(135deg, #38bdf8 0%, #10b981 100%);
-            border: none;
-            color: #041019;
-            padding: 8px 15px;
-            border-radius: 9px;
+            background: #ffffff;
+            border: 1px solid #ffffff;
+            color: #000000;
+            padding: 7px 14px;
+            border-radius: 8px;
             font-family: var(--font-heading);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 800;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            animation: pulseTourNext 2.4s infinite;
-            transition: filter 0.2s ease;
+            gap: 6px;
+            transition: opacity 0.18s ease;
             white-space: nowrap;
         }
         .btn-tour-next:hover {
-            filter: brightness(1.1);
+            opacity: 0.9;
         }
+
+        /* Grilla Minimalista de Explicación + Barra de Acción Interactiva */
         .sgp-tour-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 8px;
         }
         .sgp-tour-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 8px 11px;
-            font-size: 0.77rem;
-            line-height: 1.42;
-            color: #cbd5e1;
+            background: #050507;
+            border: 1px solid #1c1c22;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: #a1a1aa;
+        }
+        .sgp-tour-card b, .sgp-tour-card strong {
+            color: #f4f4f5;
         }
         .sgp-tour-card strong.sgp-card-kicker {
             display: block;
-            font-size: 0.69rem;
+            font-size: 0.66rem;
             text-transform: uppercase;
-            letter-spacing: 0.4px;
-            margin-bottom: 3px;
+            letter-spacing: 0.04em;
+            margin-bottom: 2px;
             font-weight: 800;
+            color: #ffffff;
+        }
+        .sgp-try-now-strip {
+            margin-top: 8px;
+            background: #051610;
+            border: 1px solid rgba(16, 185, 129, 0.32);
+            border-radius: 8px;
+            padding: 7px 11px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-size: 0.75rem;
+            color: #d1fae5;
         }
         .sgp-bottom-next-bar {
-            margin-top: 12px;
-            background: linear-gradient(90deg, rgba(14, 21, 38, 0.95), rgba(16, 185, 129, 0.12));
-            border: 1px solid rgba(56, 189, 248, 0.35);
+            margin-top: 10px;
+            background: #0a0a0c;
+            border: 1px solid #27272a;
             border-radius: 12px;
             padding: 10px 14px;
             display: flex;
@@ -829,24 +839,27 @@
             flex-wrap: wrap;
         }
 
-        /* Barra de 6 Pestañas en Grilla Simétrica (Sin Botón Huérfano) */
+        /* Barra de 6 Pasos Modulares (Integrada y Minimalista) */
         #main-tabs-nav.tabs {
             display: grid !important;
             grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-            gap: 6px !important;
-            margin-bottom: 10px !important;
-            padding: 5px !important;
-            background: #0d1017 !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            border-radius: 12px !important;
+            gap: 5px !important;
+            margin-bottom: 8px !important;
+            padding: 4px !important;
+            background: #0a0a0c !important;
+            border: 1px solid #1f1f24 !important;
+            border-radius: 10px !important;
         }
         #main-tabs-nav .tab-btn {
             width: 100% !important;
             margin: 0 !important;
             padding: 8px 6px !important;
-            font-size: 0.76rem !important;
+            font-size: 0.75rem !important;
             font-weight: 700 !important;
-            border-radius: 8px !important;
+            border-radius: 7px !important;
+            background: #050507 !important;
+            border: 1px solid #18181b !important;
+            color: #a1a1aa !important;
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
@@ -857,8 +870,22 @@
             text-align: center !important;
             line-height: 1.2 !important;
         }
+        #main-tabs-nav .tab-btn:hover {
+            color: #ffffff !important;
+            border-color: #3f3f46 !important;
+        }
+        #main-tabs-nav .tab-btn.active {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border-color: #ffffff !important;
+            box-shadow: none !important;
+            font-weight: 800 !important;
+        }
+        #main-tabs-nav .tab-btn.active i {
+            color: #000000 !important;
+        }
         #main-tabs-nav .tab-btn i {
-            font-size: 0.82rem !important;
+            font-size: 0.8rem !important;
             flex-shrink: 0 !important;
         }
         #dynamic-tabs-container {
@@ -907,9 +934,9 @@
         .schedule-controls {
             padding: 7px 10px !important;
             margin-bottom: 6px !important;
-            background: rgba(255, 255, 255, 0.025) !important;
-            border: 1px solid rgba(255, 255, 255, 0.07) !important;
-            border-radius: 10px !important;
+            background: #050507 !important;
+            border: 1px solid #1c1c22 !important;
+            border-radius: 8px !important;
             display: flex !important;
             align-items: center !important;
             gap: 8px !important;
@@ -935,24 +962,23 @@
 
         /* Contenedor de Tabla 24H con Sticky Header y Altura Equilibrada */
         .schedule-scroll-wrapper {
-            max-height: 410px !important;
+            max-height: 400px !important;
             overflow-y: auto !important;
             overflow-x: auto !important;
-            border: 1px solid rgba(255, 255, 255, 0.12) !important;
-            border-radius: 10px !important;
-            background: #0a0b10 !important;
+            border: 1px solid #1f1f24 !important;
+            border-radius: 8px !important;
+            background: #050507 !important;
             position: relative !important;
         }
         .schedule-grid-table thead th {
             position: sticky !important;
             top: 0 !important;
             z-index: 20 !important;
-            background: #121521 !important;
-            color: #e2e8f0 !important;
-            font-size: 0.75rem !important;
+            background: #111115 !important;
+            color: #f4f4f5 !important;
+            font-size: 0.74rem !important;
             padding: 7px 6px !important;
-            border-bottom: 1px solid #2e364f !important;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+            border-bottom: 1px solid #27272a !important;
         }
         .schedule-grid-table td {
             height: 26px !important;
@@ -979,57 +1005,54 @@
             }
             .sgp-tour-grid {
                 grid-template-columns: 1fr !important;
-                gap: 6px !important;
+                gap: 5px !important;
             }
         }
 
         /* Responsividad Móvil (2x3 pestañas + vista compacta limpia) */
         @media (max-width: 640px) {
             main.container {
-                padding: 8px 8px 16px !important;
+                padding: 6px 6px 14px !important;
             }
             .demo-compact-header {
-                padding: 9px 11px !important;
-                gap: 8px !important;
+                padding: 7px 10px !important;
+                gap: 6px !important;
             }
             .demo-avatar-box {
-                width: 38px !important;
-                height: 38px !important;
-                font-size: 1.35rem !important;
+                width: 34px !important;
+                height: 34px !important;
+                font-size: 1.2rem !important;
             }
             .demo-header-h1 {
-                font-size: 0.98rem !important;
+                font-size: 0.92rem !important;
             }
             .demo-header-role {
-                font-size: 0.73rem !important;
+                font-size: 0.7rem !important;
             }
             .demo-pills-row {
-                display: flex !important;
-                overflow-x: auto !important;
-                flex-wrap: nowrap !important;
-                padding-bottom: 2px !important;
-                max-width: 100% !important;
-                scrollbar-width: none;
-            }
-            .demo-pills-row::-webkit-scrollbar {
-                display: none;
-            }
-            .demo-pills-row span {
-                white-space: nowrap !important;
-                flex-shrink: 0 !important;
-                font-size: 0.67rem !important;
-                padding: 2px 7px !important;
+                display: none !important;
             }
             #main-tabs-nav.tabs {
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: 5px !important;
-                padding: 5px !important;
+                gap: 4px !important;
+                padding: 4px !important;
             }
             #main-tabs-nav .tab-btn {
-                padding: 8px 6px !important;
-                font-size: 0.73rem !important;
+                padding: 7px 6px !important;
+                font-size: 0.72rem !important;
                 justify-content: flex-start !important;
-                padding-left: 10px !important;
+                padding-left: 8px !important;
+            }
+            .sgp-tour-banner {
+                padding: 10px 10px !important;
+            }
+            .sgp-tour-nav-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .btn-tour-next {
+                flex: 1;
+                justify-content: center;
             }
             #tab-horario .card {
                 padding: 10px 9px !important;
@@ -1065,7 +1088,7 @@
                 padding: 4px 8px !important;
             }
             .schedule-scroll-wrapper {
-                max-height: 360px !important;
+                max-height: 350px !important;
             }
             .grid-2, .kanban-grid {
                 grid-template-columns: 1fr !important;
@@ -1091,9 +1114,9 @@
     </div>
 
     <!-- CONTENEDOR MAESTRO -->
-    <main class="container" style="max-width: 1300px; margin: 0 auto; padding: 14px 18px 40px;">
+    <main class="container" style="max-width: 1300px; margin: 0 auto; padding: 10px 14px 28px;">
 
-        <!-- 2. HEADER EJECUTIVO COMPACTO DEL EJEMPLO CLIENTE -->
+        <!-- 1. TIRA COMPACTA DE CONTEXTO DEL CASO DE EJEMPLO -->
         <header class="demo-compact-header">
             <div class="demo-header-left">
                 <div class="demo-avatar-box" id="case-header-avatar">
@@ -1101,18 +1124,18 @@
                 </div>
                 <div class="demo-title-wrap">
                     <div class="demo-badges-row">
-                        <span class="hero-tea-badge" id="case-header-tag" style="margin: 0; padding: 2px 8px; font-size: 0.67rem;">
-                            👤 Ejemplo Cliente • Cuidados & Servicios
+                        <span id="case-header-tag" style="margin: 0; padding: 1px 7px; font-size: 0.65rem; font-weight: 700; color: #a1a1aa; background: #121216; border: 1px solid #27272a; border-radius: 4px;">
+                            Ejemplo de Sistema (SGP) en Vivo
                         </span>
-                        <span style="font-size: 0.66rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); padding: 2px 7px; border-radius: 20px;">
-                            ✅ 100% Calibrado
+                        <span style="font-size: 0.65rem; color: #34d399; font-weight: 700; background: #051610; border: 1px solid rgba(16,185,129,0.28); padding: 1px 7px; border-radius: 4px;">
+                            🔑 Usuario + PIN Activo
                         </span>
-                        <span id="consultor-badge-indicator" style="display: none; font-size: 0.66rem; color: #f59e0b; font-weight: 800; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); padding: 2px 7px; border-radius: 20px;">
+                        <span id="consultor-badge-indicator" style="display: none; font-size: 0.65rem; color: #fbbf24; font-weight: 800; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); padding: 1px 7px; border-radius: 4px;">
                             🛠️ Modo Consultor
                         </span>
                     </div>
                     <h1 id="case-header-name" class="demo-header-h1">
-                        Dossier & Plan de Vuelo 2.0 • Sofía Valenzuela
+                        Sistema de Gestión Personalizado • Sofía Valenzuela
                     </h1>
                     <p id="case-header-role" class="demo-header-role">
                         Yoga Somático para Cuerpos Cansados & Acompañamiento Familiar
@@ -1124,25 +1147,25 @@
             <div id="case-header-pills" class="demo-pills-row"></div>
         </header>
 
-        <!-- 3. HUB DE 6 MICRO-APPS & MÓDULOS ESCOGIDOS CON PINZA (6 EN PC / 3x2 TABLET / 2x3 MÓVIL) -->
-        <nav class="tabs" id="main-tabs-nav" aria-label="Navegación de Módulos">
+        <!-- 2. SELECTOR DIRECTO DE LAS 6 MICRO-APPS (TOCA CUALQUIERA O USA "SIGUIENTE PASO →") -->
+        <nav class="tabs" id="main-tabs-nav" aria-label="Navegación de Módulos SGP">
             <button class="tab-btn active" id="tab-btn-horario" onclick="switchTab('tab-horario')">
-                <i class="fa-regular fa-clock"></i> <span>1. App Horario 24H</span>
+                <i class="fa-regular fa-clock"></i> <span>1. Horario 24H</span>
             </button>
             <button class="tab-btn" id="tab-btn-kanban" onclick="switchTab('tab-kanban')">
-                <i class="fa-solid fa-table-columns"></i> <span>2. App Kanban WIP=2</span>
+                <i class="fa-solid fa-table-columns"></i> <span>2. Kanban WIP=2</span>
             </button>
             <button class="tab-btn" id="tab-btn-accion" onclick="switchTab('tab-accion')">
-                <i class="fa-solid fa-calculator" style="color: #fbbf24;"></i> <span>3. App Negocio & Metas</span>
+                <i class="fa-solid fa-calculator"></i> <span>3. Negocio & Metas</span>
             </button>
             <button class="tab-btn" id="tab-btn-identidades" onclick="switchTab('tab-identidades')">
-                <i class="fa-solid fa-stopwatch" style="color: #38bdf8;"></i> <span>4. App Foco & Energía</span>
+                <i class="fa-solid fa-stopwatch"></i> <span>4. Foco & Reloj</span>
             </button>
             <button class="tab-btn" id="tab-btn-herramientas" onclick="switchTab('tab-herramientas')">
-                <i class="fa-solid fa-graduation-cap" style="color: #a78bfa;"></i> <span>5. Tutorial & Papel</span>
+                <i class="fa-solid fa-graduation-cap"></i> <span>5. Tutorial & Papel</span>
             </button>
             <button class="tab-btn" id="tab-btn-resultados" onclick="switchTab('tab-resultados')">
-                <i class="fa-solid fa-trophy" style="color: #10b981;"></i> <span>6. Bitácora & Logros</span>
+                <i class="fa-solid fa-trophy"></i> <span>6. Bitácora & Logros</span>
             </button>
 
             <!-- PESTAÑAS DINÁMICAS DE MÓDULOS AGREGADOS DEL CATÁLOGO -->
@@ -1154,51 +1177,56 @@
             </button>
         </nav>
 
-        <!-- 3B. BANNER PUBLICITARIO & GUÍA INTERACTIVA PASO A PASO (SE EXPLICA SOLO + BOTÓN SIGUIENTE) -->
-        <section class="sgp-tour-banner" id="sgp-tour-banner" aria-label="Guía paso a paso del módulo activo">
+        <!-- 3. GUÍA MINIMALISTA DEL MÓDULO ACTIVO + INSTRUCCIÓN DE INTERACCIÓN INMEDIATA -->
+        <section class="sgp-tour-banner" id="sgp-tour-banner" aria-label="Explicación del módulo activo">
             <div class="sgp-tour-progress-track">
                 <div class="sgp-tour-progress-fill" id="tour-progress-fill" style="width: 16.66%;"></div>
             </div>
             <div class="sgp-tour-top">
                 <div class="sgp-tour-title-wrap">
-                    <span class="sgp-step-pill" id="tour-step-pill">🧭 MÓDULO 1 DE 6</span>
-                    <span class="sgp-category-pill" id="tour-category-pill">🏠 App de Vida & Rutina</span>
+                    <span class="sgp-step-pill" id="tour-step-pill">PASO 1 DE 6</span>
+                    <span class="sgp-category-pill" id="tour-category-pill">App de Vida & Rutina</span>
                     <h2 class="sgp-tour-main-title" id="tour-main-title">
-                        Mapeador Semanal 24H: Soberanía de Tiempo sin Culpa
+                        1. Mapeador Semanal 24H: Soberanía de Tiempo sin Culpa
                     </h2>
                 </div>
                 <div class="sgp-tour-nav-controls">
-                    <span class="sgp-next-hint" id="tour-next-hint">
-                        👆 Presiona «Siguiente» para recorrer cómo funciona
-                    </span>
                     <button type="button" class="btn-tour-prev" id="btn-tour-prev" onclick="prevTourStep()" title="Módulo anterior">
                         <i class="fa-solid fa-arrow-left"></i> Anterior
                     </button>
                     <button type="button" class="btn-tour-next" id="btn-tour-next" onclick="nextTourStep()">
-                        <span id="btn-tour-next-label">Siguiente: 2. App Kanban WIP=2</span>
+                        <span id="btn-tour-next-label">Siguiente (2/6): Kanban WIP=2</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
             <div class="sgp-tour-grid">
                 <div class="sgp-tour-card">
-                    <strong class="sgp-card-kicker" style="color: #38bdf8;">📌 ¿Qué es este Módulo / App?</strong>
+                    <strong class="sgp-card-kicker">Qué es este módulo</strong>
                     <div id="tour-col-what">
-                        Una app interactiva de tus 168 horas semanales donde pintas tus bloques reales (sueño, trabajo profundo, cuidados familiares y descanso libre de culpa).
+                        App interactiva de tus 168 horas semanales para asignar bloques reales de sueño, trabajo, familia y descanso sin culpa.
                     </div>
                 </div>
                 <div class="sgp-tour-card">
-                    <strong class="sgp-card-kicker" style="color: #fbbf24;">🤝 Acompañamiento Administrativo & Qué Aprendes</strong>
+                    <strong class="sgp-card-kicker" style="color: #38bdf8;">Apoyo en Gestión (Conmigo)</strong>
                     <div id="tour-col-how">
-                        Aterrizamos tus fugas de tiempo, te enseño la técnica de <b>Presupuesto Energético 24H</b> y te acompaño en la gestión ajustando las categorías a tu vida real.
+                        Aterrizamos tus fugas de tiempo, te enseño la técnica de <b>Presupuesto Energético 24H</b> y ajustamos las categorías a tu realidad.
                     </div>
                 </div>
                 <div class="sgp-tour-card">
-                    <strong class="sgp-card-kicker" style="color: #34d399;">📲 ¿Cómo queda en la palma de tu mano?</strong>
+                    <strong class="sgp-card-kicker" style="color: #34d399;">En la palma de tu mano</strong>
                     <div id="tour-col-palm">
-                        Lo editas en vivo desde tu celular o PC con auto-guardado, creas nuevas categorías cuando quieras y lo descargas en PNG o en tu Hoja Carta imprimible.
+                        Lo editas en vivo desde tu celular o PC con auto-guardado, creas nuevas categorías y lo descargas en PNG o en Hoja Carta.
                     </div>
                 </div>
+            </div>
+            <div class="sgp-try-now-strip">
+                <span id="tour-try-now">
+                    👉 <b>Pruébalo aquí abajo:</b> Toca un pincel de color y haz clic en cualquier casilla de la tabla para pintar el horario en vivo.
+                </span>
+                <span style="font-size: 0.69rem; color: #34d399; font-weight: 700; white-space: nowrap;">
+                    ● Interactivo en vivo
+                </span>
             </div>
         </section>
 
@@ -2020,63 +2048,69 @@
         const SGP_TOUR_DATA = {
             "tab-horario": {
                 stepNum: 1,
-                category: "🏠 App de Vida & Rutina",
+                category: "App de Vida & Rutina",
                 title: "1. Mapeador Semanal 24H: Soberanía de Tiempo sin Culpa",
-                what: "Una app interactiva de tus 168 horas semanales donde pintas tus bloques reales (sueño, trabajo profundo, cuidados familiares y descanso libre de culpa).",
-                how: "Aterrizamos tus fugas de tiempo, te enseño la técnica de <b>Presupuesto Energético 24H</b> y te acompaño en la gestión ajustando las categorías a tu vida real.",
-                palm: "Lo editas en vivo desde tu celular o PC con auto-guardado, agregas o editas categorías cuando quieras y lo descargas en PNG o en tu Hoja Carta imprimible.",
-                nextBtn: "Siguiente: 2. App Kanban WIP=2",
-                bottomPrompt: "¿Ya probaste los pinceles del Mapeador 24H? Avanza al Módulo 2 para ver cómo bloqueamos la saturación de tareas:"
+                what: "App interactiva de tus 168 horas semanales para asignar bloques reales de sueño, trabajo, familia y descanso sin culpa.",
+                how: "Aterrizamos tus fugas de tiempo, te enseño la técnica de <b>Presupuesto Energético 24H</b> y ajustamos las categorías a tu realidad.",
+                palm: "Lo editas en vivo desde tu celular o PC con auto-guardado, creas nuevas categorías y lo descargas en PNG o en Hoja Carta.",
+                tryNow: "👉 <b>Pruébalo aquí abajo:</b> Toca un pincel de color y haz clic en cualquier casilla de la tabla para pintar el horario en vivo.",
+                nextBtn: "Siguiente (2/6): Kanban WIP=2",
+                bottomPrompt: "¿Ya probaste el Mapeador 24H? Avanza al Paso 2 para ver cómo controlamos las tareas:"
             },
             "tab-kanban": {
                 stepNum: 2,
-                category: "⚡ App de Foco & Pendientes",
+                category: "App de Foco & Pendientes",
                 title: "2. Tablero Kanban GTD con Límite WIP=2: Fin a la Multitarea",
-                what: "Un gestor visual de tareas que protege tu sistema nervioso bloqueando la apertura de un 3er frente hasta que cierres o pauses uno de los 2 activos.",
-                how: "Aterrizamos el ruido mental de tu cabeza, te doy apoyo en gestión con el criterio <b>WIP=2 (Work In Progress)</b> y priorizamos tus micro-hábitos diarios.",
-                palm: "En tu celular tienes tu bandeja limpia para mover tareas en 1 toque y tildar tu checklist diario sin sentirte abrumado.",
-                nextBtn: "Siguiente: 3. App Negocio & Metas",
-                bottomPrompt: "¿Viste cómo el límite WIP=2 protege tu foco? Pasa al Módulo 3 para probar una Micro-App de Negocio y Finanzas:"
+                what: "Gestor visual de tareas que protege tu mente bloqueando la apertura de un 3er frente hasta que cierres o pauses uno de los 2 activos.",
+                how: "Aterrizamos el ruido mental de tu cabeza, te doy apoyo en gestión con el criterio <b>WIP=2 (Work In Progress)</b> y priorizamos tus hábitos diarios.",
+                palm: "En tu celular tienes tu bandeja limpia para mover tareas en 1 toque y tildar tu checklist diario sin abrumarte.",
+                tryNow: "👉 <b>Pruébalo aquí abajo:</b> Escribe una tarea nueva o mueve una tarjeta a «En Ejecución» para ver cómo protege tu foco.",
+                nextBtn: "Siguiente (3/6): Negocio & Metas",
+                bottomPrompt: "¿Viste cómo el límite WIP=2 protege tu foco? Avanza al Paso 3 para probar la Calculadora de Negocio:"
             },
             "tab-accion": {
                 stepNum: 3,
-                category: "💼 Micro-App de Negocio & Finanzas",
+                category: "Micro-App de Negocio & Finanzas",
                 title: "3. Calculadora de Metas Comerciales, Packs & Regla 50/30/20",
-                what: "Una micro-app financiera y comercial hecha a medida para calcular cuántos clientes o paquetes necesitas vender para cubrir tu meta trabajando horas sanas.",
-                how: "Te acompaño administrativamente a ordenar tus números: te enseño a <b>empaquetar servicios/productos</b>, separar cuentas (50/30/20) y cerrar ventas.",
+                what: "Micro-app comercial hecha a medida para calcular cuántos clientes o paquetes necesitas vender para cubrir tu meta trabajando horas sanas.",
+                how: "Te acompaño administrativamente a ordenar tus números: empaquetar servicios, separar cuentas (<b>Regla 50/30/20</b>) y cerrar ventas.",
                 palm: "Simulas escenarios en segundos desde tu teléfono, ves cuánto va a cada bolsillo y copias tu guion de WhatsApp en 1 clic.",
-                nextBtn: "Siguiente: 4. App Foco & Energía",
-                bottomPrompt: "¿Probaste cambiar la meta mensual en la calculadora? Avanza al Módulo 4 para ver cómo destrabamos la procrastinación:"
+                tryNow: "👉 <b>Pruébalo aquí abajo:</b> Cambia el monto de la «Meta Mensual» o presiona uno de los botones de escenario para recalcular en vivo.",
+                nextBtn: "Siguiente (4/6): Foco & Reloj",
+                bottomPrompt: "¿Probaste cambiar la meta mensual en la calculadora? Avanza al Paso 4 para ver el Reloj Paso Cero:"
             },
             "tab-identidades": {
                 stepNum: 4,
-                category: "🧠 Micro-App de Regulación & Foco",
+                category: "Micro-App de Regulación & Foco",
                 title: "4. Reloj «Paso Cero (5 min)» & Matriz de los 4 Arquetipos",
-                what: "Un cronómetro interactivo de destrabe (5m / 25m / 50m) unido al mapa de tus 4 identidades de energía y tus reglas de límites sagrados.",
-                how: "Identificamos qué te frena y, mediante acompañamiento real, instalamos el <b>Protocolo Paso Cero</b> para que retomes tracción sin presión.",
-                palm: "Cuando te sientes bloqueado, abres tu Portal desde el móvil, presionas «Iniciar 5 min» y rompes la inercia de inmediato.",
-                nextBtn: "Siguiente: 5. Tutorial & Papel",
-                bottomPrompt: "¿Viste cómo regulamos tu energía real? Pasa al Módulo 5 para ver cómo te enseño cada herramienta paso a paso:"
+                what: "Cronómetro interactivo de destrabe (5m / 25m / 50m) unido al mapa de tus 4 identidades de energía y reglas de límites sagrados.",
+                how: "Identificamos qué te frena y, mediante apoyo en gestión, instalamos el <b>Protocolo Paso Cero</b> para que retomes tracción sin presión.",
+                palm: "Cuando te sientes bloqueado, abres tu Portal desde el móvil, presionas «Iniciar Reloj» y rompes la inercia de inmediato.",
+                tryNow: "👉 <b>Pruébalo aquí abajo:</b> Presiona «Iniciar Reloj» en el temporizador de 5 minutos o cambia entre 5m, 25m y 50m.",
+                nextBtn: "Siguiente (5/6): Tutorial & Papel",
+                bottomPrompt: "¿Viste cómo regulamos tu energía? Avanza al Paso 5 para ver cómo te enseño cada herramienta:"
             },
             "tab-herramientas": {
                 stepNum: 5,
-                category: "🎓 Escuela Práctica + Imprimible",
+                category: "Escuela Práctica + Imprimible",
                 title: "5. Cómo te Enseño cada Herramienta + Tu Hoja Física Carta",
-                what: "La cápsula formativa de cada módulo: incluye infografía de arquitectura, los 3 principios inquebrantables, tutorial paso a paso y autoevaluación.",
-                how: "Mi apoyo en gestión incluye enseñarte la lógica detrás de cada método en simple, para que desarrolles autonomía y criterio administrativo propio.",
-                palm: "Queda en tu Portal web para consulta rápida y se compila en tu <b>Hub Único de Imprimibles Físicos (1 hoja Carta)</b> para tu escritorio.",
-                nextBtn: "Siguiente: 6. Bitácora & Logros",
-                bottomPrompt: "Por último, avanza al Módulo 6 para ver cómo queda registrado el acompañamiento sesión a sesión y la evolución lograda:"
+                what: "Cápsula formativa de cada módulo: incluye infografía de arquitectura, principios clave, tutorial paso a paso y autoevaluación.",
+                how: "Mi acompañamiento administrativo incluye enseñarte la lógica de cada método en simple para que ganes autonomía real.",
+                palm: "Queda en tu Portal web para consulta rápida y se compila en tu <b>Hub Único de Imprimibles Físicos (1 hoja Carta)</b>.",
+                tryNow: "👉 <b>Pruébalo aquí abajo:</b> Marca las casillas de la Autoevaluación de Blindaje para ver cómo sube tu barra de progreso.",
+                nextBtn: "Siguiente (6/6): Bitácora & Logros",
+                bottomPrompt: "Por último, avanza al Paso 6 para ver cómo queda registrado nuestro acompañamiento sesión a sesión:"
             },
             "tab-resultados": {
                 stepNum: 6,
-                category: "📈 Trazabilidad & Apoyo en Gestión",
+                category: "Trazabilidad & Apoyo en Gestión",
                 title: "6. Inventario Sesión a Sesión, Calibración & Resultados",
-                what: "El historial vivo de nuestro acompañamiento administrativo: qué destrabamos en cada sesión, cómo ajustamos el sistema a tus imprevistos y qué lograste.",
-                how: "Semana a semana te apoyo en la gestión calibrando lo que no funcionó sin culpa moral, hasta consolidar tu <b>Sistema de Gestión Personalizado</b>.",
-                palm: "Tienes la película completa de tu evolución en un solo lugar. ¡Puedes volver al Módulo 1 cuando quieras o bajar a agendar tu Sesión Base!",
-                nextBtn: "🔄 Volver al Módulo 1 (Horario 24H)",
-                bottomPrompt: "¡Recorrido completado! Así funciona nuestro acompañamiento y tu Sistema de Gestión Personalizado:"
+                what: "Historial vivo de nuestro acompañamiento administrativo: qué destrabamos en cada sesión, cómo calibramos el sistema y qué lograste.",
+                how: "Semana a semana te apoyo en la gestión calibrando lo que dio fricción sin culpa, hasta consolidar tu <b>Sistema de Gestión Personalizado</b>.",
+                palm: "Tienes la trazabilidad completa de tu evolución en tu Portal. Puedes volver al Paso 1 o bajar a agendar tu Sesión Base.",
+                tryNow: "👉 <b>Pruébalo aquí abajo:</b> Revisa el inventario sesión a sesión y la tabla de calibración Antes vs. Ajuste del Plan.",
+                nextBtn: "🔄 Volver al Paso 1 (Horario 24H)",
+                bottomPrompt: "¡Recorrido completado! Así funciona tu Sistema de Gestión Personalizado y nuestro acompañamiento:"
             }
         };
 
@@ -2088,7 +2122,7 @@
             if (fillEl) fillEl.style.width = stepPct + "%";
 
             const stepPill = document.getElementById("tour-step-pill");
-            if (stepPill) stepPill.innerText = `🧭 MÓDULO ${info.stepNum} DE 6`;
+            if (stepPill) stepPill.innerText = `PASO ${info.stepNum} DE 6`;
 
             const catPill = document.getElementById("tour-category-pill");
             if (catPill) catPill.innerText = info.category;
@@ -2105,11 +2139,14 @@
             const palmEl = document.getElementById("tour-col-palm");
             if (palmEl) palmEl.innerHTML = info.palm;
 
+            const tryNowEl = document.getElementById("tour-try-now");
+            if (tryNowEl && info.tryNow) tryNowEl.innerHTML = info.tryNow;
+
             const nextLbl = document.getElementById("btn-tour-next-label");
             if (nextLbl) nextLbl.innerText = info.nextBtn;
 
             const bottomStep = document.getElementById("tour-bottom-step-pill");
-            if (bottomStep) bottomStep.innerText = `🧭 MÓDULO ${info.stepNum} DE 6`;
+            if (bottomStep) bottomStep.innerText = `PASO ${info.stepNum} DE 6`;
 
             const bottomPrompt = document.getElementById("tour-bottom-prompt");
             if (bottomPrompt) bottomPrompt.innerText = info.bottomPrompt;
@@ -2364,10 +2401,10 @@
             // 3. Renderizar Header
             const p = activeCaseData.profile;
             document.getElementById("case-header-avatar").innerText = p.avatar;
-            document.getElementById("case-header-tag").innerText = "👤 Ejemplo Cliente • Cuidados Familiares & Servicios";
-            document.getElementById("case-header-name").innerText = `Dossier & Plan de Vuelo 2.0 • ${p.shortName}`;
+            document.getElementById("case-header-tag").innerText = "Ejemplo de Sistema (SGP) en Vivo";
+            document.getElementById("case-header-name").innerText = `Sistema de Gestión Personalizado • ${p.shortName}`;
             document.getElementById("case-header-role").innerText = p.role;
-            document.title = `Plan de Vuelo 2.0 • ${p.shortName} • Administración Humana`;
+            document.title = `Sistema de Gestión Personalizado • ${p.shortName} • Administración Humana`;
 
             const pillsContainer = document.getElementById("case-header-pills");
             if (pillsContainer && p.pills) {
