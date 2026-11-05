@@ -5621,55 +5621,78 @@
         transition: width 0.3s ease;
       }
 
+      /* ── TARJETAS CUADRADAS "SE BUSCA" (3 COLUMNAS EN PC GRANDE, 2 EN MEDIANO/TABLET, 1 DE A UNA EN TELÉFONO) ── */
       .avisos-area-list {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
         width: 100%;
+        align-items: stretch;
       }
+      @media (max-width: 1024px) {
+        .avisos-area-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+      }
+      @media (max-width: 640px) {
+        .avisos-area-list {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+      }
+
       .wizard-aviso-horizontal-row {
         width: 100%;
-        background: #0d0f17;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-left: 4px solid var(--station-color, #38bdf8);
-        border-radius: 12px;
-        padding: 12px 16px;
+        background: #06070b;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 3px solid var(--station-color, #38bdf8);
+        border-radius: 14px;
+        padding: 14px 15px;
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
+        align-items: stretch;
         justify-content: space-between;
-        gap: 16px;
+        gap: 10px;
         cursor: pointer;
         transition: all 0.2s ease;
         box-sizing: border-box;
         position: relative;
+        min-height: 230px;
       }
       .wizard-aviso-horizontal-row:hover {
-        background: #121521;
-        border-color: rgba(255, 255, 255, 0.18);
+        background: #0c0e16;
+        border-color: rgba(255, 255, 255, 0.22);
+        border-top-color: var(--station-color, #38bdf8);
+        transform: translateY(-2px);
       }
       .wizard-aviso-horizontal-row.selected {
-        background: #141929;
+        background: #101522;
         border-color: var(--station-color, #38bdf8);
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px rgba(56, 189, 248, 0.14);
+        border-top: 3px solid var(--station-color, #38bdf8);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 14px rgba(56, 189, 248, 0.16);
       }
       .aviso-row-main {
         flex: 1 1 auto;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
       }
       .aviso-row-meta {
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 6px;
         flex-wrap: wrap;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
+        padding-bottom: 7px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       }
       .aviso-tag-pill {
-        font-size: 0.62rem;
+        font-size: 0.6rem;
         font-weight: 800;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        padding: 2px 7px;
+        padding: 2px 6px;
         border-radius: 4px;
         border-width: 1px;
         border-style: solid;
@@ -5681,64 +5704,71 @@
         font-weight: 700;
       }
       .aviso-arquetipo-pill {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         font-style: italic;
         color: #94a3b8;
       }
       .aviso-row-headline {
         font-family: var(--font-heading);
-        font-size: 0.94rem;
+        font-size: 0.91rem;
         font-weight: 800;
         color: #ffffff;
         line-height: 1.32;
-        margin: 0 0 4px 0;
-      }
-      .aviso-row-bajada {
-        font-size: 0.8rem;
-        color: #cbd5e1;
-        line-height: 1.42;
         margin: 0 0 6px 0;
       }
+      .aviso-row-bajada {
+        font-size: 0.77rem;
+        color: #cbd5e1;
+        line-height: 1.42;
+        margin: 0 0 10px 0;
+      }
       .aviso-row-aporte {
-        font-size: 0.72rem;
+        font-size: 0.71rem;
         color: #e2e8f0;
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid rgba(255, 255, 255, 0.09);
-        border-radius: 6px;
-        padding: 3px 9px;
-        display: inline-flex;
-        align-items: center;
+        border-radius: 8px;
+        padding: 6px 9px;
+        display: flex;
+        align-items: flex-start;
         gap: 5px;
+        margin-top: auto;
+        line-height: 1.35;
+        width: 100%;
+        box-sizing: border-box;
       }
       .aviso-row-actions {
-        flex: 0 0 210px;
+        flex: 0 0 auto;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 6px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 9px;
       }
       .btn-toggle-aviso {
         width: 100%;
         background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        color: #cbd5e1;
-        font-size: 0.74rem;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        color: #e2e8f0;
+        font-size: 0.75rem;
         font-weight: 700;
-        padding: 6px 10px;
+        padding: 7px 10px;
         border-radius: 8px;
         text-align: center;
         cursor: pointer;
         transition: all 0.2s;
         user-select: none;
+        box-sizing: border-box;
       }
       .btn-toggle-aviso:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.12);
         color: #fff;
       }
       .aviso-urgencia-box {
         display: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding-top: 5px;
+        padding-top: 4px;
       }
       .aviso-urgencia-box.is-visible {
         display: block;
@@ -5749,19 +5779,19 @@
         color: #94a3b8;
         text-transform: uppercase;
         display: block;
-        margin-bottom: 3px;
+        margin-bottom: 4px;
         text-align: center;
         letter-spacing: 0.04em;
       }
       .urgencia-btn-group {
-        display: flex;
-        gap: 4px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
       }
       .urg-btn {
-        flex: 1;
-        font-size: 0.66rem;
+        font-size: 0.67rem;
         font-weight: 700;
-        padding: 4px 2px;
+        padding: 5px 4px;
         border-radius: 6px;
         background: #12131a;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -5769,6 +5799,7 @@
         cursor: pointer;
         transition: all 0.15s;
         white-space: nowrap;
+        text-align: center;
       }
       .urg-btn.active-alta {
         background: rgba(239, 68, 68, 0.3) !important;
@@ -5835,16 +5866,9 @@
           font-size: 0.82rem !important;
         }
         .wizard-aviso-horizontal-row {
-          flex-direction: column !important;
-          align-items: stretch !important;
-          padding: 11px 12px !important;
+          padding: 13px 13px !important;
           gap: 9px !important;
-        }
-        .aviso-row-actions {
-          flex: 1 1 100% !important;
-          width: 100% !important;
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
-          padding-top: 7px;
+          min-height: auto !important;
         }
       }
     </style>
