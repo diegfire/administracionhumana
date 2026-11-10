@@ -1019,19 +1019,35 @@
                 tag: currentTag,
                 section: activeSection,
                 duration: timerText,
+                filename: audioBlob.name || "",
                 mime_type: mimeType,
+                file_base64: base64Data,
                 audio_base64: base64Data
             };
 
             let driveSaved = false;
-            let driveUrl = "";
+            let localSaved = false;
 
             try {
-                // Intentar subida a Google Apps Script Webhook
+                // 1. Intentar guardar directamente en 00_BANDEJA_ENTRADA_MULTIMEDIA vía Servidor Local Maestro
+                const localRes = await fetch('/api/upload_inbox_item', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (localRes.ok) {
+                    localSaved = true;
+                }
+            } catch (err) {
+                // Si el cliente está en GitHub Pages sin servidor local, continúa con Drive / WhatsApp
+            }
+
+            try {
+                // 2. Intentar subida a Google Apps Script Webhook (si está configurado)
                 if (DRIVE_WEBHOOK_URL && !DRIVE_WEBHOOK_URL.includes("Placeholder")) {
-                    const res = await fetch(DRIVE_WEBHOOK_URL, {
+                    await fetch(DRIVE_WEBHOOK_URL, {
                         method: 'POST',
-                        mode: 'no-cors', // Apps Script requiere no-cors o redirección
+                        mode: 'no-cors',
                         body: JSON.stringify(payload)
                     });
                     driveSaved = true;
@@ -1043,7 +1059,9 @@
             // Actualizar feedback
             if (feedbackEl) {
                 feedbackEl.className = 'aicc-upload-feedback success';
-                feedbackEl.innerHTML = '✅ <strong>¡Nota procesada con éxito!</strong> Abriendo WhatsApp para avisar a Diego...';
+                feedbackEl.innerHTML = localSaved
+                    ? '✅ <strong>¡Guardado directo en tu Bandeja del Centro de Comando!</strong> Abriendo WhatsApp...'
+                    : '✅ <strong>¡Nota procesada con éxito!</strong> Abriendo WhatsApp para avisar a Diego...';
             }
 
             // Preparar y disparar mensaje estructurado de WhatsApp para Diego

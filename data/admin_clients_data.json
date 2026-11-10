@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T21:52:32.709908",
+  "updated_at": "2026-11-10T13:59:17.505698",
   "total_clients": 15,
   "clients": [
     {
@@ -512,6 +512,13 @@
             "url": "05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Cirugia%20Bucal/Propuesta_02_Programa_Integral_Sistemas_Hub.docx",
             "url_from_sondeo": "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Cirugia%20Bucal/Propuesta_02_Programa_Integral_Sistemas_Hub.docx",
             "ext": ".docx"
+          },
+          {
+            "name": "Propuesta_Actualizada_Cirugia_Bucal_Administracion_Humana.docx",
+            "rel_inside": "Propuesta_Actualizada_Cirugia_Bucal_Administracion_Humana.docx",
+            "url": "05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Cirugia%20Bucal/Propuesta_Actualizada_Cirugia_Bucal_Administracion_Humana.docx",
+            "url_from_sondeo": "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Cirugia%20Bucal/Propuesta_Actualizada_Cirugia_Bucal_Administracion_Humana.docx",
+            "ext": ".docx"
           }
         ],
         "notes": [
@@ -534,6 +541,13 @@
             "rel_inside": "Propuesta_02_Programa_Integral_Sistemas_Hub.md",
             "url": "05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Cirugia%20Bucal/Propuesta_02_Programa_Integral_Sistemas_Hub.md",
             "url_from_sondeo": "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Cirugia%20Bucal/Propuesta_02_Programa_Integral_Sistemas_Hub.md",
+            "ext": ".md"
+          },
+          {
+            "name": "Propuesta_Actualizada_Cirugia_Bucal_Administracion_Humana.md",
+            "rel_inside": "Propuesta_Actualizada_Cirugia_Bucal_Administracion_Humana.md",
+            "url": "05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Cirugia%20Bucal/Propuesta_Actualizada_Cirugia_Bucal_Administracion_Humana.md",
+            "url_from_sondeo": "../../05_CLIENTES_Y_OPERACIONES/02_CLIENTES_ACTIVOS/Cirugia%20Bucal/Propuesta_Actualizada_Cirugia_Bucal_Administracion_Humana.md",
             "ext": ".md"
           }
         ]

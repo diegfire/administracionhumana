@@ -15,7 +15,7 @@ const CLIENT_ACCOUNTS = [
         subtitle: "Puya Masajes & Canto",
         usernames: ["rocio.puya", "rocio", "rocior", "puya", "puyamasajes", "@rocio.puya", "rocio@administracionhumana.com"],
         passwords: ["ah-puya9842", "ah-puya-9842", "puya9842", "rocior1998", "rocio1998", "rocio2026", "puya2026", "2026", "1998"],
-        url: "planes-rocio.html",
+        url: "plan.html?cliente=rocio",
         storageKey: "ah_auth_rocio"
     },
     {
@@ -24,7 +24,7 @@ const CLIENT_ACCOUNTS = [
         subtitle: "Ingeniería & Voleibol",
         usernames: ["matias.gonzalez", "matias", "matiasg", "matigonzalez", "matiasgonzalez", "mati", "mati@email.com", "matias@administracionhumana.com"],
         passwords: ["ah-matias7315", "ah-matias-7315", "matias7315", "matigonzalez2009", "matias2009", "mati2009", "matigonzalez2008", "matias2026", "2026", "2009", "2008"],
-        url: "planes-matias.html",
+        url: "plan.html?cliente=matias",
         storageKey: "ah_auth_matias"
     },
     {
@@ -33,7 +33,7 @@ const CLIENT_ACCOUNTS = [
         subtitle: "Habitarte & Movimiento",
         usernames: ["antonia.jofre", "antonia", "antojofre", "antoniajofre", "@antonia.jofre", "antonia@administracionhumana.com"],
         passwords: ["ah-antonia5924", "ah-antonia-5924", "antonia5924", "antojofre23091995", "antojofre1995", "antojofre2309", "antonia2026", "2026", "1995"],
-        url: "planes-antonia.html",
+        url: "plan.html?cliente=antonia",
         storageKey: "ah_auth_antonia"
     },
     {
@@ -42,7 +42,7 @@ const CLIENT_ACCOUNTS = [
         subtitle: "Acompañamiento Integral & Filosofía",
         usernames: ["alejandra.mattei", "alejandra", "juanamattei", "mattei", "@alejandra.mattei", "alejandra@administracionhumana.com"],
         passwords: ["ah-mattei6251", "ah-mattei-6251", "mattei6251", "juanamattei", "alejandra2026", "2026"],
-        url: "planes-alejandra.html",
+        url: "plan.html?cliente=alejandra",
         storageKey: "ah_auth_alejandra"
     },
     {
@@ -60,7 +60,7 @@ const CLIENT_ACCOUNTS = [
         subtitle: "Nutrición & Pedagogía en Biología",
         usernames: ["francisca.lissette", "francisca", "lissette", "franciscalissette", "lizeth", "@francisca.lissette", "francisca@administracionhumana.com"],
         passwords: ["ah-lissette2026", "ah-lissette-2026", "lissette2026", "francisca2026", "1234", "ah-lizeth2026", "lizeth2026", "2026"],
-        url: "planes-francisca.html",
+        url: "plan.html?cliente=francisca",
         storageKey: "ah_auth_francisca"
     },
     {
@@ -119,7 +119,7 @@ const CLIENT_ACCOUNTS = [
         subtitle: "Prototipo 2.0",
         usernames: ["demo.explorador", "demo", "invitado", "demo@administracionhumana.com"],
         passwords: ["ah-demo2026", "ah-demo-2026", "demo2026", "invitado2026", "demo", "2026"],
-        url: "planes-demo.html",
+        url: "plan.html?cliente=demo",
         storageKey: "ah_auth_demo"
     },
     {
@@ -129,7 +129,7 @@ const CLIENT_ACCOUNTS = [
         usernames: ["diego.consultor", "admin", "diego", "consultor", "diego@administracionhumana.com"],
         passwords: ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026", "2026"],
         isMaster: true,
-        url: "visualizador.html"
+        url: "../../COMANDO_CENTRAL_AH.html"
     }
 ];
 
@@ -499,8 +499,7 @@ function grantAccessSession(account) {
 
     if (account.isMaster) {
         localStorage.setItem("ah_consultor_auth", "true");
-        const isClientOps = window.location.pathname.includes("02_CLIENTES_ACTIVOS");
-        const masterUrl = isClientOps ? "Visualizador_Planes_de_Vuelo.html" : "visualizador.html";
+        const masterUrl = account.id === "diego" ? "plan.html?cliente=diego" : "../../COMANDO_CENTRAL_AH.html";
         return {
             success: true,
             isMaster: true,

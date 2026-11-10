@@ -1,0 +1,232 @@
+{
+  "cliente": {
+    "id": "melissa",
+    "nombre": "Melissa Henríquez Soto",
+    "avatar": "🌿🧸",
+    "usuario": "melissa.trafmen",
+    "pin": "AH-Trafmen8416",
+    "subtitulo": "De la Dispersión de Roles al Ecosistema Integrado",
+    "tagline": "Kinesiología Escolar • Maternidad Presente • Juego y Movimiento Trafmen",
+    "edad": 34,
+    "ciudad": "Pueblo Seco, Ñuble",
+    "rol_principal": "Kinesióloga & Fundadora de Trafmen",
+    "ultima_actualizacion": "2026-09-14"
+  },
+  "modulos_activos": [
+    "seguridad_pin",
+    "diagnostico_general",
+    "triangulacion_roles",
+    "carta_espacio_foco30m",
+    "protocolo_lavado_diurno",
+    "time_blocking_flexible",
+    "inventario_resultados",
+    "kanban_gtd_wip2",
+    "matriz_eisenhower",
+    "trafmen_juego_y_movimiento",
+    "finanzas_503020",
+    "alianzas_estrategicas",
+    "mapeador_24h",
+    "hub_imprimibles_maestro",
+    "whatsapp_directo"
+  ],
+  "categorias_gestion": [
+    "01_Perfil_y_Diagnostico",
+    "02_Gestion_Operativa_y_Metas",
+    "03_Finanzas_y_Presupuesto",
+    "04_Emprendimiento_Trafmen",
+    "05_Alianzas_y_Desarrollo_Profesional",
+    "06_Imprimibles_Fisicos"
+  ],
+  "diagnostico": {
+    "resumen_humano": "Melissa es kinesióloga y madre soltera de su hijo de 6 años ('Chinito'). Trabaja 40.5 horas a la semana en un colegio en Pueblo Seco y cursa un diplomado online en Kinesiología Educativa. Ganó el Capital Abeja 2023 con su marca 'Juego y Movimiento Trafmen'. En su sondeo express identificó como principal cuello de botella la coexistencia de múltiples roles y la procrastinación, perdiendo al menos 2 horas al día dando vueltas (~14 h/sem de fricción). Financieramente se encuentra cómoda y equilibrada en la regla 50/30/20, lo que le otorga una posición de oportunidad clave para estructurar sus proyectos sin asfixia.",
+    "stats": [
+      {
+        "valor": "~14 Horas / Sem",
+        "etiqueta": "Fricción Recuperable (Sondeo)",
+        "color": "#ef4444",
+        "sub": "2h/día dando vueltas por dispersión"
+      },
+      {
+        "valor": "40.5 Horas / Sem",
+        "etiqueta": "Jornada Escolar Fija",
+        "color": "#3b82f6",
+        "sub": "Lunes a Viernes en Pueblo Seco"
+      },
+      {
+        "valor": "10.5 Horas / Sem",
+        "etiqueta": "Ventanas de Oro Protegidas",
+        "color": "#10b981",
+        "sub": "Trafmen + Diplomado (Time Blocking)"
+      },
+      {
+        "valor": "Capital Abeja 2023",
+        "etiqueta": "Activo Inicial Ganado",
+        "color": "#f59e0b",
+        "sub": "Juego y Movimiento Trafmen"
+      }
+    ],
+    "mapeador_24h_actual": {
+      "nombre": "Semana Base Melissa (Colegio 40.5h + Crianza + Ventana de Oro Trafmen)",
+      "total_horas": 168,
+      "distribucion": {
+        "sueno_recarga": 52.5,
+        "colegio_presencial": 40.5,
+        "crianza_chinito": 28.0,
+        "logistica_hogar": 17.5,
+        "diplomado_estudio": 5.0,
+        "trafmen_proyectos": 10.5,
+        "autocuidado_karate": 14.0
+      },
+      "cinco_ejes": [
+        { "id": 1, "nombre": "Melissa Mujer", "enfoque": "Autocuidado, entrenamiento karate, descanso y salud emocional" },
+        { "id": 2, "nombre": "Mamá Presente", "enfoque": "Crianza de Chinito (6 años), acompañamiento escolar y juego compartido" },
+        { "id": 3, "nombre": "Kinesióloga Escolar", "enfoque": "Jornada 40.5h en colegio, corte radical al finalizar la jornada" },
+        { "id": 4, "nombre": "Estudiante Especialista", "enfoque": "Diplomado online en Kinesiología Educativa en bloques de 90 min" },
+        { "id": 5, "nombre": "Directora Trafmen", "enfoque": "Juguetes de madera, reactivación de talleres y alianzas Cesfam/Fonoaudiología" }
+      ]
+    }
+  },
+  "identidades": [
+    {
+      "nombre": "La Kinesióloga Escolar",
+      "rol": "Ejerce en colegio acompañando a niños y familias en horario formal",
+      "energia": "Clínica / Institucional"
+    },
+    {
+      "nombre": "La Mamá Nutricia",
+      "rol": "Cría y protege a Chinito, gestiona el hogar y brinda afecto",
+      "energia": "Presente / Afectiva"
+    },
+    {
+      "nombre": "La Creadora Trafmen",
+      "rol": "Diseña juguetes de madera y planifica talleres de psicomotricidad",
+      "energia": "Creativa / Estratégica"
+    },
+    {
+      "nombre": "La Estudiante",
+      "rol": "Estudia el diplomado online en kinesiología en contextos educativos",
+      "energia": "Foco / Intelectual"
+    },
+    {
+      "nombre": "La Rumiadora / Dispersa",
+      "rol": "Da vueltas por sobreinformación y culpa parental (antipatrón a contener)",
+      "energia": "Fuga / Fricción"
+    }
+  ],
+  "kanban_gtd": {
+    "todo": [
+      {
+        "id": "m1",
+        "text": "Inventariar materiales y herramientas de psicomotricidad en casa",
+        "tag": "Trafmen"
+      },
+      {
+        "id": "m2",
+        "text": "Agendar café post-karate con Profe Nutricionista para espacio conjunto",
+        "tag": "Alianzas"
+      },
+      {
+        "id": "m3",
+        "text": "Definir boceto inicial de los 2 primeros modelos de juguetes de madera",
+        "tag": "Trafmen"
+      },
+      {
+        "id": "m4",
+        "text": "Reunión de exploración con amiga fonoaudióloga para taller dual",
+        "tag": "Alianzas"
+      }
+    ],
+    "in_progress": [
+      {
+        "id": "m5",
+        "text": "Completar módulo activo del Diplomado online en Kinesiología Educativa",
+        "tag": "Diplomado"
+      },
+      {
+        "id": "m6",
+        "text": "Completar ficha de Inventario de Resultados nocturno (3 min)",
+        "tag": "Hábitos"
+      }
+    ],
+    "done": [
+      {
+        "id": "m7",
+        "text": "Sesión de ingreso diagnóstica y sondeo express con Diego",
+        "tag": "AH"
+      },
+      {
+        "id": "m8",
+        "text": "Evaluación del presupuesto 50/30/20 (posición financiera cómoda confirmada)",
+        "tag": "Finanzas"
+      }
+    ]
+  },
+  "finanzas": {
+    "modelo": "Regla 50/30/20",
+    "estado": "Cómoda / Oportunidad de Inversión",
+    "distribucion": {
+      "necesidades_50": "Vivienda en Pueblo Seco, alimentación, servicios y sustento de Chinito",
+      "gustos_30": "Karate familiar, salidas, paseos y bienestar personal",
+      "ahorro_inversion_20": "Diplomado online y fondo inicial para prototipos de madera Trafmen"
+    }
+  },
+  "herramientas_activas": [],
+  "carta_espacio": {
+    "titulo": "Carta Espacio & Misión Foco 30 Minutos",
+    "subtitulo": "Entrenamiento progresivo de atención para Chinito (15-20-30 min) + Ventana de Soberanía para Melissa",
+    "principio": "Jugar esta carta es legitimar tu derecho como madre y persona a tener 30 minutos propios sin culpa. Chinito y tú tienen mentes creativas e inquietas (TDAH): en vez de exigirle concentración forzada, activamos la Misión Foco como un juego de autonomía. Mientras él entrena su atención en un dibujo, estimulación motriz o bloques de madera Träfmen, Melissa blindará su ventana de autocuidado, respiro o diplomado sin culpa moral.",
+    "misiones_semanales": [
+      { "dia": "Lunes", "minutos": 15, "actividad_hijo": "Dibujo libre / modelado de plasticina", "ventana_melissa": "Té en silencio y pausa sensorial", "completado": false },
+      { "dia": "Martes", "minutos": 20, "actividad_hijo": "Estimulación motriz / dibujo", "ventana_melissa": "Orden cocina relajado / respiro", "completado": true },
+      { "dia": "Miércoles", "minutos": 20, "actividad_hijo": "Rompecabezas didáctico", "ventana_melissa": "Lectura Diplomado online Kinesiología", "completado": false },
+      { "dia": "Jueves", "minutos": 25, "actividad_hijo": "Pintura con témpera / manualidad", "ventana_melissa": "Avance prototipos madera Träfmen", "completado": false },
+      { "dia": "Viernes", "minutos": 20, "actividad_hijo": "Cuentos ilustrados post-Chillán", "ventana_melissa": "Cierre semanal tranquilo y respiro", "completado": false },
+      { "dia": "Sábado", "minutos": 30, "actividad_hijo": "Percusión / juego sensorial", "ventana_melissa": "Descanso post-Comparsa", "completado": false },
+      { "dia": "Domingo", "minutos": 30, "actividad_hijo": "Bloques de madera Träfmen", "ventana_melissa": "Planificación y diseño semanal", "completado": false }
+    ],
+    "protocolos_acompanamiento": [
+      {
+        "id": "lavado_diurno",
+        "titulo": "🧺 Protocolo Anti-Fuga: Lavado Diurno Protegido",
+        "regla_oro": "Prohibido encender lavadora pasadas las 19:00 hrs.",
+        "pautas": [
+          "Día 1: Martes en la mañana (09:00 a 11:00).",
+          "Día 2: Sábado al mediodía (post-comparsa).",
+          "Fin definitivo al ciclo de ropa húmeda amanecida y doble consumo."
+        ]
+      },
+      {
+        "id": "higiene_sueno",
+        "titulo": "🌙 Protocolo Higiene del Sueño & Cierre Biológico",
+        "regla_oro": "Meta sagrada: en la cama a las 23:00 hrs.",
+        "pautas": [
+          "22:30: Luces tenues cálidas y pantallas apagadas.",
+          "Cortar el engañoso 'segundo aire' de hiperfoco nocturno.",
+          "Despertar descansada a las 07:00 para empezar el día con energía."
+        ]
+      }
+    ]
+  },
+  "acuerdos_clinicos_operativos": [
+    {
+      "id": "horario_sueno",
+      "acuerdo": "Hora límite de acostarse a las 23:00 hrs. Cortar el 'segundo aire' de hiperfoco nocturno engañoso."
+    },
+    {
+      "id": "lavado_diurno",
+      "acuerdo": "Cero lavados nocturnos. Lavar y tender exclusivamente en bloques diurnos (Martes mañana o Sábado mediodía)."
+    },
+    {
+      "id": "mision_foco_chinito",
+      "acuerdo": "Activar la Carta Espacio con la Misión Foco 30m: meta progresiva de atención para su hijo mientras Melissa disfruta de un bloque de oro propio."
+    },
+    {
+      "id": "lote_chillan",
+      "acuerdo": "Viernes tarde en Chillán: agrupar Terapia Ocupacional de Chinito con compras de la semana y trámites para no perder días adicionales."
+    },
+    {
+      "id": "espacio_comparsa",
+      "acuerdo": "Sábado 11:00 AM: Comparsa de Melissa protegida como espacio no negociable de recreación y goce personal."
+    }
+  ]
+}

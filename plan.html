@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/kanban-gtd.css?v=3.5">
     
     <!-- Catálogo Canónico de 40 Herramientas AICC -->
+    <script src="js/catalogo_40_herramientas.js"></script>
     <script src="../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/catalogo_40_herramientas.js"></script>
     <script src="js/aicc-guides-data.js?v=3.5"></script>
 
@@ -158,7 +159,7 @@
             font-size: 0.88rem !important;
             font-weight: 600 !important;
             cursor: pointer !important;
-            display: flex !important;
+            display: flex;
             align-items: center !important;
             justify-content: flex-start !important;
             gap: 0.7rem !important;
@@ -170,6 +171,11 @@
             color: var(--text-muted, #a1a1aa) !important;
             box-sizing: border-box !important;
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .tab-btn[style*="display: none"],
+        .tab-btn[style*="display:none"],
+        .tab-btn.hidden {
+            display: none !important;
         }
         .tab-btn i {
             font-size: 1.05rem !important;
@@ -2604,51 +2610,6 @@
                 showToast("¡Bienvenido/a a tu Plan de Vuelo 2.0!");
             } else {
                 err.innerText = "Clave o usuario incorrecto. Puedes ingresar con tu usuario o contraseña asignada.";
-                err.style.display = "block";
-            }
-        } else if (typeof CLIENT_ACCOUNTS !== 'undefined') {
-                clientAccount = CLIENT_ACCOUNTS.find(a => a.id === currentClientId);
-            }
-
-            const allowedPins = [
-                expectedPin,
-                expectedPin.replace(/[^a-z0-9]/g, ''),
-                `${currentClientId}2026`,
-                "2026",
-                "admin2026",
-                "diego2026",
-                "ah-master9132",
-                "ah-master-9132",
-                "diego_ah_master",
-                "diegop1990"
-            ];
-
-            if (clientAccount && Array.isArray(clientAccount.passwords)) {
-                clientAccount.passwords.forEach(p => {
-                    allowedPins.push(String(p).trim().toLowerCase());
-                    allowedPins.push(String(p).trim().toLowerCase().replace(/[^a-z0-9]/g, ''));
-                });
-            }
-
-            if (allowedPins.includes(val) || (expectedPin && val.replace(/[^a-z0-9]/g, '') === expectedPin.replace(/[^a-z0-9]/g, ''))) {
-                sessionStorage.setItem(`ah_auth_${currentClientId}`, "true");
-                localStorage.setItem(`ah_auth_${currentClientId}`, "authenticated_ok");
-                localStorage.setItem(`client_authenticated_${currentClientId}`, "true");
-                sessionStorage.setItem(`client_authenticated_${currentClientId}`, "true");
-                localStorage.setItem("ah_client_auth_session", "authenticated_ok");
-
-                // Si fue clave de consultor, habilitar sesión de consultor
-                const masterPins = ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990"];
-                if (masterPins.includes(val)) {
-                    localStorage.setItem("ah_consultor_auth", "true");
-                }
-                renderConsultorChips();
-
-                const overlay = document.getElementById("client-auth-overlay");
-                if (overlay) overlay.style.display = "none";
-                showToast("¡Bienvenida a tu Plan de Vuelo 2.0!");
-            } else {
-                err.innerText = "Clave incorrecta. Por favor revisa e intenta nuevamente o consúltale a Diego.";
                 err.style.display = "block";
             }
         }
