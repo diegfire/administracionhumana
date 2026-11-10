@@ -30,7 +30,7 @@
 
     html { 
       scroll-behavior: smooth; 
-      overflow-x: hidden;
+      overflow-x: clip;
       width: 100%;
     }
 
@@ -41,7 +41,7 @@
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      overflow-x: clip;
       width: 100%;
       max-width: 100vw;
     }
@@ -4213,29 +4213,28 @@
 <!-- BARRA DE NAVEGACIÓN MAESTRA UNIFICADA (PLATAFORMA AH) -->
 
 
-<!-- BARRA DE NAVEGACIÓN MAESTRA UNIFICADA (PLATAFORMA AH - CÍRCULO DORADO) -->
+<!-- BARRA DE NAVEGACIÓN MAESTRA UNIFICADA (NAVEGACIÓN POR PESTAÑAS) -->
 <nav class="master-platform-nav platform-nav-wrapper">
   <div class="nav-platform-container">
     <!-- Logotipo y Marca -->
-    <a href="#hero" onclick="scrollToSection('hero'); return false;" class="nav-brand-group" title="Administración Humana">
+    <a href="#sobre-diego" onclick="scrollToSection('sobre-diego'); return false;" class="nav-brand-group" title="Administración Humana">
       <img src="logo_oficial.png?v=sistemas_personalizados" alt="Logo Administración Humana" class="nav-brand-img" />
       <span class="nav-brand-text"><span class="brand-text-full">Administración Humana</span><span class="brand-text-short">Admin Humana</span></span>
     </a>
 
-    <!-- Pestañas Centrales de Plataforma (Círculo Dorado + Diagnóstico al final) -->
-        <!-- Pestañas Centrales de Plataforma: Enlaces de Salto Rápido en Página Continua -->
-        <div class="platform-nav-tabs">
-      <button class="plat-tab-btn active" data-anchor="sobre-diego" onclick="scrollToSection('sobre-diego')" title="Etapa 1: Con quién cuentas, mis 12 aportes clave, cómo trabajamos y casos reales">
+    <!-- Pestañas de Navegación por Secciones -->
+    <div class="platform-nav-tabs" role="tablist" aria-label="Secciones principales">
+      <button class="plat-tab-btn active" role="tab" aria-selected="true" data-anchor="sobre-diego" onclick="scrollToSection('sobre-diego')" title="Pestaña 1: Con quién cuentas, mis 12 aportes, método en 3 pasos y casos reales">
         <span>👤</span> <span class="nav-tab-full">1. Con Quién Cuentas</span><span class="nav-tab-short">1. Con Quién Cuentas</span>
       </button>
-      <button class="plat-tab-btn" data-anchor="arsenal" onclick="scrollToSection('arsenal')" title="Etapa 2: Navega en vivo el Plan de Vuelo y conoce el Portal de Clientes con Usuario y Clave">
-        <span>📱</span> <span class="nav-tab-full">2. Portal & Demo en Vivo</span><span class="nav-tab-short">2. Portal & Demo Vivo</span>
+      <button class="plat-tab-btn" role="tab" aria-selected="false" data-anchor="arsenal" onclick="scrollToSection('arsenal')" title="Pestaña 2: Explora y toca en vivo el Plan de Vuelo Demo (Sistema de Gestión Personalizado)">
+        <span>📱</span> <span class="nav-tab-full">2. Plan de Vuelo Demo</span><span class="nav-tab-short">2. Plan Demo</span>
       </button>
-      <button class="plat-tab-btn" data-anchor="sondeos" onclick="scrollToSection('sondeos')" title="Etapa 3: Sondeo interactivo de dolores operativos en 6 áreas">
-        <span>⚡</span> <span class="nav-tab-full">3. Sondeo Dolores</span><span class="nav-tab-short">3. Sondeo 6 Áreas</span>
+      <button class="plat-tab-btn" role="tab" aria-selected="false" data-anchor="sondeos" onclick="scrollToSection('sondeos')" title="Pestaña 3: Sondeo interactivo gratuito en las 6 áreas de gestión">
+        <span>⚡</span> <span class="nav-tab-full">3. Sondeo 6 Áreas</span><span class="nav-tab-short">3. Sondeo 6 Áreas</span>
       </button>
-      <button class="plat-tab-btn" data-anchor="productos" onclick="scrollToSection('productos')" title="Etapa 4: Sesión Base ($35.000) con herramienta en tu Portal y Planes Personalizados">
-        <span>🚀</span> <span class="nav-tab-full">4. Sesión Base ($35k) & Planes</span><span class="nav-tab-short">4. Sesión ($35k) & Planes</span>
+      <button class="plat-tab-btn" role="tab" aria-selected="false" data-anchor="productos" onclick="scrollToSection('productos')" title="Pestaña 4: Sesión Base ($35.000), Planes de acompañamiento y Preguntas Frecuentes">
+        <span>🚀</span> <span class="nav-tab-full">4. Sesión ($35k) & Planes</span><span class="nav-tab-short">4. Sesión & Planes</span>
       </button>
     </div>
 
@@ -4257,16 +4256,207 @@
   </div>
 </nav>
 
+<style id="landing-tabs-architecture-styles">
+  /* ── ARQUITECTURA DE PESTAÑAS DE NAVEGACIÓN (CERO SCROLL ETERNO) ── */
+  @keyframes landingTabFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .landing-section[data-tab-panel] {
+    display: none !important;
+    border-top: none !important;
+  }
+  .landing-section[data-tab-panel].tab-panel-active {
+    display: block !important;
+    animation: landingTabFadeIn 0.22s ease-out;
+  }
+
+  /* Cabecera orientadora unificada al inicio de cada pestaña */
+  .landing-tab-intro {
+    max-width: 1220px;
+    margin: 0 auto 16px auto;
+    background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(10,10,14,0.92) 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-sizing: border-box;
+  }
+  .landing-tab-intro-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .landing-tab-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 99px;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+  .landing-tab-pill.amber {
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.12);
+    border-color: rgba(251, 191, 36, 0.35);
+  }
+  .landing-tab-pill.sky {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.35);
+  }
+  .landing-tab-pill.cyan {
+    color: #22d3ee;
+    background: rgba(34, 211, 238, 0.12);
+    border-color: rgba(34, 211, 238, 0.35);
+  }
+  .landing-tab-pill.emerald {
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.12);
+    border-color: rgba(52, 211, 153, 0.35);
+  }
+  .landing-tab-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin: 2px 0 0 0;
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+  }
+  .landing-tab-desc {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 980px;
+  }
+
+  /* Barra de encabezado explícita sobre el visor del Plan de Vuelo Demo */
+  .demo-visor-titlebar {
+    background: linear-gradient(90deg, #0b111c 0%, #090d14 100%);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .demo-visor-title-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .demo-visor-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.69rem;
+    font-weight: 800;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .demo-visor-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+    display: inline-block;
+  }
+  .demo-visor-h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2vw, 1.22rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  /* Navegador inferior entre pestañas (Anterior / Siguiente Pestaña) */
+  .landing-tab-footer-nav {
+    max-width: 1220px;
+    margin: 20px auto 8px auto;
+    padding: 13px 16px;
+    background: #090a0f;
+    border: 1px solid #1f2029;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-sizing: border-box;
+  }
+  .btn-tab-step-prev {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #d4d4d8;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 9px 15px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-tab-step-prev:hover {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+  }
+  .btn-tab-step-next {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    color: #000000;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 9px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 0 18px rgba(255,255,255,0.18);
+  }
+  .btn-tab-step-next:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 24px rgba(255,255,255,0.3);
+  }
+  @media (max-width: 640px) {
+    .landing-tab-intro {
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+    .landing-tab-footer-nav {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .btn-tab-step-prev, .btn-tab-step-next {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+</style>
+
 <!-- ══════════════════════════════════════════════════════════════════
-     VISTA SONDEOS: ⚡ DIAGNÓSTICO EN VIVO & SONDEOS (EXPRESS Y 4 ÁREAS)
-     ══════════════════════════════════════════════════════════════════ -->
-
-
-
-
-<!-- ══════════════════════════════════════════════════════════════════
-     VISTA MAESTRA UNIFICADA: FLUJO LINEAL CONTINUO (PRODUCT-FIRST)
-     Hero ➔ Puente ➔ Productos ➔ Acompañamiento ➔ Arsenal ➔ Casos ➔ Sondeos
+     VISTA MAESTRA POR PESTAÑAS DE NAVEGACIÓN (4 SECCIONES ENFOCADAS)
+     1. Con Quién Cuentas ➔ 2. Plan de Vuelo Demo ➔ 3. Sondeo 6 Áreas ➔ 4. Sesión ($35k) & Planes
      ══════════════════════════════════════════════════════════════════ -->
 <div id="view-landing" class="platform-view active">
 
@@ -4505,7 +4695,7 @@
     }
     .diego-mode-tabs {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 5px;
       background: #050507;
       padding: 4px;
@@ -4519,16 +4709,16 @@
       border: 1px solid transparent;
       color: #a1a1aa;
       font-family: var(--font-heading);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      padding: 8px 10px;
+      padding: 8px 8px;
       border-radius: 7px;
       cursor: pointer;
       transition: all 0.18s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       text-align: center;
       line-height: 1.2;
       min-width: 0;
@@ -4546,7 +4736,10 @@
     .dmode-label-short {
       display: none;
     }
-    @media (max-width: 720px) {
+    @media (max-width: 820px) {
+      .diego-mode-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
       .dmode-label-full {
         display: none;
       }
@@ -4555,7 +4748,7 @@
       }
       .diego-mode-btn {
         font-size: 0.72rem;
-        padding: 8px 4px;
+        padding: 8px 6px;
         gap: 4px;
       }
     }
@@ -5120,17 +5313,25 @@
 
 
 
-  <!-- 1. APERTURA DIRECTA DE AUTOR: QUIÉN ES DIEGO + SISTEMAS DE GESTIÓN PERSONALIZADOS -->
-  <section id="hero" class="landing-section" style="padding: 18px 0 32px;">
+  <!-- 1. PESTAÑA 1: CON QUIÉN CUENTAS, MÉTODO EN 3 PASOS, CASOS REALES & SINERGIA -->
+  <section id="hero" class="landing-section tab-panel-active" data-tab-panel="sobre-diego" style="padding: 12px 0 24px;">
     <span id="inicio"></span>
     <span id="servicio"></span>
     <span id="capacidades"></span>
+    <span id="filosofia"></span>
+    <span id="cuadrante-mercado"></span>
+    <span id="sinergia-profesiones"></span>
     
     <div class="container" style="max-width: 1220px;">
 
-      <!-- DOSSIER EJECUTIVO DE AUTOR: CON QUIÉN CUENTAS + SISTEMAS DE GESTIÓN PERSONALIZADOS -->
+      <!-- DOSSIER EJECUTIVO DE AUTOR: CON QUIÉN CUENTAS + SISTEMAS DE GESTIÓN PERSONALIZADOS (4 SUB-PESTAÑAS) -->
       <div class="diego-identity-card" id="sobre-diego">
         
+        <div class="landing-tab-intro-top" style="padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+          <span class="landing-tab-pill amber">👤 Pestaña 1 de 4 · Tu Copiloto Humano-Administrativo</span>
+          <span style="font-size: 0.73rem; color: #94a3b8; font-weight: 600;">📍 Online & Presencial (Concepción) · Navega las 4 sub-pestañas abajo ↓</span>
+        </div>
+
         <!-- FILA SUPERIOR: IDENTIDAD DE DIEGO + DECLARACIÓN DE SISTEMAS PERSONALIZADOS -->
         <div class="diego-top-header">
           <div class="diego-profile-id">
@@ -5153,10 +5354,10 @@
             </p>
             <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding-top: 2px;">
               <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;" style="background: #ffffff; color: #000000; font-family: var(--font-heading); font-weight: 800; font-size: 0.8rem; padding: 8px 16px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-                📱 Ver Sistema SGP en Vivo ↓
+                📱 2. Ver Plan de Vuelo Demo →
               </a>
               <a href="#productos" onclick="scrollToSection('productos'); return false;" style="background: #121216; border: 1px solid #27272a; color: #f4f4f5; font-family: var(--font-heading); font-weight: 700; font-size: 0.79rem; padding: 8px 14px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-                Sesión Base ($35.000) & Planes →
+                🚀 4. Sesión Base ($35.000) & Planes →
               </a>
               <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20sistema%20de%20gesti%C3%B3n%20personalizado" target="_blank" style="background: #051610; border: 1px solid rgba(16,185,129,0.35); color: #34d399; font-weight: 700; font-size: 0.78rem; padding: 8px 13px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
                 💬 WhatsApp
@@ -5165,22 +5366,26 @@
           </div>
         </div>
 
-        <!-- FILA INFERIOR FULL-WIDTH: 3 PESTAÑAS MINIMALISTAS -->
+        <!-- FILA INFERIOR FULL-WIDTH: 4 SUB-PESTAÑAS INTERACTIVAS (CERO SECCIONES APILADAS) -->
         <div class="diego-right-board">
           
-          <!-- BARRA SEGMENTADA DE 3 PESTAÑAS -->
+          <!-- BARRA SEGMENTADA DE 4 SUB-PESTAÑAS -->
           <div class="diego-mode-tabs" role="tablist">
             <button type="button" class="diego-mode-btn active" id="btn-diego-mode-qualities" onclick="switchDiegoBoardMode('qualities')">
-              <span class="dmode-label-full">1. Con Qué Cuentas (12 Aportes)</span>
-              <span class="dmode-label-short">1. Mis 12 Aportes</span>
+              <span class="dmode-label-full">🏛️ 1. Mis 12 Aportes Clave</span>
+              <span class="dmode-label-short">🏛️ 1. 12 Aportes</span>
             </button>
             <button type="button" class="diego-mode-btn" id="btn-diego-mode-method" onclick="switchDiegoBoardMode('method')">
-              <span class="dmode-label-full">2. Mi Forma de Trabajar (3 Pasos)</span>
-              <span class="dmode-label-short">2. Cómo Trabajo</span>
+              <span class="dmode-label-full">🗺️ 2. Mi Método (3 Pasos)</span>
+              <span class="dmode-label-short">🗺️ 2. 3 Pasos</span>
             </button>
             <button type="button" class="diego-mode-btn" id="btn-diego-mode-cases" onclick="switchDiegoBoardMode('cases')">
-              <span class="dmode-label-full">3. Aportes en Casos Reales</span>
-              <span class="dmode-label-short">3. Casos Reales</span>
+              <span class="dmode-label-full">💼 3. Casos Reales (5)</span>
+              <span class="dmode-label-short">💼 3. Casos Reales</span>
+            </button>
+            <button type="button" class="diego-mode-btn" id="btn-diego-mode-synergy" onclick="switchDiegoBoardMode('synergy')">
+              <span class="dmode-label-full">🤝 4. Sinergia con Profesiones</span>
+              <span class="dmode-label-short">🤝 4. Sinergia</span>
             </button>
           </div>
 
@@ -5345,8 +5550,121 @@
             </div>
           </div>
 
+          <!-- VISTA 4: SINERGIA CON OTRAS PROFESIONES (INTEGRADA EN SUB-PESTAÑA 4) -->
+          <div id="diego-view-synergy" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <div style="font-size: 0.78rem; color: #e2e8f0; font-weight: 700;">
+                🤝 <strong style="color:#fff;">Cada Profesión es un Aporte:</strong> Qué rescatamos y sumamos desde <span style="color:#38bdf8;">Planificar, Organizar, Dirigir y Controlar</span>
+              </div>
+              <span style="font-size: 0.7rem; color: #94a3b8;">Selecciona una disciplina ↓</span>
+            </div>
+
+            <!-- PESTAÑAS INTERNAS DE LAS 4 PROFESIONES -->
+            <div class="synergy-tabs-grid" role="tablist" aria-label="Sinergia con otras profesiones">
+              <button type="button" class="synergy-tab-btn active" style="--syn-accent: #38bdf8;" onclick="selectSynergyProfession(0, this)">
+                <span>🧠</span>
+                <span class="syn-label-full">1. Psicología & Terapia</span>
+                <span class="syn-label-short">1. Psicología</span>
+              </button>
+              <button type="button" class="synergy-tab-btn" style="--syn-accent: #f59e0b;" onclick="selectSynergyProfession(1, this)">
+                <span>🧭</span>
+                <span class="syn-label-full">2. Coaching & Metas</span>
+                <span class="syn-label-short">2. Coaching</span>
+              </button>
+              <button type="button" class="synergy-tab-btn" style="--syn-accent: #10b981;" onclick="selectSynergyProfession(2, this)">
+                <span>🏢</span>
+                <span class="syn-label-full">3. Consultoría & Negocio</span>
+                <span class="syn-label-short">3. Consultoría</span>
+              </button>
+              <button type="button" class="synergy-tab-btn" style="--syn-accent: #c084fc;" onclick="selectSynergyProfession(3, this)">
+                <span>💻</span>
+                <span class="syn-label-full">4. Apps & Tecnología</span>
+                <span class="syn-label-short">4. Tecnología</span>
+              </button>
+            </div>
+
+            <!-- TARJETA INTERACTIVA ÚNICA DE SINERGIA -->
+            <div class="synergy-stage-card" id="synergy-stage-card">
+              <div class="synergy-stage-top">
+                <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+                  <span id="syn-icon" style="font-size: 1.25rem; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.35); width: 34px; height: 34px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">🧠</span>
+                  <div style="min-width: 0;">
+                    <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                      <h3 id="syn-title" style="font-family: var(--font-heading); font-size: 0.92rem; font-weight: 800; color: #ffffff; margin: 0; line-height: 1.2;">
+                        Psicología Clínica & Terapia
+                      </h3>
+                      <span id="syn-role-badge" style="font-size: 0.6rem; font-weight: 800; color: #38bdf8; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); padding: 1px 7px; border-radius: 50px; text-transform: uppercase;">
+                        Salud Mental & Mundo Interno
+                      </span>
+                    </div>
+                    <div id="syn-subtitle" style="font-size: 0.69rem; color: #94a3b8; margin-top: 1px; line-height: 1.25;">
+                      Cuidado clínico, autoconocimiento profundo y bienestar emocional
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 4px; flex-shrink: 0;">
+                  <span id="syn-counter" style="font-size: 0.66rem; color: #64748b; font-weight: 700; margin-right: 2px;">1/4</span>
+                  <button type="button" onclick="stepSynergyProfession(-1)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #e2e8f0; border-radius: 6px; padding: 3px 7px; font-size: 0.68rem; font-weight: 700; cursor: pointer;" title="Profesión anterior">◀</button>
+                  <button type="button" onclick="stepSynergyProfession(1)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #e2e8f0; border-radius: 6px; padding: 3px 7px; font-size: 0.68rem; font-weight: 700; cursor: pointer;" title="Siguiente profesión">▶</button>
+                </div>
+              </div>
+
+              <div class="synergy-3cols-grid">
+                <div class="synergy-col-box" style="border-top: 2px solid #38bdf8;">
+                  <div class="synergy-col-label" style="color: #38bdf8;">
+                    <span>💎</span> <span>1. El Aporte Valioso de esta Profesión</span>
+                  </div>
+                  <p class="synergy-col-text" id="syn-contribution">
+                    Espacio clínico irremplazable para sanar tu historia personal, elaborar emociones profundas y cuidar tu salud mental desde la raíz.
+                  </p>
+                </div>
+
+                <div class="synergy-col-box" style="border-top: 2px solid #fbbf24;">
+                  <div class="synergy-col-label" style="color: #fbbf24;">
+                    <span>🤝</span> <span>2. Lo que Rescatamos y Honramos Acá</span>
+                  </div>
+                  <p class="synergy-col-text" id="syn-rescued">
+                    Escucha empática cero juicio, respeto por tus ritmos biológicos/sensoriales (TDAH, TEA o alta demanda) y priorizar siempre tu paz mental.
+                  </p>
+                </div>
+
+                <div class="synergy-col-box" style="border-top: 2px solid #10b981;">
+                  <div class="synergy-col-label" style="color: #34d399;">
+                    <span>🏛️</span> <span>3. Qué Sumamos desde la Administración</span>
+                  </div>
+                  <p class="synergy-col-text" id="syn-admin-bridge">
+                    Mientras la terapia cuida tu <b>mundo interno</b>, nosotros ordenamos tu <b>afuera operativo</b> (168h, prioridades y finanzas) para quitarle peso a tu mente.
+                  </p>
+                </div>
+              </div>
+
+              <div class="synergy-footer-bar" id="syn-footer-bar">
+                <div style="font-size: 0.72rem; color: #e2e8f0; line-height: 1.35;">
+                  <strong style="color: #38bdf8;">⚖️ En simple:</strong>
+                  <span id="syn-synthesis">El psicólogo cuida tu motor interno; aquí diseñamos el tablero y la hoja de ruta para que tu semana funcione en calma.</span>
+                </div>
+                <div id="syn-tools-wrap" style="display: flex; gap: 4px; flex-wrap: wrap;">
+                  <span class="synergy-tool-pill">⏱️ Mapeador 24H</span>
+                  <span class="synergy-tool-pill">🛑 Kanban WIP=2</span>
+                  <span class="synergy-tool-pill">🌱 Cero Culpa</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
+      </div>
+
+      <!-- NAVEGACIÓN ENTRE PESTAÑAS (PIE DE PESTAÑA 1) -->
+      <div class="landing-tab-footer-nav" style="max-width: 1160px;">
+        <span style="font-size: 0.8rem; color: #cbd5e1;">
+          👀 <strong>¿Quieres ver cómo luce un Plan de Vuelo por dentro?</strong> Pruébalo en vivo en la siguiente pestaña:
+        </span>
+        <button type="button" class="btn-tab-step-next" onclick="scrollToSection('arsenal')">
+          Siguiente Pestaña: 📱 2. Plan de Vuelo Demo →
+        </button>
       </div>
 
       <script>
@@ -5382,17 +5700,21 @@
           var vQual = document.getElementById('diego-view-qualities');
           var vMeth = document.getElementById('diego-view-method');
           var vCases = document.getElementById('diego-view-cases');
+          var vSyn = document.getElementById('diego-view-synergy');
           var bQual = document.getElementById('btn-diego-mode-qualities');
           var bMeth = document.getElementById('btn-diego-mode-method');
           var bCases = document.getElementById('btn-diego-mode-cases');
+          var bSyn = document.getElementById('btn-diego-mode-synergy');
           if (!vQual || !vCases || !vMeth) return;
 
           vQual.style.display = 'none';
           vMeth.style.display = 'none';
           vCases.style.display = 'none';
+          if (vSyn) vSyn.style.display = 'none';
           if (bQual) bQual.classList.remove('active');
           if (bMeth) bMeth.classList.remove('active');
           if (bCases) bCases.classList.remove('active');
+          if (bSyn) bSyn.classList.remove('active');
 
           if (mode === 'method') {
             vMeth.style.display = 'block';
@@ -5400,6 +5722,9 @@
           } else if (mode === 'cases') {
             vCases.style.display = 'block';
             if (bCases) bCases.classList.add('active');
+          } else if (mode === 'synergy') {
+            if (vSyn) vSyn.style.display = 'block';
+            if (bSyn) bSyn.classList.add('active');
           } else {
             vQual.style.display = 'grid';
             if (bQual) bQual.classList.add('active');
@@ -5424,12 +5749,12 @@
     </div>
   </section>
 
-  <!-- 2. DEL ATERRIZAJE AL SISTEMA DE GESTIÓN PERSONALIZADO (SGP) + APOYO EN GESTIÓN -->
-  <section id="arsenal" class="landing-section" style="padding: 20px 0 32px 0; border-top: 1px solid #16161a;">
+  <!-- 2. PESTAÑA 2: PLAN DE VUELO DEMO EN VIVO (SISTEMA DE GESTIÓN PERSONALIZADO SGP) -->
+  <section id="arsenal" class="landing-section" data-tab-panel="arsenal" style="padding: 12px 0 28px 0;">
     <span id="casos"></span>
     <div class="container" style="max-width: 1220px; margin: 0 auto; padding: 0 16px;">
-      
-      <!-- ENCABEZADO MINIMALISTA Y DIRECTO DE LAS 3 ETAPAS -->
+
+      <!-- BARRA COMPACTA DE SUB-PESTAÑAS EN PESTAÑA 2 (DEMO EN VIVO PRIMERO, 3 ETAPAS EN SUB-PESTAÑA 2) -->
       <style>
         .sgp-3etapas-grid {
           display: grid;
@@ -5441,21 +5766,47 @@
             grid-template-columns: 1fr;
           }
         }
+        .demo-subtabs-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 10px;
+          background: #0a0a0c;
+          border: 1px solid #1f1f24;
+          border-radius: 12px;
+          padding: 8px 12px;
+          margin-bottom: 10px;
+        }
       </style>
-      <div style="background: #0a0a0c; border: 1px solid #1f1f24; border-radius: 14px; padding: 16px 18px; margin-bottom: 12px;">
+
+      <div class="demo-subtabs-bar">
+        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+          <span class="landing-tab-pill sky" style="margin-right: 4px;">📱 Pestaña 2 de 4</span>
+          <button type="button" id="btn-demo-subtab-live" class="diego-mode-btn active" onclick="switchDemoSubtab('live')" style="padding: 7px 14px; font-size: 0.78rem;">
+            🖥️ 1. Probar Plan de Vuelo 2.0 en Vivo
+          </button>
+          <button type="button" id="btn-demo-subtab-steps" class="diego-mode-btn" onclick="switchDemoSubtab('steps')" style="padding: 7px 14px; font-size: 0.78rem;">
+            🗺️ 2. Las 3 Etapas de Creación
+          </button>
+        </div>
+        <a href="planes-demo.html" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; font-weight: 800; color: #38bdf8; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); padding: 5px 12px; border-radius: 99px;">
+          Abrir Demo en Pantalla Completa ↗
+        </a>
+      </div>
+
+      <!-- SUB-PESTAÑA 2: LAS 3 ETAPAS (OCULTA POR DEFECTO PARA NO EMPUJAR EL DEMO ABAJO) -->
+      <div id="demo-subpanel-steps" style="display: none; background: #0a0a0c; border: 1px solid #1f1f24; border-radius: 14px; padding: 16px 18px; margin-bottom: 14px;">
         <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
-          <h2 style="font-family: var(--font-heading); font-size: clamp(1.2rem, 2.4vw, 1.55rem); font-weight: 800; color: #ffffff; margin: 0; line-height: 1.2;">
-            Cómo Llegamos a tu Sistema de Gestión Personalizado
-          </h2>
-          <span style="font-size: 0.78rem; color: #a1a1aa;">
-            3 etapas simples · <b style="color: #ffffff;">Abajo puedes tocar y recorrer las 6 micro-apps en vivo</b>
-          </span>
+          <h3 style="font-family: var(--font-heading); font-size: clamp(1.05rem, 2.1vw, 1.32rem); font-weight: 800; color: #ffffff; margin: 0; line-height: 1.2;">
+            Cómo Llegamos a tu Sistema de Gestión Personalizado (3 Etapas)
+          </h3>
+          <button type="button" onclick="switchDemoSubtab('live')" style="background: #38bdf8; color: #000; border: none; font-weight: 800; font-size: 0.75rem; padding: 6px 12px; border-radius: 8px; cursor: pointer;">
+            🖥️ Ir al Visor Interactivo en Vivo →
+          </button>
         </div>
 
-        <!-- BARRA MINIMALISTA DE 3 PASOS CONECTADOS -->
         <div class="sgp-3etapas-grid">
-          
-          <!-- ETAPA 1 -->
           <div style="background: #050507; border: 1px solid #1c1c22; border-radius: 10px; padding: 11px 13px;">
             <div style="font-size: 0.68rem; font-weight: 800; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px;">
               Etapa 1 · Aterrizaje & Contexto
@@ -5468,14 +5819,13 @@
             </p>
           </div>
 
-          <!-- ETAPA 2 (ACTIVA: DEMO ABAJO) -->
           <div style="background: #090d11; border: 1px solid #38bdf8; border-radius: 10px; padding: 11px 13px;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 4px;">
               <span style="font-size: 0.68rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.04em;">
                 Etapa 2 · Sistema a Medida
               </span>
               <span style="font-size: 0.65rem; color: #000000; background: #38bdf8; font-weight: 800; padding: 1px 7px; border-radius: 4px; white-space: nowrap;">
-                PRUÉBALO ABAJO ↓
+                EN EL VISOR INTERACTIVO
               </span>
             </div>
             <strong style="color: #ffffff; font-size: 0.85rem; font-family: var(--font-heading); display: block; margin-bottom: 4px; line-height: 1.3;">
@@ -5486,7 +5836,6 @@
             </p>
           </div>
 
-          <!-- ETAPA 3 -->
           <div style="background: #050507; border: 1px solid #1c1c22; border-radius: 10px; padding: 11px 13px;">
             <div style="font-size: 0.68rem; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px;">
               Etapa 3 · Apoyo en Gestión
@@ -5498,17 +5847,48 @@
               Te apoyo en ir mejorando la gestión, enseñándote herramientas clave y ajustando a tu ritmo y contexto real tu Sistema de Gestión Personalizado.
             </p>
           </div>
-
         </div>
       </div>
 
-      <!-- VISOR MINIMALISTA DEL SISTEMA DE GESTIÓN PERSONALIZADO (SGP) -->
-      <div style="background: #000000; border: 1px solid #222228; border-radius: 14px; overflow: hidden; margin-bottom: 20px;">
-        <!-- IFRAME EN VIVO DE PLANES-DEMO.HTML (ALTURA 100% COMPLETA SIN SCROLL INTERNO EN PC & MÓVIL) -->
+      <!-- SUB-PESTAÑA 1 (ACTIVA POR DEFECTO): VISOR INTERACTIVO EN VIVO DEL PLAN DE VUELO DEMO -->
+      <div id="demo-subpanel-live" style="background: #000000; border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 14px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.65);">
+        
+        <div class="demo-visor-titlebar" style="padding: 9px 14px;">
+          <div class="demo-visor-title-left">
+            <h3 class="demo-visor-h3" style="font-size: 0.92rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span class="demo-visor-live-dot"></span>
+              <span>🖥️ Plan de Vuelo 2.0 (Demo en Vivo) — Elige un caso real y toca las 6 pestañas de herramientas abajo</span>
+            </h3>
+          </div>
+          <span style="font-size: 0.7rem; color: #38bdf8; font-weight: 700;">
+            👆 100% interactivo
+          </span>
+        </div>
+
         <div id="live-demo-iframe-wrap" style="width: 100%; height: 1260px; min-height: 520px; background: #000000; position: relative; transition: height 0.2s ease;">
           <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_minimal_v6" scrolling="no" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block; overflow: hidden;"></iframe>
         </div>
         <script>
+          window.switchDemoSubtab = function(mode) {
+            var pLive = document.getElementById('demo-subpanel-live');
+            var pSteps = document.getElementById('demo-subpanel-steps');
+            var bLive = document.getElementById('btn-demo-subtab-live');
+            var bSteps = document.getElementById('btn-demo-subtab-steps');
+            if (!pLive || !pSteps) return;
+            if (mode === 'steps') {
+              pLive.style.display = 'none';
+              pSteps.style.display = 'block';
+              if (bLive) bLive.classList.remove('active');
+              if (bSteps) bSteps.classList.add('active');
+            } else {
+              pSteps.style.display = 'none';
+              pLive.style.display = 'block';
+              if (bSteps) bSteps.classList.remove('active');
+              if (bLive) bLive.classList.add('active');
+              if (typeof window.refreshDemoIframeHeight === 'function') window.refreshDemoIframeHeight();
+            }
+          };
+
           window.addEventListener("message", function(ev) {
             if (ev && ev.data && ev.data.type === "ah-demo-iframe-height") {
               var wrap = document.getElementById("live-demo-iframe-wrap");
@@ -5521,11 +5901,24 @@
         </script>
       </div>
 
+      <!-- NAVEGACIÓN ENTRE PESTAÑAS (PIE DE PESTAÑA 2) -->
+      <div class="landing-tab-footer-nav">
+        <button type="button" class="btn-tab-step-prev" onclick="scrollToSection('sobre-diego')">
+          ← 1. Con Quién Cuentas
+        </button>
+        <span style="font-size: 0.78rem; color: #94a3b8; text-align: center;">
+          ¿Quieres revisar en qué área está hoy tu mayor cuello de botella?
+        </span>
+        <button type="button" class="btn-tab-step-next" onclick="scrollToSection('sondeos')">
+          Siguiente Pestaña: ⚡ 3. Hacer Sondeo 6 Áreas →
+        </button>
+      </div>
+
     </div>
   </section>
 
-  <!-- 3. RADIOGRAFÍA DE DOLORES OPERATIVOS (HUB INTERACTIVO DE LAS 6 ÁREAS "SE BUSCA") -->
-  <section id="sondeos" class="landing-section" style="padding: 28px 0 24px 0; border-top: 1px solid #16161a;">
+  <!-- 3. PESTAÑA 3: SONDEO INTERACTIVO DE DOLORES OPERATIVOS EN LAS 6 ÁREAS -->
+  <section id="sondeos" class="landing-section" data-tab-panel="sondeos" style="padding: 16px 0 24px 0;">
     <span id="triage"></span>
     <span id="diagnostico-guiado-se-busca"></span>
 
@@ -5885,23 +6278,20 @@
       }
     </style>
 
-    <div class="container" style="max-width: 1140px; margin: 0 auto; padding: 8px 16px 60px 16px;">
+    <div class="container" style="max-width: 1180px; margin: 0 auto; padding: 0 16px 86px 16px;">
       
-      <!-- ENCABEZADO DE ETAPA 4 · HUB INTERACTIVO DE LAS 6 ÁREAS -->
-      <div style="text-align: center; max-width: 840px; margin: 0 auto 16px;">
-        <span class="journey-step-badge amber">
-          ⚡ DIAGNÓSTICO INTERACTIVO · SONDEO DE DOLORES EN LAS 6 ÁREAS DE GESTIÓN
-        </span>
-        <h2 style="font-family: var(--font-heading); font-size: clamp(1.4rem, 2.7vw, 1.9rem); font-weight: 800; color: #fff; margin: 8px 0 6px 0; line-height: 1.22;">
-          Revisa Cómo Estás en las 6 Áreas y Obtén tus Métricas de Sesión
-        </h2>
-        <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.5; margin: 0 auto; max-width: 760px;">
-          Recorre las 6 estaciones paso a paso, marca los avisos <b>«SE BUSCA»</b> con los que te identifiques y calibra su urgencia (🔴 Alta, 🟡 Media, 🟢 Baja). Al terminar el camino obtendrás tu <b>tablero con métricas claras (% de saturación por área, Top 3 dolores y herramientas SGP)</b> listo para enviarme por WhatsApp.
-        </p>
-      </div>
-
       <!-- CONSOLA ÚNICA COMPACTA DEL HUB INTERACTIVO (6 ESTACIONES + PANTALLA DE MÉTRICAS) -->
       <div id="hub-sondeo-interactivo" class="hub-6areas-shell">
+        
+        <div class="landing-tab-intro-top" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="landing-tab-pill cyan">⚡ Pestaña 3 de 4 · Sondeo Interactivo 6 Áreas</span>
+            <h2 style="font-family: var(--font-heading); font-size: clamp(1rem, 1.9vw, 1.25rem); font-weight: 800; color: #ffffff; margin: 0;">
+              Marca los avisos «SE BUSCA» con los que te identifiques y obtén tus Métricas de Sesión
+            </h2>
+          </div>
+          <span style="font-size: 0.73rem; color: #94a3b8; font-weight: 600;">📊 Navega las 6 estaciones abajo ↓</span>
+        </div>
         
         <!-- 1. PESTAÑAS DE LAS 6 ESTACIONES + PESTAÑA 7 DE RESULTADOS Y MÉTRICAS -->
         <div id="quick-jump-areas-bar" class="hub-stations-nav">
@@ -5941,13 +6331,26 @@
 
       </div>
 
+      <!-- NAVEGACIÓN ENTRE PESTAÑAS (PIE DE PESTAÑA 3) -->
+      <div class="landing-tab-footer-nav">
+        <button type="button" class="btn-tab-step-prev" onclick="scrollToSection('arsenal')">
+          ← 2. Plan de Vuelo Demo
+        </button>
+        <span style="font-size: 0.78rem; color: #94a3b8; text-align: center;">
+          ¿Listo para conocer los valores y cómo partimos con tu Sesión Base?
+        </span>
+        <button type="button" class="btn-tab-step-next" onclick="scrollToSection('productos')">
+          Siguiente Pestaña: 🚀 4. Sesión Base ($35k) & Planes →
+        </button>
+      </div>
+
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════════
-       STICKY BOTTOM DOCK PERMANENTE (SIEMPRE VISIBLE EN PANTALLA)
+       STICKY BOTTOM DOCK (VISIBLE EXCLUSIVAMENTE EN PESTAÑA 3: SONDEO)
        ══════════════════════════════════════════════════════════════════ -->
-  <div id="sticky-expediente-dock" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: rgba(10, 11, 16, 0.95); backdrop-filter: blur(12px); border-top: 1.5px solid #06b6d4; padding: 10px 20px; box-shadow: 0 -8px 30px rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+  <div id="sticky-expediente-dock" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: rgba(10, 11, 16, 0.95); backdrop-filter: blur(12px); border-top: 1.5px solid #06b6d4; padding: 10px 20px; box-shadow: 0 -8px 30px rgba(0,0,0,0.8); display: none; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
     
     <!-- LADO IZQUIERDO: CONTADOR EN VIVO & ÁREAS TOCADAS -->
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
@@ -6774,25 +7177,33 @@
        SECCIÓN 7: FILOSOFÍA Y FUNDAMENTOS (EXPANDIBLE / ACORDEÓN)
        ══════════════════════════════════════════════════════════════════ -->
   
-  <!-- PUENTE NARRATIVO A ETAPA 5 -->
-  <div class="container" style="max-width: 1220px; margin: 0 auto;">
-    <div class="journey-connector-bridge" style="margin-bottom: 24px;">
-      <span class="bridge-arrow">↓</span>
-      <span><b>Con tu radiografía operativa en mano,</b> elige a continuación la modalidad con la que quieres empezar a resolver tus cuellos de botella.</span>
-    </div>
-  </div>
-
-  <section id="productos" class="landing-section" style="padding: 40px 0 36px 0; border-top: 1px solid rgba(255,255,255,0.06);">
+  <!-- 4. PESTAÑA 4: SESIÓN BASE ($35.000), PLANES DE CONTINUIDAD, FAQ & ACCESO CLIENTES (4 SUB-PESTAÑAS) -->
+  <section id="productos" class="landing-section" data-tab-panel="productos" style="padding: 12px 0 28px 0;">
     <span id="precios"></span>
+    <span id="faq-cierre"></span>
+    <span id="faq-resumen-inversion"></span>
 
     <style>
       /* ── ESTILOS RESPONSIVOS Y SIN HUECOS VACÍOS PARA #PRODUCTOS ── */
-      .sesion-base-hero-card {
+      .productos-hub-shell {
         background: #0a0a0c;
-        border: 1px solid #27272a;
+        border: 1px solid #1f1f24;
         border-radius: 16px;
-        padding: 22px 24px;
-        margin-bottom: 24px;
+        padding: 18px 20px;
+        box-sizing: border-box;
+      }
+      @media (max-width: 768px) {
+        .productos-hub-shell {
+          padding: 14px 12px;
+          border-radius: 14px;
+        }
+      }
+      .sesion-base-hero-card {
+        background: #060608;
+        border: 1px solid #27272a;
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 14px;
         box-sizing: border-box;
       }
       .sesion-base-top-grid {
@@ -6801,19 +7212,19 @@
         gap: 20px;
         align-items: center;
         border-bottom: 1px solid #1c1c22;
-        padding-bottom: 16px;
-        margin-bottom: 16px;
+        padding-bottom: 14px;
+        margin-bottom: 14px;
       }
       @media (max-width: 820px) {
         .sesion-base-hero-card {
-          padding: 16px 14px;
-          border-radius: 14px;
+          padding: 14px 12px;
+          border-radius: 12px;
         }
         .sesion-base-top-grid {
           grid-template-columns: 1fr;
           gap: 12px;
-          padding-bottom: 14px;
-          margin-bottom: 14px;
+          padding-bottom: 12px;
+          margin-bottom: 12px;
         }
       }
       .sesion-base-price-box {
@@ -6824,7 +7235,6 @@
         text-align: center;
         box-sizing: border-box;
       }
-      /* Los 4 Hitos en 1 sola fila en PC (4 columnas), 2x2 en Tablet, 1 col en Móvil */
       .sesion-base-pillars-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -6846,13 +7256,12 @@
         background: #050507;
         border: 1px solid #1c1c22;
         border-radius: 10px;
-        padding: 12px 13px;
+        padding: 11px 12px;
         display: flex;
         flex-direction: column;
         gap: 4px;
       }
 
-      /* Las 3 Opciones de Continuidad en 1 sola fila en PC (3 columnas iguales) y 1 col en Móvil */
       .continuidad-cards-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -6866,10 +7275,10 @@
         }
       }
       .continuidad-card {
-        background: #0a0a0c;
+        background: #050507;
         border: 1px solid #1f1f24;
         border-radius: 14px;
-        padding: 18px 16px;
+        padding: 16px 15px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -6889,7 +7298,7 @@
         width: fit-content;
       }
       .continuidad-price-strip {
-        background: #050507;
+        background: #0a0a0c;
         border: 1px solid #1c1c22;
         border-radius: 8px;
         padding: 9px 11px;
@@ -6902,358 +7311,380 @@
       }
     </style>
 
-    <div class="container" style="max-width: 1160px; padding-top: 12px; padding-bottom: 40px;">
+    <div class="container" style="max-width: 1180px; padding-top: 0; padding-bottom: 16px;">
       
-      <!-- CABECERA DE MODALIDADES · MODELO CON GROUNDING -->
-      <div style="text-align: center; max-width: 900px; margin: 0 auto 20px;" id="productos-header">
-        <span class="journey-step-badge green">
-          🚀 MODALIDADES, SESIÓN BASE ($35.000) & ACOMPAÑAMIENTO ADMINISTRATIVO
-        </span>
-        <h2 style="font-family: var(--font-heading); font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 800; color: #fff; margin-top: 8px; line-height: 1.22;">
-          Parte por una Sesión Base ($35.000): Desahógate, Lleva tu 1ra Herramienta en el Portal y Aterricemos tu Plan
-        </h2>
-        <p style="font-size: 0.88rem; color: #a1a1aa; line-height: 1.55; max-width: 820px; margin: 6px auto 0;">
-          No necesitas comprar a ciegas un programa grande antes de conversar. Partimos con una <b style="color:#fff;">Sesión Base Online o Presencial ($35.000 CLP)</b>: aterrizamos tu información, dejamos tu primera herramienta funcionando en el <b style="color:#fff;">Portal de Clientes</b> y, con esa base clara, armamos tu Sistema de Gestión Personalizado y el acompañamiento.
-        </p>
-      </div>
-
-      <!-- PASO 1 DESTACADO: LA SESIÓN BASE ($35.000 CLP) MINIMALISTA -->
-      <div class="sesion-base-hero-card">
+      <div class="productos-hub-shell" id="productos-header">
         
-        <!-- FILA SUPERIOR -->
-        <div class="sesion-base-top-grid">
-          <div>
-            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
-              <span style="font-size: 0.68rem; font-weight: 800; color: #000; background: #ffffff; padding: 3px 9px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.04em;">
-                ★ PUERTA DE ENTRADA · PASO 1
+        <!-- CABECERA COMPACTA + BARRA DE 4 SUB-PESTAÑAS EN PESTAÑA 4 -->
+        <div class="landing-tab-intro-top" style="padding-bottom: 8px; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="landing-tab-pill emerald">🚀 Pestaña 4 de 4 · Valores, Planes & FAQ</span>
+            <h2 style="font-family: var(--font-heading); font-size: clamp(1rem, 1.9vw, 1.28rem); font-weight: 800; color: #ffffff; margin: 0;">
+              Cómo Empezar: Sesión Base ($35.000), Continuidad, Dudas y Acceso Clientes
+            </h2>
+          </div>
+          <span style="font-size: 0.73rem; color: #34d399; font-weight: 700;">🛡️ Garantía 100% Claridad en Sesión 1</span>
+        </div>
+
+        <!-- BARRA SEGMENTADA DE 4 SUB-PESTAÑAS COMERCIALES (CERO SCROLL ETERNO) -->
+        <div class="diego-mode-tabs" role="tablist" style="margin-bottom: 14px;">
+          <button type="button" class="diego-mode-btn active" id="btn-prod-subtab-base" onclick="switchProductosSubtab('base')">
+            <span class="dmode-label-full">💎 1. Sesión Base ($35.000) & Garantía</span>
+            <span class="dmode-label-short">💎 1. Sesión Base ($35k)</span>
+          </button>
+          <button type="button" class="diego-mode-btn" id="btn-prod-subtab-planes" onclick="switchProductosSubtab('planes')">
+            <span class="dmode-label-full">🚀 2. Planes de Continuidad (3 Opciones)</span>
+            <span class="dmode-label-short">🚀 2. Planes (3)</span>
+          </button>
+          <button type="button" class="diego-mode-btn" id="btn-prod-subtab-faq" onclick="switchProductosSubtab('faq')">
+            <span class="dmode-label-full">💬 3. Preguntas Frecuentes (FAQ)</span>
+            <span class="dmode-label-short">💬 3. Dudas (FAQ)</span>
+          </button>
+          <button type="button" class="diego-mode-btn" id="btn-prod-subtab-pin" onclick="switchProductosSubtab('pin')">
+            <span class="dmode-label-full">🔒 4. Clientes Activos (PIN)</span>
+            <span class="dmode-label-short">🔒 4. Acceso PIN</span>
+          </button>
+        </div>
+
+        <!-- SUB-PESTAÑA 1 (ACTIVA POR DEFECTO): SESIÓN BASE ($35.000 CLP) + GARANTÍA 100% -->
+        <div id="prod-subpanel-base">
+          <div class="sesion-base-hero-card">
+            <div class="sesion-base-top-grid">
+              <div>
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+                  <span style="font-size: 0.68rem; font-weight: 800; color: #000; background: #ffffff; padding: 3px 9px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.04em;">
+                    ★ PUERTA DE ENTRADA · PASO 1
+                  </span>
+                  <span style="font-size: 0.7rem; color: #d4d4d8; font-weight: 600; background: #121216; border: 1px solid #27272a; padding: 3px 9px; border-radius: 6px;">
+                    📍 Online o Presencial (Concepción)
+                  </span>
+                </div>
+                <h3 style="font-family: var(--font-heading); font-size: clamp(1.15rem, 2.2vw, 1.48rem); font-weight: 800; color: #fff; margin: 0 0 6px 0; line-height: 1.24;">
+                  Sesión Base: Aterrizaje, Diagnóstico & 1ra Herramienta en tu Portal
+                </h3>
+                <p style="font-size: 0.83rem; color: #a1a1aa; margin: 0; line-height: 1.48;">
+                  Una sesión completa 1 a 1 donde ordenamos tu panorama sin que tengas que comprar nada a ciegas, resolvemos tu urgencia inmediata con una herramienta real en tu Portal de Clientes (Usuario + Clave) y aterrizamos la información para tu Sistema de Gestión Personalizado.
+                </p>
+              </div>
+
+              <div class="sesion-base-price-box">
+                <div style="font-size: 0.67rem; font-weight: 800; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.06em;">Valor Sesión Base</div>
+                <div style="display: flex; align-items: baseline; justify-content: center; gap: 5px; margin: 3px 0 8px;">
+                  <span style="font-family: var(--font-heading); font-size: 1.95rem; font-weight: 800; color: #fff;">$35.000</span>
+                  <span style="font-size: 0.78rem; color: #a1a1aa; font-weight: 700;">CLP</span>
+                </div>
+                <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20Base%20($35.000%20CLP)%20para%20conversar%20mi%20caso%20y%20activar%20mi%20primera%20herramienta%20en%20el%20Portal." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px 14px; font-weight: 800; border-radius: 8px; text-decoration: none; display: block; background: #ffffff; color: #000000; border: none; font-size: 0.8rem; box-sizing: border-box;">
+                  💬 Agendar Sesión Base ($35k) →
+                </a>
+              </div>
+            </div>
+
+            <div class="sesion-base-pillars-grid">
+              <div class="sesion-base-pillar-card">
+                <div style="font-size: 0.7rem; font-weight: 800; color: #ffffff; text-transform: uppercase;">
+                  1. Desahogo y Escucha
+                </div>
+                <p style="font-size: 0.75rem; color: #a1a1aa; line-height: 1.4; margin: 0;">
+                  Llegas sin preparar nada. Descargas tus ideas, enredos o pendientes en un espacio libre de juicio.
+                </p>
+              </div>
+
+              <div class="sesion-base-pillar-card">
+                <div style="font-size: 0.7rem; font-weight: 800; color: #ffffff; text-transform: uppercase;">
+                  2. Lo que Ves + Veo Yo
+                </div>
+                <p style="font-size: 0.75rem; color: #a1a1aa; line-height: 1.4; margin: 0;">
+                  Juntamos lo que tú sientes necesitar con mi mirada desde la ciencia de la administración.
+                </p>
+              </div>
+
+              <div class="sesion-base-pillar-card">
+                <div style="font-size: 0.7rem; font-weight: 800; color: #38bdf8; text-transform: uppercase;">
+                  3. Herramienta en Portal
+                </div>
+                <p style="font-size: 0.75rem; color: #a1a1aa; line-height: 1.4; margin: 0;">
+                  Activamos tu <b style="color:#fff;">Usuario y Clave (PIN)</b> con 1 herramienta digitalizada e imprimible en la palma de tu mano.
+                </p>
+              </div>
+
+              <div class="sesion-base-pillar-card">
+                <div style="font-size: 0.7rem; font-weight: 800; color: #34d399; text-transform: uppercase;">
+                  4. SGP & Apoyo en Gestión
+                </div>
+                <p style="font-size: 0.75rem; color: #a1a1aa; line-height: 1.4; margin: 0;">
+                  Con tu contexto aterrizado, diseñamos tu Sistema de Gestión Personalizado y el acompañamiento.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BANNER COMPACTO DE GARANTÍA + BOTÓN A SUB-PESTAÑA 2 -->
+          <div style="background: #050507; border: 1px solid rgba(16,185,129,0.28); border-radius: 12px; padding: 13px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px; flex: 1 1 320px;">
+              <span style="font-size: 1.4rem; background: #051610; border: 1px solid rgba(16,185,129,0.3); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">🛡️</span>
+              <div>
+                <div style="font-size: 0.78rem; font-weight: 800; color: #fff;">
+                  <span style="color:#34d399;">Garantía 100% Libre de Riesgo:</span> Claridad Total en tu Primera Sesión
+                </div>
+                <p style="font-size: 0.75rem; color: #a1a1aa; margin: 2px 0 0 0; line-height: 1.4;">
+                  Si al terminar tu primera sesión sientes que el enfoque o las herramientas no se adaptan a ti, te devuelvo el <b style="color:#fff;">100% de tu dinero de inmediato</b>.
+                </p>
+              </div>
+            </div>
+            <button type="button" onclick="switchProductosSubtab('planes')" style="background: #10b981; color: #000000; font-family: var(--font-heading); font-weight: 800; font-size: 0.76rem; padding: 9px 15px; border-radius: 8px; border: none; cursor: pointer; white-space: nowrap;">
+              Ver Paso 2: Planes de Continuidad (3) →
+            </button>
+          </div>
+        </div>
+
+        <!-- SUB-PESTAÑA 2: LAS 3 OPCIONES DE CONTINUIDAD DESPUÉS DE LA SESIÓN BASE -->
+        <div id="prod-subpanel-planes" style="display: none;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+            <div>
+              <span style="font-size: 0.68rem; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 0.06em;">
+                PASO 2 · DESPUÉS DE LA SESIÓN BASE ($35.000 SE ABONAN AL PLAN INTEGRAL)
               </span>
-              <span style="font-size: 0.7rem; color: #d4d4d8; font-weight: 600; background: #121216; border: 1px solid #27272a; padding: 3px 9px; border-radius: 6px;">
-                📍 Online o Presencial (Concepción)
-              </span>
+              <h3 style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: #fff; margin: 2px 0 0;">
+                3 Caminos de Sistema a Medida & Acompañamiento en Gestión
+              </h3>
             </div>
-            <h3 style="font-family: var(--font-heading); font-size: clamp(1.2rem, 2.4vw, 1.55rem); font-weight: 800; color: #fff; margin: 0 0 6px 0; line-height: 1.24;">
-              Sesión Base: Aterrizaje, Diagnóstico & 1ra Herramienta en tu Portal
-            </h3>
-            <p style="font-size: 0.84rem; color: #a1a1aa; margin: 0; line-height: 1.5;">
-              Una sesión completa 1 a 1 donde ordenamos tu panorama, resolvemos tu urgencia inmediata con una herramienta real en tu Portal de Clientes (Usuario + Clave) y aterrizamos la información para construir tu Sistema de Gestión Personalizado.
-            </p>
+            <button type="button" onclick="switchProductosSubtab('faq')" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #e2e8f0; font-size: 0.74rem; font-weight: 700; padding: 6px 12px; border-radius: 8px; cursor: pointer;">
+              💬 Ver Preguntas Frecuentes →
+            </button>
           </div>
 
-          <div class="sesion-base-price-box">
-            <div style="font-size: 0.67rem; font-weight: 800; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.06em;">Valor Sesión Base</div>
-            <div style="display: flex; align-items: baseline; justify-content: center; gap: 5px; margin: 3px 0 8px;">
-              <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #fff;">$35.000</span>
-              <span style="font-size: 0.78rem; color: #a1a1aa; font-weight: 700;">CLP</span>
+          <div class="continuidad-cards-grid">
+            <!-- OPCIÓN A -->
+            <div class="continuidad-card">
+              <div>
+                <span class="continuidad-badge-pill" style="color: #34d399; background: #051610; border: 1px solid rgba(16,185,129,0.3);">
+                  ✦ SISTEMA SGP COMPLETO
+                </span>
+                <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin: 0 0 5px 0; line-height: 1.25;">
+                  Sistema de Gestión Personalizado 2.0
+                </h4>
+                <p style="font-size: 0.76rem; color: #a1a1aa; line-height: 1.44; margin: 0;">
+                  Construimos tu ecosistema completo de módulos, micro-apps, finanzas e imprimibles con acompañamiento administrativo.
+                </p>
+                
+                <div class="continuidad-price-strip">
+                  <span style="font-family: var(--font-heading); font-size: 1.08rem; font-weight: 800; color: #ffffff;">Cotizado a medida</span>
+                  <span style="font-size: 0.72rem; color: #a1a1aa; font-weight: 600;">Planes $65k a $190k</span>
+                </div>
+
+                <ul style="list-style: none; font-size: 0.74rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 5px; margin: 0 0 12px 0; padding: 0;">
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#34d399; font-weight:800;">✓</span> <span><b>Portal SGP completo</b> con Usuario y Clave.</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#34d399; font-weight:800;">✓</span> <span><b>Micro-apps y calculadoras</b> hechas para tu caso.</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#34d399; font-weight:800;">✓</span> <span><b>Hub de Imprimibles Físicos</b> + tutoriales paso a paso.</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#34d399; font-weight:800;">✓</span> <span><b>Apoyo en gestión</b> sesión a sesión.</span></li>
+                </ul>
+              </div>
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20me%20interesa%20conversar%20sobre%20un%20Sistema%20de%20Gesti%C3%B3n%20Personalizado%20a%20medida." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 9px; font-weight: 800; background: #10b981; color: #000; border-radius: 8px; text-decoration: none; display: block; font-size: 0.78rem; box-sizing: border-box;">
+                Consultar por Sistema a Medida →
+              </a>
             </div>
-            <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20mi%20Sesi%C3%B3n%20Base%20($35.000%20CLP)%20para%20conversar%20mi%20caso%20y%20activar%20mi%20primera%20herramienta%20en%20el%20Portal." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 10px 14px; font-weight: 800; border-radius: 8px; text-decoration: none; display: block; background: #ffffff; color: #000000; border: none; font-size: 0.8rem; box-sizing: border-box;">
-              💬 Agendar Sesión Base ($35k) →
-            </a>
+
+            <!-- OPCIÓN B -->
+            <div class="continuidad-card">
+              <div>
+                <span class="continuidad-badge-pill" style="color: #d4d4d8; background: #121216; border: 1px solid #27272a;">
+                  ✦ APOYO EN GESTIÓN A TU RITMO
+                </span>
+                <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin: 0 0 5px 0; line-height: 1.25;">
+                  Sesiones de Acompañamiento & Nuevos Módulos
+                </h4>
+                <p style="font-size: 0.76rem; color: #a1a1aa; line-height: 1.44; margin: 0;">
+                  Para quienes ya tienen su base y quieren apoyo administrativo continuo, sumar herramientas al Portal o calibrar el mes.
+                </p>
+                
+                <div class="continuidad-price-strip">
+                  <span style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: #fff;">$35.000 <span style="font-size: 0.72rem; color: #a1a1aa;">CLP</span></span>
+                  <span style="font-size: 0.72rem; color: #a1a1aa; font-weight: 600;">Valor fijo por sesión</span>
+                </div>
+
+                <ul style="list-style: none; font-size: 0.74rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 5px; margin: 0 0 12px 0; padding: 0;">
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Apoyo en gestión y revisión de avances de tu semana.</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Actualización en vivo de tu Portal e imprimibles.</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Activación de nuevos módulos del arsenal (+60 disponibles).</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>100% flexible, sin mensualidades obligatorias.</span></li>
+                </ul>
+              </div>
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20una%20Sesi%C3%B3n%20de%20Acompa%C3%B1amiento%20($35.000%20CLP)%20y%20actualizar%20mi%20Portal." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 9px; font-weight: 800; background: #18181b; border: 1px solid #3f3f46; color: #fff; border-radius: 8px; text-decoration: none; display: block; font-size: 0.78rem; box-sizing: border-box;">
+                Agendar Acompañamiento ($35k) →
+              </a>
+            </div>
+
+            <!-- OPCIÓN C -->
+            <div class="continuidad-card">
+              <div>
+                <span class="continuidad-badge-pill" style="color: #d4d4d8; background: #121216; border: 1px solid #27272a;">
+                  ✦ CO-MARKETING · TERRENO U ONLINE
+                </span>
+                <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff; margin: 0 0 5px 0; line-height: 1.25;">
+                  Vitrina con Propósito & Co-Marketing
+                </h4>
+                <p style="font-size: 0.76rem; color: #a1a1aa; line-height: 1.44; margin: 0;">
+                  Para emprendedores y oficios con grandes productos que buscan visibilidad auténtica: destrabamos un nudo en vivo y mostramos tu trabajo.
+                </p>
+                
+                <div class="continuidad-price-strip">
+                  <span style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #fff;">Aporte Voluntario / Canje</span>
+                  <span style="font-size: 0.72rem; color: #a1a1aa; font-weight: 600;">Por postulación</span>
+                </div>
+
+                <ul style="list-style: none; font-size: 0.74rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 5px; margin: 0 0 12px 0; padding: 0;">
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Visita presencial a tu taller/local o sesión online.</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Diagnóstico y solución de 1 problema operativo en vivo.</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Grabación de cápsula mostrando tu historia y propuesta.</span></li>
+                  <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Difusión conjunta en redes sociales.</span></li>
+                </ul>
+              </div>
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20tengo%20un%20emprendimiento%20y%20me%20gustar%C3%ADa%20postular%20a%20Vitrina%20con%20Prop%C3%B3sito%20y%20Co-Marketing." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 9px; font-weight: 800; border-radius: 8px; text-decoration: none; display: block; background: #18181b; border: 1px solid #3f3f46; color: #fff; font-size: 0.78rem; box-sizing: border-box;">
+                Postular a Vitrina con Propósito →
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- FILA INFERIOR: LOS 4 HITOS MINIMALISTAS -->
-        <div class="sesion-base-pillars-grid">
-          
-          <div class="sesion-base-pillar-card">
-            <div style="font-size: 0.7rem; font-weight: 800; color: #ffffff; text-transform: uppercase;">
-              1. Desahogo y Escucha
+        <!-- SUB-PESTAÑA 3: PREGUNTAS FRECUENTES (FAQ ACORDEÓN) -->
+        <div id="prod-subpanel-faq" style="display: none;">
+          <div style="max-width: 880px; margin: 4px auto 8px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+              <div>
+                <span style="font-size: 0.68rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em;">
+                  💬 DUDAS FRECUENTES • RESPUESTAS DIRECTAS
+                </span>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #fff; margin: 2px 0 0;">
+                  Preguntas Frecuentes antes de Despegar
+                </h3>
+              </div>
+              <button type="button" onclick="switchProductosSubtab('base')" style="background: #ffffff; color: #000; font-size: 0.74rem; font-weight: 800; padding: 6px 12px; border-radius: 8px; border: none; cursor: pointer;">
+                💎 Ver Sesión Base ($35.000) →
+              </button>
             </div>
-            <p style="font-size: 0.76rem; color: #a1a1aa; line-height: 1.42; margin: 0;">
-              Llegas sin preparar nada. Descargas tus ideas, enredos o pendientes en un espacio libre de juicio.
-            </p>
-          </div>
 
-          <div class="sesion-base-pillar-card">
-            <div style="font-size: 0.7rem; font-weight: 800; color: #ffffff; text-transform: uppercase;">
-              2. Lo que Ves + Veo Yo
+            <div class="faq-accordion-group">
+              <div class="faq-item">
+                <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
+                  <span>¿Necesito saber de tecnología, Notion o instalar aplicaciones complejas?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-content">
+                  <p><b>Absolutamente no.</b> Tú no tienes que aprender software complejo ni ver tutoriales. Yo me encargo de estructurar y programar tus herramientas en pantalla durante las sesiones. Tú solo accedes a tu Plan de Vuelo desde tu celular o computador mediante un enlace privado con tu PIN personal, acompañado de tus fichas físicas de 1 hoja.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
+                  <span>¿Cuánto tiempo a la semana me va a demandar el acompañamiento?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-content">
+                  <p>Solo la sesión semanal de <b>75 minutos mano a mano con Diego</b> y <b>2 minutos al final de cada día</b> para ejecutar tu checklist táctil de Cierre Consciente (Shutdown). El objetivo no es darte una tarea más, sino devolverte de 5 a 10 horas libres cada semana.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
+                  <span>¿Qué pasa si mis horarios o compromisos cambian todas las semanas?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-content">
+                  <p>Precisamente por eso no te imponemos un horario rígido. El <b>Mapeador 24H</b> funciona por cajitas dinámicas y <i>Batching</i> (agrupación inteligente de tareas similares). Si tu semana cambia por una urgencia o un proyecto nuevo, recalibras tu mapa visual en 3 minutos sin que el sistema colapse.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
+                  <span>¿Cómo funcionan las formas de pago, cuotas y abonos?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-content">
+                  <p>Puedes pagar mediante transferencia bancaria directa en pesos chilenos (CLP). Si tomas la <b>Sesión Base ($35.000 CLP)</b> y luego decides continuar al Plan Integral ($190.000 CLP), <b>los $35.000 se descuentan íntegramente</b> del total. Además, el Plan Integral cuenta con facilidad de pago en 2 cuotas de $98.000 o 3 cuotas de $68.000.</p>
+                </div>
+              </div>
             </div>
-            <p style="font-size: 0.76rem; color: #a1a1aa; line-height: 1.42; margin: 0;">
-              Juntamos lo que tú sientes necesitar con mi mirada desde la ciencia de la administración.
-            </p>
           </div>
-
-          <div class="sesion-base-pillar-card">
-            <div style="font-size: 0.7rem; font-weight: 800; color: #38bdf8; text-transform: uppercase;">
-              3. Herramienta en Portal
-            </div>
-            <p style="font-size: 0.76rem; color: #a1a1aa; line-height: 1.42; margin: 0;">
-              Activamos tu <b style="color:#fff;">Usuario y Clave (PIN)</b> con 1 herramienta digitalizada e imprimible en la palma de tu mano.
-            </p>
-          </div>
-
-          <div class="sesion-base-pillar-card">
-            <div style="font-size: 0.7rem; font-weight: 800; color: #34d399; text-transform: uppercase;">
-              4. SGP & Apoyo en Gestión
-            </div>
-            <p style="font-size: 0.76rem; color: #a1a1aa; line-height: 1.42; margin: 0;">
-              Con tu contexto aterrizado, diseñamos tu Sistema de Gestión Personalizado y el acompañamiento.
-            </p>
-          </div>
-
         </div>
-      </div>
 
-      <!-- PASO 2: CAMINOS DE CONTINUIDAD -->
-      <div style="text-align: center; margin: 22px auto 14px;">
-        <span style="font-size: 0.7rem; font-weight: 800; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.08em;">
-          ↓ DESPUÉS DE LA SESIÓN BASE ↓
-        </span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.18rem; font-weight: 800; color: #fff; margin: 4px 0 0;">
-          Opciones de Sistema a Medida & Acompañamiento en Gestión
-        </h3>
-      </div>
-
-      <!-- GRILLA DE 3 TARJETAS MINIMALISTAS -->
-      <div class="continuidad-cards-grid">
-        
-        <!-- OPCIÓN A -->
-        <div class="continuidad-card">
-          <div>
-            <span class="continuidad-badge-pill" style="color: #34d399; background: #051610; border: 1px solid rgba(16,185,129,0.3);">
-              ✦ SISTEMA SGP COMPLETO
-            </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.08rem; font-weight: 800; color: #fff; margin: 0 0 5px 0; line-height: 1.25;">
-              Sistema de Gestión Personalizado 2.0
-            </h4>
-            <p style="font-size: 0.77rem; color: #a1a1aa; line-height: 1.45; margin: 0;">
-              Construimos tu ecosistema completo de módulos, micro-apps, finanzas e imprimibles con acompañamiento administrativo.
-            </p>
+        <!-- SUB-PESTAÑA 4: ACCESO RÁPIDO POR PIN PARA CLIENTES ACTIVOS -->
+        <div id="prod-subpanel-pin" style="display: none;">
+          <div style="max-width: 500px; margin: 8px auto; background: #050507; border: 1px solid #27272a; border-radius: 14px; padding: 24px 22px; text-align: center;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); font-size:1.4rem; margin-bottom:10px;">🔒</span>
+            <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff; margin:0;">¿Ya eres Cliente Activo?</h3>
+            <p style="font-size:0.82rem; color:#888; margin:5px 0 16px;">Ingresa tu usuario y PIN asignado para abrir tu tablero 100% interactivo.</p>
             
-            <div class="continuidad-price-strip">
-              <span style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: #ffffff;">Cotizado a medida</span>
-              <span style="font-size: 0.72rem; color: #a1a1aa; font-weight: 600;">Planes $65k a $190k</span>
+            <div id="tab-pin-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid #ef4444; color:#fca5a5; padding:10px 14px; border-radius:8px; font-size:0.82rem; margin-bottom:14px; text-align:left;"></div>
+
+            <form onsubmit="handleTabPinSubmit(event); return false;" style="display:flex; flex-direction:column; gap:10px;">
+              <input 
+                type="text" 
+                id="tab-client-user" 
+                class="auth-input" 
+                placeholder="Tu usuario asignado" 
+                autocomplete="username"
+                style="font-size:0.92rem; padding:11px 14px; border-radius:10px;"
+              />
+              <input 
+                type="password" 
+                id="tab-client-pin" 
+                class="auth-input" 
+                placeholder="••••••••••••" 
+                required 
+                autocomplete="current-password"
+                style="font-size:1.05rem; letter-spacing:0.1em; padding:11px 14px; border-radius:10px; font-family:monospace;"
+              />
+              <button type="submit" id="btn-tab-submit-pin" class="auth-btn-submit" style="font-weight:800; padding:12px; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:50px;">
+                <span>Ingresar a Mi Plan</span> <span>→</span>
+              </button>
+            </form>
+            <div style="margin-top:14px; font-size:0.76rem; color:#666;">
+              ¿Olvidaste tu clave? <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mi%20clave%20para%20mi%20Plan%20de%20Vuelo" target="_blank" style="color:#10b981; font-weight:700; text-decoration:none;">Escríbele a Diego por WhatsApp</a>
             </div>
-
-            <ul style="list-style: none; font-size: 0.75rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 5px; margin: 0 0 14px 0; padding: 0;">
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#34d399; font-weight:800;">✓</span> <span><b>Portal SGP completo</b> con Usuario y Clave.</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#34d399; font-weight:800;">✓</span> <span><b>Micro-apps y calculadoras</b> hechas para tu caso.</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#34d399; font-weight:800;">✓</span> <span><b>Hub de Imprimibles Físicos</b> + tutoriales paso a paso.</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#34d399; font-weight:800;">✓</span> <span><b>Apoyo en gestión</b> sesión a sesión.</span></li>
-            </ul>
           </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20me%20interesa%20conversar%20sobre%20un%20Sistema%20de%20Gesti%C3%B3n%20Personalizado%20a%20medida." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 9px; font-weight: 800; background: #10b981; color: #000; border-radius: 8px; text-decoration: none; display: block; font-size: 0.78rem; box-sizing: border-box;">
-            Consultar por Sistema a Medida →
-          </a>
-        </div>
-
-        <!-- OPCIÓN B -->
-        <div class="continuidad-card">
-          <div>
-            <span class="continuidad-badge-pill" style="color: #d4d4d8; background: #121216; border: 1px solid #27272a;">
-              ✦ APOYO EN GESTIÓN A TU RITMO
-            </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.08rem; font-weight: 800; color: #fff; margin: 0 0 5px 0; line-height: 1.25;">
-              Sesiones de Acompañamiento & Nuevos Módulos
-            </h4>
-            <p style="font-size: 0.77rem; color: #a1a1aa; line-height: 1.45; margin: 0;">
-              Para quienes ya tienen su base y quieren apoyo administrativo continuo, sumar herramientas al Portal o calibrar el mes.
-            </p>
-            
-            <div class="continuidad-price-strip">
-              <span style="font-family: var(--font-heading); font-size: 1.18rem; font-weight: 800; color: #fff;">$35.000 <span style="font-size: 0.74rem; color: #a1a1aa;">CLP</span></span>
-              <span style="font-size: 0.72rem; color: #a1a1aa; font-weight: 600;">Valor fijo por sesión</span>
-            </div>
-
-            <ul style="list-style: none; font-size: 0.75rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 5px; margin: 0 0 14px 0; padding: 0;">
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Apoyo en gestión y revisión de avances de tu semana.</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Actualización en vivo de tu Portal e imprimibles.</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Activación de nuevos módulos del arsenal (+60 disponibles).</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>100% flexible, sin mensualidades obligatorias.</span></li>
-            </ul>
-          </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20quiero%20agendar%20una%20Sesi%C3%B3n%20de%20Acompa%C3%B1amiento%20($35.000%20CLP)%20y%20actualizar%20mi%20Portal." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 9px; font-weight: 800; background: #18181b; border: 1px solid #3f3f46; color: #fff; border-radius: 8px; text-decoration: none; display: block; font-size: 0.78rem; box-sizing: border-box;">
-            Agendar Acompañamiento ($35k) →
-          </a>
-        </div>
-
-        <!-- OPCIÓN C -->
-        <div class="continuidad-card">
-          <div>
-            <span class="continuidad-badge-pill" style="color: #d4d4d8; background: #121216; border: 1px solid #27272a;">
-              ✦ CO-MARKETING · TERRENO U ONLINE
-            </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.08rem; font-weight: 800; color: #fff; margin: 0 0 5px 0; line-height: 1.25;">
-              Vitrina con Propósito & Co-Marketing
-            </h4>
-            <p style="font-size: 0.77rem; color: #a1a1aa; line-height: 1.45; margin: 0;">
-              Para emprendedores y oficios con grandes productos que buscan visibilidad auténtica: destrabamos un nudo en vivo y mostramos tu trabajo.
-            </p>
-            
-            <div class="continuidad-price-strip">
-              <span style="font-family: var(--font-heading); font-size: 1.08rem; font-weight: 800; color: #fff;">Aporte Voluntario / Canje</span>
-              <span style="font-size: 0.72rem; color: #a1a1aa; font-weight: 600;">Por postulación</span>
-            </div>
-
-            <ul style="list-style: none; font-size: 0.75rem; color: #d4d4d8; display: flex; flex-direction: column; gap: 5px; margin: 0 0 14px 0; padding: 0;">
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Visita presencial a tu taller/local o sesión online.</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Diagnóstico y solución de 1 problema operativo en vivo.</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Grabación de cápsula mostrando tu historia y propuesta.</span></li>
-              <li style="display:flex; gap:6px; align-items:flex-start;"><span style="color:#fff; font-weight:800;">✓</span> <span>Difusión conjunta en redes sociales.</span></li>
-            </ul>
-          </div>
-          <a href="https://wa.me/56975590132?text=Hola%20Diego,%20tengo%20un%20emprendimiento%20y%20me%20gustar%C3%ADa%20postular%20a%20Vitrina%20con%20Prop%C3%B3sito%20y%20Co-Marketing." target="_blank" class="btn-primary" style="width: 100%; text-align: center; padding: 9px; font-weight: 800; border-radius: 8px; text-decoration: none; display: block; background: #18181b; border: 1px solid #3f3f46; color: #fff; font-size: 0.78rem; box-sizing: border-box;">
-            Postular a Vitrina con Propósito →
-          </a>
         </div>
 
       </div>
 
-    </div>
-  </section>
-
-  <section id="faq-cierre" class="landing-section" style="padding: 20px 0 80px 0;">
-    <div style="margin-top: 20px; margin-bottom: 50px;" id="faq-resumen-inversion">
-
-<!-- BANNER MINIMALISTA DE GARANTÍA DE CLARIDAD EN SESIÓN 1 -->
-      <div style="max-width: 860px; margin: 20px auto 0; background: #0a0a0c; border: 1px solid #1f1f24; border-radius: 14px; padding: 20px 22px; display: flex; align-items: center; gap: 16px;">
-        <div style="font-size: 1.8rem; background: #051610; border: 1px solid rgba(16,185,129,0.3); width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          🛡️
-        </div>
-        <div>
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 4px; flex-wrap:wrap;">
-            <span style="font-size: 0.68rem; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 0.06em; background: #051610; border: 1px solid rgba(16,185,129,0.3); padding: 2px 7px; border-radius: 4px;">
-              100% LIBRE DE RIESGO
-            </span>
-            <h4 style="font-family: var(--font-heading); font-size: 1.06rem; font-weight: 800; color: #fff; margin: 0;">
-              Garantía de Claridad Total en tu Primera Sesión
-            </h4>
-          </div>
-          <p style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin: 0;">
-            Si al terminar tu primera sesión sientes que el enfoque o las herramientas no se adaptan a tu forma de pensar y operar, te devuelvo el <b style="color:#fff;">100% de tu dinero de inmediato</b>, sin preguntas.
-          </p>
-        </div>
-      </div>
-
-      <!-- PREGUNTAS FRECUENTES (FAQ ACORDEÓN) -->
-      <div style="max-width: 860px; margin: 50px auto 30px;">
-        <div style="text-align: center; margin-bottom: 28px;">
-          <span class="section-tag" style="background: rgba(56,189,248,0.12); color: #38bdf8; border-color: rgba(56,189,248,0.3);">
-            💬 DUDAS FRECUENTES • RESPUESTAS DIRECTAS
-          </span>
-          <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 10px;">
-            Preguntas Frecuentes antes de Despegar
-          </h3>
-          <p style="font-size: 0.88rem; color: #a1a1aa; margin-top: 6px;">
-            Las respuestas más claras a lo que se pregunta un independiente antes de empezar:
-          </p>
-        </div>
-
-        <div class="faq-accordion-group">
-          <!-- FAQ 1 -->
-          <div class="faq-item">
-            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
-              <span>¿Necesito saber de tecnología, Notion o instalar aplicaciones complejas?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-content">
-              <p><b>Absolutamente no.</b> Tú no tienes que aprender software complejo ni ver tutoriales. Yo me encargo de estructurar y programar tus herramientas en pantalla durante las sesiones. Tú solo accedes a tu Plan de Vuelo desde tu celular o computador mediante un enlace privado con tu PIN personal, acompañado de tus fichas físicas de 1 hoja.</p>
-            </div>
-          </div>
-
-          <!-- FAQ 2 -->
-          <div class="faq-item">
-            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
-              <span>¿Cuánto tiempo a la semana me va a demandar el acompañamiento?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-content">
-              <p>Solo la sesión semanal de <b>75 minutos mano a mano con Diego</b> y <b>2 minutos al final de cada día</b> para ejecutar tu checklist táctil de Cierre Consciente (Shutdown). El objetivo no es darte una tarea más, sino devolverte de 5 a 10 horas libres cada semana.</p>
-            </div>
-          </div>
-
-          <!-- FAQ 3 -->
-          <div class="faq-item">
-            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
-              <span>¿Qué pasa si mis horarios o compromisos cambian todas las semanas?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-content">
-              <p>Precisamente por eso no te imponemos un horario rígido. El <b>Mapeador 24H</b> funciona por cajitas dinámicas y <i>Batching</i> (agrupación inteligente de tareas similares). Si tu semana cambia por una urgencia o un proyecto nuevo, recalibras tu mapa visual en 3 minutos sin que el sistema colapse.</p>
-            </div>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="faq-item">
-            <button type="button" class="faq-trigger" onclick="toggleFaqAccordion(this)">
-              <span>¿Cómo funcionan las formas de pago, cuotas y abonos?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-content">
-              <p>Puedes pagar mediante transferencia bancaria directa en pesos chilenos (CLP). Si tomas la <b>Sesión de Despegue ($35.000 CLP)</b> y luego decides continuar al Plan Integral ($190.000 CLP), <b>los $35.000 se descuentan íntegramente</b> del total. Además, el Plan Integral cuenta con facilidad de pago en 2 cuotas de $98.000 o 3 cuotas de $68.000.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ACCESO RÁPIDO POR PIN PARA CLIENTES ACTIVOS -->
-    <div style="max-width: 520px; margin: 40px auto 20px; background: #0c0c0e; border: 1px solid #333; border-radius: var(--radius-lg); padding: 32px 28px; text-align: center; box-shadow: 0 0 30px rgba(0,0,0,0.8);">
-      <span style="display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); font-size:1.6rem; margin-bottom:12px;">🔒</span>
-      <h3 style="font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:#fff;">¿Ya eres Cliente Activo?</h3>
-      <p style="font-size:0.86rem; color:#888; margin:6px 0 20px;">Ingresa tu usuario y PIN asignado para abrir tu tablero 100% interactivo.</p>
-      
-      <div id="tab-pin-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid #ef4444; color:#fca5a5; padding:10px 14px; border-radius:8px; font-size:0.82rem; margin-bottom:14px; text-align:left;"></div>
-
-      <form onsubmit="handleTabPinSubmit(event); return false;" style="display:flex; flex-direction:column; gap:12px;">
-        <input 
-          type="text" 
-          id="tab-client-user" 
-          class="auth-input" 
-          placeholder="Tu usuario asignado" 
-          autocomplete="username"
-          style="font-size:0.95rem; padding:12px 14px; border-radius:10px;"
-        />
-        <input 
-          type="password" 
-          id="tab-client-pin" 
-          class="auth-input" 
-          placeholder="••••••••••••" 
-          required 
-          autocomplete="current-password"
-          style="font-size:1.1rem; letter-spacing:0.1em; padding:12px 14px; border-radius:10px; font-family:monospace;"
-        />
-        <button type="submit" id="btn-tab-submit-pin" class="auth-btn-submit" style="font-weight:800; padding:13px; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:50px;">
-          <span>Ingresar a Mi Plan</span> <span>→</span>
+      <!-- NAVEGACIÓN ENTRE PESTAÑAS (PIE DE PESTAÑA 4) -->
+      <div class="landing-tab-footer-nav">
+        <button type="button" class="btn-tab-step-prev" onclick="scrollToSection('sondeos')">
+          ← 3. Volver al Sondeo de 6 Áreas
         </button>
-      </form>
-      <div style="margin-top:16px; font-size:0.78rem; color:#666;">
-        ¿Olvidaste tu clave? <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mi%20clave%20para%20mi%20Plan%20de%20Vuelo" target="_blank" style="color:#10b981; font-weight:700; text-decoration:none;">Escríbele a Diego por WhatsApp</a>
+        <span style="font-size: 0.78rem; color: #94a3b8; text-align: center;">
+          ¿Tienes alguna duda puntual antes de agendar tu Sesión Base?
+        </span>
+        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20estuve%20revisando%20tu%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20hacerte%20una%20consulta%20sobre%20la%20Sesi%C3%B3n%20Base%20($35.000%20CLP)." target="_blank" rel="noopener noreferrer" class="btn-tab-step-next" style="background: #10b981; border-color: #10b981; color: #000000; text-decoration: none;">
+          💬 Conversar directo con Diego por WhatsApp →
+        </a>
       </div>
+
+      <script>
+        window.switchProductosSubtab = function(sub) {
+          var map = {
+            base: { panel: 'prod-subpanel-base', btn: 'btn-prod-subtab-base' },
+            planes: { panel: 'prod-subpanel-planes', btn: 'btn-prod-subtab-planes' },
+            faq: { panel: 'prod-subpanel-faq', btn: 'btn-prod-subtab-faq' },
+            pin: { panel: 'prod-subpanel-pin', btn: 'btn-prod-subtab-pin' }
+          };
+          var targetKey = map[sub] ? sub : 'base';
+          Object.keys(map).forEach(function(k) {
+            var p = document.getElementById(map[k].panel);
+            var b = document.getElementById(map[k].btn);
+            if (p) p.style.display = (k === targetKey) ? 'block' : 'none';
+            if (b) {
+              if (k === targetKey) b.classList.add('active');
+              else b.classList.remove('active');
+            }
+          });
+        };
+      </script>
+
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════
-       HUB COMPACTO EN POSITIVO: SINERGIA CON OTRAS PROFESIONES & CIENCIA DE LA ADMINISTRACIÓN
-       ══════════════════════════════════════════════════════════════════ -->
-  <section id="filosofia-desplegable" class="landing-section" style="padding: 18px 0 36px 0; border-top: 1px solid rgba(255,255,255,0.07);">
-    <span id="filosofia"></span>
-    <span id="cuadrante-mercado"></span>
-    <span id="sinergia-profesiones"></span>
-
-    <style>
-      #filosofia-desplegable {
-        padding: 18px 0 36px 0 !important;
-      }
-      .synergy-hub-shell {
-        background: #0a0a0c;
-        border: 1px solid #1f1f24;
-        border-radius: 16px;
-        padding: 18px 20px;
-        max-width: 1160px;
-        margin: 0 auto;
-        box-sizing: border-box;
-      }
-      .synergy-hub-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 10px;
-        padding-bottom: 9px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
+  <!-- ESTILOS Y DATOS DEL SUB-MÓDULO DE SINERGIA PROFESIONAL (PESTAÑA 1 -> SUB-PESTAÑA 4) -->
+  <style>
       .synergy-tabs-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -7367,10 +7798,6 @@
         white-space: nowrap;
       }
       @media (max-width: 768px) {
-        .synergy-hub-shell {
-          padding: 13px 12px;
-          border-radius: 15px;
-        }
         .synergy-tabs-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 5px;
@@ -7412,129 +7839,8 @@
           display: none;
         }
       }
-    </style>
-
-    <div class="container" style="max-width: 1220px; margin: 0 auto; padding: 0 16px;">
-      <div class="synergy-hub-shell">
-        
-        <!-- CABECERA COMPACTA EN POSITIVO -->
-        <div class="synergy-hub-header">
-          <div style="max-width: 720px;">
-            <span class="journey-step-badge cyan" style="margin-bottom: 4px; font-size: 0.63rem; padding: 2px 9px;">
-              🤝 SINERGIA PROFESIONAL · CIENCIA DE LA ADMINISTRACIÓN
-            </span>
-            <h2 style="font-family: var(--font-heading); font-size: clamp(1.06rem, 2.2vw, 1.5rem); font-weight: 800; color: #ffffff; margin: 0; line-height: 1.2;">
-              Cada Profesión es un Aporte: Qué Rescatamos desde la Administración
-            </h2>
-          </div>
-          <p style="font-size: 0.74rem; color: #94a3b8; max-width: 400px; line-height: 1.36; margin: 0;">
-            Honramos el valor de cada disciplina y sumamos el puente práctico de <b style="color:#38bdf8;">Planificar, Organizar, Dirigir y Controlar</b> en tu propio sistema:
-          </p>
-        </div>
-
-        <!-- PESTAÑAS DEL HUB (4 EN FILA EN PC, 2x2 DE 1 LÍNEA EN MÓVIL) -->
-        <div class="synergy-tabs-grid" role="tablist" aria-label="Sinergia con otras profesiones">
-          <button type="button" class="synergy-tab-btn active" style="--syn-accent: #38bdf8;" onclick="selectSynergyProfession(0, this)">
-            <span>🧠</span>
-            <span class="syn-label-full">1. Psicología & Terapia</span>
-            <span class="syn-label-short">1. Psicología</span>
-          </button>
-          <button type="button" class="synergy-tab-btn" style="--syn-accent: #f59e0b;" onclick="selectSynergyProfession(1, this)">
-            <span>🧭</span>
-            <span class="syn-label-full">2. Coaching & Metas</span>
-            <span class="syn-label-short">2. Coaching</span>
-          </button>
-          <button type="button" class="synergy-tab-btn" style="--syn-accent: #10b981;" onclick="selectSynergyProfession(2, this)">
-            <span>🏢</span>
-            <span class="syn-label-full">3. Consultoría & Negocio</span>
-            <span class="syn-label-short">3. Consultoría</span>
-          </button>
-          <button type="button" class="synergy-tab-btn" style="--syn-accent: #c084fc;" onclick="selectSynergyProfession(3, this)">
-            <span>💻</span>
-            <span class="syn-label-full">4. Apps & Tecnología</span>
-            <span class="syn-label-short">4. Tecnología</span>
-          </button>
-        </div>
-
-        <!-- TARJETA INTERACTIVA ÚNICA (OCUPA MÍNIMO ESPACIO EN MÓVIL) -->
-        <div class="synergy-stage-card" id="synergy-stage-card">
-          
-          <div class="synergy-stage-top">
-            <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
-              <span id="syn-icon" style="font-size: 1.25rem; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.35); width: 34px; height: 34px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">🧠</span>
-              <div style="min-width: 0;">
-                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                  <h3 id="syn-title" style="font-family: var(--font-heading); font-size: 0.92rem; font-weight: 800; color: #ffffff; margin: 0; line-height: 1.2;">
-                    Psicología Clínica & Terapia
-                  </h3>
-                  <span id="syn-role-badge" style="font-size: 0.6rem; font-weight: 800; color: #38bdf8; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); padding: 1px 7px; border-radius: 50px; text-transform: uppercase;">
-                    Salud Mental & Mundo Interno
-                  </span>
-                </div>
-                <div id="syn-subtitle" style="font-size: 0.69rem; color: #94a3b8; margin-top: 1px; line-height: 1.25;">
-                  Cuidado clínico, autoconocimiento profundo y bienestar emocional
-                </div>
-              </div>
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 4px; flex-shrink: 0;">
-              <span id="syn-counter" style="font-size: 0.66rem; color: #64748b; font-weight: 700; margin-right: 2px;">1/4</span>
-              <button type="button" onclick="stepSynergyProfession(-1)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #e2e8f0; border-radius: 6px; padding: 3px 7px; font-size: 0.68rem; font-weight: 700; cursor: pointer;" title="Profesión anterior">◀</button>
-              <button type="button" onclick="stepSynergyProfession(1)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #e2e8f0; border-radius: 6px; padding: 3px 7px; font-size: 0.68rem; font-weight: 700; cursor: pointer;" title="Siguiente profesión">▶</button>
-            </div>
-          </div>
-
-          <!-- 3 BLOQUES EN POSITIVO: EL APORTE DE LA PROFESIÓN ➔ LO QUE RESCATAMOS ➔ EL PUENTE DESDE LA ADMINISTRACIÓN -->
-          <div class="synergy-3cols-grid">
-            
-            <div class="synergy-col-box" style="border-top: 2px solid #38bdf8;">
-              <div class="synergy-col-label" style="color: #38bdf8;">
-                <span>💎</span> <span>1. El Aporte Valioso de esta Profesión</span>
-              </div>
-              <p class="synergy-col-text" id="syn-contribution">
-                Espacio clínico irremplazable para sanar tu historia personal, elaborar emociones profundas y cuidar tu salud mental desde la raíz.
-              </p>
-            </div>
-
-            <div class="synergy-col-box" style="border-top: 2px solid #fbbf24;">
-              <div class="synergy-col-label" style="color: #fbbf24;">
-                <span>🤝</span> <span>2. Lo que Rescatamos y Honramos Acá</span>
-              </div>
-              <p class="synergy-col-text" id="syn-rescued">
-                Escucha empática cero juicio, respeto por tus ritmos biológicos/sensoriales (TDAH, TEA o alta demanda) y priorizar siempre tu paz mental.
-              </p>
-            </div>
-
-            <div class="synergy-col-box" style="border-top: 2px solid #10b981;">
-              <div class="synergy-col-label" style="color: #34d399;">
-                <span>🏛️</span> <span>3. Qué Sumamos desde la Administración</span>
-              </div>
-              <p class="synergy-col-text" id="syn-admin-bridge">
-                Mientras la terapia cuida tu <b>mundo interno</b>, nosotros ordenamos tu <b>afuera operativo</b> (168h, prioridades y finanzas) para quitarle peso a tu mente.
-              </p>
-            </div>
-
-          </div>
-
-          <!-- BARRA SÍNTESIS + HERRAMIENTAS SGP -->
-          <div class="synergy-footer-bar" id="syn-footer-bar">
-            <div style="font-size: 0.72rem; color: #e2e8f0; line-height: 1.35;">
-              <strong style="color: #38bdf8;">⚖️ En simple:</strong>
-              <span id="syn-synthesis">El psicólogo cuida tu motor interno; aquí diseñamos el tablero y la hoja de ruta para que tu semana funcione en calma.</span>
-            </div>
-            <div id="syn-tools-wrap" style="display: flex; gap: 4px; flex-wrap: wrap;">
-              <span class="synergy-tool-pill">⏱️ Mapeador 24H</span>
-              <span class="synergy-tool-pill">🛑 Kanban WIP=2</span>
-              <span class="synergy-tool-pill">🌱 Cero Culpa</span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-    <script>
+  </style>
+  <script>
       window.SYNERGY_PROFESSIONS_DATA = [
         {
           icon: "🧠",
@@ -7650,8 +7956,7 @@
         var nextIdx = (window.CURRENT_SYNERGY_IDX + delta + list.length) % list.length;
         window.selectSynergyProfession(nextIdx);
       };
-    </script>
-  </section>
+  </script>
 
 
   <!-- FAQ / PRECIOS FINAL -->
@@ -7783,10 +8088,10 @@
       <span class="footer-logo" style="margin-bottom:0;">Administración Humana</span>
     </div>
     <div class="footer-links" style="margin-top:12px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <a href="#sobre-diego" onclick="scrollToSection('sobre-diego'); return false;">1. Con Quién Cuentas & Método</a>
-      <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;">2. Portal & Demo en Vivo</a>
-      <a href="#sondeos" onclick="scrollToSection('sondeos'); return false;">3. Sondeo Dolores</a>
-      <a href="#productos" onclick="scrollToSection('productos'); return false;">4. Sesión Base ($35k) & Planes</a>
+      <a href="#sobre-diego" onclick="scrollToSection('sobre-diego'); return false;">1. Con Quién Cuentas</a>
+      <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;">2. Plan de Vuelo Demo</a>
+      <a href="#sondeos" onclick="scrollToSection('sondeos'); return false;">3. Sondeo 6 Áreas</a>
+      <a href="#productos" onclick="scrollToSection('productos'); return false;">4. Sesión ($35k) & Planes</a>
       <a href="planes-demo.html" target="_blank" rel="noopener noreferrer">Plan Demo 2.0 ↗</a>
       <a href="dossier.html">Dossier & Casos</a>
       <a href="sondeo.html">Sondeo 360°</a>
@@ -7822,7 +8127,6 @@
             placeholder="Ingresa tu usuario" 
             autocomplete="username"
             style="font-size:0.95rem; padding:12px 14px; border-radius:10px;"
-            autofocus
           />
         </div>
 
@@ -9052,6 +9356,8 @@ Una vez dentro, haz clic en "Mi Plan de Vuelo" en la barra superior o utiliza el
       modal.style.display = 'flex';
       requestAnimationFrame(() => {
         modal.classList.add('active');
+        const uInput = document.getElementById('landing-portal-user');
+        if (uInput) uInput.focus();
         const pinInput = document.getElementById('landing-portal-pin');
         if (pinInput) {
           setTimeout(() => pinInput.focus(), 80);
@@ -9998,15 +10304,22 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
     }
   };
 
-  // ── LISTENER DE SCROLL PARA LA BARRA FLOTANTE ──
+  // ── LISTENER DE SCROLL PARA LA BARRA FLOTANTE (COORDINADO CON PESTAÑAS) ──
   window.addEventListener('scroll', () => {
     const bar = document.getElementById('floating-quick-bar');
-    if (bar) {
-      if (window.scrollY > 320) {
-        bar.classList.add('visible');
-      } else {
-        bar.classList.remove('visible');
-      }
+    const admin = document.getElementById('view-admin');
+    if (!bar) return;
+    const isAdminActive = admin && admin.classList.contains('active') && admin.style.display !== 'none';
+    if (isAdminActive || window.CURRENT_LANDING_TAB === 'sondeos') {
+      bar.classList.remove('visible');
+      bar.style.display = 'none';
+      return;
+    }
+    bar.style.display = '';
+    if (window.scrollY > 320) {
+      bar.classList.add('visible');
+    } else {
+      bar.classList.remove('visible');
     }
   });
 
@@ -10026,21 +10339,19 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
   }
 </script>
 
-<!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (FLOATING QUICK BAR) -->
-<!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (FLOATING QUICK BAR EN PÁGINA CONTINUA) -->
-<!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (FLOATING QUICK BAR EN PÁGINA CONTINUA) -->
+<!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (SINCRONIZADA CON LAS 4 PESTAÑAS) -->
 <div id="floating-quick-bar" class="floating-quick-bar" aria-label="Acceso rápido">
   <button type="button" class="float-bar-btn active primary" data-anchor="sobre-diego" onclick="scrollToSection('sobre-diego');">
-    <span>👤</span> <span class="float-text-full">1. Con Quién Cuentas</span><span class="float-text-short">Diego</span>
+    <span>👤</span> <span class="float-text-full">1. Con Quién Cuentas</span><span class="float-text-short">1. Diego</span>
   </button>
   <button type="button" class="float-bar-btn" data-anchor="arsenal" onclick="scrollToSection('arsenal');">
-    <span>📱</span> <span class="float-text-full">2. Demo en Vivo</span><span class="float-text-short">Demo</span>
+    <span>📱</span> <span class="float-text-full">2. Plan Demo</span><span class="float-text-short">2. Demo</span>
   </button>
   <button type="button" class="float-bar-btn" data-anchor="sondeos" onclick="scrollToSection('sondeos');">
-    <span>⚡</span> <span class="float-text-full">3. Sondeo</span><span class="float-text-short">Sondeo</span>
+    <span>⚡</span> <span class="float-text-full">3. Sondeo 6 Áreas</span><span class="float-text-short">3. Sondeo</span>
   </button>
   <button type="button" class="float-bar-btn" data-anchor="productos" onclick="scrollToSection('productos');">
-    <span>🚀</span> <span class="float-text-full">4. Sesión Base ($35k)</span><span class="float-text-short">$35k</span>
+    <span>🚀</span> <span class="float-text-full">4. Sesión ($35k)</span><span class="float-text-short">4. $35k</span>
   </button>
   <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso" target="_blank" class="float-bar-btn" style="color: #34d399;">
     <span>💬</span> <span class="float-text-full">WhatsApp</span><span class="float-text-short">WA</span>
@@ -10171,14 +10482,60 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
     }
   });
 </script>
-</body>
-</html>
 
 <script>
   // ══════════════════════════════════════════════════════════════════
-  // NAVEGACIÓN EN PÁGINA CONTINUA Y SCROLL SPY
+  // CONTROLADOR MAESTRO DE NAVEGACIÓN POR PESTAÑAS (4 SECCIONES ENFOCADAS)
   // ══════════════════════════════════════════════════════════════════
-  window.scrollToSection = function(anchorId) {
+  window.CURRENT_LANDING_TAB = 'sobre-diego';
+
+  window.resolveLandingTabFromAnchor = function(rawAnchor) {
+    const clean = String(rawAnchor || 'sobre-diego').replace(/^#/, '').trim().toLowerCase();
+    if (['arsenal', 'casos', 'planes-demo', 'modulos', 'demo'].includes(clean)) {
+      return { tab: 'arsenal', subTarget: null, subAction: () => { if (typeof window.switchDemoSubtab === 'function') window.switchDemoSubtab('live'); } };
+    }
+    if (['etapas-demo', 'pasos-demo'].includes(clean)) {
+      return { tab: 'arsenal', subTarget: null, subAction: () => { if (typeof window.switchDemoSubtab === 'function') window.switchDemoSubtab('steps'); } };
+    }
+    if (['sondeos', 'triage', 'diagnostico', 'fugas', 'diagnostico-guiado-se-busca'].includes(clean)) {
+      return { tab: 'sondeos', subTarget: null };
+    }
+    if (['faq-cierre', 'faq-resumen-inversion', 'faq'].includes(clean)) {
+      return { tab: 'productos', subTarget: null, subAction: () => { if (typeof window.switchProductosSubtab === 'function') window.switchProductosSubtab('faq'); } };
+    }
+    if (['planes', 'continuidad', 'planes-continuidad'].includes(clean)) {
+      return { tab: 'productos', subTarget: null, subAction: () => { if (typeof window.switchProductosSubtab === 'function') window.switchProductosSubtab('planes'); } };
+    }
+    if (['pin', 'clientes', 'acceso-pin'].includes(clean)) {
+      return { tab: 'productos', subTarget: null, subAction: () => { if (typeof window.switchProductosSubtab === 'function') window.switchProductosSubtab('pin'); } };
+    }
+    if (['productos', 'precios', 'inversion', 'que', 'el-que'].includes(clean)) {
+      return { tab: 'productos', subTarget: null, subAction: () => { if (typeof window.switchProductosSubtab === 'function') window.switchProductosSubtab('base'); } };
+    }
+    if (['filosofia', 'filosofia-desplegable', 'sinergia-profesiones', 'cuadrante-mercado'].includes(clean)) {
+      return { tab: 'sobre-diego', subTarget: null, subAction: () => { if (typeof window.switchDiegoBoardMode === 'function') window.switchDiegoBoardMode('synergy'); } };
+    }
+    return { tab: 'sobre-diego', subTarget: null };
+  };
+
+  window.refreshDemoIframeHeight = function() {
+    const iframe = document.getElementById('live-demo-iframe');
+    if (!iframe || !iframe.contentWindow) return;
+    [20, 150, 450].forEach(delay => {
+      setTimeout(() => {
+        try {
+          if (typeof iframe.contentWindow.notifyParentIframeHeight === 'function') {
+            iframe.contentWindow.notifyParentIframeHeight();
+          }
+          iframe.contentWindow.dispatchEvent(new Event('resize'));
+        } catch (err) {
+          // Fallback silencioso si aún carga el documento
+        }
+      }, delay);
+    });
+  };
+
+  window.scrollToSection = function(anchorId, skipScroll) {
     const landing = document.getElementById('view-landing');
     const admin = document.getElementById('view-admin');
     if (admin) {
@@ -10190,26 +10547,85 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
       landing.classList.add('active');
     }
 
-    const target = document.getElementById(anchorId) || document.getElementById('sec-' + anchorId);
-    if (target) {
-      const navHeight = 72;
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      history.replaceState(null, null, '#' + anchorId);
+    const adminBtn = document.querySelector('.plat-admin-tab');
+    if (adminBtn) adminBtn.classList.remove('active');
 
-      // Si saltamos directamente a sondeos, actualizar de inmediato la visibilidad del dock
-      const stickyDock = document.getElementById('sticky-expediente-dock');
-      const floatBar = document.getElementById('floating-quick-bar');
-      if (stickyDock && floatBar) {
-        if (anchorId === 'sondeos') {
-          stickyDock.style.display = 'flex';
-          floatBar.style.display = 'none';
+    const resolved = window.resolveLandingTabFromAnchor(anchorId);
+    const activeTab = resolved.tab;
+    const subTargetId = resolved.subTarget;
+    window.CURRENT_LANDING_TAB = activeTab;
+
+    // 1. Mostrar únicamente los paneles pertenecientes a la pestaña activa
+    document.querySelectorAll('.landing-section[data-tab-panel]').forEach(sec => {
+      if (sec.getAttribute('data-tab-panel') === activeTab) {
+        sec.classList.add('tab-panel-active');
+      } else {
+        sec.classList.remove('tab-panel-active');
+      }
+    });
+
+    // 2. Actualizar botones superiores de pestañas y atributos ARIA
+    document.querySelectorAll('.plat-tab-btn[data-anchor]').forEach(btn => {
+      const isMatch = btn.getAttribute('data-anchor') === activeTab;
+      btn.classList.toggle('active', isMatch);
+      btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+    });
+
+    // 3. Actualizar barra flotante rápida inferior
+    document.querySelectorAll('#floating-quick-bar .float-bar-btn[data-anchor]').forEach(btn => {
+      const isMatch = btn.getAttribute('data-anchor') === activeTab;
+      btn.classList.toggle('active', isMatch);
+      btn.classList.toggle('primary', isMatch);
+    });
+
+    // 4. Mostrar el Dock de Métricas/WhatsApp únicamente en Pestaña 3 (Sondeo)
+    const stickyDock = document.getElementById('sticky-expediente-dock');
+    const floatBar = document.getElementById('floating-quick-bar');
+    if (stickyDock) {
+      stickyDock.style.display = (activeTab === 'sondeos') ? 'flex' : 'none';
+    }
+    if (floatBar) {
+      if (activeTab === 'sondeos') {
+        floatBar.classList.remove('visible');
+        floatBar.style.display = 'none';
+      } else {
+        floatBar.style.display = '';
+        floatBar.classList.remove('visible');
+      }
+    }
+
+    // 5. Ejecutar sub-acción interna si el anclaje apunta a una sub-pestaña específica
+    if (typeof resolved.subAction === 'function') {
+      resolved.subAction();
+    }
+
+    // 6. Si se abre la Pestaña 2 (Plan de Vuelo Demo), recalcular altura exacta del iframe en vivo
+    if (activeTab === 'arsenal') {
+      window.refreshDemoIframeHeight();
+    }
+
+    // 6. Actualizar hash de URL limpiamente solo en navegación explícita
+    if (!skipScroll) {
+      const hashSlug = subTargetId || (activeTab === 'sobre-diego' ? 'inicio-diego' : activeTab);
+      try {
+        history.replaceState(null, null, '#' + hashSlug);
+      } catch (e) {}
+    }
+
+    // 7. Posicionar vista al inicio del título de la pestaña (o sub-anclaje específico)
+    if (!skipScroll) {
+      if (subTargetId) {
+        const subEl = document.getElementById(subTargetId);
+        if (subEl) {
+          const navH = 110;
+          const topPos = subEl.getBoundingClientRect().top + window.pageYOffset - navH;
+          window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+          return;
         }
       }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (!subTargetId) {
+      window.scrollTo(0, 0);
     }
   };
 
@@ -10217,6 +10633,8 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
     if (tabId === 'view-admin') {
       const landing = document.getElementById('view-landing');
       const admin = document.getElementById('view-admin');
+      const stickyDock = document.getElementById('sticky-expediente-dock');
+      const floatBar = document.getElementById('floating-quick-bar');
       if (landing) {
         landing.style.display = 'none';
         landing.classList.remove('active');
@@ -10225,6 +10643,18 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
         admin.style.display = 'block';
         admin.classList.add('active');
       }
+      if (stickyDock) stickyDock.style.display = 'none';
+      if (floatBar) {
+        floatBar.classList.remove('visible');
+        floatBar.style.display = 'none';
+      }
+      document.querySelectorAll('.plat-tab-btn[data-anchor]').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      const adminBtn = document.querySelector('.plat-admin-tab');
+      if (adminBtn) adminBtn.classList.add('active');
+
       const isAuth = localStorage.getItem('ah_consultor_auth') === 'true';
       const adminGate = document.getElementById('admin-gatekeeper');
       const adminPanel = document.getElementById('admin-dashboard-content');
@@ -10241,86 +10671,39 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
     }
 
     const anchorMap = {
-      'view-porque': 'hero',
-      'view-como': 'servicio',
+      'view-porque': 'sobre-diego',
+      'view-como': 'sobre-diego',
       'view-que': 'productos',
       'view-sondeos': 'sondeos',
-      'view-landing': 'hero',
+      'view-landing': 'sobre-diego',
       'productos': 'productos',
-      'servicio': 'servicio',
+      'servicio': 'sobre-diego',
       'arsenal': 'arsenal',
-      'casos': 'casos',
+      'casos': 'arsenal',
       'sondeos': 'sondeos'
     };
     const target = anchorMap[tabId] || tabId.replace('view-', '');
     window.scrollToSection(target);
   };
 
-  // ScrollSpy para actualizar botones activos y alternar entre barra de navegación y dock de WhatsApp
-  window.addEventListener('scroll', () => {
-    const sections = ['hero', 'capacidades', 'servicio', 'arsenal', 'casos', 'sondeos', 'productos'];
-    const scrollPos = window.scrollY + 140;
-
-    let currentSec = 'hero';
-    for (const sId of sections) {
-      const el = document.getElementById(sId);
-      if (el && el.offsetTop <= scrollPos) {
-        currentSec = sId;
-      }
-    }
-
-    // Normalizar anclaje activo
-    let activeAnchor = currentSec;
-    if (currentSec === 'hero') activeAnchor = 'capacidades';
-    if (currentSec === 'casos') activeAnchor = 'arsenal';
-
-    document.querySelectorAll('.plat-tab-btn[data-anchor]').forEach(btn => {
-      if (btn.getAttribute('data-anchor') === activeAnchor) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-
-    document.querySelectorAll('#floating-quick-bar .float-bar-btn[data-anchor]').forEach(btn => {
-      if (btn.getAttribute('data-anchor') === activeAnchor) {
-        btn.classList.add('active', 'primary');
-      } else {
-        btn.classList.remove('active', 'primary');
-      }
-    });
-
-    // Coordinación inteligente de barras inferiores para evitar superposición en móvil
-    const sondeosEl = document.getElementById('sondeos');
-    const stickyDock = document.getElementById('sticky-expediente-dock');
-    const floatBar = document.getElementById('floating-quick-bar');
-
-    if (stickyDock && floatBar) {
-      const sondeosTop = sondeosEl ? (sondeosEl.offsetTop - 280) : 999999;
-      if (window.scrollY >= sondeosTop) {
-        // En la zona de Triage/Sondeos: Mostrar dock de expediente de WhatsApp, ocultar barra flotante
-        stickyDock.style.display = 'flex';
-        floatBar.style.display = 'none';
-      } else {
-        // En las secciones superiores: Ocultar dock de WhatsApp, mostrar barra rápida flotante
-        stickyDock.style.display = 'none';
-        if (window.scrollY > 350) {
-          floatBar.style.display = '';
-          floatBar.classList.add('visible');
-        } else {
-          floatBar.classList.remove('visible');
-        }
-      }
+  // Inicialización de pestaña activa según hash URL al cargar y al cambiar hash
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (hash === 'admin') {
+      window.switchPlatformTab('view-admin');
+    } else if (hash) {
+      window.scrollToSection(hash, true);
+    } else {
+      window.scrollToSection('sobre-diego', true);
     }
   });
 
-  // Inicialización de anclaje según hash URL al cargar
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('hashchange', () => {
     const hash = window.location.hash.replace('#', '').toLowerCase();
-    if (hash && hash !== 'admin') {
-      setTimeout(() => {
-        window.scrollToSection(hash);
-      }, 300);
+    if (hash === 'admin') {
+      window.switchPlatformTab('view-admin');
+    } else if (hash) {
+      window.scrollToSection(hash, false);
     }
   });
 
@@ -10445,3 +10828,5 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
   };
 
 </script>
+</body>
+</html>
