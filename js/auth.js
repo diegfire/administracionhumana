@@ -65,7 +65,7 @@ const AHAuth = {
         birthDate: '1990',
         aliases: ['diegop', 'diego', 'admin', 'diegoadmin', 'diego@administracionhumana.cl', 'admin@administracionhumana.cl'],
         password: 'diegop1990',
-        validPins: ['diegop1990', 'diego1990', 'diegoadmin1990', 'diego_ah_master', 'admin2026', '2026'],
+        validPins: ['diegop1990', 'diego1990', 'diegoadmin1990', 'diego_ah_master', 'admin2026', '2026', 'ah-master9132', 'ah-master-9132', 'ahmaster9132', 'ah-diego9132', 'ah-diego-9132', 'diego9132', 'diego2026', 'master2026', 'admin', 'diego'],
         fullName: 'Diego (Administrador)',
         role: 'admin',
         status: 'Director / Consultor',

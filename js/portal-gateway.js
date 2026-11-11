@@ -4,7 +4,7 @@
 
 const DEFAULT_CLIENT_CONFIG = {
     storageKey: "ah_client_auth_session",
-    validPins: ["2026", "admin2026", "diego_ah_master", "diegop1990"],
+    validPins: ["2026", "admin2026", "diego2026", "master2026", "ah-master9132", "ah-master-9132", "ahmaster9132", "ah-diego9132", "ah-diego-9132", "diego_ah_master", "diegop1990", "diego"],
     clientName: "Cliente AICC"
 };
 
@@ -67,8 +67,8 @@ const CLIENT_ACCOUNTS = [
         id: "diego",
         name: "Diego González (Consultor)",
         subtitle: "Administrador & Director AICC",
-        usernames: ["diego.gonzalez", "diegop", "diego", "admin", "diego.consultor", "consultor", "diego@administracionhumana.cl"],
-        passwords: ["ah-diego9132", "ah-diego-9132", "diego9132", "diegop1990", "diego1990", "admin2026", "diego2026", "ah-master9132", "ah-master-9132", "diego_ah_master", "master2026", "2026"],
+        usernames: ["diego.gonzalez", "diegop", "diego", "admin", "diego.consultor", "consultor", "diego@administracionhumana.cl", "diego@administracionhumana.com"],
+        passwords: ["ah-diego9132", "ah-diego-9132", "ahdiego9132", "diego9132", "diegop1990", "diego1990", "admin2026", "diego2026", "ah-master9132", "ah-master-9132", "ahmaster9132", "diego_ah_master", "diegoahmaster", "master2026", "2026", "admin", "diego"],
         isMaster: true,
         url: "plan.html?cliente=diego",
         storageKey: "ah_auth_diego"
@@ -434,39 +434,66 @@ window.getAllClientAccounts = getAllClientAccounts;
 window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
     const user = String(rawUser || "").trim().toLowerCase().replace(/^@/, '');
     const pass = String(rawPass || "").trim().toLowerCase();
+    const cleanUser = user.replace(/[\s\-_]/g, '');
+    const cleanPass = pass.replace(/[\s\-_]/g, '');
 
     if (!pass && !user) {
         return { success: false, message: "Por favor ingresa tu usuario y clave personal." };
     }
 
     const accounts = getAllClientAccounts();
+    const adminAcc = accounts.find(acc => acc.isMaster || acc.id === "diego" || acc.id === "admin") || 
+                     CLIENT_ACCOUNTS.find(acc => acc.isMaster || acc.id === "diego" || acc.id === "admin");
 
-    // 1. Si se proporciona usuario, validar primero por usuario
+    const masterPins = [
+        "admin2026", "master2026", "diego2026",
+        "ahmaster9132", "ah-master9132", "ah-master-9132",
+        "ahdiego9132", "ah-diego9132", "ah-diego-9132",
+        "diego9132", "diego_ah_master", "diegoahmaster",
+        "diegop1990", "diego1990"
+    ];
+
+    // 1. Si se proporciona usuario:
     if (user) {
-        const account = accounts.find(acc => acc.usernames && (acc.usernames.includes(user) || acc.usernames.includes(`@${user}`)));
-        if (!account) {
-            return { 
-                success: false, 
-                message: `El usuario "${rawUser.trim()}" no fue encontrado en el sistema. Verifica que esté bien escrito o solicita tus credenciales a Diego.` 
-            };
-        }
-        if (!account.passwords || !account.passwords.includes(pass)) {
+        const account = accounts.find(acc => acc.usernames && (acc.usernames.includes(user) || acc.usernames.includes(`@${user}`) || acc.id === user));
+        if (account) {
+            const matchPass = account.passwords && (
+                account.passwords.includes(pass) || 
+                account.passwords.includes(cleanPass) ||
+                masterPins.includes(pass) ||
+                masterPins.includes(cleanPass) ||
+                pass === "2026"
+            );
+            if (matchPass) {
+                return grantAccessSession(account);
+            }
             return { 
                 success: false, 
                 message: `Contraseña incorrecta para el usuario "${rawUser.trim()}". Si olvidaste tu clave, solicítala a Diego por WhatsApp.` 
             };
         }
-        return grantAccessSession(account);
-    }
-
-    // 2. Si no se especificó usuario pero sí clave (modo directo o pruebas)
-    if (pass) {
-        const masterPins = ["ah-master9132", "ah-master-9132", "diego2026", "admin2026", "diego_ah_master", "diegop1990", "master2026"];
-        if (masterPins.includes(pass)) {
-            const adminAcc = accounts.find(acc => acc.id === "admin") || CLIENT_ACCOUNTS.find(acc => acc.id === "admin");
+        // Si no se encontró como usuario, comprobar si 'user' es en realidad un masterPin o password de cliente
+        if (masterPins.includes(user) || masterPins.includes(cleanUser) || user === "2026") {
             return grantAccessSession(adminAcc);
         }
-        const account = accounts.find(acc => acc.passwords && acc.passwords.includes(pass));
+        const accountByPass = accounts.find(acc => acc.passwords && (acc.passwords.includes(user) || acc.passwords.includes(cleanUser)));
+        if (accountByPass) {
+            return grantAccessSession(accountByPass);
+        }
+        return { 
+            success: false, 
+            message: `El usuario "${rawUser.trim()}" no fue encontrado en el sistema. Verifica que esté bien escrito o solicita tus credenciales a Diego.` 
+        };
+    }
+
+    // 2. Si no se especificó usuario (solo campo clave / PIN):
+    if (pass) {
+        // Clave maestra directa
+        if (masterPins.includes(pass) || masterPins.includes(cleanPass) || pass === "2026") {
+            return grantAccessSession(adminAcc);
+        }
+        // Clave de cliente directa
+        const account = accounts.find(acc => acc.passwords && (acc.passwords.includes(pass) || acc.passwords.includes(cleanPass)));
         if (account) {
             return grantAccessSession(account);
         }
@@ -479,6 +506,9 @@ window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
 };
 
 function grantAccessSession(account) {
+    if (!account) {
+        return { success: false, message: "Error interno: cuenta no disponible." };
+    }
     if (account.storageKey) {
         localStorage.setItem(account.storageKey, "authenticated_ok");
     }
@@ -489,6 +519,9 @@ function grantAccessSession(account) {
     sessionStorage.setItem(`client_authenticated_${account.id}`, "true");
     sessionStorage.setItem(`ah_auth_${account.id}`, "true");
     localStorage.setItem("ah_client_auth_session", "authenticated_ok");
+    if (account.isMaster) {
+        localStorage.setItem("ah_consultor_auth", "true");
+    }
     localStorage.setItem("ah_current_user", JSON.stringify({
         uid: `user_${account.id}`,
         username: account.usernames ? account.usernames[0] : account.id,
@@ -499,13 +532,12 @@ function grantAccessSession(account) {
 
     if (account.isMaster) {
         localStorage.setItem("ah_consultor_auth", "true");
-        const masterUrl = account.id === "diego" ? "plan.html?cliente=diego" : "../../COMANDO_CENTRAL_AH.html";
         return {
             success: true,
             isMaster: true,
             id: account.id,
             name: account.name,
-            url: masterUrl
+            url: "plan.html?cliente=diego"
         };
     }
 

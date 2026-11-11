@@ -1,0 +1,83 @@
+{
+  "cliente": {
+    "id": "diego",
+    "nombre": "Diego Alberto González Yáñez",
+    "avatar": "🚀",
+    "usuario": "diego.gonzalez",
+    "pin": "AH-Diego9132",
+    "subtitulo": "Del Perfeccionismo a la Venta Activa y Soberanía Total",
+    "tagline": "Consultor & Estratega • Operaciones & Vida",
+    "rol_principal": "Consultor & Estratega de Operaciones • Fundador de Administración Humana",
+    "whatsapp": "+56975590132",
+    "email": "contacto@administracionhumana.com",
+    "ciudad": "Concepción, Chile",
+    "estado": "Piloto Fundador / Cliente Cero",
+    "fechaInicio": "2026-09-20"
+  },
+  "diagnostico": {
+    "resumen_humano": "Diego sostiene la arquitectura integral de Administración Humana, el marketing y operaciones de Don Diego Vapor y el costeo de Risalfajores, junto a la crianza de Roma Galia y Matías. Su mayor desafío es el cuello de botella por rumiación previa al lanzamiento y la dispersión multipotencial. El Plan de Vuelo 2.0 activa su foco monotarea (WIP=2), blindaje financiero 50/30/20 y venta activa de Sesiones de Despegue a $35k.",
+    "stats": [
+      {
+        "valor": "WIP = 2",
+        "etiqueta": "Límite Monotarea",
+        "color": "#10b981",
+        "sub": "Cero parálisis por análisis"
+      },
+      {
+        "valor": "$813.000",
+        "etiqueta": "Piso Gastos Fijos",
+        "color": "#f59e0b",
+        "sub": "Paz financiera verificada"
+      },
+      {
+        "valor": "4 Frentes",
+        "etiqueta": "Proyectos Clave",
+        "color": "#38bdf8",
+        "sub": "AH • Don Diego • Ris • Crianza"
+      },
+      {
+        "valor": "$35.000",
+        "etiqueta": "Sesión Despegue",
+        "color": "#c084fc",
+        "sub": "Oferta activa de caja"
+      }
+    ]
+  },
+  "diagnostico_inicial": {
+    "dolor_principal": "Cuello de botella por perfeccionismo previo a la venta activa y sobrecarga de frentes multipotenciales.",
+    "frentes_activos": [
+      "Administración Humana (Consultoría 1 a 1, Planes de Vuelo, Sesiones de Despegue)",
+      "Don Diego Vapor y Extracción (Marketing, Ventas, Redes)",
+      "Risalfajores (Costos ManteMagic, Producción)",
+      "Crianza y Cuidados (Roma Galia y Matías)"
+    ],
+    "horas_fuga_estimadas": "12-15 h/sem en rumiación y pulido de herramientas no publicadas",
+    "solucion_inmediata": "Sesión de Despegue a $35.000 CLP como motor de caja rápida y testing de módulos en su propio Plan de Vuelo."
+  },
+  "finanzas": {
+    "arriendo": 504520,
+    "pension_matias": 200000,
+    "cuentas_basicas": 98000,
+    "gastos_fijos_totales": 813000,
+    "meta_semanal_caja": 300000,
+    "ingreso_meta_mensual": 1200000,
+    "distribucion_503020": {
+      "necesidades_50": 600000,
+      "deseos_30": 360000,
+      "ahorro_deuda_20": 240000
+    },
+    "tarifa_minima_hora": 12000
+  },
+  "modulos_activos": [
+    "seguridad_pin",
+    "diagnostico_estructura",
+    "mapeador_24h",
+    "kanban_gtd_wip2",
+    "matriz_eisenhower",
+    "foda_came",
+    "finanzas_503020",
+    "triangulacion_roles",
+    "inventario_cero_culpa",
+    "ia_chatgpt_prompts_puente"
+  ]
+}

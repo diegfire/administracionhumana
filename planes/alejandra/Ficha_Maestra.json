@@ -1,0 +1,164 @@
+{
+  "cliente": {
+    "id": "alejandra",
+    "nombre": "Alejandra Mattei",
+    "nombre_literario": "Juana Mattei",
+    "avatar": "🖋️🦉",
+    "usuario": "alejandra.mattei",
+    "pin": "AH-Mattei6251",
+    "subtitulo": "De la Falsa Insuficiencia a la Soberanía Intelectual y Familiar",
+    "tagline": "Investigación Doctoral • Maternidad Presente • Creación Literaria",
+    "edad": 33,
+    "ciudad": "Oviedo, Principado de Asturias, España",
+    "rol_principal": "Investigadora en Filosofía de la Ciencia, Psicopedagoga & Escritora",
+    "ultima_actualizacion": "2026-09-15"
+  },
+  "modulos_activos": [
+    "seguridad_pin",
+    "diagnostico_estructura",
+    "triangulacion_roles",
+    "mapeador_24h",
+    "time_blocking_flexible",
+    "kanban_gtd_wip2",
+    "matriz_eisenhower",
+    "inventario_resultados",
+    "investigacion_doctorado_obra",
+    "logistica_familiar_tomas",
+    "finanzas_503020",
+    "hub_imprimibles_maestro",
+    "whatsapp_directo",
+    "laboratorio_ritma_ah"
+  ],
+  "categorias_gestion": [
+    "01_Perfil_y_Diagnostico",
+    "02_Gestion_Operativa_y_Metas",
+    "03_Finanzas_y_Presupuesto",
+    "04_Investigacion_Doctorado_y_Obra",
+    "04_Imprimibles_Fisicos"
+  ],
+  "diagnostico": {
+    "resumen_humano": "Alejandra es una mujer brillante, interdisciplinaria y comprometida: madre de Tomás (12-13 años), investigadora admitida en el doctorado de Filosofía de la Ciencia en la Universidad de Oviedo, psicopedagoga y novelista/poeta. Se encuentra frente a un sprint crítico al 12 de octubre de 2026 donde vencen las postulaciones a una beca doctoral de 4 años y un trabajo de 1 año (8 a 16h). Su principal fricción no es la falta de disciplina, sino la 'falsa insuficiencia': hiperocuparse porque siente que nunca hace lo suficiente, a pesar de sostener un volumen gigantesco de compromisos vitales, académicos y creativos. La intervención de AH se enfoca en Time Blocking quirúrgico, GTD con límite de tareas en curso, Matriz de Eisenhower y un Inventario de Resultados diario para que su mente descanse sin culpa.",
+    "stats": [
+      {
+        "valor": "12 Octubre",
+        "etiqueta": "Sprint Crítico (27 Días)",
+        "color": "#ef4444",
+        "sub": "Cierre Beca Doctorado (4 años) + Trabajo (1 año)"
+      },
+      {
+        "valor": "30 h/sem",
+        "etiqueta": "Ventana Matutina de Foco",
+        "color": "#10b981",
+        "sub": "08:00 a 14:00 (Lunes a Viernes)"
+      },
+      {
+        "valor": "3 Libros + 1 Novela",
+        "etiqueta": "Obra Prolífica Publicada",
+        "color": "#f59e0b",
+        "sub": "Poesía, dramaturgia y novela FpN"
+      },
+      {
+        "valor": "Jueves Tarde",
+        "etiqueta": "Ritual Sagrado Madre-Hijo",
+        "color": "#3b82f6",
+        "sub": "Balance semanal y escucha con Tomás"
+      }
+    ],
+    "mapeador_24h_actual": {
+      "nombre": "Semana Base Alejandra (Foco Matutino + Logística Tomás + Balance Jueves)",
+      "total_horas": 168,
+      "distribucion": {
+        "sueno_recarga": 52.5,
+        "investigacion_doctorado": 30.0,
+        "crianza_logistica_tomas": 28.0,
+        "logistica_hogar_cocina": 14.0,
+        "creacion_literaria_obra": 10.0,
+        "huerta_naturaleza_salud": 14.0,
+        "friccion_insuficiencia": 19.5
+      },
+      "cinco_ejes": [
+        { "id": 1, "nombre": "Alejandra Corporal", "enfoque": "Descanso biológico, sueño reparador, alimentación consciente, caminatas y deporte (esgrima/gimnasio)" },
+        { "id": 2, "nombre": "Mamá Presente", "enfoque": "Crianza de Tomás, logística escolar, acompañamiento a karate/piano y jueves de balance afectivo mutuo" },
+        { "id": 3, "nombre": "Investigadora Doctoral", "enfoque": "Universidad de Oviedo, propuesta metodológica de tesis, filosofía de la ciencia y cultura científica" },
+        { "id": 4, "nombre": "Escritora (Juana Mattei)", "enfoque": "Segunda novela en gestación, estructuración de poemarios y filosofía para niños" },
+        { "id": 5, "nombre": "Gestora Inmigrante", "enfoque": "Trámites en España, huerta comunitaria quincenal, ahorro para licencia de conducir y arraigo" }
+      ]
+    }
+  },
+  "rutina_tomas": {
+    "edad": 13,
+    "colegio": "Lunes a Viernes 08:00 a 14:00",
+    "actividades": [
+      { "dia": "Lunes", "hora": "17:00 a 19:00", "actividad": "Karate" },
+      { "dia": "Martes", "hora": "17:00", "actividad": "Piano" },
+      { "dia": "Miércoles", "hora": "17:00 a 19:00", "actividad": "Karate" },
+      { "dia": "Jueves", "hora": "Tarde Libre", "actividad": "🌟 Encuentro & Evaluación Semanal Madre-Hijo" },
+      { "dia": "Viernes", "hora": "17:00 a 19:00", "actividad": "Karate" },
+      { "dia": "Sábado", "hora": "Mañana", "actividad": "Esgrima (Alejandra proyecta sumarse)" },
+      { "dia": "Fines de Semana Quincenal", "hora": "Variable", "actividad": "Huerta Comunitaria Familiar" }
+    ]
+  },
+  "kanban_gtd": {
+    "todo": [
+      {
+        "id": "a1",
+        "text": "Recopilar firmas y avales burocráticos para la postulación a la Beca Doctoral",
+        "tag": "Doctorado"
+      },
+      {
+        "id": "a2",
+        "text": "Formalizar carpeta de antecedentes para convocatoria de trabajo de 1 año (8 a 16h)",
+        "tag": "Trabajo"
+      },
+      {
+        "id": "a3",
+        "text": "Preparar el ritual de evaluación del jueves con Tomás (preguntas guía)",
+        "tag": "Familia"
+      },
+      {
+        "id": "a4",
+        "text": "Estructurar índice y sinopsis para postulación de la segunda novela",
+        "tag": "Literatura"
+      }
+    ],
+    "in_progress": [
+      {
+        "id": "a5",
+        "text": "Redactar la propuesta de investigación y programa de trabajo para el 12 de Octubre",
+        "tag": "Doctorado"
+      },
+      {
+        "id": "a6",
+        "text": "Registrar en el Inventario de Resultados los logros de cada jornada (3 min nocturnos)",
+        "tag": "Hábitos"
+      }
+    ],
+    "done": [
+      {
+        "id": "a7",
+        "text": "Admisión formal en el Doctorado en Investigaciones Humanísticas (Univ. de Oviedo)",
+        "tag": "Doctorado"
+      },
+      {
+        "id": "a8",
+        "text": "Publicación de primera novela y ponencia en Congreso de Filosofía para Niños",
+        "tag": "Literatura"
+      },
+      {
+        "id": "a9",
+        "text": "Envío de audios de contexto y arranque del Plan de Vuelo 2.0 con Diego",
+        "tag": "AH"
+      }
+    ]
+  },
+  "finanzas": {
+    "modelo": "Regla 50/30/20 & Dos Escenarios",
+    "estado": "En transición activa",
+    "metas_ahorro": [
+      "Obtención de Licencia de Conducir en España",
+      "Fondo de resguardo para búsqueda de vivienda definitiva"
+    ],
+    "escenario_a": "Beca Doctoral 4 años (dedicación 100% a investigación, ingresos estables de investigación)",
+    "escenario_b": "Trabajo 1 año (08:00 a 16:00) + Avance de tesis doctoral en bloque nocturno de 2 horas"
+  }
+}

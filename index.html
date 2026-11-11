@@ -9081,9 +9081,28 @@ window.handleAdminGateLogin = function(e) {
   const errorBox = document.getElementById('admin-gate-error');
   if (!pinInput) return;
   const pin = pinInput.value.trim().toLowerCase();
+  const cleanPin = pin.replace(/[\s\-_]/g, '');
 
-  const validMasterPins = ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990", "master2026"];
-  if (validMasterPins.includes(pin)) {
+  const validMasterPins = [
+    "2026",
+    "admin2026",
+    "diego2026",
+    "master2026",
+    "ah-master9132",
+    "ah-master-9132",
+    "ahmaster9132",
+    "ah-diego9132",
+    "ah-diego-9132",
+    "ahdiego9132",
+    "diego9132",
+    "diego_ah_master",
+    "diegoahmaster",
+    "diegop1990",
+    "diego1990",
+    "diego",
+    "admin"
+  ];
+  if (validMasterPins.includes(pin) || validMasterPins.includes(cleanPin)) {
     localStorage.setItem("ah_consultor_auth", "true");
     localStorage.setItem("ah_client_auth_session", "authenticated_ok");
     const adminGate = document.getElementById('admin-gatekeeper');

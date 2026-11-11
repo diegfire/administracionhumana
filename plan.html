@@ -2213,8 +2213,8 @@
             // Intento 1: Fetch a Ficha_Maestra.json física en disco o dentro del repo
             if (window.location.protocol.startsWith("http")) {
                 const candidatePaths = [
-                    CLIENT_JSON_PATHS[cid],
-                    `planes/${cid}/Ficha_Maestra.json`
+                    `planes/${cid}/Ficha_Maestra.json`,
+                    CLIENT_JSON_PATHS[cid]
                 ].filter(Boolean);
                 for (const path of candidatePaths) {
                     try {
@@ -2558,18 +2558,20 @@
                 clientAccount = CLIENT_ACCOUNTS.find(a => a.id === currentClientId);
             }
 
+            const masterPins = [
+                "2026", "admin2026", "master2026", "diego2026",
+                "ah-master9132", "ah-master-9132", "ahmaster9132",
+                "ah-diego9132", "ah-diego-9132", "ahdiego9132",
+                "diego9132", "diego_ah_master", "diegoahmaster",
+                "diegop1990", "diego1990", "diego", "admin"
+            ];
+
             const allowedPins = [
                 expectedPin,
                 expectedPin.replace(/[^a-z0-9]/g, ''),
                 currentClientId,
                 `${currentClientId}2026`,
-                "2026",
-                "admin2026",
-                "diego2026",
-                "ah-master9132",
-                "ah-master-9132",
-                "diego_ah_master",
-                "diegop1990"
+                ...masterPins
             ];
 
             if (clientAccount) {
@@ -2599,7 +2601,6 @@
                 localStorage.setItem("ah_client_auth_session", "authenticated_ok");
 
                 // Si fue clave de consultor, habilitar sesión de consultor
-                const masterPins = ["ah-master9132", "ah-master-9132", "admin2026", "diego2026", "diego_ah_master", "diegop1990"];
                 if (masterPins.includes(val) || masterPins.includes(cleanVal)) {
                     localStorage.setItem("ah_consultor_auth", "true");
                 }

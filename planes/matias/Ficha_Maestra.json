@@ -367,5 +367,33 @@
       "id": "ac_5",
       "acuerdo": "Apagado Nocturno (21:30): Entrega de dispositivos móviles para blindar 8 horas de sueño reparador."
     }
-  ]
+  ],
+  "voley_rendimiento": {
+    "cancha": "18m x 9m, red a 2.43m (varones)",
+    "formato": "6 vs 6, Rally Point System (Sets 1-4 a 25 pts, 5to set a 15 pts con diferencia de 2)",
+    "posiciones_zonas": {
+      "zona_4": "Delantero Izquierdo - Punta Receptor (Outside Hitter)",
+      "zona_3": "Delantero Centro - Central (Middle Blocker)",
+      "zona_2": "Delantero Derecho - Opuesto / Armador",
+      "zona_5": "Zaguero Izquierdo - Defensa diagonal",
+      "zona_6": "Zaguero Centro - Defensa profunda / Líbero",
+      "zona_1": "Zaguero Derecho - Saque y Defensa de línea"
+    },
+    "reglas_oro": [
+      "Máximo 3 toques por equipo (el bloqueo NO cuenta como toque)",
+      "Rotación en sentido horario tras recuperar el saque (side-out)",
+      "Invasión y contacto con la red prohibidos",
+      "Zagueros no pueden atacar sobre la red si saltan dentro de la zona de 3m",
+      "Balón que toca la línea es DENTRO"
+    ],
+    "tips_clave": [
+      "Rutina fija de 3 botes antes del saque para regular pulsaciones",
+      "Plataforma de antebrazos inmóvil (la fuerza viene de las piernas)",
+      "Triángulo de diamante sobre la frente para toque de dedos suave",
+      "Carrera de remate de 3 pasos con resorte vertical y latigazo de muñeca",
+      "Penetrar la red con dedos firmes y abiertos en el bloqueo",
+      "Sacar la voz en cada jugada (¡Mía!, ¡Voy!, ¡Bloqueo!)",
+      "Protocolo de reseteo mental en 3 segundos tras cada error"
+    ]
+  }
 }
