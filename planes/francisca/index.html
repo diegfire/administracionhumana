@@ -1223,9 +1223,75 @@
             flex-direction: column;
             gap: 6px;
         }
+
+        /* LIGHTBOX MODAL & PREVIEW DIDÁCTICA */
+        #lightbox-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            cursor: zoom-out;
+            box-sizing: border-box;
+        }
+        #lightbox-modal.active { display: flex; animation: fadeIn 0.25s ease; }
+        #lightbox-img {
+            max-width: 92vw; max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(244,63,94,0.2);
+            border: 1px solid rgba(255,255,255,0.15);
+            object-fit: contain;
+        }
+        #lightbox-close {
+            position: absolute; top: 20px; right: 25px;
+            color: #ffffff; font-size: 2.2rem;
+            background: transparent; border: none;
+            cursor: pointer; line-height: 1;
+            z-index: 1000000;
+        }
+        .image-preview {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 0.75rem;
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+        .image-preview img {
+            max-height: 200px;
+            max-width: 100%;
+            border-radius: 8px;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+            object-fit: contain;
+        }
+        .image-preview img:hover {
+            transform: scale(1.02);
+        }
+        .image-preview p {
+            font-size: 0.73rem;
+            color: #94a3b8;
+            margin: 0.45rem 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- LIGHTBOX MODAL PARA DIAGRAMAS DIDÁCTICOS -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="Ampliación de Herramienta Didáctica">
+    </div>
 
     <!-- OVERLAY DE SEGURIDAD PORTAL GATEWAY -->
     <div id="client-auth-overlay" class="client-auth-overlay">
@@ -1497,6 +1563,12 @@
         <div id="tab-eisenhower" class="tab-content">
             <div class="card" style="background:#0a0a0e; border:1px solid var(--border); border-radius:16px; padding:1.5rem;">
                 
+                <!-- PREVIEW IMAGEN DIDÁCTICA CON LIGHTBOX -->
+                <div class="image-preview">
+                    <img src="assets/img/herramientas/Matriz de Eisenhower.webp" data-fallback="assets/img/herramientas/Matriz de Eisenhower.png" alt="Matriz de Eisenhower Diagrama Didáctico" onclick="openLightbox(this.src)">
+                    <p><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama metodológico</p>
+                </div>
+
                 <!-- TUTORIAL EXPLICATIVO DE EISENHOWER EN EL CONTEXTO DE FRANCISCA -->
                 <div class="tutorial-box">
                     <h4><i class="fa-solid fa-graduation-cap" style="color:var(--rose);"></i> Tutorial Didáctico: Cómo usar la Matriz de Eisenhower en tu vida diaria</h4>
@@ -1575,6 +1647,12 @@
         <div id="tab-gtd" class="tab-content">
             <div class="card" style="background:#0a0a0e; border:1px solid var(--border); border-radius:16px; padding:1.5rem;">
                 
+                <!-- PREVIEW IMAGEN DIDÁCTICA CON LIGHTBOX -->
+                <div class="image-preview">
+                    <img src="assets/img/herramientas/Getting Things Done (GTD).webp" data-fallback="assets/img/herramientas/Getting Things Done (GTD).png" alt="Getting Things Done Diagrama Didáctico" onclick="openLightbox(this.src)">
+                    <p><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama metodológico</p>
+                </div>
+
                 <!-- TUTORIAL GTD ADAPTADO A FRANCISCA -->
                 <div class="tutorial-box">
                     <h4><i class="fa-solid fa-inbox" style="color:var(--purple);"></i> Metodología GTD: Vaciado Mental & El Límite Sagrado WIP = 2</h4>
@@ -1638,6 +1716,12 @@
         <div id="tab-pomodoro" class="tab-content">
             <div class="card" style="background:#0a0a0e; border:1px solid var(--border); border-radius:16px; padding:1.5rem;">
                 
+                <!-- PREVIEW IMAGEN DIDÁCTICA CON LIGHTBOX -->
+                <div class="image-preview">
+                    <img src="assets/img/herramientas/Tecnica Pomodoro.webp" data-fallback="assets/img/herramientas/Tecnica Pomodoro.png" alt="Técnica Pomodoro & Paso Cero Diagrama Didáctico" onclick="openLightbox(this.src)">
+                    <p><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama metodológico</p>
+                </div>
+
                 <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
                     <div>
                         <span style="background:rgba(244,63,94,0.15); color:var(--rose); font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:50px; text-transform:uppercase; letter-spacing:0.5px; border:1px solid rgba(244,63,94,0.3);">
@@ -2251,6 +2335,12 @@
                     <p style="margin-bottom:0;">
                         <strong>La Regla de Oro Dolssett:</strong> Este emprendimiento <strong>no es un local 24/7</strong>. Es un <em>taller de autor por preventa semanal</em>. Se toman pedidos de lunes a miércoles, se hornea en lote los jueves y se entrega <strong>únicamente los viernes</strong>. Así generas ingresos limpios sin hipotecar tu paz mental ni tu familia.
                     </p>
+                </div>
+
+                <!-- PREVIEW IMAGEN DIDÁCTICA CON LIGHTBOX -->
+                <div class="image-preview">
+                    <img src="assets/img/herramientas/Estrategia Oceano Azul.webp" data-fallback="assets/img/herramientas/Estrategia Oceano Azul.jpg" alt="Estrategia Diferencial Océano Azul Diagrama Didáctico" onclick="openLightbox(this.src)">
+                    <p><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama metodológico</p>
                 </div>
 
                 <!-- SECCIÓN 1: MODELO CANVAS INTERACTIVO (9 BLOQUES) -->
@@ -3793,6 +3883,23 @@
                 verdictEl.innerHTML = "👉 Veredicto actual: <strong>Fase 1 (Validación Artesanal Ágil)</strong>. No gastes en abogados ni contadores todavía; enfócate en llenar el viernes de pedidos y proteger tu margen > 50%.";
             }
         }
+
+        // LIGHTBOX MODAL PARA DIAGRAMAS DIDÁCTICOS
+        function openLightbox(src) {
+            const modal = document.getElementById("lightbox-modal");
+            const img = document.getElementById("lightbox-img");
+            if (modal && img) {
+                img.src = src;
+                modal.classList.add("active");
+            }
+        }
+        function closeLightbox() {
+            const modal = document.getElementById("lightbox-modal");
+            if (modal) modal.classList.remove("active");
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
 
         // ════════════════════════════════════════════════════════════════════════
         // INICIALIZACIÓN GENERAL DEL PORTAL

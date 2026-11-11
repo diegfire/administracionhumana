@@ -20,7 +20,6 @@
     
     <!-- Catálogo Canónico de 40 Herramientas AICC -->
     <script src="js/catalogo_40_herramientas.js"></script>
-    <script src="../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/catalogo_40_herramientas.js"></script>
     <script src="js/aicc-guides-data.js?v=3.5"></script>
 
     <style>
@@ -1612,7 +1611,7 @@
                     </div>
 
                     <!-- Contenedor dinámico de checklist en 2 columnas -->
-                    <div id="master-checklist-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.2rem;">
+                    <div id="master-checklist-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:1.2rem;">
                         <!-- Inyectado por renderMasterChecklist() -->
                     </div>
                 </div>
@@ -1625,7 +1624,7 @@
                 </div>
 
                 <!-- CONTENEDOR DINÁMICO DE TARJETAS DE HERRAMIENTAS -->
-                <div id="herramientas-cards-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(350px, 1fr)); gap:1.25rem;"></div>
+                <div id="herramientas-cards-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap:1.25rem;"></div>
             </div>
         </div>
 
@@ -2789,6 +2788,77 @@
                 if (t.carpeta) catalogMap[t.carpeta.toLowerCase()] = t;
             });
 
+            // MAPA Y RESOLVEDOR UNIVERSAL DE IMÁGENES DIDÁCTICAS (GITHUB PAGES + LOCAL)
+            const TOOL_ASSET_IMAGES = {
+                diagnostico_estructura: 'La Rueda de la vida',
+                mapeador_24h: 'Time Blocking',
+                time_blocking_flexible: 'Time Blocking',
+                kanban_gtd_wip2: 'Kanban',
+                gtd_vaciado_mental: 'Getting Things Done (GTD)',
+                matriz_eisenhower: 'Matriz de Eisenhower',
+                finanzas_503020: 'La Regla 50 30 20',
+                tecnica_pomodoro_foco: 'Tecnica Pomodoro',
+                tecnica_pomodoro: 'Tecnica Pomodoro',
+                pomodoro: 'Tecnica Pomodoro',
+                batching_procesamiento_lotes: 'Batching',
+                batching: 'Batching',
+                protocolo_cocina_adelantada: 'Batching',
+                metodologia_5s: 'Metodologia 5S',
+                kaizen_mejora_continua: 'Kaizen',
+                kaizen: 'Kaizen',
+                principio_pareto_80_20: 'Principio de Pareto',
+                inventario_cero_culpa: 'Inventario de Resultados',
+                inventario_resultados: 'Inventario de Resultados',
+                protocolo_paso_cero: 'Tecnica Pomodoro',
+                paso_cero: 'Tecnica Pomodoro',
+                triangulacion_roles: 'ROLES DE BELBIN',
+                arquetipos_energia: '10_Sobrecarga_Cognitiva',
+                fondo_reserva_paz: 'La Regla 50 30 20',
+                paquetizacion_servicios_mes: 'Estrategia Oceano Azul',
+                foda_came: 'Analisis FODA',
+                foda: 'Analisis FODA',
+                oceano_azul_diferencial: 'Estrategia Oceano Azul',
+                circulo_dorado: 'Circulo Dorado',
+                metodo_smart: 'Metodo SMART',
+                metodo_okr: 'Metodo OKR',
+                analisis_pestel_macroentorno: 'Analisis PESTEL',
+                cinco_fuerzas_porter: 'Las 5 fuerzas de Porter',
+                plan_estrategico_hitos: 'Plan Estrategico',
+                piramide_minto: 'Piramide de Minto',
+                principio_mece: 'Principio MECE',
+                design_thinking: 'Design Thinking',
+                scamper: 'SCAMPER',
+                mind_mapping: 'Mind Mapping',
+                diagrama_ishikawa: 'Diagrama de Ishikawa',
+                cinco_porques: 'Los 5 Porques',
+                ventana_johari_puntos_ciegos: 'La Ventana de Johari',
+                feedback_sbi_conversaciones: 'Feedback SBI',
+                matriz_raci: 'Matriz RACI',
+                raci: 'Matriz RACI',
+                modelo_grow: 'Modelo GROW',
+                modelo_adkar: 'Modelo Adkar',
+                ocho_pasos_kotter: 'Los 8 Pasos de Kotter',
+                modelo_tuckman_transicion: 'Modelo Tuckman',
+                roles_equipo_belbin: 'ROLES DE BELBIN',
+                evaluacion_360: 'Evaluacion 360',
+                matriz_9_box: 'Matriz 9-Box',
+                enps_compromiso: 'eNPS',
+                dnc_personal_aprendizaje: 'Diagnostico de Necesidades de Capacitacion (DNC)'
+            };
+
+            function resolveToolAssetImage(key, rawUrl) {
+                let baseName = TOOL_ASSET_IMAGES[key];
+                if (!baseName && rawUrl) {
+                    const clean = rawUrl.split('/').pop().replace(/\.[^/.]+$/, "");
+                    if (clean && clean !== 'undefined') baseName = clean;
+                }
+                if (!baseName) baseName = 'Time Blocking';
+                return {
+                    webp: `assets/img/herramientas/${baseName}.webp`,
+                    fallback: `assets/img/herramientas/${baseName}.png`
+                };
+            }
+
             let resolvedTools = [];
             const seenCodes = new Set();
             const clientId = currentClientId || "cliente";
@@ -2798,6 +2868,7 @@
                 data.herramientas_activas.forEach(h => {
                     const canonicalKey = CANONICAL_ALIASES[h.id] || h.id;
                     const matched = catalogMap[canonicalKey] || catalogMap[h.id] || catalogMap[(h.codigo || '').toLowerCase()];
+                    const imgObj = resolveToolAssetImage(canonicalKey || h.id, h.img_url || (matched ? matched.img_url : ''));
                     resolvedTools.push({
                         id: h.id || (matched ? matched.id : 'tool_' + Math.random()),
                         numero: h.numero,
@@ -2807,8 +2878,8 @@
                         nombre: h.nombre || (matched ? matched.nombre_oficial : 'Herramienta'),
                         subtitulo: h.subtitulo || (matched ? matched.nombre_humano : ''),
                         descripcion: h.descripcion || (matched ? (matched.intencion_clinica ? matched.intencion_clinica.que_cura : matched.pregunta_diagnostica) : ''),
-                        img_url: h.img_url || (matched ? matched.img_url : ''),
-                        img_fallback: h.img_fallback || (matched ? matched.img_url : ''),
+                        img_url: imgObj.webp,
+                        img_fallback: imgObj.fallback,
                         tutorial_html: h.tutorial_html || (matched ? `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.5rem;"><i class="fa-solid fa-graduation-cap"></i> ¿Qué cura en tu día a día?:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${(matched.intencion_clinica && matched.intencion_clinica.que_cura) || matched.pregunta_diagnostica || ''}</p>` : ''),
                         checklist: h.checklist || (matched && matched.protocolo_paso_cero ? [matched.protocolo_paso_cero] : []),
                         app_url: h.app_url || (matched ? matched.app_url : ''),
@@ -2854,6 +2925,7 @@
                     if (tool.intencion_clinica && tool.intencion_clinica.contraindicado_si) {
                         extraTutorial += `<p style="font-size:0.75rem; color:#fca5a5; margin:0.35rem 0 0 0; line-height:1.4;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Contraindicado si:</strong> ${escapeHtml(tool.intencion_clinica.contraindicado_si)}</p>`;
                     }
+                    const imgObj = resolveToolAssetImage(canonicalKey || tool.id, tool.img_url);
                     resolvedTools.push({
                         id: tool.id,
                         codigo: tool.codigo,
@@ -2862,8 +2934,8 @@
                         nombre: tool.nombre_oficial,
                         subtitulo: tool.nombre_humano,
                         descripcion: queCura,
-                        img_url: tool.img_url,
-                        img_fallback: tool.img_url,
+                        img_url: imgObj.webp,
+                        img_fallback: imgObj.fallback,
                         tutorial_html: `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.4rem;"><i class="fa-solid fa-graduation-cap"></i> ¿Qué cura en tu día a día?:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${escapeHtml(queCura)}</p>${extraTutorial}`,
                         checklist: toolChecklist,
                         app_url: tool.app_url,
@@ -2883,6 +2955,7 @@
                     if (tool && !seenCodes.has(tool.codigo)) {
                         seenCodes.add(tool.codigo);
                         const queCura = (tool.intencion_clinica && tool.intencion_clinica.que_cura) ? tool.intencion_clinica.que_cura : (tool.pregunta_diagnostica || tool.protocolo_paso_cero || "Herramienta clínica prescrita.");
+                        const imgObj = resolveToolAssetImage(modId, tool.img_url);
                         resolvedTools.push({
                             id: tool.id,
                             codigo: tool.codigo,
@@ -2891,9 +2964,23 @@
                             nombre: tool.nombre_oficial,
                             subtitulo: tool.nombre_humano,
                             descripcion: queCura,
-                            img_url: tool.img_url,
-                            img_fallback: tool.img_url,
+                            img_url: imgObj.webp,
+                            img_fallback: imgObj.fallback,
                             tutorial_html: `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.4rem;"><i class="fa-solid fa-graduation-cap"></i> ¿Qué cura en tu día a día?:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${escapeHtml(queCura)}</p>`,
+                            checklist: [
+                                `Paso Cero: ${tool.protocolo_paso_cero || 'Implementar 1 micro-acción de 5 minutos.'}`,
+                                `Aplicación: Completar la matriz o plantilla de ${tool.nombre_humano}.`,
+                                `Cierre: Registrar la victoria en el Inventario Cero Culpa.`
+                            ],
+                            app_url: tool.app_url,
+                            imprimible_url: tool.print_url,
+                            imprimible_label: 'Ver Imprimible →',
+                            guia_url: tool.guide_url,
+                            guia_label: 'Ver Guía Completa →'
+                        });
+                    }
+                });
+            }
                             checklist: [
                                 `Paso Cero: ${tool.protocolo_paso_cero || 'Implementar 1 micro-acción de 5 minutos.'}`,
                                 `Aplicación: Completar la matriz o plantilla de ${tool.nombre_humano}.`,

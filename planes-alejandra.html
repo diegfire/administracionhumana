@@ -140,6 +140,21 @@
             .tab-btn:last-child:nth-child(odd) {
                 grid-column: span 1 !important;
             }
+            .grid-2 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            .tool-card-rich {
+                padding: 1rem !important;
+            }
+            .image-preview img {
+                max-height: 180px !important;
+            }
+            .hero-banner {
+                padding: 1.2rem !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
         }
 
         /* HERO & STATS BOXES */
@@ -332,9 +347,159 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
             z-index: 99999;
         }
+
+        /* LIGHTBOX MODAL & PREVIEW DIDÁCTICA */
+        #lightbox-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            cursor: zoom-out;
+            box-sizing: border-box;
+        }
+        #lightbox-modal.active { display: flex; animation: fadeIn 0.25s ease; }
+        #lightbox-img {
+            max-width: 92vw; max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(139,92,246,0.2);
+            border: 1px solid rgba(255,255,255,0.15);
+            object-fit: contain;
+        }
+        #lightbox-close {
+            position: absolute; top: 20px; right: 25px;
+            color: #ffffff; font-size: 2.2rem;
+            background: transparent; border: none;
+            cursor: pointer; line-height: 1;
+            z-index: 1000000;
+        }
+        .image-preview {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 0.75rem;
+            text-align: center;
+            margin-bottom: 0.85rem;
+        }
+        .image-preview img {
+            max-height: 200px;
+            max-width: 100%;
+            border-radius: 8px;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+            object-fit: contain;
+        }
+        .image-preview img:hover {
+            transform: scale(1.02);
+        }
+        .image-preview p {
+            font-size: 0.73rem;
+            color: #94a3b8;
+            margin: 0.45rem 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .tool-context-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.07) 0%, rgba(15, 23, 42, 0.5) 100%);
+            border-left: 3px solid var(--accent-purple);
+            border-radius: 0 10px 10px 0;
+            padding: 1rem 1.15rem;
+            font-size: 0.86rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 0.85rem;
+        }
+        .tool-context-box h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #c084fc;
+            margin: 0 0 0.45rem 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .tool-checklist-wrapper {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            padding: 1.1rem;
+        }
+        .tool-checklist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.85rem;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tool-checklist-title {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tool-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-progress-track {
+            width: 90px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .tool-progress-fill {
+            height: 100%;
+            background: #10b981;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .tool-progress-text {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #10b981;
+            min-width: 45px;
+            text-align: right;
+        }
+        .btn-tool-reset {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 0.74rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s ease;
+        }
+        .btn-tool-reset:hover {
+            color: #f87171;
+        }
     </style>
 </head>
 <body>
+
+    <!-- LIGHTBOX MODAL PARA DIAGRAMAS DIDÁCTICOS -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="Ampliación de Herramienta Didáctica">
+    </div>
 
     <!-- OVERLAY DE SEGURIDAD ESTÁNDAR (PORTAL GATEWAY) -->
     <div id="client-auth-overlay" class="client-auth-overlay">
@@ -536,113 +701,352 @@
              TAB 2: KIT DE HERRAMIENTAS & CHECKLISTS
              ========================================================================= -->
         <div id="tab-herramientas" class="tab-content">
-            <div class="diagnostic-box" style="border-left-color:#10b981; background:linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(15,23,42,0.7) 100%);">
-                <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; margin-bottom:0.4rem;">
-                    🛠️ Kit de Herramientas Didácticas & Protocolos Clínicos
-                </h3>
-                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5; margin:0;">
-                    Micro-hábitos y protocolos de rescate operativo con memorización de progreso en tu equipo para superar la inercia sin agotamiento.
+            <!-- TUTORIAL BOX MAESTRO DE LA SUITE DE ALEJANDRA -->
+            <div class="tutorial-box" style="border-left: 4px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%); margin-bottom: 1.5rem; padding: 1.3rem 1.4rem; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.25);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:0.6rem;">
+                    <div>
+                        <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.15); color:#10b981; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:20px;">
+                            <i class="fa-solid fa-graduation-cap"></i> Metodología AICC • Sistema Clínico Personalizado
+                        </span>
+                        <h3 style="font-family:var(--font-display); font-size:1.3rem; font-weight:800; color:#fff; margin:0.4rem 0 0 0;">
+                            🛠️ Kit de Herramientas Didácticas & Protocolos Clínicos de Alejandra
+                        </h3>
+                    </div>
+                    <span style="font-size:0.78rem; color:#94a3b8; font-weight:600;"><i class="fa-solid fa-bolt"></i> 4 Protocolos Anti-Fricción</span>
+                </div>
+                <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.55; margin:0 0 0.85rem 0;">
+                    Alejandra: cada uno de tus 4 protocolos fue prescrito para desarmar un punto crítico en tu vida como <strong>investigadora doctoral en Filosofía de la Ciencia, madre de Tomás y escritora</strong>. Cada tarjeta cuenta con su <strong>diagrama metodológico ampliable con zoom</strong>, su <strong>tutorial contextualizado a tu realidad</strong> y su <strong>checklist interactivo persistente</strong> con memoria en tu equipo.
                 </p>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px; font-size:0.8rem;">
+                    <div style="background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.25); padding:8px 12px; border-radius:8px;">
+                        <strong style="color:#a78bfa;"><i class="fa-solid fa-stopwatch"></i> 1. Paso Cero (5 min):</strong> Vence la inercia sin autoexigencia estéril.
+                    </div>
+                    <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); padding:8px 12px; border-radius:8px;">
+                        <strong style="color:#34d399;"><i class="fa-solid fa-utensils"></i> 2. Cocina Adelantada:</strong> Blinda tus mañanas resolviendo el almuerzo antes.
+                    </div>
+                    <div style="background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25); padding:8px 12px; border-radius:8px;">
+                        <strong style="color:#60a5fa;"><i class="fa-solid fa-brain"></i> 3. Ventana de Oro:</strong> 90 min de foco profundo sin celulares ni interrupciones.
+                    </div>
+                    <div style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25); padding:8px 12px; border-radius:8px;">
+                        <strong style="color:#f87171;"><i class="fa-solid fa-moon"></i> 4. Cierre Cero Culpa:</strong> Apaga la mente y registra 3 victorias antes de dormir.
+                    </div>
+                </div>
             </div>
 
             <div class="grid-2">
                 <!-- Herramienta 1: Protocolo Paso Cero -->
                 <div class="tool-card-rich">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <h4 style="color:#fff; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0;">
-                            ⏱️ Protocolo Paso Cero (5 Minutos)
-                        </h4>
-                        <span style="background:rgba(139,92,246,0.15); color:#a78bfa; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px;">Baja Energía</span>
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background:rgba(139,92,246,0.15); color:#a78bfa; border:1px solid rgba(139,92,246,0.3);">
+                                <i class="fa-solid fa-bolt"></i> Baja Energía & Fricción
+                            </span>
+                            <h3 style="margin-top:0.35rem; color:#fff; font-family:var(--font-display); font-size:1.15rem; font-weight:800;">
+                                ⏱️ 1. Protocolo Paso Cero (5 Minutos de Micro-Arranque)
+                            </h3>
+                            <p style="font-size:0.8rem; color:#a78bfa; margin:2px 0 0 0; font-weight:600;">Gestión de la Inercia & Desactivación de la Resistencia Prefrontal</p>
+                        </div>
                     </div>
-                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.45;">Para vencer la resistencia ante un documento burocrático o texto denso: abre el archivo y programa solo 5 minutos.</p>
-                    <div class="tool-checklist-items" id="checklist-paso-cero">
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_p0_1')">
-                            <span>1. Abrir el archivo Word de la Propuesta de Tesis sin la obligación de escribir perfecto.</span>
-                        </label>
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_p0_2')">
-                            <span>2. Poner temporizador de 5 minutos en el celular (modo avión).</span>
-                        </label>
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_p0_3')">
-                            <span>3. Escribir 3 frases semilla o ajustar 1 subtítulo. Al sonar el timbre, eres libre de parar o continuar.</span>
-                        </label>
+
+                    <!-- PREVIEW IMAGEN DIDÁCTICA CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/Tecnica Pomodoro.webp" data-fallback="assets/img/herramientas/Tecnica Pomodoro.png" alt="Protocolo Paso Cero Diagrama Didáctico" onclick="openLightbox(this.src)">
+                        <p><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama didáctico</p>
+                    </div>
+
+                    <!-- TUTORIAL CLÍNICO Y APLICACIÓN PRÁCTICA -->
+                    <div class="tool-context-box">
+                        <h4><i class="fa-solid fa-graduation-cap"></i> ¿Para qué le sirve a Alejandra? (Tutorial & Propósito)</h4>
+                        <p>
+                            Alejandra: en tu perfil con múltiples responsabilidades, cuando la energía física y mental baja tras el cuidado o una noche corta, tu mente magnifica la tarea académica como una montaña imposible (<em>"tengo que escribir la propuesta completa hoy"</em>). Esa expectativa desmedida activa la parálisis por sobrecarga y detona culpa.
+                        </p>
+                        <p>
+                            <strong>El Protocolo Paso Cero hackea tu cerebro:</strong> no te pide terminar la tesis, solo te pide <em>abrir el archivo y sostener 5 minutos con temporizador</em>. Al saber que tienes permiso explícito de parar al sonar la alarma, la corteza prefrontal desactiva la alarma de estrés y la inercia del movimiento hace que la mayoría de las veces continúes escribiendo con fluidez y cero presión.
+                        </p>
+                        <div style="background:rgba(0,0,0,0.3); border-radius:8px; padding:10px 12px; margin-top:8px;">
+                            <strong style="color:#c084fc; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px;">
+                                <i class="fa-solid fa-play"></i> Tutorial de aplicación en 3 pasos:
+                            </strong>
+                            <ol style="margin:6px 0 0 1.2rem; padding:0; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+                                <li><strong>Sin pretensión de perfección:</strong> Abre el documento Word de la Beca o Tesis sin la obligación de que quede bonito o definitivo.</li>
+                                <li><strong>Temporizador visible:</strong> Programa 5 minutos exactos en reloj o teléfono (modo no molestar).</li>
+                                <li><strong>Victoria mínima viable:</strong> Escribe 3 frases semilla, ajusta un párrafo o anota una referencia. Al sonar el timbre, eres 100% libre de parar o continuar.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- CHECKLIST ASOCIADO INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #a78bfa;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-ale_p0" style="background:#a78bfa;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-ale_p0" style="color:#a78bfa;">0/3 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items" id="checklist-paso-cero">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_p0" data-key="ale_chk_p0_1" onchange="toggleCheck(this, 'ale_chk_p0_1')">
+                                <span>1. Abrir el archivo Word de la Propuesta de Tesis sin la obligación de escribir perfecto.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_p0" data-key="ale_chk_p0_2" onchange="toggleCheck(this, 'ale_chk_p0_2')">
+                                <span>2. Poner temporizador de 5 minutos en el celular (modo avión/no molestar).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_p0" data-key="ale_chk_p0_3" onchange="toggleCheck(this, 'ale_chk_p0_3')">
+                                <span>3. Escribir 3 frases semilla o ajustar 1 subtítulo. Al sonar el timbre, eres libre de parar o continuar.</span>
+                            </label>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.8rem; font-size:0.75rem;">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('ale_p0')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Herramienta 2: Cocina Adelantada -->
                 <div class="tool-card-rich">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <h4 style="color:#fff; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0;">
-                            🍳 Protocolo Cocina Adelantada
-                        </h4>
-                        <span style="background:rgba(16,185,129,0.15); color:#34d399; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px;">Blindaje Matutino</span>
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3);">
+                                <i class="fa-solid fa-utensils"></i> Blindaje Matutino & Batching
+                            </span>
+                            <h3 style="margin-top:0.35rem; color:#fff; font-family:var(--font-display); font-size:1.15rem; font-weight:800;">
+                                🍳 2. Protocolo Cocina Adelantada (Batch Cooking)
+                            </h3>
+                            <p style="font-size:0.8rem; color:#34d399; margin:2px 0 0 0; font-weight:600;">Procesamiento por Lotes para Blindar las Mañanas 08:00 a 14:00</p>
+                        </div>
                     </div>
-                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.45;">Protege tus mañanas de 08:00 a 14:00 asegurando que la comida de Tomás esté resuelta desde la noche anterior.</p>
-                    <div class="tool-checklist-items" id="checklist-cocina">
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_c1')">
-                            <span>1. Dejar comida cocinada en recipientes de vidrio la noche anterior (19:30 – 20:30).</span>
-                        </label>
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_c2')">
-                            <span>2. Revisar merienda y agua de Tomás para el colegio antes de dormir.</span>
-                        </label>
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_c3')">
-                            <span>3. A las 14:00: solo calentar y sentarse a disfrutar de la charla con Tomás sin estrés.</span>
-                        </label>
+
+                    <!-- PREVIEW IMAGEN DIDÁCTICA CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/Batching.webp" data-fallback="assets/img/herramientas/Batching.png" alt="Protocolo Cocina Adelantada Diagrama Didáctico" onclick="openLightbox(this.src)">
+                        <p><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama didáctico</p>
+                    </div>
+
+                    <!-- TUTORIAL CLÍNICO Y APLICACIÓN PRÁCTICA -->
+                    <div class="tool-context-box" style="border-left-color:#10b981; background:linear-gradient(135deg, rgba(16,185,129,0.07) 0%, rgba(15,23,42,0.5) 100%);">
+                        <h4 style="color:#34d399;"><i class="fa-solid fa-graduation-cap"></i> ¿Para qué le sirve a Alejandra? (Tutorial & Propósito)</h4>
+                        <p>
+                            Alejandra: tu mayor ventana de foco cognitivo para investigar y redactar en Filosofía de la Ciencia ocurre entre las <strong>08:30 y las 14:00</strong>. Si a las 12:30 tienes que cortar la investigación para cocinar, picar verduras y lavar, tu tren de pensamiento se quiebra, Tomás percibe el apuro y el almuerzo se vuelve una fuente de estrés en lugar de un encuentro amoroso.
+                        </p>
+                        <p>
+                            <strong>La Cocina Adelantada aplica la ciencia del Batching (procesamiento por lotes):</strong> resolver la comida la noche anterior (o en tandas de 2-3 días) en recipientes herméticos de vidrio. En tus mañanas la cocina no existe como preocupación: a las 14:00 solo calientas 3 minutos y te sientas con Tomás a almorzar, conversar y disfrutar con presencia plena y mente relajada.
+                        </p>
+                        <div style="background:rgba(0,0,0,0.3); border-radius:8px; padding:10px 12px; margin-top:8px;">
+                            <strong style="color:#34d399; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px;">
+                                <i class="fa-solid fa-play"></i> Tutorial de aplicación en 3 pasos:
+                            </strong>
+                            <ol style="margin:6px 0 0 1.2rem; padding:0; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+                                <li><strong>Lote Nocturno (19:30 – 20:30):</strong> Cocinar la porción del día siguiente mientras compartes la cena o escuchas música; refrigerar en vidrio hermético.</li>
+                                <li><strong>Mochila y merienda lista:</strong> Dejar merienda, agua y materiales de Tomás listos antes de dormir para eliminar carreras matutinas.</li>
+                                <li><strong>Calentar y desconectar a las 14:00:</strong> Almuerzo listo en 3 minutos. Cero ollas sucias en la mañana y atención total a Tomás.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- CHECKLIST ASOCIADO INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #10b981;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-ale_c" style="background:#10b981;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-ale_c" style="color:#10b981;">0/3 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items" id="checklist-cocina">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_c" data-key="ale_chk_c1" onchange="toggleCheck(this, 'ale_chk_c1')">
+                                <span>1. Dejar comida cocinada en recipientes de vidrio la noche anterior (19:30 – 20:30).</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_c" data-key="ale_chk_c2" onchange="toggleCheck(this, 'ale_chk_c2')">
+                                <span>2. Revisar merienda y agua de Tomás para el colegio antes de dormir.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_c" data-key="ale_chk_c3" onchange="toggleCheck(this, 'ale_chk_c3')">
+                                <span>3. A las 14:00: solo calentar y sentarse a disfrutar de la charla con Tomás sin estrés.</span>
+                            </label>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.8rem; font-size:0.75rem;">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('ale_c')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Herramienta 3: Ventana de Oro 90 min -->
                 <div class="tool-card-rich">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <h4 style="color:#fff; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0;">
-                            ⏳ Ventana de Oro de Foco Profundo (90 min)
-                        </h4>
-                        <span style="background:rgba(59,130,246,0.15); color:#60a5fa; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px;">Doctorado Puro</span>
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background:rgba(59,130,246,0.15); color:#60a5fa; border:1px solid rgba(59,130,246,0.3);">
+                                <i class="fa-solid fa-brain"></i> Deep Work • Doctorado Puro
+                            </span>
+                            <h3 style="margin-top:0.35rem; color:#fff; font-family:var(--font-display); font-size:1.15rem; font-weight:800;">
+                                ⏳ 3. Ventana de Oro de Foco Profundo (Time Blocking 90 min)
+                            </h3>
+                            <p style="font-size:0.8rem; color:#60a5fa; margin:2px 0 0 0; font-weight:600;">Bloques Ininterrumpidos para la Beca y la Propuesta Doctoral</p>
+                        </div>
                     </div>
-                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.45;">Bloques ininterrumpidos en tu mañana (08:30 – 10:00 y 10:30 – 12:00) para el avance de la propuesta.</p>
-                    <div class="tool-checklist-items" id="checklist-oro">
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_vo1')">
-                            <span>1. Celular en otra habitación o en modo silencio absoluto.</span>
-                        </label>
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_vo2')">
-                            <span>2. Una sola pestaña abierta: documento de trabajo de la Beca Doctoral.</span>
-                        </label>
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_vo3')">
-                            <span>3. Pausa activa de 15 min con estiramiento y té antes del segundo bloque.</span>
-                        </label>
+
+                    <!-- PREVIEW IMAGEN DIDÁCTICA CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/Time Blocking.webp" data-fallback="assets/img/herramientas/Time Blocking.png" alt="Ventana de Oro Diagrama Didáctico" onclick="openLightbox(this.src)">
+                        <p><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama didáctico</p>
+                    </div>
+
+                    <!-- TUTORIAL CLÍNICO Y APLICACIÓN PRÁCTICA -->
+                    <div class="tool-context-box" style="border-left-color:#3b82f6; background:linear-gradient(135deg, rgba(59,130,246,0.07) 0%, rgba(15,23,42,0.5) 100%);">
+                        <h4 style="color:#60a5fa;"><i class="fa-solid fa-graduation-cap"></i> ¿Para qué le sirve a Alejandra? (Tutorial & Propósito)</h4>
+                        <p>
+                            Alejandra: una propuesta de investigación doctoral en Filosofía de la Ciencia exige inmersión conceptual profunda y ensamblaje de tesis rigurosas. Si trabajas con el celular encendido al lado o atendiendo mensajes cada 10 minutos, cada interrupción te cuesta <strong>23 minutos de reconcentración</strong> (Ley de Carlson / Task Switching), dejando tu mente exhausta con la sensación de no haber avanzado nada.
+                        </p>
+                        <p>
+                            <strong>La Ventana de Oro de 90 min es tu santuario intelectual:</strong> fijar dos bloques matutinos intocables (08:30 – 10:00 y 10:30 – 12:00) en modo avión estricto. 90 minutos de foco puro equivalen a un día entero de trabajo fragmentado; te permiten avanzar a paso firme hacia el hito del 12 de Octubre sin hipotecar tus tardes con Tomás.
+                        </p>
+                        <div style="background:rgba(0,0,0,0.3); border-radius:8px; padding:10px 12px; margin-top:8px;">
+                            <strong style="color:#60a5fa; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px;">
+                                <i class="fa-solid fa-play"></i> Tutorial de aplicación en 3 pasos:
+                            </strong>
+                            <ol style="margin:6px 0 0 1.2rem; padding:0; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+                                <li><strong>Blindaje ambiental:</strong> Celular en otra habitación o en modo silencio absoluto/no molestar. Cero pestañas de correo o noticias abiertas.</li>
+                                <li><strong>Sola-ejecución doctoral:</strong> Una única pestaña o archivo Word en pantalla: redactar, fichar fuentes primarias o estructurar bibliografía.</li>
+                                <li><strong>Pausa activa de recarga (15 min):</strong> Al terminar los 90 min, levantarse de la silla, tomar agua o té y estirar el cuerpo sin tocar pantallas antes del siguiente bloque.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- CHECKLIST ASOCIADO INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #60a5fa;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-ale_vo" style="background:#3b82f6;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-ale_vo" style="color:#60a5fa;">0/3 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items" id="checklist-oro">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_vo" data-key="ale_chk_vo1" onchange="toggleCheck(this, 'ale_chk_vo1')">
+                                <span>1. Celular en otra habitación o en modo silencio absoluto.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_vo" data-key="ale_chk_vo2" onchange="toggleCheck(this, 'ale_chk_vo2')">
+                                <span>2. Una sola pestaña abierta: documento de trabajo de la Beca Doctoral.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_vo" data-key="ale_chk_vo3" onchange="toggleCheck(this, 'ale_chk_vo3')">
+                                <span>3. Pausa activa de 15 min con estiramiento y té antes del segundo bloque.</span>
+                            </label>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.8rem; font-size:0.75rem;">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('ale_vo')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Herramienta 4: Cierre Sagrado 23:00 -->
                 <div class="tool-card-rich">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <h4 style="color:#fff; font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin:0;">
-                            🌙 Cierre de Jornada Cero Culpa (22:45)
-                        </h4>
-                        <span style="background:rgba(239,68,68,0.15); color:#f87171; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px;">Higiene del Sueño</span>
+                    <div class="tool-header-rich">
+                        <div class="tool-title-group">
+                            <span class="tool-meta-badge" style="background:rgba(239,68,68,0.15); color:#f87171; border:1px solid rgba(239,68,68,0.3);">
+                                <i class="fa-solid fa-moon"></i> Higiene del Sueño & Cero Culpa
+                            </span>
+                            <h3 style="margin-top:0.35rem; color:#fff; font-family:var(--font-display); font-size:1.15rem; font-weight:800;">
+                                🌙 4. Cierre de Jornada Cero Culpa (Inventario 22:45)
+                            </h3>
+                            <p style="font-size:0.8rem; color:#f87171; margin:2px 0 0 0; font-weight:600;">Desconexión Cognitiva & Apagado de la Falsa Insuficiencia</p>
+                        </div>
                     </div>
-                    <p style="font-size:0.84rem; color:#94a3b8; line-height:1.45;">Cierre mental para impedir que la cabeza siga trabajando en la cama.</p>
-                    <div class="tool-checklist-items" id="checklist-cierre">
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_cr1')">
-                            <span>1. Escribir 3 victorias en la pestaña de Inventario de Resultados o libreta.</span>
-                        </label>
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_cr2')">
-                            <span>2. Apagar computador y alejar pantallas del velador a las 23:00.</span>
-                        </label>
-                        <label class="tool-check-item">
-                            <input type="checkbox" onchange="toggleCheck(this, 'ale_chk_cr3')">
-                            <span>3. Respirar 3 veces profundo y soltar el control: "Lo hecho hoy fue suficiente".</span>
-                        </label>
+
+                    <!-- PREVIEW IMAGEN DIDÁCTICA CON LIGHTBOX -->
+                    <div class="image-preview">
+                        <img src="assets/img/herramientas/Inventario de Resultados.webp" data-fallback="assets/img/herramientas/Inventario de Resultados.jpg" alt="Inventario Cero Culpa Diagrama Didáctico" onclick="openLightbox(this.src)">
+                        <p><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar diagrama didáctico</p>
+                    </div>
+
+                    <!-- TUTORIAL CLÍNICO Y APLICACIÓN PRÁCTICA -->
+                    <div class="tool-context-box" style="border-left-color:#ef4444; background:linear-gradient(135deg, rgba(239,68,68,0.07) 0%, rgba(15,23,42,0.5) 100%);">
+                        <h4 style="color:#f87171;"><i class="fa-solid fa-graduation-cap"></i> ¿Para qué le sirve a Alejandra? (Tutorial & Propósito)</h4>
+                        <p>
+                            Alejandra: tu principal punto de fuga no es la falta de capacidad, sino la <strong>voz de falsa insuficiencia</strong> que a las 23:00 te susurra: <em>"no leíste suficiente filosofía, no avanzaste tantas páginas como querías, deberías seguir trabajando en la cama"</em>. Eso te roba el sueño, fragmenta tus horas de descanso y te hace despertar con fatiga acumulada.
+                        </p>
+                        <p>
+                            <strong>El Cierre Cero Culpa es tu frontera sagrada entre el trabajo y la vida:</strong> la mente no para por fuerza de voluntad, sino cuando le entregas evidencia palpable de que el día concluyó. Registrar 3 victorias (1 académica, 1 de maternidad y 1 de cuidado personal) cierra el ciclo de Zeigarnik y te da el permiso de soltar el control y descansar 8 horas limpias para estar entera con Tomás.
+                        </p>
+                        <div style="background:rgba(0,0,0,0.3); border-radius:8px; padding:10px 12px; margin-top:8px;">
+                            <strong style="color:#f87171; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px;">
+                                <i class="fa-solid fa-play"></i> Tutorial de aplicación en 3 pasos:
+                            </strong>
+                            <ol style="margin:6px 0 0 1.2rem; padding:0; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+                                <li><strong>Vaciado de 3 victorias:</strong> Registrar en la pestaña de Inventario o tu libreta 3 cosas concretas que sí resolviste hoy con éxito.</li>
+                                <li><strong>Apagado de pantallas a las 22:45:</strong> Computador cerrado y celular cargando lejos del velador para permitir la producción natural de melatonina.</li>
+                                <li><strong>Anclaje somático de cierre:</strong> Respirar profundo 3 veces y repetir tu anclaje clínico: <em>"Lo hecho hoy fue suficiente; mañana continúo desde este punto firme"</em>.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- CHECKLIST ASOCIADO INTERACTIVO & PERSISTENTE -->
+                    <div class="tool-checklist-wrapper">
+                        <div class="tool-checklist-header">
+                            <span class="tool-checklist-title">
+                                <i class="fa-solid fa-list-check" style="color: #f87171;"></i> Checklist de Aplicación Práctica
+                            </span>
+                            <div class="tool-progress-container">
+                                <div class="tool-progress-track">
+                                    <div class="tool-progress-fill" id="progress-fill-ale_cr" style="background:#ef4444;"></div>
+                                </div>
+                                <span class="tool-progress-text" id="progress-text-ale_cr" style="color:#f87171;">0/3 (0%)</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-checklist-items" id="checklist-cierre">
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_cr" data-key="ale_chk_cr1" onchange="toggleCheck(this, 'ale_chk_cr1')">
+                                <span>1. Escribir 3 victorias en la pestaña de Inventario de Resultados o libreta.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_cr" data-key="ale_chk_cr2" onchange="toggleCheck(this, 'ale_chk_cr2')">
+                                <span>2. Apagar computador y alejar pantallas del velador a las 23:00.</span>
+                            </label>
+                            <label class="tool-check-item">
+                                <input type="checkbox" data-tool="ale_cr" data-key="ale_chk_cr3" onchange="toggleCheck(this, 'ale_chk_cr3')">
+                                <span>3. Respirar 3 veces profundo y soltar el control: "Lo hecho hoy fue suficiente".</span>
+                            </label>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.8rem; font-size:0.75rem;">
+                            <span style="color: #64748b;"><i class="fa-solid fa-cloud-arrow-up"></i> Guardado en este equipo</span>
+                            <button type="button" class="btn-tool-reset" onclick="resetToolChecklist('ale_cr')">
+                                <i class="fa-solid fa-rotate-left"></i> Restablecer
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2203,7 +2607,52 @@ A partir de la web de Administración Humana y de mi contexto específico:
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // PERSISTENCIA DE CHECKLISTS EN LOCALSTORAGE
+        // LIGHTBOX MODAL PARA DIAGRAMAS DIDÁCTICOS
+        function openLightbox(src) {
+            const modal = document.getElementById("lightbox-modal");
+            const img = document.getElementById("lightbox-img");
+            if (modal && img) {
+                img.src = src;
+                modal.classList.add("active");
+            }
+        }
+        function closeLightbox() {
+            const modal = document.getElementById("lightbox-modal");
+            if (modal) modal.classList.remove("active");
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // PERSISTENCIA DE CHECKLISTS EN LOCALSTORAGE & PROGRESS BARS
+        function updateToolProgress(toolId) {
+            const items = document.querySelectorAll(`input[data-tool="${toolId}"]`);
+            if (!items.length) return;
+            let checkedCount = 0;
+            items.forEach(cb => { if (cb.checked) checkedCount++; });
+            const percent = Math.round((checkedCount / items.length) * 100);
+            const fill = document.getElementById(`progress-fill-${toolId}`);
+            const text = document.getElementById(`progress-text-${toolId}`);
+            if (fill) fill.style.width = percent + '%';
+            if (text) text.innerText = `${checkedCount}/${items.length} (${percent}%)`;
+        }
+
+        function updateAllToolProgress() {
+            ['ale_p0', 'ale_c', 'ale_vo', 'ale_cr'].forEach(updateToolProgress);
+        }
+
+        function resetToolChecklist(toolId) {
+            const items = document.querySelectorAll(`input[data-tool="${toolId}"]`);
+            items.forEach(cb => {
+                cb.checked = false;
+                cb.closest('.tool-check-item')?.classList.remove('completed');
+                const key = cb.getAttribute('data-key');
+                if (key) localStorage.removeItem(key);
+            });
+            updateToolProgress(toolId);
+            showToast("Checklist restablecido para esta semana");
+        }
+
         function toggleCheck(checkbox, storageKey) {
             const item = checkbox.closest('.tool-check-item');
             if (checkbox.checked) {
@@ -2213,23 +2662,20 @@ A partir de la web de Administración Humana y de mi contexto específico:
                 item.classList.remove('completed');
                 localStorage.removeItem(storageKey);
             }
+            const toolId = checkbox.getAttribute('data-tool');
+            if (toolId) updateToolProgress(toolId);
             showToast("¡Progreso actualizado y guardado!");
         }
 
         function restoreChecklists() {
             document.querySelectorAll('.tool-check-item input[type="checkbox"]').forEach(cb => {
-                const onclickAttr = cb.getAttribute('onchange');
-                if (onclickAttr) {
-                    const match = onclickAttr.match(/'([^']+)'/);
-                    if (match && match[1]) {
-                        const key = match[1];
-                        if (localStorage.getItem(key) === 'true') {
-                            cb.checked = true;
-                            cb.closest('.tool-check-item')?.classList.add('completed');
-                        }
-                    }
+                const key = cb.getAttribute('data-key') || (cb.getAttribute('onchange') && cb.getAttribute('onchange').match(/'([^']+)'/)?.[1]);
+                if (key && localStorage.getItem(key) === 'true') {
+                    cb.checked = true;
+                    cb.closest('.tool-check-item')?.classList.add('completed');
                 }
             });
+            updateAllToolProgress();
         }
 
         // TOAST NOTIFICATIONS

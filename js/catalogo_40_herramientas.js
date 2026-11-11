@@ -16,7 +16,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/05_BIENESTAR_Y_FINANZAS/La Rueda de la Vida/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/05_BIENESTAR_Y_FINANZAS/La Rueda de la Vida/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/05_BIENESTAR_Y_FINANZAS/La Rueda de la Vida/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/05_BIENESTAR_Y_FINANZAS/La Rueda de la Vida/La Rueda de la Vida.png"
+    "img_url": "assets/img/herramientas/La Rueda de la vida.webp",
+    "img_fallback": "assets/img/herramientas/La Rueda de la vida.png"
   },
   {
     "id": "mapeador_24h",
@@ -34,7 +35,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Mapeador Horarios 24H/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Mapeador Horarios 24H/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Mapeador Horarios 24H/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Mapeador Horarios 24H/Mapeador Horarios 24H.png"
+    "img_url": "assets/img/herramientas/Time Blocking.webp",
+    "img_fallback": "assets/img/herramientas/Time Blocking.png"
   },
   {
     "id": "time_blocking_flexible",
@@ -52,7 +54,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Time Blocking/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Time Blocking/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Time Blocking/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Time Blocking/Time Blocking.png"
+    "img_url": "assets/img/herramientas/Time Blocking.webp",
+    "img_fallback": "assets/img/herramientas/Time Blocking.png"
   },
   {
     "id": "gtd_vaciado_mental",
@@ -70,7 +73,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Getting Things Done (GTD)/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Getting Things Done (GTD)/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Getting Things Done (GTD)/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Getting Things Done (GTD)/Getting Things Done (GTD).png"
+    "img_url": "assets/img/herramientas/Getting Things Done (GTD).webp",
+    "img_fallback": "assets/img/herramientas/Getting Things Done (GTD).png"
   },
   {
     "id": "kanban_gtd_wip2",
@@ -88,7 +92,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kanban/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kanban/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kanban/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kanban/Kanban.png"
+    "img_url": "assets/img/herramientas/Kanban.webp",
+    "img_fallback": "assets/img/herramientas/Kanban.png"
   },
   {
     "id": "matriz_eisenhower",
@@ -106,7 +111,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Matriz de Eisenhower/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Matriz de Eisenhower/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Matriz de Eisenhower/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Matriz de Eisenhower/Matriz de Eisenhower.png"
+    "img_url": "assets/img/herramientas/Matriz de Eisenhower.webp",
+    "img_fallback": "assets/img/herramientas/Matriz de Eisenhower.png"
   },
   {
     "id": "finanzas_503020",
@@ -124,7 +130,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/05_BIENESTAR_Y_FINANZAS/La Regla 50 30 20/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/05_BIENESTAR_Y_FINANZAS/La Regla 50 30 20/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/05_BIENESTAR_Y_FINANZAS/La Regla 50 30 20/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/05_BIENESTAR_Y_FINANZAS/La Regla 50 30 20/La Regla 50 30 20.png"
+    "img_url": "assets/img/herramientas/La Regla 50 30 20.webp",
+    "img_fallback": "assets/img/herramientas/La Regla 50 30 20.png"
   },
   {
     "id": "tecnica_pomodoro_foco",
@@ -142,7 +149,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Tecnica Pomodoro/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Tecnica Pomodoro/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Tecnica Pomodoro/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Tecnica Pomodoro/Tecnica Pomodoro.png"
+    "img_url": "assets/img/herramientas/Tecnica Pomodoro.webp",
+    "img_fallback": "assets/img/herramientas/Tecnica Pomodoro.png"
   },
   {
     "id": "batching_agrupacion_tareas",
@@ -160,7 +168,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Batching/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Batching/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Batching/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Batching/Batching.png"
+    "img_url": "assets/img/herramientas/Batching.webp",
+    "img_fallback": "assets/img/herramientas/Batching.png"
   },
   {
     "id": "metodologia_5s_espacio",
@@ -178,7 +187,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Metodologia 5S/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Metodologia 5S/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Metodologia 5S/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Metodologia 5S/Metodologia 5S.png"
+    "img_url": "assets/img/herramientas/Metodologia 5S.webp",
+    "img_fallback": "assets/img/herramientas/Metodologia 5S.png"
   },
   {
     "id": "protocolo_paso_cero",
@@ -196,7 +206,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Protocolo Paso Cero/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Protocolo Paso Cero/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Protocolo Paso Cero/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Protocolo Paso Cero/Protocolo Paso Cero.png"
+    "img_url": "assets/img/herramientas/Tecnica Pomodoro.webp",
+    "img_fallback": "assets/img/herramientas/Tecnica Pomodoro.png"
   },
   {
     "id": "inventario_cero_culpa",
@@ -214,7 +225,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Inventario Cero Culpa/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Inventario Cero Culpa/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Inventario Cero Culpa/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Inventario Cero Culpa/Inventario Cero Culpa.png"
+    "img_url": "assets/img/herramientas/Inventario de Resultados.webp",
+    "img_fallback": "assets/img/herramientas/Inventario de Resultados.png"
   },
   {
     "id": "ventana_johari_puntos_ciegos",
@@ -232,7 +244,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/La Ventana de Johari/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/La Ventana de Johari/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/La Ventana de Johari/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/La Ventana de Johari/La Ventana de Johari.png"
+    "img_url": "assets/img/herramientas/La Ventana de Johari.webp",
+    "img_fallback": "assets/img/herramientas/La Ventana de Johari.png"
   },
   {
     "id": "foda_came",
@@ -250,7 +263,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/FODA/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/FODA/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/FODA/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/FODA/FODA.png"
+    "img_url": "assets/img/herramientas/Analisis FODA.webp",
+    "img_fallback": "assets/img/herramientas/Analisis FODA.png"
   },
   {
     "id": "scamper_rediseno_rutina",
@@ -268,7 +282,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/SCAMPER/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/SCAMPER/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/SCAMPER/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/SCAMPER/SCAMPER.png"
+    "img_url": "assets/img/herramientas/SCAMPER.webp",
+    "img_fallback": "assets/img/herramientas/SCAMPER.png"
   },
   {
     "id": "modelo_adkar_autotransformacion",
@@ -286,7 +301,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo ADKAR/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo ADKAR/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo ADKAR/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo ADKAR/Modelo ADKAR.png"
+    "img_url": "assets/img/herramientas/Modelo ADKAR.webp",
+    "img_fallback": "assets/img/herramientas/Modelo ADKAR.png"
   },
   {
     "id": "roles_belbin_sombreros",
@@ -304,7 +320,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Roles de Belbin/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Roles de Belbin/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Roles de Belbin/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Roles de Belbin/Roles de Belbin.png"
+    "img_url": "assets/img/herramientas/Roles de Belbin.webp",
+    "img_fallback": "assets/img/herramientas/Roles de Belbin.png"
   },
   {
     "id": "modelo_tuckman_transicion",
@@ -322,7 +339,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo de Tuckman/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo de Tuckman/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo de Tuckman/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo de Tuckman/Modelo de Tuckman.png"
+    "img_url": "assets/img/herramientas/Modelo Tuckman.webp",
+    "img_fallback": "assets/img/herramientas/Modelo Tuckman.png"
   },
   {
     "id": "dnc_personal_aprendizaje",
@@ -340,7 +358,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/DNC/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/DNC/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/DNC/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/DNC/DNC.png"
+    "img_url": "assets/img/herramientas/Diagnostico de Necesidades de Capacitacion (DNC).webp",
+    "img_fallback": "assets/img/herramientas/Diagnostico de Necesidades de Capacitacion (DNC).png"
   },
   {
     "id": "triangulacion_roles",
@@ -358,7 +377,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Triangulacion de Roles/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Triangulacion de Roles/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Triangulacion de Roles/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Triangulacion de Roles/Triangulacion de Roles.png"
+    "img_url": "assets/img/herramientas/ROLES DE BELBIN.webp",
+    "img_fallback": "assets/img/herramientas/ROLES DE BELBIN.png"
   },
   {
     "id": "feedback_sbi_conversaciones",
@@ -376,7 +396,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Feedback SBI/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Feedback SBI/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Feedback SBI/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Feedback SBI/Feedback SBI.png"
+    "img_url": "assets/img/herramientas/Feedback SBI.webp",
+    "img_fallback": "assets/img/herramientas/Feedback SBI.png"
   },
   {
     "id": "matriz_raci_hogar_equipo",
@@ -394,7 +415,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Matriz RACI/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Matriz RACI/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Matriz RACI/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Matriz RACI/Matriz RACI.png"
+    "img_url": "assets/img/herramientas/Matriz RACI.webp",
+    "img_fallback": "assets/img/herramientas/Matriz RACI.png"
   },
   {
     "id": "cinco_porques_raiz",
@@ -412,7 +434,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Los 5 Porques/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Los 5 Porques/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Los 5 Porques/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Los 5 Porques/Los 5 Porques.png"
+    "img_url": "assets/img/herramientas/Los 5 Porques.webp",
+    "img_fallback": "assets/img/herramientas/Los 5 Porques.png"
   },
   {
     "id": "diagrama_ishikawa_sistema",
@@ -430,7 +453,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Diagrama de Ishikawa/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Diagrama de Ishikawa/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Diagrama de Ishikawa/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Diagrama de Ishikawa/Diagrama de Ishikawa.png"
+    "img_url": "assets/img/herramientas/Diagrama de Ishikawa.webp",
+    "img_fallback": "assets/img/herramientas/Diagrama de Ishikawa.png"
   },
   {
     "id": "kaizen_mejora_continua",
@@ -448,7 +472,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kaizen/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kaizen/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kaizen/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Kaizen/Kaizen.png"
+    "img_url": "assets/img/herramientas/Kaizen.webp",
+    "img_fallback": "assets/img/herramientas/Kaizen.png"
   },
   {
     "id": "arquetipos_energia",
@@ -466,7 +491,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Arquetipos de Energia/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Arquetipos de Energia/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Arquetipos de Energia/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Arquetipos de Energia/Arquetipos de Energia.png"
+    "img_url": "assets/img/herramientas/10_Sobrecarga_Cognitiva.webp",
+    "img_fallback": "assets/img/herramientas/10_Sobrecarga_Cognitiva.png"
   },
   {
     "id": "piramide_minto_comunicacion",
@@ -484,7 +510,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Piramide de Minto/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Piramide de Minto/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Piramide de Minto/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Piramide de Minto/Piramide de Minto.png"
+    "img_url": "assets/img/herramientas/Piramide de Minto.webp",
+    "img_fallback": "assets/img/herramientas/Piramide de Minto.png"
   },
   {
     "id": "mind_mapping_visual",
@@ -502,7 +529,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Mind Mapping/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Mind Mapping/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Mind Mapping/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Mind Mapping/Mind Mapping.png"
+    "img_url": "assets/img/herramientas/Mind Mapping.webp",
+    "img_fallback": "assets/img/herramientas/Mind Mapping.png"
   },
   {
     "id": "fondo_reserva_paz",
@@ -520,7 +548,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Fondo de Reserva y Paz/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Fondo de Reserva y Paz/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Fondo de Reserva y Paz/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Fondo de Reserva y Paz/Fondo de Reserva y Paz.png"
+    "img_url": "assets/img/herramientas/La Regla 50 30 20.webp",
+    "img_fallback": "assets/img/herramientas/La Regla 50 30 20.png"
   },
   {
     "id": "principio_pareto_80_20",
@@ -538,7 +567,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Principio de Pareto/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Principio de Pareto/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Principio de Pareto/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Principio de Pareto/Principio de Pareto.png"
+    "img_url": "assets/img/herramientas/Principio de Pareto.webp",
+    "img_fallback": "assets/img/herramientas/Principio de Pareto.png"
   },
   {
     "id": "inventario_resultados_auditoria",
@@ -556,7 +586,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Inventario de Resultados/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Inventario de Resultados/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Inventario de Resultados/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Inventario de Resultados/Inventario de Resultados.png"
+    "img_url": "assets/img/herramientas/Inventario de Resultados.webp",
+    "img_fallback": "assets/img/herramientas/Inventario de Resultados.png"
   },
   {
     "id": "enps_termometro_lealtad",
@@ -574,7 +605,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/eNPS/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/eNPS/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/eNPS/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/eNPS/eNPS.png"
+    "img_url": "assets/img/herramientas/eNPS.webp",
+    "img_fallback": "assets/img/herramientas/eNPS.png"
   },
   {
     "id": "principio_mece_categorizacion",
@@ -592,7 +624,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Principio MECE/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Principio MECE/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Principio MECE/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Principio MECE/Principio MECE.png"
+    "img_url": "assets/img/herramientas/Principio MECE.webp",
+    "img_fallback": "assets/img/herramientas/Principio MECE.png"
   },
   {
     "id": "circulo_dorado",
@@ -610,7 +643,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Circulo Dorado/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Circulo Dorado/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Circulo Dorado/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Circulo Dorado/Circulo Dorado.png"
+    "img_url": "assets/img/herramientas/Circulo Dorado.webp",
+    "img_fallback": "assets/img/herramientas/Circulo Dorado.png"
   },
   {
     "id": "plan_estrategico_hitos",
@@ -628,7 +662,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Plan Estrategico/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Plan Estrategico/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Plan Estrategico/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Plan Estrategico/Plan Estrategico.png"
+    "img_url": "assets/img/herramientas/Plan Estrategico.webp",
+    "img_fallback": "assets/img/herramientas/Plan Estrategico.png"
   },
   {
     "id": "metodo_smart_metas",
@@ -646,7 +681,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Metodo SMART/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Metodo SMART/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Metodo SMART/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Metodo SMART/Metodo SMART.png"
+    "img_url": "assets/img/herramientas/Metodo SMART.webp",
+    "img_fallback": "assets/img/herramientas/Metodo SMART.png"
   },
   {
     "id": "metodo_okr_trimestral",
@@ -664,7 +700,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Metodo OKR/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Metodo OKR/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Metodo OKR/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Metodo OKR/Metodo OKR.png"
+    "img_url": "assets/img/herramientas/Metodo OKR.webp",
+    "img_fallback": "assets/img/herramientas/Metodo OKR.png"
   },
   {
     "id": "design_thinking_prototipado",
@@ -682,7 +719,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Design Thinking/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Design Thinking/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Design Thinking/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/04_OPERACIONES_Y_PROCESOS/Design Thinking/Design Thinking.png"
+    "img_url": "assets/img/herramientas/Design Thinking.webp",
+    "img_fallback": "assets/img/herramientas/Design Thinking.png"
   },
   {
     "id": "oceano_azul_diferencial",
@@ -700,7 +738,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Estrategia Oceano Azul/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Estrategia Oceano Azul/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Estrategia Oceano Azul/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Estrategia Oceano Azul/Estrategia Oceano Azul.png"
+    "img_url": "assets/img/herramientas/Estrategia Oceano Azul.webp",
+    "img_fallback": "assets/img/herramientas/Estrategia Oceano Azul.png"
   },
   {
     "id": "modelo_grow_coaching",
@@ -718,7 +757,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo GROW/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo GROW/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo GROW/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Modelo GROW/Modelo GROW.png"
+    "img_url": "assets/img/herramientas/Modelo GROW.webp",
+    "img_fallback": "assets/img/herramientas/Modelo GROW.png"
   },
   {
     "id": "cinco_fuerzas_porter",
@@ -736,7 +776,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 5 Fuerzas de Porter/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 5 Fuerzas de Porter/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 5 Fuerzas de Porter/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/Las 5 Fuerzas de Porter/Las 5 Fuerzas de Porter.png"
+    "img_url": "assets/img/herramientas/Las 5 fuerzas de Porter.webp",
+    "img_fallback": "assets/img/herramientas/Las 5 fuerzas de Porter.png"
   },
   {
     "id": "paquetizacion_servicios_mes",
@@ -754,7 +795,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Paquetizacion de Servicios/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Paquetizacion de Servicios/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Paquetizacion de Servicios/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/06_CLINICA_Y_MODULOS_AICC/Paquetizacion de Servicios/Paquetizacion de Servicios.png"
+    "img_url": "assets/img/herramientas/Estrategia Oceano Azul.webp",
+    "img_fallback": "assets/img/herramientas/Estrategia Oceano Azul.png"
   },
   {
     "id": "evaluacion_360_feedback",
@@ -772,7 +814,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Evaluacion 360/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Evaluacion 360/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Evaluacion 360/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Evaluacion 360/Evaluacion 360.png"
+    "img_url": "assets/img/herramientas/Evaluacion 360.webp",
+    "img_fallback": "assets/img/herramientas/Evaluacion 360.png"
   },
   {
     "id": "matriz_9box_talento",
@@ -790,7 +833,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Matriz 9-Box/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Matriz 9-Box/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Matriz 9-Box/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Matriz 9-Box/Matriz 9-Box.png"
+    "img_url": "assets/img/herramientas/Matriz 9-Box.webp",
+    "img_fallback": "assets/img/herramientas/Matriz 9-Box.png"
   },
   {
     "id": "ocho_pasos_kotter_cambio",
@@ -808,7 +852,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Los 8 Pasos de Kotter/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Los 8 Pasos de Kotter/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Los 8 Pasos de Kotter/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_LIDERAZGO_Y_EQUIPO/Los 8 Pasos de Kotter/Los 8 Pasos de Kotter.png"
+    "img_url": "assets/img/herramientas/Los 8 Pasos de Kotter.webp",
+    "img_fallback": "assets/img/herramientas/Los 8 Pasos de Kotter.png"
   },
   {
     "id": "analisis_pestel_macroentorno",
@@ -826,7 +871,8 @@ window.AICC_CATALOGO_60_HERRAMIENTAS = [
     "app_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/PESTEL/app.html",
     "print_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/PESTEL/imprimible.html",
     "guide_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/PESTEL/guia_humana.md",
-    "img_url": "../../02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/01_ESTRATEGIA_Y_DIRECCION/PESTEL/PESTEL.png"
+    "img_url": "assets/img/herramientas/Analisis PESTEL.webp",
+    "img_fallback": "assets/img/herramientas/Analisis PESTEL.png"
   }
 ];
 window.AICC_CATALOGO_40_HERRAMIENTAS = window.AICC_CATALOGO_60_HERRAMIENTAS;
