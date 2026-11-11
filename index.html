@@ -212,6 +212,27 @@
       border-color: rgba(255, 255, 255, 0.3);
       color: #ffffff;
     }
+    .nav-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.09);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-wa-btn:hover {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: #34d399;
+      color: #ffffff;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.35);
+    }
     .nav-btn-pin {
       display: inline-flex;
       align-items: center;
@@ -240,6 +261,7 @@
     .brand-text-short { display: none; }
     .nav-pin-full { display: inline; }
     .nav-pin-short { display: none; }
+    .nav-wa-text { display: inline; }
 
     /* RESPONSIVE NAVBAR CALIBRATION - CERO RECORTE DE INFORMACIÓN (GRILLA 4 COL EN LAPTOP, 2x2 EN MÓVIL) */
     @media (max-width: 1420px) {
@@ -290,6 +312,7 @@
       }
       .nav-brand-img { height: 26px; }
       .nav-ig-text { display: none; }
+      .nav-wa-text { display: none; }
       .nav-pin-full { display: none; }
       .nav-pin-short { display: inline; }
       .nav-actions-group {
@@ -297,6 +320,7 @@
       }
       .nav-btn-pin { padding: 4px 9px; font-size: 0.72rem; gap: 3px; }
       .nav-ig-btn { padding: 4px 7px; font-size: 0.72rem; }
+      .nav-wa-btn { padding: 4px 7px; font-size: 0.72rem; }
       .plat-tab-btn.plat-admin-tab { padding: 4px 9px; font-size: 0.72rem; }
       .nav-tab-full { display: none; }
       .nav-tab-short { display: inline; }
@@ -4249,6 +4273,9 @@
       <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" class="nav-ig-btn" title="Instagram @administracionhumana">
         <span>📸</span> <span class="nav-ig-text">Instagram</span>
       </a>
+      <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20sistema%20de%20gesti%C3%B3n%20personalizado" target="_blank" rel="noopener noreferrer" class="nav-wa-btn" title="WhatsApp Oficial +56975590132">
+        <span>💬</span> <span class="nav-wa-text">WhatsApp</span>
+      </a>
       <div id="nav-auth-wrapper" style="display:inline-flex; align-items:center; gap:6px;">
         <button id="btn-nav-auth" onclick="window.openAuthModal()" class="nav-btn-pin" title="Ingresar con PIN de cliente">
           <span>🔒</span> <span class="nav-pin-full">Mi Plan de Vuelo</span><span class="nav-pin-short">Mi Plan</span>
@@ -4632,6 +4659,27 @@
       font-weight: 600;
       max-width: 100%;
       box-sizing: border-box;
+    }
+    .diego-wa-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .diego-wa-pill:hover {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #34d399;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
     }
     .diego-author-pitch-wrap {
       display: flex;
@@ -5344,7 +5392,12 @@
             <div style="min-width: 0; flex: 1;">
               <h1 class="diego-name-text">Diego González Yáñez</h1>
               <div class="diego-role-text">Administrador de Empresas · Sistemas de Gestión Personalizados</div>
-              <span class="diego-location-pill">📍 Concepción · Online & Presencial</span>
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span class="diego-location-pill">📍 Concepción · Online & Presencial</span>
+                <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20sistema%20de%20gesti%C3%B3n%20personalizado" target="_blank" class="diego-wa-pill" title="WhatsApp Oficial +56975590132">
+                  <span>💬</span> WhatsApp
+                </a>
+              </div>
             </div>
           </div>
 
@@ -5355,17 +5408,6 @@
             <p class="diego-essence-quote">
               Una cosa es la infraestructura tecnológica; la otra es <strong>con quién cuentas</strong>: mi mirada desde la ciencia de la administración y mi oído para escuchar tu realidad y aterrizar toda la información que hoy te abruma para darle <strong>desarrollo con acompañamiento</strong>, construyendo tu propio <span class="hl-amber">Sistema de Gestión Personalizado</span> y entregándote tu <strong>Usuario y Clave</strong> con soluciones digitalizadas en la palma de tu mano que sí puedas llevar y sostener.
             </p>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding-top: 2px;">
-              <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;" style="background: #ffffff; color: #000000; font-family: var(--font-heading); font-weight: 800; font-size: 0.8rem; padding: 8px 16px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-                📱 2. Ver Plan de Vuelo Demo →
-              </a>
-              <a href="#productos" onclick="scrollToSection('productos'); return false;" style="background: #121216; border: 1px solid #27272a; color: #f4f4f5; font-family: var(--font-heading); font-weight: 700; font-size: 0.79rem; padding: 8px 14px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-                🚀 4. Sesión Base ($35.000) & Planes →
-              </a>
-              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20sistema%20de%20gesti%C3%B3n%20personalizado" target="_blank" style="background: #051610; border: 1px solid rgba(16,185,129,0.35); color: #34d399; font-weight: 700; font-size: 0.78rem; padding: 8px 13px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                💬 WhatsApp
-              </a>
-            </div>
           </div>
         </div>
 
