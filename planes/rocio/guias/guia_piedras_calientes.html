@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Técnico: Masoterapia Geotermal (Piedras Calientes) • Puya Masajes • Administración Humana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #090807;
+            --card: #120e0a;
+            --border: #291d12;
+            --accent: #fb923c;
+            --accent-glow: #ea580c;
+            --accent-bg: rgba(249, 115, 22, 0.12);
+            --text: #e2e8f0;
+            --muted: #a1a1aa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.65;
+            padding: 1.2rem 1rem 4rem 1rem;
+        }
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-bg);
+            color: var(--accent);
+            border: 1px solid rgba(249,115,22,0.35);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-action:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        .badge-code {
+            background: var(--accent-bg);
+            color: var(--accent);
+            border: 1px solid rgba(249,115,22,0.4);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            display: inline-block;
+        }
+        .header {
+            margin-bottom: 2rem;
+        }
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 0.6rem 0 0.4rem 0;
+            line-height: 1.25;
+        }
+        .header .subtitle {
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .header .meta {
+            color: var(--muted);
+            font-size: 0.82rem;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .guide-body {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 640px) {
+            body { padding: 0.8rem 0.6rem 3rem 0.6rem; }
+            .guide-body { padding: 1.2rem; border-radius: 12px; }
+            .header h1 { font-size: 1.45rem; }
+        }
+        @media print {
+            body { background: #fff; color: #000; }
+            .top-bar, .no-print { display: none !important; }
+            .guide-body { background: #fff; border: none; color: #000; box-shadow: none; padding: 0; }
+            h1, h2, h3, strong { color: #000 !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <a href="../../planes-rocio.html#tab-piedras-calientes" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Plan de Rocío
+            </a>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <a href="Manual_Tecnico_Masaje_Piedras_Calientes.md" download class="btn-action">
+                    <i class="fa-solid fa-download"></i> Descargar .md
+                </a>
+                <button onclick="window.print()" class="btn-action no-print" style="cursor:pointer;">
+                    <i class="fa-solid fa-print"></i> Imprimir Guía
+                </button>
+            </div>
+        </div>
+
+        <div class="header">
+            <span class="badge-code">PUYA MASAJES • MANUAL TÉCNICO CLÍNICO</span>
+            <h1>🪨 Guía de Estudio Técnico: Masoterapia Geotermal</h1>
+            <p class="subtitle">Piedras Calientes de Basalto • Dosimetría Térmica, Fisiología y Ergonomía Somática</p>
+            <div class="meta">
+                <span><i class="fa-solid fa-user-doctor"></i> <b>Terapeuta:</b> Rocío (Gabinete Sector Collao)</span>
+                <span><i class="fa-solid fa-compass"></i> <b>Elaborado por:</b> Diego (Administración Humana)</span>
+                <span><i class="fa-solid fa-shield-halved"></i> <b>Enfoque:</b> Cero Fatiga Articular & Seguridad TEA</span>
+            </div>
+        </div>
+
+        <div class="guide-body">
+            <ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Terapeuta:</strong> Rocío (Puya Masajes)</li>
+<li style="margin-bottom:0.4rem;"><strong>Objetivo:</strong> Manual de estudio previo y fundamentos clínicos antes de la capacitación formal.</li>
+<li style="margin-bottom:0.4rem;"><strong>Elaborado por:</strong> Administración Humana (Diego)</li>
+<li style="margin-bottom:0.4rem;"><strong>Enfoque:</strong> Fisiología del calor, dosimetría térmica, ergonomía somática (cero fatiga articular), protocolos de aplicación y seguridad clínica.</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🔬 1. Fundamentos Fisiológicos de la Termoterapia Geotermal</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">El masaje con piedras calientes no es un simple procedimiento estético o de relajación superficial; es una intervención terapéutica basada en la <strong>transferencia térmica por conducción profunda</strong>.</p>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">¿Qué ocurre en el organismo al aplicar basalto caliente?</h3>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Vasodilatación Periférica Acelerada:</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">El calor dilata los capilares sanguíneos y linfáticos, multiplicando el flujo de sangre local hasta un <strong>300%</strong>.</li>
+<li style="margin-bottom:0.4rem;">Esto acelera la eliminación de metabolitos de desecho (ácido láctico, toxinas celulares) y oxigena tejidos fibróticos o contracturados.</li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Disminución del Tono Muscular & Elasticidad del Colágeno:</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">El calor aumenta la extensibilidad del tejido conectivo y de las fascias en un <strong>10% a 20%</strong>.</li>
+<li style="margin-bottom:0.4rem;">Una contractura profunda (trapecio, romboides, cuadrado lumbar) que exigiría 20 minutos de fricción manual invasiva, se ablanda en <strong>3 a 5 minutos</strong> gracias al efecto miorelajante del calor.</li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Sedación del Sistema Nervioso Simpático:</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">La estimulación térmica continua sobre receptores cutáneos (corpúsculos de Ruffini) envía señales inhibitorias al asta dorsal de la médula espinal.</li>
+<li style="margin-bottom:0.4rem;">Se produce una transición directa del estado de alerta (<em>lucha/huida</em>) al parasimpático (<em>reparación/reposo</em>), induciendo liberación de endorfinas y serotonina. <em>(Especialmente beneficioso para regular la sobrecarga sensorial en personas con estrés crónico o neurodivergencia)</em>.</li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Alivio Mecánico del Dolor (Teoría de la Compuerta - Gate Control):</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">Los estímulos térmicos viajan por fibras nerviosas mielinizadas de conducción rápida (A-beta), "cerrando la compuerta" a nivel medular para las señales de dolor que viajan por fibras lentas (C y A-delta).</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🌋 2. Geología Aplicada: ¿Por qué Basalto Volcánico?</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">No cualquier piedra sirve para masoterapia. El material estándar mundial es el <strong>basalto volcánico</strong>:</p>
+<div style="overflow-x:auto; margin: 1.2rem 0;"><table style="width:100%; border-collapse:collapse; font-size:0.83rem; text-align:left; color:#cbd5e1;">
+<thead><tr style="border-bottom:2px solid #332211; background:rgba(249,115,22,0.08); color:#fb923c;">
+<th style="padding:10px 12px; font-weight:800;">Propiedad</th>
+<th style="padding:10px 12px; font-weight:800;">Basalto Volcánico Natural</th>
+<th style="padding:10px 12px; font-weight:800;">Piedras Comunes de Río / Granito</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Composición</strong></td>
+<td style="padding:9px 12px; ">Rico en hierro, silicato de magnesio y basalto densificado</td>
+<td style="padding:9px 12px; ">Cuarzo, feldespato, alta porosidad</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Retención Térmica</strong></td>
+<td style="padding:9px 12px; "><strong>Excepcional (45 a 60 min de calor sostenido)</strong></td>
+<td style="padding:9px 12px; ">Pierde calor rápidamente (10-15 min)</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Porosidad</strong></td>
+<td style="padding:9px 12px; ">Cero porosidad microscópica (no absorbe aceite ni bacterias)</td>
+<td style="padding:9px 12px; ">Porosas (acumulan bacterias y grasa rancia)</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Textura</strong></td>
+<td style="padding:9px 12px; ">Pulido natural ultrasuave (no raspa la piel)</td>
+<td style="padding:9px 12px; ">Bordes ásperos o microrugosidades</td>
+</tr>
+</tbody></table></div>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">📊 Tabla Quirúrgica de Pesos, Medidas & Latencia Térmica</h3>
+<div style="overflow-x:auto; margin: 1.2rem 0;"><table style="width:100%; border-collapse:collapse; font-size:0.83rem; text-align:left; color:#cbd5e1;">
+<thead><tr style="border-bottom:2px solid #332211; background:rgba(249,115,22,0.08); color:#fb923c;">
+<th style="padding:10px 12px; font-weight:800;">Tipo / Categoría</th>
+<th style="padding:10px 12px; font-weight:800;">Dimensiones (L x An x Gr)</th>
+<th style="padding:10px 12px; font-weight:800;">Peso Unitario (g)</th>
+<th style="padding:10px 12px; font-weight:800;">Inercia Térmica (Calor Activo)</th>
+<th style="padding:10px 12px; font-weight:800;">Zona Anatómica Principal</th>
+<th style="padding:10px 12px; font-weight:800;">Maniobra & Modo de Agarre</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Piedra XL Sacra / Abdominal</strong></td>
+<td style="padding:9px 12px; ">11.5 - 13.5 x 7.5 - 8.5 x 3.2 cm</td>
+<td style="padding:9px 12px; "><strong>850g - 1.100g</strong></td>
+<td style="padding:9px 12px; "><strong>45 a 55 min</strong></td>
+<td style="padding:9px 12px; ">Sacro, plexo solar, bajo vientre, glúteo</td>
+<td style="padding:9px 12px; "><strong>Estática protegida</strong>. Ancla gravitacional (DPT - Deep Pressure Therapy). No se desliza.</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Piedras Grandes (L)</strong></td>
+<td style="padding:9px 12px; ">7.5 - 8.5 x 5.5 - 6.5 x 2.8 cm</td>
+<td style="padding:9px 12px; "><strong>400g - 520g</strong></td>
+<td style="padding:9px 12px; "><strong>20 a 25 min</strong></td>
+<td style="padding:9px 12px; ">Espalda completa, muslos (cuádriceps / isquiotibiales)</td>
+<td style="padding:9px 12px; "><strong>Deslizamiento profundo</strong>. Agarre con ambas manos o palma plana.</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Piedras Medianas (M)</strong></td>
+<td style="padding:9px 12px; ">6.0 - 7.0 x 4.5 - 5.5 x 2.0 cm</td>
+<td style="padding:9px 12px; "><strong>180g - 250g</strong></td>
+<td style="padding:9px 12px; "><strong>12 a 15 min</strong></td>
+<td style="padding:9px 12px; ">Canales paravertebrales, escápula, gemelos, brazos</td>
+<td style="padding:9px 12px; "><strong>Effleurage & Petrissage</strong>. En palma (eminencia tenar). Trabajo dinámico continuo.</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Piedras Pequeñas (S)</strong></td>
+<td style="padding:9px 12px; ">4.0 - 5.0 x 3.0 - 3.8 x 1.4 cm</td>
+<td style="padding:9px 12px; "><strong>80g - 120g</strong></td>
+<td style="padding:9px 12px; "><strong>8 a 10 min</strong></td>
+<td style="padding:9px 12px; ">Cervicales, suboccipital, maseteros, empeines, palmas</td>
+<td style="padding:9px 12px; "><strong>Precisión digital / descontracturante fino</strong>. Trapecios superiores y cuello.</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Minipiedras Interdigitales (XS)</strong></td>
+<td style="padding:9px 12px; ">2.5 - 3.5 x 1.5 - 2.2 x 0.7 cm</td>
+<td style="padding:9px 12px; "><strong>18g - 25g c/u</strong></td>
+<td style="padding:9px 12px; "><strong>5 a 7 min</strong></td>
+<td style="padding:9px 12px; ">Espacios interdigitales (dedos de pies y manos)</td>
+<td style="padding:9px 12px; "><strong>Estática pasiva</strong>. Estimulación vascular y relajación neurovegetativa periférica.</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Puntos Gatillo / Trigger Point</strong></td>
+<td style="padding:9px 12px; ">8.0 - 10.0 x 3.0 - 4.0 cm (cónica/gota)</td>
+<td style="padding:9px 12px; "><strong>150g - 190g</strong></td>
+<td style="padding:9px 12px; "><strong>10 a 12 min</strong></td>
+<td style="padding:9px 12px; ">Nódulos miofasciales, romboides, elevador escápula</td>
+<td style="padding:9px 12px; "><strong>Compresión isquémica térmica suave</strong>. Usa el vértice redondeado para desarmar contracturas.</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+<td style="padding:9px 12px; font-weight:700; color:#fff;"><strong>Piedras Frías de Mármol (Contraste)</strong></td>
+<td style="padding:9px 12px; ">6.5 - 7.5 x 5.0 - 5.5 x 1.8 cm</td>
+<td style="padding:9px 12px; "><strong>200g - 280g</strong></td>
+<td style="padding:9px 12px; "><strong>8 a 12 min frío</strong></td>
+<td style="padding:9px 12px; ">Zonas inflamadas, párpados, piernas cansadas</td>
+<td style="padding:9px 12px; "><strong>Crioterapia / Ducha vascular escocesa</strong>. Vaso-constricción inmediata tras el calor.</td>
+</tr>
+</tbody></table></div>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Peso total de un maletín profesional estándar (16 a 28 piezas):</strong> <strong>3.8 kg a 5.2 kg</strong> de basalto puro compactado.</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">⏱️ 2.1. Dinámica de la Inercia Térmica & Sistema de Relevo (Rotación)</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">El error clásico del terapeuta que recién empieza es sacar todas las piedras del calentador de una sola vez. Las piedras pequeñas y medianas ceden su energía calórica rápidamente al cuerpo del paciente (en 10 a 12 minutos bajan a temperatura corporal de ~37°C y dejan de generar beneficio vasodilatador).</p>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">El Protocolo de Relevo en Parejas (Par Activo / Par de Reserva):</h3>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Trabajar en Pares:</strong> Rocío debe tener siempre <strong>2 piedras idénticas en sus manos</strong> trabajando de forma sincronizada y bilateral (ej. un deslizamiento en cada lado de la columna paravertebral).</li>
+<li style="margin-bottom:0.4rem;"><strong>El Ciclo de Enfriamiento:</strong> A los 10 minutos de fricción activa, cuando las piedras bajan de 45°C:</li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">Se limpian rápidamente con un paño de toalla para quitar el exceso de aceite.</li>
+<li style="margin-bottom:0.4rem;">Se reingresan al maletín térmico para recargarse (tardan 8 a 10 min en volver a 52°C).</li>
+<li style="margin-bottom:0.4rem;">Se extrae el <strong>segundo par de reserva</strong> que ya está a 52°C exactos para continuar el flujo sin interrumpir la experiencia sensorial del cliente.</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🛢️ 2.2. Química del Aceite Conductor & Selección Aromaterapéutica</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">El aceite en la terapia geotermal cumple la misma función que el gel en una ecografía: es el <strong>medio de acoplamiento térmico</strong> entre la piedra y la piel. Sin un buen aceite, la piedra "tironea" los vellos, se frena abruptamente o transmite el calor de manera desigual.</p>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">Requisitos Técnicos del Aceite Base:</h3>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Punto de Humo Alto (>200°C):</strong> No debe degradarse, oxidarse ni despedir olor a frito con el contacto de piedras a 54°C.</li>
+<li style="margin-bottom:0.4rem;"><strong>Viscosidad Media-Lenta:</strong> Debe permitir un deslizamiento suave durante 15 minutos sin ser reabsorbido de inmediato por la piel.</li>
+<li style="margin-bottom:0.4rem;">🚫 <strong>Prohibido:</strong> Vaselina líquida o aceites minerales derivados del petróleo (bloquean los poros, impiden la termorregulación cutánea y manchan las piedras de forma permanente).</li>
+<li style="margin-bottom:0.4rem;">✅ <strong>Aceites Base Ideales:</strong></li>
+<li style="margin-bottom:0.4rem;"><strong>Aceite de Almendras Dulces prensado en frío:</strong> Excelente elasticidad, rica en ácidos grasos omega 9 y vitamina E.</li>
+<li style="margin-bottom:0.4rem;"><strong>Aceite de Pepita de Uva:</strong> Textura ligeramente más ligera, antioxidante superior, hipoalergénico y muy fácil de lavar de las sábanas.</li>
+</ul>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">Reglas para Aceites Esenciales (Aromaterapia Caliente):</h3>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Dosificación Segura:</strong> Máximo <strong>3 a 5 gotas</strong> de aceite esencial puro por cada 30 ml de aceite vehicular base.</li>
+<li style="margin-bottom:0.4rem;"><strong>Esencias Termorresistentes Óptimas:</strong></li>
+<li style="margin-bottom:0.4rem;"><em>Lavanda Angustifolia:</em> Sedante del sistema nervioso central, antiespasmódica.</li>
+<li style="margin-bottom:0.4rem;"><em>Romero Quimiotipo Cineol:</em> Potenciador de la microcirculación y oxigenación muscular.</li>
+<li style="margin-bottom:0.4rem;"><em>Manzanilla Romana:</em> Antinflamatoria profunda para espasmos crónicos.</li>
+<li style="margin-bottom:0.4rem;">🚨 <strong>Aceites Estrictamente Prohibidos en Terapia de Calor:</strong></li>
+<li style="margin-bottom:0.4rem;">Cítricos puros (Bergamota, Limón, Pomelo): fotosensibilizantes (causan manchas oscuras si el cliente se expone al sol).</li>
+<li style="margin-bottom:0.4rem;">Aceites dermocáusticos calientes (Canela pura, Orégano, Clavo de olor): en combinación con calor a 52°C provocan quemaduras químicas inmediatas en la piel.</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🧵 2.3. Selección Textil: Paños de Aislamiento & Conducción</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">Las piedras estáticas (sacro, abdomen, omóplatos) <strong>NUNCA se aplican directamente sobre la piel desnuda</strong>. Para aislarlas se requiere una barrera textil técnica:</p>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">🚫 <strong>Peligro:</strong> Toallas de microfibra, poliéster o telas sintéticas. Con calor constante sobre 50°C liberan vapores plásticos, no absorben la transpiración del paciente y pueden fundirse microscópicamente contra la roca.</li>
+<li style="margin-bottom:0.4rem;">✅ <strong>Estándar Profesional:</strong></li>
+<li style="margin-bottom:0.4rem;"><strong>Franela de Algodón 100% Peinado o Toallas de Rizo de Algodón (Gramaje 450 - 500 g/m²):</strong> El algodón permite una difusión térmica lenta y uniforme. El calor penetra como una radiación suave sin dar sensación de golpe abrasivo.</li>
+<li style="margin-bottom:0.4rem;"><strong>Sábanas de Protección:</strong> Se recomienda una sábana bajera de algodón blanco y un cobertor térmico polar encima para conservar la atmósfera caliente en la camilla.</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🩺 2.4. El "Efecto Rebote" Hipotensivo & Prevención de Lipotimias</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">La termoterapia de 60 minutos dilata ampliamente la red vascular periférica. Al dilatarse los capilares, la sangre se acumula en la periferia corporal y la presión arterial desciende fisiológicamente entre <strong>5 y 12 mmHg</strong> (efecto hipotensor y relajante).</p>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">El Riesgo:</h3>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">Si el paciente se levanta de golpe de la camilla, la sangre no alcanza a retornar rápidamente al cerebro y se produce una <strong>hipotensión ortostática</strong> (mareo, palidez, sensación de vahído o pérdida momentánea del equilibrio).</p>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">Protocolo de Retorno a la Realidad en 4 Pasos (Obligatorio para Rocío):</h3>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Fase de Reposo & Desconexión (3 min):</strong> Retirar todas las piedras, envolver al paciente en la sábana seca y permanecer 3 minutos en silencio con música suave.</li>
+<li style="margin-bottom:0.4rem;"><strong>Decúbito Lateral (1 min):</strong> Pedirle al paciente que flexione las rodillas y se gire de lado (posición fetal) durante 60 segundos para reactivar el retorno venoso.</li>
+<li style="margin-bottom:0.4rem;"><strong>Incorporación al Borde de Camilla (2 min):</strong> Ayudarlo a sentarse con los pies apoyados firmemente sobre el suelo (o una alfombrilla aislante). Conversar con él y verificar que no tenga visión borrosa.</li>
+<li style="margin-bottom:0.4rem;"><strong>Rehidratación Inmediata (250 - 300 ml de agua fresca):</strong> Durante la sesión, la termoterapia provoca una sudoración imperceptible de hasta 400 ml. Ofrecerle un vaso de agua mineral o infusión de hierbas a temperatura ambiente antes de que se vista.</li>
+</ol>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🧠 2.5. Deep Pressure Therapy (DPT) & Regulación Neurodivergente (TEA)</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">Para Rocío y sus clientes neurodivergentes o con sobrecarga sensorial, el masaje con piedras calientes ofrece un beneficio clínico que pocos masoterapeutas conocen:</p>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>La Piedra Sacra de 1 Kg como Herramienta Propioceptiva:</strong> El peso sostenido de la piedra sacra grande (~1.000 gramos) sobre la base del sacro o las piedras paravertebrales (~2.5 kg distribuidos en la columna) activa la estimulación propioceptiva profunda (<em>Deep Pressure Therapy</em>), exactamente igual que una manta de peso terapéutica.</li>
+<li style="margin-bottom:0.4rem;"><strong>Impacto Neurofisiológico:</strong> Activa la liberación de serotonina y dopamina, reduciendo los niveles de cortisol y el estado de hipervigilancia propio del autismo o el estrés crónico.</li>
+<li style="margin-bottom:0.4rem;"><strong>Regla de Comunicación Sensorial:</strong> En pacientes con sensibilidad táctil o TEA, <strong>siempre se debe verbalizar el contacto antes de aplicar la piedra</strong> (<em>"Rocío, voy a colocar una piedra tibia en tu zona lumbar ahora"</em>). Esto elimina la sorpresa sensorial que suele disparar respuestas de defensa o tensión muscular.</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🌡️ 3. Dosimetría de Temperatura & Reglas de Oro de Seguridad</h2>
+<div style="background:rgba(249,115,22,0.08); border-left:4px solid #f97316; border-radius:0 8px 8px 0; padding:1rem 1.2rem; margin:1.2rem 0; color:#fdba74; font-size:0.9rem; line-height:1.5;">🚨 <strong>REGLA #1: CONTROL TÉRMICO ESTRICTO</strong><br>El calor debe ser terapéutico y placentero, <strong>jamás doloroso o abrasivo</strong>.</div>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">Rangos de Temperatura Obligatorios:</h3>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Temperatura Óptima en Maletín/Calentador:</strong> <strong>50°C a 54°C</strong> (122°F - 129°F).</li>
+<li style="margin-bottom:0.4rem;"><strong>Límite Máximo Absoluto:</strong> <strong>55°C</strong>. Cualquier temperatura superior a 55°C corre riesgo inminente de causar eritemas de primer grado o quemaduras térmicas en pieles delgadas.</li>
+<li style="margin-bottom:0.4rem;"><strong>Pieles Sensibles / Adultos Mayores / Zonas Delicadas:</strong> <strong>45°C a 48°C</strong>.</li>
+</ul>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">Las 3 Reglas de Oro de Aplicación:</h3>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>La Prueba del Antebrazo:</strong> Antes de tocar al cliente con una piedra recién extraída del maletín, Rocío debe apoyarla durante <strong>3 segundos en su propia cara anterior del antebrazo</strong>. Si para la mano del terapeuta está muy caliente, para el cuerpo del cliente será insoportable.</li>
+<li style="margin-bottom:0.4rem;"><strong>Piedra en Movimiento vs Piedra Estática:</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Sobre piel desnuda:</strong> La piedra debe estar <strong>SIEMPRE EN MOVIMIENTO CONTINUO</strong> con abundante aceite conductor. El deslizamiento constante distribuye la energía térmica y evita que el calor se focalice en un solo punto.</li>
+<li style="margin-bottom:0.4rem;"><strong>Piedra Estática (Quieta):</strong> Si la piedra se deja quieta (en sacro, abdomen o paravertebrales), <strong>NUNCA DEBE TOCAR LA PIEL DIRECTA</strong>. Siempre debe interponerse una toalla o paño protector de algodón 100%.</li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>El Enfriamiento Activo:</strong> A medida que la piedra trabaja sobre el músculo, va cediendo su calor al tejido. Cuando la piedra baja a temperatura corporal (37°C), ya no aporta beneficio geotermal; se devuelve al maletín térmico y se toma una nueva del set caliente.</li>
+</ol>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">💆‍♀️ 4. Ergonomía Somática para Rocío (Cero Fatiga Articular)</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">Una de las razones estratégicas por las que Diego recomendó esta técnica para Rocío es la <strong>protección biomecánica de su propio cuerpo</strong>:</p>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">🚫 <strong>El Error del Terapeuta Novato:</strong> Apretar la piedra con la punta de los dedos como si fuera una pinza. Esto genera sobrecarga del tendón flexor y riesgo de tendinitis de De Quervain.</li>
+<li style="margin-bottom:0.4rem;">✅ <strong>La Técnica Ergonómica Correcta:</strong></li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>La Palma como Base:</strong> La piedra se apoya en la eminencia tenar e hipotenar (la base de la palma de la mano). Los dedos solo la guían suavemente sin tensión.</li>
+<li style="margin-bottom:0.4rem;"><strong>Uso del Peso Corporal:</strong> La fuerza no sale de los brazos de Rocío; sale de la <strong>postura de esgrima</strong> (un pie adelante y otro atrás) flexionando las rodillas y dejando caer el propio peso gravitacional hacia la camilla.</li>
+<li style="margin-bottom:0.4rem;"><strong>La Piedra como Apalancamiento:</strong> El calor de la piedra hace el 70% del trabajo miofascial. Rocío solo necesita un 30% de presión comparado con un masaje descontracturante manual tradicional.</li>
+</ol>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🗺️ 5. Protocolo Paso a Paso de una Sesión Completa (60 - 75 min)</h2>
+<pre style="background:#0a0907; border:1px solid #332211; border-radius:8px; padding:1rem; overflow-x:auto; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:#f97316; margin:1rem 0;">┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                       SECUENCIA CLÍNICA: PUYA PIEDRAS CALIENTES                             │
+├─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────────┤
+│     FASE 1      │     FASE 2      │     FASE 3      │     FASE 4      │       FASE 5        │
+│    (10 min)     │    (15 min)     │    (20 min)     │    (15 min)     │      (10 min)       │
+│  Calentamiento  │  Deslizamiento  │  Descompresión  │ Extremidades &  │ Cierre Sensorial &  │
+│  & Oleación     │ Dorsal Geotermal│  Puntos Gatillo │  Pies / Manos   │ Integración Somática│
+└─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────────┘</pre>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Fase 1: Preparación, Anamnesis Térmica y Oleación Manual (10 min):</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">Encender el maletín térmico seco 15 min antes del inicio.</li>
+<li style="margin-bottom:0.4rem;">Verificar en la ficha clínica que el cliente no presente contraindicaciones.</li>
+<li style="margin-bottom:0.4rem;">Contacto manual inicial: calentar la espalda del paciente con masaje manual suave y esparcir abundante aceite de almendras dulces con 2 gotas de lavanda.</li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Fase 2: Imposición Estática Protegida & Primer Contacto (15 min):</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">Colocar una toalla sobre la zona sacra y apoyar la piedra sacra grande (ancla de relajación).</li>
+<li style="margin-bottom:0.4rem;">Colocar toalla a lo largo de la columna y posicionar las piedras paravertebrales estáticas.</li>
+<li style="margin-bottom:0.4rem;">Mientras la espalda absorbe el calor suave, realizar pases suaves en extremidades.</li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Fase 3: Maniobras Dinámicas de Deslizamiento & Descontracturante (20 min):</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">Retirar las piedras paravertebrales y tomar 2 piedras medianas ovaladas a 52°C.</li>
+<li style="margin-bottom:0.4rem;">Realizar <strong>Effleurage longitudinal</strong> desde la base del sacro hasta los trapecios.</li>
+<li style="margin-bottom:0.4rem;">Maniobras circulares en escápula y cuello utilizando el borde redondeado de la piedra para deshacer bandas tensas sin dolor invasivo.</li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Fase 4: Extremidades Inferiores & Manos/Pies (15 min):</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">Deslizamiento térmico en isquiotibiales y gemelos (ideal para pacientes que caminan mucho o deportistas).</li>
+<li style="margin-bottom:0.4rem;">Colocar las piedras pequeñas interdigitales en los pies.</li>
+</ul>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Fase 5: Cierre & Reposo Térmico (10 min):</strong></li>
+</ol>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;">Retirar todas las piedras.</li>
+<li style="margin-bottom:0.4rem;">Retirar el exceso de aceite con toalla caliente tibia.</li>
+<li style="margin-bottom:0.4rem;">Permitir 3 minutos de silencio e integración somática al paciente antes de incorporarse suavemente (para evitar hipotensión postural).</li>
+<li style="margin-bottom:0.4rem;">Ofrecer vaso de agua a temperatura ambiente.</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🚫 6. Contraindicaciones Clínicas (Seguridad del Paciente)</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">Rocío siempre debe revisar esto en la <strong>Ficha de Anamnesis</strong> antes de encender las piedras:</p>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">🔴 Contraindicaciones Absolutas (NO realizar el masaje):</h3>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Fiebre, infecciones activas o procesos inflamatorios agudos</strong> (el calor propaga la inflamación).</li>
+<li style="margin-bottom:0.4rem;"><strong>Trombosis Venosa Profunda (TVP) o flebitis</strong> (riesgo de desprender un émbolo por vasodilatación).</li>
+<li style="margin-bottom:0.4rem;"><strong>Várices graves o úlceras varicosas</strong> en piernas (solo trabajar espalda o evitar zonas afectadas).</li>
+<li style="margin-bottom:0.4rem;"><strong>Heridas abiertas, quemaduras solares recientes, dermatitis activa o micosis</strong>.</li>
+<li style="margin-bottom:0.4rem;"><strong>Neuropatías periféricas o pérdida de sensibilidad térmica</strong> (pacientes que no sienten si la piedra está quemando, ej. diabetes avanzada).</li>
+<li style="margin-bottom:0.4rem;"><strong>Enfermedades cardiovasculares graves o hipotensión descompensada</strong>.</li>
+</ul>
+<h3 style="font-family:'Space Grotesk', sans-serif; font-size:1.05rem; color:#fb923c; margin:1.3rem 0 0.5rem 0;">🟡 Contraindicaciones Relativas / Precauciones Especiales:</h3>
+<ul style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Embarazo:</strong> Prohibido aplicar calor en abdomen y zona lumbar. Solo se puede aplicar calor tibio muy suave (<45°C) en cervicales y hombros, siempre en posición de decúbito lateral con autorización ginecológica.</li>
+<li style="margin-bottom:0.4rem;"><strong>Hipertensión arterial:</strong> Usar calor moderado y evitar cambios bruscos de posición.</li>
+</ul>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">🧼 7. Protocolo de Higiene, Lavado & Sanitización de las Piedras</h2>
+<p style="margin:0 0 0.9rem 0; line-height:1.65; color:#cbd5e1; font-size:0.88rem;">Para mantener un estándar clínico impecable y transmitir máxima confianza:</p>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Retiro de Residuos:</strong> Tras terminar la sesión, limpiar el exceso de aceite con toalla de papel absorbente.</li>
+<li style="margin-bottom:0.4rem;"><strong>Lavado Antibacteriano:</strong> Lavar cada piedra en lavamanos con agua tibia y jabón antiséptico neutro o clorhexidina al 2%, frotando suavemente con esponja no abrasiva.</li>
+<li style="margin-bottom:0.4rem;"><strong>Desinfección & Secado:</strong> Rociar con alcohol al 70% o spray desinfectante hospitalario y secar completamente con toalla limpia de algodón antes de guardarlas en el maletín.</li>
+<li style="margin-bottom:0.4rem;"><strong>Cuidado del Maletín:</strong> Limpiar el interior del bolso térmico con paño desinfectante húmedo (desconectado de la corriente).</li>
+<li style="margin-bottom:0.4rem;"><strong>Purificación Energética (Sello Somático Puya):</strong> Dejar las piedras al sol de la tarde durante 30 minutos una vez por semana o sahumarlas con romero seco.</li>
+</ol>
+<hr style="border:0; border-top:1px solid #2a1f14; margin:1.8rem 0;">
+<h2 style="font-family:'Space Grotesk', sans-serif; font-size:1.35rem; color:#fff; border-bottom:1px solid rgba(249,115,22,0.25); padding-bottom:0.4rem; margin:2rem 0 0.9rem 0; display:flex; align-items:center; gap:8px;">💡 8. Tips Pro de Diego para el Estudio Previo de Rocío</h2>
+<ol style="padding-left:1.3rem; margin:0.6rem 0 1rem 0; line-height:1.6; color:#cbd5e1; font-size:0.86rem;">
+<li style="margin-bottom:0.4rem;"><strong>Practica el "Peso Muerto" con una taza caliente en casa:</strong> Toma una taza tibia apoyando la palma completa y no los dedos; siente cómo el peso del brazo hace la presión sin forzar la muñeca.</li>
+<li style="margin-bottom:0.4rem;"><strong>Estudia la anatomía dorsal palpando:</strong> Localiza los bordes internos de las escápulas, los trapecios superiores y la cresta ilíaca; visualiza dónde encaja naturalmente cada tamaño de piedra de basalto.</li>
+<li style="margin-bottom:0.4rem;"><strong>Empieza a memorizar la temperatura objetivo:</strong> 50°C a 54°C. Esa es tu cifra maestra.</li>
+<li style="margin-bottom:0.4rem;"><strong>La magia del dueto con Charli:</strong> Cuando trabajen en parejas, uno calienta mientras el otro realiza el pase inicial; coordinar el ritmo de las piedras crea una experiencia envolvente inigualable.</li>
+</ol>
+
+        </div>
+
+        <div style="text-align:center; margin-top:2.5rem; color:#71717a; font-size:0.78rem;">
+            Administración Humana • Método AICC v4.0 • Ecosistema Clínico & Estratégico de Rocío
+        </div>
+    </div>
+</body>
+</html>
