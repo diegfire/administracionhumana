@@ -9,7 +9,7 @@
     "tagline": "TEA + Multipotencialidad • UST / Puya Masajes / Canto",
     "edad": 28,
     "ciudad": "Talcahuano",
-    "rol_principal": "Estudiante de Psicopedagogía / Masoterapeuta / Instructora de Canto"
+    "rol_principal": "Estudiante de Psicopedagogía UST / Masoterapeuta (Gabinete Collao) / Instructora de Canto"
   },
   "modulos_activos": [
     "seguridad_pin",
@@ -42,10 +42,12 @@
     "movilizacion_lienzos_ust",
     "plan_estrategico_hitos",
     "principio_pareto_80_20",
-    "kaizen_mejora_continua"
+    "kaizen_mejora_continua",
+    "batching_agrupacion_tareas",
+    "legalizacion_spa_multigiro"
   ],
   "diagnostico": {
-    "resumen_humano": "Rocío equilibra admirablemente sus estudios universitarios en UST con dos emprendimientos independientes (Puya Masajes y Voz Caleidoscopio) y el cuidado del hogar en Talcahuano con su perrita Nieve. Presenta una disciplina y orden físico excepcionales (10/10 y 1/5 en abandono de sistemas). Su desafío es la fuga por interrupciones constantes (5/5, 21h/sem) y la necesidad innegociable de agendar pausas de autorregulación sensorial (Stimming TEA).",
+    "resumen_humano": "Rocío equilibra admirablemente sus estudios universitarios en UST con dos emprendimientos independientes: Puya Masajes (ahora operando con gabinete físico en Sector Collao, Concepción) y Voz Caleidoscopio (clases de canto y técnica vocal), y el cuidado del hogar en Talcahuano con su perrita Nieve. Cuenta con transporte resuelto mediante Lets Go (servicio interurbano seguro para mujeres) y ya armó su Kit Sensorial completo para blindaje sensorial TEA en traslados. Presenta una disciplina y orden físico excepcionales (10/10 y 1/5 en abandono de sistemas). Su desafío es consolidar la transición hacia febrero mediante paquetización mensual y procesamiento por lotes (Batching).",
     "stats": [
       {
         "valor": "10 / 10",
@@ -88,6 +90,12 @@
         "Masaje estilo Tailandés con Danae (traductora, guía, artesana, masajista)"
       ],
       "estrategia_transicion": "3 fases: Fase 1 Blindaje (hasta 15 dic), Fase 2 Preventa (15 dic a feb), Fase 3 Despegue Total (feb en adelante)."
+    },
+    "logistica_y_movilidad": {
+      "gabinete_puya": "Sector Collao, Concepción (gabinete fijo de masoterapia y termoterapia).",
+      "residencia": "Talcahuano (hogar, cuidado de perrita Nieve y base de estudio).",
+      "transporte_oficial": "Lets Go (servicio interurbano tipo Uber exclusivo para mujeres, seguro y predecible).",
+      "blindaje_sensorial": "Kit Sensorial TEA 100% armado y operativo (canceladores de ruido Woo, elementos táctiles/olfativos e hidratación)."
     }
   },
   "foda": {
@@ -95,7 +103,8 @@
       "Capacidad inventiva conceptual, storytelling y desarrollo de experiencias sensoriales.",
       "Alta disciplina corporal y hábitos de bienestar constante (Salud 8/10).",
       "Inteligencia emocional y capacidad de fijar límites sanos con apoyo familiar (9/10).",
-      "Consistencia sobresaliente en sistemas y rutinas análogas (1/5 abandono)."
+      "Consistencia sobresaliente en sistemas y rutinas análogas (1/5 abandono).",
+      "Kit Sensorial TEA armado y operativo como ancla de autorregulación en cualquier entorno."
     ],
     "debilidades": [
       "Pensamientos intrusivos nocturnos al acostarse sin vaciado en papel.",
@@ -109,13 +118,13 @@
       "Aprovechar el cero costo de arriendo para acelerar el ahorro y subir el ocio al 30%."
     ],
     "amenazas": [
-      "Fricción logística y transporte limitado en Talcahuano/Concepción para atenciones a domicilio.",
-      "Gestión de tiempos y traslados hacia UST (movilización estudiantil formalmente descartada)."
+      "Gestión de tiempos y traslados hacia UST (movilización estudiantil formalmente descartada).",
+      "Desgaste por traslados no agrupados entre Talcahuano y Collao (mitigado con Batching y Lets Go)."
     ]
   },
   "came": {
     "corregir": "Vaciado nocturno físico en papel antes de dormir; agendar 2 pausas de 15 min de Stimming TEA; apartar 10% a cuenta de reserva.",
-    "afrontar": "Zonificar atenciones a domicilio por cuadrantes y coordinar socio de transporte; movilización estudiantil descartada (foco curricular protegido con canceladores Woo).",
+    "afrontar": "Agrupar jornadas de gabinete Collao por lotes (Batching 2 días/sem) y movilizarse exclusivamente en Lets Go; usar Kit Sensorial en trayectos; movilización UST descartada manteniendo foco curricular con canceladores Woo.",
     "mantener": "Proteger la rutina de ejercicio corporal; aplicar storytelling en marcas y souvenirs sensoriales; Nieve a cargo directo (delegando a mamá en visitas); sostener Kanban análogo.",
     "explotar": "Implementar Triangulación de Roles; paquetizar Puya Masajes en planes mensuales; capitalizar cero arriendo."
   },
@@ -208,6 +217,11 @@
         "id": "r3",
         "text": "Canto: Buscar parlante a batería esta semana y entregar modelo exacto a Diego",
         "tag": "Canto"
+      },
+      {
+        "id": "r_leg1",
+        "text": "Legalización: Evaluar redacción de estatutos SpA unificada (Puya + Voz) con 2 nombres de fantasía en RESIR.",
+        "tag": "Legal"
       }
     ],
     "done": [
@@ -245,6 +259,21 @@
         "id": "r15",
         "text": "Canto: Imprimir planificador 08 de 70 min y repertorio de canciones",
         "tag": "Canto"
+      },
+      {
+        "id": "r27",
+        "text": "TEA: Kit Sensorial 100% armado y operativo para traslados y pausas de stimming.",
+        "tag": "TEA"
+      },
+      {
+        "id": "r29",
+        "text": "Transporte: Adopción de servicio Lets Go para traslados interurbanos seguros a Collao.",
+        "tag": "Logística"
+      },
+      {
+        "id": "r31",
+        "text": "Puya: Traslado de operaciones desde Talcahuano a gabinete fijo en Sector Collao (Concepción).",
+        "tag": "Puya"
       }
     ]
   },
@@ -750,6 +779,87 @@
       "guia_url": "planes/rocio/guias/guia_kaizen.html",
       "guia_key": "kaizen",
       "guia_label": "Ver Guía Completa →"
+    },
+    {
+      "id": "paquetizacion_servicios_mes",
+      "numero": 12,
+      "codigo": "P3-09",
+      "badge": "📦 Herramienta 12 • P3-09 • Modelo de Negocio & Escala",
+      "color": "#10b981",
+      "nombre": "12. Paquetización de Servicios en Programas Mensuales & Membresías Recurrentes",
+      "subtitulo": "Dejar de Vender Horas Sueltas: Construcción de Ingresos Predecibles",
+      "descripcion": "Permite estructurar las atenciones de Puya Masajes (Sector Collao) en programas mensuales de salud y alivio (4 sesiones agendadas) y las clases de Voz Caleidoscopio en ciclos mensuales de técnica vocal y movimiento corporal, garantizando el cobro íntegro del 1 al 5 de cada mes y protegiendo tu batería sensorial TEA contra cancelaciones de última hora.",
+      "img_url": "assets/img/herramientas/Paquetizacion de Servicios.png",
+      "img_fallback": "02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/03_MODELO_DE_NEGOCIO/Paquetizacion de Servicios/Paquetizacion de Servicios.png",
+      "tutorial_html": "<strong style=\"color:#10b981; font-size:0.84rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.6rem;\">\n    <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial Clínico: Cómo Paquetizar Puya Collao y Voz Caleidoscopio\n</strong>\n<p style=\"font-size:0.82rem; color:#e2e8f0; margin-bottom:0.7rem; line-height:1.5;\">\n    <strong>La trampa de la hora suelta:</strong> Si cobras la clase de canto o el masaje por hora individual, una persona que cancela a última hora te deja con $0 y un hueco de tiempo que no puedes rellenar. Paquetizar es vender <em>un proceso de 1 mes</em> cobrado por adelantado:\n</p>\n<ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\n    <li><strong style=\"color:#fff;\">Puya Masajes (Gabinete Collao):</strong> Plan 1 Mes Alivio Geotermal ($130.000 / 4 sesiones de 60m con piedras calientes y reestructuración articular). 4 pacientes fijos = $520.000 CLP al mes cobrados del 1 al 5.</li>\n    <li><strong style=\"color:#fff;\">Voz Caleidoscopio:</strong> Ciclo Mensual de Canto Consciente ($80.000 / 4 sesiones de 70m). 4 alumnas fijas = $320.000 CLP al mes. Módulo VIP con Charlyn ($120.000) para grabación de maqueta en estudio.</li>\n    <li><strong style=\"color:#fff;\">Soberanía Financiera:</strong> $520k (Puya) + $320k (Canto) = $840.000 CLP al mes trabajando menos de 9 horas semanales, cubriendo íntegramente los gastos de vida de Rocío (~$813k - $863k).</li>\n</ul>",
+      "checklist": [
+        "Definir la tríada de precios de Puya Masajes en Collao (Esencial $75k, Óptimo $130k, VIP $180k).",
+        "Establecer el Ciclo Mensual de Canto de 4 sesiones a $80.000 (prepagado del 1 al 5).",
+        "Ofrecer la sesión de grabación en estudio en alianza con Charlyn como módulo VIP.",
+        "Usar el Kit Sensorial (canceladores Woo y stimming) antes y después de cada bloque de atención o canto."
+      ],
+      "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-6",
+      "imprimible_label": "",
+      "guia_url": "planes/rocio/guias/guia_paquetizacion.html",
+      "guia_key": "paquetizacion",
+      "guia_label": "Ver Guía Completa →"
+    },
+    {
+      "id": "batching_agrupacion_tareas",
+      "numero": 13,
+      "codigo": "P1-09",
+      "badge": "📦 Herramienta 13 • P1-09 • Productividad & Logística TEA",
+      "color": "#f59e0b",
+      "nombre": "13. Batching (Procesamiento por Lotes) & Zonificación Territorial",
+      "subtitulo": "La Lavadora de Ropa: Fin al Agotamiento por Traslados y Dispersión",
+      "descripcion": "Agrupa los desplazamientos en transporte interurbano (Lets Go), las atenciones clínicas en Sector Collao y las sesiones de Voz Caleidoscopio en lotes de días exclusivos, eliminando la sobrecarga sensorial del cambio continuo de contexto.",
+      "img_url": "assets/img/herramientas/Batching.webp",
+      "img_fallback": "02_METODOLOGIA_Y_HERRAMIENTAS/PILARES/02_PRODUCTIVIDAD_Y_TIEMPO/Batching/Batching.png",
+      "tutorial_html": "<strong style=\"color:#fbbf24; font-size:0.84rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.6rem;\">\n    <i class=\"fa-solid fa-graduation-cap\"></i> Tutorial Clínico: La Lavadora de Ropa Aplicada a Traslados y Gabinete Collao\n</strong>\n<p style=\"font-size:0.82rem; color:#e2e8f0; margin-bottom:0.7rem; line-height:1.5;\">\n    <strong>¿Para qué te sirve?</strong> Nadie lava un calcetín por separado; esperas a juntar una carga completa para encender la lavadora. De la misma manera, <em>está prohibido viajar desde Talcahuano hasta Collao para atender a 1 solo paciente</em> y volverse, porque el traslado en transporte y el cambio de ambiente te agotan la batería sensorial TEA. Con Batching agrupas por lotes cerrados:\n</p>\n<ul style=\"font-size:0.77rem; color:#94a3b8; padding-left:1.1rem; line-height:1.45; margin:0 0 0.6rem 0;\">\n    <li><strong style=\"color:#fff;\">Lote A — Gabinete Collao (2 días fijos / ej. Martes y Jueves):</strong> Te trasladas en Lets Go blindada con tu Kit Sensorial (canceladores Woo, respiración diafragmática). Atiendes a 2 o 3 pacientes del Plan 1 Mes de forma consecutiva en el box de Collao. Haces pausas de 15 min de stimming entre masajes y retornas en Lets Go a Talcahuano en un solo trayecto.</li>\n    <li><strong style=\"color:#fff;\">Lote B — Voz Caleidoscopio (1 a 2 tardes fijas / ej. Miércoles o Sábados):</strong> Concentras las sesiones de canto outdoor en la playa (con mochila estandarizada y parlante Blick con deadcat) o indoor en el estudio de grabación de Charlyn.</li>\n    <li><strong style=\"color:#fff;\">Lote C — Academia UST & Hogar Talcahuano (Lunes, Viernes y mañanas de estudio):</strong> Días protegidos en casa en Talcahuano para lecturas en papel de Psicopedagogía, certámenes y cuidado de Nieve sin interrupciones ni viajes imprevistos.</li>\n</ul>",
+      "checklist": [
+        "Fijar 2 días exclusivos para gabinete Collao (máx. 3 atenciones por jornada en bloque).",
+        "Viajar siempre en Lets Go con Kit Sensorial activo (canceladores Woo y stimming en trayecto).",
+        "Concentrar clases de Canto en 1 o 2 bloques de tarde (playa o estudio Charlyn).",
+        "Blindar días de hogar en Talcahuano para estudio UST en papel y paseo de Nieve."
+      ],
+      "imprimible_url": "04_Imprimibles_Fisicos/Hub_Imprimibles_Rocio.html#hoja-1",
+      "imprimible_label": "Ver Planificador Semanal →",
+      "guia_url": "planes/rocio/guias/guia_batching.html",
+      "guia_key": "batching",
+      "guia_label": "Ver Guía Completa →"
     }
-  ]
+  ],
+  "investigacion_legalizacion": {
+    "estado": "Evaluada y Recomendada",
+    "estructura_recomendada": "Sociedad por Acciones (SpA) Unificada con Objeto Social Dual",
+    "nombres_fantasia": [
+      "Puya Masajes & Bienestar",
+      "Voz Caleidoscopio - Canto & Expresión"
+    ],
+    "razon_social_sugerida": "Caleidoscopio Bienestar SpA (o Servicios Integrales Puya & Voz SpA)",
+    "giros_sii": [
+      {
+        "codigo": "960902",
+        "nombre": "Servicios de masajes corporales, solarios y baños turcos"
+      },
+      {
+        "codigo": "854909",
+        "nombre": "Otros tipos de enseñanza n.c.p. (Clases de técnica vocal y talleres)"
+      }
+    ],
+    "regimen_tributario": "Pro Pyme General (14 D3) o Pro Pyme Transparente (14 D8) - 1ª Categoría",
+    "ventajas_tea": [
+      "1 solo RUT y 1 sola clave tributaria en SII",
+      "1 solo honorario contable (~$35.000 - $45.000 CLP/mes) en lugar de pagar doble",
+      "1 sola declaración mensual F29",
+      "1 sola patente comercial municipal en Sector Collao (Concepción)"
+    ],
+    "tramite_paso_a_paso": [
+      "Paso 1: Constitución en Tu Empresa en Un Día (RESIR) con objeto social dual masoterapia + educación artística.",
+      "Paso 2: Obtención de RUT e Inicio de Actividades en sii.cl en 1ª Categoría.",
+      "Paso 3: Habilitación de boletas electrónicas en app e-Boleta SII en el celular de Rocío.",
+      "Paso 4: Trámite de Autorización Sanitaria de Gabinete de Masoterapia ante Seremi de Salud Biobío (D.S. 283) para espacio en Collao.",
+      "Paso 5: Solicitud de Patente Comercial en Municipalidad de Concepción para gabinete Collao."
+    ]
+  }
 }
