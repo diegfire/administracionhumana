@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión Personalizado (SGP) • Cockpit Modular en Vivo • Administración Humana</title>
+    <script>try { if (window.parent && window.parent !== window) document.documentElement.classList.add('in-iframe'); } catch(e) {}</script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -650,6 +651,14 @@
         }
         html.in-iframe, html.in-iframe body {
             overflow-y: hidden !important;
+        }
+        html.in-iframe #sgp-cases-switcher-bar,
+        html.in-iframe #case-header-tag,
+        html.in-iframe body:not(.consultor-active) #main-tabs-nav {
+            display: none !important;
+        }
+        html.in-iframe main.container {
+            padding-top: 6px !important;
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -3269,6 +3278,8 @@
             const badge = document.getElementById("consultor-badge-indicator");
             const addModBtn = document.getElementById("btn-add-module-tab");
             const adminControls = document.querySelectorAll(".consultor-only-control");
+
+            document.body.classList.toggle("consultor-active", !!isConsultorMode);
 
             if (isConsultorMode) {
                 if (btn) btn.classList.add("active");
