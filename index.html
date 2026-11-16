@@ -788,8 +788,9 @@
     footer {
       background: var(--color-surface);
       border-top: 1px solid var(--color-border);
-      padding: 40px 0;
+      padding: 20px 0;
     }
+    .floating-quick-bar { display: none !important; }
     footer .container {
       display: flex;
       align-items: center;
@@ -8749,20 +8750,13 @@
 </div>
 
 <footer>
-  <div class="container">
-    <div style="display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom:8px;">
-      <img src="logo_oficial.png?v=sistemas_personalizados" alt="Logo Administración Humana" style="height:28px; width:auto; border-radius:4px;" />
-      <span class="footer-logo" style="margin-bottom:0;">Administración Humana</span>
-    </div>
-    <div class="footer-links" style="margin-top:12px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <a href="#sobre-diego" onclick="scrollToSection('sobre-diego'); return false;">1. Con Quién Cuentas</a>
-      <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;">2. Sistema SGP (Demo)</a>
-      <a href="#sondeos" onclick="scrollToSection('sondeos'); return false;">3. Sondeo 6 Áreas</a>
-      <a href="#productos" onclick="scrollToSection('productos'); return false;">4. Sesión ($35k) & Planes</a>
-      <a href="planes-demo.html" target="_blank" rel="noopener noreferrer">Demo SGP en Vivo ↗</a>
-      <a href="dossier.html">Dossier & Casos</a>
-      <a href="sondeo.html">Sondeo 360°</a>
-      <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:700;">📸 @administracionhumana</a>
+  <div class="container" style="justify-content:center; text-align:center;">
+    <div style="display:flex; align-items:center; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:9px;">
+        <img src="logo_oficial.png?v=sistemas_personalizados" alt="Logo Administración Humana" style="height:24px; width:auto; border-radius:4px;" />
+        <span class="footer-logo" style="margin-bottom:0; font-size:0.95rem;">Administración Humana</span>
+      </div>
+      <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" style="color:#e2e8f0; font-size:0.82rem; font-weight:700; text-decoration:none;">📸 @administracionhumana</a>
     </div>
   </div>
 </footer>
@@ -10990,25 +10984,6 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
     }
   };
 
-  // ── LISTENER DE SCROLL PARA LA BARRA FLOTANTE (COORDINADO CON PESTAÑAS) ──
-  window.addEventListener('scroll', () => {
-    const bar = document.getElementById('floating-quick-bar');
-    const admin = document.getElementById('view-admin');
-    if (!bar) return;
-    const isAdminActive = admin && admin.classList.contains('active') && admin.style.display !== 'none';
-    if (isAdminActive || window.CURRENT_LANDING_TAB === 'sondeos') {
-      bar.classList.remove('visible');
-      bar.style.display = 'none';
-      return;
-    }
-    bar.style.display = '';
-    if (window.scrollY > 320) {
-      bar.classList.add('visible');
-    } else {
-      bar.classList.remove('visible');
-    }
-  });
-
   // Run setup
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -11024,28 +10999,6 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
     if (window.renderKanbanSim) window.renderKanbanSim();
   }
 </script>
-
-<!-- BARRA FLOTANTE DE ACCIÓN RÁPIDA (SINCRONIZADA CON LAS 4 PESTAÑAS) -->
-<div id="floating-quick-bar" class="floating-quick-bar" aria-label="Acceso rápido">
-  <button type="button" class="float-bar-btn active primary" data-anchor="sobre-diego" onclick="scrollToSection('sobre-diego');">
-    <span>👤</span> <span class="float-text-full">1. Con Quién Cuentas</span><span class="float-text-short">1. Diego</span>
-  </button>
-  <button type="button" class="float-bar-btn" data-anchor="arsenal" onclick="scrollToSection('arsenal');">
-    <span>📱</span> <span class="float-text-full">2. Sistema SGP</span><span class="float-text-short">2. SGP</span>
-  </button>
-  <button type="button" class="float-bar-btn" data-anchor="sondeos" onclick="scrollToSection('sondeos');">
-    <span>⚡</span> <span class="float-text-full">3. Sondeo 6 Áreas</span><span class="float-text-short">3. Sondeo</span>
-  </button>
-  <button type="button" class="float-bar-btn" data-anchor="productos" onclick="scrollToSection('productos');">
-    <span>🚀</span> <span class="float-text-full">4. Sesión ($35k)</span><span class="float-text-short">4. $35k</span>
-  </button>
-  <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vengo%20de%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20caso" target="_blank" class="float-bar-btn" style="color: #34d399;">
-    <span>💬</span> <span class="float-text-full">WhatsApp</span><span class="float-text-short">WA</span>
-  </a>
-  <button type="button" class="float-bar-btn" onclick="window.openAuthModal();" style="border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
-    <span>🔒</span> <span>PIN</span>
-  </button>
-</div>
 
 
 <!-- MODAL DE INFOGRAFÍAS DE ARQUITECTURA (3 ENFOQUES VISUALES) -->
