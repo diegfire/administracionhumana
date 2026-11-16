@@ -127,9 +127,10 @@
     }
     
     .plat-tab-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #a1a1aa;
+      background: linear-gradient(180deg, #161821 0%, #0e1016 100%);
+      border: 1px solid #2e3344;
+      color: #e2e8f0;
+      box-shadow: 0 2px 0 #050507;
       padding: 7px 11px;
       border-radius: 10px;
       font-size: 0.78rem;
@@ -4330,29 +4331,23 @@
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 99px;
-    border: 1px solid rgba(255,255,255,0.18);
+    background: transparent !important;
+    border: none !important;
+    border-left: 3px solid currentColor !important;
+    border-radius: 0 !important;
+    padding: 2px 0 2px 8px !important;
   }
   .landing-tab-pill.amber {
     color: #fbbf24;
-    background: rgba(251, 191, 36, 0.12);
-    border-color: rgba(251, 191, 36, 0.35);
   }
   .landing-tab-pill.sky {
     color: #38bdf8;
-    background: rgba(56, 189, 248, 0.12);
-    border-color: rgba(56, 189, 248, 0.35);
   }
   .landing-tab-pill.cyan {
     color: #22d3ee;
-    background: rgba(34, 211, 238, 0.12);
-    border-color: rgba(34, 211, 238, 0.35);
   }
   .landing-tab-pill.emerald {
     color: #34d399;
-    background: rgba(52, 211, 153, 0.12);
-    border-color: rgba(52, 211, 153, 0.35);
   }
   .landing-tab-title {
     font-family: var(--font-heading);
@@ -4756,9 +4751,10 @@
       box-sizing: border-box;
     }
     .diego-mode-btn {
-      background: transparent;
-      border: 1px solid transparent;
-      color: #a1a1aa;
+      background: linear-gradient(180deg, #161821 0%, #0e1016 100%);
+      border: 1px solid #2e3344;
+      color: #e2e8f0;
+      box-shadow: 0 2px 0 #050507;
       font-family: var(--font-heading);
       font-size: 0.78rem;
       font-weight: 700;
@@ -4777,11 +4773,14 @@
     }
     .diego-mode-btn:hover {
       color: #ffffff;
-      background: #121216;
+      background: #1b202c;
+      border-color: rgba(56, 189, 248, 0.45);
     }
     .diego-mode-btn.active {
       background: #ffffff;
       color: #000000;
+      border-color: #ffffff;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.28);
       font-weight: 800;
     }
     .dmode-label-short {
@@ -4897,9 +4896,10 @@
       margin-bottom: 8px;
     }
     .diego-case-btn {
-      background: #050507;
-      border: 1px solid #222228;
-      color: #a1a1aa;
+      background: linear-gradient(180deg, #161821 0%, #0e1016 100%);
+      border: 1.5px solid #333b4d;
+      color: #e2e8f0;
+      box-shadow: 0 2px 0 #050507;
       font-size: 0.74rem;
       font-weight: 700;
       padding: 7px 10px;
@@ -4915,13 +4915,15 @@
       box-sizing: border-box;
     }
     .diego-case-btn:hover {
-      border-color: #3f3f46;
+      border-color: rgba(56, 189, 248, 0.55);
       color: #ffffff;
+      background: #1b202c;
     }
     .diego-case-btn.active {
       background: #ffffff;
       border-color: #ffffff;
       color: #000000;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.28);
       font-weight: 800;
     }
     @media (max-width: 680px) {
@@ -4940,27 +4942,32 @@
     .diego-case-display {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-      background: #050507;
-      border: 1px solid #1c1c22;
-      border-radius: 10px;
-      padding: 10px;
+      gap: 10px;
+      background: #060709;
+      border: none;
+      border-top: 1px solid #1c1c22;
+      border-radius: 0 0 10px 10px;
+      padding: 10px 8px 6px;
       box-sizing: border-box;
     }
     @media (max-width: 768px) {
       .diego-case-display {
         grid-template-columns: 1fr;
-        padding: 8px;
-        gap: 6px;
+        padding: 8px 4px 4px;
+        gap: 8px;
       }
     }
     .diego-case-col {
-      background: #0b0b0e;
-      border: 1px solid #1f1f26;
-      border-radius: 8px;
-      padding: 10px 12px;
+      background: #08090c;
+      border: none;
+      border-left: 3px solid #475569;
+      border-radius: 0 8px 8px 0;
+      padding: 8px 12px;
       min-width: 0;
     }
+    .diego-case-col:nth-child(1) { border-left-color: #a1a1aa; }
+    .diego-case-col:nth-child(2) { border-left-color: #38bdf8; }
+    .diego-case-col:nth-child(3) { border-left-color: #34d399; }
     .diego-case-col .c-label {
       font-size: 0.67rem;
       font-weight: 800;
@@ -5813,40 +5820,105 @@
         }
         .demo-subtabs-bar {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 10px;
+          flex-direction: column;
+          gap: 8px;
           background: #0a0a0c;
           border: 1px solid #1f1f24;
           border-radius: 12px;
-          padding: 8px 12px;
+          padding: 9px 12px;
           margin-bottom: 10px;
         }
-        .sgp-guide-shell {
-          background: #0a0a0c;
-          border: 1px solid #1f1f24;
-          border-radius: 14px;
-          padding: 14px 16px;
-          margin-bottom: 12px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-        .sgp-guide-headline-row {
+        .demo-subtabs-top-row {
           display: flex;
           align-items: center;
           justify-content: space-between;
           flex-wrap: wrap;
           gap: 8px;
         }
+        .demo-mode-segmented-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px;
+          width: 100%;
+        }
+        @media (max-width: 640px) {
+          .demo-mode-segmented-grid {
+            grid-template-columns: 1fr;
+            gap: 6px;
+          }
+        }
+        .demo-subtab-btn {
+          background: linear-gradient(180deg, #161821 0%, #0e1016 100%);
+          border: 1.5px solid #2e3344;
+          color: #e2e8f0;
+          box-shadow: 0 2px 0 #050507;
+          border-radius: 9px;
+          padding: 8px 12px;
+          font-family: var(--font-heading);
+          font-size: 0.77rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.18s ease;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          text-align: left;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .demo-subtab-btn:hover {
+          border-color: rgba(56, 189, 248, 0.55);
+          background: #1b202c;
+          color: #ffffff;
+        }
+        .demo-subtab-btn.active {
+          background: #ffffff;
+          border-color: #ffffff;
+          color: #000000;
+          box-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
+          font-weight: 800;
+        }
+        .demo-subtab-status {
+          font-size: 0.65rem;
+          font-weight: 800;
+          padding: 2px 8px;
+          border-radius: 99px;
+          white-space: nowrap;
+          flex-shrink: 0;
+          background: rgba(56, 189, 248, 0.12);
+          border: 1px solid rgba(56, 189, 248, 0.35);
+          color: #38bdf8;
+        }
+        .demo-subtab-btn.active .demo-subtab-status {
+          background: #10b981;
+          border-color: #10b981;
+          color: #000000;
+        }
+        .sgp-guide-shell {
+          background: #0a0a0c;
+          border: 1px solid #1f1f24;
+          border-radius: 14px;
+          padding: 12px 14px;
+          margin-bottom: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .sgp-guide-headline-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
         .sgp-guide-headline {
           font-family: var(--font-heading);
-          font-size: clamp(0.95rem, 1.9vw, 1.14rem);
+          font-size: clamp(0.92rem, 1.8vw, 1.1rem);
           font-weight: 800;
           color: #ffffff;
           margin: 0;
-          line-height: 1.3;
+          line-height: 1.28;
         }
         .sgp-guide-headline span.hl-sky {
           color: #38bdf8;
@@ -5862,6 +5934,10 @@
           }
         }
         @media (max-width: 640px) {
+          .sgp-guide-shell {
+            padding: 10px 10px;
+            gap: 8px;
+          }
           .sgp-scenarios-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 6px;
@@ -5871,37 +5947,67 @@
           }
         }
         .sgp-scenario-btn {
-          background: #050507;
-          border: 1px solid #24242b;
-          color: #cbd5e1;
+          background: linear-gradient(180deg, #151924 0%, #0c0e14 100%);
+          border: 1.5px solid #333b4d;
+          box-shadow: 0 3px 0 #1e2430;
+          color: #f1f5f9;
           border-radius: 10px;
-          padding: 9px 10px;
+          padding: 8px 9px;
           font-family: var(--font-heading);
-          font-size: 0.74rem;
+          font-size: 0.73rem;
           font-weight: 700;
           cursor: pointer;
           text-align: left;
-          line-height: 1.28;
-          transition: all 0.18s ease;
+          line-height: 1.25;
+          transition: all 0.16s ease;
           display: flex;
           flex-direction: column;
-          gap: 3px;
+          gap: 4px;
         }
         .sgp-scenario-btn:hover {
-          border-color: rgba(56, 189, 248, 0.55);
-          background: #0e131b;
+          border-color: rgba(56, 189, 248, 0.7);
+          background: linear-gradient(180deg, #1a2130 0%, #10141d 100%);
           color: #ffffff;
           transform: translateY(-1px);
+        }
+        .sgp-scenario-btn:active {
+          transform: translateY(1px);
+          box-shadow: 0 1px 0 #1e2430;
         }
         .sgp-scenario-btn.active {
           background: #ffffff;
           border-color: #ffffff;
           color: #000000;
-          box-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+          box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
+        }
+        .sc-btn-top {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 5px;
+          width: 100%;
+        }
+        .sc-badge {
+          font-family: var(--font-heading);
+          font-size: 0.6rem;
+          font-weight: 800;
+          padding: 2px 6px;
+          border-radius: 99px;
+          white-space: nowrap;
+          flex-shrink: 0;
+          color: #38bdf8;
+          background: rgba(56, 189, 248, 0.12);
+          border: 1px solid rgba(56, 189, 248, 0.35);
+          text-transform: uppercase;
+        }
+        .sgp-scenario-btn.active .sc-badge {
+          background: #10b981;
+          border-color: #10b981;
+          color: #000000;
         }
         .sgp-scenario-btn .sc-sub {
           font-family: var(--font-sans);
-          font-size: 0.67rem;
+          font-size: 0.66rem;
           font-weight: 600;
           color: #94a3b8;
         }
@@ -5909,86 +6015,136 @@
           color: #334155;
           font-weight: 700;
         }
-        .sgp-context-3cards {
+        .sgp-context-split {
           display: grid;
-          grid-template-columns: 1fr 1fr 1.2fr;
+          grid-template-columns: 1.15fr 1fr;
           gap: 10px;
+          align-items: stretch;
         }
         @media (max-width: 920px) {
-          .sgp-context-3cards {
+          .sgp-context-split {
             grid-template-columns: 1fr;
             gap: 8px;
           }
         }
-        .sgp-ctx-card {
-          background: #050507;
-          border: 1px solid #1c1c22;
-          border-radius: 10px;
-          padding: 11px 13px;
+        /* Bloque de lectura editorial plano (NO parece botón) */
+        .sgp-editorial-summary-box {
+          background: #060709;
+          border: none;
+          border-left: 3px solid #38bdf8;
+          border-radius: 0 10px 10px 0;
+          padding: 9px 12px;
           display: flex;
           flex-direction: column;
-          gap: 5px;
+          justify-content: center;
+          gap: 6px;
         }
-        .sgp-ctx-label {
+        .sgp-editorial-line {
+          font-size: 0.76rem;
+          color: #d4d4d8;
+          line-height: 1.42;
+          margin: 0;
+        }
+        .sgp-editorial-tag-prob {
+          font-family: var(--font-heading);
+          font-size: 0.67rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          color: #f87171;
+          margin-right: 4px;
+        }
+        .sgp-editorial-tag-sol {
+          font-family: var(--font-heading);
+          font-size: 0.67rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          color: #34d399;
+          margin-right: 4px;
+        }
+        /* Barra táctil de 6 micro-apps */
+        .sgp-microapp-dock {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 6px;
+        }
+        .sgp-microapp-dock-label {
           font-family: var(--font-heading);
           font-size: 0.68rem;
           font-weight: 800;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-        }
-        .sgp-ctx-text {
-          font-size: 0.77rem;
-          color: #d4d4d8;
-          line-height: 1.45;
-          margin: 0;
+          color: #38bdf8;
         }
         .sgp-microapp-pills {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 5px;
-          margin-top: 2px;
+          gap: 6px;
         }
         .sgp-microapp-jump-btn {
-          background: #0d1017;
-          border: 1px solid #262936;
-          color: #cbd5e1;
-          border-radius: 7px;
-          padding: 5px 8px;
+          background: linear-gradient(180deg, #161b26 0%, #0d1017 100%);
+          border: 1.5px solid #2e384d;
+          box-shadow: 0 2px 0 #171c26;
+          color: #e2e8f0;
+          border-radius: 8px;
+          padding: 6px 8px;
           font-size: 0.7rem;
           font-weight: 700;
           cursor: pointer;
           text-align: left;
           transition: all 0.16s ease;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 4px;
+          min-width: 0;
+        }
+        .sgp-microapp-jump-btn span:first-child {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
+        .sgp-microapp-jump-btn .jump-arrow {
+          font-size: 0.62rem;
+          font-weight: 800;
+          color: #38bdf8;
+          flex-shrink: 0;
+          white-space: nowrap;
+        }
         .sgp-microapp-jump-btn:hover {
           border-color: #38bdf8;
           color: #ffffff;
-          background: rgba(56, 189, 248, 0.12);
+          background: #1b2230;
         }
         .sgp-microapp-jump-btn.active {
-          background: rgba(56, 189, 248, 0.18);
+          background: #38bdf8;
           border-color: #38bdf8;
-          color: #7dd3fc;
+          color: #000000;
+          box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
           font-weight: 800;
+        }
+        .sgp-microapp-jump-btn.active .jump-arrow {
+          color: #000000;
         }
       </style>
 
       <div class="demo-subtabs-bar">
-        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-          <span class="landing-tab-pill sky" style="margin-right: 4px;">📱 Pestaña 2 de 4 · Tu Sistema de Gestión Personalizado (SGP)</span>
-          <button type="button" id="btn-demo-subtab-live" class="diego-mode-btn active" onclick="switchDemoSubtab('live')" style="padding: 7px 14px; font-size: 0.78rem;">
-            🖥️ 1. Explorar SGP en Vivo (5 Casos + 6 Micro-Apps)
+        <div class="demo-subtabs-top-row">
+          <span class="landing-tab-pill sky">📱 Pestaña 2 de 4 · Tu Sistema de Gestión Personalizado (SGP)</span>
+          <a id="btn-open-demo-fullscreen" href="planes-demo.html#caso_d" target="_blank" rel="noopener noreferrer" style="font-size: 0.72rem; font-weight: 800; color: #38bdf8; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; background: rgba(56,189,248,0.12); border: 1.5px solid rgba(56,189,248,0.4); padding: 4px 11px; border-radius: 99px; white-space: nowrap;">
+            Abrir Pantalla Completa ↗
+          </a>
+        </div>
+        <div class="demo-mode-segmented-grid" role="tablist" aria-label="Modo de visualización SGP">
+          <button type="button" id="btn-demo-subtab-live" class="demo-subtab-btn active" onclick="switchDemoSubtab('live')">
+            <span>🖥️ 1. Explorar SGP en Vivo (5 Casos + 6 Micro-Apps)</span>
+            <span class="demo-subtab-status" id="status-demo-subtab-live">● Activo</span>
           </button>
-          <button type="button" id="btn-demo-subtab-steps" class="diego-mode-btn" onclick="switchDemoSubtab('steps')" style="padding: 7px 14px; font-size: 0.78rem;">
-            🗺️ 2. Cómo Construimos tu SGP (3 Etapas)
+          <button type="button" id="btn-demo-subtab-steps" class="demo-subtab-btn" onclick="switchDemoSubtab('steps')">
+            <span>🗺️ 2. Cómo Construimos tu SGP (3 Etapas)</span>
+            <span class="demo-subtab-status" id="status-demo-subtab-steps">○ Ver →</span>
           </button>
         </div>
-        <a id="btn-open-demo-fullscreen" href="planes-demo.html#caso_d" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; font-weight: 800; color: #38bdf8; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); padding: 5px 12px; border-radius: 99px;">
-          Abrir SGP Demo en Pantalla Completa ↗
-        </a>
       </div>
 
       <!-- SUB-PESTAÑA 2: LAS 3 ETAPAS DE CREACIÓN DEL SGP -->
@@ -6063,50 +6219,48 @@
           <!-- SELECTOR DE 5 ESCENARIOS REALES -->
           <div class="sgp-scenarios-grid" role="tablist" aria-label="Escenarios Reales SGP">
             <button type="button" class="sgp-scenario-btn active" data-case="caso_d" onclick="selectSgpScenario('caso_d')">
-              <span>💼 Negocio, Ventas &amp; Cotización</span>
-              <span class="sc-sub">Caso Gabriel · De parálisis a ventas</span>
+              <span class="sc-btn-top"><span>💼 Negocio &amp; Ventas</span><span class="sc-badge">● VIENDO</span></span>
+              <span class="sc-sub">Gabriel · De parálisis a ventas</span>
             </button>
             <button type="button" class="sgp-scenario-btn" data-case="caso_a" onclick="selectSgpScenario('caso_a')">
-              <span>🧘‍♀️ Cuidados, Clases &amp; Meta $160k</span>
-              <span class="sc-sub">Caso Sofía · 168h reales sin culpa</span>
+              <span class="sc-btn-top"><span>🧘‍♀️ Cuidados &amp; $160k</span><span class="sc-badge">Tocar →</span></span>
+              <span class="sc-sub">Sofía · 168h reales sin culpa</span>
             </button>
             <button type="button" class="sgp-scenario-btn" data-case="caso_b" onclick="selectSgpScenario('caso_b')">
-              <span>💆‍♀️ Terapia, Packs &amp; Energía TEA</span>
-              <span class="sc-sub">Caso Camila · Turnos fijos y 3x caja</span>
+              <span class="sc-btn-top"><span>💆‍♀️ Terapia &amp; TEA</span><span class="sc-badge">Tocar →</span></span>
+              <span class="sc-sub">Camila · Turnos fijos y 3x caja</span>
             </button>
             <button type="button" class="sgp-scenario-btn" data-case="caso_c" onclick="selectSgpScenario('caso_c')">
-              <span>⚡ Foco, Estudio &amp; TDAH</span>
-              <span class="sc-sub">Caso Lucas · Paso Cero 5m y acuerdos</span>
+              <span class="sc-btn-top"><span>⚡ Estudio &amp; TDAH</span><span class="sc-badge">Tocar →</span></span>
+              <span class="sc-sub">Lucas · Paso Cero 5m y acuerdos</span>
             </button>
             <button type="button" class="sgp-scenario-btn" data-case="caso_e" onclick="selectSgpScenario('caso_e')">
-              <span>🌏 Trabajo, Idioma &amp; Ahorro</span>
-              <span class="sc-sub">Caso Valeria · Fases y solvencia $2.4M</span>
+              <span class="sc-btn-top"><span>🌏 Trabajo &amp; Ahorro</span><span class="sc-badge">Tocar →</span></span>
+              <span class="sc-sub">Valeria · Fases y solvencia $2.4M</span>
             </button>
           </div>
 
-          <!-- TARJETA DE CONTEXTO RÁPIDO EN 3 CAJAS MINIMALISTAS -->
-          <div class="sgp-context-3cards">
-            <div class="sgp-ctx-card" style="border-top: 2px solid #f87171;">
-              <div class="sgp-ctx-label" style="color: #f87171;">🔍 1. El Problema Real</div>
-              <p class="sgp-ctx-text" id="sgp-guide-problem">
-                Llevaba 6 meses perfeccionando logos y proveedores sin salir a vender ni cobrar, atrapado en la parálisis por análisis.
+          <!-- LECTURA EDITORIAL DEL CASO (NO PARECE BOTÓN) + DOCK TÁCTIL DE 6 MICRO-APPS -->
+          <div class="sgp-context-split">
+            <div class="sgp-editorial-summary-box">
+              <p class="sgp-editorial-line">
+                <span class="sgp-editorial-tag-prob">🔍 Problema real:</span>
+                <span id="sgp-guide-problem">Llevaba 6 meses perfeccionando logos y proveedores sin salir a vender ni cobrar, atrapado en la parálisis por análisis.</span>
+              </p>
+              <p class="sgp-editorial-line">
+                <span class="sgp-editorial-tag-sol">🧩 SGP diseñado:</span>
+                <span id="sgp-guide-solution">Embudo de 7 días con Regla del 70%, Calculadora de Metas y Margen, Catálogo PDF de 2 páginas y Bloque Comercial matutino antes de las 12:00.</span>
               </p>
             </div>
-            <div class="sgp-ctx-card" style="border-top: 2px solid #34d399;">
-              <div class="sgp-ctx-label" style="color: #34d399;">🧩 2. Qué se diseñó en su SGP</div>
-              <p class="sgp-ctx-text" id="sgp-guide-solution">
-                Embudo de 7 días con Regla del 70%, Calculadora de Metas y Margen, Catálogo PDF de 2 páginas y Bloque Comercial matutino antes de las 12:00.
-              </p>
-            </div>
-            <div class="sgp-ctx-card" style="border-top: 2px solid #38bdf8;">
-              <div class="sgp-ctx-label" style="color: #38bdf8;">👆 3. Salta directo a probar una Micro-App abajo</div>
+            <div class="sgp-microapp-dock">
+              <div class="sgp-microapp-dock-label">👆 Toca una Micro-App para abrirla abajo en vivo:</div>
               <div class="sgp-microapp-pills" id="sgp-microapp-pills">
-                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-horario" onclick="jumpToSgpMicroApp('tab-horario')">⏰ 1. Horario 24H</button>
-                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-kanban" onclick="jumpToSgpMicroApp('tab-kanban')">🛑 2. Kanban WIP=2</button>
-                <button type="button" class="sgp-microapp-jump-btn active" data-tab="tab-accion" onclick="jumpToSgpMicroApp('tab-accion')">🧮 3. Calculadora Negocio</button>
-                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-identidades" onclick="jumpToSgpMicroApp('tab-identidades')">⏱️ 4. Reloj Paso Cero</button>
-                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-herramientas" onclick="jumpToSgpMicroApp('tab-herramientas')">🖨️ 5. Guía + Hoja Carta</button>
-                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-resultados" onclick="jumpToSgpMicroApp('tab-resultados')">🏆 6. Bitácora &amp; Logros</button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-horario" onclick="jumpToSgpMicroApp('tab-horario')"><span>⏰ 1. Horario 24H</span><span class="jump-arrow">▶</span></button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-kanban" onclick="jumpToSgpMicroApp('tab-kanban')"><span>🛑 2. Kanban WIP=2</span><span class="jump-arrow">▶</span></button>
+                <button type="button" class="sgp-microapp-jump-btn active" data-tab="tab-accion" onclick="jumpToSgpMicroApp('tab-accion')"><span>🧮 3. Calc. Negocio</span><span class="jump-arrow">● Activa</span></button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-identidades" onclick="jumpToSgpMicroApp('tab-identidades')"><span>⏱️ 4. Reloj Paso Cero</span><span class="jump-arrow">▶</span></button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-herramientas" onclick="jumpToSgpMicroApp('tab-herramientas')"><span>🖨️ 5. Guía + Hoja Carta</span><span class="jump-arrow">▶</span></button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-resultados" onclick="jumpToSgpMicroApp('tab-resultados')"><span>🏆 6. Bitácora &amp; Logros</span><span class="jump-arrow">▶</span></button>
               </div>
             </div>
           </div>
@@ -6127,7 +6281,7 @@
           </div>
 
           <div id="live-demo-iframe-wrap" style="width: 100%; height: 820px; min-height: 520px; background: #000000; position: relative; transition: height 0.2s ease;">
-            <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_intuitivo_v7&case=caso_d&tab=tab-accion" scrolling="no" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block; overflow: hidden;"></iframe>
+            <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_intuitivo_v8&case=caso_d&tab=tab-accion" scrolling="no" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block; overflow: hidden;"></iframe>
           </div>
         </div>
 
@@ -6209,10 +6363,16 @@
             if (fsLink) fsLink.href = 'planes-demo.html#' + caseId;
 
             document.querySelectorAll('.sgp-scenario-btn').forEach(function(btn) {
-              btn.classList.toggle('active', btn.getAttribute('data-case') === caseId);
+              var isAct = btn.getAttribute('data-case') === caseId;
+              btn.classList.toggle('active', isAct);
+              var scBadge = btn.querySelector('.sc-badge');
+              if (scBadge) scBadge.textContent = isAct ? '● VIENDO' : 'Tocar →';
             });
             document.querySelectorAll('.sgp-microapp-jump-btn').forEach(function(btn) {
-              btn.classList.toggle('active', btn.getAttribute('data-tab') === activeTab);
+              var isAct = btn.getAttribute('data-tab') === activeTab;
+              btn.classList.toggle('active', isAct);
+              var jArrow = btn.querySelector('.jump-arrow');
+              if (jArrow) jArrow.textContent = isAct ? '● Activa' : '▶';
             });
           }
 
@@ -6241,17 +6401,23 @@
             var pSteps = document.getElementById('demo-subpanel-steps');
             var bLive = document.getElementById('btn-demo-subtab-live');
             var bSteps = document.getElementById('btn-demo-subtab-steps');
+            var sLive = document.getElementById('status-demo-subtab-live');
+            var sSteps = document.getElementById('status-demo-subtab-steps');
             if (!pLive || !pSteps) return;
             if (mode === 'steps') {
               pLive.style.display = 'none';
               pSteps.style.display = 'block';
               if (bLive) bLive.classList.remove('active');
               if (bSteps) bSteps.classList.add('active');
+              if (sLive) sLive.textContent = '○ Probar →';
+              if (sSteps) sSteps.textContent = '● Activo';
             } else {
               pSteps.style.display = 'none';
               pLive.style.display = 'block';
               if (bSteps) bSteps.classList.remove('active');
               if (bLive) bLive.classList.add('active');
+              if (sLive) sLive.textContent = '● Activo';
+              if (sSteps) sSteps.textContent = '○ Ver →';
               if (typeof window.refreshDemoIframeHeight === 'function') window.refreshDemoIframeHeight();
             }
           };
@@ -8092,9 +8258,10 @@
         box-sizing: border-box;
       }
       .synergy-tab-btn {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid transparent;
-        color: #94a3b8;
+        background: linear-gradient(180deg, #161821 0%, #0e1016 100%);
+        border: 1px solid #2e3344;
+        color: #e2e8f0;
+        box-shadow: 0 2px 0 #050507;
         font-family: var(--font-heading);
         font-size: 0.77rem;
         font-weight: 700;
@@ -8113,13 +8280,15 @@
       }
       .synergy-tab-btn:hover {
         color: #ffffff;
-        background: rgba(255, 255, 255, 0.06);
+        background: #1b202c;
+        border-color: rgba(56, 189, 248, 0.45);
       }
       .synergy-tab-btn.active {
         background: var(--syn-accent, #38bdf8);
+        border-color: var(--syn-accent, #38bdf8);
         color: #041019;
         font-weight: 800;
-        box-shadow: 0 2px 12px rgba(56, 189, 248, 0.26);
+        box-shadow: 0 2px 14px rgba(56, 189, 248, 0.3);
       }
       .syn-label-short {
         display: none;
