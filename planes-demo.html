@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Vuelo 2.0 • Cockpit Modular de Casos Reales • Administración Humana</title>
+    <title>Sistema de Gestión Personalizado (SGP) • Cockpit Modular en Vivo • Administración Humana</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -236,6 +236,50 @@
             .case-actions-group { width: 100%; justify-content: flex-start; }
             .case-bottom-row { flex-direction: column; align-items: flex-start; gap: 8px; }
             .case-chips-group { width: 100%; justify-content: flex-start; overflow-x: auto; padding-bottom: 4px; }
+        }
+
+        /* ── BARRA COMPACTA DE SELECCIÓN DE LOS 5 CASOS REALES (SGP) ── */
+        .sgp-cases-switcher-bar {
+            background: #0a0a0c;
+            border: 1px solid #1f1f24;
+            border-radius: 12px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .sgp-cases-switcher-label {
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+        .sgp-cases-chips-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            flex: 1;
+            justify-content: flex-end;
+        }
+        .sgp-cases-chips-row .case-chip {
+            padding: 5px 11px;
+            font-size: 0.73rem;
+        }
+        @media (max-width: 820px) {
+            .sgp-cases-chips-row {
+                justify-content: flex-start;
+                width: 100%;
+            }
         }
 
         /* ── BARRA DE PESTAÑAS MODULARES ── */
@@ -1202,6 +1246,20 @@
     <!-- CONTENEDOR MAESTRO -->
     <main class="container" style="max-width: 1300px; margin: 0 auto; padding: 10px 14px 28px;">
 
+        <!-- BARRA COMPACTA DE LOS 5 CASOS REALES DEL SGP -->
+        <div class="sgp-cases-switcher-bar" id="sgp-cases-switcher-bar">
+            <span class="sgp-cases-switcher-label">
+                <span>🧩</span> <span>Elige un Caso Real SGP:</span>
+            </span>
+            <div class="sgp-cases-chips-row" role="tablist" aria-label="Casos Reales SGP">
+                <button type="button" class="case-chip" id="chip-caso_d" onclick="handleCaseSelect('caso_d')">💼 Negocio &amp; Ventas (Gabriel)</button>
+                <button type="button" class="case-chip active" id="chip-caso_a" onclick="handleCaseSelect('caso_a')">🧘‍♀️ Cuidados &amp; Meta $160k (Sofía)</button>
+                <button type="button" class="case-chip" id="chip-caso_b" onclick="handleCaseSelect('caso_b')">💆‍♀️ Terapia &amp; Pausas TEA (Camila)</button>
+                <button type="button" class="case-chip" id="chip-caso_c" onclick="handleCaseSelect('caso_c')">⚡ Estudio &amp; TDAH (Lucas)</button>
+                <button type="button" class="case-chip" id="chip-caso_e" onclick="handleCaseSelect('caso_e')">🌏 Proyecto &amp; Ahorro (Valeria)</button>
+            </div>
+        </div>
+
         <!-- 1. TIRA COMPACTA DE CONTEXTO DEL CASO DE EJEMPLO -->
         <header class="demo-compact-header">
             <div class="demo-header-left">
@@ -1258,7 +1316,7 @@
             <span id="dynamic-tabs-container" style="display: flex; gap: 0.45rem; flex-wrap: wrap;"></span>
 
             <!-- BOTÓN DESTACADO PARA ACTIVAR MÓDULOS (SOLO VISIBLE EN MODO CONSULTOR) -->
-            <button class="tab-btn btn-add-module" id="btn-add-module-tab" onclick="openAddModuleModal()" title="Activar nuevo módulo en el Plan de Vuelo" style="display: none;">
+            <button class="tab-btn btn-add-module" id="btn-add-module-tab" onclick="openAddModuleModal()" title="Activar nuevo módulo en el Sistema de Gestión Personalizado (SGP)" style="display: none;">
                 <i class="fa-solid fa-bolt"></i> + Activar Módulo
             </button>
         </nav>
@@ -1984,13 +2042,13 @@
                 Acceso Protegido
             </h3>
             <p style="font-size: 0.82rem; color: #aaa; margin-bottom: 1.2rem; line-height: 1.4;" id="client-auth-desc">
-                Este Plan de Vuelo es privado. Ingresa el PIN del cliente o la Contraseña Maestra de Consultor para continuar:
+                Este Portal SGP es privado. Ingresa el PIN del cliente o la Contraseña Maestra de Consultor para continuar:
             </p>
             <input type="password" id="input-client-pin" placeholder="Ingresa PIN de 4 dígitos o Clave Maestra" style="width: 100%; background: #181818; border: 1px solid #333; color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 1rem; text-align: center; margin-bottom: 1.2rem; letter-spacing: 2px; outline: none;" onkeypress="if(event.key==='Enter') submitClientAuth()">
             <div style="display: flex; gap: 10px; justify-content: center;">
                 <button class="btn-schedule-action" onclick="closeClientAuthModal()">Cancelar</button>
                 <button class="btn-gateway-login" onclick="submitClientAuth()" style="width: auto; padding: 8px 22px; margin: 0; font-size: 0.84rem; background: #3b82f6; color: #fff; font-weight: 800;">
-                    Desbloquear Plan
+                    Desbloquear Portal SGP
                 </button>
             </div>
             <div style="margin-top: 14px; font-size: 0.72rem; color: #666;" id="client-auth-hint">
@@ -2000,7 +2058,7 @@
     </div>
 
     <!-- ════════════════════════════════════════════════════════════════ -->
-    <!-- MODAL 1: CATÁLOGO DE MÓDULOS (+ AGREGAR MÓDULO AL PLAN)          -->
+    <!-- MODAL 1: CATÁLOGO DE MÓDULOS (+ AGREGAR MÓDULO AL SGP)           -->
     <!-- ════════════════════════════════════════════════════════════════ -->
     <div id="modal-add-module" class="modal-overlay">
         <div class="modal-box modal-catalog-box">
@@ -2009,7 +2067,7 @@
                 <button class="modal-close-btn" onclick="closeAddModuleModal()">&times;</button>
             </div>
             <p style="font-size: 0.82rem; color: #888; margin-bottom: 0.8rem;">
-                Inventario completo de <strong>60 módulos estandarizados</strong> (Diagnóstico, Productividad, Finanzas, Identidades y Cierres). Activa cualquier herramienta en 1 clic para este plan de vuelo:
+                Inventario completo de <strong>60 módulos estandarizados</strong> (Diagnóstico, Productividad, Finanzas, Identidades y Cierres). Activa cualquier herramienta en 1 clic para este Sistema de Gestión Personalizado (SGP):
             </p>
 
             <div class="catalog-search-bar" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
@@ -2260,7 +2318,7 @@
             return "$" + Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
 
-        function setBizPreset(goal, pack, hours) {
+        function setBizPreset(goal, pack, hours, silent = false) {
             const gEl = document.getElementById("biz-input-goal");
             const pEl = document.getElementById("biz-input-pack");
             const hEl = document.getElementById("biz-input-hours");
@@ -2268,7 +2326,9 @@
             if (pEl) pEl.value = pack;
             if (hEl) hEl.value = hours;
             recalcBizApp();
-            showToast("⚡ Escenario comercial cargado en la calculadora.");
+            if (!silent) {
+                showToast("⚡ Escenario comercial cargado en la calculadora.");
+            }
         }
 
         function recalcBizApp() {
@@ -2388,7 +2448,7 @@
         }
 
         // CAMBIO DE PESTAÑAS (SWITCH TAB)
-        function switchTab(tabId) {
+        function switchTab(tabId, fromParent = false) {
             activeTabId = tabId;
             document.querySelectorAll("#main-tabs-nav .tab-btn").forEach(btn => btn.classList.remove("active"));
             
@@ -2413,6 +2473,13 @@
             if (tabId === "tab-herramientas" && typeof initToolTimeBlockingChecklist === "function") {
                 initToolTimeBlockingChecklist();
             }
+            if (!fromParent) {
+                try {
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({ type: "ah-demo-tab-changed", tabId: tabId, caseId: currentCaseId }, "*");
+                    }
+                } catch (e) {}
+            }
             setTimeout(notifyParentIframeHeight, 80);
         }
 
@@ -2434,6 +2501,15 @@
                 }
             } catch (e) {}
         }
+
+        window.addEventListener("message", function(ev) {
+            if (!ev || !ev.data || ev.data.type !== "ah-demo-command") return;
+            if (ev.data.caseId && typeof switchCase === "function") {
+                switchCase(ev.data.caseId, ev.data.tabId || null, true);
+            } else if (ev.data.tabId && typeof switchTab === "function") {
+                switchTab(ev.data.tabId, true);
+            }
+        });
 
         function setSimState(state) {
             currentSimState = state;
@@ -2469,7 +2545,7 @@
         }
 
         // CONMUTACIÓN DINÁMICA DE CASO
-        function switchCase(caseId) {
+        function switchCase(caseId, optionalTabId = null, fromParent = false) {
             if (!window.CASOS_PLAN_VUELO_DATA || !window.CASOS_PLAN_VUELO_DATA[caseId]) return;
             currentCaseId = caseId;
             activeCaseData = window.CASOS_PLAN_VUELO_DATA[caseId];
@@ -2607,8 +2683,30 @@
             renderActiveDynamicModules();
             updateConsultorModeUI();
 
-            // Mantener activa la pestaña seleccionada (por defecto Mapeador 24H)
-            switchTab(activeTabId || "tab-horario");
+            // 11. Sincronizar calculadora comercial con el escenario del caso (sin toast intrusivo)
+            const caseBizPresets = {
+                caso_d: [1500000, 125000, 6],
+                caso_b: [960000, 80000, 4],
+                caso_a: [640000, 40000, 4],
+                caso_c: [300000, 30000, 4],
+                caso_e: [1200000, 150000, 4]
+            };
+            const bp = caseBizPresets[caseId];
+            if (bp && typeof setBizPreset === "function") {
+                setBizPreset(bp[0], bp[1], bp[2], true);
+            }
+
+            // Mantener o activar la pestaña solicitada
+            const targetTab = optionalTabId || activeTabId || "tab-horario";
+            switchTab(targetTab, true);
+            if (!fromParent) {
+                try {
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({ type: "ah-demo-case-changed", caseId: caseId, tabId: activeTabId }, "*");
+                    }
+                } catch (e) {}
+            }
+            setTimeout(notifyParentIframeHeight, 90);
         }
 
         // ══════════════════════════════════════════════════════════════════════
@@ -2817,10 +2915,10 @@
             const idx = activeList.indexOf(modId);
             if (idx >= 0) {
                 activeList.splice(idx, 1);
-                showToast("Módulo removido del Plan de Vuelo.");
+                showToast("Módulo removido del Portal SGP.");
             } else {
                 activeList.push(modId);
-                showToast("¡Módulo agregado al Plan de Vuelo!");
+                showToast("¡Módulo agregado al Sistema de Gestión Personalizado (SGP)!");
             }
             saveActiveModulesForCase(activeList);
             renderCatalogModules();
@@ -2958,7 +3056,7 @@
                                             <i class="fa-solid fa-laptop-code"></i> Componente Digital Interactivo:
                                         </div>
                                         <p style="font-size:0.84rem; color:#fff; margin:0;">
-                                            ${m.doble_salida?.componente_web?.tipo_interaccion || 'Visualizador interactivo integrado en el Plan de Vuelo.'}
+                                            ${m.doble_salida?.componente_web?.tipo_interaccion || 'Visualizador interactivo integrado en el Portal SGP.'}
                                         </p>
                                     </div>
                                     <div style="background:#111; border:1px solid #222; border-radius:8px; padding:12px;">
@@ -3040,7 +3138,7 @@
             if (p) {
                 if (avatarElem) avatarElem.innerText = p.avatar || "🔒";
                 if (titleElem) titleElem.innerText = `Acceso Protegido • ${p.shortName}`;
-                if (descElem) descElem.innerHTML = `Este Plan de Vuelo pertenece a <strong>${p.name}</strong>.<br>Ingresa el PIN asignado al cliente o la Contraseña Maestra de Consultor:`;
+                if (descElem) descElem.innerHTML = `Este Portal SGP pertenece a <strong>${p.name}</strong>.<br>Ingresa el PIN asignado al cliente o la Contraseña Maestra de Consultor:`;
             }
 
             if (modal) {
@@ -3091,7 +3189,7 @@
                 const targetId = pendingTargetCaseId;
                 closeClientAuthModal();
                 switchCase(targetId);
-                showToast(`🔓 Plan de Vuelo de ${targetData.profile.shortName} desbloqueado exitosamente.`);
+                showToast(`🔓 Portal SGP de ${targetData.profile.shortName} desbloqueado exitosamente.`);
                 return;
             }
 
@@ -3233,12 +3331,26 @@
             if (modal) modal.style.display = "none";
         }
 
-        // INICIALIZACIÓN (EJEMPLO CLIENTE SOFÍA)
+        // INICIALIZACIÓN (EJEMPLO CLIENTE SGP)
         window.addEventListener("DOMContentLoaded", () => {
-            const initialCase = "caso_a";
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramCase = urlParams.get("case");
+            const paramTab = urlParams.get("tab");
+            const hashCase = (window.location.hash || "").replace("#", "").trim();
+
+            let initialCase = "caso_a";
+            if (paramCase && window.CASOS_PLAN_VUELO_DATA && window.CASOS_PLAN_VUELO_DATA[paramCase]) {
+                initialCase = paramCase;
+            } else if (hashCase && window.CASOS_PLAN_VUELO_DATA && window.CASOS_PLAN_VUELO_DATA[hashCase]) {
+                initialCase = hashCase;
+            }
+
+            const validTabs = ["tab-horario", "tab-kanban", "tab-accion", "tab-identidades", "tab-herramientas", "tab-resultados"];
+            const initialTab = (paramTab && validTabs.includes(paramTab)) ? paramTab : "tab-horario";
+
             markCaseAsUnlocked(initialCase);
             updateConsultorModeUI();
-            switchCase(initialCase);
+            switchCase(initialCase, initialTab, true);
 
             // En pantallas móviles (<= 640px), iniciar el Mapeador 24H en vista de día (Lunes) para lectura 100% cómoda
             if (window.innerWidth <= 640 && typeof window.setScheduleDayFilter === "function") {

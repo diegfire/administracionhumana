@@ -4254,8 +4254,8 @@
       <button class="plat-tab-btn active" role="tab" aria-selected="true" data-anchor="sobre-diego" onclick="scrollToSection('sobre-diego')" title="Pestaña 1: Con quién cuentas, mis 12 aportes, método en 3 pasos y casos reales">
         <span>👤</span> <span class="nav-tab-full">1. Con Quién Cuentas</span><span class="nav-tab-short">1. Con Quién Cuentas</span>
       </button>
-      <button class="plat-tab-btn" role="tab" aria-selected="false" data-anchor="arsenal" onclick="scrollToSection('arsenal')" title="Pestaña 2: Explora y toca en vivo el Plan de Vuelo Demo (Sistema de Gestión Personalizado)">
-        <span>📱</span> <span class="nav-tab-full">2. Plan de Vuelo Demo</span><span class="nav-tab-short">2. Plan Demo</span>
+      <button class="plat-tab-btn" role="tab" aria-selected="false" data-anchor="arsenal" onclick="scrollToSection('arsenal')" title="Pestaña 2: Explora y prueba en vivo un Sistema de Gestión Personalizado (SGP) según tu caso">
+        <span>📱</span> <span class="nav-tab-full">2. Sistema SGP (Demo)</span><span class="nav-tab-short">2. SGP Demo</span>
       </button>
       <button class="plat-tab-btn" role="tab" aria-selected="false" data-anchor="sondeos" onclick="scrollToSection('sondeos')" title="Pestaña 3: Sondeo interactivo gratuito en las 6 áreas de gestión">
         <span>⚡</span> <span class="nav-tab-full">3. Sondeo 6 Áreas</span><span class="nav-tab-short">3. Sondeo 6 Áreas</span>
@@ -4277,8 +4277,8 @@
         <span>💬</span> <span class="nav-wa-text">WhatsApp</span>
       </a>
       <div id="nav-auth-wrapper" style="display:inline-flex; align-items:center; gap:6px;">
-        <button id="btn-nav-auth" onclick="window.openAuthModal()" class="nav-btn-pin" title="Ingresar con PIN de cliente">
-          <span>🔒</span> <span class="nav-pin-full">Mi Plan de Vuelo</span><span class="nav-pin-short">Mi Plan</span>
+        <button id="btn-nav-auth" onclick="window.openAuthModal()" class="nav-btn-pin" title="Ingresar a Mi Portal SGP con PIN de cliente">
+          <span>🔒</span> <span class="nav-pin-full">Mi Portal SGP</span><span class="nav-pin-short">Mi SGP</span>
         </button>
         <button id="btn-nav-logout" style="display:none; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#aaa; border-radius:50px; padding:6px 11px; font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s;" title="Cerrar sesión activa" onmouseover="this.style.color='#fff'; this.style.borderColor='#ef4444';" onmouseout="this.style.color='#aaa'; this.style.borderColor='rgba(255,255,255,0.2)';">✕ Salir</button>
       </div>
@@ -4486,7 +4486,7 @@
 
 <!-- ══════════════════════════════════════════════════════════════════
      VISTA MAESTRA POR PESTAÑAS DE NAVEGACIÓN (4 SECCIONES ENFOCADAS)
-     1. Con Quién Cuentas ➔ 2. Plan de Vuelo Demo ➔ 3. Sondeo 6 Áreas ➔ 4. Sesión ($35k) & Planes
+     1. Con Quién Cuentas ➔ 2. Sistema SGP (Demo) ➔ 3. Sondeo 6 Áreas ➔ 4. Sesión ($35k) & Planes
      ══════════════════════════════════════════════════════════════════ -->
 <div id="view-landing" class="platform-view active">
 
@@ -5705,10 +5705,10 @@
       <!-- NAVEGACIÓN ENTRE PESTAÑAS (PIE DE PESTAÑA 1) -->
       <div class="landing-tab-footer-nav" style="max-width: 1160px;">
         <span style="font-size: 0.8rem; color: #cbd5e1;">
-          👀 <strong>¿Quieres ver cómo luce un Plan de Vuelo por dentro?</strong> Pruébalo en vivo en la siguiente pestaña:
+          👀 <strong>¿Quieres ver cómo funciona un Sistema de Gestión Personalizado (SGP) por dentro?</strong> Elige un caso y pruébalo en vivo:
         </span>
         <button type="button" class="btn-tab-step-next" onclick="scrollToSection('arsenal')">
-          Siguiente Pestaña: 📱 2. Plan de Vuelo Demo →
+          Siguiente Pestaña: 📱 2. Sistema SGP (Demo) →
         </button>
       </div>
 
@@ -5722,7 +5722,7 @@
           {
             friction: "Alta carga de cuidados familiares (21h/sem de fuga) y angustia por necesitar generar $160.000 extra mensuales sin saber por dónde partir.",
             solution: "Tradujimos la meta a números simples: 'No necesitas 50 clientes, son 8 alumnas con pase fijo de $20.000' + grabar 1 clase comodín para días de cansancio.",
-            result: "Claridad comercial sin abrumo, simulador financiero en su Plan de Vuelo y 2 bloques de oro de 45 min protegidos a la semana."
+            result: "Claridad comercial sin abrumo, simulador financiero en su Portal SGP y 2 bloques de oro de 45 min protegidos a la semana."
           },
           {
             friction: "Lavar ropa a medianoche, dormir tarde por el 'segundo aire', 3 roles chocando a la vez y culpa constante al intentar descansar.",
@@ -5794,12 +5794,12 @@
     </div>
   </section>
 
-  <!-- 2. PESTAÑA 2: PLAN DE VUELO DEMO EN VIVO (SISTEMA DE GESTIÓN PERSONALIZADO SGP) -->
+  <!-- 2. PESTAÑA 2: SISTEMA DE GESTIÓN PERSONALIZADO (SGP) EN VIVO -->
   <section id="arsenal" class="landing-section" data-tab-panel="arsenal" style="padding: 12px 0 28px 0;">
     <span id="casos"></span>
     <div class="container" style="max-width: 1220px; margin: 0 auto; padding: 0 16px;">
 
-      <!-- BARRA COMPACTA DE SUB-PESTAÑAS EN PESTAÑA 2 (DEMO EN VIVO PRIMERO, 3 ETAPAS EN SUB-PESTAÑA 2) -->
+      <!-- ESTILOS INTUITIVOS DEL EXPLORADOR SGP (5 ESCENARIOS + GUÍA EN 3 CAJAS + SALTO A MICRO-APPS) -->
       <style>
         .sgp-3etapas-grid {
           display: grid;
@@ -5823,31 +5823,182 @@
           padding: 8px 12px;
           margin-bottom: 10px;
         }
+        .sgp-guide-shell {
+          background: #0a0a0c;
+          border: 1px solid #1f1f24;
+          border-radius: 14px;
+          padding: 14px 16px;
+          margin-bottom: 12px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .sgp-guide-headline-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .sgp-guide-headline {
+          font-family: var(--font-heading);
+          font-size: clamp(0.95rem, 1.9vw, 1.14rem);
+          font-weight: 800;
+          color: #ffffff;
+          margin: 0;
+          line-height: 1.3;
+        }
+        .sgp-guide-headline span.hl-sky {
+          color: #38bdf8;
+        }
+        .sgp-scenarios-grid {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 7px;
+        }
+        @media (max-width: 1024px) {
+          .sgp-scenarios-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+        @media (max-width: 640px) {
+          .sgp-scenarios-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px;
+          }
+          .sgp-scenarios-grid .sgp-scenario-btn:last-child {
+            grid-column: 1 / -1;
+          }
+        }
+        .sgp-scenario-btn {
+          background: #050507;
+          border: 1px solid #24242b;
+          color: #cbd5e1;
+          border-radius: 10px;
+          padding: 9px 10px;
+          font-family: var(--font-heading);
+          font-size: 0.74rem;
+          font-weight: 700;
+          cursor: pointer;
+          text-align: left;
+          line-height: 1.28;
+          transition: all 0.18s ease;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+        }
+        .sgp-scenario-btn:hover {
+          border-color: rgba(56, 189, 248, 0.55);
+          background: #0e131b;
+          color: #ffffff;
+          transform: translateY(-1px);
+        }
+        .sgp-scenario-btn.active {
+          background: #ffffff;
+          border-color: #ffffff;
+          color: #000000;
+          box-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+        }
+        .sgp-scenario-btn .sc-sub {
+          font-family: var(--font-sans);
+          font-size: 0.67rem;
+          font-weight: 600;
+          color: #94a3b8;
+        }
+        .sgp-scenario-btn.active .sc-sub {
+          color: #334155;
+          font-weight: 700;
+        }
+        .sgp-context-3cards {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1.2fr;
+          gap: 10px;
+        }
+        @media (max-width: 920px) {
+          .sgp-context-3cards {
+            grid-template-columns: 1fr;
+            gap: 8px;
+          }
+        }
+        .sgp-ctx-card {
+          background: #050507;
+          border: 1px solid #1c1c22;
+          border-radius: 10px;
+          padding: 11px 13px;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+        .sgp-ctx-label {
+          font-family: var(--font-heading);
+          font-size: 0.68rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+        .sgp-ctx-text {
+          font-size: 0.77rem;
+          color: #d4d4d8;
+          line-height: 1.45;
+          margin: 0;
+        }
+        .sgp-microapp-pills {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 5px;
+          margin-top: 2px;
+        }
+        .sgp-microapp-jump-btn {
+          background: #0d1017;
+          border: 1px solid #262936;
+          color: #cbd5e1;
+          border-radius: 7px;
+          padding: 5px 8px;
+          font-size: 0.7rem;
+          font-weight: 700;
+          cursor: pointer;
+          text-align: left;
+          transition: all 0.16s ease;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .sgp-microapp-jump-btn:hover {
+          border-color: #38bdf8;
+          color: #ffffff;
+          background: rgba(56, 189, 248, 0.12);
+        }
+        .sgp-microapp-jump-btn.active {
+          background: rgba(56, 189, 248, 0.18);
+          border-color: #38bdf8;
+          color: #7dd3fc;
+          font-weight: 800;
+        }
       </style>
 
       <div class="demo-subtabs-bar">
         <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-          <span class="landing-tab-pill sky" style="margin-right: 4px;">📱 Pestaña 2 de 4</span>
+          <span class="landing-tab-pill sky" style="margin-right: 4px;">📱 Pestaña 2 de 4 · Tu Sistema de Gestión Personalizado (SGP)</span>
           <button type="button" id="btn-demo-subtab-live" class="diego-mode-btn active" onclick="switchDemoSubtab('live')" style="padding: 7px 14px; font-size: 0.78rem;">
-            🖥️ 1. Probar Plan de Vuelo 2.0 en Vivo
+            🖥️ 1. Explorar SGP en Vivo (5 Casos + 6 Micro-Apps)
           </button>
           <button type="button" id="btn-demo-subtab-steps" class="diego-mode-btn" onclick="switchDemoSubtab('steps')" style="padding: 7px 14px; font-size: 0.78rem;">
-            🗺️ 2. Las 3 Etapas de Creación
+            🗺️ 2. Cómo Construimos tu SGP (3 Etapas)
           </button>
         </div>
-        <a href="planes-demo.html" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; font-weight: 800; color: #38bdf8; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); padding: 5px 12px; border-radius: 99px;">
-          Abrir Demo en Pantalla Completa ↗
+        <a id="btn-open-demo-fullscreen" href="planes-demo.html#caso_d" target="_blank" rel="noopener noreferrer" style="font-size: 0.74rem; font-weight: 800; color: #38bdf8; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); padding: 5px 12px; border-radius: 99px;">
+          Abrir SGP Demo en Pantalla Completa ↗
         </a>
       </div>
 
-      <!-- SUB-PESTAÑA 2: LAS 3 ETAPAS (OCULTA POR DEFECTO PARA NO EMPUJAR EL DEMO ABAJO) -->
+      <!-- SUB-PESTAÑA 2: LAS 3 ETAPAS DE CREACIÓN DEL SGP -->
       <div id="demo-subpanel-steps" style="display: none; background: #0a0a0c; border: 1px solid #1f1f24; border-radius: 14px; padding: 16px 18px; margin-bottom: 14px;">
         <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
           <h3 style="font-family: var(--font-heading); font-size: clamp(1.05rem, 2.1vw, 1.32rem); font-weight: 800; color: #ffffff; margin: 0; line-height: 1.2;">
-            Cómo Llegamos a tu Sistema de Gestión Personalizado (3 Etapas)
+            Cómo Construimos tu Sistema de Gestión Personalizado (3 Etapas)
           </h3>
           <button type="button" onclick="switchDemoSubtab('live')" style="background: #38bdf8; color: #000; border: none; font-weight: 800; font-size: 0.75rem; padding: 6px 12px; border-radius: 8px; cursor: pointer;">
-            🖥️ Ir al Visor Interactivo en Vivo →
+            🖥️ Ir a Explorar SGP en Vivo →
           </button>
         </div>
 
@@ -5877,7 +6028,7 @@
               Creamos tu Sistema de Gestión Personalizado a medida
             </strong>
             <p style="color: #d4d4d8; font-size: 0.76rem; line-height: 1.45; margin: 0;">
-              Según tus necesidades, urgencias y prioridades, construimos tu portal con micro-apps, horario 24H, Kanban y hojas Carta en tu celular o PC.
+              Según tus necesidades, urgencias y prioridades, construimos tu portal con micro-apps, cotizadores, tablero Kanban, horario 24H y hojas Carta en tu celular o PC.
             </p>
           </div>
 
@@ -5895,25 +6046,196 @@
         </div>
       </div>
 
-      <!-- SUB-PESTAÑA 1 (ACTIVA POR DEFECTO): VISOR INTERACTIVO EN VIVO DEL PLAN DE VUELO DEMO -->
-      <div id="demo-subpanel-live" style="background: #000000; border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 14px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.65);">
+      <!-- SUB-PESTAÑA 1 (ACTIVA POR DEFECTO): GUÍA INTUITIVA + VISOR INTERACTIVO EN VIVO DEL SGP -->
+      <div id="demo-subpanel-live">
         
-        <div class="demo-visor-titlebar" style="padding: 9px 14px;">
-          <div class="demo-visor-title-left">
-            <h3 class="demo-visor-h3" style="font-size: 0.92rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-              <span class="demo-visor-live-dot"></span>
-              <span>🖥️ Plan de Vuelo 2.0 (Demo en Vivo) — Elige un caso real y toca las 6 pestañas de herramientas abajo</span>
-            </h3>
+        <!-- PANEL GUÍA INTUITIVO ARRIBA DEL VISOR -->
+        <div id="sgp-interactive-guide-box" class="sgp-guide-shell">
+          <div class="sgp-guide-headline-row">
+            <h2 class="sgp-guide-headline">
+              ¿Qué es un SGP? <span class="hl-sky">No es una plantilla fija: es un sistema hecho a tu medida.</span> Elige un escenario real para ver cómo se adapta:
+            </h2>
+            <span style="font-size: 0.72rem; color: #34d399; font-weight: 700; white-space: nowrap;">
+              👇 1. Elige caso · 2. Prueba abajo
+            </span>
           </div>
-          <span style="font-size: 0.7rem; color: #38bdf8; font-weight: 700;">
-            👆 100% interactivo
-          </span>
+
+          <!-- SELECTOR DE 5 ESCENARIOS REALES -->
+          <div class="sgp-scenarios-grid" role="tablist" aria-label="Escenarios Reales SGP">
+            <button type="button" class="sgp-scenario-btn active" data-case="caso_d" onclick="selectSgpScenario('caso_d')">
+              <span>💼 Negocio, Ventas &amp; Cotización</span>
+              <span class="sc-sub">Caso Gabriel · De parálisis a ventas</span>
+            </button>
+            <button type="button" class="sgp-scenario-btn" data-case="caso_a" onclick="selectSgpScenario('caso_a')">
+              <span>🧘‍♀️ Cuidados, Clases &amp; Meta $160k</span>
+              <span class="sc-sub">Caso Sofía · 168h reales sin culpa</span>
+            </button>
+            <button type="button" class="sgp-scenario-btn" data-case="caso_b" onclick="selectSgpScenario('caso_b')">
+              <span>💆‍♀️ Terapia, Packs &amp; Energía TEA</span>
+              <span class="sc-sub">Caso Camila · Turnos fijos y 3x caja</span>
+            </button>
+            <button type="button" class="sgp-scenario-btn" data-case="caso_c" onclick="selectSgpScenario('caso_c')">
+              <span>⚡ Foco, Estudio &amp; TDAH</span>
+              <span class="sc-sub">Caso Lucas · Paso Cero 5m y acuerdos</span>
+            </button>
+            <button type="button" class="sgp-scenario-btn" data-case="caso_e" onclick="selectSgpScenario('caso_e')">
+              <span>🌏 Trabajo, Idioma &amp; Ahorro</span>
+              <span class="sc-sub">Caso Valeria · Fases y solvencia $2.4M</span>
+            </button>
+          </div>
+
+          <!-- TARJETA DE CONTEXTO RÁPIDO EN 3 CAJAS MINIMALISTAS -->
+          <div class="sgp-context-3cards">
+            <div class="sgp-ctx-card" style="border-top: 2px solid #f87171;">
+              <div class="sgp-ctx-label" style="color: #f87171;">🔍 1. El Problema Real</div>
+              <p class="sgp-ctx-text" id="sgp-guide-problem">
+                Llevaba 6 meses perfeccionando logos y proveedores sin salir a vender ni cobrar, atrapado en la parálisis por análisis.
+              </p>
+            </div>
+            <div class="sgp-ctx-card" style="border-top: 2px solid #34d399;">
+              <div class="sgp-ctx-label" style="color: #34d399;">🧩 2. Qué se diseñó en su SGP</div>
+              <p class="sgp-ctx-text" id="sgp-guide-solution">
+                Embudo de 7 días con Regla del 70%, Calculadora de Metas y Margen, Catálogo PDF de 2 páginas y Bloque Comercial matutino antes de las 12:00.
+              </p>
+            </div>
+            <div class="sgp-ctx-card" style="border-top: 2px solid #38bdf8;">
+              <div class="sgp-ctx-label" style="color: #38bdf8;">👆 3. Salta directo a probar una Micro-App abajo</div>
+              <div class="sgp-microapp-pills" id="sgp-microapp-pills">
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-horario" onclick="jumpToSgpMicroApp('tab-horario')">⏰ 1. Horario 24H</button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-kanban" onclick="jumpToSgpMicroApp('tab-kanban')">🛑 2. Kanban WIP=2</button>
+                <button type="button" class="sgp-microapp-jump-btn active" data-tab="tab-accion" onclick="jumpToSgpMicroApp('tab-accion')">🧮 3. Calculadora Negocio</button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-identidades" onclick="jumpToSgpMicroApp('tab-identidades')">⏱️ 4. Reloj Paso Cero</button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-herramientas" onclick="jumpToSgpMicroApp('tab-herramientas')">🖨️ 5. Guía + Hoja Carta</button>
+                <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-resultados" onclick="jumpToSgpMicroApp('tab-resultados')">🏆 6. Bitácora &amp; Logros</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div id="live-demo-iframe-wrap" style="width: 100%; height: 1260px; min-height: 520px; background: #000000; position: relative; transition: height 0.2s ease;">
-          <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_minimal_v6" scrolling="no" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block; overflow: hidden;"></iframe>
+        <!-- VISOR INTERACTIVO EN VIVO DEL SGP -->
+        <div id="demo-visor-container" style="background: #000000; border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 14px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.65);">
+          <div class="demo-visor-titlebar" style="padding: 10px 14px;">
+            <div class="demo-visor-title-left">
+              <h3 class="demo-visor-h3" style="font-size: 0.88rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span class="demo-visor-live-dot"></span>
+                <span>SGP en Vivo · Viendo: <span id="demo-visor-active-case" style="color: #38bdf8;">Caso Gabriel (Negocio, Ventas &amp; Cotización)</span> · Módulo: <span id="demo-visor-active-tab" style="color: #34d399;">🧮 3. Calculadora Negocio</span></span>
+              </h3>
+            </div>
+            <span style="font-size: 0.71rem; color: #94a3b8; font-weight: 600;">
+              👆 Puedes tocar y editar todo sin miedo, es un entorno de prueba
+            </span>
+          </div>
+
+          <div id="live-demo-iframe-wrap" style="width: 100%; height: 820px; min-height: 520px; background: #000000; position: relative; transition: height 0.2s ease;">
+            <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_intuitivo_v7&case=caso_d&tab=tab-accion" scrolling="no" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block; overflow: hidden;"></iframe>
+          </div>
         </div>
+
         <script>
+          window.SGP_SCENARIOS_META = {
+            caso_d: {
+              defaultTab: 'tab-accion',
+              title: 'Caso Gabriel (Negocio, Ventas & Cotización)',
+              problem: 'Llevaba 6 meses perfeccionando logos y proveedores sin salir a vender ni cobrar, atrapado en la parálisis por análisis.',
+              solution: 'Embudo de 7 días con Regla del 70%, Calculadora de Metas y Margen, Catálogo PDF de 2 páginas y Bloque Comercial matutino antes de las 12:00.'
+            },
+            caso_a: {
+              defaultTab: 'tab-horario',
+              title: 'Caso Sofía (Cuidados Familiares & Servicios)',
+              problem: 'Más de 6 horas diarias de cuidados médicos familiares, culpa nocturna por no rendir 8h de oficina y ansiedad por cubrir $160.000 mensuales en pasajes.',
+              solution: 'Mapeador 24H con bloques protegidos sin culpa, cálculo exacto (8 alumnas x $20k = $160k), secuenciador de clases e Inventario Nocturno Cero Culpa.'
+            },
+            caso_b: {
+              defaultTab: 'tab-horario',
+              title: 'Caso Camila (Terapia Sensorial & TEA)',
+              problem: 'Perfil neurodivergente (TEA/PAS) agotado por responder WhatsApp a toda hora, cobrar sesión suelta y sufrir colapsos sensoriales por falta de pausas.',
+              solution: 'Turnos fijos protegidos (11:00 y 16:00) con 1h de silencio entre medio, Calculadora de Packs de 4 Sesiones (3x ingresos) y vaciado mental en papel.'
+            },
+            caso_c: {
+              defaultTab: 'tab-identidades',
+              title: 'Caso Lucas (Estudio & Regulación TDAH)',
+              problem: 'Parálisis total frente a cuadernos densos de 20 páginas, evasión en redes sociales y discusiones familiares diarias por tareas postergadas.',
+              solution: 'Reloj interactivo Paso Cero (5 minutos para romper la inercia), Apuntes Mínimos de 5 líneas, bloques de arte/deporte y Cuenta Corriente de Confianza.'
+            },
+            caso_e: {
+              defaultTab: 'tab-kanban',
+              title: 'Caso Valeria (Trabajo, Idioma & Ahorro)',
+              problem: 'Empleo de 9 horas diarias mezclado con 50 trámites de visa, estudio de inglés nocturno agotador y ahorro errático para su meta de solvencia ($2.4M).',
+              solution: 'Tablero Kanban WIP=2 por fases trimestrales, bloque matutino de 35 min de idioma antes del trabajo y distribución financiera 50/30/20 automatizada.'
+            }
+          };
+
+          window.SGP_TAB_LABELS = {
+            'tab-horario': '⏰ 1. Horario 24H',
+            'tab-kanban': '🛑 2. Kanban WIP=2',
+            'tab-accion': '🧮 3. Calculadora Negocio',
+            'tab-identidades': '⏱️ 4. Reloj Paso Cero',
+            'tab-herramientas': '🖨️ 5. Guía + Hoja Carta',
+            'tab-resultados': '🏆 6. Bitácora & Logros'
+          };
+
+          window.SGP_DEMO_STATE = {
+            caseId: 'caso_d',
+            tabId: 'tab-accion'
+          };
+
+          function sendDemoCommand(caseId, tabId) {
+            var iframe = document.getElementById('live-demo-iframe');
+            if (!iframe || !iframe.contentWindow) return;
+            try {
+              iframe.contentWindow.postMessage({
+                type: 'ah-demo-command',
+                caseId: caseId || null,
+                tabId: tabId || null
+              }, '*');
+            } catch (e) {}
+          }
+
+          function renderSgpGuideUI(caseId, tabId) {
+            var meta = window.SGP_SCENARIOS_META[caseId] || window.SGP_SCENARIOS_META.caso_d;
+            var activeTab = tabId || meta.defaultTab;
+            window.SGP_DEMO_STATE = { caseId: caseId, tabId: activeTab };
+
+            var probEl = document.getElementById('sgp-guide-problem');
+            var solEl = document.getElementById('sgp-guide-solution');
+            var visorCaseEl = document.getElementById('demo-visor-active-case');
+            var visorTabEl = document.getElementById('demo-visor-active-tab');
+            var fsLink = document.getElementById('btn-open-demo-fullscreen');
+
+            if (probEl) probEl.textContent = meta.problem;
+            if (solEl) solEl.textContent = meta.solution;
+            if (visorCaseEl) visorCaseEl.textContent = meta.title;
+            if (visorTabEl) visorTabEl.textContent = window.SGP_TAB_LABELS[activeTab] || '🖥️ Módulo SGP';
+            if (fsLink) fsLink.href = 'planes-demo.html#' + caseId;
+
+            document.querySelectorAll('.sgp-scenario-btn').forEach(function(btn) {
+              btn.classList.toggle('active', btn.getAttribute('data-case') === caseId);
+            });
+            document.querySelectorAll('.sgp-microapp-jump-btn').forEach(function(btn) {
+              btn.classList.toggle('active', btn.getAttribute('data-tab') === activeTab);
+            });
+          }
+
+          window.selectSgpScenario = function(caseId) {
+            var meta = window.SGP_SCENARIOS_META[caseId];
+            if (!meta) return;
+            renderSgpGuideUI(caseId, meta.defaultTab);
+            sendDemoCommand(caseId, meta.defaultTab);
+          };
+
+          window.jumpToSgpMicroApp = function(tabId) {
+            var caseId = (window.SGP_DEMO_STATE && window.SGP_DEMO_STATE.caseId) || 'caso_d';
+            renderSgpGuideUI(caseId, tabId);
+            sendDemoCommand(null, tabId);
+            var visor = document.getElementById('demo-visor-container');
+            if (visor) {
+              var rect = visor.getBoundingClientRect();
+              if (rect.top > window.innerHeight * 0.72) {
+                visor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          };
+
           window.switchDemoSubtab = function(mode) {
             var pLive = document.getElementById('demo-subpanel-live');
             var pSteps = document.getElementById('demo-subpanel-steps');
@@ -5934,13 +6256,29 @@
             }
           };
 
+          (function attachDemoIframeSync() {
+            var iframeEl = document.getElementById('live-demo-iframe');
+            if (iframeEl) {
+              iframeEl.addEventListener('load', function() {
+                if (window.SGP_DEMO_STATE) {
+                  sendDemoCommand(window.SGP_DEMO_STATE.caseId, window.SGP_DEMO_STATE.tabId);
+                }
+              });
+            }
+          })();
+
           window.addEventListener("message", function(ev) {
-            if (ev && ev.data && ev.data.type === "ah-demo-iframe-height") {
+            if (!ev || !ev.data) return;
+            if (ev.data.type === "ah-demo-iframe-height") {
               var wrap = document.getElementById("live-demo-iframe-wrap");
               if (wrap && typeof ev.data.height === "number") {
                 var targetH = Math.max(ev.data.height, 520);
                 wrap.style.height = targetH + "px";
               }
+            } else if (ev.data.type === "ah-demo-case-changed" || ev.data.type === "ah-demo-tab-changed") {
+              var cId = ev.data.caseId || (window.SGP_DEMO_STATE && window.SGP_DEMO_STATE.caseId) || 'caso_d';
+              var tId = ev.data.tabId || (window.SGP_DEMO_STATE && window.SGP_DEMO_STATE.tabId) || 'tab-accion';
+              renderSgpGuideUI(cId, tId);
             }
           });
         </script>
@@ -6366,7 +6704,7 @@
       <!-- NAVEGACIÓN ENTRE PESTAÑAS (PIE DE PESTAÑA 3) -->
       <div class="landing-tab-footer-nav">
         <button type="button" class="btn-tab-step-prev" onclick="scrollToSection('arsenal')">
-          ← 2. Plan de Vuelo Demo
+          ← 2. Sistema SGP (Demo)
         </button>
         <span style="font-size: 0.78rem; color: #94a3b8; text-align: center;">
           ¿Listo para conocer los valores y cómo partimos con tu Sesión Base?
@@ -6410,7 +6748,7 @@
 
       <select id="dock-modalidad-select" style="background: #08090d; border: 1px solid rgba(255,255,255,0.18); color: #cbd5e1; padding: 7px 10px; border-radius: 8px; font-size: 0.76rem; outline: none; cursor: pointer; max-width: 240px;" onchange="syncModalidadSelect(this.value)">
         <option value="Sesión Base ($35.000 CLP · Online o Presencial) + 1ra Herramienta en Portal">1. Sesión Base ($35.000 · Online o Presencial) + Portal</option>
-        <option value="Plan Personalizado / Plan de Vuelo 2.0 a Medida (Tras Sesión Base)">2. Plan Personalizado / Plan de Vuelo 2.0 a Medida</option>
+        <option value="Sistema de Gestión Personalizado (SGP) a Medida (Tras Sesión Base)">2. Sistema de Gestión Personalizado (SGP) a Medida</option>
         <option value="Sesión de Seguimiento & Nuevos Módulos ($35.000 CLP)">3. Sesión de Seguimiento & Nuevos Módulos ($35.000)</option>
         <option value="Vitrina con Propósito & Co-Marketing (Aporte Voluntario)">4. Vitrina con Propósito & Co-Marketing</option>
       </select>
@@ -6965,7 +7303,7 @@
 
       const currentMod = document.getElementById('dock-modalidad-select')
         ? document.getElementById('dock-modalidad-select').value
-        : 'Tu Sistema de Gestión Personalizado (SGP) — Plan de Vuelo ($190.000 CLP)';
+        : 'Sistema de Gestión Personalizado (SGP) a Medida ($190.000 CLP)';
 
       dash.innerHTML = `
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px;">
@@ -7060,7 +7398,7 @@
               <label style="display:block; font-size:0.7rem; font-weight:700; color:#cbd5e1; margin-bottom:4px;">Modalidad con la que te gustaría partir:</label>
               <select id="hub-modalidad-select" onchange="syncModalidadSelect(this.value)" style="width:100%; background:#07080d; border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:8px 10px; color:#fff; font-size:0.78rem; outline:none;">
                 <option value="Sesión Base ($35.000 CLP · Online o Presencial) + 1ra Herramienta en Portal">1. Sesión Base ($35.000 · Online o Presencial) + Portal</option>
-                <option value="Plan Personalizado / Plan de Vuelo 2.0 a Medida (Tras Sesión Base)">2. Plan Personalizado / Plan de Vuelo 2.0 a Medida</option>
+                <option value="Sistema de Gestión Personalizado (SGP) a Medida (Tras Sesión Base)">2. Sistema de Gestión Personalizado (SGP) a Medida</option>
                 <option value="Sesión de Seguimiento & Nuevos Módulos ($35.000 CLP)">3. Sesión de Seguimiento & Nuevos Módulos ($35.000)</option>
                 <option value="Vitrina con Propósito & Co-Marketing (Aporte Voluntario)">4. Vitrina con Propósito & Co-Marketing</option>
               </select>
@@ -7627,7 +7965,7 @@
                   <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-content">
-                  <p><b>Absolutamente no.</b> Tú no tienes que aprender software complejo ni ver tutoriales. Yo me encargo de estructurar y programar tus herramientas en pantalla durante las sesiones. Tú solo accedes a tu Plan de Vuelo desde tu celular o computador mediante un enlace privado con tu PIN personal, acompañado de tus fichas físicas de 1 hoja.</p>
+                  <p><b>Absolutamente no.</b> Tú no tienes que aprender software complejo ni ver tutoriales. Yo me encargo de estructurar y programar tus herramientas en pantalla durante las sesiones. Tú solo accedes a tu Sistema de Gestión Personalizado (Portal SGP) desde tu celular o computador mediante un enlace privado con tu PIN personal, acompañado de tus fichas físicas de 1 hoja.</p>
                 </div>
               </div>
 
@@ -7692,11 +8030,11 @@
                 style="font-size:1.05rem; letter-spacing:0.1em; padding:11px 14px; border-radius:10px; font-family:monospace;"
               />
               <button type="submit" id="btn-tab-submit-pin" class="auth-btn-submit" style="font-weight:800; padding:12px; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:50px;">
-                <span>Ingresar a Mi Plan</span> <span>→</span>
+                <span>Ingresar a Mi Portal SGP</span> <span>→</span>
               </button>
             </form>
             <div style="margin-top:14px; font-size:0.76rem; color:#666;">
-              ¿Olvidaste tu clave? <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mi%20clave%20para%20mi%20Plan%20de%20Vuelo" target="_blank" style="color:#10b981; font-weight:700; text-decoration:none;">Escríbele a Diego por WhatsApp</a>
+              ¿Olvidaste tu clave? <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mi%20clave%20para%20mi%20Portal%20SGP" target="_blank" style="color:#10b981; font-weight:700; text-decoration:none;">Escríbele a Diego por WhatsApp</a>
             </div>
           </div>
         </div>
@@ -8146,10 +8484,10 @@
     </div>
     <div class="footer-links" style="margin-top:12px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
       <a href="#sobre-diego" onclick="scrollToSection('sobre-diego'); return false;">1. Con Quién Cuentas</a>
-      <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;">2. Plan de Vuelo Demo</a>
+      <a href="#arsenal" onclick="scrollToSection('arsenal'); return false;">2. Sistema SGP (Demo)</a>
       <a href="#sondeos" onclick="scrollToSection('sondeos'); return false;">3. Sondeo 6 Áreas</a>
       <a href="#productos" onclick="scrollToSection('productos'); return false;">4. Sesión ($35k) & Planes</a>
-      <a href="planes-demo.html" target="_blank" rel="noopener noreferrer">Plan Demo 2.0 ↗</a>
+      <a href="planes-demo.html" target="_blank" rel="noopener noreferrer">Demo SGP en Vivo ↗</a>
       <a href="dossier.html">Dossier & Casos</a>
       <a href="sondeo.html">Sondeo 360°</a>
       <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:700;">📸 @administracionhumana</a>
@@ -8157,7 +8495,7 @@
   </div>
 </footer>
 
-<!-- AUTH MODAL (GATEWAY UNIFICADO DE PLANES DE VUELO & SESIÓN) -->
+<!-- AUTH MODAL (GATEWAY UNIFICADO DE PORTAL SGP & SESIÓN) -->
 <div class="auth-modal-overlay" id="auth-modal" onclick="if(event.target===this) window.closeAuthModal();">
   <div class="auth-card" style="max-width: 440px; position: relative;">
     <button class="auth-close" id="auth-close-btn" onclick="window.closeAuthModal();" type="button" aria-label="Cerrar">&times;</button>
@@ -8166,8 +8504,8 @@
     <div id="auth-view-pin">
       <div style="text-align: center; margin-bottom: 14px;">
         <span style="display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); font-size:1.4rem; margin-bottom:8px;">🔒</span>
-        <h2 class="auth-title" style="font-size:1.45rem; margin-bottom:4px;">Tu Plan de Vuelo</h2>
-        <p class="auth-sub" style="margin-bottom:14px; font-size:0.84rem; color:#888;">Ingresa tu clave personal para acceder a tu plataforma y herramientas activas.</p>
+        <h2 class="auth-title" style="font-size:1.45rem; margin-bottom:4px;">Tu Portal SGP</h2>
+        <p class="auth-sub" style="margin-bottom:14px; font-size:0.84rem; color:#888;">Ingresa tu clave personal para acceder a tu Sistema de Gestión Personalizado y herramientas activas.</p>
       </div>
 
       <div class="auth-error" id="pin-login-error" style="display:none; margin-bottom:14px; text-align:left;"></div>
@@ -8203,15 +8541,15 @@
         </div>
         
         <button type="submit" id="btn-submit-pin" class="auth-btn-submit" style="display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; font-size:0.94rem; padding:13px; border-radius:50px;">
-          <span>Ingresar a Mi Plan</span> <span>→</span>
+          <span>Ingresar a Mi Portal SGP</span> <span>→</span>
         </button>
       </form>
 
       <div style="margin-top:20px; padding-top:16px; border-top:1px solid #222; text-align:center;">
         <p style="font-size:0.78rem; color:#777; margin-bottom:10px;">
-          ¿No recuerdas tu clave o quieres activar tu Plan de Vuelo?
+          ¿No recuerdas tu clave o quieres activar tu Sistema de Gestión Personalizado (SGP)?
         </p>
-        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20necesito%20acceder%20a%20mi%20Plan%20de%20Vuelo%20y%20consultar%20mi%20clave%20de%20acceso" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; color:#10b981; font-size:0.8rem; font-weight:700; text-decoration:none; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); padding:6px 14px; border-radius:50px; transition:all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.18)'" onmouseout="this.style.background='rgba(16,185,129,0.08)'">
+        <a href="https://wa.me/56975590132?text=Hola%20Diego,%20necesito%20acceder%20a%20mi%20Portal%20SGP%20y%20consultar%20mi%20clave%20de%20acceso" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; color:#10b981; font-size:0.8rem; font-weight:700; text-decoration:none; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); padding:6px 14px; border-radius:50px; transition:all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.18)'" onmouseout="this.style.background='rgba(16,185,129,0.08)'">
           <span>💬</span> Solicitar Clave por WhatsApp
         </a>
       </div>
@@ -9391,13 +9729,13 @@ window.copyClientWhatsAppCredentials = function(clientId) {
   const currentPath = window.location.pathname.replace(/\/index\.html$/, '');
   const portalUrl = `${currentHost}${currentPath}/index.html`;
 
-  const msg = `Hola ${c.name}! 👋 Te comparto tus credenciales personales para acceder a tu plataforma y Plan de Vuelo en Administración Humana:
+  const msg = `Hola ${c.name}! 👋 Te comparto tus credenciales personales para acceder a tu Portal SGP (Sistema de Gestión Personalizado) en Administración Humana:
 
 🌐 Plataforma: ${portalUrl}
 👤 Usuario: ${c.username}
 🔑 Clave: ${c.pin}
 
-Una vez dentro, haz clic en "Mi Plan de Vuelo" en la barra superior o utiliza el acceso directo para abrir tus herramientas y tablero activo.`;
+Una vez dentro, haz clic en "Mi Portal SGP" en la barra superior o utiliza el acceso directo para abrir tus herramientas y tablero activo.`;
 
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(msg).then(() => {
@@ -9514,7 +9852,7 @@ Una vez dentro, haz clic en "Mi Plan de Vuelo" en la barra superior o utiliza el
           <div style="line-height:1.45; font-size:0.83rem;">
             ${result.message}
             <div style="margin-top:8px;">
-              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20necesito%20acceder%20a%20mi%20Plan%20de%20Vuelo%20y%20consultar%20mis%20credenciales" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:800; text-decoration:underline;">
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20necesito%20acceder%20a%20mi%20Portal%20SGP%20y%20consultar%20mis%20credenciales" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-weight:800; text-decoration:underline;">
                 Contactar a Diego por WhatsApp (+56975590132) →
               </a>
             </div>
@@ -9567,7 +9905,7 @@ Una vez dentro, haz clic en "Mi Plan de Vuelo" en la barra superior o utiliza el
           <div style="line-height:1.45; font-size:0.83rem;">
             ${result.message}
             <div style="margin-top:6px;">
-              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mis%20credenciales%20para%20mi%20Plan%20de%20Vuelo" target="_blank" style="color:#ffffff; font-weight:800; text-decoration:underline;">
+              <a href="https://wa.me/56975590132?text=Hola%20Diego,%20olvid%C3%A9%20mis%20credenciales%20para%20mi%20Portal%20SGP" target="_blank" style="color:#ffffff; font-weight:800; text-decoration:underline;">
                 Escribir a Diego (+56975590132) →
               </a>
             </div>
@@ -9749,8 +10087,8 @@ Una vez dentro, haz clic en "Mi Plan de Vuelo" en la barra superior o utiliza el
             };
           }
         } else {
-          btnNavAuth.innerHTML = '<span>🔒</span> <span class="nav-pin-full">Mi Plan de Vuelo</span><span class="nav-pin-short">Mi Plan</span>';
-          btnNavAuth.title = 'Acceso a Plan de Vuelo';
+          btnNavAuth.innerHTML = '<span>🔒</span> <span class="nav-pin-full">Mi Portal SGP</span><span class="nav-pin-short">Mi SGP</span>';
+          btnNavAuth.title = 'Ingresar a Mi Portal SGP con PIN de cliente';
           btnNavAuth.onclick = (e) => {
             e.preventDefault();
             window.openAuthModal();
@@ -10293,7 +10631,7 @@ Quiero coordinar mi Sesión de Despegue ($35.000 CLP).`;
       badge.innerText = '🚨 FUGA ESTIMADA: 15 A 20 HORAS / SEMANA';
       badge.style.color = '#f59e0b';
       title.innerText = 'Tu mayor fuga es la dispersión por urgencias ajenas no filtradas.';
-      desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Mapeador 24H</i> para blindar tus <b>Bloques de Oro</b> personales antes de que el mundo te los robe.';
+      desc.innerHTML = 'En tu <b>Sistema de Gestión Personalizado (SGP)</b> instalamos el <i>Mapeador 24H</i> para blindar tus <b>Bloques de Oro</b> personales antes de que el mundo te los robe.';
       const msgTiempo = `Hola Diego! Hice el Auto-Diagnóstico Express en tu plataforma:
 
 🚨 MI DOLOR OPERATIVO PRINCIPAL:
@@ -10310,7 +10648,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
       badge.innerText = '⚡ PARÁLISIS POR SOBRECARGA: 20 FRENTES ABIERTOS';
       badge.style.color = '#38bdf8';
       title.innerText = 'Tu corteza prefrontal está colapsada por el cambio continuo de tareas (Task Switching).';
-      desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Tablero Kanban WIP 2</i>: el software bloquea físicamente abrir un tercer frente hasta cerrar o pausar los dos activos.';
+      desc.innerHTML = 'En tu <b>Sistema de Gestión Personalizado (SGP)</b> instalamos el <i>Tablero Kanban WIP 2</i>: el software bloquea físicamente abrir un tercer frente hasta cerrar o pausar los dos activos.';
       const msgFoco = `Hola Diego! Hice el Auto-Diagnóstico Express en tu plataforma:
 
 ⚡ MI DOLOR OPERATIVO PRINCIPAL:
@@ -10327,7 +10665,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
       badge.innerText = '🌙 RESACA LABORAL & RUMIACIÓN: SUEÑO NO REPARADOR';
       badge.style.color = '#c084fc';
       title.innerText = 'Te paras del escritorio pero tu mente sigue trabajando en la cena y en la almohada.';
-      desc.innerHTML = 'En tu <b>Plan de Vuelo 2.0</b> instalamos el <i>Cierre Consciente (Shutdown)</i>: un ritual táctil de 2 minutos para vaciar tu memoria de trabajo y declarar formalmente el fin del día.';
+      desc.innerHTML = 'En tu <b>Sistema de Gestión Personalizado (SGP)</b> instalamos el <i>Cierre Consciente (Shutdown)</i>: un ritual táctil de 2 minutos para vaciar tu memoria de trabajo y declarar formalmente el fin del día.';
       const msgDesconexion = `Hola Diego! Hice el Auto-Diagnóstico Express en tu plataforma:
 
 🌙 MI DOLOR OPERATIVO PRINCIPAL:
@@ -10421,7 +10759,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
     <span>👤</span> <span class="float-text-full">1. Con Quién Cuentas</span><span class="float-text-short">1. Diego</span>
   </button>
   <button type="button" class="float-bar-btn" data-anchor="arsenal" onclick="scrollToSection('arsenal');">
-    <span>📱</span> <span class="float-text-full">2. Plan Demo</span><span class="float-text-short">2. Demo</span>
+    <span>📱</span> <span class="float-text-full">2. Sistema SGP</span><span class="float-text-short">2. SGP</span>
   </button>
   <button type="button" class="float-bar-btn" data-anchor="sondeos" onclick="scrollToSection('sondeos');">
     <span>⚡</span> <span class="float-text-full">3. Sondeo 6 Áreas</span><span class="float-text-short">3. Sondeo</span>
@@ -10479,7 +10817,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
 
     <!-- DESCRIPCIÓN AL PIE -->
     <div id="info-modal-caption" style="margin-top: 12px; font-size: 0.8rem; color: #94a3b8; line-height: 1.5; text-align: center;">
-      <b>Opción 1 · Ecosistema 360°:</b> Muestra el Plan de Vuelo 2.0 como el centro neurálgico en Google Drive, rodeado por los módulos calibrados (24H, Kanban, Finanzas, Procesos, IA), sostenidos en la capa exterior por el acompañamiento 1 a 1 de Diego y los imprimibles físicos de 1 hoja.
+      <b>Opción 1 · Ecosistema 360°:</b> Muestra el Sistema de Gestión Personalizado (SGP) como el centro neurálgico en Google Drive, rodeado por los módulos calibrados (24H, Kanban, Finanzas, Procesos, IA), sostenidos en la capa exterior por el acompañamiento 1 a 1 de Diego y los imprimibles físicos de 1 hoja.
     </div>
 
   </div>
@@ -10505,7 +10843,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
   const INFOGRAPHICS_DATA = {
     1: {
       src: 'assets/img/infografia_ecosistema_capas.jpg',
-      caption: '<b>Opción 1 · Ecosistema 360°:</b> Muestra el Plan de Vuelo 2.0 como el centro neurálgico en Google Drive, rodeado por los módulos calibrados (24H, Kanban, Finanzas, Procesos, IA), sostenidos en la capa exterior por el acompañamiento 1 a 1 de Diego y los imprimibles físicos de 1 hoja.'
+      caption: '<b>Opción 1 · Ecosistema 360°:</b> Muestra el Sistema de Gestión Personalizado (SGP) como el centro neurálgico en Google Drive, rodeado por los módulos calibrados (24H, Kanban, Finanzas, Procesos, IA), sostenidos en la capa exterior por el acompañamiento 1 a 1 de Diego y los imprimibles físicos de 1 hoja.'
     },
     2: {
       src: 'assets/img/infografia_roadmap_4_semanas.jpg',
@@ -10675,7 +11013,7 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
       resolved.subAction();
     }
 
-    // 6. Si se abre la Pestaña 2 (Plan de Vuelo Demo), recalcular altura exacta del iframe en vivo
+    // 6. Si se abre la Pestaña 2 (Sistema SGP Demo), recalcular altura exacta del iframe en vivo
     if (activeTab === 'arsenal') {
       window.refreshDemoIframeHeight();
     }
