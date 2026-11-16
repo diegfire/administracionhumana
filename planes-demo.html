@@ -272,18 +272,37 @@
             justify-content: flex-end;
         }
         .sgp-cases-chips-row .case-chip {
-            padding: 5px 11px;
-            font-size: 0.73rem;
+            padding: 5px 10px;
+            font-size: 0.72rem;
             background: linear-gradient(180deg, #141720 0%, #0b0d12 100%);
-            border: 1.5px solid #2e3444;
-            color: #e2e8f0;
-            box-shadow: 0 2px 0 #050507;
+            border: 1.5px solid #333b4d;
+            color: #f8fafc;
+            box-shadow: 0 3px 0 #1e2430;
+            justify-content: flex-start;
+        }
+        .sgp-cases-chips-row .case-chip::after {
+            content: 'Tocar →';
+            margin-left: 3px;
+            font-size: 0.56rem;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 5px;
+            background: rgba(56, 189, 248, 0.14);
+            border: 1px solid rgba(56, 189, 248, 0.38);
+            color: #38bdf8;
+            flex-shrink: 0;
         }
         .sgp-cases-chips-row .case-chip.active {
             background: #ffffff;
             border-color: #ffffff;
             color: #000000;
             box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+        }
+        .sgp-cases-chips-row .case-chip.active::after {
+            content: '● Viendo';
+            background: rgba(16, 185, 129, 0.14);
+            border-color: rgba(16, 185, 129, 0.45);
+            color: #047857;
         }
         @media (max-width: 820px) {
             .sgp-cases-chips-row {
@@ -923,18 +942,30 @@
             font-weight: 700 !important;
             border-radius: 7px !important;
             background: linear-gradient(180deg, #141720 0%, #0b0d12 100%) !important;
-            border: 1.5px solid #2e3444 !important;
-            color: #e2e8f0 !important;
-            box-shadow: 0 2px 0 #050507 !important;
+            border: 1.5px solid #333b4d !important;
+            color: #f8fafc !important;
+            box-shadow: 0 3px 0 #1e2430 !important;
             display: inline-flex !important;
             align-items: center !important;
-            justify-content: center !important;
+            justify-content: flex-start !important;
             gap: 6px !important;
             white-space: normal !important;
             overflow: visible !important;
-            text-align: center !important;
+            text-align: left !important;
             line-height: 1.22 !important;
             box-sizing: border-box !important;
+        }
+        #main-tabs-nav .tab-btn:not(.btn-add-module)::after {
+            content: '▶';
+            margin-left: auto;
+            font-size: 0.56rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 5px;
+            background: rgba(56, 189, 248, 0.14);
+            border: 1px solid rgba(56, 189, 248, 0.38);
+            color: #38bdf8;
+            flex-shrink: 0;
         }
         #main-tabs-nav .tab-btn:hover {
             color: #ffffff !important;
@@ -946,6 +977,12 @@
             border-color: #ffffff !important;
             box-shadow: 0 0 16px rgba(255, 255, 255, 0.25) !important;
             font-weight: 800 !important;
+        }
+        #main-tabs-nav .tab-btn:not(.btn-add-module).active::after {
+            content: '● Activo';
+            background: rgba(16, 185, 129, 0.14);
+            border-color: rgba(16, 185, 129, 0.45);
+            color: #047857;
         }
         #main-tabs-nav .tab-btn.active i {
             color: #000000 !important;
@@ -1153,11 +1190,19 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
             }
             #main-tabs-nav .tab-btn {
-                padding: 7px 7px !important;
-                font-size: 0.73rem !important;
+                padding: 6px 7px !important;
+                font-size: 0.7rem !important;
                 justify-content: flex-start !important;
-                padding-left: 8px !important;
                 text-align: left !important;
+                gap: 5px !important;
+            }
+            #main-tabs-nav .tab-btn:not(.btn-add-module)::after {
+                font-size: 0.52rem;
+                padding: 1px 5px;
+            }
+            .sgp-cases-chips-row .case-chip {
+                font-size: 0.69rem;
+                padding: 5px 9px;
             }
             .sgp-tour-banner {
                 padding: 10px 10px !important;
