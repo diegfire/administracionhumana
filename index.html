@@ -6548,6 +6548,7 @@
         border-radius: 16px;
         padding: 18px 18px 22px 18px;
         position: relative;
+        scroll-margin-top: 120px;
       }
       .hub-stations-nav {
         display: grid;
@@ -6556,6 +6557,7 @@
         overflow: visible;
         padding-bottom: 0;
         margin-bottom: 12px;
+        scroll-margin-top: 120px;
       }
       .hub-station-tab {
         background: linear-gradient(180deg, #151924 0%, #0c0e14 100%);
@@ -6663,18 +6665,20 @@
       }
       @media (max-width: 640px) {
         .avisos-area-list {
-          grid-template-columns: 1fr;
+          grid-template-columns: minmax(0, 1fr);
           gap: 12px;
         }
       }
 
       .wizard-aviso-horizontal-row {
         width: 100%;
+        min-width: 0;
+        max-width: 100%;
         background: #08090f;
         border: 1.5px solid rgba(255, 255, 255, 0.09);
         border-top: 3.5px solid var(--station-color, #38bdf8);
         border-radius: 14px;
-        padding: 16px 16px;
+        padding: 15px 15px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -6684,7 +6688,8 @@
         transition: all 0.22s ease;
         box-sizing: border-box;
         position: relative;
-        min-height: 250px;
+        min-height: 205px;
+        overflow: hidden;
       }
       .wizard-aviso-horizontal-row:hover {
         background: #0f1322;
@@ -6848,21 +6853,50 @@
         .metrics-kpi-grid { grid-template-columns: 1fr; }
         .metrics-two-col { grid-template-columns: 1fr; }
       }
+      #sticky-expediente-dock.is-station7-hidden {
+        display: none !important;
+      }
       @media (max-width: 768px) {
-        .hub-6areas-shell { padding: 14px 12px 18px 12px; }
+        .hub-6areas-shell { padding: 12px 10px 16px 10px; }
+        .sondeo-container-pad { padding: 0 8px 115px 8px !important; }
+        .area-station-wrapper { padding: 12px 10px !important; }
+        .area-hero-banner { padding: 14px 12px !important; margin-bottom: 14px !important; }
+        .hide-sm-dock { display: none !important; }
         #sticky-expediente-dock {
-          padding: 8px 12px !important;
-          gap: 8px !important;
+          padding: 7px 10px !important;
+          gap: 6px !important;
         }
-        #sticky-expediente-dock select {
-          max-width: 100% !important;
+        #sticky-expediente-dock .dock-info-group {
+          width: 100%;
+          justify-content: center;
+          gap: 0 !important;
+        }
+        #sticky-expediente-dock .dock-icon-box,
+        #sticky-expediente-dock .dock-kicker-text,
+        #sticky-expediente-dock #dock-areas-text,
+        #sticky-expediente-dock #dock-modalidad-select {
+          display: none !important;
+        }
+        #sticky-expediente-dock #dock-counter-text {
+          font-size: 0.77rem !important;
+          text-align: center;
+          width: 100%;
+          line-height: 1.25;
+        }
+        #sticky-expediente-dock .dock-actions-row {
+          display: grid !important;
+          grid-template-columns: 1fr auto 1.15fr;
+          gap: 6px !important;
           width: 100% !important;
         }
-        #btn-whatsapp-expediente {
-          width: 100% !important;
+        #sticky-expediente-dock .dock-actions-row > button,
+        #sticky-expediente-dock .dock-actions-row > a {
+          width: auto !important;
+          min-width: 0;
           justify-content: center !important;
-          padding: 8px 14px !important;
-          font-size: 0.82rem !important;
+          padding: 7px 9px !important;
+          font-size: 0.73rem !important;
+          white-space: nowrap !important;
         }
         .wizard-aviso-horizontal-row {
           padding: 13px 13px !important;
@@ -6989,6 +7023,47 @@
         background: #38bdf8;
         color: #000000;
         font-weight: 800;
+      }
+      .btn-consultor-minimize {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        color: #cbd5e1;
+        font-family: var(--font-heading);
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 6px 11px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.18s ease;
+        white-space: nowrap;
+      }
+      .btn-consultor-minimize:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+      }
+      .consultor-deep-details {
+        margin-top: 10px;
+        background: rgba(6, 7, 11, 0.55);
+        border: 1px dashed rgba(56, 189, 248, 0.28);
+        border-radius: 10px;
+        padding: 9px 12px;
+      }
+      .consultor-deep-details summary {
+        cursor: pointer;
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #38bdf8;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .consultor-deep-details[open] summary {
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
       .consultor-context-grid {
         display: grid;
@@ -7302,7 +7377,7 @@
       }
     </style>
 
-    <div class="container" style="max-width: 1180px; margin: 0 auto; padding: 0 16px 86px 16px;">
+    <div class="container sondeo-container-pad" style="max-width: 1180px; margin: 0 auto; padding: 0 16px 86px 16px;">
       
       <!-- CONSOLA ÚNICA COMPACTA DEL HUB INTERACTIVO (6 ESTACIONES + PANTALLA DE MÉTRICAS) -->
       <div id="hub-sondeo-interactivo" class="hub-6areas-shell">
@@ -7441,12 +7516,12 @@
   <div id="sticky-expediente-dock" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: rgba(10, 11, 16, 0.95); backdrop-filter: blur(12px); border-top: 1.5px solid #06b6d4; padding: 10px 20px; box-shadow: 0 -8px 30px rgba(0,0,0,0.8); display: none; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
     
     <!-- LADO IZQUIERDO: CONTADOR EN VIVO & ÁREAS TOCADAS -->
-    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.4); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;">
+    <div class="dock-info-group" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <div class="dock-icon-box" style="width: 38px; height: 38px; border-radius: 10px; background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.4); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;">
         📊
       </div>
       <div>
-        <div style="font-size: 0.68rem; font-weight: 800; color: #06b6d4; text-transform: uppercase; letter-spacing: 0.08em;">
+        <div class="dock-kicker-text" style="font-size: 0.68rem; font-weight: 800; color: #06b6d4; text-transform: uppercase; letter-spacing: 0.08em;">
           SONDEO & MÉTRICAS DE SESIÓN EN VIVO
         </div>
         <div id="dock-counter-text" style="font-size: 0.88rem; font-weight: 800; color: #fff;">
@@ -7459,13 +7534,13 @@
     </div>
 
     <!-- LADO DERECHO: BOTÓN VER MÉTRICAS, SELECTOR DE MODALIDAD Y WHATSAPP DIRECTO -->
-    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-      <button type="button" onclick="goToHubStation(6)" style="background: rgba(56,189,248,0.14); border: 1px solid rgba(56,189,248,0.45); color: #38bdf8; font-weight: 800; font-size: 0.78rem; padding: 8px 14px; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
-        <span>📊</span> Ver Mis Métricas
+    <div class="dock-actions-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+      <button type="button" id="btn-dock-metrics" onclick="goToHubStation(6, true)" style="background: rgba(56,189,248,0.14); border: 1px solid rgba(56,189,248,0.45); color: #38bdf8; font-weight: 800; font-size: 0.78rem; padding: 8px 14px; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
+        <span>📊</span> <span><span class="hide-sm-dock">Ver Mis </span>Métricas</span>
       </button>
 
       <button type="button" id="btn-dock-save-pdf" onclick="exportSondeoExecutivePDF()" style="background: rgba(245,158,11,0.16); border: 1px solid rgba(245,158,11,0.5); color: #fbbf24; font-weight: 800; font-size: 0.78rem; padding: 8px 14px; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
-        <span>📄</span> Guardar en PDF
+        <span>📄</span> <span><span class="hide-sm-dock">Guardar en </span>PDF</span>
       </button>
 
       <select id="dock-modalidad-select" style="background: #08090d; border: 1px solid rgba(255,255,255,0.18); color: #cbd5e1; padding: 7px 10px; border-radius: 8px; font-size: 0.76rem; outline: none; cursor: pointer; max-width: 240px;" onchange="syncModalidadSelect(this.value)">
@@ -7476,7 +7551,7 @@
       </select>
 
       <a id="btn-whatsapp-expediente" href="#" target="_blank" rel="noopener noreferrer" style="background: #10b981; color: #000; font-weight: 800; font-size: 0.84rem; padding: 9px 18px; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 20px rgba(16,185,129,0.45); transition: transform 0.2s; white-space: nowrap;">
-        <span>💬</span> Enviar Sondeo a Diego →
+        <span>💬</span> <span>Enviar <span class="hide-sm-dock">Sondeo </span>a Diego →</span>
       </a>
     </div>
 
@@ -7637,6 +7712,8 @@
       decompressionValve: "",
       fieldNotes: ""
     };
+    window.CONSULTOR_PANEL_MINIMIZED = false;
+    window.CONSULTOR_DEEP_OPEN = (typeof window !== 'undefined' ? window.innerWidth >= 768 : true);
 
     function escapeHtml(str) {
       return String(str == null ? '' : str)
@@ -7833,14 +7910,21 @@
       updateWhatsappPayload();
     }
 
+    function toggleConsultorPanelMinimized() {
+      window.CONSULTOR_PANEL_MINIMIZED = !window.CONSULTOR_PANEL_MINIMIZED;
+      renderConsultorPanel();
+    }
+
     function renderModeControls() {
       const btnAuto = document.getElementById('btn-mode-autodiagnostico');
       const btnCons = document.getElementById('btn-mode-consultor');
       const btnSaveQuick = document.getElementById('btn-save-history-quick');
+      const btnOpenHistory = document.getElementById('btn-open-sondeo-history');
       const isCons = window.SONDEO_MODE === 'consultor';
       if (btnAuto) btnAuto.classList.toggle('is-active', !isCons);
       if (btnCons) btnCons.classList.toggle('is-active', isCons);
       if (btnSaveQuick) btnSaveQuick.style.display = isCons ? 'inline-flex' : 'none';
+      if (btnOpenHistory) btnOpenHistory.style.display = isCons ? 'inline-flex' : 'none';
       updateHistoryCountBadge();
     }
 
@@ -7854,72 +7938,91 @@
 
       const meta = getProfileFieldMeta(window.SONDEO_PROFILE_TYPE);
       const ctx = window.SONDEO_CONTEXT;
+      const minimized = !!window.CONSULTOR_PANEL_MINIMIZED;
 
       mount.innerHTML = `
         <div class="sondeo-consultor-panel">
-          <div class="consultor-panel-header">
+          <div class="consultor-panel-header" style="${minimized ? 'margin-bottom:0; padding-bottom:0; border-bottom:none;' : ''}">
             <div>
               <div style="font-size:0.68rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.06em;">
                 📋 MODO CONSULTOR / TABLET EN VIVO • BASE DE CONTEXTO DEL CLIENTE
               </div>
               <div style="font-size:0.78rem; color:#cbd5e1; margin-top:2px;">
-                Captura los datos clave mientras conversas en terreno. Todo quedará ordenado en el PDF y en el Markdown de contexto.
+                ${minimized
+                  ? `Cliente: <strong style="color:#fff;">${escapeHtml(window.SONDEO_USER_NAME || 'Sin nombre')}</strong> • Perfil: ${window.SONDEO_PROFILE_TYPE === 'negocio' ? '🏪 Negocio' : '👤 Persona'}${ctx.userCity ? ' • ' + escapeHtml(ctx.userCity) : ''}`
+                  : 'Captura los datos clave mientras conversas en terreno. Todo quedará ordenado en el PDF y en el Markdown de contexto.'}
               </div>
             </div>
 
-            <div class="profile-type-pills" role="group" aria-label="Tipo de Perfil Sondeado">
-              <button type="button" class="btn-profile-pill ${window.SONDEO_PROFILE_TYPE === 'persona' ? 'is-active' : ''}" onclick="setSondeoProfileType('persona')">
-                👤 Persona / Profesional
-              </button>
-              <button type="button" class="btn-profile-pill ${window.SONDEO_PROFILE_TYPE === 'negocio' ? 'is-active' : ''}" onclick="setSondeoProfileType('negocio')">
-                🏪 Negocio / Comercio
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <div class="profile-type-pills" role="group" aria-label="Tipo de Perfil Sondeado">
+                <button type="button" class="btn-profile-pill ${window.SONDEO_PROFILE_TYPE === 'persona' ? 'is-active' : ''}" onclick="setSondeoProfileType('persona')">
+                  👤 Persona / Profesional
+                </button>
+                <button type="button" class="btn-profile-pill ${window.SONDEO_PROFILE_TYPE === 'negocio' ? 'is-active' : ''}" onclick="setSondeoProfileType('negocio')">
+                  🏪 Negocio / Comercio
+                </button>
+              </div>
+              <button type="button" id="btn-toggle-consultor-panel" class="btn-consultor-minimize" onclick="toggleConsultorPanelMinimized()">
+                ${minimized ? '▾ Expandir Ficha de Contexto' : '▴ Minimizar Ficha'}
               </button>
             </div>
           </div>
 
-          <div class="consultor-context-grid">
-            <div class="consultor-field">
-              <label>${meta.nameLabel}</label>
-              <input type="text" id="top-ctx-name" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_NAME)}" placeholder="${meta.namePlaceholder}" oninput="onSondeoContextInput('top')" />
+          ${minimized ? '' : `
+            <div class="consultor-context-grid">
+              <div class="consultor-field">
+                <label>${meta.nameLabel}</label>
+                <input type="text" id="top-ctx-name" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_NAME)}" placeholder="${meta.namePlaceholder}" oninput="onSondeoContextInput('top')" />
+              </div>
+              <div class="consultor-field">
+                <label>${meta.roleLabel}</label>
+                <input type="text" id="top-ctx-role" class="consultor-input" value="${escapeHtml(ctx.userRole)}" placeholder="${meta.rolePlaceholder}" oninput="onSondeoContextInput('top')" />
+              </div>
+              <div class="consultor-field">
+                <label>${meta.phoneLabel}</label>
+                <input type="tel" id="top-ctx-phone" class="consultor-input" value="${escapeHtml(ctx.userPhone)}" placeholder="${meta.phonePlaceholder}" oninput="onSondeoContextInput('top')" />
+              </div>
+              <div class="consultor-field">
+                <label>${meta.cityLabel}</label>
+                <input type="text" id="top-ctx-city" class="consultor-input" value="${escapeHtml(ctx.userCity)}" placeholder="${meta.cityPlaceholder}" oninput="onSondeoContextInput('top')" />
+              </div>
+              <div class="consultor-field">
+                <label>${meta.goalLabel}</label>
+                <input type="text" id="top-ctx-goal" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_GOAL)}" placeholder="${meta.goalPlaceholder}" oninput="onSondeoContextInput('top')" />
+              </div>
             </div>
-            <div class="consultor-field">
-              <label>${meta.roleLabel}</label>
-              <input type="text" id="top-ctx-role" class="consultor-input" value="${escapeHtml(ctx.userRole)}" placeholder="${meta.rolePlaceholder}" oninput="onSondeoContextInput('top')" />
-            </div>
-            <div class="consultor-field">
-              <label>${meta.phoneLabel}</label>
-              <input type="tel" id="top-ctx-phone" class="consultor-input" value="${escapeHtml(ctx.userPhone)}" placeholder="${meta.phonePlaceholder}" oninput="onSondeoContextInput('top')" />
-            </div>
-            <div class="consultor-field">
-              <label>${meta.cityLabel}</label>
-              <input type="text" id="top-ctx-city" class="consultor-input" value="${escapeHtml(ctx.userCity)}" placeholder="${meta.cityPlaceholder}" oninput="onSondeoContextInput('top')" />
-            </div>
-            <div class="consultor-field">
-              <label>${meta.goalLabel}</label>
-              <input type="text" id="top-ctx-goal" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_GOAL)}" placeholder="${meta.goalPlaceholder}" oninput="onSondeoContextInput('top')" />
-            </div>
-            <div class="consultor-field">
-              <label>${meta.rootLabel}</label>
-              <input type="text" id="top-ctx-root" class="consultor-input" value="${escapeHtml(ctx.rootPhrase)}" placeholder="${meta.rootPlaceholder}" oninput="onSondeoContextInput('top')" />
-            </div>
-            <div class="consultor-field">
-              <label>${meta.goldenLabel}</label>
-              <input type="text" id="top-ctx-golden" class="consultor-input" value="${escapeHtml(ctx.goldenHour)}" placeholder="${meta.goldenPlaceholder}" oninput="onSondeoContextInput('top')" />
-            </div>
-            <div class="consultor-field">
-              <label>${meta.financeLabel}</label>
-              <input type="text" id="top-ctx-finance" class="consultor-input" value="${escapeHtml(ctx.financialPeace)}" placeholder="${meta.financePlaceholder}" oninput="onSondeoContextInput('top')" />
-            </div>
-            <div class="consultor-field">
-              <label>${meta.valveLabel}</label>
-              <input type="text" id="top-ctx-valve" class="consultor-input" value="${escapeHtml(ctx.decompressionValve)}" placeholder="${meta.valvePlaceholder}" oninput="onSondeoContextInput('top')" />
-            </div>
-          </div>
 
-          <div class="consultor-field" style="margin-top: 10px;">
-            <label>${meta.notesLabel}</label>
-            <textarea id="top-ctx-notes" class="consultor-textarea" placeholder="${meta.notesPlaceholder}" oninput="onSondeoContextInput('top')">${escapeHtml(ctx.fieldNotes)}</textarea>
-          </div>
+            <details id="consultor-deep-details" class="consultor-deep-details" ${window.CONSULTOR_DEEP_OPEN ? 'open' : ''} ontoggle="window.CONSULTOR_DEEP_OPEN = this.open">
+              <summary>
+                <span>➕ Campos Clínicos &amp; Notas de Terreno (Frase raíz, Hora de oro/Peak, Meta financiera, Notas)</span>
+                <span>▾</span>
+              </summary>
+              <div class="consultor-context-grid">
+                <div class="consultor-field">
+                  <label>${meta.rootLabel}</label>
+                  <input type="text" id="top-ctx-root" class="consultor-input" value="${escapeHtml(ctx.rootPhrase)}" placeholder="${meta.rootPlaceholder}" oninput="onSondeoContextInput('top')" />
+                </div>
+                <div class="consultor-field">
+                  <label>${meta.goldenLabel}</label>
+                  <input type="text" id="top-ctx-golden" class="consultor-input" value="${escapeHtml(ctx.goldenHour)}" placeholder="${meta.goldenPlaceholder}" oninput="onSondeoContextInput('top')" />
+                </div>
+                <div class="consultor-field">
+                  <label>${meta.financeLabel}</label>
+                  <input type="text" id="top-ctx-finance" class="consultor-input" value="${escapeHtml(ctx.financialPeace)}" placeholder="${meta.financePlaceholder}" oninput="onSondeoContextInput('top')" />
+                </div>
+                <div class="consultor-field">
+                  <label>${meta.valveLabel}</label>
+                  <input type="text" id="top-ctx-valve" class="consultor-input" value="${escapeHtml(ctx.decompressionValve)}" placeholder="${meta.valvePlaceholder}" oninput="onSondeoContextInput('top')" />
+                </div>
+              </div>
+
+              <div class="consultor-field" style="margin-top: 10px;">
+                <label>${meta.notesLabel}</label>
+                <textarea id="top-ctx-notes" class="consultor-textarea" placeholder="${meta.notesPlaceholder}" oninput="onSondeoContextInput('top')">${escapeHtml(ctx.fieldNotes)}</textarea>
+              </div>
+            </details>
+          `}
         </div>
       `;
     }
@@ -8153,8 +8256,11 @@
       renderAllAreasSections();
       updateExpedienteSummary();
       if (scrollHub) {
-        const hubEl = document.getElementById('hub-sondeo-interactivo');
-        if (hubEl) hubEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const navEl = document.getElementById('quick-jump-areas-bar') || document.getElementById('hub-sondeo-interactivo');
+        if (navEl) {
+          const y = navEl.getBoundingClientRect().top + window.pageYOffset - 116;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
       }
     }
 
@@ -8236,6 +8342,11 @@
       const container = document.getElementById('areas-sections-container');
       if (!container) return;
       container.innerHTML = '';
+
+      const stickyDock = document.getElementById('sticky-expediente-dock');
+      if (stickyDock) {
+        stickyDock.classList.toggle('is-station7-hidden', window.HUB_ACTIVE_STATION === 6);
+      }
 
       const metrics = computeSondeoMetrics();
 
@@ -8332,19 +8443,19 @@
 
         card.innerHTML = `
           <div class="aviso-row-main">
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap;">
-              <div style="display: flex; align-items: center; gap: 6px;">
-                <span class="aviso-num-pill" style="color: ${ar.color}; background: ${ar.color}15; border: 1px solid ${ar.color}35; padding: 2px 7px; border-radius: 5px; font-size: 0.68rem; font-weight: 800;">
-                  #0${item.numero}
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); flex-wrap: nowrap;">
+              <div style="display: flex; align-items: center; gap: 6px; min-width: 0; flex: 1;">
+                <span class="aviso-num-pill" style="color: ${ar.color}; background: ${ar.color}15; border: 1px solid ${ar.color}35; padding: 2px 7px; border-radius: 5px; font-size: 0.68rem; font-weight: 800; flex-shrink: 0;">
+                  #${String(item.numero).padStart(2, '0')}
                 </span>
-                <span style="font-size: 0.73rem; font-weight: 700; color: #e2e8f0;">
+                <span title="${escapeHtml(item.arquetipo || 'Punto de Fricción')}" style="font-size: 0.73rem; font-weight: 700; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;">
                   ${item.arquetipo || 'Punto de Fricción'}
                 </span>
               </div>
 
-              <div class="btn-sondeo-checkbox ${isSelected ? 'is-selected' : ''}" style="${isSelected ? 'background:' + ar.color + '; color:#000; border-color:' + ar.color + '; font-weight:800; box-shadow: 0 0 12px ' + ar.color + '55;' : 'background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.18);'}">
-                <span style="font-size: 0.85rem; line-height: 1;">${isSelected ? '✓' : '＋'}</span>
-                <span>${isSelected ? 'Marcado en sondeo' : 'Me pasa esto'}</span>
+              <div class="btn-sondeo-checkbox ${isSelected ? 'is-selected' : ''}" style="padding: 3px 9px; font-size: 0.69rem; flex-shrink: 0; ${isSelected ? 'background:' + ar.color + '; color:#000; border-color:' + ar.color + '; font-weight:800; box-shadow: 0 0 12px ' + ar.color + '55;' : 'background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.18);'}">
+                <span style="font-size: 0.8rem; line-height: 1;">${isSelected ? '✓' : '＋'}</span>
+                <span>${isSelected ? 'Marcado' : 'Marcar'}</span>
               </div>
             </div>
 
@@ -8362,30 +8473,28 @@
             </div>
           </div>
 
-          <div class="aviso-row-actions" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
-            <div class="btn-toggle-aviso ${isSelected ? 'is-selected' : ''}" style="${isSelected ? 'background:' + ar.color + '22; border-color:' + ar.color + '; color:#fff; font-weight:800;' : 'background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1;'}">
-              ${isSelected ? '✓ Seleccionado como dolor activo' : '＋ Toca para marcar esta situación'}
-            </div>
-
-            <div class="aviso-urgencia-box ${isSelected ? 'is-visible' : ''}" onclick="event.stopPropagation()" style="margin-top: 8px; padding-top: 6px;">
-              <span class="urgencia-label">¿Qué tan urgente es resolver esto hoy?</span>
-              <div class="urgencia-btn-group">
-                <button type="button" onclick="setExpUrgencia('${item.id}', 'alta')" class="urg-btn ${currentUrgencia==='alta' ? 'active-alta' : ''}">
-                  🔴 Alta
-                </button>
-                <button type="button" onclick="setExpUrgencia('${item.id}', 'media')" class="urg-btn ${currentUrgencia==='media' ? 'active-media' : ''}">
-                  🟡 Media
-                </button>
-                <button type="button" onclick="setExpUrgencia('${item.id}', 'baja')" class="urg-btn ${currentUrgencia==='baja' ? 'active-baja' : ''}">
-                  🟢 Baja
-                </button>
-              </div>
-              <div class="aviso-note-box">
-                <label for="note-${item.id}">📝 Nota específica de este punto (opcional):</label>
-                <input type="text" id="note-${item.id}" class="aviso-note-input" value="${escapeHtml(currentNota)}" placeholder="Ej: Pierde 2h al día cotizando por WhatsApp..." oninput="setExpNota('${item.id}', this.value)" />
+          ${isSelected ? `
+            <div class="aviso-row-actions" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08);">
+              <div class="aviso-urgencia-box is-visible" onclick="event.stopPropagation()">
+                <span class="urgencia-label">¿Qué tan urgente es resolver esto hoy?</span>
+                <div class="urgencia-btn-group">
+                  <button type="button" onclick="setExpUrgencia('${item.id}', 'alta')" class="urg-btn ${currentUrgencia==='alta' ? 'active-alta' : ''}">
+                    🔴 Alta
+                  </button>
+                  <button type="button" onclick="setExpUrgencia('${item.id}', 'media')" class="urg-btn ${currentUrgencia==='media' ? 'active-media' : ''}">
+                    🟡 Media
+                  </button>
+                  <button type="button" onclick="setExpUrgencia('${item.id}', 'baja')" class="urg-btn ${currentUrgencia==='baja' ? 'active-baja' : ''}">
+                    🟢 Baja
+                  </button>
+                </div>
+                <div class="aviso-note-box">
+                  <label for="note-${item.id}">📝 Nota específica de este punto (opcional):</label>
+                  <input type="text" id="note-${item.id}" class="aviso-note-input" value="${escapeHtml(currentNota)}" placeholder="Ej: Pierde 2h al día cotizando por WhatsApp..." oninput="setExpNota('${item.id}', this.value)" />
+                </div>
               </div>
             </div>
-          </div>
+          ` : ''}
         `;
 
         card.addEventListener('click', () => {
@@ -8481,7 +8590,7 @@
               📊 DIAGNÓSTICO CONSOLIDADO DE LAS 6 ÁREAS • ${meta.badge.toUpperCase()}
             </span>
             <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff; margin: 3px 0 0 0;">
-              Radiografía Operativa & Base de Contexto del Cliente
+              ${isConsultor ? 'Radiografía Operativa & Base de Contexto del Cliente' : 'Tu Radiografía Operativa & Plan de Acción en 6 Áreas'}
             </h3>
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -8587,10 +8696,12 @@
               <label>${meta.goalLabel}</label>
               <input type="text" id="sondeo-user-goal-input" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_GOAL)}" placeholder="${meta.goalPlaceholder}" oninput="onSondeoContextInput('hub')" />
             </div>
-            <div class="consultor-field">
-              <label>${meta.cityLabel}</label>
-              <input type="text" id="hub-ctx-city" class="consultor-input" value="${escapeHtml(ctx.userCity)}" placeholder="${meta.cityPlaceholder}" oninput="onSondeoContextInput('hub')" />
-            </div>
+            ${isConsultor ? `
+              <div class="consultor-field">
+                <label>${meta.cityLabel}</label>
+                <input type="text" id="hub-ctx-city" class="consultor-input" value="${escapeHtml(ctx.userCity)}" placeholder="${meta.cityPlaceholder}" oninput="onSondeoContextInput('hub')" />
+              </div>
+            ` : ''}
             <div class="consultor-field">
               <label>Modalidad con la que partir:</label>
               <select id="hub-modalidad-select" class="consultor-input" onchange="syncModalidadSelect(this.value)">
@@ -8622,51 +8733,65 @@
 
           <div class="consultor-field" style="margin-bottom: 12px;">
             <label>${isConsultor ? meta.notesLabel : 'Contexto o comentario adicional (opcional):'}</label>
-            <textarea id="hub-ctx-notes" class="consultor-textarea" placeholder="${meta.notesPlaceholder}" oninput="onSondeoContextInput('hub')">${escapeHtml(ctx.fieldNotes)}</textarea>
+            <textarea id="hub-ctx-notes" class="consultor-textarea" placeholder="${isConsultor ? meta.notesPlaceholder : 'Opcional: cuéntame brevemente qué te gustaría destrabar o tu disponibilidad horaria...'}" oninput="onSondeoContextInput('hub')">${escapeHtml(ctx.fieldNotes)}</textarea>
           </div>
 
           <!-- BOTONERA DE EXPORTACIÓN, PDF Y PROCESAMIENTO DE CONTEXTO -->
-          <div class="sondeo-export-grid">
-            <button type="button" class="btn-sondeo-export is-pdf" onclick="exportSondeoExecutivePDF()">
-              <span>📄</span> <span>Generar / Descargar PDF Ejecutivo</span>
-            </button>
-            <button type="button" class="btn-sondeo-export is-md" onclick="downloadSondeoContextMarkdown()">
-              <span>📝</span> <span>Descargar Base de Contexto (.md)</span>
-            </button>
-            <button type="button" id="btn-copy-context-md" class="btn-sondeo-export" onclick="copySondeoContextMarkdown()">
-              <span>📋</span> <span>Copiar Base de Contexto (.md)</span>
-            </button>
-            <button type="button" class="btn-sondeo-export" onclick="downloadSondeoContractJSON()">
-              <span>🧬</span> <span>Contrato JSON (AICC v4.0)</span>
-            </button>
-            <button type="button" class="btn-sondeo-export" onclick="saveCurrentSondeoToHistory()">
-              <span>💾</span> <span>Guardar en Historial de Tablet</span>
-            </button>
-            <button type="button" class="btn-sondeo-export is-copiloto" onclick="openInCopilotoSesion()">
-              <span>🧠</span> <span>Abrir en Copiloto de Sesión</span>
-            </button>
-            <a id="btn-whatsapp-hub-final" href="#" target="_blank" rel="noopener noreferrer" class="btn-sondeo-export is-wa">
-              <span>💬</span> <span>Enviar Sondeo a Diego (WA)</span>
-            </a>
-            <button type="button" id="btn-whatsapp-client-direct" class="btn-sondeo-export is-wa-client" onclick="sendSondeoToClientWhatsApp()">
-              <span>📲</span> <span>Enviar Diagnóstico al Cliente</span>
-            </button>
-          </div>
+          ${isConsultor ? `
+            <div class="sondeo-export-grid">
+              <button type="button" class="btn-sondeo-export is-pdf" onclick="exportSondeoExecutivePDF()">
+                <span>📄</span> <span>Generar / Descargar PDF Ejecutivo</span>
+              </button>
+              <button type="button" class="btn-sondeo-export is-md" onclick="downloadSondeoContextMarkdown()">
+                <span>📝</span> <span>Descargar Base de Contexto (.md)</span>
+              </button>
+              <button type="button" id="btn-copy-context-md" class="btn-sondeo-export" onclick="copySondeoContextMarkdown()">
+                <span>📋</span> <span>Copiar Base de Contexto (.md)</span>
+              </button>
+              <button type="button" class="btn-sondeo-export" onclick="downloadSondeoContractJSON()">
+                <span>🧬</span> <span>Contrato JSON (AICC v4.0)</span>
+              </button>
+              <button type="button" class="btn-sondeo-export" onclick="saveCurrentSondeoToHistory()">
+                <span>💾</span> <span>Guardar en Historial de Tablet</span>
+              </button>
+              <button type="button" class="btn-sondeo-export is-copiloto" onclick="openInCopilotoSesion()">
+                <span>🧠</span> <span>Abrir en Copiloto de Sesión</span>
+              </button>
+              <a id="btn-whatsapp-hub-final" href="#" target="_blank" rel="noopener noreferrer" class="btn-sondeo-export is-wa">
+                <span>💬</span> <span>Enviar Sondeo a Diego (WA)</span>
+              </a>
+              <button type="button" id="btn-whatsapp-client-direct" class="btn-sondeo-export is-wa-client" onclick="sendSondeoToClientWhatsApp()">
+                <span>📲</span> <span>Enviar Diagnóstico al Cliente</span>
+              </button>
+            </div>
 
-          <div style="display:flex; justify-content:flex-end; margin-top:8px;">
-            <button type="button" id="btn-copy-sondeo-report" onclick="copySondeoReportText()" style="background:transparent; border:none; color:#94a3b8; font-size:0.74rem; text-decoration:underline; cursor:pointer;">
-              Copiar resumen corto texto plano para WhatsApp
-            </button>
-          </div>
+            <div style="display:flex; justify-content:flex-end; margin-top:8px;">
+              <button type="button" id="btn-copy-sondeo-report" onclick="copySondeoReportText()" style="background:transparent; border:none; color:#94a3b8; font-size:0.74rem; text-decoration:underline; cursor:pointer;">
+                Copiar resumen corto texto plano para WhatsApp
+              </button>
+            </div>
 
-          <!-- VISTA PREVIA EN VIVO DEL ARCHIVO DE CONTEXTO ESTRUCTURADO -->
-          <details class="sondeo-context-details" ${isConsultor ? 'open' : ''}>
-            <summary>
-              <span>📂 Vista Previa: Base de Contexto Estructurada del Cliente (Lista para guardar / trabajar)</span>
-              <span style="font-size:0.72rem; color:#94a3b8; font-weight:600;">Clic para expandir/contraer ▾</span>
-            </summary>
-            <pre id="sondeo-md-live-preview" class="sondeo-context-preview"></pre>
-          </details>
+            <!-- VISTA PREVIA EN VIVO DEL ARCHIVO DE CONTEXTO ESTRUCTURADO -->
+            <details class="sondeo-context-details" open>
+              <summary>
+                <span>📂 Vista Previa: Base de Contexto Estructurada del Cliente (Lista para guardar / trabajar)</span>
+                <span style="font-size:0.72rem; color:#94a3b8; font-weight:600;">Clic para expandir/contraer ▾</span>
+              </summary>
+              <pre id="sondeo-md-live-preview" class="sondeo-context-preview"></pre>
+            </details>
+          ` : `
+            <div class="sondeo-export-grid">
+              <button type="button" class="btn-sondeo-export is-pdf" onclick="exportSondeoExecutivePDF()">
+                <span>📄</span> <span>Generar / Descargar PDF Ejecutivo</span>
+              </button>
+              <a id="btn-whatsapp-hub-final" href="#" target="_blank" rel="noopener noreferrer" class="btn-sondeo-export is-wa">
+                <span>💬</span> <span>Enviar Sondeo a Diego (WA)</span>
+              </a>
+              <button type="button" id="btn-copy-sondeo-report" class="btn-sondeo-export" onclick="copySondeoReportText()">
+                <span>📋</span> <span>Copiar Resumen para WhatsApp</span>
+              </button>
+            </div>
+          `}
         </div>
       `;
 
