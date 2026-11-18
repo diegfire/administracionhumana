@@ -16,7 +16,7 @@
     
     <!-- Modular CSS Core & Components -->
     <link rel="stylesheet" href="css/portal-core.css?v=3.5">
-    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.5">
+    <link rel="stylesheet" href="css/schedule-mapper.css?v=3.6">
     <link rel="stylesheet" href="css/kanban-gtd.css?v=3.5">
 
     <style>
@@ -1065,12 +1065,17 @@
             width: 100% !important;
             overflow: visible !important;
         }
-        .brush-btn {
-            padding: 5px 9px !important;
+        .brush-btn,
+        .brush-chip {
+            padding: 6px 9px !important;
             font-size: 0.72rem !important;
-            border-radius: 6px !important;
+            border-radius: 9px !important;
             width: 100% !important;
+            min-height: 36px !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
             justify-content: flex-start !important;
+            align-items: center !important;
             box-sizing: border-box !important;
         }
         .schedule-day-tabs {
@@ -1260,9 +1265,13 @@
                 width: 100% !important;
                 overflow: visible !important;
             }
-            .brush-btn {
+            .brush-btn,
+            .brush-chip {
                 font-size: 0.68rem !important;
-                padding: 5px 7px !important;
+                padding: 6px 8px !important;
+                border-radius: 9px !important;
+                min-height: 38px !important;
+                line-height: 1.18 !important;
             }
             .schedule-day-tabs {
                 display: grid !important;

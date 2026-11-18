@@ -184,16 +184,20 @@
       color: #000000;
     }
     .plat-tab-btn.plat-admin-tab {
-      background: rgba(56, 189, 248, 0.08);
-      border-color: rgba(56, 189, 248, 0.25);
-      color: #38bdf8;
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
       width: auto;
+      padding: 5px 8px;
       border-radius: 50px;
+      opacity: 0.72;
+      box-shadow: none;
     }
     .plat-tab-btn.plat-admin-tab:hover {
-      background: rgba(56, 189, 248, 0.2);
+      background: rgba(56, 189, 248, 0.18);
       border-color: #38bdf8;
       color: #ffffff;
+      opacity: 1;
       transform: translateY(-1px);
     }
     .plat-tab-btn.plat-admin-tab.active {
@@ -201,6 +205,7 @@
       color: #050b14;
       font-weight: 800;
       border-color: #38bdf8;
+      opacity: 1;
       box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
     }
 
@@ -318,31 +323,31 @@
         padding: 5px 0 4px;
       }
       .nav-platform-container {
-        padding: 4px 10px;
-        gap: 5px 6px;
+        padding: 4px 8px;
+        gap: 4px 4px;
       }
       .nav-brand-group {
-        gap: 6px;
+        gap: 5px;
         flex-shrink: 0;
       }
       .brand-text-full { display: none; }
       .brand-text-short { display: inline; }
       .nav-brand-text { 
-        font-size: 0.78rem; 
-        letter-spacing: 0.02em;
+        font-size: 0.7rem; 
+        letter-spacing: 0.01em;
       }
-      .nav-brand-img { height: 26px; }
+      .nav-brand-img { height: 22px; }
       .nav-ig-text { display: none; }
-      .nav-wa-text { display: none; }
+      .nav-wa-text { display: inline; }
       .nav-pin-full { display: none; }
       .nav-pin-short { display: inline; }
       .nav-actions-group {
-        gap: 5px;
+        gap: 4px;
       }
-      .nav-btn-pin { padding: 4px 9px; font-size: 0.72rem; gap: 3px; }
-      .nav-ig-btn { padding: 4px 7px; font-size: 0.72rem; }
-      .nav-wa-btn { padding: 4px 7px; font-size: 0.72rem; }
-      .plat-tab-btn.plat-admin-tab { padding: 4px 9px; font-size: 0.72rem; }
+      .nav-btn-pin { padding: 4px 7px; font-size: 0.68rem; gap: 3px; }
+      .nav-ig-btn { padding: 4px 5px; font-size: 0.68rem; }
+      .nav-wa-btn { padding: 4px 7px; font-size: 0.68rem; gap: 3px; }
+      .plat-tab-btn.plat-admin-tab { padding: 4px 5px; font-size: 0.68rem; }
       .nav-tab-full { display: none; }
       .nav-tab-short { display: inline; }
       .platform-nav-tabs {
@@ -4293,11 +4298,8 @@
       </button>
     </div>
 
-    <!-- Acciones y Accesos (Derecha: Admin, Instagram y PIN) -->
+    <!-- Acciones y Accesos (Derecha: Instagram, WhatsApp, PIN y acceso discreto Admin) -->
     <div class="nav-actions-group">
-      <button class="plat-tab-btn plat-admin-tab" data-tab="view-admin" onclick="switchPlatformTab('view-admin')" title="Consola Privada de Consultoría para Diego">
-        <span>👑</span> <span class="nav-tab-full">Admin</span><span class="nav-tab-short">Admin</span>
-      </button>
       <a href="https://www.instagram.com/administracionhumana/?hl=es" target="_blank" rel="noopener noreferrer" class="nav-ig-btn" title="Instagram @administracionhumana">
         <span>📸</span> <span class="nav-ig-text">Instagram</span>
       </a>
@@ -4310,6 +4312,9 @@
         </button>
         <button id="btn-nav-logout" style="display:none; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#aaa; border-radius:50px; padding:6px 11px; font-size:0.75rem; font-weight:700; cursor:pointer; transition:all 0.2s;" title="Cerrar sesión activa" onmouseover="this.style.color='#fff'; this.style.borderColor='#ef4444';" onmouseout="this.style.color='#aaa'; this.style.borderColor='rgba(255,255,255,0.2)';">✕ Salir</button>
       </div>
+      <button class="plat-tab-btn plat-admin-tab" data-tab="view-admin" onclick="switchPlatformTab('view-admin')" title="Consola Privada de Consultoría (Admin Diego)" aria-label="Consola Privada Admin">
+        <span>👑</span>
+      </button>
     </div>
   </div>
 </nav>
@@ -4703,6 +4708,27 @@
       color: #ffffff;
       box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
     }
+    .diego-sondeo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.38);
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      font-family: var(--font-heading);
+    }
+    .diego-sondeo-pill:hover {
+      background: #38bdf8;
+      color: #000000;
+      border-color: #38bdf8;
+    }
     .diego-author-pitch-wrap {
       display: flex;
       flex-direction: column;
@@ -4734,10 +4760,39 @@
       box-sizing: border-box;
     }
     @media (max-width: 640px) {
+      .diego-identity-card {
+        padding: 11px 11px 14px !important;
+        gap: 10px !important;
+      }
+      .diego-top-header {
+        gap: 8px !important;
+        padding-bottom: 10px !important;
+      }
+      .diego-profile-id {
+        padding: 8px 10px !important;
+        gap: 10px !important;
+      }
+      .diego-avatar-box {
+        width: 58px !important;
+        height: 58px !important;
+        min-width: 58px !important;
+      }
+      .diego-name-text {
+        font-size: 1rem !important;
+        margin-bottom: 2px !important;
+      }
+      .diego-role-text {
+        font-size: 0.63rem !important;
+        margin-bottom: 4px !important;
+      }
+      .diego-author-headline {
+        font-size: 1.04rem !important;
+        line-height: 1.2 !important;
+      }
       .diego-essence-quote {
-        font-size: 0.79rem;
-        padding: 10px 11px;
-        line-height: 1.48;
+        font-size: 0.74rem;
+        padding: 8px 10px;
+        line-height: 1.4;
       }
     }
     .diego-essence-quote strong {
@@ -5473,6 +5528,9 @@
                 <a href="https://wa.me/56975590132?text=Hola%20Diego,%20vi%20tu%20sitio%20web%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20sistema%20de%20gesti%C3%B3n%20personalizado" target="_blank" class="diego-wa-pill" title="WhatsApp Oficial +56975590132">
                   <span>💬</span> WhatsApp
                 </a>
+                <button type="button" class="diego-sondeo-pill" onclick="scrollToSection('sondeos')" title="Ir al Sondeo Gratuito de 6 Áreas">
+                  <span>⚡</span> Sondeo Gratis →
+                </button>
               </div>
             </div>
           </div>
@@ -6195,6 +6253,11 @@
         .sgp-microapp-jump-btn.active .jump-arrow {
           color: #000000;
         }
+        @media (max-width: 540px) {
+          .sgp-microapp-jump-btn .jump-active-word {
+            display: none;
+          }
+        }
       </style>
 
       <div class="demo-subtabs-bar">
@@ -6326,7 +6389,7 @@
               <div class="sgp-microapp-pills" id="sgp-microapp-pills">
                 <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-horario" onclick="jumpToSgpMicroApp('tab-horario')"><span>⏰ 1. Horario 24H</span><span class="jump-arrow">▶</span></button>
                 <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-kanban" onclick="jumpToSgpMicroApp('tab-kanban')"><span>🛑 2. Kanban WIP=2</span><span class="jump-arrow">▶</span></button>
-                <button type="button" class="sgp-microapp-jump-btn active" data-tab="tab-accion" onclick="jumpToSgpMicroApp('tab-accion')"><span>🧮 3. Calc. Negocio</span><span class="jump-arrow">● Activa</span></button>
+                <button type="button" class="sgp-microapp-jump-btn active" data-tab="tab-accion" onclick="jumpToSgpMicroApp('tab-accion')"><span>🧮 3. Calc. Negocio</span><span class="jump-arrow">●<span class="jump-active-word"> Activa</span></span></button>
                 <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-identidades" onclick="jumpToSgpMicroApp('tab-identidades')"><span>⏱️ 4. Reloj Paso Cero</span><span class="jump-arrow">▶</span></button>
                 <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-herramientas" onclick="jumpToSgpMicroApp('tab-herramientas')"><span>🖨️ 5. Guía + Hoja Carta</span><span class="jump-arrow">▶</span></button>
                 <button type="button" class="sgp-microapp-jump-btn" data-tab="tab-resultados" onclick="jumpToSgpMicroApp('tab-resultados')"><span>🏆 6. Bitácora &amp; Logros</span><span class="jump-arrow">▶</span></button>
@@ -6336,7 +6399,7 @@
         </div>
 
         <!-- VISOR INTERACTIVO EN VIVO DEL SGP -->
-        <div id="demo-visor-container" style="background: #000000; border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 14px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.65);">
+        <div id="demo-visor-container" style="background: #000000; border: 1px solid rgba(56, 189, 248, 0.32); border-radius: 14px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.65); scroll-margin-top: 155px;">
           <div class="demo-visor-titlebar" style="padding: 10px 14px;">
             <div class="demo-visor-title-left">
               <h3 class="demo-visor-h3" style="font-size: 0.88rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -6350,7 +6413,7 @@
           </div>
 
           <div id="live-demo-iframe-wrap" style="width: 100%; height: 820px; min-height: 520px; background: #000000; position: relative; transition: height 0.2s ease;">
-            <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_intuitivo_v10&case=caso_d&tab=tab-accion" scrolling="no" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block; overflow: hidden;"></iframe>
+            <iframe id="live-demo-iframe" src="planes-demo.html?v=sgp_intuitivo_v11&case=caso_d&tab=tab-accion" scrolling="no" title="Ejemplo Sistema de Gestión Personalizado en Vivo" style="width: 100%; height: 100%; border: none; display: block; overflow: hidden;"></iframe>
           </div>
         </div>
 
@@ -6441,7 +6504,7 @@
               var isAct = btn.getAttribute('data-tab') === activeTab;
               btn.classList.toggle('active', isAct);
               var jArrow = btn.querySelector('.jump-arrow');
-              if (jArrow) jArrow.textContent = isAct ? '● Activa' : '▶';
+              if (jArrow) jArrow.innerHTML = isAct ? '●<span class="jump-active-word"> Activa</span>' : '▶';
             });
           }
 
@@ -6458,9 +6521,12 @@
             sendDemoCommand(null, tabId);
             var visor = document.getElementById('demo-visor-container');
             if (visor) {
+              var navEl = document.querySelector('nav.master-platform-nav');
+              var navOffset = (navEl ? navEl.getBoundingClientRect().height : 116) + 12;
               var rect = visor.getBoundingClientRect();
-              if (rect.top > window.innerHeight * 0.72) {
-                visor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              if (rect.top < navOffset - 4 || rect.top > window.innerHeight * 0.68) {
+                var targetY = rect.top + window.pageYOffset - navOffset;
+                window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
               }
             }
           };
@@ -9942,10 +10008,39 @@ ${JSON.stringify(ficha, null, 2)}
         gap: 12px;
         align-items: stretch;
       }
+      .planes-mobile-quickjump {
+        display: none;
+      }
       @media (max-width: 960px) {
         .continuidad-cards-grid {
           grid-template-columns: 1fr;
           gap: 10px;
+        }
+        .planes-mobile-quickjump {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 6px;
+          margin-bottom: 12px;
+        }
+        .btn-plan-jump {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          color: #e2e8f0;
+          border-radius: 8px;
+          padding: 7px 6px;
+          font-family: var(--font-heading);
+          font-size: 0.69rem;
+          font-weight: 800;
+          cursor: pointer;
+          text-align: center;
+          line-height: 1.2;
+          transition: all 0.16s ease;
+        }
+        .btn-plan-jump:hover,
+        .btn-plan-jump:focus {
+          border-color: #34d399;
+          background: rgba(16, 185, 129, 0.16);
+          color: #ffffff;
         }
       }
       .continuidad-card {
@@ -9957,6 +10052,7 @@ ${JSON.stringify(ficha, null, 2)}
         flex-direction: column;
         justify-content: space-between;
         box-sizing: border-box;
+        scroll-margin-top: 155px;
       }
       .continuidad-badge-pill {
         font-size: 0.66rem;
@@ -10127,9 +10223,15 @@ ${JSON.stringify(ficha, null, 2)}
             </button>
           </div>
 
+          <div class="planes-mobile-quickjump" aria-label="Salto rápido a los 3 caminos">
+            <button type="button" class="btn-plan-jump" onclick="scrollToPlanCard('plan-opcion-sgp')">1. SGP a Medida</button>
+            <button type="button" class="btn-plan-jump" onclick="scrollToPlanCard('plan-opcion-acompanamiento')">2. Sesiones $35k</button>
+            <button type="button" class="btn-plan-jump" onclick="scrollToPlanCard('plan-opcion-vitrina')">3. Vitrina / Canje</button>
+          </div>
+
           <div class="continuidad-cards-grid">
             <!-- OPCIÓN A -->
-            <div class="continuidad-card">
+            <div class="continuidad-card" id="plan-opcion-sgp">
               <div>
                 <span class="continuidad-badge-pill" style="color: #34d399; background: #051610; border: 1px solid rgba(16,185,129,0.3);">
                   ✦ SISTEMA SGP COMPLETO
@@ -10159,7 +10261,7 @@ ${JSON.stringify(ficha, null, 2)}
             </div>
 
             <!-- OPCIÓN B -->
-            <div class="continuidad-card">
+            <div class="continuidad-card" id="plan-opcion-acompanamiento">
               <div>
                 <span class="continuidad-badge-pill" style="color: #d4d4d8; background: #121216; border: 1px solid #27272a;">
                   ✦ APOYO EN GESTIÓN A TU RITMO
@@ -10189,7 +10291,7 @@ ${JSON.stringify(ficha, null, 2)}
             </div>
 
             <!-- OPCIÓN C -->
-            <div class="continuidad-card">
+            <div class="continuidad-card" id="plan-opcion-vitrina">
               <div>
                 <span class="continuidad-badge-pill" style="color: #d4d4d8; background: #121216; border: 1px solid #27272a;">
                   ✦ CO-MARKETING · TERRENO U ONLINE
@@ -10334,6 +10436,15 @@ ${JSON.stringify(ficha, null, 2)}
       </div>
 
       <script>
+        window.scrollToPlanCard = function(cardId) {
+          var card = document.getElementById(cardId);
+          if (!card) return;
+          var navEl = document.querySelector('nav.master-platform-nav');
+          var navOffset = (navEl ? navEl.getBoundingClientRect().height : 120) + 12;
+          var targetY = card.getBoundingClientRect().top + window.pageYOffset - navOffset;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+        };
+
         window.switchProductosSubtab = function(sub) {
           var map = {
             base: { panel: 'prod-subpanel-base', btn: 'btn-prod-subtab-base' },
@@ -10351,6 +10462,16 @@ ${JSON.stringify(ficha, null, 2)}
               else b.classList.remove('active');
             }
           });
+          var tabsBar = document.getElementById('btn-prod-subtab-base');
+          var anchorEl = tabsBar ? tabsBar.closest('.diego-mode-tabs') : null;
+          if (anchorEl) {
+            var navEl = document.querySelector('nav.master-platform-nav');
+            var navOffset = (navEl ? navEl.getBoundingClientRect().height : 120) + 12;
+            var rect = anchorEl.getBoundingClientRect();
+            if (rect.top < navOffset - 4 || rect.top > window.innerHeight * 0.65) {
+              window.scrollTo({ top: Math.max(0, rect.top + window.pageYOffset - navOffset), behavior: 'smooth' });
+            }
+          }
         };
       </script>
 
