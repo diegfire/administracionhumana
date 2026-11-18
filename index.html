@@ -6870,6 +6870,436 @@
           min-height: auto !important;
         }
       }
+
+      /* ── MODO CONSULTOR / TABLET, NOTAS PUNTUALES, HISTORIAL & CENTRO DE EXPORTACIÓN ── */
+      .sondeo-mode-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px dashed rgba(255, 255, 255, 0.12);
+      }
+      .sondeo-mode-switch {
+        display: inline-flex;
+        align-items: center;
+        background: #06070b;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 99px;
+        padding: 3px;
+        gap: 4px;
+        flex-wrap: wrap;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      .btn-sondeo-mode {
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 7px 14px;
+        border-radius: 99px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        max-width: 100%;
+        text-align: left;
+      }
+      .btn-sondeo-mode:hover {
+        color: #ffffff;
+      }
+      .btn-sondeo-mode.is-active {
+        background: #ffffff;
+        color: #000000;
+        font-weight: 800;
+        box-shadow: 0 2px 12px rgba(255, 255, 255, 0.22);
+      }
+      .btn-sondeo-mode.is-consultor.is-active {
+        background: linear-gradient(135deg, #38bdf8, #10b981);
+        color: #000000;
+        box-shadow: 0 2px 14px rgba(56, 189, 248, 0.35);
+      }
+      .btn-sondeo-history {
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        color: #38bdf8;
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+        font-weight: 800;
+        padding: 7px 14px;
+        border-radius: 99px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+      }
+      .btn-sondeo-history:hover {
+        background: rgba(56, 189, 248, 0.2);
+        color: #ffffff;
+      }
+
+      /* Panel de Contexto Base (Modo Consultor / Tablet) */
+      .sondeo-consultor-panel {
+        background: linear-gradient(155deg, rgba(14, 22, 36, 0.96) 0%, rgba(9, 11, 18, 0.98) 100%);
+        border: 1.5px solid rgba(56, 189, 248, 0.35);
+        border-top: 3.5px solid #38bdf8;
+        border-radius: 14px;
+        padding: 16px 18px;
+        margin-bottom: 14px;
+        animation: fadeIn 0.2s ease;
+      }
+      .consultor-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .profile-type-pills {
+        display: inline-flex;
+        background: #06070b;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 10px;
+        padding: 3px;
+        gap: 4px;
+      }
+      .btn-profile-pill {
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        font-family: var(--font-heading);
+        font-size: 0.76rem;
+        font-weight: 700;
+        padding: 7px 13px;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: all 0.18s ease;
+      }
+      .btn-profile-pill.is-active {
+        background: #38bdf8;
+        color: #000000;
+        font-weight: 800;
+      }
+      .consultor-context-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+        gap: 10px;
+        min-width: 0;
+        max-width: 100%;
+      }
+      .consultor-field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+        max-width: 100%;
+      }
+      .consultor-field label {
+        font-size: 0.69rem;
+        font-weight: 700;
+        color: #cbd5e1;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+      .consultor-input, .consultor-textarea {
+        width: 100%;
+        background: #06070b;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        padding: 9px 11px;
+        color: #ffffff;
+        font-family: var(--font-sans);
+        font-size: 0.82rem;
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color 0.2s;
+      }
+      .consultor-input:focus, .consultor-textarea:focus {
+        border-color: #38bdf8;
+      }
+      .consultor-textarea {
+        min-height: 74px;
+        resize: vertical;
+      }
+
+      /* Nota puntual dentro de cada tarjeta seleccionada */
+      .aviso-note-box {
+        margin-top: 8px;
+        padding-top: 7px;
+        border-top: 1px dashed rgba(255, 255, 255, 0.12);
+      }
+      .aviso-note-box label {
+        display: block;
+        font-size: 0.64rem;
+        font-weight: 700;
+        color: #94a3b8;
+        margin-bottom: 4px;
+      }
+      .aviso-note-input {
+        width: 100%;
+        background: #05060a;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 7px;
+        padding: 7px 9px;
+        color: #f8fafc;
+        font-size: 0.76rem;
+        outline: none;
+        box-sizing: border-box;
+      }
+      .aviso-note-input:focus {
+        border-color: var(--station-color, #38bdf8);
+      }
+
+      /* Centro de Exportación y Base de Contexto en Estación 7 */
+      .sondeo-export-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+        gap: 9px;
+        margin-top: 12px;
+        min-width: 0;
+        max-width: 100%;
+      }
+      .btn-sondeo-export {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 44px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-family: var(--font-heading);
+        font-size: 0.79rem;
+        font-weight: 800;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: #ffffff;
+        text-decoration: none;
+        text-align: center;
+        transition: all 0.18s ease;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      .btn-sondeo-export:hover {
+        transform: translateY(-1px);
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .btn-sondeo-export.is-pdf {
+        background: #ffffff;
+        color: #000000;
+        border-color: #ffffff;
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+      }
+      .btn-sondeo-export.is-md {
+        background: rgba(56, 189, 248, 0.14);
+        border-color: rgba(56, 189, 248, 0.45);
+        color: #38bdf8;
+      }
+      .btn-sondeo-export.is-copiloto {
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+        color: #000000;
+        border-color: transparent;
+      }
+      .btn-sondeo-export.is-wa {
+        background: #10b981;
+        color: #000000;
+        border-color: #10b981;
+      }
+      .btn-sondeo-export.is-wa-client {
+        background: rgba(37, 211, 102, 0.14);
+        border-color: rgba(37, 211, 102, 0.5);
+        color: #4ade80;
+      }
+
+      .sondeo-context-details {
+        margin-top: 14px;
+        background: #06070b;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 10px 14px;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      .sondeo-context-details summary {
+        cursor: pointer;
+        font-family: var(--font-heading);
+        font-size: 0.82rem;
+        font-weight: 800;
+        color: #38bdf8;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .sondeo-context-preview {
+        margin-top: 10px;
+        background: #030407;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.74rem;
+        line-height: 1.48;
+        color: #cbd5e1;
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+        max-height: 360px;
+        overflow-y: auto;
+        overflow-x: auto;
+      }
+      @media (max-width: 640px) {
+        .sondeo-mode-switch {
+          border-radius: 14px;
+          width: 100%;
+        }
+        .btn-sondeo-mode {
+          width: 100%;
+          justify-content: flex-start;
+          white-space: normal;
+        }
+        .profile-type-pills {
+          width: 100%;
+          flex-wrap: wrap;
+        }
+        .btn-profile-pill {
+          flex: 1 1 auto;
+          text-align: center;
+        }
+        .metrics-kpi-grid > *,
+        .metrics-two-col > * {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+
+      /* Modal Historial en Tablet */
+      .sondeo-history-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 10050;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .sondeo-history-backdrop.is-open {
+        display: flex;
+      }
+      .sondeo-history-card {
+        background: #0a0c12;
+        border: 1.5px solid rgba(56, 189, 248, 0.35);
+        border-radius: 16px;
+        width: 100%;
+        max-width: 720px;
+        max-height: 88vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+      }
+      .sondeo-history-list {
+        padding: 16px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .sondeo-history-item {
+        background: #10131d;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      /* Fallback In-Page Overlay de Impresión PDF A4/Carta */
+      #sondeo-pdf-print-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 20000;
+        background: #e5e7eb;
+        overflow-y: auto;
+        padding: 20px;
+        display: none;
+      }
+      #sondeo-pdf-print-overlay.is-open {
+        display: block;
+      }
+      .sondeo-pdf-toolbar {
+        max-width: 210mm;
+        margin: 0 auto 14px auto;
+        background: #111827;
+        color: #ffffff;
+        padding: 10px 16px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .sondeo-pdf-sheet {
+        max-width: 210mm;
+        margin: 0 auto;
+        background: #ffffff;
+        color: #111827;
+        padding: 14mm 16mm;
+        border-radius: 6px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+        font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+      }
+      @media print {
+        body.printing-sondeo-pdf > *:not(#sondeo-pdf-print-overlay) {
+          display: none !important;
+        }
+        body.printing-sondeo-pdf {
+          background: #ffffff !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        body.printing-sondeo-pdf #sondeo-pdf-print-overlay {
+          position: static !important;
+          background: #ffffff !important;
+          padding: 0 !important;
+          overflow: visible !important;
+        }
+        body.printing-sondeo-pdf .sondeo-pdf-toolbar {
+          display: none !important;
+        }
+        body.printing-sondeo-pdf .sondeo-pdf-sheet {
+          box-shadow: none !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          border-radius: 0 !important;
+        }
+      }
     </style>
 
     <div class="container" style="max-width: 1180px; margin: 0 auto; padding: 0 16px 86px 16px;">
@@ -6899,7 +7329,34 @@
               <span>🧭</span> <span>Navega las 6 áreas con los botones abajo</span>
             </div>
           </div>
+
+          <!-- BARRA DE MODO DUAL (AUTODIAGNÓSTICO VS. MODO CONSULTOR / TABLET) + HISTORIAL -->
+          <div class="sondeo-mode-toolbar">
+            <div class="sondeo-mode-switch" role="group" aria-label="Modo de Sondeo">
+              <button type="button" id="btn-mode-autodiagnostico" class="btn-sondeo-mode is-active" onclick="setSondeoMode('autodiagnostico')">
+                <span>👤</span> <span>Autodiagnóstico</span>
+              </button>
+              <button type="button" id="btn-mode-consultor" class="btn-sondeo-mode is-consultor" onclick="setSondeoMode('consultor')">
+                <span>📋</span> <span>Modo Consultor / Tablet (Persona o Negocio)</span>
+              </button>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <button type="button" id="btn-toolbar-save-pdf" class="btn-sondeo-history" style="background: rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.45); color: #fbbf24;" onclick="exportSondeoExecutivePDF()">
+                <span>📄</span> <span>Guardar en PDF</span>
+              </button>
+              <button type="button" id="btn-save-history-quick" class="btn-sondeo-history" style="display: none; background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.4); color: #34d399;" onclick="saveCurrentSondeoToHistory()">
+                <span>💾</span> <span>Guardar en Tablet</span>
+              </button>
+              <button type="button" id="btn-open-sondeo-history" class="btn-sondeo-history" onclick="openSondeoHistoryModal()">
+                <span>🗂️</span> <span>Historial Guardado (<span id="sondeo-history-count">0</span>)</span>
+              </button>
+            </div>
+          </div>
         </div>
+
+        <!-- PANEL DE CAPTURA DE CONTEXTO BASE (MODO CONSULTOR / TABLET) -->
+        <div id="sondeo-consultor-panel-mount"></div>
         
         <!-- 1. PESTAÑAS DE LAS 6 ESTACIONES + PESTAÑA 7 DE RESULTADOS Y MÉTRICAS -->
         <div id="quick-jump-areas-bar" class="hub-stations-nav">
@@ -6938,6 +7395,29 @@
         </div>
 
       </div>
+
+      <!-- MODAL HISTORIAL DE SONDEOS EN TABLET -->
+      <div id="sondeo-history-modal" class="sondeo-history-backdrop" onclick="if(event.target===this) closeSondeoHistoryModal()">
+        <div class="sondeo-history-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid rgba(255,255,255,0.1); background:#07080d;">
+            <div>
+              <div style="font-family:var(--font-heading); font-size:1rem; font-weight:800; color:#ffffff;">🗂️ Historial de Sondeos Guardados en este Dispositivo</div>
+              <div style="font-size:0.74rem; color:#94a3b8;">Respaldo local offline/online para sondear varios clientes o negocios seguidos</div>
+            </div>
+            <button type="button" onclick="closeSondeoHistoryModal()" style="background:#181b26; border:1px solid rgba(255,255,255,0.2); color:#fff; width:34px; height:34px; border-radius:50%; cursor:pointer; font-size:1.1rem;">&times;</button>
+          </div>
+          <div style="padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; background:rgba(16,185,129,0.06);">
+            <span style="font-size:0.76rem; color:#cbd5e1;">Guarda el sondeo actual antes de limpiar la pantalla para tu próximo cliente:</span>
+            <button type="button" onclick="saveCurrentSondeoToHistory(true)" style="background:#10b981; color:#000; border:none; border-radius:99px; padding:7px 14px; font-family:var(--font-heading); font-size:0.76rem; font-weight:800; cursor:pointer;">
+              💾 Guardar Sondeo Actual Ahora
+            </button>
+          </div>
+          <div id="sondeo-history-list" class="sondeo-history-list"></div>
+        </div>
+      </div>
+
+      <!-- OVERLAY FALLBACK IMPRESIÓN / PDF EJECUTIVO A4/CARTA -->
+      <div id="sondeo-pdf-print-overlay"></div>
 
       <!-- NAVEGACIÓN ENTRE PESTAÑAS (PIE DE PESTAÑA 3) -->
       <div class="landing-tab-footer-nav">
@@ -6982,6 +7462,10 @@
     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
       <button type="button" onclick="goToHubStation(6)" style="background: rgba(56,189,248,0.14); border: 1px solid rgba(56,189,248,0.45); color: #38bdf8; font-weight: 800; font-size: 0.78rem; padding: 8px 14px; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
         <span>📊</span> Ver Mis Métricas
+      </button>
+
+      <button type="button" id="btn-dock-save-pdf" onclick="exportSondeoExecutivePDF()" style="background: rgba(245,158,11,0.16); border: 1px solid rgba(245,158,11,0.5); color: #fbbf24; font-weight: 800; font-size: 0.78rem; padding: 8px 14px; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
+        <span>📄</span> Guardar en PDF
       </button>
 
       <select id="dock-modalidad-select" style="background: #08090d; border: 1px solid rgba(255,255,255,0.18); color: #cbd5e1; padding: 7px 10px; border-radius: 8px; font-size: 0.76rem; outline: none; cursor: pointer; max-width: 240px;" onchange="syncModalidadSelect(this.value)">
@@ -7061,11 +7545,174 @@
       }
     ];
 
+    window.AVISO_TO_CANONICAL_MODULES = {
+      "aviso-01": ["matriz_eisenhower"],
+      "aviso-02": ["gtd_vaciado_mental"],
+      "aviso-03": ["time_blocking_flexible"],
+      "aviso-04": ["batching_agrupacion_tareas"],
+      "aviso-05": ["tecnica_pomodoro_foco"],
+      "aviso-06": ["principio_pareto_80_20"],
+      "aviso-07": ["circulo_dorado"],
+      "aviso-08": ["foda_came"],
+      "aviso-09": ["design_thinking_prototipado", "kaizen_mejora_continua"],
+      "aviso-10": ["metodo_smart_metas"],
+      "aviso-11": ["oceano_azul_diferencial"],
+      "aviso-12": ["cinco_fuerzas_porter"],
+      "aviso-13": ["metodologia_5s_espacio"],
+      "aviso-14": ["kanban_gtd_wip2"],
+      "aviso-15": ["principio_mece_categorizacion"],
+      "aviso-16": ["dnc_personal_aprendizaje"],
+      "aviso-17": ["diagrama_ishikawa_sistema", "cinco_porques_raiz"],
+      "aviso-18": ["piramide_minto_comunicacion"],
+      "aviso-19": ["matriz_raci_hogar_equipo"],
+      "aviso-20": ["modelo_grow_coaching"],
+      "aviso-21": ["feedback_sbi_conversaciones"],
+      "aviso-22": ["finanzas_503020"],
+      "aviso-23": ["diagnostico_estructura"],
+      "aviso-24": ["fondo_reserva_paz", "finanzas_503020"],
+      "aviso-25": ["mapeador_24h"],
+      "aviso-26": ["protocolo_paso_cero"],
+      "aviso-27": ["inventario_cero_culpa"],
+      "aviso-28": ["triangulacion_roles"],
+      "aviso-29": ["las_4p_marketing", "finanzas_503020"],
+      "aviso-30": ["paquetizacion_servicios_mes"],
+      "aviso-31": ["metodologia_5s_espacio", "mind_mapping_visual"],
+      "aviso-32": ["las_4p_marketing"],
+      "aviso-33": ["oceano_azul_diferencial", "las_4p_marketing"],
+      "aviso-34": ["scamper_rediseno_rutina", "batching_agrupacion_tareas"]
+    };
+
+    window.CANONICAL_MODULE_META = {
+      "diagnostico_estructura": { codigo: "P1-01", piso: 1, nombre: "Auditoría de Estructura 168 Horas & Rueda de la Vida", humano: "Termómetro de Signos Vitales: La Rueda que No Rueda" },
+      "mapeador_24h": { codigo: "P1-02", piso: 1, nombre: "Mapeador Semanal de Horarios 24H por Bloques", humano: "El Tablero Visual de Soberanía del Tiempo (168 Horas)" },
+      "time_blocking_flexible": { codigo: "P1-03", piso: 1, nombre: "Time Blocking Flexible & Ventanas de Oro", humano: "Ventanas de Oro de 45 a 90 Minutos Sin Interrupciones" },
+      "gtd_vaciado_mental": { codigo: "P1-04", piso: 1, nombre: "Getting Things Done (GTD - Fase Capturar y Procesar)", humano: "El Cubo de Basura Mental y Vaciado de RAM Cerebral" },
+      "kanban_gtd_wip2": { codigo: "P1-05", piso: 1, nombre: "Kanban Minimalista con Límite WIP=2", humano: "El Embudo de Sola-Ejecución (Máximo 2 Tareas Activas)" },
+      "matriz_eisenhower": { codigo: "P1-06", piso: 1, nombre: "Matriz de Eisenhower (Urgente vs Importante)", humano: "La Cura para la Urgentitis Crónica: Diferenciar el Incendio del Ensayo" },
+      "finanzas_503020": { codigo: "P1-07", piso: 1, nombre: "Presupuesto y Distribución 50/30/20", humano: "Tu Blindaje de Solvencia Estratégica: El Oxígeno Financiero en Tres Baldes" },
+      "tecnica_pomodoro_foco": { codigo: "P1-08", piso: 1, nombre: "Técnica Pomodoro (Microdosis de Concentración)", humano: "Entrenar a tu Mente en Bloques de 25 Minutos" },
+      "batching_agrupacion_tareas": { codigo: "P1-09", piso: 1, nombre: "Batching (Procesamiento por Lotes)", humano: "Agrupar Tareas Parecidas para no Freír tu Cerebro" },
+      "metodologia_5s_espacio": { codigo: "P1-10", piso: 1, nombre: "Metodología 5S (Seiri, Seiton, Seiso, Seiketsu, Shitsuke)", humano: "Ordenar tu Espacio Físico y Digital para Calmar tu Mente" },
+      "protocolo_paso_cero": { codigo: "P1-11", piso: 1, nombre: "Protocolo Paso Cero (Micro-compromisos de 5 Minutos)", humano: "Romper el Hielo sin Sufrir (La Acción Ridículamente Pequeña)" },
+      "inventario_cero_culpa": { codigo: "P1-12", piso: 1, nombre: "Inventario Cero Culpa y Registro de Micro-Victorias Nocturnas", humano: "El Cierre del Día en Paz (Reconocer lo que SÍ Hiciste)" },
+      "foda_came": { codigo: "P2-02", piso: 2, nombre: "Análisis FODA Dinámico & Matriz CAME", humano: "La Radiografía Realista de tu Negocio y Plan de Maniobra" },
+      "scamper_rediseno_rutina": { codigo: "P2-03", piso: 2, nombre: "Técnica SCAMPER de Rediseño Creativo", humano: "Rediseño Creativo de tu Rutina y Oferta" },
+      "dnc_personal_aprendizaje": { codigo: "P2-07", piso: 2, nombre: "DNC Personal y Organizacional (Diagnóstico de Necesidades de Capacitación)", humano: "El Mapa del Talento y la Cura para la Infoxicación" },
+      "triangulacion_roles": { codigo: "P2-08", piso: 2, nombre: "Triangulación y Compartimentación de Roles Multipotenciales", humano: "Un Sombrero a la Vez (Separar tus Identidades sin Culpa)" },
+      "feedback_sbi_conversaciones": { codigo: "P2-09", piso: 2, nombre: "Feedback SBI (Situación, Comportamiento, Impacto)", humano: "Decir las Cosas Claras Basados en Hechos, Sin Juicios Morales" },
+      "matriz_raci_hogar_equipo": { codigo: "P2-10", piso: 2, nombre: "Matriz RACI (Responsible, Accountable, Consulted, Informed)", humano: "Rayar la Cancha en el Hogar y Equipo" },
+      "cinco_porques_raiz": { codigo: "P2-11", piso: 2, nombre: "Los 5 Porqués (Análisis de Causa Raíz)", humano: "Ir a la Raíz de lo que te Pasa, Sin Anestesia ni Juicios Morales" },
+      "diagrama_ishikawa_sistema": { codigo: "P2-12", piso: 2, nombre: "Diagrama de Ishikawa (Causa-Efecto / Espina de Pescado)", humano: "La Cura para el Poner Parches Constantes y Culpar Personas" },
+      "kaizen_mejora_continua": { codigo: "P2-13", piso: 2, nombre: "Filosofía Kaizen (Micro-Mejoras del 1%)", humano: "La Cura para la Parálisis por Perfeccionismo y el Heroísmo Intermitente" },
+      "piramide_minto_comunicacion": { codigo: "P2-15", piso: 2, nombre: "Principio de la Pirámide de Minto (Answer First)", humano: "El Fin de los Rodeos y los Mensajes Eternos (Ir Directo al Grano)" },
+      "mind_mapping_visual": { codigo: "P2-16", piso: 2, nombre: "Mind Mapping (Mapas Mentales Radiales)", humano: "El GPS para Mentes Creativas (y Saturadas)" },
+      "fondo_reserva_paz": { codigo: "P2-17", piso: 2, nombre: "Fondo de Reserva y Tranquilidad (3 Meses de Vida)", humano: "Tu Colchón de Paz Mental (Dormir Tranquilo pase lo que pase)" },
+      "principio_pareto_80_20": { codigo: "P2-18", piso: 2, nombre: "Principio de Pareto (Regla del 80/20)", humano: "La Cura para el Agotamiento por Intentar Hacer de Todo" },
+      "principio_mece_categorizacion": { codigo: "P2-21", piso: 2, nombre: "Principio MECE (Mutuamente Excluyentes, Colectivamente Exhaustivos)", humano: "El Fin de las Tareas Repetidas y los Cabos Sueltos" },
+      "circulo_dorado": { codigo: "P3-01", piso: 3, nombre: "El Círculo Dorado (Simon Sinek)", humano: "El Antídoto contra la Guerra de Precios y la Crisis de Identidad" },
+      "metodo_smart_metas": { codigo: "P3-03", piso: 3, nombre: "Método SMART para Formulación de Metas", humano: "El Fin de las Metas Humo y Aprender a Pedirle Cosas Claras a la Vida" },
+      "design_thinking_prototipado": { codigo: "P3-05", piso: 3, nombre: "Design Thinking (Prototipado Rápido y Validación Centrada en el Usuario)", humano: "Experimentación de $0 Centrada en el Dolor del Cliente" },
+      "oceano_azul_diferencial": { codigo: "P3-06", piso: 3, nombre: "Estrategia del Océano Azul & Factor Diferencial", humano: "El Fin de la Guerra de Precios y la Competencia Sangrienta (Matriz ERAC)" },
+      "modelo_grow_coaching": { codigo: "P3-07", piso: 3, nombre: "Modelo GROW de Coaching (Goal, Reality, Options, Will)", humano: "Enseñar a Pescar y Desarrollar Autonomía" },
+      "cinco_fuerzas_porter": { codigo: "P3-08", piso: 3, nombre: "Las 5 Fuerzas de Porter & Negociación de Poder", humano: "Tu Radar Contra los Golpes del Mercado" },
+      "paquetizacion_servicios_mes": { codigo: "P3-09", piso: 3, nombre: "Paquetización de Servicios en Programas Mensuales", humano: "Dejar de Vender Horas Sueltas (Ingresos Recurrentes Predecibles)" },
+      "las_4p_marketing": { codigo: "P3-14", piso: 3, nombre: "Las 4P del Marketing (Marketing Mix: Producto, Precio, Plaza y Promoción)", humano: "La Mesa de 4 Patas de tu Oferta: Vender sin rogar, cobrar sin culpa" }
+    };
+
     window.SELECTED_EXPEDIENTE = {};
     window.HUB_ACTIVE_STATION = 0; // 0..5 = Áreas 1..6, 6 = Pantalla 7 de Resultados y Métricas
     window.HUB_VISITED_STATIONS = new Set([0]);
+    window.SONDEO_MODE = "autodiagnostico"; // "autodiagnostico" | "consultor"
+    window.SONDEO_PROFILE_TYPE = "persona"; // "persona" | "negocio"
     window.SONDEO_USER_NAME = "";
     window.SONDEO_USER_GOAL = "";
+    window.SONDEO_MODALIDAD = "Sesión Base ($35.000 CLP · Online o Presencial) + 1ra Herramienta en Portal";
+    window.SONDEO_CONTEXT = {
+      userRole: "",
+      userPhone: "",
+      userCity: "",
+      rootPhrase: "",
+      goldenHour: "",
+      financialPeace: "",
+      decompressionValve: "",
+      fieldNotes: ""
+    };
+
+    function escapeHtml(str) {
+      return String(str == null ? '' : str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function slugifyClientName(name) {
+      const clean = String(name || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '');
+      return clean || 'cliente_sondeo';
+    }
+
+    function getActiveModalidad() {
+      const dockSel = document.getElementById('dock-modalidad-select');
+      const hubSel = document.getElementById('hub-modalidad-select');
+      return (hubSel && hubSel.value) || (dockSel && dockSel.value) || window.SONDEO_MODALIDAD || 'Sesión Base ($35.000 CLP · Online o Presencial) + 1ra Herramienta en Portal';
+    }
+
+    function getProfileFieldMeta(profileType) {
+      if (profileType === 'negocio') {
+        return {
+          badge: '🏪 Negocio / Comercio Local',
+          nameLabel: 'Nombre del Negocio o Marca',
+          namePlaceholder: 'Ej: Cafetería El Bosque / Taller Mecánico...',
+          roleLabel: 'Rubro / Giro y Tamaño del Equipo',
+          rolePlaceholder: 'Ej: Pastelería artesanal • 2 personas',
+          cityLabel: 'Comuna / Sector / Canal de Venta',
+          cityPlaceholder: 'Ej: Concepción Centro + Instagram / WhatsApp',
+          phoneLabel: 'WhatsApp del Negocio / Dueño',
+          phonePlaceholder: 'Ej: +56 9 1234 5678',
+          goalLabel: 'Cuello de Botella #1 / Qué destrabar primero',
+          goalPlaceholder: 'Ej: Ordenar pedidos por WhatsApp y calcular márgenes reales...',
+          rootLabel: 'Frase Literal del Dueño / Síntoma Principal',
+          rootPlaceholder: 'Ej: "Vendemos harto pero a fin de mes no queda caja limpia..."',
+          goldenLabel: 'Horarios Peak / Ventana Operativa Clave',
+          goldenPlaceholder: 'Ej: Jueves a Sábado 11:00 a 19:00',
+          financeLabel: 'Meta de Facturación o Caja Limpia ($ CLP / Mes)',
+          financePlaceholder: 'Ej: $2.500.000 venta / $900.000 utilidad neta',
+          valveLabel: 'Producto Estrella / Diferencial Actual',
+          valvePlaceholder: 'Ej: Tortas por pedido + despacho local el mismo día',
+          notesLabel: 'Notas de Contexto y Observaciones de Terreno (Diego)',
+          notesPlaceholder: 'Anota aquí lo que observaste en el local, canales de venta, stock/costos, dolores del equipo o próximos pasos...'
+        };
+      }
+      return {
+        badge: '👤 Persona / Profesional',
+        nameLabel: 'Nombre Completo de la Persona',
+        namePlaceholder: 'Ej: Camila Pérez / Andrés...',
+        roleLabel: 'Ocupación / Profesión / Frentes Activos',
+        rolePlaceholder: 'Ej: Kinesióloga, mamá y emprendedora',
+        cityLabel: 'Ciudad / Comuna',
+        cityPlaceholder: 'Ej: Concepción / Talcahuano',
+        phoneLabel: 'WhatsApp del Cliente (para envío directo)',
+        phonePlaceholder: 'Ej: +56 9 1234 5678',
+        goalLabel: 'Meta #1 / Qué necesita destrabar primero',
+        goalPlaceholder: 'Ej: Ordenar mi semana y separar mis platas...',
+        rootLabel: 'Frase Raíz / Juicio o Dolor Literal Escuchado',
+        rootPlaceholder: 'Ej: "Siento que trabajo todo el día pero no avanzo en lo mío..."',
+        goldenLabel: 'Ventana / Hora de Oro Cognitiva',
+        goldenPlaceholder: 'Ej: Mañanas 08:30 a 11:00 antes de las urgencias',
+        financeLabel: 'Número de Paz Financiera ($ CLP / Mes)',
+        financePlaceholder: 'Ej: $1.200.000 CLP base mensual tranquila',
+        valveLabel: 'Válvula de Descompresión / Recarga',
+        valvePlaceholder: 'Ej: Caminata sin celular 30 min / Deporte',
+        notesLabel: 'Notas de Contexto y Observaciones de Terreno (Diego)',
+        notesPlaceholder: 'Anota aquí historia, contexto familiar/laboral, nivel tecnológico, acuerdos verbales o pistas clave de escucha activa...'
+      };
+    }
 
     function loadSondeoStateFromStorage() {
       try {
@@ -7079,13 +7726,36 @@
               if (item) {
                 window.SELECTED_EXPEDIENTE[avisoId] = {
                   aviso: item,
-                  urgencia: parsed.selected[avisoId].urgencia || 'alta'
+                  urgencia: parsed.selected[avisoId].urgencia || 'alta',
+                  nota: parsed.selected[avisoId].nota || ''
                 };
               }
             });
           }
           if (parsed.userName) window.SONDEO_USER_NAME = parsed.userName;
           if (parsed.userGoal) window.SONDEO_USER_GOAL = parsed.userGoal;
+          if (parsed.mode === 'consultor' || parsed.mode === 'autodiagnostico') {
+            window.SONDEO_MODE = parsed.mode;
+          }
+          if (parsed.profileType === 'negocio' || parsed.profileType === 'persona') {
+            window.SONDEO_PROFILE_TYPE = parsed.profileType;
+          }
+          if (parsed.modalidad) window.SONDEO_MODALIDAD = parsed.modalidad;
+          if (parsed.context && typeof parsed.context === 'object') {
+            window.SONDEO_CONTEXT = { ...window.SONDEO_CONTEXT, ...parsed.context };
+          }
+        }
+      } catch (e) {}
+
+      // Detectar activación directa por URL (?modo=tablet o ?consultor=1)
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('modo') === 'tablet' || params.get('consultor') === '1') {
+          window.SONDEO_MODE = 'consultor';
+        }
+        const tipoParam = params.get('tipo');
+        if (tipoParam === 'negocio' || tipoParam === 'persona') {
+          window.SONDEO_PROFILE_TYPE = tipoParam;
         }
       } catch (e) {}
     }
@@ -7094,30 +7764,236 @@
       try {
         const compact = {};
         Object.keys(window.SELECTED_EXPEDIENTE).forEach(k => {
-          compact[k] = { urgencia: window.SELECTED_EXPEDIENTE[k].urgencia };
+          compact[k] = {
+            urgencia: window.SELECTED_EXPEDIENTE[k].urgencia || 'alta',
+            nota: window.SELECTED_EXPEDIENTE[k].nota || ''
+          };
         });
         localStorage.setItem('ah_sondeo_expediente_v2', JSON.stringify({
           selected: compact,
           userName: window.SONDEO_USER_NAME,
-          userGoal: window.SONDEO_USER_GOAL
+          userGoal: window.SONDEO_USER_GOAL,
+          mode: window.SONDEO_MODE,
+          profileType: window.SONDEO_PROFILE_TYPE,
+          modalidad: window.SONDEO_MODALIDAD,
+          context: window.SONDEO_CONTEXT
         }));
       } catch (e) {}
     }
 
-    function resetSondeoHub() {
+    function resetSondeoHub(skipConfirm = false) {
+      const hasAnyData = Object.keys(window.SELECTED_EXPEDIENTE).length > 0 ||
+        Boolean(window.SONDEO_USER_NAME) ||
+        Boolean(window.SONDEO_USER_GOAL) ||
+        Boolean(window.SONDEO_CONTEXT.fieldNotes);
+      if (hasAnyData && !skipConfirm) {
+        if (!confirm('¿Limpiar el sondeo actual para evaluar a un nuevo cliente o negocio?\n\nTip: Si aún no lo respaldas, cancela y usa "💾 Guardar en Tablet".')) {
+          return;
+        }
+      }
       window.SELECTED_EXPEDIENTE = {};
       window.HUB_ACTIVE_STATION = 0;
       window.HUB_VISITED_STATIONS = new Set([0]);
       window.SONDEO_USER_NAME = "";
       window.SONDEO_USER_GOAL = "";
+      window.SONDEO_CONTEXT = {
+        userRole: "",
+        userPhone: "",
+        userCity: "",
+        rootPhrase: "",
+        goldenHour: "",
+        financialPeace: "",
+        decompressionValve: "",
+        fieldNotes: ""
+      };
       try { localStorage.removeItem('ah_sondeo_expediente_v2'); } catch (e) {}
+      renderModeControls();
+      renderConsultorPanel();
       renderQuickJumpBar();
       renderAllAreasSections();
       updateExpedienteSummary();
     }
 
+    function setSondeoMode(mode) {
+      window.SONDEO_MODE = (mode === 'consultor') ? 'consultor' : 'autodiagnostico';
+      saveSondeoStateToStorage();
+      renderModeControls();
+      renderConsultorPanel();
+      renderAllAreasSections();
+      updateWhatsappPayload();
+    }
+
+    function setSondeoProfileType(type) {
+      window.SONDEO_PROFILE_TYPE = (type === 'negocio') ? 'negocio' : 'persona';
+      saveSondeoStateToStorage();
+      renderConsultorPanel();
+      if (window.HUB_ACTIVE_STATION === 6) {
+        renderAllAreasSections();
+      }
+      updateWhatsappPayload();
+    }
+
+    function renderModeControls() {
+      const btnAuto = document.getElementById('btn-mode-autodiagnostico');
+      const btnCons = document.getElementById('btn-mode-consultor');
+      const btnSaveQuick = document.getElementById('btn-save-history-quick');
+      const isCons = window.SONDEO_MODE === 'consultor';
+      if (btnAuto) btnAuto.classList.toggle('is-active', !isCons);
+      if (btnCons) btnCons.classList.toggle('is-active', isCons);
+      if (btnSaveQuick) btnSaveQuick.style.display = isCons ? 'inline-flex' : 'none';
+      updateHistoryCountBadge();
+    }
+
+    function renderConsultorPanel() {
+      const mount = document.getElementById('sondeo-consultor-panel-mount');
+      if (!mount) return;
+      if (window.SONDEO_MODE !== 'consultor') {
+        mount.innerHTML = '';
+        return;
+      }
+
+      const meta = getProfileFieldMeta(window.SONDEO_PROFILE_TYPE);
+      const ctx = window.SONDEO_CONTEXT;
+
+      mount.innerHTML = `
+        <div class="sondeo-consultor-panel">
+          <div class="consultor-panel-header">
+            <div>
+              <div style="font-size:0.68rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.06em;">
+                📋 MODO CONSULTOR / TABLET EN VIVO • BASE DE CONTEXTO DEL CLIENTE
+              </div>
+              <div style="font-size:0.78rem; color:#cbd5e1; margin-top:2px;">
+                Captura los datos clave mientras conversas en terreno. Todo quedará ordenado en el PDF y en el Markdown de contexto.
+              </div>
+            </div>
+
+            <div class="profile-type-pills" role="group" aria-label="Tipo de Perfil Sondeado">
+              <button type="button" class="btn-profile-pill ${window.SONDEO_PROFILE_TYPE === 'persona' ? 'is-active' : ''}" onclick="setSondeoProfileType('persona')">
+                👤 Persona / Profesional
+              </button>
+              <button type="button" class="btn-profile-pill ${window.SONDEO_PROFILE_TYPE === 'negocio' ? 'is-active' : ''}" onclick="setSondeoProfileType('negocio')">
+                🏪 Negocio / Comercio
+              </button>
+            </div>
+          </div>
+
+          <div class="consultor-context-grid">
+            <div class="consultor-field">
+              <label>${meta.nameLabel}</label>
+              <input type="text" id="top-ctx-name" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_NAME)}" placeholder="${meta.namePlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.roleLabel}</label>
+              <input type="text" id="top-ctx-role" class="consultor-input" value="${escapeHtml(ctx.userRole)}" placeholder="${meta.rolePlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.phoneLabel}</label>
+              <input type="tel" id="top-ctx-phone" class="consultor-input" value="${escapeHtml(ctx.userPhone)}" placeholder="${meta.phonePlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.cityLabel}</label>
+              <input type="text" id="top-ctx-city" class="consultor-input" value="${escapeHtml(ctx.userCity)}" placeholder="${meta.cityPlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.goalLabel}</label>
+              <input type="text" id="top-ctx-goal" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_GOAL)}" placeholder="${meta.goalPlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.rootLabel}</label>
+              <input type="text" id="top-ctx-root" class="consultor-input" value="${escapeHtml(ctx.rootPhrase)}" placeholder="${meta.rootPlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.goldenLabel}</label>
+              <input type="text" id="top-ctx-golden" class="consultor-input" value="${escapeHtml(ctx.goldenHour)}" placeholder="${meta.goldenPlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.financeLabel}</label>
+              <input type="text" id="top-ctx-finance" class="consultor-input" value="${escapeHtml(ctx.financialPeace)}" placeholder="${meta.financePlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.valveLabel}</label>
+              <input type="text" id="top-ctx-valve" class="consultor-input" value="${escapeHtml(ctx.decompressionValve)}" placeholder="${meta.valvePlaceholder}" oninput="onSondeoContextInput('top')" />
+            </div>
+          </div>
+
+          <div class="consultor-field" style="margin-top: 10px;">
+            <label>${meta.notesLabel}</label>
+            <textarea id="top-ctx-notes" class="consultor-textarea" placeholder="${meta.notesPlaceholder}" oninput="onSondeoContextInput('top')">${escapeHtml(ctx.fieldNotes)}</textarea>
+          </div>
+        </div>
+      `;
+    }
+
+    function syncInputDomValue(id, val) {
+      const el = document.getElementById(id);
+      if (el && document.activeElement !== el && el.value !== val) {
+        el.value = val;
+      }
+    }
+
+    function onSondeoContextInput(source = 'hub') {
+      const prefix = source === 'top' ? 'top-ctx-' : 'hub-ctx-';
+      const readVal = (suffix, fallbackId) => {
+        const el = document.getElementById(prefix + suffix) || (fallbackId ? document.getElementById(fallbackId) : null);
+        return el ? el.value : null;
+      };
+
+      const vName = readVal('name', source === 'hub' ? 'sondeo-user-name-input' : null);
+      const vGoal = readVal('goal', source === 'hub' ? 'sondeo-user-goal-input' : null);
+      const vRole = readVal('role');
+      const vPhone = readVal('phone');
+      const vCity = readVal('city');
+      const vRoot = readVal('root');
+      const vGolden = readVal('golden');
+      const vFinance = readVal('finance');
+      const vValve = readVal('valve');
+      const vNotes = readVal('notes');
+
+      if (vName !== null) window.SONDEO_USER_NAME = vName.trim();
+      if (vGoal !== null) window.SONDEO_USER_GOAL = vGoal.trim();
+      if (vRole !== null) window.SONDEO_CONTEXT.userRole = vRole.trim();
+      if (vPhone !== null) window.SONDEO_CONTEXT.userPhone = vPhone.trim();
+      if (vCity !== null) window.SONDEO_CONTEXT.userCity = vCity.trim();
+      if (vRoot !== null) window.SONDEO_CONTEXT.rootPhrase = vRoot.trim();
+      if (vGolden !== null) window.SONDEO_CONTEXT.goldenHour = vGolden.trim();
+      if (vFinance !== null) window.SONDEO_CONTEXT.financialPeace = vFinance.trim();
+      if (vValve !== null) window.SONDEO_CONTEXT.decompressionValve = vValve.trim();
+      if (vNotes !== null) window.SONDEO_CONTEXT.fieldNotes = vNotes;
+
+      // Sincronizar bidireccionalmente entre panel superior y Estación 7 sin robar foco
+      syncInputDomValue('top-ctx-name', window.SONDEO_USER_NAME);
+      syncInputDomValue('sondeo-user-name-input', window.SONDEO_USER_NAME);
+      syncInputDomValue('top-ctx-goal', window.SONDEO_USER_GOAL);
+      syncInputDomValue('sondeo-user-goal-input', window.SONDEO_USER_GOAL);
+      syncInputDomValue('top-ctx-role', window.SONDEO_CONTEXT.userRole);
+      syncInputDomValue('hub-ctx-role', window.SONDEO_CONTEXT.userRole);
+      syncInputDomValue('top-ctx-phone', window.SONDEO_CONTEXT.userPhone);
+      syncInputDomValue('hub-ctx-phone', window.SONDEO_CONTEXT.userPhone);
+      syncInputDomValue('top-ctx-city', window.SONDEO_CONTEXT.userCity);
+      syncInputDomValue('hub-ctx-city', window.SONDEO_CONTEXT.userCity);
+      syncInputDomValue('top-ctx-root', window.SONDEO_CONTEXT.rootPhrase);
+      syncInputDomValue('hub-ctx-root', window.SONDEO_CONTEXT.rootPhrase);
+      syncInputDomValue('top-ctx-golden', window.SONDEO_CONTEXT.goldenHour);
+      syncInputDomValue('hub-ctx-golden', window.SONDEO_CONTEXT.goldenHour);
+      syncInputDomValue('top-ctx-finance', window.SONDEO_CONTEXT.financialPeace);
+      syncInputDomValue('hub-ctx-finance', window.SONDEO_CONTEXT.financialPeace);
+      syncInputDomValue('top-ctx-valve', window.SONDEO_CONTEXT.decompressionValve);
+      syncInputDomValue('hub-ctx-valve', window.SONDEO_CONTEXT.decompressionValve);
+      syncInputDomValue('top-ctx-notes', window.SONDEO_CONTEXT.fieldNotes);
+      syncInputDomValue('hub-ctx-notes', window.SONDEO_CONTEXT.fieldNotes);
+
+      saveSondeoStateToStorage();
+      updateWhatsappPayload();
+      refreshLiveContextPreview();
+    }
+
+    function onSondeoPersonalInput() {
+      onSondeoContextInput('hub');
+    }
+
     // Calcula métricas completas por área y globales
-    function computeSondeoMetrics() {
+    function computeSondeoMetrics(customExpediente) {
+      const sourceExp = customExpediente || window.SELECTED_EXPEDIENTE;
       const urgWeights = { alta: 1.0, media: 0.65, baja: 0.35 };
       const areaStats = [];
       let totalSelected = 0;
@@ -7132,7 +8008,7 @@
         let areaAltas = 0, areaMedias = 0, areaBajas = 0;
 
         areaAvisos.forEach(a => {
-          const sel = window.SELECTED_EXPEDIENTE[a.id];
+          const sel = sourceExp[a.id];
           if (sel) {
             markedCount++;
             totalSelected++;
@@ -7176,9 +8052,9 @@
       const sortedAreas = [...areaStats].sort((a, b) => (b.saturationPct - a.saturationPct) || (b.markedCount - a.markedCount));
       const topArea = sortedAreas[0] && sortedAreas[0].markedCount > 0 ? sortedAreas[0] : null;
 
-      // Top 3 dolores críticos ordenados por urgencia
+      // Todos los dolores marcados ordenados por urgencia
       const urgRank = { alta: 3, media: 2, baja: 1 };
-      const allMarkedItems = Object.values(window.SELECTED_EXPEDIENTE).sort((a, b) => {
+      const allMarkedItems = Object.values(sourceExp).sort((a, b) => {
         return (urgRank[b.urgencia] - urgRank[a.urgencia]) || (a.aviso.numero - b.aviso.numero);
       });
       const top3Dolores = allMarkedItems.slice(0, 3);
@@ -7207,8 +8083,64 @@
         globalPct,
         areaStats,
         topArea,
+        allMarkedItems,
         top3Dolores,
-        recommendedTools: toolsSet.slice(0, 6)
+        recommendedTools: toolsSet.slice(0, 8)
+      };
+    }
+
+    function computeCanonicalPrescription(metrics) {
+      const orderedIds = [];
+      const seen = new Set();
+
+      const addId = (modId) => {
+        if (modId && window.CANONICAL_MODULE_META[modId] && !seen.has(modId)) {
+          seen.add(modId);
+          orderedIds.push(modId);
+        }
+      };
+
+      (metrics.allMarkedItems || []).forEach(item => {
+        const mapped = window.AVISO_TO_CANONICAL_MODULES[item.aviso.id] || [];
+        mapped.forEach(addId);
+      });
+
+      if (orderedIds.length === 0) {
+        addId('diagnostico_estructura');
+        addId('mapeador_24h');
+        addId('protocolo_paso_cero');
+      }
+
+      const hasPiso3 = orderedIds.some(id => window.CANONICAL_MODULE_META[id]?.piso === 3);
+      let adr001AnchorApplied = false;
+
+      if (hasPiso3 || metrics.globalPct >= 40 || metrics.altas >= 3) {
+        if (!seen.has('diagnostico_estructura')) {
+          addId('diagnostico_estructura');
+          adr001AnchorApplied = true;
+        }
+        if (!seen.has('protocolo_paso_cero')) {
+          addId('protocolo_paso_cero');
+          adr001AnchorApplied = true;
+        }
+      }
+
+      // Ordenar por Piso (Piso 1 Cimientos -> Piso 2 Operación -> Piso 3 Escala) respetando orden de prioridad interno
+      const modules = orderedIds
+        .map((id, idx) => ({
+          id,
+          orderIdx: idx,
+          ...window.CANONICAL_MODULE_META[id]
+        }))
+        .sort((a, b) => (a.piso - b.piso) || (a.orderIdx - b.orderIdx));
+
+      return {
+        modules,
+        canonicalIds: modules.map(m => m.id),
+        adr001AnchorApplied,
+        totalPiso1: modules.filter(m => m.piso === 1).length,
+        totalPiso2: modules.filter(m => m.piso === 2).length,
+        totalPiso3: modules.filter(m => m.piso === 3).length
       };
     }
 
@@ -7236,7 +8168,6 @@
       metrics.areaStats.forEach((st, idx) => {
         const ar = st.area;
         const isActive = window.HUB_ACTIVE_STATION === idx;
-        const isVisited = window.HUB_VISITED_STATIONS.has(idx);
 
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -7268,7 +8199,7 @@
       mBtn.type = 'button';
       mBtn.className = 'hub-station-tab is-metrics-tab' + (isMetricsActive ? ' is-active' : '');
       mBtn.innerHTML = `
-        <span>📊 Resultados & Métricas</span>
+        <span>📊 Resultados, PDF & Base de Contexto</span>
         <span style="font-size: 0.66rem; font-weight: 800; background: ${isMetricsActive ? 'rgba(0,0,0,0.25)' : 'rgba(16,185,129,0.22)'}; color: ${isMetricsActive ? '#000' : '#34d399'}; padding: 1px 7px; border-radius: 8px;">
           ${isMetricsActive ? `● Activa · ${metrics.totalSelected} marcados` : `${metrics.totalSelected} marcados · Ver →`}
         </span>
@@ -7287,7 +8218,7 @@
 
       if (stepInd) {
         stepInd.innerText = window.HUB_ACTIVE_STATION === 6
-          ? '📊 Paso Final: Tus Métricas de Sesión'
+          ? '📊 Paso Final: Radiografía, PDF y Base de Contexto'
           : `Estación 0${window.HUB_ACTIVE_STATION + 1} de 06`;
       }
       if (visCount) {
@@ -7308,7 +8239,7 @@
 
       const metrics = computeSondeoMetrics();
 
-      // Si estamos en la Estación 7 (índice 6): renderizar el Tablero de Resultados y Métricas
+      // Si estamos en la Estación 7 (índice 6): renderizar el Tablero de Resultados, PDF y Base de Contexto
       if (window.HUB_ACTIVE_STATION === 6) {
         renderMetricsDashboardStation(container, metrics);
         return;
@@ -7331,12 +8262,10 @@
 
       const nextAreaName = window.HUB_ACTIVE_STATION < 5
         ? window.AREAS_CONFIG[window.HUB_ACTIVE_STATION + 1].short_label
-        : '📊 Ver Mis Métricas y Diagnóstico';
+        : '📊 Ver Resultados, PDF y Base de Contexto';
 
       sec.innerHTML = `
-        <!-- CABECERA PRINCIPAL DE LA ESTACIÓN (DISTINCIÓN VISUAL CONTUNDENTE FRENTE A LAS TARJETAS) -->
         <div class="area-hero-banner" style="background: linear-gradient(135deg, ${ar.color}18 0%, rgba(13,16,26,0.95) 100%); border: 1.5px solid ${ar.color}44; border-top: 4px solid ${ar.color}; border-radius: 14px; padding: 18px 20px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-          
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
               <span style="font-size: 0.72rem; font-weight: 900; color: #000; background: ${ar.color}; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.06em;">
@@ -7346,7 +8275,6 @@
                 ${ar.title.replace(/^Área \d+:\s*/, '')}
               </span>
             </div>
-
             <div style="display: flex; align-items: center; gap: 8px;">
               <span style="font-size: 0.76rem; font-weight: 800; color: ${st.markedCount > 0 ? ar.color : '#cbd5e1'}; background: ${st.markedCount > 0 ? ar.color + '22' : 'rgba(255,255,255,0.06)'}; border: 1px solid ${st.markedCount > 0 ? ar.color + '66' : 'rgba(255,255,255,0.1)'}; padding: 4px 12px; border-radius: 99px;">
                 ${st.markedCount === 0 ? `0 de ${areaAvisos.length} marcadas` : `✓ ${st.markedCount} de ${areaAvisos.length} identificadas (${st.saturationPct}% saturación)`}
@@ -7361,23 +8289,19 @@
             ${ar.sub}
           </p>
 
-          <!-- INSTRUCCIÓN DESTACADA QUE RESALTA EL CARÁCTER DE SONDEO INTERACTIVO -->
           <div style="background: rgba(0,0,0,0.55); border: 1.5px dashed ${ar.color}66; border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #ffffff;">
               <span style="font-size: 1.1rem; line-height: 1;">👉</span>
-              <span><strong>Instrucción del Sondeo:</strong> Toca o haz clic sobre cada situación si te ocurre en tu vida o negocio para marcarla.</span>
+              <span><strong>Instrucción del Sondeo:</strong> ${window.SONDEO_MODE === 'consultor' ? 'Marca con el cliente o negocio cada situación que aplique, ajusta su urgencia y anota el detalle puntual si hace falta.' : 'Toca o haz clic sobre cada situación si te ocurre en tu vida o negocio para marcarla.'}</span>
             </div>
             <span style="font-size: 0.72rem; color: ${ar.color}; font-weight: 700; background: ${ar.color}15; padding: 2px 8px; border-radius: 6px;">
               ${areaAvisos.length} situaciones a evaluar
             </span>
           </div>
-
         </div>
 
-        <!-- LISTA DE TARJETAS DE SITUACIÓN INTERACTIVAS -->
         <div id="list-cards-${ar.key}" class="avisos-area-list"></div>
 
-        <!-- BARRA DE NAVEGACIÓN INFERIOR DE LA ESTACIÓN -->
         <div class="hub-station-footer-nav" style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.09); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
           <button type="button" ${window.HUB_ACTIVE_STATION === 0 ? 'disabled' : ''} onclick="goToHubStation(${window.HUB_ACTIVE_STATION - 1}, true)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 0.78rem; font-weight: 700; padding: 10px 18px; border-radius: 50px; cursor: ${window.HUB_ACTIVE_STATION === 0 ? 'not-allowed' : 'pointer'}; opacity: ${window.HUB_ACTIVE_STATION === 0 ? '0.35' : '1'}; transition: all 0.2s;">
             ← Área Anterior
@@ -7388,7 +8312,7 @@
           </div>
 
           <button type="button" onclick="goToHubStation(${window.HUB_ACTIVE_STATION + 1}, true)" style="background: ${window.HUB_ACTIVE_STATION === 5 ? '#10b981' : ar.color}; color: #000000; border: none; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 800; padding: 11px 24px; border-radius: 50px; cursor: pointer; box-shadow: 0 0 20px ${window.HUB_ACTIVE_STATION === 5 ? 'rgba(16,185,129,0.4)' : ar.color + '44'}; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.15s;">
-            <span>${window.HUB_ACTIVE_STATION < 5 ? 'Siguiente Área (0' + (window.HUB_ACTIVE_STATION + 2) + '/06): ' + nextAreaName + ' →' : '📊 Finalizar y Ver Mis Métricas Claras →'}</span>
+            <span>${window.HUB_ACTIVE_STATION < 5 ? 'Siguiente Área (0' + (window.HUB_ACTIVE_STATION + 2) + '/06): ' + nextAreaName + ' →' : '📊 Finalizar y Ver Resultados / PDF →'}</span>
           </button>
         </div>
       `;
@@ -7396,8 +8320,10 @@
       const listContainer = sec.querySelector('#list-cards-' + ar.key);
 
       areaAvisos.forEach(item => {
-        const isSelected = !!window.SELECTED_EXPEDIENTE[item.id];
-        const currentUrgencia = isSelected ? window.SELECTED_EXPEDIENTE[item.id].urgencia : 'alta';
+        const expEntry = window.SELECTED_EXPEDIENTE[item.id];
+        const isSelected = !!expEntry;
+        const currentUrgencia = isSelected ? expEntry.urgencia : 'alta';
+        const currentNota = isSelected ? (expEntry.nota || '') : '';
 
         const card = document.createElement('div');
         card.className = 'wizard-aviso-horizontal-row ' + (isSelected ? 'selected' : '');
@@ -7406,7 +8332,6 @@
 
         card.innerHTML = `
           <div class="aviso-row-main">
-            <!-- FILA SUPERIOR: BADGE ARQUETIPO + CHECKBOX DE SELECCIÓN VISIBLE -->
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap;">
               <div style="display: flex; align-items: center; gap: 6px;">
                 <span class="aviso-num-pill" style="color: ${ar.color}; background: ${ar.color}15; border: 1px solid ${ar.color}35; padding: 2px 7px; border-radius: 5px; font-size: 0.68rem; font-weight: 800;">
@@ -7417,33 +8342,27 @@
                 </span>
               </div>
 
-              <!-- INDICADOR CHECKBOX PROMINENTE -->
               <div class="btn-sondeo-checkbox ${isSelected ? 'is-selected' : ''}" style="${isSelected ? 'background:' + ar.color + '; color:#000; border-color:' + ar.color + '; font-weight:800; box-shadow: 0 0 12px ' + ar.color + '55;' : 'background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.18);'}">
                 <span style="font-size: 0.85rem; line-height: 1;">${isSelected ? '✓' : '＋'}</span>
-                <span>${isSelected ? 'Marcado en mi sondeo' : 'Me pasa esto'}</span>
+                <span>${isSelected ? 'Marcado en sondeo' : 'Me pasa esto'}</span>
               </div>
             </div>
 
-            <!-- SÍNTOMA O DOLOR REAL QUE EXPERIMENTA LA PERSONA -->
             <div style="font-size: 0.88rem; font-weight: 700; color: #ffffff; line-height: 1.4; margin-bottom: 8px; font-family: var(--font-heading);">
               “${item.dolor_sintoma || item.headline}”
             </div>
 
-            <!-- EXPLICACIÓN DE LA FRICCIÓN (POR QUÉ PASA) -->
             <p class="aviso-row-bajada" style="font-size: 0.77rem; color: #94a3b8; line-height: 1.45; margin: 0 0 10px 0;">
               ${item.bajada}
             </p>
 
-            <!-- APORTE CONCRETO EN SESIÓN -->
             <div class="aviso-row-aporte">
               <span style="font-size: 0.85rem;">🛠️</span>
               <span><b style="color:${ar.color};">Te aporto en sesión:</b> ${item.herramienta}</span>
             </div>
           </div>
 
-          <!-- ACCIÓN INFERIOR Y SELECTOR DE URGENCIA CUANDO ESTÁ MARCADO -->
           <div class="aviso-row-actions" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
-            
             <div class="btn-toggle-aviso ${isSelected ? 'is-selected' : ''}" style="${isSelected ? 'background:' + ar.color + '22; border-color:' + ar.color + '; color:#fff; font-weight:800;' : 'background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1;'}">
               ${isSelected ? '✓ Seleccionado como dolor activo' : '＋ Toca para marcar esta situación'}
             </div>
@@ -7460,6 +8379,10 @@
                 <button type="button" onclick="setExpUrgencia('${item.id}', 'baja')" class="urg-btn ${currentUrgencia==='baja' ? 'active-baja' : ''}">
                   🟢 Baja
                 </button>
+              </div>
+              <div class="aviso-note-box">
+                <label for="note-${item.id}">📝 Nota específica de este punto (opcional):</label>
+                <input type="text" id="note-${item.id}" class="aviso-note-input" value="${escapeHtml(currentNota)}" placeholder="Ej: Pierde 2h al día cotizando por WhatsApp..." oninput="setExpNota('${item.id}', this.value)" />
               </div>
             </div>
           </div>
@@ -7494,6 +8417,10 @@
         globalLevelColor = "#f59e0b";
       }
 
+      const prescription = computeCanonicalPrescription(metrics);
+      const meta = getProfileFieldMeta(window.SONDEO_PROFILE_TYPE);
+      const ctx = window.SONDEO_CONTEXT;
+
       const areaBarsHtml = metrics.areaStats.map(st => `
         <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 9px 12px;">
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 5px;">
@@ -7519,6 +8446,7 @@
       const top3Html = metrics.top3Dolores.length > 0
         ? metrics.top3Dolores.map((item, idx) => {
             const uTag = item.urgencia === 'alta' ? '🔴 ALTA' : (item.urgencia === 'media' ? '🟡 MEDIA' : '🟢 BAJA');
+            const noteHtml = item.nota ? `<div style="font-size:0.7rem; color:#fde68a; margin-top:3px;">📝 <b>Nota:</b> ${escapeHtml(item.nota)}</div>` : '';
             return `
               <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid ${item.aviso.area_color}; border-radius: 10px; padding: 9px 11px;">
                 <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.66rem; font-weight:800; margin-bottom:3px;">
@@ -7526,37 +8454,44 @@
                   <span style="color:#fff;">${uTag}</span>
                 </div>
                 <div style="font-size:0.78rem; font-weight:700; color:#fff; line-height:1.3;">${item.aviso.headline}</div>
+                ${noteHtml}
                 <div style="font-size:0.7rem; color:#38bdf8; margin-top:3px;">🛠️ Base en sesión: ${item.aviso.herramienta}</div>
+                <div style="font-size:0.69rem; color:#34d399; margin-top:3px;">🌱 Microdosis 24h: ${item.aviso.accion_24h}</div>
               </div>
             `;
           }).join('')
         : `<div style="padding: 14px; border-radius: 10px; background: rgba(255,255,255,0.03); color: #94a3b8; font-size: 0.78rem;">Aún no has marcado avisos en las 6 áreas. Haz clic en cualquiera de las pestañas (01 a 06) arriba para marcar los dolores que te identifiquen.</div>`;
 
-      const toolsPillsHtml = metrics.recommendedTools.length > 0
-        ? metrics.recommendedTools.map(t => `
-            <span style="font-size: 0.72rem; font-weight: 700; color: #e2e8f0; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 5px;">
-              <span>🛠️</span> ${t.herramienta}
-            </span>
-          `).join('')
-        : `<span style="font-size: 0.75rem; color: #64748b;">Se activarán automáticamente al marcar tus avisos en las estaciones 01 a 06.</span>`;
+      const canonicalPillsHtml = prescription.modules.map(m => {
+        const pColor = m.piso === 1 ? '#10b981' : (m.piso === 2 ? '#38bdf8' : '#a78bfa');
+        return `
+          <span title="${escapeHtml(m.humano)}" style="font-size: 0.71rem; font-weight: 700; color: #e2e8f0; background: rgba(255,255,255,0.04); border: 1px solid ${pColor}55; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 5px;">
+            <span style="color:${pColor}; font-weight:900;">[${m.codigo}]</span> ${m.nombre}
+          </span>
+        `;
+      }).join('');
 
-      const currentMod = document.getElementById('dock-modalidad-select')
-        ? document.getElementById('dock-modalidad-select').value
-        : 'Sistema de Gestión Personalizado (SGP) a Medida ($190.000 CLP)';
+      const currentMod = getActiveModalidad();
+      const isConsultor = window.SONDEO_MODE === 'consultor';
 
       dash.innerHTML = `
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px;">
           <div>
             <span style="font-size: 0.68rem; font-weight: 800; color: #10b981; text-transform: uppercase; letter-spacing: 0.08em;">
-              📊 DIAGNÓSTICO CONSOLIDADO DE LAS 6 ÁREAS • BASE PARA TU SESIÓN
+              📊 DIAGNÓSTICO CONSOLIDADO DE LAS 6 ÁREAS • ${meta.badge.toUpperCase()}
             </span>
             <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff; margin: 3px 0 0 0;">
-              Tu Radiografía de Métricas Operativas
+              Radiografía Operativa & Base de Contexto del Cliente
             </h3>
           </div>
-          <button type="button" onclick="goToHubStation(0)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 0.74rem; font-weight: 700; padding: 6px 12px; border-radius: 8px; cursor: pointer;">
-            ← Volver a revisar las 6 Áreas
-          </button>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" id="btn-station7-top-pdf" onclick="exportSondeoExecutivePDF()" style="background: linear-gradient(135deg, rgba(245,158,11,0.22), rgba(234,88,12,0.18)); border: 1px solid rgba(245,158,11,0.55); color: #fde68a; font-size: 0.74rem; font-weight: 800; padding: 6px 14px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+              📄 Guardar / Descargar PDF
+            </button>
+            <button type="button" onclick="goToHubStation(0)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 0.74rem; font-weight: 700; padding: 6px 12px; border-radius: 8px; cursor: pointer;">
+              ← Revisar las 6 Áreas
+            </button>
+          </div>
         </div>
 
         <!-- 3 KPIs Globales -->
@@ -7584,7 +8519,7 @@
           </div>
         </div>
 
-        <!-- 2 Columnas: Saturación por las 6 Áreas + Top 3 Dolores Críticos -->
+        <!-- 2 Columnas: Saturación por las 6 Áreas + Top 3 Dolores Críticos + Módulos Canónicos -->
         <div class="metrics-two-col">
           <div>
             <h4 style="font-family: var(--font-heading); font-size: 0.86rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
@@ -7598,7 +8533,7 @@
           <div style="display: flex; flex-direction: column; gap: 14px;">
             <div>
               <h4 style="font-family: var(--font-heading); font-size: 0.86rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
-                🎯 2. Top 3 Dolores Críticos (Foco de Sesión)
+                🎯 2. Top 3 Dolores Críticos & Microdosis 24h
               </h4>
               <div style="display: flex; flex-direction: column; gap: 7px;">
                 ${top3Html}
@@ -7606,52 +8541,132 @@
             </div>
 
             <div>
-              <h4 style="font-family: var(--font-heading); font-size: 0.84rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 7px;">
-                🛠️ 3. Herramientas SGP con las que te aportaré
-              </h4>
+              <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:7px;">
+                <h4 style="font-family: var(--font-heading); font-size: 0.84rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.05em; margin:0;">
+                  🧩 3. Receta Canónica AICC v4.0 (${prescription.modules.length} módulos)
+                </h4>
+                ${prescription.adr001AnchorApplied ? `<span style="font-size:0.65rem; font-weight:800; color:#10b981; background:rgba(16,185,129,0.14); border:1px solid rgba(16,185,129,0.4); padding:2px 8px; border-radius:99px;">✓ Ancla Piso 1 ADR-001</span>` : ''}
+              </div>
               <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                ${toolsPillsHtml}
+                ${canonicalPillsHtml}
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Bloque Final: Nombre + Foco #1 + Botón de Envío de Métricas a WhatsApp -->
+        <!-- Bloque 4: Ficha de Contexto Base + Centro de Exportación y Procesamiento -->
         <div style="background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(6,182,212,0.08)); border: 1px solid rgba(16,185,129,0.35); border-radius: 14px; padding: 16px 18px;">
-          <div style="font-family: var(--font-heading); font-size: 0.92rem; font-weight: 800; color: #fff; margin-bottom: 10px;">
-            🚀 4. Completa tu Base de Sesión y Envíame tus Métricas por WhatsApp
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom: 12px;">
+            <div style="font-family: var(--font-heading); font-size: 0.94rem; font-weight: 800; color: #fff;">
+              ${isConsultor ? '🚀 4. Base de Contexto del Cliente, Descarga PDF & Envío Directo' : '🚀 4. Guarda tu Autodiagnóstico en PDF, Descarga tu Ficha o Envíalo a Diego'}
+            </div>
+            <div class="profile-type-pills" role="group" aria-label="Tipo de Perfil en Resultados">
+              <button type="button" class="btn-profile-pill ${window.SONDEO_PROFILE_TYPE === 'persona' ? 'is-active' : ''}" onclick="setSondeoProfileType('persona')">
+                👤 Persona
+              </button>
+              <button type="button" class="btn-profile-pill ${window.SONDEO_PROFILE_TYPE === 'negocio' ? 'is-active' : ''}" onclick="setSondeoProfileType('negocio')">
+                🏪 Negocio
+              </button>
+            </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin-bottom: 12px;">
-            <div>
-              <label style="display:block; font-size:0.7rem; font-weight:700; color:#cbd5e1; margin-bottom:4px;">Tu Nombre:</label>
-              <input type="text" id="sondeo-user-name-input" value="${window.SONDEO_USER_NAME.replace(/"/g, '&quot;')}" placeholder="Ej: Camila / Andrés..." oninput="onSondeoPersonalInput()" style="width:100%; background:#07080d; border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:8px 11px; color:#fff; font-size:0.8rem; outline:none;" />
+          <div class="consultor-context-grid" style="margin-bottom: 12px;">
+            <div class="consultor-field">
+              <label>${meta.nameLabel}</label>
+              <input type="text" id="sondeo-user-name-input" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_NAME)}" placeholder="${meta.namePlaceholder}" oninput="onSondeoContextInput('hub')" />
             </div>
-
-            <div>
-              <label style="display:block; font-size:0.7rem; font-weight:700; color:#cbd5e1; margin-bottom:4px;">¿Qué te gustaría destrabar primero en nuestra sesión?</label>
-              <input type="text" id="sondeo-user-goal-input" value="${window.SONDEO_USER_GOAL.replace(/"/g, '&quot;')}" placeholder="Ej: Ordenar mi semana y separar mis platas..." oninput="onSondeoPersonalInput()" style="width:100%; background:#07080d; border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:8px 11px; color:#fff; font-size:0.8rem; outline:none;" />
+            <div class="consultor-field">
+              <label>${meta.roleLabel}</label>
+              <input type="text" id="hub-ctx-role" class="consultor-input" value="${escapeHtml(ctx.userRole)}" placeholder="${meta.rolePlaceholder}" oninput="onSondeoContextInput('hub')" />
             </div>
-
-            <div>
-              <label style="display:block; font-size:0.7rem; font-weight:700; color:#cbd5e1; margin-bottom:4px;">Modalidad con la que te gustaría partir:</label>
-              <select id="hub-modalidad-select" onchange="syncModalidadSelect(this.value)" style="width:100%; background:#07080d; border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:8px 10px; color:#fff; font-size:0.78rem; outline:none;">
+            <div class="consultor-field">
+              <label>${meta.phoneLabel}</label>
+              <input type="tel" id="hub-ctx-phone" class="consultor-input" value="${escapeHtml(ctx.userPhone)}" placeholder="${meta.phonePlaceholder}" oninput="onSondeoContextInput('hub')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.goalLabel}</label>
+              <input type="text" id="sondeo-user-goal-input" class="consultor-input" value="${escapeHtml(window.SONDEO_USER_GOAL)}" placeholder="${meta.goalPlaceholder}" oninput="onSondeoContextInput('hub')" />
+            </div>
+            <div class="consultor-field">
+              <label>${meta.cityLabel}</label>
+              <input type="text" id="hub-ctx-city" class="consultor-input" value="${escapeHtml(ctx.userCity)}" placeholder="${meta.cityPlaceholder}" oninput="onSondeoContextInput('hub')" />
+            </div>
+            <div class="consultor-field">
+              <label>Modalidad con la que partir:</label>
+              <select id="hub-modalidad-select" class="consultor-input" onchange="syncModalidadSelect(this.value)">
                 <option value="Sesión Base ($35.000 CLP · Online o Presencial) + 1ra Herramienta en Portal">1. Sesión Base ($35.000 · Online o Presencial) + Portal</option>
                 <option value="Sistema de Gestión Personalizado (SGP) a Medida (Tras Sesión Base)">2. Sistema de Gestión Personalizado (SGP) a Medida</option>
                 <option value="Sesión de Seguimiento & Nuevos Módulos ($35.000 CLP)">3. Sesión de Seguimiento & Nuevos Módulos ($35.000)</option>
                 <option value="Vitrina con Propósito & Co-Marketing (Aporte Voluntario)">4. Vitrina con Propósito & Co-Marketing</option>
               </select>
             </div>
+            ${isConsultor ? `
+              <div class="consultor-field">
+                <label>${meta.rootLabel}</label>
+                <input type="text" id="hub-ctx-root" class="consultor-input" value="${escapeHtml(ctx.rootPhrase)}" placeholder="${meta.rootPlaceholder}" oninput="onSondeoContextInput('hub')" />
+              </div>
+              <div class="consultor-field">
+                <label>${meta.goldenLabel}</label>
+                <input type="text" id="hub-ctx-golden" class="consultor-input" value="${escapeHtml(ctx.goldenHour)}" placeholder="${meta.goldenPlaceholder}" oninput="onSondeoContextInput('hub')" />
+              </div>
+              <div class="consultor-field">
+                <label>${meta.financeLabel}</label>
+                <input type="text" id="hub-ctx-finance" class="consultor-input" value="${escapeHtml(ctx.financialPeace)}" placeholder="${meta.financePlaceholder}" oninput="onSondeoContextInput('hub')" />
+              </div>
+              <div class="consultor-field">
+                <label>${meta.valveLabel}</label>
+                <input type="text" id="hub-ctx-valve" class="consultor-input" value="${escapeHtml(ctx.decompressionValve)}" placeholder="${meta.valvePlaceholder}" oninput="onSondeoContextInput('hub')" />
+              </div>
+            ` : ''}
           </div>
 
-          <div style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
-            <button type="button" id="btn-copy-sondeo-report" onclick="copySondeoReportText()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; font-weight: 700; font-size: 0.78rem; padding: 10px 16px; border-radius: 50px; cursor: pointer;">
-              📋 Copiar Resumen con Métricas
-            </button>
-            <a id="btn-whatsapp-hub-final" href="#" target="_blank" rel="noopener noreferrer" style="background: #10b981; color: #000000; font-family: var(--font-heading); font-weight: 800; font-size: 0.88rem; padding: 11px 24px; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 0 24px rgba(16,185,129,0.45);">
-              <span>💬</span> Enviar mis Métricas y Sondeo a Diego por WhatsApp →
-            </a>
+          <div class="consultor-field" style="margin-bottom: 12px;">
+            <label>${isConsultor ? meta.notesLabel : 'Contexto o comentario adicional (opcional):'}</label>
+            <textarea id="hub-ctx-notes" class="consultor-textarea" placeholder="${meta.notesPlaceholder}" oninput="onSondeoContextInput('hub')">${escapeHtml(ctx.fieldNotes)}</textarea>
           </div>
+
+          <!-- BOTONERA DE EXPORTACIÓN, PDF Y PROCESAMIENTO DE CONTEXTO -->
+          <div class="sondeo-export-grid">
+            <button type="button" class="btn-sondeo-export is-pdf" onclick="exportSondeoExecutivePDF()">
+              <span>📄</span> <span>Generar / Descargar PDF Ejecutivo</span>
+            </button>
+            <button type="button" class="btn-sondeo-export is-md" onclick="downloadSondeoContextMarkdown()">
+              <span>📝</span> <span>Descargar Base de Contexto (.md)</span>
+            </button>
+            <button type="button" id="btn-copy-context-md" class="btn-sondeo-export" onclick="copySondeoContextMarkdown()">
+              <span>📋</span> <span>Copiar Base de Contexto (.md)</span>
+            </button>
+            <button type="button" class="btn-sondeo-export" onclick="downloadSondeoContractJSON()">
+              <span>🧬</span> <span>Contrato JSON (AICC v4.0)</span>
+            </button>
+            <button type="button" class="btn-sondeo-export" onclick="saveCurrentSondeoToHistory()">
+              <span>💾</span> <span>Guardar en Historial de Tablet</span>
+            </button>
+            <button type="button" class="btn-sondeo-export is-copiloto" onclick="openInCopilotoSesion()">
+              <span>🧠</span> <span>Abrir en Copiloto de Sesión</span>
+            </button>
+            <a id="btn-whatsapp-hub-final" href="#" target="_blank" rel="noopener noreferrer" class="btn-sondeo-export is-wa">
+              <span>💬</span> <span>Enviar Sondeo a Diego (WA)</span>
+            </a>
+            <button type="button" id="btn-whatsapp-client-direct" class="btn-sondeo-export is-wa-client" onclick="sendSondeoToClientWhatsApp()">
+              <span>📲</span> <span>Enviar Diagnóstico al Cliente</span>
+            </button>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; margin-top:8px;">
+            <button type="button" id="btn-copy-sondeo-report" onclick="copySondeoReportText()" style="background:transparent; border:none; color:#94a3b8; font-size:0.74rem; text-decoration:underline; cursor:pointer;">
+              Copiar resumen corto texto plano para WhatsApp
+            </button>
+          </div>
+
+          <!-- VISTA PREVIA EN VIVO DEL ARCHIVO DE CONTEXTO ESTRUCTURADO -->
+          <details class="sondeo-context-details" ${isConsultor ? 'open' : ''}>
+            <summary>
+              <span>📂 Vista Previa: Base de Contexto Estructurada del Cliente (Lista para guardar / trabajar)</span>
+              <span style="font-size:0.72rem; color:#94a3b8; font-weight:600;">Clic para expandir/contraer ▾</span>
+            </summary>
+            <pre id="sondeo-md-live-preview" class="sondeo-context-preview"></pre>
+          </details>
         </div>
       `;
 
@@ -7660,23 +8675,25 @@
       const hubModSelect = document.getElementById('hub-modalidad-select');
       if (hubModSelect) hubModSelect.value = currentMod;
       updateWhatsappPayload();
+      refreshLiveContextPreview();
     }
 
-    function onSondeoPersonalInput() {
-      const nameEl = document.getElementById('sondeo-user-name-input');
-      const goalEl = document.getElementById('sondeo-user-goal-input');
-      if (nameEl) window.SONDEO_USER_NAME = nameEl.value.trim();
-      if (goalEl) window.SONDEO_USER_GOAL = goalEl.value.trim();
-      saveSondeoStateToStorage();
-      updateWhatsappPayload();
+    function refreshLiveContextPreview() {
+      const pre = document.getElementById('sondeo-md-live-preview');
+      if (pre) {
+        pre.textContent = buildSondeoContextMarkdown();
+      }
     }
 
     function syncModalidadSelect(val) {
+      window.SONDEO_MODALIDAD = val;
       const dockSel = document.getElementById('dock-modalidad-select');
       const hubSel = document.getElementById('hub-modalidad-select');
       if (dockSel && dockSel.value !== val) dockSel.value = val;
       if (hubSel && hubSel.value !== val) hubSel.value = val;
+      saveSondeoStateToStorage();
       updateWhatsappPayload();
+      refreshLiveContextPreview();
     }
 
     function toggleExpedienteItem(avisoId) {
@@ -7686,7 +8703,8 @@
         const item = window.AVISOS_MAESTROS.find(a => a.id === avisoId);
         window.SELECTED_EXPEDIENTE[avisoId] = {
           aviso: item,
-          urgencia: 'alta'
+          urgencia: 'alta',
+          nota: ''
         };
       }
       saveSondeoStateToStorage();
@@ -7702,6 +8720,15 @@
         renderQuickJumpBar();
         renderAllAreasSections();
         updateExpedienteSummary();
+      }
+    }
+
+    function setExpNota(avisoId, notaVal) {
+      if (window.SELECTED_EXPEDIENTE[avisoId]) {
+        window.SELECTED_EXPEDIENTE[avisoId].nota = notaVal;
+        saveSondeoStateToStorage();
+        updateWhatsappPayload();
+        refreshLiveContextPreview();
       }
     }
 
@@ -7724,26 +8751,862 @@
       updateWhatsappPayload();
     }
 
-    function buildFullSondeoTextPayload() {
+    function buildSondeoSnapshot(customOverride) {
+      if (customOverride) return customOverride;
       const metrics = computeSondeoMetrics();
-      const modSelect = document.getElementById('dock-modalidad-select');
-      const modalidad = modSelect ? modSelect.value : 'Por definir en la sesión';
-      const uName = window.SONDEO_USER_NAME || 'Cliente';
-      const uGoal = window.SONDEO_USER_GOAL || '';
+      const prescription = computeCanonicalPrescription(metrics);
+      const uName = window.SONDEO_USER_NAME || (window.SONDEO_PROFILE_TYPE === 'negocio' ? 'Negocio Sin Nombre' : 'Cliente Sondeo');
+      const slug = slugifyClientName(uName);
+      const capSlug = slug.split('_').map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('_');
+      const now = new Date();
+      return {
+        id: 'sondeo_' + now.getTime(),
+        createdAt: now.toISOString(),
+        dateStr: now.toLocaleDateString('es-CL', { year: 'numeric', month: '2-digit', day: '2-digit' }),
+        timeStr: now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' }),
+        mode: window.SONDEO_MODE,
+        profileType: window.SONDEO_PROFILE_TYPE,
+        userName: uName,
+        rawUserName: window.SONDEO_USER_NAME,
+        slug,
+        capSlug,
+        userGoal: window.SONDEO_USER_GOAL,
+        modalidad: getActiveModalidad(),
+        context: { ...window.SONDEO_CONTEXT },
+        selected: JSON.parse(JSON.stringify(
+          Object.keys(window.SELECTED_EXPEDIENTE).reduce((acc, k) => {
+            acc[k] = {
+              urgencia: window.SELECTED_EXPEDIENTE[k].urgencia || 'alta',
+              nota: window.SELECTED_EXPEDIENTE[k].nota || ''
+            };
+            return acc;
+          }, {})
+        )),
+        metrics,
+        prescription
+      };
+    }
 
-      if (metrics.totalSelected === 0 && !uGoal) {
+    function rehydrateSnapshot(snap) {
+      const reconstructedExp = {};
+      Object.keys(snap.selected || {}).forEach(avisoId => {
+        const item = window.AVISOS_MAESTROS.find(a => a.id === avisoId);
+        if (item) {
+          reconstructedExp[avisoId] = {
+            aviso: item,
+            urgencia: snap.selected[avisoId].urgencia || 'alta',
+            nota: snap.selected[avisoId].nota || ''
+          };
+        }
+      });
+      const metrics = computeSondeoMetrics(reconstructedExp);
+      const prescription = computeCanonicalPrescription(metrics);
+      return {
+        ...snap,
+        metrics,
+        prescription
+      };
+    }
+
+    function buildSondeoContractObject(snapInput) {
+      const snap = snapInput ? rehydrateSnapshot(snapInput) : buildSondeoSnapshot();
+      const ctx = snap.context || {};
+      const tipoLabel = snap.profileType === 'negocio' ? 'Negocio / Comercio Local' : 'Persona / Profesional';
+      const rolContexto = [tipoLabel, ctx.userRole, ctx.userCity].filter(Boolean).join(' • ');
+      const topPain = snap.metrics.top3Dolores[0]?.aviso?.dolor_sintoma || '';
+
+      return {
+        schema_version: "4.0.0",
+        client_slug: snap.slug,
+        updated_at: (snap.createdAt || new Date().toISOString()).split('T')[0],
+        nombre: snap.userName,
+        tipo_perfil: snap.profileType,
+        hub_filename: `Hub_Imprimibles_${snap.capSlug}.html`,
+        rol_contexto: rolContexto || tipoLabel,
+        whatsapp: ctx.userPhone || "",
+        ciudad: ctx.userCity || "",
+        area_critica: snap.metrics.topArea ? snap.metrics.topArea.area.title : "Diagnóstico Inicial",
+        saturacion_operativa: snap.metrics.globalPct,
+        frase_raiz_culpa: ctx.rootPhrase || topPain || snap.userGoal || "Por profundizar en Sesión Base",
+        hora_de_oro: ctx.goldenHour || "Por definir en Mapeador 24H",
+        valvula_descompresion: ctx.decompressionValve || "Por definir en sesión",
+        numero_paz_financiera: ctx.financialPeace || "Por definir con Regla 50/30/20",
+        dosis_adaptacion: `Levantado en ${snap.mode === 'consultor' ? 'Modo Consultor/Tablet' : 'Autodiagnóstico Web'} (${snap.metrics.totalSelected}/34 dolores). Modalidad: ${snap.modalidad}.${ctx.fieldNotes ? ' Notas: ' + ctx.fieldNotes : ''}`,
+        herramientas_prescritas: snap.prescription.canonicalIds
+      };
+    }
+
+    function buildFichaMaestraDraftObject(snapInput) {
+      const snap = snapInput ? rehydrateSnapshot(snapInput) : buildSondeoSnapshot();
+      const contract = buildSondeoContractObject(snap);
+      const ctx = snap.context || {};
+      const sat = snap.metrics.globalPct;
+
+      return {
+        cliente: {
+          id: snap.slug,
+          nombre: snap.userName,
+          tipo_perfil: snap.profileType,
+          rol_principal: contract.rol_contexto,
+          ciudad: ctx.userCity || "Chile",
+          whatsapp: ctx.userPhone || "",
+          ultima_actualizacion: contract.updated_at
+        },
+        modulos_activos: snap.prescription.canonicalIds,
+        diagnostico: {
+          resumen_humano: [
+            snap.userGoal ? `Meta #1: ${snap.userGoal}.` : '',
+            ctx.rootPhrase ? `Frase raíz: «${ctx.rootPhrase}».` : '',
+            ctx.fieldNotes ? `Notas de terreno: ${ctx.fieldNotes}` : '',
+            `Saturación global del sondeo: ${sat}% (${snap.metrics.totalSelected}/34 puntos marcados).`
+          ].filter(Boolean).join(' '),
+          stats: [
+            { valor: `${sat}%`, etiqueta: "Saturación Global", color: sat >= 40 ? "#ef4444" : "#f59e0b", sub: `${snap.metrics.totalSelected} dolores detectados` },
+            { valor: snap.metrics.topArea ? snap.metrics.topArea.area.short_label : "General", etiqueta: "Área #1 Crítica", color: "#38bdf8", sub: snap.metrics.topArea ? `${snap.metrics.topArea.saturationPct}% saturación` : "Sin marcas" },
+            { valor: ctx.goldenHour || "Por definir", etiqueta: snap.profileType === 'negocio' ? "Horario Peak" : "Hora de Oro", color: "#10b981", sub: "Ventana clave" },
+            { valor: ctx.financialPeace || "Por definir", etiqueta: "Meta Económica", color: "#a855f7", sub: "Paz financiera" }
+          ],
+          sondeo_6_areas: snap.metrics.areaStats.map(st => ({
+            area: st.area.short_label,
+            saturacion_pct: st.saturationPct,
+            marcados: st.markedCount,
+            total: st.totalAvisos,
+            altas: st.areaAltas,
+            medias: st.areaMedias,
+            bajas: st.areaBajas,
+            estado: st.statusLabel
+          })),
+          dolores_marcados: snap.metrics.allMarkedItems.map(item => ({
+            id: item.aviso.id,
+            numero: item.aviso.numero,
+            area: item.aviso.area_label,
+            arquetipo: item.aviso.arquetipo,
+            urgencia: item.urgencia,
+            sintoma: item.aviso.dolor_sintoma,
+            nota_terreno: item.nota || "",
+            microdosis_24h: item.aviso.accion_24h,
+            modulos_aicc: window.AVISO_TO_CANONICAL_MODULES[item.aviso.id] || []
+          }))
+        },
+        contrato: contract
+      };
+    }
+
+    function buildSondeoContextMarkdown(snapInput) {
+      const snap = snapInput ? rehydrateSnapshot(snapInput) : buildSondeoSnapshot();
+      const m = snap.metrics;
+      const p = snap.prescription;
+      const ctx = snap.context || {};
+      const contract = buildSondeoContractObject(snap);
+      const ficha = buildFichaMaestraDraftObject(snap);
+
+      const tipoText = snap.profileType === 'negocio' ? 'Negocio / Comercio Local' : 'Persona / Profesional';
+      const modoText = snap.mode === 'consultor' ? 'Modo Consultor / Tablet (Levantamiento en Terreno)' : 'Autodiagnóstico Web';
+
+      let satLevel = "Operación Estable";
+      if (m.globalPct >= 40 || m.altas >= 4) satLevel = "Sobrecarga Alta (Prioridad de Destrabe)";
+      else if (m.globalPct >= 15 || m.totalSelected >= 2) satLevel = "Fricción Moderada (Oportunidad de Orden)";
+
+      const areaRows = m.areaStats.map(st =>
+        `| 0${st.area.num} ${st.area.short_label} | ${st.saturationPct}% | ${st.markedCount}/${st.totalAvisos} | ${st.areaAltas} | ${st.areaMedias} | ${st.areaBajas} | ${st.statusLabel} |`
+      ).join('\n');
+
+      const doloresMd = m.allMarkedItems.length > 0
+        ? m.allMarkedItems.map((item, idx) => {
+            const uTag = item.urgencia === 'alta' ? '🔴 ALTA' : (item.urgencia === 'media' ? '🟡 MEDIA' : '🟢 BAJA');
+            const cIds = (window.AVISO_TO_CANONICAL_MODULES[item.aviso.id] || []).map(id => {
+              const meta = window.CANONICAL_MODULE_META[id];
+              return meta ? `\`${meta.codigo}\` (\`${id}\`)` : `\`${id}\``;
+            }).join(', ');
+            return [
+              `### ${idx + 1}. [${uTag}] #${String(item.aviso.numero).padStart(2, '0')} — ${item.aviso.arquetipo} (${item.aviso.area_label})`,
+              `* **Síntoma / Dolor:** «${item.aviso.dolor_sintoma || item.aviso.headline}»`,
+              `* **Titular del Sondeo:** ${item.aviso.headline}`,
+              `* **Causa Raíz Clínica:** ${item.aviso.por_que_pasa}`,
+              item.nota ? `* **Nota Específica de Terreno:** ${item.nota}` : null,
+              `* **Herramienta SGP Asociada:** ${item.aviso.herramienta}`,
+              `* **Microdosis de Acción Inmediata (24h):** ${item.aviso.accion_24h}`,
+              cIds ? `* **Cajas Canónicas AICC v4.0:** ${cIds}` : null
+            ].filter(Boolean).join('\n');
+          }).join('\n\n')
+        : '*No se marcaron puntos de fricción específicos en las 6 áreas durante este levantamiento.*';
+
+      const prescriptionMd = p.modules.map(mod =>
+        `* **[${mod.codigo}] ${mod.nombre}** *(Piso ${mod.piso} • \`${mod.id}\`)* — ${mod.humano}`
+      ).join('\n');
+
+      return `# Base de Contexto & Sondeo Diagnóstico: ${snap.userName}
+> **Administración Humana • Metodología AICC v4.0 (Base Estructurada para Expediente y Plan de Vuelo)**
+> **Tipo de Perfil:** ${tipoText}
+> **Modo de Captura:** ${modoText}
+> **Fecha y Hora de Levantamiento:** ${snap.dateStr} ${snap.timeStr}
+> **Consultor:** Diego González Yáñez (\`+56975590132\`)
+
+---
+
+## 1. Ficha de Identificación & Contexto Base
+* **Client Slug sugerido:** \`${snap.slug}\`
+* **Nombre / Marca:** ${snap.userName}
+* **Tipo de Perfil:** ${tipoText}
+* **Ocupación / Rubro:** ${ctx.userRole || 'Por completar'}
+* **Ciudad / Comuna / Canal:** ${ctx.userCity || 'Por completar'}
+* **WhatsApp / Contacto:** ${ctx.userPhone || 'Por completar'}
+* **Modalidad de Interés:** ${snap.modalidad}
+
+---
+
+## 2. Anamnesis Rápida, Frase Raíz & Notas de Terreno
+* **Meta #1 / Qué destrabar primero:** ${snap.userGoal || 'Por definir'}
+* **Frase Raíz / Síntoma Literal:** «${ctx.rootPhrase || 'Sin frase literal registrada'}»
+* **${snap.profileType === 'negocio' ? 'Horarios Peak / Ventana Operativa' : 'Hora de Oro Cognitiva'}:** ${ctx.goldenHour || 'Por definir'}
+* **${snap.profileType === 'negocio' ? 'Meta de Facturación o Caja Limpia' : 'Número de Paz Financiera'}:** ${ctx.financialPeace || 'Por definir'}
+* **${snap.profileType === 'negocio' ? 'Producto Estrella / Diferencial' : 'Válvula de Descompresión'}:** ${ctx.decompressionValve || 'Por definir'}
+
+### Notas de Contexto y Observaciones de Terreno (Diego)
+> ${ctx.fieldNotes ? ctx.fieldNotes.replace(/\n/g, '\n> ') : 'Sin notas adicionales registradas.'}
+
+---
+
+## 3. Radiografía Cuantitativa de Saturación (6 Áreas)
+* **Índice de Saturación Operativa Global:** **${m.globalPct}%** (${satLevel})
+* **Total de Dolores Detectados:** ${m.totalSelected} / 34 (\`🔴 ${m.altas} Alta\` · \`🟡 ${m.medias} Media\` · \`🟢 ${m.bajas} Baja\`)
+* **Área #1 Prioritaria de Intervención:** ${m.topArea ? `${m.topArea.area.title} (${m.topArea.saturationPct}%)` : 'Sin área crítica aún'}
+
+| Área | Saturación | Marcados | 🔴 Alta | 🟡 Media | 🟢 Baja | Estado |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+${areaRows}
+
+---
+
+## 4. Desglose Clínico de Dolores Marcados & Microdosis 24h
+${doloresMd}
+
+---
+
+## 5. Prescripción Canónica Sugerida (Gobernanza ADR-001)
+* **Distribución por Pisos:** Piso 1 Cimientos (${p.totalPiso1}) · Piso 2 Operación (${p.totalPiso2}) · Piso 3 Escala (${p.totalPiso3})
+${p.adr001AnchorApplied ? '* **Regla Clínica ADR-001 Activada:** Se inyectaron anclas estabilizadoras de Piso 1 (`P1-01` / `P1-11`) por nivel de saturación o presencia de módulos de Piso 3.\n' : ''}
+${prescriptionMd}
+
+---
+
+## 6. Contratos JSON Listos para Sistema Agéntico (AICC v4.0)
+
+### A. \`expediente_contrato.json\`
+\`\`\`json
+${JSON.stringify(contract, null, 2)}
+\`\`\`
+
+### B. \`Ficha_Maestra.json\` (Borrador Estructurado)
+\`\`\`json
+${JSON.stringify(ficha, null, 2)}
+\`\`\`
+`;
+    }
+
+    function buildExecutivePdfHtml(snapInput) {
+      const snap = snapInput ? rehydrateSnapshot(snapInput) : buildSondeoSnapshot();
+      const m = snap.metrics;
+      const p = snap.prescription;
+      const ctx = snap.context || {};
+      const tipoLabel = snap.profileType === 'negocio' ? 'Negocio / Comercio Local' : 'Persona / Profesional';
+      const isConsultorPdf = (snap.mode || window.SONDEO_MODE) === 'consultor';
+
+      let levelBadge = "OPERACIÓN ESTABLE";
+      if (m.globalPct >= 40 || m.altas >= 4) levelBadge = "SOBRECARGA ALTA — PRIORIDAD DE DESTRABE";
+      else if (m.globalPct >= 15 || m.totalSelected >= 2) levelBadge = "FRICCIÓN MODERADA — OPORTUNIDAD DE ORDEN";
+
+      const areaBars = m.areaStats.map(st => `
+        <tr>
+          <td style="font-weight:700; padding:6px 8px; border-bottom:1px solid #e5e7eb;">0${st.area.num} ${escapeHtml(st.area.short_label)}</td>
+          <td style="padding:6px 8px; border-bottom:1px solid #e5e7eb; width:38%;">
+            <div style="width:100%; height:9px; background:#e5e7eb; border-radius:99px; overflow:hidden;">
+              <div style="width:${Math.max(st.saturationPct, st.markedCount > 0 ? 6 : 0)}%; height:100%; background:#111827;"></div>
+            </div>
+          </td>
+          <td style="font-weight:800; padding:6px 8px; border-bottom:1px solid #e5e7eb; text-align:right; font-family:monospace;">${st.saturationPct}% (${st.markedCount}/${st.totalAvisos})</td>
+          <td style="padding:6px 8px; border-bottom:1px solid #e5e7eb; font-size:10.5px;">${escapeHtml(st.statusLabel)}</td>
+        </tr>
+      `).join('');
+
+      const doloresCards = m.allMarkedItems.length > 0
+        ? m.allMarkedItems.map((item, idx) => {
+            const uLabel = item.urgencia === 'alta' ? 'ALTA' : (item.urgencia === 'media' ? 'MEDIA' : 'BAJA');
+            const uBg = item.urgencia === 'alta' ? '#111827' : (item.urgencia === 'media' ? '#4b5563' : '#9ca3af');
+            return `
+              <div style="border:1px solid #d1d5db; border-left:4px solid #111827; border-radius:6px; padding:8px 10px; margin-bottom:7px; page-break-inside:avoid;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:3px;">
+                  <span style="font-size:11px; font-weight:800; color:#111827;">#${idx + 1} · ${escapeHtml(item.aviso.arquetipo)} (${escapeHtml(item.aviso.area_label)})</span>
+                  <span style="font-size:9.5px; font-weight:800; background:${uBg}; color:#ffffff; padding:2px 7px; border-radius:99px;">URGENCIA ${uLabel}</span>
+                </div>
+                <div style="font-size:11.5px; font-weight:700; color:#111827; margin-bottom:3px;">“${escapeHtml(item.aviso.dolor_sintoma || item.aviso.headline)}”</div>
+                <div style="font-size:10.5px; color:#374151; margin-bottom:3px;"><b>Por qué ocurre:</b> ${escapeHtml(item.aviso.por_que_pasa)}</div>
+                ${item.nota ? `<div style="font-size:10.5px; color:#111827; background:#f3f4f6; padding:4px 7px; border-radius:4px; margin-bottom:3px;"><b>Nota específica:</b> ${escapeHtml(item.nota)}</div>` : ''}
+                <div style="font-size:10.5px; color:#111827;"><b>Herramienta SGP:</b> ${escapeHtml(item.aviso.herramienta)}</div>
+              </div>
+            `;
+          }).join('')
+        : `<p style="font-size:11px; color:#4b5563;">Sin puntos marcados aún en las 6 áreas.</p>`;
+
+      const microdosisList = (m.top3Dolores.length > 0 ? m.top3Dolores : []).map((item, idx) => `
+        <div style="background:#f9fafb; border:1px solid #d1d5db; border-radius:6px; padding:7px 10px; margin-bottom:6px; page-break-inside:avoid;">
+          <div style="font-size:10.5px; font-weight:800; color:#111827;">Acción ${idx + 1} · ${escapeHtml(item.aviso.herramienta)}</div>
+          <div style="font-size:11px; color:#1f2937; margin-top:2px;">${escapeHtml(item.aviso.accion_24h)}</div>
+        </div>
+      `).join('');
+
+      const canonicalRows = p.modules.map(mod => `
+        <span style="display:inline-block; font-size:10px; font-weight:700; border:1px solid #111827; border-radius:4px; padding:3px 7px; margin:2px 4px 2px 0; background:#ffffff; color:#111827;">
+          [${escapeHtml(mod.codigo)}] ${escapeHtml(mod.nombre)}
+        </span>
+      `).join('');
+
+      const bodySheetHtml = `
+        <div class="pdf-doc-body" style="color:#111827; font-family:'Plus Jakarta Sans', Arial, sans-serif; line-height:1.42;">
+          <!-- CABECERA EJECUTIVA -->
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2.5px solid #111827; padding-bottom:10px; margin-bottom:12px; gap:12px;">
+            <div>
+              <div style="font-size:10px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:#4b5563;">ADMINISTRACIÓN HUMANA · ${isConsultorPdf ? 'RADIOGRAFÍA DIAGNÓSTICA 6 ÁREAS' : 'AUTODIAGNÓSTICO EJECUTIVO 6 ÁREAS'}</div>
+              <h1 style="font-size:20px; font-weight:800; margin:3px 0 2px 0; color:#111827;">${escapeHtml(snap.userName)}</h1>
+              <div style="font-size:11.5px; color:#374151;">
+                <b>Perfil:</b> ${tipoLabel}
+                ${ctx.userRole ? ` · <b>Rubro/Rol:</b> ${escapeHtml(ctx.userRole)}` : ''}
+                ${ctx.userCity ? ` · <b>Ciudad:</b> ${escapeHtml(ctx.userCity)}` : ''}
+                ${ctx.userPhone ? ` · <b>WhatsApp:</b> ${escapeHtml(ctx.userPhone)}` : ''}
+              </div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:10px; font-weight:800; color:#111827;">Diego González Yáñez</div>
+              <div style="font-size:10px; color:#4b5563;">Consultor • +56 9 7559 0132</div>
+              <div style="font-size:10px; color:#4b5563;">Fecha: ${escapeHtml(snap.dateStr)} ${escapeHtml(snap.timeStr)}</div>
+              <div style="margin-top:4px; display:inline-block; font-size:9.5px; font-weight:800; border:1px solid #111827; padding:2px 7px; border-radius:4px;">SLUG: ${escapeHtml(snap.slug)}</div>
+            </div>
+          </div>
+
+          <!-- KPI + CONTEXTO -->
+          <div style="display:grid; grid-template-columns:1fr 1.6fr; gap:10px; margin-bottom:12px; page-break-inside:avoid;">
+            <div style="border:1.5px solid #111827; border-radius:8px; padding:10px 12px; background:#f9fafb;">
+              <div style="font-size:9.5px; font-weight:800; text-transform:uppercase; color:#4b5563;">Índice de Saturación Global</div>
+              <div style="font-size:28px; font-weight:900; color:#111827; line-height:1.1; margin:4px 0;">${m.globalPct}%</div>
+              <div style="font-size:10px; font-weight:800; color:#111827;">${levelBadge}</div>
+              <div style="font-size:10.5px; color:#374151; margin-top:4px;">${m.totalSelected}/34 puntos · 🔴 ${m.altas} Alta · 🟡 ${m.medias} Media · 🟢 ${m.bajas} Baja</div>
+              <div style="font-size:10.5px; color:#111827; margin-top:4px;"><b>Área #1 Crítica:</b> ${m.topArea ? escapeHtml(m.topArea.area.title) : 'Sin marcas'}</div>
+            </div>
+            <div style="border:1px solid #d1d5db; border-radius:8px; padding:10px 12px;">
+              <div style="font-size:10px; font-weight:800; text-transform:uppercase; color:#111827; margin-bottom:5px;">${isConsultorPdf ? 'Contexto Base & Biorritmo / Operación' : 'Resumen de Tu Diagnóstico & Prioridad'}</div>
+              <div style="font-size:11px; margin-bottom:3px;"><b>Meta #1:</b> ${escapeHtml(snap.userGoal || 'Por definir en Sesión Base')}</div>
+              <div style="font-size:11px; margin-bottom:3px;"><b>Área Prioritaria:</b> ${m.topArea ? escapeHtml(m.topArea.area.title) : 'Sin marcas aún'}</div>
+              <div style="font-size:11px; margin-bottom:3px;"><b>Modalidad de interés:</b> ${escapeHtml(snap.modalidad)}</div>
+              ${(isConsultorPdf || ctx.rootPhrase) ? `<div style="font-size:11px; margin-bottom:3px;"><b>Frase Raíz / Síntoma:</b> «${escapeHtml(ctx.rootPhrase || 'No registrada')}»</div>` : ''}
+              ${(isConsultorPdf || ctx.goldenHour || ctx.financialPeace) ? `<div style="font-size:11px; margin-bottom:3px;">${(isConsultorPdf || ctx.goldenHour) ? `<b>${snap.profileType === 'negocio' ? 'Horario Peak' : 'Hora de Oro'}:</b> ${escapeHtml(ctx.goldenHour || 'Por definir')}` : ''}${(isConsultorPdf || ctx.goldenHour) && (isConsultorPdf || ctx.financialPeace) ? ' · ' : ''}${(isConsultorPdf || ctx.financialPeace) ? `<b>Meta Financiera:</b> ${escapeHtml(ctx.financialPeace || 'Por definir')}` : ''}</div>` : ''}
+              ${(isConsultorPdf || ctx.decompressionValve) ? `<div style="font-size:11px; margin-bottom:3px;"><b>${snap.profileType === 'negocio' ? 'Diferencial / Estrella' : 'Válvula Descompresión'}:</b> ${escapeHtml(ctx.decompressionValve || 'Por definir')}</div>` : ''}
+              ${ctx.fieldNotes ? `<div style="font-size:10.5px; color:#1f2937; margin-top:4px; padding-top:4px; border-top:1px dashed #d1d5db;"><b>${isConsultorPdf ? 'Notas de Terreno' : 'Comentario Adicional'}:</b> ${escapeHtml(ctx.fieldNotes)}</div>` : ''}
+            </div>
+          </div>
+
+          <!-- TABLA 6 ÁREAS -->
+          <div style="margin-bottom:12px; page-break-inside:avoid;">
+            <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:#111827; margin-bottom:5px;">1. Radiografía por las 6 Áreas Operativas</div>
+            <table style="width:100%; border-collapse:collapse; font-size:11px; border:1px solid #d1d5db;">
+              <thead>
+                <tr style="background:#f3f4f6;">
+                  <th style="text-align:left; padding:6px 8px; border-bottom:1.5px solid #111827;">Área</th>
+                  <th style="text-align:left; padding:6px 8px; border-bottom:1.5px solid #111827;">Carga Visual</th>
+                  <th style="text-align:right; padding:6px 8px; border-bottom:1.5px solid #111827;">Saturación</th>
+                  <th style="text-align:left; padding:6px 8px; border-bottom:1.5px solid #111827;">Estado</th>
+                </tr>
+              </thead>
+              <tbody>${areaBars}</tbody>
+            </table>
+          </div>
+
+          <!-- MICRODOSIS 24H -->
+          ${microdosisList ? `
+            <div style="margin-bottom:12px;">
+              <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:#111827; margin-bottom:5px;">2. Regalo Inmediato: Tu Plan de Acción 24 Horas (Microdosis)</div>
+              ${microdosisList}
+            </div>
+          ` : ''}
+
+          <!-- DETALLE CLÍNICO DE DOLORES -->
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:#111827; margin-bottom:5px;">3. Desglose Clínico de Dolores Identificados (${m.allMarkedItems.length})</div>
+            ${doloresCards}
+          </div>
+
+          <!-- RECETA CANÓNICA AICC v4.0 -->
+          <div style="border:1.5px solid #111827; border-radius:8px; padding:9px 11px; page-break-inside:avoid;">
+            <div style="font-size:10.5px; font-weight:800; text-transform:uppercase; color:#111827; margin-bottom:4px;">4. Hoja de Ruta & Módulos Prescritos (Sistema AICC v4.0)</div>
+            <div style="margin-bottom:6px;">${canonicalRows}</div>
+            <div style="font-size:10.5px; color:#374151; border-top:1px dashed #d1d5db; padding-top:5px;">
+              <b>Siguiente Paso Sugerido:</b> ${escapeHtml(snap.modalidad)} · Contacto directo: <b>+56 9 7559 0132</b>
+            </div>
+          </div>
+        </div>
+      `;
+
+      return {
+        title: `Diagnostico_Sondeo_${snap.slug}`,
+        bodySheetHtml,
+        fullHtml: `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico Ejecutivo - ${escapeHtml(snap.userName)} | Administración Humana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: letter; margin: 11mm 13mm; }
+    * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { margin: 0; padding: 18px; background: #e5e7eb; font-family: 'Plus Jakarta Sans', Arial, sans-serif; }
+    .toolbar { max-width: 210mm; margin: 0 auto 12px auto; background: #111827; color: #fff; padding: 10px 16px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .btn-print { background: #10b981; color: #000; border: none; font-weight: 800; padding: 9px 18px; border-radius: 99px; cursor: pointer; font-size: 13px; }
+    .btn-close { background: #374151; color: #fff; border: none; font-weight: 700; padding: 9px 14px; border-radius: 99px; cursor: pointer; font-size: 13px; }
+    .sheet { max-width: 210mm; margin: 0 auto; background: #ffffff; padding: 12mm 14mm; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+    @media print {
+      body { background: #ffffff !important; padding: 0 !important; }
+      .toolbar { display: none !important; }
+      .sheet { box-shadow: none !important; padding: 0 !important; border-radius: 0 !important; max-width: 100% !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div>
+      <div style="font-weight:800; font-size:14px;">📄 Diagnóstico Ejecutivo • ${escapeHtml(snap.userName)}</div>
+      <div style="font-size:11.5px; color:#d1d5db;">En el cuadro de impresión elige <b>"Guardar como PDF"</b> para descargarlo o enviarlo por WhatsApp.</div>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="btn-print" onclick="window.print()">🖨️ Guardar PDF / Imprimir</button>
+      <button class="btn-close" onclick="window.close()">✕ Cerrar</button>
+    </div>
+  </div>
+  <div class="sheet">${bodySheetHtml}</div>
+</body>
+</html>`
+      };
+    }
+
+    function closeSondeoPdfOverlay() {
+      const overlay = document.getElementById('sondeo-pdf-print-overlay');
+      if (overlay) {
+        overlay.classList.remove('is-open');
+        overlay.innerHTML = '';
+      }
+      document.body.classList.remove('printing-sondeo-pdf');
+    }
+
+    function triggerOverlayPrint() {
+      document.body.classList.add('printing-sondeo-pdf');
+      window.print();
+    }
+
+    function exportSondeoExecutivePDF(snapOverride) {
+      const pdfObj = buildExecutivePdfHtml(snapOverride);
+      let win = null;
+      try {
+        win = window.open('', '_blank');
+      } catch (e) {
+        win = null;
+      }
+
+      if (win && win.document) {
+        win.document.open();
+        win.document.write(pdfObj.fullHtml);
+        win.document.close();
+        win.focus();
+        setTimeout(() => {
+          try { win.print(); } catch (err) {}
+        }, 350);
+        return;
+      }
+
+      // Fallback seguro si el navegador de la tablet bloqueó popups
+      const overlay = document.getElementById('sondeo-pdf-print-overlay');
+      if (overlay) {
+        overlay.innerHTML = `
+          <div class="sondeo-pdf-toolbar">
+            <div>
+              <div style="font-weight:800; font-size:0.95rem;">📄 Vista PDF Ejecutiva • Lista para Guardar o Imprimir</div>
+              <div style="font-size:0.76rem; color:#d1d5db;">Elige "Guardar como PDF" en el diálogo del navegador para descargarlo en tu tablet.</div>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button type="button" onclick="triggerOverlayPrint()" style="background:#10b981; color:#000; border:none; font-weight:800; padding:9px 16px; border-radius:99px; cursor:pointer;">🖨️ Guardar PDF / Imprimir</button>
+              <button type="button" onclick="closeSondeoPdfOverlay()" style="background:#374151; color:#fff; border:none; font-weight:700; padding:9px 14px; border-radius:99px; cursor:pointer;">← Volver al Sondeo</button>
+            </div>
+          </div>
+          <div class="sondeo-pdf-sheet">${pdfObj.bodySheetHtml}</div>
+        `;
+        overlay.classList.add('is-open');
+        document.body.classList.add('printing-sondeo-pdf');
+        setTimeout(() => {
+          try { window.print(); } catch (err) {}
+        }, 250);
+      }
+    }
+
+    function triggerTextFileDownload(filename, content, mimeType) {
+      const blob = new Blob([content], { type: mimeType || 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 200);
+    }
+
+    function downloadSondeoContextMarkdown(snapOverride) {
+      const snap = snapOverride ? rehydrateSnapshot(snapOverride) : buildSondeoSnapshot();
+      const md = buildSondeoContextMarkdown(snap);
+      const capSlug = snap.capSlug || 'Cliente';
+      triggerTextFileDownload(`00_Base_Contexto_Sondeo_${capSlug}.md`, md, 'text/markdown;charset=utf-8');
+    }
+
+    function copySondeoContextMarkdown() {
+      const md = buildSondeoContextMarkdown();
+      navigator.clipboard.writeText(md).then(() => {
+        const btn = document.getElementById('btn-copy-context-md');
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<span>✓</span> <span>¡Base de Contexto (.md) Copiada!</span>';
+          setTimeout(() => { btn.innerHTML = orig; }, 2200);
+        }
+      });
+    }
+
+    function downloadSondeoContractJSON(snapOverride) {
+      const contract = buildSondeoContractObject(snapOverride);
+      triggerTextFileDownload('expediente_contrato.json', JSON.stringify(contract, null, 2), 'application/json;charset=utf-8');
+    }
+
+    // ── HISTORIAL LOCAL DE SONDEOS EN TABLET ──
+    function getSondeoHistoryList() {
+      try {
+        const raw = localStorage.getItem('ah_sondeos_historial_v1');
+        const list = raw ? JSON.parse(raw) : [];
+        return Array.isArray(list) ? list : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function updateHistoryCountBadge() {
+      const badge = document.getElementById('sondeo-history-count');
+      if (badge) badge.textContent = String(getSondeoHistoryList().length);
+    }
+
+    function saveCurrentSondeoToHistory(fromModal = false) {
+      const snap = buildSondeoSnapshot();
+      // Guardar versión liviana y serializable
+      const storable = {
+        id: snap.id,
+        createdAt: snap.createdAt,
+        dateStr: snap.dateStr,
+        timeStr: snap.timeStr,
+        mode: snap.mode,
+        profileType: snap.profileType,
+        userName: snap.userName,
+        rawUserName: snap.rawUserName,
+        slug: snap.slug,
+        capSlug: snap.capSlug,
+        userGoal: snap.userGoal,
+        modalidad: snap.modalidad,
+        context: snap.context,
+        selected: snap.selected,
+        globalPct: snap.metrics.globalPct,
+        totalSelected: snap.metrics.totalSelected,
+        topAreaTitle: snap.metrics.topArea ? snap.metrics.topArea.area.short_label : 'Sin marcas'
+      };
+      const list = getSondeoHistoryList();
+      list.unshift(storable);
+      localStorage.setItem('ah_sondeos_historial_v1', JSON.stringify(list.slice(0, 50)));
+      updateHistoryCountBadge();
+      if (fromModal) {
+        renderSondeoHistoryList();
+      } else {
+        alert(`✅ Sondeo de "${snap.userName}" guardado en el historial local de este dispositivo (${snap.metrics.globalPct}% saturación).`);
+      }
+    }
+
+    function openSondeoHistoryModal() {
+      const modal = document.getElementById('sondeo-history-modal');
+      if (!modal) return;
+      renderSondeoHistoryList();
+      modal.classList.add('is-open');
+    }
+
+    function closeSondeoHistoryModal() {
+      const modal = document.getElementById('sondeo-history-modal');
+      if (modal) modal.classList.remove('is-open');
+    }
+
+    function renderSondeoHistoryList() {
+      const listEl = document.getElementById('sondeo-history-list');
+      if (!listEl) return;
+      const list = getSondeoHistoryList();
+      if (list.length === 0) {
+        listEl.innerHTML = `<div style="padding:24px; text-align:center; color:#94a3b8; font-size:0.84rem;">Aún no tienes sondeos guardados en este dispositivo. Usa <b>"💾 Guardar en Tablet"</b> cuando termines de sondear a una persona o negocio.</div>`;
+        return;
+      }
+      listEl.innerHTML = list.map((item, idx) => `
+        <div class="sondeo-history-item">
+          <div style="min-width:210px; flex:1;">
+            <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
+              <span style="font-size:0.75rem;">${item.profileType === 'negocio' ? '🏪' : '👤'}</span>
+              <strong style="color:#fff; font-size:0.9rem;">${escapeHtml(item.userName)}</strong>
+              <span style="font-size:0.68rem; font-weight:800; color:#38bdf8; background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.35); padding:1px 7px; border-radius:99px;">
+                ${item.globalPct ?? 0}% sat · ${item.totalSelected ?? 0} dolores
+              </span>
+            </div>
+            <div style="font-size:0.73rem; color:#94a3b8; margin-top:3px;">
+              ${escapeHtml(item.dateStr || '')} ${escapeHtml(item.timeStr || '')}
+              ${item.context?.userRole ? ` · ${escapeHtml(item.context.userRole)}` : ''}
+              ${item.context?.userPhone ? ` · ${escapeHtml(item.context.userPhone)}` : ''}
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" onclick="loadSondeoFromHistory(${idx})" style="background:#38bdf8; color:#000; border:none; border-radius:7px; padding:6px 10px; font-size:0.72rem; font-weight:800; cursor:pointer;">📂 Cargar</button>
+            <button type="button" onclick="exportHistoryItemPDF(${idx})" style="background:#fff; color:#000; border:none; border-radius:7px; padding:6px 10px; font-size:0.72rem; font-weight:800; cursor:pointer;">📄 PDF</button>
+            <button type="button" onclick="exportHistoryItemMD(${idx})" style="background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.2); border-radius:7px; padding:6px 10px; font-size:0.72rem; font-weight:700; cursor:pointer;">📝 .md</button>
+            <button type="button" onclick="exportHistoryItemJSON(${idx})" style="background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.2); border-radius:7px; padding:6px 10px; font-size:0.72rem; font-weight:700; cursor:pointer;">🧬 JSON</button>
+            <button type="button" onclick="deleteSondeoFromHistory(${idx})" style="background:rgba(239,68,68,0.15); color:#f87171; border:1px solid rgba(239,68,68,0.35); border-radius:7px; padding:6px 9px; font-size:0.72rem; font-weight:700; cursor:pointer;">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function loadSondeoFromHistory(idx) {
+      const list = getSondeoHistoryList();
+      const item = list[idx];
+      if (!item) return;
+
+      const reconstructed = {};
+      Object.keys(item.selected || {}).forEach(avisoId => {
+        const av = window.AVISOS_MAESTROS.find(a => a.id === avisoId);
+        if (av) {
+          reconstructed[avisoId] = {
+            aviso: av,
+            urgencia: item.selected[avisoId].urgencia || 'alta',
+            nota: item.selected[avisoId].nota || ''
+          };
+        }
+      });
+
+      window.SELECTED_EXPEDIENTE = reconstructed;
+      window.SONDEO_MODE = item.mode || 'consultor';
+      window.SONDEO_PROFILE_TYPE = item.profileType || 'persona';
+      window.SONDEO_USER_NAME = item.rawUserName != null ? item.rawUserName : (item.userName || '');
+      window.SONDEO_USER_GOAL = item.userGoal || '';
+      window.SONDEO_MODALIDAD = item.modalidad || window.SONDEO_MODALIDAD;
+      window.SONDEO_CONTEXT = {
+        userRole: '',
+        userPhone: '',
+        userCity: '',
+        rootPhrase: '',
+        goldenHour: '',
+        financialPeace: '',
+        decompressionValve: '',
+        fieldNotes: '',
+        ...(item.context || {})
+      };
+      window.HUB_ACTIVE_STATION = 6;
+      saveSondeoStateToStorage();
+      closeSondeoHistoryModal();
+      renderModeControls();
+      renderConsultorPanel();
+      renderQuickJumpBar();
+      renderAllAreasSections();
+      updateExpedienteSummary();
+    }
+
+    function exportHistoryItemPDF(idx) {
+      const snap = getSondeoHistoryList()[idx];
+      if (snap) exportSondeoExecutivePDF(snap);
+    }
+    function exportHistoryItemMD(idx) {
+      const snap = getSondeoHistoryList()[idx];
+      if (snap) downloadSondeoContextMarkdown(snap);
+    }
+    function exportHistoryItemJSON(idx) {
+      const snap = getSondeoHistoryList()[idx];
+      if (snap) downloadSondeoContractJSON(snap);
+    }
+
+    function deleteSondeoFromHistory(idx) {
+      const list = getSondeoHistoryList();
+      if (!list[idx]) return;
+      if (!confirm(`¿Eliminar el sondeo guardado de "${list[idx].userName}"?`)) return;
+      list.splice(idx, 1);
+      localStorage.setItem('ah_sondeos_historial_v1', JSON.stringify(list));
+      updateHistoryCountBadge();
+      renderSondeoHistoryList();
+    }
+
+    // ── PUENTE DIRECTO AL COPILOTO DE SESIÓN & PANEL ADMIN ──
+    function openInCopilotoSesion() {
+      const snap = buildSondeoSnapshot();
+      const m = snap.metrics;
+      const p = snap.prescription;
+      const ctx = snap.context || {};
+
+      const areaScore = (key) => {
+        const st = m.areaStats.find(s => s.area.key === key);
+        const sat = st ? st.saturationPct : 0;
+        return Math.max(1, Math.min(10, Math.round(10 - (sat / 10))));
+      };
+
+      const notesSummaryParts = [
+        `[${snap.profileType === 'negocio' ? 'NEGOCIO / COMERCIO' : 'PERSONA / PROFESIONAL'}] Levantado el ${snap.dateStr} ${snap.timeStr} (Saturación Global: ${m.globalPct}%).`,
+        snap.userGoal ? `Meta #1: ${snap.userGoal}` : '',
+        ctx.rootPhrase ? `Frase raíz: «${ctx.rootPhrase}»` : '',
+        ctx.fieldNotes ? `Notas de terreno: ${ctx.fieldNotes}` : '',
+        m.allMarkedItems.length > 0 ? `Dolores marcados (${m.allMarkedItems.length}):\n` + m.allMarkedItems.map(it =>
+          `- [${it.urgencia.toUpperCase()}] #${String(it.aviso.numero).padStart(2, '0')} ${it.aviso.arquetipo}: ${it.aviso.dolor_sintoma}${it.nota ? ' (Nota: ' + it.nota + ')' : ''}`
+        ).join('\n') : ''
+      ].filter(Boolean).join('\n\n');
+
+      const copilotoPayload = {
+        name: snap.userName,
+        role: [snap.profileType === 'negocio' ? '🏪 Negocio' : '👤 Persona', ctx.userRole, ctx.userCity].filter(Boolean).join(' • '),
+        phone: ctx.userPhone || '',
+        dischargeNotes: notesSummaryParts,
+        moralPhrase: ctx.rootPhrase || (m.top3Dolores[0]?.aviso?.dolor_sintoma || ''),
+        saturation: String(m.globalPct),
+        criticalArea: m.topArea ? m.topArea.area.title : 'Trabajo & Carrera',
+        wheel: {
+          salud: String(areaScore('tiempo')),
+          trabajo: String(areaScore('orden')),
+          finanzas: String(areaScore('finanzas')),
+          relaciones: String(areaScore('limites')),
+          desarrollo: String(areaScore('claridad')),
+          paz: String(Math.max(1, Math.round(10 - (m.globalPct / 10))))
+        },
+        financialPeaceNumber: ctx.financialPeace || '',
+        checks: {
+          caregiving: Boolean(window.SELECTED_EXPEDIENTE['aviso-19']),
+          neurodiversity: false,
+          overthinking: Boolean(window.SELECTED_EXPEDIENTE['aviso-09'] || window.SELECTED_EXPEDIENTE['aviso-05']),
+          shamePricing: Boolean(window.SELECTED_EXPEDIENTE['aviso-11'] || window.SELECTED_EXPEDIENTE['aviso-29'] || window.SELECTED_EXPEDIENTE['aviso-30'])
+        },
+        goldenHour: ctx.goldenHour || '',
+        decompressionValve: ctx.decompressionValve || '',
+        selectedTools: p.canonicalIds,
+        customQuestions: [
+          snap.userGoal ? `Meta #1 declarada: ${snap.userGoal}` : null,
+          ...m.top3Dolores.map(d => `[${d.urgencia.toUpperCase()}] ${d.aviso.arquetipo}${d.nota ? ': ' + d.nota : ''}`)
+        ].filter(Boolean),
+        dosageNotes: `Sondeo 6 Áreas (${m.globalPct}% saturación). Modalidad: ${snap.modalidad}. ${p.adr001AnchorApplied ? 'ADR-001: Piso 1 priorizado.' : ''}`
+      };
+
+      localStorage.setItem('ah_session_nuevo_cliente', JSON.stringify(copilotoPayload));
+
+      // Sincronizar en Panel Admin (embebido en index.html y panel_admin.html)
+      try {
+        const uid = `sondeo_${snap.slug}`;
+        const adminStatus = '🟡 Sondeo Recibido';
+
+        // 1. ah_admin_clients_custom (#view-admin de index.html)
+        const customClients = JSON.parse(localStorage.getItem('ah_admin_clients_custom') || '[]');
+        const customEntry = {
+          id: snap.slug,
+          slug: snap.slug,
+          name: snap.userName,
+          username: snap.slug,
+          pin: 'AH-2026',
+          subtitle: copilotoPayload.role || 'Prospecto Sondeo 6 Áreas',
+          status: adminStatus,
+          planUrl: 'expediente_sesion.html?client=nuevo_cliente&from=sondeo_landing',
+          driveUrl: '',
+          areaCritica: copilotoPayload.criticalArea,
+          saturacion: m.globalPct
+        };
+        const exIdx = customClients.findIndex(c => c.id === snap.slug || c.slug === snap.slug);
+        if (exIdx >= 0) customClients[exIdx] = { ...customClients[exIdx], ...customEntry };
+        else customClients.unshift(customEntry);
+        localStorage.setItem('ah_admin_clients_custom', JSON.stringify(customClients));
+        localStorage.setItem(`ah_admin_status_${snap.slug}`, adminStatus);
+
+        // 2. ah_demo_users y ah_admin_clients (panel_admin.html)
+        const demoUsers = JSON.parse(localStorage.getItem('ah_demo_users') || '{}');
+        const emailKey = `${snap.slug}@sondeo.ah`;
+        demoUsers[emailKey] = {
+          uid,
+          email: emailKey,
+          username: snap.slug,
+          password: 'ah-' + snap.slug,
+          validPins: ['2026'],
+          fullName: snap.userName,
+          role: 'client',
+          status: 'Sondeo Recibido',
+          whatsapp: ctx.userPhone || '',
+          ciudad: ctx.userCity || '',
+          ocupacion: ctx.userRole || (snap.profileType === 'negocio' ? 'Negocio Local' : 'Profesional'),
+          dolorPrincipal: m.topArea ? m.topArea.area.short_label : '',
+          driveUrl: '',
+          flightPlanUrl: 'expediente_sesion.html?client=nuevo_cliente&from=sondeo_landing',
+          notes: snap.userGoal || ctx.fieldNotes || 'Sondeo recibido desde landing.',
+          createdAt: snap.createdAt
+        };
+        localStorage.setItem('ah_demo_users', JSON.stringify(demoUsers));
+
+        const diagPayload = {
+          uid,
+          updatedAt: snap.createdAt,
+          scores: {
+            'Propósito': areaScore('claridad'),
+            'Gestión del Tiempo': areaScore('tiempo'),
+            'Finanzas': areaScore('finanzas'),
+            'Bienestar & Salud': areaScore('tiempo'),
+            'Hábitos & Rutinas': areaScore('orden'),
+            'Relaciones': areaScore('limites'),
+            'Entorno Trabajo': areaScore('orden'),
+            'Desarrollo Personal': areaScore('vitrina')
+          },
+          data: {
+            clientName: snap.userName,
+            fugas: [m.altas >= 2 ? 4 : 2, 3, 3, 2, 3, 2, 2, 2, 2, 2]
+          }
+        };
+        localStorage.setItem(`ah_diag_${uid}`, JSON.stringify(diagPayload));
+        localStorage.setItem(`ah_demo_diag_${uid}`, JSON.stringify(diagPayload));
+      } catch (e) {}
+
+      // Respaldar en historial también
+      saveCurrentSondeoToHistory(true);
+
+      const targetUrl = 'expediente_sesion.html?client=nuevo_cliente&from=sondeo_landing';
+      const opened = window.open(targetUrl, '_blank');
+      if (!opened) {
+        window.location.href = targetUrl;
+      }
+    }
+
+    function buildFullSondeoTextPayload() {
+      const snap = buildSondeoSnapshot();
+      const metrics = snap.metrics;
+      const ctx = snap.context || {};
+      const modalidad = snap.modalidad;
+      const uName = snap.rawUserName || snap.userName;
+      const uGoal = snap.userGoal || '';
+
+      if (metrics.totalSelected === 0 && !uGoal && !ctx.fieldNotes && !ctx.rootPhrase) {
         return "Hola Diego, estuve revisando el Hub Interactivo de las 6 Áreas de Administración Humana y me gustaría conversar contigo sobre cómo ordenar mi gestión.";
       }
 
+      const tipoLabel = snap.profileType === 'negocio' ? '🏪 Negocio / Comercio' : '👤 Persona / Profesional';
       let waText = "📋 *SONDEO INTERACTIVO DE LAS 6 ÁREAS (BASE DE SESIÓN)*\n";
-      waText += "*Administración Humana • Métricas Operativas*\n";
+      waText += `*Administración Humana • ${tipoLabel}*\n`;
       waText += "───────────────────────────────\n";
-      if (window.SONDEO_USER_NAME) {
-        waText += `👤 *Nombre:* ${uName}\n`;
-      }
-      if (uGoal) {
-        waText += `🎯 *Meta #1 a destrabar primero:* ${uGoal}\n`;
-      }
+      if (snap.rawUserName) waText += `👤 *Nombre / Marca:* ${uName}\n`;
+      if (ctx.userRole) waText += `💼 *Rubro / Ocupación:* ${ctx.userRole}\n`;
+      if (ctx.userCity) waText += `📍 *Ubicación:* ${ctx.userCity}\n`;
+      if (ctx.userPhone) waText += `📱 *Contacto:* ${ctx.userPhone}\n`;
+      if (uGoal) waText += `🎯 *Meta #1 a destrabar:* ${uGoal}\n`;
+      if (ctx.rootPhrase) waText += `💬 *Frase raíz:* «${ctx.rootPhrase}»\n`;
       waText += `📊 *Saturación Global Operativa:* ${metrics.globalPct}% (${metrics.totalSelected}/34 avisos marcados: 🔴 ${metrics.altas} Alta, 🟡 ${metrics.medias} Media, 🟢 ${metrics.bajas} Baja)\n`;
       if (metrics.topArea) {
         waText += `🔥 *Área #1 Más Crítica:* ${metrics.topArea.area.title} (${metrics.topArea.saturationPct}% saturación)\n`;
@@ -7759,20 +9622,63 @@
         metrics.top3Dolores.forEach((item, idx) => {
           const uBadge = item.urgencia === 'alta' ? '🔴 ALTA' : (item.urgencia === 'media' ? '🟡 MEDIA' : '🟢 BAJA');
           waText += `${idx + 1}. [${uBadge}] #${String(item.aviso.numero).padStart(2, '0')} (${item.aviso.area_label}): ${item.aviso.headline}\n`;
+          if (item.nota) waText += `   📝 _Nota:_ ${item.nota}\n`;
         });
       }
 
-      if (metrics.recommendedTools.length > 0) {
-        waText += "\n🛠️ *HERRAMIENTAS SGP SUGERIDAS PARA LA SESIÓN:*\n";
-        metrics.recommendedTools.forEach(t => {
-          waText += `• ${t.herramienta} (${t.area_short})\n`;
+      if (ctx.fieldNotes) {
+        waText += `\n🗒️ *NOTAS DE CONTEXTO:*\n${ctx.fieldNotes}\n`;
+      }
+
+      if (snap.prescription.modules.length > 0) {
+        waText += "\n🧩 *MÓDULOS CANÓNICOS SUGERIDOS (AICC v4.0):*\n";
+        snap.prescription.modules.slice(0, 6).forEach(mod => {
+          waText += `• [${mod.codigo}] ${mod.nombre}\n`;
         });
       }
 
       waText += "\n───────────────────────────────\n";
       waText += `💡 *MODALIDAD DE INTERÉS:*\n${modalidad}\n\n`;
-      waText += "Hola Diego, acabo de recorrer el Hub de las 6 Áreas y estas son mis métricas para armar la base de nuestra sesión.";
+      waText += snap.mode === 'consultor'
+        ? "Respaldo de sondeo levantado en terreno (Modo Consultor / Tablet)."
+        : "Hola Diego, acabo de recorrer el Hub de las 6 Áreas y estas son mis métricas para armar la base de nuestra sesión.";
       return waText;
+    }
+
+    function buildClientWhatsAppPayload() {
+      const snap = buildSondeoSnapshot();
+      const m = snap.metrics;
+      const saludo = snap.rawUserName ? `Hola *${snap.rawUserName}*` : 'Hola';
+      let txt = `${saludo}, soy *Diego González* de *Administración Humana* 👋\n\n`;
+      txt += `Aquí tienes el resumen de tu *Radiografía Operativa en 6 Áreas* que levantamos recién:\n\n`;
+      txt += `📊 *Saturación Global:* ${m.globalPct}% (${m.totalSelected} puntos clave detectados)\n`;
+      if (m.topArea) {
+        txt += `🔥 *Foco #1 Prioritario:* ${m.topArea.area.title} (${m.topArea.saturationPct}%)\n`;
+      }
+      if (m.top3Dolores.length > 0) {
+        txt += `\n🎁 *Tus Microdosis de Acción Inmediata (24h):*\n`;
+        m.top3Dolores.forEach((item, idx) => {
+          txt += `${idx + 1}. *${item.aviso.herramienta}:* ${item.aviso.accion_24h}\n`;
+        });
+      }
+      txt += `\nTe adjunto además tu informe en PDF con el mapa completo y el siguiente paso (${snap.modalidad}). Quedo atento por aquí para cuando quieras activar tu sistema.`;
+      return txt;
+    }
+
+    function sendSondeoToClientWhatsApp() {
+      const rawPhone = String(window.SONDEO_CONTEXT.userPhone || '').trim();
+      const digits = rawPhone.replace(/[^0-9]/g, '');
+      if (!digits || digits.length < 8) {
+        alert('Ingresa primero el número de WhatsApp del cliente o negocio en el campo "WhatsApp del Cliente" para abrir su chat directo.');
+        const phoneInput = document.getElementById('hub-ctx-phone') || document.getElementById('top-ctx-phone');
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+      // Normalizar móvil chileno de 9 dígitos (ej: 912345678 -> 56912345678)
+      const normalizedPhone = (digits.length === 9 && digits.startsWith('9')) ? ('56' + digits) : digits;
+      const msg = buildClientWhatsAppPayload();
+      const url = `https://wa.me/${normalizedPhone}?text=` + encodeURIComponent(msg);
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     function updateWhatsappPayload() {
@@ -7800,6 +9706,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       loadSondeoStateFromStorage();
+      renderModeControls();
+      renderConsultorPanel();
       renderQuickJumpBar();
       renderAllAreasSections();
       updateExpedienteSummary();
@@ -11439,13 +13347,21 @@ Me gustaría conversar sobre mi caso y coordinar mi Sesión de Despegue ($35.000
     window.scrollToSection(target);
   };
 
-  // Inicialización de pestaña activa según hash URL al cargar y al cambiar hash
+  // Inicialización de pestaña activa según hash URL (o parámetros ?modo=tablet / ?consultor=1) al cargar y al cambiar hash
   window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash.replace('#', '').toLowerCase();
+    let openConsultorTab = false;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      openConsultorTab = params.get('modo') === 'tablet' || params.get('consultor') === '1';
+    } catch (e) {}
+
     if (hash === 'admin') {
       window.switchPlatformTab('view-admin');
     } else if (hash) {
       window.scrollToSection(hash, true);
+    } else if (openConsultorTab) {
+      window.scrollToSection('sondeos', true);
     } else {
       window.scrollToSection('sobre-diego', true);
     }
