@@ -2525,9 +2525,22 @@
         }
 
         // 5. GATEWAY AUTH DE SEGURIDAD
+        function normalizeAuthStr(str) {
+            return String(str || "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .trim()
+                .toLowerCase();
+        }
+
         function checkClientAuthStatus() {
             const key = `ah_auth_${currentClientId}`;
-            const token = sessionStorage.getItem(key) || localStorage.getItem(key) || localStorage.getItem(`client_authenticated_${currentClientId}`) || sessionStorage.getItem(`client_authenticated_${currentClientId}`);
+            const token = sessionStorage.getItem(key)
+                || localStorage.getItem(key)
+                || localStorage.getItem(`ah_auth_token_${currentClientId}`)
+                || localStorage.getItem(`ah_client_auth_${currentClientId}`)
+                || localStorage.getItem(`client_authenticated_${currentClientId}`)
+                || sessionStorage.getItem(`client_authenticated_${currentClientId}`);
             const isMaster = localStorage.getItem("ah_consultor_auth") === "true";
             const overlay = document.getElementById("client-auth-overlay");
             if (token === "true" || token === "authenticated_ok" || isMaster) {
@@ -2537,16 +2550,17 @@
             }
         }
 
-                function handleDynamicAuth(e) {
+        function handleDynamicAuth(e) {
             e.preventDefault();
             const input = document.getElementById("auth-client-pin");
             const err = document.getElementById("auth-error-msg");
             if (!input) return;
 
-            const val = input.value.trim().toLowerCase();
+            const val = normalizeAuthStr(input.value);
             const cleanVal = val.replace(/[@\s]/g, '');
-            const expectedPin = (activeClientData && activeClientData.cliente && activeClientData.cliente.pin) 
-                ? activeClientData.cliente.pin.toLowerCase() 
+            const alphaVal = val.replace(/[^a-z0-9]/g, '');
+            const expectedPin = (activeClientData && activeClientData.cliente && activeClientData.cliente.pin)
+                ? normalizeAuthStr(activeClientData.cliente.pin)
                 : "";
 
             // Buscar en CLIENT_ACCOUNTS de portal-gateway si está disponible
@@ -2571,26 +2585,24 @@
                 currentClientId,
                 `${currentClientId}2026`,
                 ...masterPins
-            ];
+            ].filter(Boolean);
 
             if (clientAccount) {
                 if (Array.isArray(clientAccount.passwords)) {
                     clientAccount.passwords.forEach(p => {
-                        allowedPins.push(String(p).trim().toLowerCase());
-                        allowedPins.push(String(p).trim().toLowerCase().replace(/[@\s]/g, ''));
-                        allowedPins.push(String(p).trim().toLowerCase().replace(/[^a-z0-9]/g, ''));
+                        const np = normalizeAuthStr(p);
+                        allowedPins.push(np, np.replace(/[@\s]/g, ''), np.replace(/[^a-z0-9]/g, ''));
                     });
                 }
                 if (Array.isArray(clientAccount.usernames)) {
                     clientAccount.usernames.forEach(u => {
-                        allowedPins.push(String(u).trim().toLowerCase());
-                        allowedPins.push(String(u).trim().toLowerCase().replace(/[@\s]/g, ''));
-                        allowedPins.push(String(u).trim().toLowerCase().replace(/[^a-z0-9]/g, ''));
+                        const nu = normalizeAuthStr(u);
+                        allowedPins.push(nu, nu.replace(/[@\s]/g, ''), nu.replace(/[^a-z0-9]/g, ''));
                     });
                 }
             }
 
-            if (allowedPins.includes(val) || allowedPins.includes(cleanVal) || (expectedPin && cleanVal === expectedPin.replace(/[^a-z0-9]/g, ''))) {
+            if (allowedPins.includes(val) || allowedPins.includes(cleanVal) || (alphaVal && allowedPins.includes(alphaVal)) || (expectedPin && alphaVal === expectedPin.replace(/[^a-z0-9]/g, ''))) {
                 sessionStorage.setItem(`ah_auth_${currentClientId}`, "true");
                 localStorage.setItem(`ah_auth_${currentClientId}`, "authenticated_ok");
                 localStorage.setItem(`ah_client_auth_${currentClientId}`, "authenticated_ok");
@@ -2607,6 +2619,7 @@
 
                 const overlay = document.getElementById("client-auth-overlay");
                 if (overlay) overlay.style.display = "none";
+                if (err) err.style.display = "none";
                 showToast("¡Bienvenido/a a tu Plan de Vuelo 2.0!");
             } else {
                 err.innerText = "Clave o usuario incorrecto. Puedes ingresar con tu usuario o contraseña asignada.";
@@ -2617,6 +2630,8 @@
         function logoutClientAuth() {
             sessionStorage.removeItem(`ah_auth_${currentClientId}`);
             localStorage.removeItem(`ah_auth_${currentClientId}`);
+            localStorage.removeItem(`ah_auth_token_${currentClientId}`);
+            localStorage.removeItem(`ah_client_auth_${currentClientId}`);
             sessionStorage.removeItem(`client_authenticated_${currentClientId}`);
             localStorage.removeItem(`client_authenticated_${currentClientId}`);
             checkClientAuthStatus();
@@ -2967,20 +2982,6 @@
                             img_url: imgObj.webp,
                             img_fallback: imgObj.fallback,
                             tutorial_html: `<strong style="color:#10b981; font-size:0.8rem; text-transform:uppercase; display:flex; align-items:center; gap:6px; margin-bottom:0.4rem;"><i class="fa-solid fa-graduation-cap"></i> ¿Qué cura en tu día a día?:</strong><p style="font-size:0.8rem; color:#cbd5e1; margin:0; line-height:1.45;">${escapeHtml(queCura)}</p>`,
-                            checklist: [
-                                `Paso Cero: ${tool.protocolo_paso_cero || 'Implementar 1 micro-acción de 5 minutos.'}`,
-                                `Aplicación: Completar la matriz o plantilla de ${tool.nombre_humano}.`,
-                                `Cierre: Registrar la victoria en el Inventario Cero Culpa.`
-                            ],
-                            app_url: tool.app_url,
-                            imprimible_url: tool.print_url,
-                            imprimible_label: 'Ver Imprimible →',
-                            guia_url: tool.guide_url,
-                            guia_label: 'Ver Guía Completa →'
-                        });
-                    }
-                });
-            }
                             checklist: [
                                 `Paso Cero: ${tool.protocolo_paso_cero || 'Implementar 1 micro-acción de 5 minutos.'}`,
                                 `Aplicación: Completar la matriz o plantilla de ${tool.nombre_humano}.`,

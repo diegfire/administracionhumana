@@ -49,8 +49,8 @@ const CLIENT_ACCOUNTS = [
         id: "melissa",
         name: "Melissa Henríquez",
         subtitle: "Educación & Gestión Träfmen",
-        usernames: ["melissa.trafmen", "melissa", "trafmen", "melissatrafmen", "@melissa.trafmen", "melissa@administracionhumana.com"],
-        passwords: ["ah-trafmen8416", "ah-trafmen-8416", "trafmen8416", "melissa2026", "2026"],
+        usernames: ["melissa.trafmen", "melissa", "trafmen", "melissatrafmen", "melissa henriquez", "melissa.henriquez", "melissa@email.com", "@melissa.trafmen", "melissa@administracionhumana.com"],
+        passwords: ["ah-trafmen8416", "ah-trafmen-8416", "trafmen8416", "melissa2026", "ah-melissa2026", "2026"],
         url: "plan.html?cliente=melissa",
         storageKey: "ah_auth_melissa"
     },
@@ -432,8 +432,9 @@ function getAllClientAccounts() {
 window.getAllClientAccounts = getAllClientAccounts;
 
 window.resolveClientPortalByCredentials = function(rawUser, rawPass) {
-    const user = String(rawUser || "").trim().toLowerCase().replace(/^@/, '');
-    const pass = String(rawPass || "").trim().toLowerCase();
+    const stripAccents = (s) => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const user = stripAccents(rawUser).trim().toLowerCase().replace(/^@/, '');
+    const pass = stripAccents(rawPass).trim().toLowerCase();
     const cleanUser = user.replace(/[\s\-_]/g, '');
     const cleanPass = pass.replace(/[\s\-_]/g, '');
 

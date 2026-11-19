@@ -523,6 +523,24 @@
           { id: 3, text: 'Configurar Tablero de Foco para evitar sobrecarga operativa', completed: false }
         ]
       },
+      'user_melissa_henriquez': {
+        id: 'melissa',
+        fullName: 'Melissa Henríquez Soto',
+        pin: 'AH-Trafmen8416',
+        validPins: ['AH-Trafmen8416', 'ah-trafmen8416', 'trafmen8416', 'melissa2026', '2026'],
+        status: '🟢 En Acompañamiento Activo',
+        flightPlanUrl: 'plan.html?cliente=melissa',
+        flightPlanDesc: 'Kinesiología Escolar, Maternidad Presente (Chinito), Carta Espacio 30m, Diplomado y Juego y Movimiento Träfmen.',
+        storageKey: 'ah_auth_melissa',
+        driveUrl: 'plan.html?cliente=melissa',
+        hubImprimiblesUrl: '04_Imprimibles_Fisicos/Hub_Imprimibles_Melissa.html',
+        scores: { 'Propósito': 8, 'Bienestar': 7, 'Tiempo': 6, 'Hábitos': 7, 'Finanzas': 8, 'Relaciones': 8, 'Entorno': 7, 'Desarrollo': 8 },
+        defaultTasks: [
+          { id: 1, text: 'Activar Carta Espacio & Misión Foco 30m con Chinito', completed: false },
+          { id: 2, text: 'Aplicar Protocolo Lavado Diurno (cero lavados post 19:00)', completed: false },
+          { id: 3, text: 'Completar Inventario Diario de Resultados nocturno (3 min)', completed: false }
+        ]
+      },
       'user_admin_diego': {
         id: 'diego',
         fullName: 'Diego (Consultor & Administrador)',
@@ -577,6 +595,7 @@
         else if (norm.includes('rocio')) user = { uid: 'user_rocio_ust', fullName: 'Rocío', role: 'client', flightPlanUrl: 'planes-rocio.html', storageKey: 'ah_auth_token_rocio' };
         else if (norm.includes('mati')) user = { uid: 'user_matias_gonzalez', fullName: 'Matías González', role: 'client', flightPlanUrl: 'planes-matias.html', storageKey: 'ah_client_auth_matias' };
         else if (norm.includes('fran') || norm.includes('lissette')) user = { uid: 'user_francisca_lissette', fullName: 'Francisca Lissette', role: 'client', flightPlanUrl: 'planes/francisca/index.html', storageKey: 'ah_auth_francisca' };
+        else if (norm.includes('melis') || norm.includes('trafmen')) user = { uid: 'user_melissa_henriquez', fullName: 'Melissa Henríquez Soto', role: 'client', flightPlanUrl: 'plan.html?cliente=melissa', storageKey: 'ah_auth_melissa' };
         else if (norm.includes('diego')) user = { uid: 'user_admin_diego', fullName: 'Diego (Administrador)', role: 'admin', flightPlanUrl: 'visualizador.html', storageKey: 'ah_auth_token_admin' };
         if (user) {
           localStorage.setItem('ah_current_user', JSON.stringify(user));

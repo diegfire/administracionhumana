@@ -457,6 +457,12 @@ const AHAuth = {
 
     if (found.storageKey) {
       localStorage.setItem(found.storageKey, 'authenticated_ok');
+      const shortId = found.storageKey.replace(/^ah_auth_token_/, '').replace(/^ah_auth_/, '').replace(/^ah_client_auth_/, '');
+      if (shortId) {
+        localStorage.setItem(`ah_auth_${shortId}`, 'authenticated_ok');
+        localStorage.setItem(`client_authenticated_${shortId}`, 'true');
+        sessionStorage.setItem(`client_authenticated_${shortId}`, 'true');
+      }
       if (found.storageKey === 'ah_auth_matias' || found.uid === 'user_matias_gonzalez') {
         localStorage.setItem('ah_client_auth_matias', 'authenticated_ok');
         localStorage.setItem('client_authenticated_matias', 'true');
